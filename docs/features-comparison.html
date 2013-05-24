@@ -10,9 +10,13 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <style type="text/css">
     .table td.center{text-align: center}
-    .icon-ok{color:#70AEFF}
-    .false{color: #FF9D8C}
-    [class^="icon-"], [class*=" icon-"]{font-size:20px}
+    .table thead td{font-weight: bold}
+    .table tbody td{font-size:12px}
+    .blue{color:#70AEFF}
+    .red{color: #FF9D8C}
+    [class^="icon-"], [class*=" icon-"]{font-size:16px;color:#9BC2D9}
+    .table td:nth-child(2) [class^="icon-"], [class*=" icon-"]{color: #70AEFF}
+    .table td{vertical-align: middle}
     </style>
 </head>
 <body>
@@ -26,7 +30,7 @@
 			<td style="width:15%" class="center">T3Framework</td>
 			<td style="width:15%" class="center">Gantry</td>
 			<td style="width:15%" class="center">Helix</td>
-			<td style="width:15%" class="center">Helix</td>
+			<td style="width:15%" class="center">Warp</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -74,6 +78,15 @@
 			<td class="center"><span class="icon-ok"></span></td>
 			<td class="center"><span class="icon-ok"></span></td>
 		</tr>
+
+        <tr>
+            <td class="subject">Mobile supported</td>
+            <td class="center"><span class="icon-ok"></span></td>
+            <td class="center"><span class="icon-ok"></span></td>
+            <td class="center"><span class="icon-ok"></span></td>
+            <td class="center"></td>
+            <td class="center"><span class="icon-ok"></span></td>
+        </tr>
 		
 		<tr>
 			<td class="subject">SEO Optimized</td>
@@ -83,15 +96,24 @@
 			<td class="center"></td>
 			<td class="center"></td>
 		</tr>
-		
-		<tr>
-			<td class="subject">Layout Columns</td>
-			<td class="center">12</td>
-			<td class="center">12</td>
-			<td class="center">4</td>
-			<td class="center">Flexible</td>
-			<td class="center">Equal, Double, Stack</td>
-		</tr>
+
+        <tr>
+            <td class="subject">Template layout</td>
+            <td class="center">12</td>
+            <td class="center">Responsive<br /> Fixed 960<br /> Fixed 1200</td>
+            <td class="center">10</td>
+            <td class="center">Flexible</td>
+            <td class="center">Equal, Double, Stack</td>
+        </tr>
+
+        <tr>
+            <td class="subject">Module positions</td>
+            <td class="center"><span class="icon-question"></span></td>
+            <td class="center">12</td>
+            <td class="center">78</td>
+            <td class="center">Flexible</td>
+            <td class="center">40<br />3 module layout: Double, Equal, Stack</td>
+        </tr>
 		
 		<tr>
 			<td class="subject">Google Fonts</td>
@@ -122,7 +144,7 @@
 		
 		<tr>
 			<td class="subject">Typography</td>
-			<td class="center">Twitter Bootstrap + Font Awesome Icons</td>
+			<td class="center">Twitter Bootstrap<br />+<br />Font Awesome Icons</td>
 			<td class="center">Twitter Bootstrap</td>
 			<td class="center">Twitter Bootstrap</td>
 			<td class="center">Custom</td>
@@ -149,7 +171,7 @@
 	</tbody>
 </table>
 
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
