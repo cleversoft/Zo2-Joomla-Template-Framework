@@ -16,7 +16,7 @@
     </updateservers>
     -->
     <files>
-        <filename plugin="helix">zo2.php</filename>
-        <folder plugin="helix">vendor</folder>
+        <filename plugin="zo2">zo2.php</filename>
+        <folder plugin="zo2">vendor</folder>
     </files>
 </extension>
