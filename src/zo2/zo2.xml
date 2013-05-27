@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+    <name>Zo2 Framework</name>
+    <author>JoomVision</author>
+    <creationDate>May 2013</creationDate>
+    <copyright>Copyright (C) 2010 - 2013 JoomVision. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+    <authorEmail>support@joomvision.com</authorEmail>
+    <authorUrl>www.joomvision.com</authorUrl>
+    <version>0.0.1</version>
+    <description>Zo2 Framework - Template Framework for Joomla 3</description>
+
+    <!--
+    <updateservers>
+        <server type="extension" priority="1" name="Zo2 Framework">http://www.joomshaper.com/updates/plg_system_helix.xml</server>
+    </updateservers>
+    -->
+    <files>
+        <filename plugin="helix">zo2.php</filename>
+        <folder plugin="helix">vendor</folder>
+    </files>
+</extension>

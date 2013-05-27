@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="template" client="site" method="upgrade">
+    <name>zo2_base</name>
+    <creationDate>May 2013</creationDate>
+    <author>JoomVision.com</author>
+    <authorEmail>support@joomvision.com</authorEmail>
+    <authorUrl>http://www.joomvision.com</authorUrl>
+    <copyright>Copyright (C) 2010 - 2013 JoomVision.com. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+    <version>1.0.2</version>
+    <description>
+		<![CDATA[
+			<!-- content goes here -->
+		]]>
+	</description>
+    <!--
+    <languages>
+        <language tag="en-GB">en-GB.zo2.ini</language>
+    </languages>
+    -->
+    <positions>
+        <position>logo</position>
+        <position>menu</position>
+        <position>search</position>
+        <position>slide</position>
+        <position>user1</position>
+        <position>user2</position>
+        <position>user3</position>
+        <position>user4</position>
+        <position>left</position>
+        <position>right</position>
+        <position>feature</position>
+        <position>bottom1</position>
+        <position>bottom2</position>
+        <position>bottom3</position>
+        <position>bottom4</position>
+        <position>breadcrumb</position>
+        <position>footer1</position>
+        <position>footer2</position>
+    </positions>
+	
+    <files>
+    </files>
+    <config>
+        <fields name="params">
+        </fields>
+    </config>
+</extension>
