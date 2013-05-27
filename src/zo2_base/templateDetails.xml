@@ -21,6 +21,7 @@
     <positions>
         <position>logo</position>
         <position>menu</position>
+        <position>breadcrumb</position>
         <position>search</position>
         <position>slide</position>
         <position>user1</position>
@@ -34,13 +35,15 @@
         <position>bottom2</position>
         <position>bottom3</position>
         <position>bottom4</position>
-        <position>breadcrumb</position>
         <position>footer1</position>
         <position>footer2</position>
     </positions>
 	
     <files>
         <filename>index.php</filename>
+        <filename>layout.json</filename>
+        <folder>css</folder>
+        <folder>vendor</folder>
     </files>
     <config>
         <fields name="params">
