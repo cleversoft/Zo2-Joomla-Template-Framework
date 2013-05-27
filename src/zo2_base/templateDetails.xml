@@ -40,6 +40,7 @@
     </positions>
 	
     <files>
+        <filename>index.php</filename>
     </files>
     <config>
         <fields name="params">
