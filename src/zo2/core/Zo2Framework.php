@@ -6,7 +6,9 @@
  *
  * @package Zo2 Framework
  * @author JoomShaper http://www.joomvision.com
- * @copyright Copyright (c) 2010 - 2013 JoomVision
+ * @author Duc Nguyen <ducntq@gmail.com>
+ * @author Vu Hiep
+ * @copyright Copyright (c) 2008 - 2013 JoomVision
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
@@ -81,5 +83,14 @@ class Zo2Framework {
     public static function addCssStylesheet($style){
         self::getInstance()->document->addStyleSheet($style);
         return self::getInstance();
+    }
+
+    /**
+     * Get Zo2 Framework plugin path
+     *
+     * @return string
+     */
+    public static function getSystemPluginPath(){
+        return JURI::root(true) . '/plugins/system/zo2';
     }
 }

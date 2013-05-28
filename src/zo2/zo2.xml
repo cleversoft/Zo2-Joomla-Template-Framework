@@ -20,4 +20,5 @@
         <folder plugin="zo2">vendor</folder>
         <folder plugin="zo2">core</folder>
     </files>
+    <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
 </extension>
