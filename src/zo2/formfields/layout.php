@@ -14,6 +14,16 @@ defined('JPATH_BASE') or die;
 jimport('joomla.form.formfield');
 
 class JFormFieldLayout extends JFormField {
+    protected $type = 'Layout';
+
+    // return the input html
     public function getInput(){
+
+    }
+
+    // no label for layout builder
+    public function getLabel()
+    {
+        return false;
     }
 }

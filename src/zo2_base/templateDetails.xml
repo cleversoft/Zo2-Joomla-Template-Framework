@@ -13,11 +13,10 @@
 			<!-- content goes here -->
 		]]>
 	</description>
-    <!--
+
     <languages>
-        <language tag="en-GB">en-GB.zo2.ini</language>
+        <language tag="en-GB">en-GB.tpl_zo2_base.ini</language>
     </languages>
-    -->
     <positions>
         <position>logo</position>
         <position>menu</position>
@@ -47,6 +46,9 @@
     </files>
     <config>
         <fields name="params">
+            <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
+                <field type="layout" name="layout" />
+            </fieldset>
         </fields>
     </config>
 </extension>
