@@ -61,7 +61,25 @@ class Zo2Framework {
         return JFactory::getDocument();
     }
 
-    public static function addScript($script){}
+    /**
+     * Add js script file to the document
+     *
+     * @param string $script Path to the js script
+     * @return Zo2Framework
+     */
+    public static function addJsScript($script){
+        self::getInstance()->document->addScript($script);
+        return self::getInstance();
+    }
 
-    public static function addStyle($style){}
+    /**
+     * Add css stylesheet file to the document
+     *
+     * @param string $style Path to the css stylesheet
+     * @return Zo2Framework
+     */
+    public static function addCssStylesheet($style){
+        self::getInstance()->document->addStyleSheet($style);
+        return self::getInstance();
+    }
 }
