@@ -114,4 +114,36 @@ class Zo2Framework {
         }
         else return false;
     }
+
+    /**
+     * Get Template name
+     *
+     * @return string
+     */
+    public static function getTemplateName()
+    {
+        if(!isset($_GET['id'])) return '';
+        $db  = JFactory::getDBO();
+        $sql = 'SELECT template
+                FROM #__template_styles
+                WHERE id = ' . $_GET['id'] ;
+        $db->setQuery($sql);
+        return $db->loadResult();
+    }
+
+    /**
+     * Get template params
+     *
+     * @param bool $assocArray
+     * @return mixed|string
+     */
+    public static function getTemplateParams($assocArray = true){
+        if(!isset($_GET['id'])) return '';
+        $db  = JFactory::getDBO();
+        $sql = 'SELECT params
+                FROM #__template_styles
+                WHERE id = ' . $_GET['id'] ;
+        $db->setQuery($sql);
+        return json_decode($db->loadResult(), $assocArray);
+    }
 }
