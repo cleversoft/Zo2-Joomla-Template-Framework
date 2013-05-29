@@ -11,7 +11,6 @@ class plgSystemZo2 extends JPlugin
         if (file_exists($frameworkPath)) {
             require_once($frameworkPath);
             Zo2Framework::init();
-            var_dump(Zo2Framework::getTemplateParams());die();
 
         } else {
             echo JText::_('Zo2 framework not found.');
