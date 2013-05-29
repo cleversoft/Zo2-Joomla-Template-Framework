@@ -93,4 +93,25 @@ class Zo2Framework {
     public static function getSystemPluginPath(){
         return JURI::root(true) . '/plugins/system/zo2';
     }
+
+
+    public static function getPluginPath(){
+        return JPATH_SITE . '/system/zo2';
+    }
+
+    /**
+     * Import file from Zo2Framework plugin directory
+     *
+     * @param string $filepath File's path, base directory is Zo2Framework plugin directory
+     * @param bool $once Require this file only once
+     * @return bool
+     */
+    public static function import($filepath, $once = true) {
+        $path = Zo2Framework::getPluginPath() . '/' . $filepath;
+        if(file_exists($path) && !is_dir($path)){
+            $once ? require_once $path : require $path;
+            return true;
+        }
+        else return false;
+    }
 }
