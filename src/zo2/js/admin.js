@@ -8,4 +8,6 @@ jQuery(function($){
     $container.find('.row-fluid').sortable({
         handle: '.drag-handler'
     });
+
+
 });
