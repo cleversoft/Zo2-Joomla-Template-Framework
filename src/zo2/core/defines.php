@@ -2,9 +2,9 @@
 /**
  *
  * @package Zo2 Framework
- * @author JoomShaper http://www.joomvision.com
+ * @author ZO2 http://www.joomvision.com
  * @author Duc Nguyen <ducntq@gmail.com>
- * @author Vu Hiep
+ * @author Vu Hiep <vqhiep2010@gmail.com>
  * @copyright Copyright (c) 2008 - 2013 JoomVision
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */

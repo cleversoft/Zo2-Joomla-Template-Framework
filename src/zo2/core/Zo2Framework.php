@@ -49,6 +49,8 @@ class Zo2Framework {
         if(!self::$_instance) {
             self::$_instance = new self();
             self::$_instance->document = self::getInstance()->getCurrentDocument();
+
+            // attach Zo2Framework to current document
             self::getInstance()->getCurrentDocument()->zo2 = self::getInstance();
         }
         return self::$_instance;
@@ -116,17 +118,20 @@ class Zo2Framework {
     }
 
     /**
-     * Get Template name
+     * Get template name
      *
+     * @param int $templateId
      * @return string
      */
-    public static function getTemplateName()
+    public static function getTemplateName($templateId = 0)
     {
+        if($templateId == 0 && !isset($_GET['id'])) return '';
+        if($templateId == 0 && isset($_GET['id'])) $templateId = $_GET['id'];
         if(!isset($_GET['id'])) return '';
         $db  = JFactory::getDBO();
         $sql = 'SELECT template
                 FROM #__template_styles
-                WHERE id = ' . $_GET['id'] ;
+                WHERE id = ' . $templateId;
         $db->setQuery($sql);
         return $db->loadResult();
     }
@@ -145,6 +150,32 @@ class Zo2Framework {
                 WHERE id = ' . $_GET['id'] ;
         $db->setQuery($sql);
         return json_decode($db->loadResult(), $assocArray);
+    }
+
+    /**
+     * Set layout for output
+     *
+     * @param $layoutName
+     * @return bool
+     */
+    public static function setLayout($layoutName){
+        return true;
+    }
+
+    /**
+     * Get list of layouts from this template
+     *
+     * @param int $templateId If pass null, or 0, templateId will get from $_GET['id']
+     * @return array
+     */
+    public static function getTemplateLayouts($templateId = 0){
+        $templateName = self::getTemplateName($templateId);
+        if(!empty($templateName)){
+            $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.php';
+            $layoutFiles = glob($templatePath);
+            return array_map('basename', $layoutFiles, array('.php'));
+        }
+        else return array();
     }
 
     public static function import2 ($filePath) {
