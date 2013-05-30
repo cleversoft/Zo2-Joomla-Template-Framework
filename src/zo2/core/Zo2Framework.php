@@ -146,4 +146,29 @@ class Zo2Framework {
         $db->setQuery($sql);
         return json_decode($db->loadResult(), $assocArray);
     }
+
+    public static function import2 ($filePath) {
+
+        static $path ;
+
+        if (!isset($path)) {
+            $path = array();
+        }
+
+        // Only import the library if not already attempted.
+        if (!isset(self::$paths[$filePath]))
+        {
+            $success = false;
+            $path = str_replace('.', DIRECTORY_SEPARATOR, $filePath);
+            // If the file exists attempt to include it.
+            if (is_file(ZO2_ADMIN_BASE . '/' . $path . '.php'))
+            {
+                $success = (bool) include_once ZO2_ADMIN_BASE . '/' . $path . '.php';
+            }
+
+            return self::$paths[$filePath] = $success;
+        }
+
+        return self::$paths[$filePath];
+    }
 }
