@@ -38,6 +38,15 @@ class Zo2Framework {
      */
     public static function init(){
         self::getInstance();
+
+        $app = JFactory::getApplication();
+        if (!$app->isAdmin()) {
+            // JViewLegacy
+            if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.class.legacy');
+            // JModuleHelper
+            if (!class_exists('JModuleHelper', false)) Zo2Framework::import2('core.class.helper');
+
+        }
     }
 
     /**
@@ -178,16 +187,20 @@ class Zo2Framework {
         else return array();
     }
 
+    /**
+     * File importer
+     * @param $filePath A dot syntax path
+     * @return bool Return True on success
+     */
     public static function import2 ($filePath) {
 
-        static $path ;
+        static $paths;
 
-        if (!isset($path)) {
-            $path = array();
+        if (!isset($paths)) {
+            $paths = array();
         }
-
         // Only import the library if not already attempted.
-        if (!isset(self::$paths[$filePath]))
+        if (!isset($paths[$filePath]))
         {
             $success = false;
             $path = str_replace('.', DIRECTORY_SEPARATOR, $filePath);
@@ -196,10 +209,9 @@ class Zo2Framework {
             {
                 $success = (bool) include_once ZO2_ADMIN_BASE . '/' . $path . '.php';
             }
-
-            return self::$paths[$filePath] = $success;
+            return $paths[$filePath] = $success;
         }
 
-        return self::$paths[$filePath];
+        return $paths[$filePath];
     }
 }
