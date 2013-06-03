@@ -1,20 +1,11 @@
 <?php
 defined ('_JEXEC') or die ('resticted aceess');
 /* @var $this JDocumentHTML */
+if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <jdoc:include type="head" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/style.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/vendor/font-awesome/css/font-awesome.min.css" type="text/css" />
-</head>
-<body>
-<div class="container">
-    <jdoc:include type="modules" name="top" />
-    <jdoc:include type="component" />
-    <jdoc:include type="modules" name="bottom" />
-</div>
-</body>
-</html>
+$zo2 = Zo2Framework::getInstance();
+$templateName = $this->template;
+$layoutName = $zo2->getCurrentPage();
+$layout = new Zo2Layout($templateName, $layoutName);
+
+echo $layout->compile();

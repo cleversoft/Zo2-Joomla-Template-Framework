@@ -87,6 +87,6 @@ class Zo2Layout {
     public function compile(){
         $this->_output = $this->_layoutContent;
         $this->insertStatics();
-        echo $this->_output;
+        return $this->_output;
     }
 }

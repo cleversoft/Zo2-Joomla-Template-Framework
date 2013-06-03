@@ -108,7 +108,7 @@ class Zo2Framework {
 
 
     public static function getPluginPath(){
-        return JPATH_SITE . '/system/zo2';
+        return JPATH_SITE . '/plugins/system/zo2';
     }
 
     /**
@@ -119,7 +119,8 @@ class Zo2Framework {
      * @return bool
      */
     public static function import($filepath, $once = true) {
-        $path = Zo2Framework::getPluginPath() . '/' . $filepath;
+        $filepath = str_replace('.', '/', $filepath);
+        $path = Zo2Framework::getPluginPath() . '/' . $filepath . '.php';
         if(file_exists($path) && !is_dir($path)){
             $once ? require_once $path : require $path;
             return true;
