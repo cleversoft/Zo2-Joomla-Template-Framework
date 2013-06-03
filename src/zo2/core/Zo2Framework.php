@@ -38,6 +38,7 @@ class Zo2Framework {
      */
     public static function init(){
         self::getInstance();
+        Zo2Framework::import('core.Zo2Layout');
 
         $app = JFactory::getApplication();
         if (!$app->isAdmin()) {
@@ -213,5 +214,17 @@ class Zo2Framework {
         }
 
         return $paths[$filePath];
+    }
+    
+    
+    /**
+     * Return current page.
+     *
+     * @return string
+     */
+    public static function getCurrentPage(){
+        $app = JFactory::getApplication();
+        if($app->getMenu()->getActive()->home) return 'home';
+        else return $app->input->getString('view', 'home');
     }
 }
