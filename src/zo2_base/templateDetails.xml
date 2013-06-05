@@ -2,10 +2,10 @@
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>zo2_base</name>
     <creationDate>May 2013</creationDate>
-    <author>JoomVision.com</author>
-    <authorEmail>support@joomvision.com</authorEmail>
-    <authorUrl>http://www.joomvision.com</authorUrl>
-    <copyright>Copyright (C) 2010 - 2013 JoomVision.com. All rights reserved.</copyright>
+    <author>APL</author>
+    <authorEmail>support@apl.vn</authorEmail>
+    <authorUrl>http://github.com/aploss/</authorUrl>
+    <copyright>Copyright (c) 2008 - 2013 APL Solutions</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <version>1.0.2</version>
     <description>

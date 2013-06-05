@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="plugin" group="system" method="upgrade">
     <name>Zo2 Framework</name>
-    <author>JoomVision</author>
+    <author>APL</author>
     <creationDate>May 2013</creationDate>
-    <copyright>Copyright (C) 2010 - 2013 JoomVision. All rights reserved.</copyright>
+    <copyright>Copyright (c) 2008 - 2013 APL Solutions</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <authorEmail>support@joomvision.com</authorEmail>
-    <authorUrl>www.joomvision.com</authorUrl>
+    <authorEmail>support@apl.vn</authorEmail>
+    <authorUrl>www.apl.vn</authorUrl>
     <version>0.0.1</version>
     <description>Zo2 Framework - Template Framework for Joomla 3</description>
 
