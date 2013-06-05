@@ -6,13 +6,6 @@
             "options": {
                 "rel": "stylesheet"
             }
-        },
-        {
-            "path": "/vendor/font-awesome/css/font-awesome.min.css",
-            "type": "css",
-            "options": {
-                "rel": "stylesheet"
-            }
         }
     ],
     "footer": [

@@ -28,19 +28,22 @@ class JFormFieldLayout extends JFormField {
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
         $cssPath = $pluginPath . 'css/';
         $jsPath = $pluginPath . 'js/';
+        $vendorPath = $pluginPath . 'vendor/';
 
-        // Load jQuery framework
-        JHtml::_('jquery.framework', false);
-        // Load jQueryUI with sortable
-        JHtml::_('jquery.ui', array('core', 'sortable'));
+        // load jquery & jqueryui newest version, cause joomla's jquery is plain old
+        // Load custom js and css
+        $doc->addScript($vendorPath . 'jqueryui/js/jquery-ui-1.10.3.custom.min.js');
+        $doc->addScript($vendorPath . 'underscorejs/underscore-min.js');
+        $doc->addScript($vendorPath . 'backbonejs/backbone-min.js');
+        $doc->addScript($jsPath . 'layoutbuildermodels.js');
+        $doc->addScript($jsPath . 'admin.js');
+        $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
+        $doc->addStyleSheet($cssPath . 'style.css');
+
         // Load Bootstrap JS framework
         JHtml::_('bootstrap.framework');
         // Load Bootstrap CSS
         JHtml::_('bootstrap.loadCss');
-
-        // Load custom js and css
-        $doc->addScript($jsPath . 'admin.js');
-        $doc->addStyleSheet($cssPath . 'style.css');
 
         $positionSettings = array();
 
@@ -55,7 +58,7 @@ class JFormFieldLayout extends JFormField {
      */
     public function getLabel()
     {
-        return '<b>This is a label</b>';
+        return '';
     }
 
 
@@ -67,9 +70,8 @@ class JFormFieldLayout extends JFormField {
      */
     private function generateLayoutBuilder($positionSettings){
         $path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
-        $html = '';
         ob_start();
-        include_once($path);
+        include($path);
         $html = ob_get_contents();
         ob_end_clean();
         return $html;

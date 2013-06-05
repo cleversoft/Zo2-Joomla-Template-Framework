@@ -1,18 +1,16 @@
 <?php
-
 /**
+ * Zo2 Framework (http://zo2framework.org)
  *
- * Zo2Framework class serves as helper for all basic functionalyties of Zo2Framework system
- *
- * @package Zo2 Framework
- * @author JoomShaper http://www.joomvision.com
- * @author Duc Nguyen <ducntq@gmail.com>
- * @author Vu Hiep
- * @copyright Copyright (c) 2008 - 2013 JoomVision
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @link         http://github.com/aploss/zo2
+ * @package      Zo2
+ * @author       Duc Nguyen <ducntq@gmail.com>
+ * @author       Vu Hiep
+ * @copyright    Copyright ( c ) 2008 - 2013 APL Solutions
+ * @license      http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
 
-defined ('_JEXEC') or die('Resticted aceess');
+defined ('_JEXEC') or die('Resticted access!');
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
@@ -114,7 +112,7 @@ class Zo2Framework {
     /**
      * Import file from Zo2Framework plugin directory
      *
-     * @param string $filepath File's path, base directory is Zo2Framework plugin directory
+     * @param string $filepath Dot syntax file path
      * @param bool $once Require this file only once
      * @return bool
      */
@@ -161,16 +159,6 @@ class Zo2Framework {
                 WHERE id = ' . $_GET['id'] ;
         $db->setQuery($sql);
         return json_decode($db->loadResult(), $assocArray);
-    }
-
-    /**
-     * Set layout for output
-     *
-     * @param $layoutName
-     * @return bool
-     */
-    public static function setLayout($layoutName){
-        return true;
     }
 
     /**

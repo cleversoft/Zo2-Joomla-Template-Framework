@@ -1,0 +1,28 @@
+{
+    "header": [
+        {
+            "path": "/vendor/bootstrap/css/bootstrap.min.css",
+            "type": "css",
+            "options": {
+                "rel": "stylesheet"
+            }
+        },
+        {
+            "path": "/vendor/font-awesome/css/font-awesome.min.css",
+            "type": "css",
+            "options": {
+                "rel": "stylesheet"
+            }
+        }
+    ],
+    "footer": [
+        {
+            "path": "/vendor/jquery/jquery-1.9.1.min.js",
+            "type": "js"
+        },
+        {
+            "path": "/vendor/bootstrap/js/bootstrap.min.js",
+            "type": "js"
+        }
+    ]
+}
