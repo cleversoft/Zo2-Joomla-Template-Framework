@@ -22,15 +22,16 @@ var WorkFrame = Backbone.Model.extend({
     /**
      * Initialize object
      */
-    initialize: function(){},
+    initialize: function(){
+        console.log('init');
+    },
 
     /**
      * Default properties
      */
     defaults: {
         droppable: true,
-        elementId: 'layoutframe',
-        droppableOverlay: null
+        elementId: 'layoutframe'
     },
 
     /**
@@ -39,7 +40,7 @@ var WorkFrame = Backbone.Model.extend({
      * @returns {*|jQuery|HTMLElement}
      */
     getDroppableOverlay: function(){
-        return $('#' + this.get('droppableOverlay'));
+        return jQuery('#' + this.get('droppableOverlay'));
     },
 
     /**
@@ -48,7 +49,7 @@ var WorkFrame = Backbone.Model.extend({
      * @returns {*|jQuery|HTMLElement}
      */
     getIframe: function(){
-        return $('#' + this.get('elementId'));
+        return jQuery('#' + this.get('elementId'));
     },
 
     /**
@@ -65,11 +66,32 @@ var WorkFrame = Backbone.Model.extend({
     }
 });
 
+var Test = Backbone.Model.extend({
+    initialize: function(){
+        console.log('now init');
+    }
+});
+
 var WorkOverlay = Backbone.Model.extend({
     /**
      * Initialize object
      */
-    initialize: function(){},
+    initialize: function(){
+    },
+
+    updateSize: function() {
+        var $thisDroppable = jQuery('#' + this.get('elementId'));
+        if($thisDroppable.length > 0) {
+            var offset = $thisDroppable.offset();
+            var size = {
+                top: offset.top,
+                left: offset.left,
+                bottom: offset.top + $thisDroppable.height(),
+                right: offset.left + $thisDroppable.width()
+            };
+            this.set('size', size);
+        }
+    },
 
     /**
      * Default properties
@@ -78,7 +100,8 @@ var WorkOverlay = Backbone.Model.extend({
         droppable: true,
         elementId: 'layoutbuilder-droppable',
         connectorId: 'layoutframe',
-        acceptIframe: null
+        init: false,
+        size: {top: 0, bottom: 0, left: 0, right: 0}
     },
 
     /**
@@ -88,7 +111,7 @@ var WorkOverlay = Backbone.Model.extend({
      * @returns {{x: number, y: number}}
      */
     eventToPosition: function(e){
-        var iframeOffset = this.get('acceptIframe').offset();
+        var iframeOffset = jQuery('#layoutframe').offset();
         return { x: e.pageX - iframeOffset.left, y: Math.max(e.pageY - iframeOffset.top, 0) };
     }
 });

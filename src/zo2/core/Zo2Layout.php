@@ -13,9 +13,9 @@
 
 class Zo2Layout {
     /* private */
-    private $_layoutName, $_layoutContent, $_layoutPath, $_templateName, $_settingsPath, $_coreSettingsPath, $_templateUri = '';
+    private $_layoutName, $_layoutContent, $_layoutPath, $_templateName, $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
-    private $_layoutSettings = null;
+    private $_layoutStatics = array();
 
     /**
      * Construct a Zo2Layout object
@@ -27,22 +27,29 @@ class Zo2Layout {
         // assign values to private variables
         $layoutDir = JPATH_SITE . '/templates/' . $templateName . '/layouts/';
         $this->_layoutPath = $layoutDir . $layoutName . '.php';
-        $this->_settingsPath = $layoutDir . $layoutName . '.json';
-        $this->_coreSettingsPath = $layoutDir . 'core.json';
+        $this->_staticsPath = $layoutDir . $layoutName . '.json';
+        $this->_coreStaticsPath = $layoutDir . 'core.json';
         $this->_templateName = $templateName;
         $this->_layoutName = $layoutName;
         $this->_templateUri = JUri::root() . 'templates/' . $templateName;
 
         // check layout existence, if layout not existed, get default layout, which is homepage.php
-        if(!file_exists($this->_layoutPath) || !file_exists($this->_settingsPath)){
+        if(!file_exists($this->_layoutPath) || !file_exists($this->_staticsPath)){
             $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.php';
-            $this->_settingsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
+            $this->_staticsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
         }
 
         // get template content
+        $this->_layoutStatics = array('header' => array(), 'footer' => array());
         $this->_layoutContent = file_get_contents($this->_layoutPath);
-        $settingsJson = file_get_contents($this->_settingsPath);
-        $this->_layoutSettings = json_decode($settingsJson);
+        $coreStaticsJson = file_get_contents($this->_coreStaticsPath);
+        $staticsJson = file_get_contents($this->_staticsPath);
+        $coreStatics = json_decode($coreStaticsJson, true);
+        $statics = json_decode($staticsJson, true);
+
+        // combine layout statics
+        $this->_layoutStatics['header'] = array_merge($coreStatics['header'], $statics['header']);
+        $this->_layoutStatics['footer'] = array_merge($coreStatics['footer'], $statics['footer']);
     }
 
     /**
@@ -62,14 +69,14 @@ class Zo2Layout {
     private function insertStatics(){
         $footer = "";
         $header = "";
-        if($this->_layoutSettings != null){
-            foreach($this->_layoutSettings->header as $item){
-                if($item->type == 'css') $header .= $this->generateCssTag($item);
-                elseif($item->type == 'js') $header .= $this->generateJsTag($item);
+        if($this->_layoutStatics != null){
+            foreach($this->_layoutStatics['header'] as $item){
+                if($item['type'] == 'css') $header .= $this->generateCssTag($item);
+                elseif($item['type'] == 'js') $header .= $this->generateJsTag($item);
             }
-            foreach($this->_layoutSettings->footer as $item){
-                if($item->type == 'css') $footer .= $this->generateCssTag($item);
-                elseif($item->type == 'js') $footer .= $this->generateJsTag($item);
+            foreach($this->_layoutStatics['footer'] as $item){
+                if($item['type'] == 'css') $footer .= $this->generateCssTag($item);
+                elseif($item['type'] == 'js') $footer .= $this->generateJsTag($item);
             }
         }
 
@@ -92,8 +99,8 @@ class Zo2Layout {
      */
     private function generateJsTag($item){
         $async = "";
-        if(isset($item->options->async)) $async = " async=\"" . $item->options->async . "\"";
-        return "<script" . $async . " type=\"text/javascript\" src=\"" . $this->_templateUri . $item->path . "\"></script>\n";
+        if(isset($item['options']['async'])) $async = " async=\"" . $item['options']['async'] . "\"";
+        return "<script" . $async . " type=\"text/javascript\" src=\"" . $this->_templateUri . $item['path'] . "\"></script>\n";
     }
 
     /**
@@ -103,8 +110,8 @@ class Zo2Layout {
      * @return string
      */
     private function generateCssTag($item){
-        $rel = isset($item->options->rel) ? $item->options->rel : "stylesheet";
-        return "<link rel=\"" . $rel . "\" href=\"" . $this->_templateUri . $item->path . "\" type=\"text/css\" />\n";
+        $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
+        return "<link rel=\"" . $rel . "\" href=\"" . $this->_templateUri . $item['path'] . "\" type=\"text/css\" />\n";
     }
 
     /**
