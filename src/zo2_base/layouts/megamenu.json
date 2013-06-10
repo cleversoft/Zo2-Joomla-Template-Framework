@@ -1,0 +1,45 @@
+{
+    "mainmenu": {
+
+        "menuid-323": {
+            "submenu": {
+                "rows": [
+                    [
+                        {
+                            "item": 494,
+                            "width": 12
+                        }
+                    ]
+                ]
+            }
+        },
+
+        "menuid-435": {
+            "submenu": {
+                "width": 700,
+                "rows": [
+                    [
+                        {
+                            "module_id": 93,
+                            "width": 4
+                        },
+                        {
+                            "module_id": 94,
+                            "width": 4
+                        },
+                        {
+                            "module_id": 33,
+                            "width": 4
+                        }
+                    ],
+                    [
+                        {
+                            "module_id": 105,
+                            "width": 12
+                        }
+                    ]
+                ]
+            }
+        }
+    }
+}
