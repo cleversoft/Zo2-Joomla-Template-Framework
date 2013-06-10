@@ -13,105 +13,72 @@ NodeType = {
     COMMENT: 8
 };
 
-/**
- * This object serve as helper between iframe document and parent document
- *
- * @type {WorkFrame}
- */
-var WorkFrame = Backbone.Model.extend({
-    /**
-     * Initialize object
-     */
+var WorkSpace = Backbone.Model.extend({
     initialize: function(){
-        console.log('init');
+        this.set('iframeEl', jQuery('#layoutframe'));
+        this.set('droppableEl', jQuery('#layoutbuilder-droppable'));
+        this.set('containerEl', jQuery('#layoutbuilder-container'));
+
+        var $containerParent = this.get('containerEl').parent();
+        var containerWidth = $containerParent.width();
+        this.get('containerEl').css('width', containerWidth);
+        this.get('iframeEl').css('width', containerWidth);
+
+        this.bindClickDroppable();
     },
 
-    /**
-     * Default properties
-     */
     defaults: {
-        droppable: true,
-        elementId: 'layoutframe'
-    },
-
-    /**
-     * Return div overlay element
-     *
-     * @returns {*|jQuery|HTMLElement}
-     */
-    getDroppableOverlay: function(){
-        return jQuery('#' + this.get('droppableOverlay'));
-    },
-
-    /**
-     * Return iframe element
-     *
-     * @returns {*|jQuery|HTMLElement}
-     */
-    getIframe: function(){
-        return jQuery('#' + this.get('elementId'));
+        iframeEl: null,
+        droppableEl: null,
+        lockDrop: false,
+        containerEl: null
     },
 
     /**
      * Set the content of iframe element
      *
      * @param {string} html - html content to set
-     * @param {string} root - root element
      * @returns {WorkFrame}
      */
-    setBodyHtmlContent: function(html, root){
-        if(root == undefined) root = 'html';
-        this.getIframe().contents().find(root).html(html);
+    setBodyHtmlContent: function(html){
+        var $iframe = this.get('iframeEl').contents();
+        var target = $iframe[0];
+        target.open();
+        target.write(html);
+        target.close();
         return this;
-    }
-});
-
-var Test = Backbone.Model.extend({
-    initialize: function(){
-        console.log('now init');
-    }
-});
-
-var WorkOverlay = Backbone.Model.extend({
-    /**
-     * Initialize object
-     */
-    initialize: function(){
     },
 
-    updateSize: function() {
-        var $thisDroppable = jQuery('#' + this.get('elementId'));
-        if($thisDroppable.length > 0) {
-            var offset = $thisDroppable.offset();
-            var size = {
-                top: offset.top,
-                left: offset.left,
-                bottom: offset.top + $thisDroppable.height(),
-                right: offset.left + $thisDroppable.width()
-            };
-            this.set('size', size);
+    eventToFramePosition: function(e){
+        var iframeOffset = this.get('iframeEl').offset();
+        return {
+            x: e.pageX - iframeOffset.left,
+            y: Math.max(e.pageY - iframeOffset.top, 0)
+        };
+    },
+
+    positionToFramePosition: function(x, y) {
+        var iframeOffset = this.get('iframeEl').offset();
+        return {
+            x: x - iframeOffset.left,
+            y: Math.max(y - iframeOffset.top, 0)
         }
     },
 
-    /**
-     * Default properties
-     */
-    defaults: {
-        droppable: true,
-        elementId: 'layoutbuilder-droppable',
-        connectorId: 'layoutframe',
-        init: false,
-        size: {top: 0, bottom: 0, left: 0, right: 0}
+    bindClickDroppable: function() {
+        var thisWorkspace = this;
+        var $iframe = jQuery(this.get('iframeEl').contents()[0]);
+        this.get('droppableEl').on('click', function(e) {
+            $iframe.find('.zo2-selected').removeClass('zo2-selected');
+            var $selectedEle = thisWorkspace.getElementByPosition(thisWorkspace.eventToFramePosition(e));
+            $selectedEle.addClass('zo2-selected');
+        });
     },
 
-    /**
-     * Determine position of event on iframe
-     *
-     * @param e Event
-     * @returns {{x: number, y: number}}
-     */
-    eventToPosition: function(e){
-        var iframeOffset = jQuery('#layoutframe').offset();
-        return { x: e.pageX - iframeOffset.left, y: Math.max(e.pageY - iframeOffset.top, 0) };
+    getElementByPosition: function(position){
+        var $iframe = this.get('iframeEl').contents();
+        var target = $iframe[0];
+        var ele = target.elementFromPoint(position.x, position.y);
+        return jQuery(ele);
     }
 });

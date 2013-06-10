@@ -115,13 +115,26 @@ class Zo2Layout {
     }
 
     /**
-     * Compile everything into HTML string
+     * Compile layout into Html Template
      *
-     * @return string
+     * @param bool $removeJdoc
+     * @param bool $layoutBuilder Add necessary CSS for layoutbuilder
+     * @return mixed|string
      */
-    public function compile(){
+    public function compile($removeJdoc = false, $layoutBuilder = false){
         $this->_output = $this->_layoutContent;
         $this->insertStatics();
+        if($removeJdoc) {
+            $this->_output = preg_replace('#<jdoc:include\ type="([^"]+)" (.*)\/>#iU', '', $this->_output);
+        }
+        if($layoutBuilder) $this->insertLayoutBuilderCss();
         return $this->_output;
+    }
+
+    private function insertLayoutBuilderCss() {
+        $path = Zo2Framework::getSystemPluginPath() . '/css/layoutbuilder.css';
+        $format = '<link rel="stylesheet" id="cssLayoutBuilder" type="text/css" href="%s" /></head>';
+        $result = sprintf($format, $path);
+        $this->_output = str_replace('</head>', $result, $this->_output);
     }
 }

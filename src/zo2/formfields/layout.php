@@ -45,9 +45,7 @@ class JFormFieldLayout extends JFormField {
         // Load Bootstrap CSS
         JHtml::_('bootstrap.loadCss');
 
-        $positionSettings = array();
-
-        return $this->generateLayoutBuilder($positionSettings);
+        return $this->generateLayoutBuilder();
     }
 
     /**
@@ -68,7 +66,8 @@ class JFormFieldLayout extends JFormField {
      * @param $positionSettings
      * @return string
      */
-    private function generateLayoutBuilder($positionSettings){
+    private function generateLayoutBuilder(){
+        $layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
         $path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
         ob_start();
         include($path);

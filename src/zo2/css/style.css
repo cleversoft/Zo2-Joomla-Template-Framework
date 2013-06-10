@@ -1,9 +1,23 @@
-.draggable-item{min-height:42px !important;line-height:40px;border:solid 1px #003399;background: #ffffff;width:100px;cursor:pointer;z-index:10}
-.drag-handler{width:40px;height:40px;line-height:40px;float:right;background: url('../images/icon_drag24.png') no-repeat center center;cursor: move;}
-#layoutframe{border:none;width:100%;display: block}
-#droppable-container{position: relative;width:100%;height:400px}
-#droppable-container iframe, #layoutbuilder-droppable{position:absolute;top:0;left:0;right:0;height:100%;z-index: 1}
-#droppable-container iframe{border:solid 1px #a9302a}
-#layoutbuilder-droppable{z-index: 2}
-#layoutbuilder-droppable.hidden{display:none}
-.relative{position:relative}
+#droppable-container {
+    position: relative;
+    overflow: auto;
+    margin-left: 320px;
+    height: 650px
+}
+#layoutbuilder-droppable {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5000px;
+    z-index: 2
+}
+#layoutframe {
+    z-index: 1;
+    height: 5000px;
+    display: block;
+    border: none
+}
+.relative{
+    position: relative
+}
