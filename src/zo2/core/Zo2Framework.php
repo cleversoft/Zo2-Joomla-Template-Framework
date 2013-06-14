@@ -1,6 +1,6 @@
 <?php
-
 /**
+ * Zo2 Framework (http://zo2framework.org)
  *
  * @link         http://github.com/aploss/zo2
  * @package      Zo2
@@ -209,7 +209,7 @@ class Zo2Framework {
             {
                 $success = (bool) include_once ZO2_ADMIN_BASE . '/' . $path . '.php';
             }
-            $paths[$filePath] = $success;
+            return $paths[$filePath] = $success;
         }
 
         return $paths[$filePath];
@@ -227,7 +227,7 @@ class Zo2Framework {
     }
 
     /**
-     * Display megamenu with
+     * Display megamenu
      * @param $menutype
      * @param $template
      */
