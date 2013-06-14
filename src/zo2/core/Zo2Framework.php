@@ -209,7 +209,7 @@ class Zo2Framework {
             {
                 $success = (bool) include_once ZO2_ADMIN_BASE . '/' . $path . '.php';
             }
-            $paths[$filePath] = $success;
+            return $paths[$filePath] = $success;
         }
 
         return $paths[$filePath];
