@@ -1,6 +1,6 @@
 <?php
-
 /**
+ * Zo2 Framework (http://zo2framework.org)
  *
  * @link         http://github.com/aploss/zo2
  * @package      Zo2
@@ -227,7 +227,7 @@ class Zo2Framework {
     }
 
     /**
-     * Display megamenu with
+     * Display megamenu
      * @param $menutype
      * @param $template
      */
