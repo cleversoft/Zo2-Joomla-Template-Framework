@@ -63,4 +63,3 @@ if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
         <jdoc:include type="modules" name="debug" style="none" />
     </body>
 </html>
-

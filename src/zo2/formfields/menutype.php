@@ -1,9 +1,12 @@
 <?php
 /**
- * @package Zo2 Framework
- * @author Hiepvu
- * @copyright Copyright (c) 2008 - 2013 JoomVision.com
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * Zo2 Framework (http://zo2framework.org)
+ *
+ * @link         http://github.com/aploss/zo2
+ * @package      Zo2
+ * @author       Hiepvu
+ * @copyright    Copyright ( c ) 2008 - 2013 APL Solutions
+ * @license      http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
  //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
@@ -36,15 +39,15 @@ class JFormFieldMenutype extends JFormFieldMenu
 
 
         $html = array();
-        $fparams = array();
+        $vars = array();
         $input = JFactory::getApplication()->input;
         if($input->getCmd('option') == 'com_templates' &&
             (preg_match('/style\./', $input->getCmd('task')) || $input->getCmd('view') == 'style' || $input->getCmd('view') == 'template')
         ){
-            $fparams['url'] = JUri::root() . 'index.php?zo2controller=menu&task=display';
+            $vars['url'] = JUri::root() . 'index.php?zo2controller=menu&task=display';
         }
 
-        $fcalls[] = 'Assets.ajax(\''.$this->getName('menu_type').'\', ' . json_encode($fparams) . ');';
+        $fcalls[] = 'Assets.ajax(\''.$this->getName('menu_type').'\', ' . json_encode($vars) . ');';
 
         $html[] = '<script type="text/javascript">';
         $html[] = '         jQuery(window).on(\'load\', function(){';
