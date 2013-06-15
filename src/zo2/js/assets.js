@@ -41,38 +41,30 @@
             this.ajaxs[name] = ajaxs[name];
         },
 
-        callAjax: function (ctrlelm) {
+        callAjax: function (control) {
 
             var ajaxs = this.ajaxs,
-                name = ctrlelm.name,
-                ctrl = ajaxs[name],
+                name = control.name,
+                el = ajaxs[name],
                 form = this;
 
-            if (!ctrl) {
-                ctrl = ajaxs[name.substr(0, name.length - 2)];
+            if (!el) {
+                el = ajaxs[name.substr(0, name.length - 2)];
             }
-
-            if (!ctrl) {
+            if (!el) {
                 return false;
             }
 
-            var info = ctrl.info;
-            if (!info) {
-                return false;
+            var info = el.info;
+
+            if (el.indicator.next('.chzn-container').length) {
+                el.indicator.insertAfter(el.indicator.next('.chzn-container'));
             }
 
-            if (ctrl.indicator.next('.chzn-container').length) {
-                ctrl.indicator.insertAfter(ctrl.indicator.next('.chzn-container'));
-            }
-
-            if (ctrl.indicator.next('#zo2-admin-layout-clone-btns').length) {
-                ctrl.indicator.insertAfter($('#zo2-admin-layout-clone-btns'));
-            }
-
-            ctrl.indicator.show();
-            $.get(info.url, { menutype: form.values(form.getElement(name))[0] }, function (responsive) {
-                ctrl.indicator.hide();
-                ZO2AdminMegamenu.megamenu(form, ctrlelm, ctrl, responsive);
+            el.indicator.show();
+            $.get(info.url, { menutype: form.values(form.getElement(name))[0] }, function (response) {
+                el.indicator.hide();
+                ZO2AdminMegamenu.megamenu(form, control, el, response);
             });
         },
         getElement: function (name) {
@@ -104,7 +96,7 @@
     };
 
     $(window).on('load', function () {
-        setTimeout($.proxy(Assets.start, Assets), 100);
+        setTimeout($.proxy(Assets.start, Assets), 120);
     });
 
 }(jQuery);

@@ -27,6 +27,8 @@
         <folder plugin="zo2">css</folder>
         <folder plugin="zo2">images</folder>
         <folder plugin="zo2">formfields</folder>
+        <folder plugin="zo2">html</folder>
+        <folder plugin="zo2">templates</folder>
     </files>
     <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
 </extension>

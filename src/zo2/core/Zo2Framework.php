@@ -261,7 +261,7 @@ class Zo2Framework {
             return array();
         }
     }
-    
+
     /**
      * Get current template params
      * @param null $name
