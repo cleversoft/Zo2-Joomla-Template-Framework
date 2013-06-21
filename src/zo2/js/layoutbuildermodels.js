@@ -272,6 +272,9 @@ var WorkSpace = Backbone.Model.extend({
                     // drag outside meaning stop creating element
                     thisWorkspace.set('outsideDraggingEl', null);
                 }
+            },
+            stop: function(e, ui) {
+                thisWorkspace.set('outsideDraggingEl', null);
             }
         });
     },
