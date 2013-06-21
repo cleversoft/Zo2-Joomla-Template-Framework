@@ -15,6 +15,10 @@
         <server type="extension" priority="1" name="Zo2 Framework">http://www.joomshaper.com/updates/plg_system_helix.xml</server>
     </updateservers>
     -->
+    <languages>
+        <language tag="en-GB">en-GB.plg_system_zo2.ini</language>
+    </languages>
+
     <files>
         <filename plugin="zo2">zo2.php</filename>
         <folder plugin="zo2">vendor</folder>
@@ -23,6 +27,8 @@
         <folder plugin="zo2">css</folder>
         <folder plugin="zo2">images</folder>
         <folder plugin="zo2">formfields</folder>
+        <folder plugin="zo2">html</folder>
+        <folder plugin="zo2">templates</folder>
     </files>
     <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
 </extension>
