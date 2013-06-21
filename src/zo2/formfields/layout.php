@@ -63,7 +63,6 @@ class JFormFieldLayout extends JFormField {
     /**
      * Get html for layout builder
      *
-     * @param $positionSettings
      * @return string
      */
     private function generateLayoutBuilder(){

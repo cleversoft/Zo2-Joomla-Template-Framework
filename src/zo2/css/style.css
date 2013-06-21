@@ -21,3 +21,5 @@
 .relative{
     position: relative
 }
+.zo2-draggable{z-index:9999;width: 300px;height:30px}
+#components-container{width:300px;float:left}

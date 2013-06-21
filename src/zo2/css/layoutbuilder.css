@@ -1,1 +1,5 @@
 .zo2-selected{box-shadow: 0 0 3px #2EBDFF !important}
+.zo2-dragging{box-shadow: 0 0 3px #3437ff !important;z-index: 10000}
+.zo2-clonedragging{opacity: 0.5;max-width: 800px;min-width: 200px}
+.zo2-hoveron{opacity: 0.5;box-shadow: 0 0 3px #ff6d1f !important}
+.zo2-draggable{z-index:9999}

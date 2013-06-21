@@ -34,7 +34,7 @@ class Zo2Layout {
         $this->_templateUri = JUri::root() . 'templates/' . $templateName;
 
         // check layout existence, if layout not existed, get default layout, which is homepage.php
-        if(!file_exists($this->_layoutPath) || !file_exists($this->_staticsPath)){
+        if(!file_exists($this->_layoutPath) || !file_exists($this->_staticsPath)) {
             $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.php';
             $this->_staticsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
         }
@@ -119,9 +119,9 @@ class Zo2Layout {
      *
      * @param bool $removeJdoc
      * @param bool $layoutBuilder Add necessary CSS for layoutbuilder
-     * @return mixed|string
+     * @return string
      */
-    public function compile($removeJdoc = false, $layoutBuilder = false){
+    public function compile($removeJdoc = false, $layoutBuilder = false) {
         $this->_output = $this->_layoutContent;
         $this->insertStatics();
         if($removeJdoc) {
@@ -132,9 +132,13 @@ class Zo2Layout {
     }
 
     private function insertLayoutBuilderCss() {
-        $path = Zo2Framework::getSystemPluginPath() . '/css/layoutbuilder.css';
-        $format = '<link rel="stylesheet" id="cssLayoutBuilder" type="text/css" href="%s" /></head>';
-        $result = sprintf($format, $path);
+        $pluginPath = Zo2Framework::getSystemPluginPath();
+        $layoutBuilderPath = $pluginPath . '/css/layoutbuilder.css';
+        $jQueryUICssPath = $pluginPath . '/css/layoutbuilder.css';
+        $cssFormat = '<link rel="stylesheet" id="%s" type="text/css" href="%s" />';
+        $result = sprintf($cssFormat, 'cssLayoutBuilder', $layoutBuilderPath);
+        $result .= sprintf($cssFormat, 'cssJqueryUI', $jQueryUICssPath);
+        $result .= '</head>';
         $this->_output = str_replace('</head>', $result, $this->_output);
     }
 }

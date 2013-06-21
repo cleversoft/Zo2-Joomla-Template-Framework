@@ -4,7 +4,7 @@
     <jdoc:include type="head" />
 </head>
 <body>
-<div class="container main-container">
+<div class="container main-container" data-zo2selectable="container">
     <h3 class="muted">Zo2 Framework</h3>
 
     <div data-zo2selectable="navbar" class="navbar">
