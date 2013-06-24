@@ -137,14 +137,16 @@ class ZO2MegaMenu
     function renderMenu()
     {
         $html = '';
-        $animation = $this->_params->get('menu_aimation', '');
-        $duration = $this->_params->get('duration', 4);
+        $hover = ' data-hover="' . $this->_params->get('hover_type', 'hover') . '"';
+        $animation = $this->_params->get('animation', '');
+        $duration = $this->_params->get('duration', 400);
         $class = 'class="zo2-megamenu' . ($animation ? ' animate ' . $animation : '') . '"';
         $data = $animation && $duration ? ' data-duration="' . $duration . '"' : '';
+
         $keys = array_keys($this->_items);
 
         if (count($this->_items)) {
-            $html .= "<div $class$data>";
+            $html .= "<div $class$data$hover>";
             $html .= $this->getMenu(null, $keys[0]);
             $html .= "</div>";
             echo $html;
@@ -185,7 +187,7 @@ class ZO2MegaMenu
         }
         $class = '';
         if (!$parent) {
-            $class .= 'nav level10';
+            $class .= 'nav level-top';
         } else {
             $class .= ' mega-nav';
             $class .= ' level' . $parent->level;
@@ -235,7 +237,7 @@ class ZO2MegaMenu
         $caret = '<b class="caret"></b>';
         if ($menu->isdropdown && $menu->level < 2) {
             $class .= 'dropdown-toggle';
-            $dropdown = ' data-toggle="dropdown"';
+            $dropdown = ' data-toggle="dropdown" ';
         }
 
         if ($menu->show_group) {
@@ -375,7 +377,7 @@ class ZO2MegaMenu
         //default first item
         $fitem = count($menus) ? $menus[0]->id : 0;
 
-        $class = 'nav-child ' . ($parent->isdropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-ct');
+        $class = 'menu-child  ' . ($parent->isdropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-content');
         $data = '';
         $style = '';
 
