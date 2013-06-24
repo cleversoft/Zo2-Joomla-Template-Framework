@@ -31,7 +31,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 		var options = $.extend(defaultOptions, options);
 		megamenu = $(this).find('.zo2-megamenu');
 		nav_items = megamenu.find('ul[class*="level"]>li>:first-child');
-		nav_subs = megamenu.find('.nav-child');
+		nav_subs = megamenu.find('.menu-child ');
 		nav_cols = megamenu.find('[class*="span"]');
 		
 		nav_all = nav_items.add(nav_subs).add(nav_cols);
@@ -40,7 +40,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 			var a = $(this),
 				liitem = a.closest('li');
 			if (liitem.data ('hidesub') == 1) {
-				var sub = liitem.find('.nav-child:first');
+				var sub = liitem.find('.menu-child :first');
 				// check if have menu-items in sub
 				sub.css('display','none');
 				a.removeClass ('dropdown-toggle').data('toggle', '');
@@ -114,12 +114,12 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 	actions.toggleSub = function () {
 		if (!currentSelected) return ;
 		var liitem = currentSelected.closest('li'),
-		sub = liitem.find ('.nav-child:first');
+		sub = liitem.find ('.menu-child :first');
 		if (liitem.data('group')) return; // not allow do with group
 		if (sub.length == 0 || sub.css('display') == 'none') {
 			// add sub
 			if (sub.length == 0) {
-				sub = $('<div class="nav-child dropdown-menu mega-dropdown-menu"><div class="row-fluid"><div class="span12" data-width="12"><div class="mega-inner"></div></div></div></div>').appendTo(liitem);
+				sub = $('<div class="menu-child  dropdown-menu mega-dropdown-menu"><div class="row-fluid"><div class="span12" data-width="12"><div class="mega-inner"></div></div></div></div>').appendTo(liitem);
 				bindEvents (sub.find ('[class*="span"]'));
 				liitem.addClass ('mega');
 			} else {
@@ -152,20 +152,20 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 	actions.toggleGroup = function () {
 		if (!currentSelected) return ;
 		var liitem = currentSelected.parent(),
-			sub = liitem.find ('.nav-child:first');
+			sub = liitem.find ('.menu-child :first');
 		if (liitem.data('level') == 1) return; // ignore for top level
 		if (liitem.data('group')) {
 			liitem.data('group', 0);
 			liitem.removeClass('mega-group').addClass('dropdown-submenu');
 			currentSelected.addClass ('dropdown-toggle').data('toggle', 'dropdown');
-			sub.removeClass ('mega-group-ct').addClass ('dropdown-menu mega-dropdown-menu');
+			sub.removeClass ('mega-group-content').addClass ('dropdown-menu mega-dropdown-menu');
 			sub.css('width', sub.data('width'));
 			rebindEvents(sub);
 		} else {
 			currentSelected.removeClass ('dropdown-toggle').data('toggle', '');
 			liitem.data('group', 1);
 			liitem.removeClass('dropdown-submenu').addClass('mega-group');
-			sub.removeClass ('dropdown-menu mega-dropdown-menu').addClass ('mega-group-ct');
+			sub.removeClass ('dropdown-menu mega-dropdown-menu').addClass ('mega-group-content');
 			sub.css('width', '');
 			rebindEvents(sub);
 		}
@@ -381,7 +381,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 			id = 'item-'+$this.data('id'),
 			item = {};
 			if ($this.hasClass ('mega')) {
-				var $sub = $this.find ('.nav-child:first');
+				var $sub = $this.find ('.menu-child :first');
 				item['submenu'] = {};
 				
 				for (var d in $sub.data()) {
@@ -450,7 +450,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 	}
 
 	toolbox_type = function () {
-		return currentSelected.hasClass ('nav-child') ? 'sub' : (currentSelected[0].tagName == 'DIV' ? 'col':'item');
+		return currentSelected.hasClass ('menu-child ') ? 'sub' : (currentSelected[0].tagName == 'DIV' ? 'col':'item');
 	}
 
 	hide_toolbox = function (show_intro) {
@@ -494,7 +494,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 				// value for toggle
 				var liitem = currentSelected.closest('li'),
 					liparent = liitem.parent().closest('li'),
-					sub = liitem.find ('.nav-child:first');
+					sub = liitem.find ('.menu-child :first');
 					
 				$('.toolitem-exclass').attr('value', liitem.data ('class') || '');
 				$('.toolitem-xicon').attr('value', liitem.data ('xicon') || '');

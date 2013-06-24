@@ -67,18 +67,9 @@
                 <option value="click">Mouse Click</option>
             </field>
 
-            <field name="show_submenu" type="radio" class="btn-group" default="1"
-                   global="1"
-                   label="Show submenu"
-                   description="Show submenu">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
-
             <field name="nav_type" type="list" default="joomla"
                    label="Navigation type"
                    description="Navigation type">
-                <option value="joomla">Joomla Module</option>
                 <option value="megamenu">Megamenu</option>
             </field>
 

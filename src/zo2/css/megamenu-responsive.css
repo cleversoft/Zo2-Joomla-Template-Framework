@@ -41,7 +41,7 @@
   }
   .zo2-megamenu .hidden-collapse,
   .zo2-megamenu .always-show .caret,
-  .zo2-megamenu .sub-hidden-collapse > .nav-child,
+  .zo2-megamenu .sub-hidden-collapse > .menu-child ,
   .zo2-megamenu .sub-hidden-collapse .caret,
   .zo2-megamenu .sub-hidden-collapse > a:after,
   .zo2-megamenu .always-show .dropdown-submenu > a:after {

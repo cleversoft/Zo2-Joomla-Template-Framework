@@ -1,4 +1,11 @@
-/** 
+/**
+ * Zo2 Framework (http://zo2framework.org)
+ *
+ * @link     http://github.com/aploss/zo2
+ * @package  Zo2
+ * @author   Hiepvu
+ * @copyright  Copyright ( c ) 2008 - 2013 APL Solutions
+ * @license  http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
@@ -18,7 +25,7 @@
 
 #zo2-admin-megamenu {
   min-height: 800px;
-  background: url(../images/grid-bg.jpg) top left;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVQIW2OMq7zlw4ADMIIkF7WrbcEmP+gkAarWGgXyq5CNAAAAAElFTkSuQmCC) repeat;
   margin: 0 -20px;
 }
 
@@ -225,7 +232,7 @@
   cursor: pointer;
 }
 
-.zo2-megamenu .mega-group-ct {
+.zo2-megamenu .mega-group-content {
   border: 1px solid #dddddd;
   padding: 10px;
   margin: 10px 0 10px 0;
@@ -236,7 +243,7 @@
   background: #f2f2f2;
 }
 
-.zo2-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+.zo2-megamenu .mega-group-content > .row-fluid > [class*="span"] > .mega-inner {
   padding: 10px;
 }
 
@@ -360,7 +367,7 @@
 
 
 /* Hover Item ---*/
-.zo2-megamenu .nav-child.hover,
+.zo2-megamenu .menu-child .hover,
 .zo2-megamenu ul[class*="level"] > li > a.hover,
 .zo2-megamenu ul[class*="level"] > li > span.hover,
 .zo2-megamenu .row-fluid [class*="span"].hover {

@@ -29,7 +29,7 @@
             if (!ajaxs[name]) {
                 ajaxs[name] = {};
                 var inst = this;
-                ajaxs[name].indicator = this.getElement(name).on('change.less',function (e) {
+                ajaxs[name].indicator = this.getElement(name).on('change',function (e) {
                     inst.callAjax(this);
                 }).after('' +
                         '<div class="progress progress-striped zo2-progress active">' +

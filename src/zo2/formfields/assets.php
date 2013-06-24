@@ -16,6 +16,10 @@ class JFormFieldAssets extends JFormField {
 
     protected $type = 'Assets';
 
+
+    protected function getLabel() {
+
+    }
     /**
      * Get the html for input
      *

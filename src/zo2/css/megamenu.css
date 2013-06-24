@@ -76,21 +76,21 @@
   background: inherit;
   color: inherit;
 }
-.zo2-megamenu .mega-group-ct {
+.zo2-megamenu .mega-group-content {
   margin: 0;
   padding: 0;
   *zoom: 1;
 }
-.zo2-megamenu .mega-group-ct:before,
-.zo2-megamenu .mega-group-ct:after {
+.zo2-megamenu .mega-group-content:before,
+.zo2-megamenu .mega-group-content:after {
   display: table;
   content: "";
   line-height: 0;
 }
-.zo2-megamenu .mega-group-ct:after {
+.zo2-megamenu .mega-group-content:after {
   clear: both;
 }
-.zo2-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+.zo2-megamenu .mega-group-content > .row-fluid > [class*="span"] > .mega-inner {
   padding: 0;
 }
 .zo2-megamenu .span12.mega-col-nav .mega-inner {
