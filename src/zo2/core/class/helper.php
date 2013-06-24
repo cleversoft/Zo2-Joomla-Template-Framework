@@ -183,7 +183,7 @@ abstract class JModuleHelper
 		{
 			$chrome = array();
 		}
-        	include_once ZO2_ADMIN_BASE . '/html/modules.php';
+        include_once ZO2_ADMIN_BASE . '/html/modules.php';
 		include_once JPATH_THEMES . '/system/html/modules.php';
 		$chromePath = JPATH_THEMES . '/' . $template . '/html/modules.php';
 
@@ -279,7 +279,7 @@ abstract class JModuleHelper
 		}
 
         // Build the template and base path for the layout
-        $zo2Path = ZO2_ADMIN_PLUGIN_URL . '/html/' . $module . '/' . $layout . '.php';
+        $zo2Path = ZO2_ADMIN_BASE . '/html/' . $module . '/' . $layout . '.php';
 		$tPath = JPATH_THEMES . '/' . $template . '/html/' . $module . '/' . $layout . '.php';
 		$bPath = JPATH_BASE . '/modules/' . $module . '/tmpl/' . $defaultLayout . '.php';
 		$dPath = JPATH_BASE . '/modules/' . $module . '/tmpl/default.php';
