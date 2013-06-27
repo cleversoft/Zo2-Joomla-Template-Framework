@@ -38,6 +38,20 @@ class ZO2MegaMenu
         $menu_id = $active_menu ? $active_menu->id : 0;
         $menu_tree = $active_menu->tree ? $active_menu->tree : array();
 
+        // Get all child menus for a parent menu
+        foreach ($items as &$item) {
+
+            $parent_id = $item->parent_id;
+            if (isset($this->children[$parent_id])) {
+                $menus = $this->children[$parent_id];
+            } else {
+                $menus = array();
+            }
+            // push a item into $menus array
+            array_push($menus, $item);
+            $this->children[$parent_id] = $menus;
+        }
+
         foreach ($items as &$item) {
 
             $itemid = 'item-' . $item->id;
@@ -61,16 +75,20 @@ class ZO2MegaMenu
             $item->class = $class;
             $item->show_group = false;
             $item->isdropdown = false;
-
             if (isset($config['group'])) {
                 $item->show_group = true;
             } else {
                 // if this item is a parent then setting up the status is dropdown
-                if (isset($config['submenu']) || (isset($this->children[$item->id]) && ($config['hidesub'] || $this->edit))) {
+                if (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit))) {
                     $item->isdropdown = true;
                 }
             }
             $item->megamenu = $item->isdropdown || $item->show_group;
+
+            if ($item->megamenu && !isset($config['submenu'])) {
+                $firstChild = $this->children[$item->id][0]->id;
+                $config['submenu'] = array('rows'=>array(array(array('width'=>12, 'item'=>$firstChild))));
+            }
 
             $item->config = $config;
 
@@ -120,12 +138,6 @@ class ZO2MegaMenu
             $item->anchor_css = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
             $item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
             $item->menu_image = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
-            //
-            $parent_id = $item->parent_id;
-            $parents = isset($this->children[$parent_id]) ? $this->children[$parent_id] : array();
-            // push a item into parents array
-            array_push($parents, $item);
-            $this->children[$parent_id] = $parents;
             $this->_items[$item->id] = $item;
         }
 
