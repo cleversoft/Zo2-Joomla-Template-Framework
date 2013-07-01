@@ -79,7 +79,7 @@ class ZO2MegaMenu
                 $item->show_group = true;
             } else {
                 // if this item is a parent then setting up the status is dropdown
-                if (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit))) {
+                if ($this->_params->get('show_submenu', 1) && (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit)))) {
                     $item->isdropdown = true;
                 }
             }
