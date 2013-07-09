@@ -141,4 +141,37 @@ class Zo2Layout {
         $result .= '</head>';
         $this->_output = str_replace('</head>', $result, $this->_output);
     }
+
+    public function parseDataComponent($input)
+    {
+        $pattern = '#<div[^>]+data-zo2componenttype="data-component"[^>]+></div>#';
+
+        return preg_replace_callback($pattern, 'Zo2Layout::embedDataComponent', $input);
+    }
+
+    public static function embedDataComponent($matches)
+    {
+        if($matches[0]) {
+            $html = $matches[0];
+            $attrPattern = '#data-zo2[a-zA-Z0-9-]+=["\']?[a-zA-Z0-9-_]+["\']?#';
+
+            preg_match_all($attrPattern, $html, $attrMatches);
+
+            // extract attribute
+            $attributes = array();
+            if($attrMatches[0]) {
+                foreach($attrMatches[0] as $attr) {
+                    $attr = str_replace('data-zo2', '', $attr);
+                    $limiterPos = strpos($attr, '=');
+                    $key = substr($attr, 0, $limiterPos);
+                    $value = substr($attr, $limiterPos + 2, strlen($attr) - $limiterPos - 3);
+                    $attributes[$key] = $value;
+                }
+            }
+
+            if(count($attributes) > 0 && isset($attributes['componentid'])) {
+                $componentName = $attributes['componentid'];
+            }
+        }
+    }
 }

@@ -252,7 +252,7 @@ var WorkSpace = Backbone.Model.extend({
             drag: function(e, ui) {
                 // TODO: thêm các hiệu ứng vào cho đẹp. Nghiên cứu lại cái event này, cảm giác lúc drag vào iframe chưa ổn cho nhắm
 
-                if(thisWorkspace.isInsideDroppable(e)) {
+                if (thisWorkspace.isInsideDroppable(e)) {
                     var componentId = jQuery(this).attr('data-zo2componentid');
                     var components = thisWorkspace.get('components');
                     var com = components.findById(componentId);
@@ -293,7 +293,7 @@ var WorkSpace = Backbone.Model.extend({
     },
 
     generateComponentList: function(componentList) {
-        if(componentList === undefined) componentList = this.get('components');
+        if (componentList === undefined) componentList = this.get('components');
         var thisWorkspace = this;
         componentList.each(function(item) {
             thisWorkspace.addComponentToList(item);
@@ -316,7 +316,8 @@ var Component = Backbone.Model.extend({
             name: 'Default component',
             class: ['zo2-draggable'],
             html: '',
-            groups: ['Common components']
+            groups: ['Common components'],
+            type: 'normal-component'
         }
     },
     createElement: function() {
@@ -325,7 +326,7 @@ var Component = Backbone.Model.extend({
     createDraggableElement: function() {
         var classArray = this.get('class');
         var classes = classArray && classArray.length > 0 ? classArray.join(' ') : '';
-        var html = '<div data-zo2componentid="' + this.get('id') + '" class="' + classes + '">' + this.get('name') + '</div>';
+        var html = '<div data-zo2componenttype="' + this.get('type') + '" data-zo2componentid="' + this.get('id') + '" class="' + classes + '">' + this.get('name') + '</div>';
         return jQuery(html);
     }
 });

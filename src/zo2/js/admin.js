@@ -24,6 +24,6 @@ jQuery(function($$){
 var generateComponentList = function() {
     var componentList = new ComponentList();
     componentList.add(new Component({id: 'header', name: 'Header', html: '<h1>Header</h1>'}));
-
+    componentList.add(new Component({id: 'link', name: 'Link', html: '<a href="#">Link</a>'}));
     return componentList;
 };
