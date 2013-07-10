@@ -26,7 +26,7 @@ class Zo2Layout {
     public function __construct($templateName, $layoutName){
         // assign values to private variables
         $layoutDir = JPATH_SITE . '/templates/' . $templateName . '/layouts/';
-        $this->_layoutPath = $layoutDir . $layoutName . '.php';
+        $this->_layoutPath = $layoutDir . $layoutName . '.compiled.php';
         $this->_staticsPath = $layoutDir . $layoutName . '.json';
         $this->_coreStaticsPath = $layoutDir . 'core.json';
         $this->_templateName = $templateName;
@@ -35,7 +35,7 @@ class Zo2Layout {
 
         // check layout existence, if layout not existed, get default layout, which is homepage.php
         if(!file_exists($this->_layoutPath) || !file_exists($this->_staticsPath)) {
-            $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.php';
+            $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.compiled.php';
             $this->_staticsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
         }
 
@@ -127,7 +127,8 @@ class Zo2Layout {
         if($removeJdoc) {
             $this->_output = preg_replace('#<jdoc:include\ type="([^"]+)" (.*)\/>#iU', '', $this->_output);
         }
-        if($layoutBuilder) $this->insertLayoutBuilderCss();
+        if ($layoutBuilder) $this->insertLayoutBuilderCss();
+        else $this->_output = $this->parseDataComponent($this->_output);
         return $this->_output;
     }
 
@@ -171,7 +172,26 @@ class Zo2Layout {
 
             if(count($attributes) > 0 && isset($attributes['componentid'])) {
                 $componentName = $attributes['componentid'];
+
+                $classname = 'zo2widget_' . $componentName;
+
+                if (!class_exists($classname, false)){
+
+                    // as good as include from frontend, may not work on backend
+                    $app = JFactory::getApplication();
+                    $componentPath = Zo2Framework::getCurrentTemplateAbsolutePath() . '/components/' . $componentName . '.php';
+                    require_once($componentPath);
+                }
+
+                $component = new $classname();
+
+                if ($component instanceof Zo2Widget) {
+                    $component->loadAttributes($attributes);
+                    return $component->render();
+                }
             }
         }
+
+        return '';
     }
 }

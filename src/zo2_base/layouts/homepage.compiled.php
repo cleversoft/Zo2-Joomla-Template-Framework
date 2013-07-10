@@ -25,9 +25,7 @@
 
     <!-- Jumbotron -->
     <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <a class="btn btn-large btn-success" href="#">Get started today</a>
+        <div data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div>
     </div>
 
     <hr>
@@ -50,14 +48,6 @@
             <p><a class="btn" href="#">View details »</a></p>
         </div>
     </div>
-
-    <div class="row-fluid">
-        <div class="span12">
-            <jdoc:include type="component" />
-        </div>
-    </div>
-
-    <hr>
 
     <div class="footer">
         <p>© Zo2Framework 2013</p>
