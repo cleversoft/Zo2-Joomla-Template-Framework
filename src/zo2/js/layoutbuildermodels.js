@@ -18,8 +18,12 @@ var WorkSpace = Backbone.Model.extend({
 
         this.set('componentList', jQuery('#components-container'));
 
+        this.set('hfHtml', jQuery('.hfLayoutHtml'));
+
         //this.bindClickDroppable();
         this._initDraggingInsideIframe();
+
+        //this.bindKeyboardDeleteElement();
     },
 
     defaults: function() {
@@ -37,6 +41,12 @@ var WorkSpace = Backbone.Model.extend({
         };
     },
 
+    getLayoutHtml: function(layoutName, callback) {
+        jQuery.post('index.php?zo2controller=getLayout&layout=' + layoutName + '&template=' + jQuery('#hfLayoutName').val(), function(resp){
+            if(typeof callback == 'function') callback(resp);
+        });
+    },
+
     /**
      * Set the content of iframe element
      *
@@ -51,6 +61,17 @@ var WorkSpace = Backbone.Model.extend({
         target.write(html);
         target.close();
         return this;
+    },
+
+    saveLayout: function()
+    {
+        var thisWorkspace = this;
+        var html = document.getElementById('layoutframe').contentWindow.document.body.innerHTML;
+        var opt = {html: html, name: 'homepage', template: jQuery('#hfLayoutName').val()};
+
+        jQuery.post('index.php?zo2controller=saveLayout', opt, function(resp){
+            console.log(resp);
+        });
     },
 
     eventToFramePosition: function(e)
@@ -96,6 +117,28 @@ var WorkSpace = Backbone.Model.extend({
         return jQuery(this.getElementByPosition(pos));
     },
 
+    deleteSelectedElement: function() {
+        var thisWorkspace = this;
+        var $iframe = jQuery(thisWorkspace.get('iframeEl').contents()[0]);
+        var $els = $iframe.find('.zo2-selected');
+
+        if($els.length > 0) {
+            $els._remove();
+            return false; //to prevent back behaviour on macosx when press delete key
+        }
+        else return true;
+    },
+
+    bindKeyboardDeleteElement: function(){
+        var thisWorkspace = this;
+        jQuery(document).bind('keydown', function(e){
+            var keycode =  e.keyCode ? e.keyCode : e.which;
+
+            if(keycode == 8 || keycode == 46) return thisWorkspace.deleteSelectedElement();
+            else return true;
+        });
+    },
+
     _initDraggingInsideIframe: function ()
     {
         var $droppable = this.get('droppableEl');
@@ -105,6 +148,9 @@ var WorkSpace = Backbone.Model.extend({
         $droppable.bind('mousedown', function(e) {
             var button = (e.which || e.button);
             if (button != 1) return true;
+
+            $iframe.find('.zo2-selected').removeClass('zo2-selected');
+
             thisWorkspace.set('isDragging', true);
             var $draggingEl = thisWorkspace.getElementByEvent(e);
             if (!$draggingEl.attr('data-zo2selectable')) {
@@ -140,7 +186,7 @@ var WorkSpace = Backbone.Model.extend({
             }
 
             // clean up class
-            $iframe.find('.zo2-selected').removeClass('zo2-selected');
+            //$iframe.find('.zo2-selected').removeClass('zo2-selected');
             $iframe.find('.zo2-hoveron').removeClass('zo2-hoveron');
 
             return true;
@@ -247,6 +293,7 @@ var WorkSpace = Backbone.Model.extend({
 
         var $draggable = jQuery('.zo2-draggable');
         $draggable.draggable({
+            cursorAt: {left: -10, top: -20},
             helper: 'clone',
             revert: 'invalid',
             drag: function(e, ui) {

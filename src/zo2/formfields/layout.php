@@ -30,10 +30,6 @@ class JFormFieldLayout extends JFormField {
         $theme_layout_path = $theme_path . 'layouts/';
         $current_layout_path = $theme_layout_path . 'homepage.compiled.php';
 
-        if(!empty($this->value)) {
-            file_put_contents($current_layout_path, $this->value);
-        }
-
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
         $cssPath = $pluginPath . 'css/';
         $jsPath = $pluginPath . 'js/';

@@ -11,19 +11,26 @@ jQuery(function($$){
             setTimeout(function(){
                 window.workSpace = new WorkSpace();
 
-                var layoutHtml = $$('#jsTemplate').html();
-                workSpace.setBodyHtmlContent(layoutHtml);
-                workSpace.set('components', generateComponentList());
-                workSpace.generateComponentList();
+                workSpace.getLayoutHtml('homepage', function(layoutHtml){
+                    workSpace.setBodyHtmlContent(layoutHtml);
+                    workSpace.set('components', generateComponentList());
+                    workSpace.generateComponentList();
+                });
             }, 500);
         });
+    });
+
+    $$('#btSaveLayout').on('click', function(){
+        workSpace.saveLayout();
+        return false;
     });
 });
 
 // TODO: Thêm các thể loại component khác
 var generateComponentList = function() {
     var componentList = new ComponentList();
-    componentList.add(new Component({id: 'header', name: 'Header', html: '<h1>Header</h1>'}));
-    componentList.add(new Component({id: 'link', name: 'Link', html: '<a href="#">Link</a>'}));
+    componentList.add(new Component({id: 'header', name: 'Header', html: '<h1 data-zo2selectable="true">Header</h1>'}));
+    componentList.add(new Component({id: 'link', name: 'Link', html: '<a data-zo2selectable="true" href="#">Link</a>'}));
+    componentList.add(new Component({id: 'toparticle', name: 'Top Article', html: '<div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div>'}));
     return componentList;
 };

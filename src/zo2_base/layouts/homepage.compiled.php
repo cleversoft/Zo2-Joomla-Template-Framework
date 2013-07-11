@@ -1,18 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <jdoc:include type="head" />
-</head>
-<body>
+<!DOCTYPE html><html lang="en"><head></head><body>
 <div class="container">
     <div class="masthead">
-        <h3 class="muted">Project name</h3>
-        <div class="navbar">
+        
+        <h3 data-zo2selectable="true" class="muted">Dự án Zo2Framework</h3><div data-zo2selectable="true" class="navbar">
             <div class="navbar-inner">
                 <div class="container">
                     <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Projects</a></li>
+                        <li class="active"><a href="#">Trang chủ</a></li>
+                        <li><a href="#">Dự án</a></li>
                         <li><a href="#">Services</a></li>
                         <li><a href="#">Downloads</a></li>
                         <li><a href="#">About</a></li>
@@ -20,32 +15,30 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div><div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div>
     </div>
 
-    <!-- Jumbotron -->
     <div class="jumbotron">
-        <div data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div>
+        
     </div>
 
     <hr>
 
-    <!-- Example row of columns -->
-    <div class="row-fluid">
+    <div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div><div data-zo2selectable="true" class="row-fluid">
         <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details »</a></p>
+            <h2 class="" data-zo2selectable="true">Heading</h2>
+            <div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div><p class="" data-zo2selectable="true">Thử nghiệm sửa text với layout builder</p>
+            <p class="" data-zo2selectable="true"><br></p>
         </div>
         <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn" href="#">View details »</a></p>
+            <h2 class="" data-zo2selectable="true">Heading</h2><p class="zo2-selected" data-zo2selectable="true">Một con gà xoè ra hai cái cánh, nó kêu rằng, éc éc éc, ẹc ẹc ẹc. sadsad asd asd asd asd a<br></p>
+            
+            
         </div>
         <div class="span4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-            <p><a class="btn" href="#">View details »</a></p>
+            <h2 class="" data-zo2selectable="true">Heading</h2>
+            <p class="" data-zo2selectable="true"><a class="btn" href="#">Cá vàng bơi trong bể nước</a><br></p><p class="" data-zo2selectable="true"><a class="btn" href="#">View details »</a></p><p class="" data-zo2selectable="true">Beeee, beeee, beeeeeeeeeeee, heeeeeeeee<br></p>
+            
         </div>
     </div>
 
@@ -54,5 +47,26 @@
     </div>
 </div>
 
-</body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

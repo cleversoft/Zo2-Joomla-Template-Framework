@@ -128,7 +128,10 @@ class Zo2Layout {
             $this->_output = preg_replace('#<jdoc:include\ type="([^"]+)" (.*)\/>#iU', '', $this->_output);
         }
         if ($layoutBuilder) $this->insertLayoutBuilderCss();
-        else $this->_output = $this->parseDataComponent($this->_output);
+        else{
+            $this->_output = preg_replace('#<head>#', '<head><jdoc:include type="head" />', $this->_output);
+            $this->_output = $this->parseDataComponent($this->_output);
+        }
         return $this->_output;
     }
 

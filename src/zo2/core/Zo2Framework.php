@@ -145,7 +145,7 @@ class Zo2Framework {
     {
         if($templateId == 0 && !isset($_GET['id'])) return '';
         if($templateId == 0 && isset($_GET['id'])) $templateId = $_GET['id'];
-        if(!isset($_GET['id'])) return '';
+        //if(!isset($_GET['id'])) return '';
         $db  = JFactory::getDBO();
         $sql = 'SELECT template
                 FROM #__template_styles
