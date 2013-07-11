@@ -44,9 +44,10 @@
         <filename>layout.json</filename>
         <filename>error.php</filename>
         <folder>css</folder>
-        <folder>vendor</folder>
         <folder>layouts</folder>
         <folder>html</folder>
+        <folder>vendor</folder>
+        <folder>widgets</folder>
     </files>
     <config>
 

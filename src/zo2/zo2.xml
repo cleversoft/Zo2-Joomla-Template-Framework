@@ -21,14 +21,17 @@
 
     <files>
         <filename plugin="zo2">zo2.php</filename>
-        <folder plugin="zo2">vendor</folder>
-        <folder plugin="zo2">core</folder>
-        <folder plugin="zo2">js</folder>
-        <folder plugin="zo2">css</folder>
-        <folder plugin="zo2">images</folder>
-        <folder plugin="zo2">formfields</folder>
-        <folder plugin="zo2">html</folder>
-        <folder plugin="zo2">templates</folder>
+        <filename>layoutiframe.php</filename>
+        <folder>addons</folder>
+        <folder>core</folder>
+        <folder>css</folder>
+        <folder>formfields</folder>
+        <folder>html</folder>
+        <folder>images</folder>
+        <folder>js</folder>
+        <folder>shortcodes</folder>
+        <folder>templates</folder>
+        <folder>vendor</folder>
     </files>
     <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
 </extension>
