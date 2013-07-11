@@ -35,15 +35,20 @@ class Zo2Framework {
      * Init Zo2Framework
      */
     public static function init(){
+
         self::getInstance();
         Zo2Framework::import('core.Zo2Layout');
-
         $app = JFactory::getApplication();
+
+        Zo2Framework::import2('core.shortcodes');
         if (!$app->isAdmin()) {
+
+            Zo2Framework::loadShortCodes();
             // JViewLegacy
             if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.class.legacy');
             // JModuleHelper
             if (!class_exists('JModuleHelper', false)) Zo2Framework::import2('core.class.helper');
+
         }
 
         JFactory::getLanguage()->load(ZO2_SYSTEM_PLUGIN, JPATH_ADMINISTRATOR);
@@ -93,6 +98,16 @@ class Zo2Framework {
      */
     public static function addCssStylesheet($style){
         self::getInstance()->document->addStyleSheet($style);
+        return self::getInstance();
+    }
+
+    /**
+     * Adds a script to the page
+     * @param $script
+     * @return Zo2Framework
+     */
+    public static function addScriptDeclaration($script){
+        self::getInstance()->document->addScriptDeclaration($script);
         return self::getInstance();
     }
 
@@ -296,6 +311,26 @@ class Zo2Framework {
         Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/admin.css');
         JHtml::_('formbehavior.chosen', 'select');
 
+    }
+
+    /**
+     * Import all short codes file inside the short codes folder
+     * @return short codes name array
+     */
+    public static function loadShortCodes() {
+
+        $files = JFolder::files(ZO2_ADMIN_BASE . DIRECTORY_SEPARATOR .'shortcodes', '.php', false, true);
+        $shortcodes = array();
+        foreach ($files as $path) {
+            $ShortCodeName = substr(basename($path), 0, -4);
+            array_push($shortcodes, $ShortCodeName);
+        }
+        $shortcodes = array_unique($shortcodes);
+
+        foreach ($shortcodes as $shortcode) {
+            Zo2Framework::import2('shortcodes.' . $shortcode);
+        }
+        return $shortcodes;
     }
 
     /**
