@@ -2,20 +2,7 @@
 <div class="container">
     <div class="masthead">
         
-        <h3 data-zo2selectable="true" class="muted">Dự án Zo2Framework</h3><div data-zo2selectable="true" class="navbar">
-            <div class="navbar-inner">
-                <div class="container">
-                    <ul class="nav">
-                        <li class="active"><a href="#">Trang chủ</a></li>
-                        <li><a href="#">Dự án</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Downloads</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div><div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div>
+        <h3 data-zo2selectable="true" class="muted">Dự án Zo2Framework</h3>
     </div>
 
     <div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="megamenu"></div>
@@ -43,31 +30,4 @@
         <p>© Zo2Framework 2013</p>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body></html>

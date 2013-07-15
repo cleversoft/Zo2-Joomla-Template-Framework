@@ -178,6 +178,8 @@ var WorkSpace = Backbone.Model.extend({
 
             if ($draggingEl == undefined || $draggingEl == null) return true;
             if ($draggingEl && $draggingEl.length > 0) {
+                console.log(thisWorkspace.extractAttributes($draggingEl[0]));
+
                 $draggingEl.addClass('zo2-selected');
                 var $cloneDraggingEl = $draggingEl.clone();
                 $cloneDraggingEl.hide();
@@ -396,6 +398,14 @@ var WorkSpace = Backbone.Model.extend({
     addComponentToList: function(component) {
         var $container = this.get('componentList');
         component.createDraggableElement().appendTo($container);
+    },
+
+    extractAttributes: function(el) {
+        var result = {};
+        jQuery.each(el.attributes, function(index){
+            result[String(this.name)] = String(this.value);
+        });
+        return result;
     }
 });
 
