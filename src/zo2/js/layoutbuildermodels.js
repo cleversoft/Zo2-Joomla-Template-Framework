@@ -273,7 +273,7 @@ var WorkSpace = Backbone.Model.extend({
             var pos = thisWorkspace.eventToFramePosition(e);
 
             var $editingEl = jQuery(thisWorkspace.getElementByPosition(pos)).closest('[data-zo2selectable]')
-                .not('body');
+                .not('body').not('[data-zo2componenttype="data-component"]');
 
             if($editingEl && $editingEl.length > 0) {
                 $droppable.hide();
