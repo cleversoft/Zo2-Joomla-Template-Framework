@@ -23,7 +23,9 @@ var WorkSpace = Backbone.Model.extend({
         //this.bindClickDroppable();
         this._initDraggingInsideIframe();
 
-        //this.bindKeyboardDeleteElement();
+        this.bindKeyboardDeleteElement();
+
+        this.bindOverlayToolbar();
     },
 
     defaults: function() {
@@ -123,7 +125,8 @@ var WorkSpace = Backbone.Model.extend({
         var $els = $iframe.find('.zo2-selected');
 
         if($els.length > 0) {
-            $els._remove();
+            $els.remove();
+            jQuery('#layoutbuilder-toolbar').hide();
             return false; //to prevent back behaviour on macosx when press delete key
         }
         else return true;
@@ -136,6 +139,22 @@ var WorkSpace = Backbone.Model.extend({
 
             if(keycode == 8 || keycode == 46) return thisWorkspace.deleteSelectedElement();
             else return true;
+        });
+    },
+
+    bindOverlayToolbar: function(){
+        this.bindOverlayRemoveButton();
+        this.bindOverlaySettingsButton();
+    },
+
+    bindOverlaySettingsButton: function(){
+        var thisWorkspace = this;
+    },
+
+    bindOverlayRemoveButton: function(){
+        var thisWorkspace = this;
+        jQuery('#layoutbuilder-toolbar .delete').on('click', function(){
+            thisWorkspace.deleteSelectedElement();
         });
     },
 
@@ -161,15 +180,31 @@ var WorkSpace = Backbone.Model.extend({
             if ($draggingEl && $draggingEl.length > 0) {
                 $draggingEl.addClass('zo2-selected');
                 var $cloneDraggingEl = $draggingEl.clone();
+                $cloneDraggingEl.hide();
                 var pos = thisWorkspace.eventToFramePosition(e);
+
+                /*
                 $cloneDraggingEl.css({
                     top: pos.y + 5,
                     left: pos.x + 5,
                     position: 'absolute'
                 });
+                */
+
                 $cloneDraggingEl.addClass('zo2-clonedragging zo2-dragging').insertAfter($draggingEl);
                 thisWorkspace.set('draggingEl', $draggingEl);
                 thisWorkspace.set('cloneDraggingEl', $cloneDraggingEl);
+
+                // show control toolbar
+                var draggingElOffset = $draggingEl.offset();
+                var $toolbar = jQuery('#layoutbuilder-toolbar').css({
+                    display: 'block',
+                    top: draggingElOffset.top + 5,
+                    left: draggingElOffset.left + $draggingEl.width() - 20 - jQuery('#layoutbuilder-toolbar').width()
+                });
+            }
+            else {
+                jQuery('#layoutbuilder-toolbar').hide();
             }
 
             return true;
@@ -212,6 +247,14 @@ var WorkSpace = Backbone.Model.extend({
 
                 // TODO: Nghiên cứu thêm để đảm bảo việc drop vào vị trí chuẩn xác hơn. Tính toán để dùng prepend hay insertBefore.
                 $draggingEl.insertBefore($hoverOnEl);
+
+                // move toolbar
+                var draggingElOffset = $draggingEl.offset();
+                var $toolbar = jQuery('#layoutbuilder-toolbar').css({
+                    display: 'block',
+                    top: draggingElOffset.top + 5,
+                    left: draggingElOffset.left + $draggingEl.width() - 20 - jQuery('#layoutbuilder-toolbar').width()
+                });
             }
 
             // set position for draggable helper
@@ -219,7 +262,7 @@ var WorkSpace = Backbone.Model.extend({
                 top: pos.y + 5,
                 left: pos.x + 5,
                 position: 'absolute'
-            });
+            }).show();
 
             return true;
         });
@@ -307,11 +350,12 @@ var WorkSpace = Backbone.Model.extend({
                     var hoverOnEl = thisWorkspace.getElementByEvent(e);
                     var $containableEl = hoverOnEl.closest('[data-zo2selectable]');
                     var $el = thisWorkspace.get('outsideDraggingEl');
-                    if ($el) {
+                    if ($el !== null && $el.length > 0) {
                         $el.insertBefore($containableEl);
                     }
                     else {
-                        $el = jQuery(html).insertBefore($containableEl);
+                        $el = jQuery(html);
+                        $el.insertBefore($containableEl);
                         thisWorkspace.set('outsideDraggingEl', $el);
                     }
                 }

@@ -9,7 +9,12 @@
         <iframe id="layoutframe"></iframe>
 
         <div id="layoutbuilder-droppable">
-            <div class="relative"></div>
+            <div class="relative">
+                <div id="layoutbuilder-toolbar">
+                    <a href="#" class="icon settings"></a>
+                    <a href="#" class="icon delete"></a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

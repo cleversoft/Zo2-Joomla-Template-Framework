@@ -29,6 +29,8 @@ class Zo2Framework {
      */
     private static $_instance;
 
+    private static $_currentTemplatePath;
+
     public function __construct(){}
 
     /**
