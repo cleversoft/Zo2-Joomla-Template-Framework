@@ -23,3 +23,9 @@
 }
 .zo2-draggable{z-index:9999;width: 300px;height:30px}
 #components-container{width:300px;float:left}
+
+#layoutbuilder-toolbar{position: absolute;height:16px;width:35px;top:0;right:0;display:none;padding:5px;opacity: 0.7;border-radius: 4px;background-color: #ffffff}
+#layoutbuilder-toolbar:hover{opacity: 1}
+#layoutbuilder-toolbar .icon{display: block;float: left; width: 16px; height: 16px}
+#layoutbuilder-toolbar .settings{margin-right: 3px;background: url('../images/icon_settings16.png') no-repeat 0 0}
+#layoutbuilder-toolbar .delete{background: url('../images/icon_trash16.png') no-repeat 0 0}

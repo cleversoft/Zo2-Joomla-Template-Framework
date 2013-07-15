@@ -29,15 +29,18 @@ class Zo2Framework {
      */
     private static $_instance;
 
+    private static $_currentTemplatePath;
+
     public function __construct(){}
 
     /**
      * Init Zo2Framework
      */
     public static function init(){
-
         self::getInstance();
         Zo2Framework::import('core.Zo2Layout');
+        Zo2Framework::import('core.Zo2Widget');
+
         $app = JFactory::getApplication();
 
         Zo2Framework::import2('core.shortcodes');
@@ -50,6 +53,9 @@ class Zo2Framework {
             if (!class_exists('JModuleHelper', false)) Zo2Framework::import2('core.class.helper');
 
         }
+
+        // set variable for env
+        Zo2Framework::$_currentTemplatePath = JPATH_BASE .  '/templates/' . $app->getTemplate();
 
         JFactory::getLanguage()->load(ZO2_SYSTEM_PLUGIN, JPATH_ADMINISTRATOR);
     }
@@ -151,7 +157,7 @@ class Zo2Framework {
     {
         if($templateId == 0 && !isset($_GET['id'])) return '';
         if($templateId == 0 && isset($_GET['id'])) $templateId = $_GET['id'];
-        if(!isset($_GET['id'])) return '';
+        //if(!isset($_GET['id'])) return '';
         $db  = JFactory::getDBO();
         $sql = 'SELECT template
                 FROM #__template_styles
@@ -204,7 +210,7 @@ class Zo2Framework {
 
     /**
      * File importer
-     * @param $filePath A dot syntax path
+     * @param $filePath string A dot syntax path
      * @return bool Return True on success
      */
     public static function import2 ($filePath) {
@@ -257,12 +263,12 @@ class Zo2Framework {
             $mmconfig['edit'] = true;
         }
         $menu = new ZO2MegaMenu ($menutype, $mmconfig, $params);
-        $menu->renderMenu();
 
         Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/megamenu.css');
 //        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/css/megamenu-responsive.css');
         Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/js/megamenu.js');
 
+        return $menu->renderMenu();
     }
 
     /**
@@ -347,6 +353,11 @@ class Zo2Framework {
         Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/css/template.css');
         Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/css/style.css');
 
+    }
+
+    public static function getCurrentTemplateAbsolutePath()
+    {
+        return Zo2Framework::$_currentTemplatePath;
     }
 
     public static function addBody() {

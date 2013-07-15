@@ -25,6 +25,11 @@ class JFormFieldLayout extends JFormField {
     public function getInput(){
         $doc = JFactory::getDocument();
 
+        $template = $this->form->getValue('template');
+        $theme_path = JPATH_SITE.'/templates/'.$template.'/';
+        $theme_layout_path = $theme_path . 'layouts/';
+        $current_layout_path = $theme_layout_path . 'homepage.compiled.php';
+
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
         $cssPath = $pluginPath . 'css/';
         $jsPath = $pluginPath . 'js/';
