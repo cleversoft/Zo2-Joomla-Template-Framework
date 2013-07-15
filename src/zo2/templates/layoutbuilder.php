@@ -2,9 +2,16 @@
 <textarea style="display: none" class="hfLayoutHtml" name="<?php echo $this->name?>" id="<?php echo $this->id?>"></textarea>
 <input type="hidden" id="hfLayoutName" value="<?php echo Zo2Framework::getTemplateName()?>" />
 <input type="hidden" id="hdLayoutBuilder" value="0" />
-<button id="btSaveLayout" class="btn btn-success btn-large">Save layout</button>
 <div id="layoutbuilder-container">
-    <div class="components-container" id="components-container"></div>
+    <button id="btSaveLayout" class="btn btn-success btn-large">Save layout</button>
+    <div id="workspace-tabs">
+        <ul>
+            <li><a href="#components-container">Components List</a></li>
+            <li><a href="#attributes-container">Attributes</a></li>
+        </ul>
+        <div class="components-container" id="components-container"></div>
+        <div id="attributes-container"></div>
+    </div>
     <div id="droppable-container">
         <iframe id="layoutframe"></iframe>
 

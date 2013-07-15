@@ -428,7 +428,10 @@ var Component = Backbone.Model.extend({
     createDraggableElement: function() {
         var classArray = this.get('class');
         var classes = classArray && classArray.length > 0 ? classArray.join(' ') : '';
-        var html = '<div data-zo2componenttype="' + this.get('type') + '" data-zo2componentid="' + this.get('id') + '" class="' + classes + '">' + this.get('name') + '</div>';
+        var html = '<div data-zo2componenttype="' + this.get('type') + '" data-zo2componentid="' + this.get('id') + '" class="' + classes + '">'
+            + '<img src="../plugins/system/zo2/images/components/' + this.get('icon') + '" />'
+            + this.get('name')
+            + '</div>';
         return jQuery(html);
     }
 });
