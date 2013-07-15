@@ -18,17 +18,17 @@ if (!function_exists('code')) {
 
         extract(shortcode_atts(array(
             'languages' => '',
-            'first-line' => '1',
-            'highlight' => '[]',
+            'firstline' => '1',
+            'highlight' => '',
         ), $atts));
 
         if (!is_array($atts)) {
             return '<!-- Code shortcode passed invalid attributes -->';
         }
-
+        $highlight = (!empty($highlight)) ? 'highlight: '  .$highlight.';' : '';
         loadScripts();
 
-        return '<pre class="brush: ' . $languages . '; first-line:' . $first-line . '; highlight: '.$highlight.'">' . htmlentities($content) . '</pre>';
+        return '<pre class="brush: ' . $languages . '; first-line:' . $firstline . '; '.$highlight.'">' . htmlentities($content) . '</pre>';
 
     }
 
