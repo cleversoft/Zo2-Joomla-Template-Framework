@@ -263,12 +263,12 @@ class Zo2Framework {
             $mmconfig['edit'] = true;
         }
         $menu = new ZO2MegaMenu ($menutype, $mmconfig, $params);
-        $menu->renderMenu();
 
         Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/megamenu.css');
 //        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/css/megamenu-responsive.css');
         Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/js/megamenu.js');
 
+        return $menu->renderMenu();
     }
 
     /**

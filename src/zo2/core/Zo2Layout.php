@@ -176,14 +176,20 @@ class Zo2Layout {
             if(count($attributes) > 0 && isset($attributes['componentid'])) {
                 $componentName = $attributes['componentid'];
 
+                // exclusively render megamenu
+                if ($componentName == 'megamenu') {
+                    $doc = JFactory::getDocument();
+                    $zo2 = Zo2Framework::getInstance();
+                    return $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+                }
+
                 $classname = 'zo2widget_' . $componentName;
 
                 if (!class_exists($classname, false)){
-
                     // as good as include from frontend, may not work on backend
-                    $app = JFactory::getApplication();
                     $componentPath = Zo2Framework::getCurrentTemplateAbsolutePath() . '/components/' . $componentName . '.php';
-                    require_once($componentPath);
+                    if (file_exists($componentPath)) require_once($componentPath);
+                    else return '';
                 }
 
                 $component = new $classname();

@@ -1,5 +1,5 @@
 <?php
-defined ('_JEXEC') or die ('resticted aceess');
+defined ('_JEXEC') or die ('Restricted Access');
 //access zo2 framework
 /** @var Zo2Framework $zo2 */
 $zo2 = $this->zo2;

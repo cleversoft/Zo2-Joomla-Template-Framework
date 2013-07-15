@@ -408,7 +408,8 @@ var Component = Backbone.Model.extend({
             class: ['zo2-draggable'],
             html: '',
             groups: ['Common components'],
-            type: 'normal-component'
+            type: 'normal-component',
+            icon: ''
         }
     },
     createElement: function() {

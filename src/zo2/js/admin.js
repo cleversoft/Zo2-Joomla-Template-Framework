@@ -31,6 +31,10 @@ var generateComponentList = function() {
     var componentList = new ComponentList();
     componentList.add(new Component({id: 'header', name: 'Header', html: '<h1 data-zo2selectable="true">Header</h1>'}));
     componentList.add(new Component({id: 'link', name: 'Link', html: '<a data-zo2selectable="true" href="#">Link</a>'}));
+    componentList.add(new Component({id: 'paragraph', name: 'Paragraph', html: '<p data-zo2selectable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'}));
+    componentList.add(new Component({id: 'unorderedlist', name: 'Unordered List', html: '<ul data-zo2selectable="true"><li>Item 1</li><li>Item 2</li></ul>'}));
+    componentList.add(new Component({id: 'orderedlist', name: 'Ordered List', html: '<ol data-zo2selectable="true"><li>Item 1</li><li>Item 2</li></ol>'}));
+    componentList.add(new Component({id: 'linkbutton', name: 'Link Button', html: '<a data-zo2selectable="true" class="btn">Header</a>'}));
     componentList.add(new Component({id: 'toparticle', name: 'Top Article', html: '<div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div>'}));
     return componentList;
 };
