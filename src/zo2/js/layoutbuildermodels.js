@@ -1,9 +1,3 @@
-NodeType = {
-    ELEMENT: 1,
-    TEXT: 3,
-    COMMENT: 8
-};
-
 var WorkSpace = Backbone.Model.extend({
     initialize: function()
     {
@@ -178,8 +172,6 @@ var WorkSpace = Backbone.Model.extend({
 
             if ($draggingEl == undefined || $draggingEl == null) return true;
             if ($draggingEl && $draggingEl.length > 0) {
-                console.log(thisWorkspace.extractAttributes($draggingEl[0]));
-
                 $draggingEl.addClass('zo2-selected');
                 var $cloneDraggingEl = $draggingEl.clone();
                 $cloneDraggingEl.hide();
@@ -192,6 +184,8 @@ var WorkSpace = Backbone.Model.extend({
                     position: 'absolute'
                 });
                 */
+
+                thisWorkspace.generateElementForm($draggingEl);
 
                 $cloneDraggingEl.addClass('zo2-clonedragging zo2-dragging').insertAfter($draggingEl);
                 thisWorkspace.set('draggingEl', $draggingEl);
@@ -401,11 +395,40 @@ var WorkSpace = Backbone.Model.extend({
     },
 
     extractAttributes: function(el) {
-        var result = {};
+        var result = [];
         jQuery.each(el.attributes, function(index){
-            result[String(this.name)] = String(this.value);
+            result.push({name: this.name, value: this.value});
         });
         return result;
+    },
+
+    generateElementForm: function($el) {
+        jQuery('#inputClass').val($el.attr('class') ? $el.attr('class') : '');
+        jQuery('#dynamic-attributes').empty();
+
+        var attr = this.extractAttributes($el[0]);
+
+        if (attr && attr.length > 0) {
+            for (var i = 0; i < attr.length; i++) {
+                this.generateAttributeRow($el, attr[i]);
+            }
+        }
+    },
+
+    generateAttributeRow: function($el, attr) {
+        var attribute = attr.name.charAt(0).toUpperCase() + attr.name.slice(1); // uppercase first character
+
+        var html = '<div class="control-group"><label class="control-label" for="input' + attribute + '">' + attribute
+                + '</label><div class="controls"><input type="text" id="input' + attribute + '">'
+                + '</div></div>';
+
+        var $row = jQuery(html);
+
+        // apply on the fly
+        $row.find('input').on('keydown', function(){
+        });
+
+        $row.appendTo('#dynamic-attributes');
     }
 });
 

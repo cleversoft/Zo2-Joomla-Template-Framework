@@ -31,3 +31,5 @@
 #layoutbuilder-toolbar .icon{display: block;float: left; width: 16px; height: 16px}
 #layoutbuilder-toolbar .settings{margin-right: 3px;background: url('../images/icon_settings16.png') no-repeat 0 0}
 #layoutbuilder-toolbar .delete{background: url('../images/icon_trash16.png') no-repeat 0 0}
+.form-horizontal .controls{margin-left:90px !important;}
+.form-horizontal input, .form-horizontal textarea{width:180px !important;}

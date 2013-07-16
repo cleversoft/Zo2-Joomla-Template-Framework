@@ -9,8 +9,21 @@
             <li><a href="#components-container">Components List</a></li>
             <li><a href="#attributes-container">Attributes</a></li>
         </ul>
-        <div class="components-container" id="components-container"></div>
-        <div id="attributes-container"></div>
+        <div class="components-container form-horizontal" id="components-container">
+        </div>
+        <div id="attributes-container">
+            <div id="fixed-attributes">
+                <div class="control-group">
+                    <label class="control-label" for="inputClass">Class</label>
+                    <div class="controls">
+                        <input type="text" id="inputClass">
+                    </div>
+                </div>
+            </div>
+            <div id="dynamic-attributes">
+
+            </div>
+        </div>
     </div>
     <div id="droppable-container">
         <iframe id="layoutframe"></iframe>

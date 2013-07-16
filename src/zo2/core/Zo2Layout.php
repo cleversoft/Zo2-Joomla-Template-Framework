@@ -209,4 +209,12 @@ class Zo2Layout {
         $input = str_replace("\r\r", "\r", $input);
         return $input;
     }
+
+    public function combineJS() {
+        if(!class_exists('PhpClosure', false)) {
+            Zo2Framework::import('core.class.minify.closure');
+        }
+
+
+    }
 }
