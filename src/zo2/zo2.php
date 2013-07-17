@@ -128,7 +128,7 @@ class plgSystemZo2 extends JPlugin
             'bliptv' => array(
                 'name' => "Blip.tv",
                 'desc' => "Blip.tv",
-                'syntax' => "[bliptv id=\ID\ h=\'HEIGHT\' w=\'WIDTH\' autoplay=false]",
+                'syntax' => "[blip.tv id=\ID\ h=\'HEIGHT\' w=\'WIDTH\' autoplay=false]",
                 'image' => "bliptv.png"
             ),
             'dailymotion' => array(
