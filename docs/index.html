@@ -1,274 +1,387 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en-US">
 <head>
-    <title>Zo2Framework</title>
-    <meta name="author" content="Duc Nguyen <ducntq@gmail.com>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap -->
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
-    <link href="vendor/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+
+    <title>ZO2 Framework</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap-responsive.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="vendor/prettify/css/prettify.css" media="all"/>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/marked/marked.js"></script>
+    <script src="vendor/prettify/js/prettify.js"></script>
+    <style type="text/css">
+    .brand { background: url('img/favicon.png') no-repeat center left; }
+    .doc-loading { background: url('img/loading.gif') no-repeat center center; margin: 0; padding: 0; width:100%; }
+    .doc-content { padding-top: 60px; }
+    </style>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="page-header">
-            <h1>Zo2 Framework</h1>
-            <p>Last updated: May 24th, 2013</p>
-        </div>
 
-        <!-- introduction -->
-        <section>
-            <div class="page-header">
-                <h2>Introduction</h2>
-            </div>
-            <p>
-                Zo2 Framework is an open source for building Joomla templates.<br>
-                Official website: <a href="http://zo2framework.org">http://zo2framework.org</a><br>
-                The source code is licensed under GPL v2, and available at <a href="https://github.com/aploss/zo2/">https://github.com/aploss/zo2/</a>
-            </p>
-        </section>
-        <!-- /introduction -->
+<!-- Place the document inside the following element. Please do NOT change anything else except the documentation content -->
+<div id="doc-content" style="display: none;">
+# ZO2 Framework
+---
+Current version: 0.0.1
 
-        <!-- features -->
-        <section>
-            <div class="page-header">
-                <h2>Key Features</h2>
-            </div>
-            <ol>
-                <li>Flexible layout, with 12 columns</li>
-                <li>Reponsive layout based on Twitter Bootstrap</li>
-                <li>Beautiful Bootstrap typography with Font Awesome Icons</li>
-                <li>Combine and minify JS &amp; CSS</li>
-                <li>Shortcode</li>
-                <li>Mega menu</li>
-                <li>Theme color</li>
-            </ol>
+Last updated: July 17, 2013
 
-            <p>The following table lists the Zo2' features in comparison with other popular frameworks, including</p>
-            <ul>
-                <li>T3 framework (<a href="http://t3-framework.org/">http://t3-framework.org/</a>), v1.2.5</li>
-                <li>Gantry (<a href="http://www.gantry-framework.org/">http://www.gantry-framework.org/</a>), v4.1.10</li>
-                <li>Helix (<a href="http://helix.joomshaper.com/">http://helix.joomshaper.com/</a>), v1.9.6</li>
-                <li>Warp (<a href="http://www.yootheme.com/themes/warp-framework">http://www.yootheme.com/themes/warp-framework</a>), v6</li>
-            </ul>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <td style="width:25%"></td>
-                        <td style="width:15%" class="center">Zo2</td>
-                        <td style="width:15%" class="center">T3</td>
-                        <td style="width:15%" class="center">Gantry</td>
-                        <td style="width:15%" class="center">Helix</td>
-                        <td style="width:15%" class="center">Warp</td>
-                    </tr>
-                </thead>
-                <tbody>
+## Introduction
+---
+- Zo2 Framework is an open source for building Joomla templates.
+- Official website: [http://zo2framework.org](http://zo2framework.org)
+- The source code is licensed under GPL v2, and available at [https://github.com/aploss/zo2/](https://github.com/aploss/zo2/)
 
-                <tr>
-                    <td colspan="6" class="text-center"><span class="lead"><strong>Key features</strong></span></td>
-                </tr>
+## Key features
+---
+1. Flexible layout, with 12 columns
+2. Reponsive layout based on Twitter Bootstrap
+3. Beautiful Bootstrap typography with Font Awesome Icons
+4. Combine and minify JS & CSS
+5. Shortcode
+6. Mega menu
+7. Theme color
 
-                <tr>
-                    <td class="subject"><span class="label label-important">Layout Builder</span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                </tr>
+The following table lists the Zo2' features in comparison with other popular frameworks, including
 
-                <tr>
-                    <td class="subject"><span class="label label-important">Mega Menu</span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                </tr>
+- T3 framework ([http://t3-framework.org/](http://t3-framework.org/)), v1.2.5
+- Gantry ([http://www.gantry-framework.org/](http://www.gantry-framework.org/)), v4.1.10
+- Helix ([http://helix.joomshaper.com/](http://helix.joomshaper.com/)), v1.9.6
+- Warp ([http://www.yootheme.com/themes/warp-framework](http://www.yootheme.com/themes/warp-framework)), v6
 
-                <tr>
-                    <td colspan="6"><span class="lead"><strong>Frontend functionality</strong></span></td>
-                </tr>
 
-                <tr>
-                    <td class="subject">Responsive</td>
-                    <td class="center">
-                        <span class="icon-ok"></span>
-                        <br />
-                        Based on Twitter Bootstrap
-                    </td>
-                    <td class="center">
-                        <span class="icon-ok"></span>
-                        <br />
-                        Based on Twitter Bootstrap
-                    </td>
-                    <td class="center">
-                        <span class="icon-ok"></span>
-                        <br />
-                        Based on Twitter Bootstrap
-                    </td>
-                    <td class="center"></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                </tr>
+<table class="table table-striped">
+<thead>
+<tr>
+    <td style="width:25%"></td>
+    <td style="width:15%" class="center">Zo2</td>
+    <td style="width:15%" class="center">T3</td>
+    <td style="width:15%" class="center">Gantry</td>
+    <td style="width:15%" class="center">Helix</td>
+    <td style="width:15%" class="center">Warp</td>
+</tr>
+</thead>
+<tbody>
 
-                <tr>
-                    <td class="subject">Typography</td>
-                    <td class="center">Twitter Bootstrap<br />+<br />Font Awesome Icons</td>
-                    <td class="center">Twitter Bootstrap</td>
-                    <td class="center">Twitter Bootstrap</td>
-                    <td class="center">Custom</td>
-                    <td class="center"></td>
-                </tr>
+<tr>
+    <td colspan="6" class="text-center"><span class="lead"><strong>Key features</strong></span></td>
+</tr>
 
-                <tr>
-                    <td class="subject">Mobile supported</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                </tr>
+<tr>
+    <td class="subject"><span class="label label-important">Layout Builder</span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+</tr>
 
-                <tr>
-                    <td class="subject">SEO Optimized</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                </tr>
+<tr>
+    <td class="subject"><span class="label label-important">Mega Menu</span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+</tr>
 
-                <tr>
-                    <td colspan="6"><span class="lead"><strong>Backend functionality</strong></span></td>
-                </tr>
+<tr>
+    <td colspan="6"><span class="lead"><strong>Frontend functionality</strong></span></td>
+</tr>
 
-                <tr>
-                    <td class="subject">Powerful and friendly Admin UI</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                </tr>
+<tr>
+    <td class="subject">Responsive</td>
+    <td class="center">
+        <span class="icon-ok"></span>
+        <br>
+        Based on Twitter Bootstrap
+    </td>
+    <td class="center">
+        <span class="icon-ok"></span>
+        <br>
+        Based on Twitter Bootstrap
+    </td>
+    <td class="center">
+        <span class="icon-ok"></span>
+        <br>
+        Based on Twitter Bootstrap
+    </td>
+    <td class="center"></td>
+    <td class="center"><span class="icon-ok"></span></td>
+</tr>
 
-                <tr>
-                    <td class="subject">Shortcode</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                </tr>
+<tr>
+    <td class="subject">Typography</td>
+    <td class="center">Twitter Bootstrap<br>+<br>Font Awesome Icons</td>
+    <td class="center">Twitter Bootstrap</td>
+    <td class="center">Twitter Bootstrap</td>
+    <td class="center">Custom</td>
+    <td class="center"></td>
+</tr>
 
-                <tr>
-                    <td class="subject">Template layout</td>
-                    <td class="center">12</td>
-                    <td class="center">Responsive<br /> Fixed 960<br /> Fixed 1200</td>
-                    <td class="center">10</td>
-                    <td class="center">Flexible</td>
-                    <td class="center">Equal, Double, Stack</td>
-                </tr>
+<tr>
+    <td class="subject">Mobile supported</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"></td>
+    <td class="center"><span class="icon-ok"></span></td>
+</tr>
 
-                <tr>
-                    <td class="subject">Module positions</td>
-                    <td class="center"><span class="icon-question"></span></td>
-                    <td class="center">12</td>
-                    <td class="center">78</td>
-                    <td class="center">Flexible</td>
-                    <td class="center">40<br />3 module layout: Double, Equal, Stack</td>
-                </tr>
+<tr>
+    <td class="subject">SEO Optimized</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"></td>
+    <td class="center"></td>
+</tr>
 
-                <tr>
-                    <td colspan="6"><span class="lead"><strong>Advanced features</strong></span></td>
-                </tr>
+<tr>
+    <td colspan="6"><span class="lead"><strong>Backend functionality</strong></span></td>
+</tr>
 
-                <tr>
-                    <td class="subject">Google Fonts</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"></td>
-                </tr>
+<tr>
+    <td class="subject">Powerful and friendly Admin UI</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+</tr>
 
-                <tr>
-                    <td class="subject">CSS + JS Compress &amp; Combination</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                </tr>
+<tr>
+    <td class="subject">Shortcode</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+    <td class="center"></td>
+</tr>
 
-                <tr>
-                    <td class="subject">LESS Compiler</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"></td>
-                    <td class="center"></td>
-                </tr>
+<tr>
+    <td class="subject">Template layout</td>
+    <td class="center">12</td>
+    <td class="center">Responsive<br> Fixed 960<br> Fixed 1200</td>
+    <td class="center">10</td>
+    <td class="center">Flexible</td>
+    <td class="center">Equal, Double, Stack</td>
+</tr>
 
-                <tr>
-                    <td class="subject">Theming default template</td>
-                    <td class="center"><span class="icon-ok"></span><br /><a target="_blank" href="#">Zo2 Based</a></td>
-                    <td class="center"><span class="icon-ok"></span><br /><a target="_blank" href="http://t3-framework.org/downloads.html">T3 Blank Template</a></td>
-                    <td class="center"><span class="icon-ok"></span><br /><a target="_blank" href="http://www.gantry-framework.org/download">Gantry default template</a></td>
-                    <td class="center"><span class="icon-ok"></span><br /><a target="_blank" href="http://helix.joomshaper.com/downloads">Default Helix theme</a></td>
-                    <td class="center"><span class="icon-ok"></span><br /><a target="_blank" href="http://www.yootheme.com/themes/downloads/download">Master theme</a></td>
-                </tr>
+<tr>
+    <td class="subject">Module positions</td>
+    <td class="center"><span class="icon-question"></span></td>
+    <td class="center">12</td>
+    <td class="center">78</td>
+    <td class="center">Flexible</td>
+    <td class="center">40<br>3 module layout: Double, Equal, Stack</td>
+</tr>
 
-                <tr>
-                    <td class="subject">Support Joomla 3.x</td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                    <td class="center"><span class="icon-ok"></span></td>
-                </tr>
+<tr>
+    <td colspan="6"><span class="lead"><strong>Advanced features</strong></span></td>
+</tr>
 
-                <tr>
-                    <td colspan="6"><span class="lead"><strong>Price</strong></span></td>
-                </tr>
-                <tr>
-                    <td class="subject">Free/Commercial</td>
-                    <td class="center">Free</td>
-                    <td class="center">Free + Commercial</td>
-                    <td class="center">Free + Commercial</td>
-                    <td class="center">Free + Commercial</td>
-                    <td class="center">Commercial</td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-        <!-- /features -->
+<tr>
+    <td class="subject">Google Fonts</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"></td>
+</tr>
 
-        <!-- components sequence -->
-        <section>
-            <div class="page-header">
-                <h2>Components Sequence Diagram</h2>
-            </div>
-            <section>
-                <img src="images/components_sequence.png" alt="Components Sequence" />
-            </section>
-        </section>
-        <!-- /layout mockup -->
+<tr>
+    <td class="subject">CSS + JS Compress &amp; Combination</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+</tr>
 
-        <!-- roadmap -->
-        <section>
-            <div class="page-header">
-                <h2>Roadmap</h2>
-            </div>
-            <ol>
-                <li>Version 0.0.1 (Alpha): July 15th 2013</li>
-                <li>Version 0.1.1 (Beta): August 1st 2013</li>
-            </ol>
-        </section>
-        <!-- /roadmap -->
-    </div>
+<tr>
+    <td class="subject">LESS Compiler</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"></td>
+    <td class="center"></td>
+</tr>
+
+<tr>
+    <td class="subject">Theming default template</td>
+    <td class="center"><span class="icon-ok"></span><br><a target="_blank" href="#">Zo2 Based</a></td>
+    <td class="center"><span class="icon-ok"></span><br><a target="_blank" href="http://t3-framework.org/downloads.html">T3 Blank Template</a></td>
+    <td class="center"><span class="icon-ok"></span><br><a target="_blank" href="http://www.gantry-framework.org/download">Gantry default template</a></td>
+    <td class="center"><span class="icon-ok"></span><br><a target="_blank" href="http://helix.joomshaper.com/downloads">Default Helix theme</a></td>
+    <td class="center"><span class="icon-ok"></span><br><a target="_blank" href="http://www.yootheme.com/themes/downloads/download">Master theme</a></td>
+</tr>
+
+<tr>
+    <td class="subject">Support Joomla 3.x</td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+    <td class="center"><span class="icon-ok"></span></td>
+</tr>
+
+<tr>
+    <td colspan="6"><span class="lead"><strong>Price</strong></span></td>
+</tr>
+<tr>
+    <td class="subject">Free/Commercial</td>
+    <td class="center">Free</td>
+    <td class="center">Free + Commercial</td>
+    <td class="center">Free + Commercial</td>
+    <td class="center">Free + Commercial</td>
+    <td class="center">Commercial</td>
+</tr>
+</tbody>
+</table>
+## Sequence diagram
+---
+
+![Diagram](img/components_sequence.png)
+
+## Roadmap
+---
+1. Version 0.0.1 (Alpha): July 15th 2013
+2. Version 0.1.1 (Beta): August 1st 2013
+---
+
+## Developer's guide
+---
+### How to add a new shortcode for ZO2 Framework?
+
+ Zo2 provides many ready-to-use short codes, it is clear that we cannot cover all kind of short codes for different users. ZO2 makes it simple to make your own shortcodes
+
+* The short code structure
+
+    The first of all we need to do is understand the structure of a short code.
+
+    1. Some Shortcodes that we built in the shortcodes folder ( {root}/plugins/system/zo2/shortcodes ):
+
+        ![integrate shortcode](img/shortcodes.png)
+
+    2. This folder includes scripts, styles, images of a shortcode. ( {root}/plugins/system/zo2/addons/shortcodes ):
+
+        ![integrate shortcode](img/shortcodes-assets.png)
+
+* For examples
+
+    The following image below, the developers can easily create a short code
+
+    ![integrate shortcode](img/example.png)
+
+    A example about a short code structure
+
+    **Notes**
+        (1) - Function name
+        (2) - A Short code tag
+
+### How to include css and javascript only when needed by a shortcode?
+Zo2 framework provided some functions to do this, the developers can use functions following:
+
+     - Zo2Framework::addScriptDeclaration
+     - Zo2Framework::addJsScript
+     - Zo2Framework::addCssStylesheet
+
+### How to add a shortcode button in the editor of an article
+Find "$shortcoders = array(" string then adding new a item inside this array. Copy image of button into the path: {root}/plugins/system/zo2/shortcodes/images .For example, You can see the image below:
+
+![integrate botton toolbar](img/btn-toolbar.png)
+
+**Notes**
+
+    - name: name of shortcode
+    - desc: Description of shortcode.
+    - syntax: syntax of shortcode.
+    - image: icon of shortcode.
+
+### How do I use my shortcode?
+ That is simple, just need to add the shortcode tag in the editor of an article. For example:
+
+    [blip.tv id="6608034" w="450" h="320"]
+
+## Frequently Asked Questions
+---
+If you figure out any issues other while using ZO2 Framework. Please, you can submit those issues to us through this link: https://github.com/aploss/zo2/issues , so that we will fix them quickly
+
 </div>
-<script src="vendor/jquery/jquery-1.9.1.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- End of the documentation -->
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('body').addClass('doc-loading').height($(document).height());
+
+    // Parsed markdown content
+    var content = $('#doc-content').html();
+    $('#doc-content').remove();
+    var $container = $('<div/>').addClass('container doc-content').prependTo('body'),
+            $main  = $('<div/>').addClass('row-fuild').attr('id', 'doc-content').appendTo($container);
+    $main.html(marked(content));
+
+    // Style tables
+    $('table').addClass('table table-striped table-bordered');
+
+    // Prettify
+    $('code').each(function() {
+        $(this).addClass('prettyprint lang-' + $(this).attr('class'));
+    });
+    prettyPrint();
+
+    // Generate header
+    $('<div class="navbar navbar-fixed-top" id="top"><div class="navbar-inner"><div class="container"><a class="brand" id="doc-branch" href="#top"></a><div class="nav-collapse collapse hidden-phone hidden-tablet"><ul id="doc-nav" class="nav"></ul></div></div></div></div>').prependTo('body');
+    $('#doc-branch').html($('title').html());
+
+    // Generate table of content
+    $('h2, h3').each(function() {
+        var id  = $(this).attr("id");
+        if (!id) {
+            // Generate the Id based on the title
+            id = $(this).text().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z-]/g, '');
+            if ($('#' + id).length != 0) {
+                var counter = 1, slug = id, done = false;
+                while (!done) {
+                    id   = slug + '-' + counter;
+                    done = $('#' + id).length == 0;
+                }
+            }
+        }
+        $(this).attr("id", id);
+    });
+
+    var $h2s = $('h2');
+
+    $('<div/>').attr('id', 'doc-last').appendTo('body');
+    $h2s.each(function(index) {
+        var $li = $('<li class="dropdown"></li>').appendTo('#doc-nav'),
+        $a = $('<a/>')
+                .attr('href', '#' + $(this).attr('id'))
+                .html($(this).html())
+                .appendTo($li);
+
+        var $nextH2 = (index < $h2s.length - 1) ? $h2s.eq(index + 1) : $('#doc-last'), $h3s = $(this).nextUntil($nextH2, 'h3');
+        if ($h3s.length > 0) {
+            $a.addClass('dropdown-toggle').attr('data-toggle', 'dropdown').attr('data-target', '#')
+            $('<b/>').addClass('caret').appendTo($a);
+
+            var $ul = $('<ul/>').addClass('dropdown-menu').appendTo($li);
+            $h3s.each(function() {
+                $('<li><a href="#' + $(this).attr('id') + '">' + $(this).html() + '</a></li>').appendTo($ul);
+            });
+        }
+    });
+    $('.dropdown-toggle').each(function() {
+        $(this).data('dropdown', null).dropdown();
+    });
+    $('#doc-last').remove();
+
+    $('body').removeClass('doc-loading');
+});
+</script>
 </body>
 </html>
