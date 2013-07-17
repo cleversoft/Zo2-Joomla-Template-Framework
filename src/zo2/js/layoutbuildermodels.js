@@ -1,9 +1,3 @@
-NodeType = {
-    ELEMENT: 1,
-    TEXT: 3,
-    COMMENT: 8
-};
-
 var WorkSpace = Backbone.Model.extend({
     initialize: function()
     {
@@ -190,6 +184,8 @@ var WorkSpace = Backbone.Model.extend({
                     position: 'absolute'
                 });
                 */
+
+                thisWorkspace.generateElementForm($draggingEl);
 
                 $cloneDraggingEl.addClass('zo2-clonedragging zo2-dragging').insertAfter($draggingEl);
                 thisWorkspace.set('draggingEl', $draggingEl);
@@ -396,6 +392,43 @@ var WorkSpace = Backbone.Model.extend({
     addComponentToList: function(component) {
         var $container = this.get('componentList');
         component.createDraggableElement().appendTo($container);
+    },
+
+    extractAttributes: function(el) {
+        var result = [];
+        jQuery.each(el.attributes, function(index){
+            result.push({name: this.name, value: this.value});
+        });
+        return result;
+    },
+
+    generateElementForm: function($el) {
+        jQuery('#inputClass').val($el.attr('class') ? $el.attr('class') : '');
+        jQuery('#dynamic-attributes').empty();
+
+        var attr = this.extractAttributes($el[0]);
+
+        if (attr && attr.length > 0) {
+            for (var i = 0; i < attr.length; i++) {
+                this.generateAttributeRow($el, attr[i]);
+            }
+        }
+    },
+
+    generateAttributeRow: function($el, attr) {
+        var attribute = attr.name.charAt(0).toUpperCase() + attr.name.slice(1); // uppercase first character
+
+        var html = '<div class="control-group"><label class="control-label" for="input' + attribute + '">' + attribute
+                + '</label><div class="controls"><input type="text" id="input' + attribute + '">'
+                + '</div></div>';
+
+        var $row = jQuery(html);
+
+        // apply on the fly
+        $row.find('input').on('keydown', function(){
+        });
+
+        $row.appendTo('#dynamic-attributes');
     }
 });
 
@@ -418,7 +451,10 @@ var Component = Backbone.Model.extend({
     createDraggableElement: function() {
         var classArray = this.get('class');
         var classes = classArray && classArray.length > 0 ? classArray.join(' ') : '';
-        var html = '<div data-zo2componenttype="' + this.get('type') + '" data-zo2componentid="' + this.get('id') + '" class="' + classes + '">' + this.get('name') + '</div>';
+        var html = '<div data-zo2componenttype="' + this.get('type') + '" data-zo2componentid="' + this.get('id') + '" class="' + classes + '">'
+            + '<img src="../plugins/system/zo2/images/components/' + this.get('icon') + '" />'
+            + this.get('name')
+            + '</div>';
         return jQuery(html);
     }
 });

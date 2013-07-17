@@ -132,7 +132,7 @@ class Zo2Layout {
             $this->_output = preg_replace('#<head>#', '<head><jdoc:include type="head" />', $this->_output);
             $this->_output = $this->parseDataComponent($this->_output);
         }
-        return $this->_output;
+        return self::compressHtml($this->_output);
     }
 
     private function insertLayoutBuilderCss() {
@@ -202,5 +202,19 @@ class Zo2Layout {
         }
 
         return '';
+    }
+
+    public static function compressHtml($input) {
+        $input = str_replace("\n\n", "\n", $input);
+        $input = str_replace("\r\r", "\r", $input);
+        return $input;
+    }
+
+    public function combineJS() {
+        if(!class_exists('PhpClosure', false)) {
+            Zo2Framework::import('core.class.minify.closure');
+        }
+
+
     }
 }
