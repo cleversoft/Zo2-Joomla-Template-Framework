@@ -40,7 +40,7 @@ class Zo2Layout {
         }
 
         // get template content
-        $this->_layoutStatics = array('header' => array(), 'footer' => array());
+        $this->_layoutStatics = array();
         $this->_layoutContent = file_get_contents($this->_layoutPath);
         $coreStaticsJson = file_get_contents($this->_coreStaticsPath);
         $staticsJson = file_get_contents($this->_staticsPath);
@@ -48,8 +48,19 @@ class Zo2Layout {
         $statics = json_decode($staticsJson, true);
 
         // combine layout statics
-        $this->_layoutStatics['header'] = array_merge($coreStatics['header'], $statics['header']);
-        $this->_layoutStatics['footer'] = array_merge($coreStatics['footer'], $statics['footer']);
+        $this->_layoutStatics = array_merge_recursive($coreStatics, $statics);
+    }
+
+    public function insertStatic($path, $type, array $options = array(), $position) {
+        $this->_layoutStatics[] = array('path' => $path, 'type' => $type, 'options' => $options, 'position' => $position);
+    }
+
+    public function insertJs($path, array $options = array(), $position = 'footer') {
+        $this->insertStatic($path, 'js', $options, $position);
+    }
+
+    public function insertCss($path, array $options = array(), $position = 'header') {
+        $this->insertStatic($path, 'css', $options, $position);
     }
 
     /**
@@ -57,26 +68,28 @@ class Zo2Layout {
      *
      * @return string
      */
-    public function getLayoutContent(){
+    public function getLayoutContent() {
         return $this->_layoutContent;
     }
 
     /**
-     * Insert javascript and css into document
+     * Process javascript and css, then insert into document
      *
      * @return string
      */
-    private function insertStatics(){
+    private function processStatics(){
         $footer = "";
         $header = "";
         if($this->_layoutStatics != null){
-            foreach($this->_layoutStatics['header'] as $item){
-                if($item['type'] == 'css') $header .= $this->generateCssTag($item);
-                elseif($item['type'] == 'js') $header .= $this->generateJsTag($item);
-            }
-            foreach($this->_layoutStatics['footer'] as $item){
-                if($item['type'] == 'css') $footer .= $this->generateCssTag($item);
-                elseif($item['type'] == 'js') $footer .= $this->generateJsTag($item);
+            foreach($this->_layoutStatics as $item) {
+                if ($item['position'] == 'header') {
+                    if ($item['type'] == 'css') $header .= $this->generateCssTag($item);
+                    elseif ($item['type'] == 'js') $header .= $this->generateJsTag($item);
+                }
+                elseif ($item['position'] == 'footer') {
+                    if ($item['type'] == 'css') $footer .= $this->generateCssTag($item);
+                    elseif ($item['type'] == 'js') $footer .= $this->generateJsTag($item);
+                }
             }
         }
 
@@ -123,7 +136,7 @@ class Zo2Layout {
      */
     public function compile($removeJdoc = false, $layoutBuilder = false) {
         $this->_output = $this->_layoutContent;
-        $this->insertStatics();
+        $this->processStatics();
         if($removeJdoc) {
             $this->_output = preg_replace('#<jdoc:include\ type="([^"]+)" (.*)\/>#iU', '', $this->_output);
         }

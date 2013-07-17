@@ -43,6 +43,7 @@
         <filename>index.php</filename>
         <filename>layout.json</filename>
         <filename>error.php</filename>
+        <filename>params.ini</filename>
         <folder>css</folder>
         <folder>layouts</folder>
         <folder>html</folder>
@@ -52,7 +53,9 @@
     <config>
 
     <fields name="params" addfieldpath="/plugins/system/zo2/formfields">
-
+        <fieldset name="basic">
+            <field name="show_title" type="checkbox" label="Show title" description="Show the title of the item" value="1" default="0" />
+        </fieldset>
         <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
             <field
                 type="layout"

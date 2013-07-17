@@ -1,12 +1,23 @@
-jQuery(function($$){
-    var $container = jQuery('#hdLayoutBuilder').parent().clone();
-    var $optionsContainer = jQuery('#options');
-    $optionsContainer.empty();
-    $container.appendTo($optionsContainer);
-    $container.css('margin-left', 0);
+jQuery(function($){
+    //var $container = jQuery('#hdLayoutBuilder').parent().clone();
+    //var $optionsContainer = jQuery('#options');
+    //$optionsContainer.empty();
+    //$container.appendTo($optionsContainer);
+    //$container.css('margin-left', 0);
 
-    $$(window).bind('load', function(){
-        $$('#myTabTabs li').eq(1).one('click', function(){
+    $(window).bind('load', function(){
+        // insert tab
+        var $tabsContainer = $('#myTabTabs');
+        var $tabContent = $('#myTabContent');
+        var $tab = $('<li class=""><a href="#layoutbuilder-container" data-toggle="tab">Layout Builder</a></li>');
+        $tab.appendTo($tabsContainer);
+
+        var $layoutBuilder = $('#layoutbuilder-container');
+        var $layoutContainer = jQuery('#layoutbuilder-container').closest('.accordion-group');
+        $layoutBuilder.addClass('tab-pane').appendTo($tabContent);
+        $layoutContainer.remove();
+
+        $('#myTabTabs li').eq(3).one('click', function(){
             // wait a bit to init layoutbuilder
             setTimeout(function(){
                 window.workSpace = new WorkSpace();
@@ -22,7 +33,7 @@ jQuery(function($$){
         });
     });
 
-    $$('#btSaveLayout').on('click', function(){
+    $('#btSaveLayout').on('click', function(){
         workSpace.saveLayout();
         return false;
     });
