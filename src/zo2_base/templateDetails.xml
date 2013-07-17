@@ -54,7 +54,23 @@
 
     <fields name="params" addfieldpath="/plugins/system/zo2/formfields">
         <fieldset name="basic">
-            <field name="show_title" type="checkbox" label="Show title" description="Show the title of the item" value="1" default="0" />
+            <field name="combine_statics" type="list" default="0" label="Combine assets" description="Combine the static assets such as JS and CSS">
+                <option value="0">Disable</option>
+                <option value="1">Combine</option>
+                <option value="2">Combine and Minify</option>
+            </field>
+            <field name="font_awesome" type="list" default="1" label="Include Font Awesome" description="Include Font Awesome">
+                <option value="1">Enable</option>
+                <option value="0">Disable</option>
+            </field>
+            <field name="google_fonts" type="list" default="0" label="Google fonts" description="Choose font from Google Web Fonts">
+                <option value="0">Disabled</option>
+                <option value="Open Sans|Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic">Open Sans</option>
+                <option value="Oswald|Oswald:400,700,300">Oswald</option>
+                <option value="Droid Sans|Droid+Sans:400,700">Droid Sans</option>
+                <option value="Lato|Lato:400,300,300italic,400italic,700,700italic">Lato</option>
+                <option value="Lora|Lora:400,400italic,700,700italic">Lora</option>
+            </field>
         </fieldset>
         <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
             <field

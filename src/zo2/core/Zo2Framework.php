@@ -264,9 +264,9 @@ class Zo2Framework {
         }
         $menu = new ZO2MegaMenu ($menutype, $mmconfig, $params);
 
-        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/megamenu.css');
+        //Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/megamenu.css');
 //        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/css/megamenu-responsive.css');
-        Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/js/megamenu.js');
+        //Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/js/megamenu.js');
 
         return $menu->renderMenu();
     }

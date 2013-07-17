@@ -8,7 +8,17 @@
         "position": "header"
     },
     {
-        "path": "/vendor/font-awesome/css/font-awesome.min.css",
+        "path": "/vendor/jquery/jquery-1.9.1.min.js",
+        "type": "js",
+        "position": "footer"
+    },
+    {
+        "path": "/vendor/bootstrap/js/bootstrap.min.js",
+        "type": "js",
+        "position": "footer"
+    },
+    {
+        "path": "/css/megamenu.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
@@ -16,12 +26,7 @@
         "position": "header"
     },
     {
-        "path": "/vendor/jquery/jquery-1.9.1.min.js",
-        "type": "js",
-        "position": "footer"
-    },
-    {
-        "path": "/vendor/bootstrap/js/bootstrap.min.js",
+        "path": "/js/megamenu.js",
         "type": "js",
         "position": "footer"
     }

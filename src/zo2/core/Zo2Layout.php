@@ -13,9 +13,12 @@
 
 class Zo2Layout {
     /* private */
-    private $_layoutName, $_layoutContent, $_layoutPath, $_templateName, $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+    private $_layoutName, $_templatePath, $_layoutContent, $_layoutPath, $_templateName, $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_layoutStatics = array();
+
+    private $_styleDeclaration = array();
+    private $_jsDeclaration = array();
 
     /**
      * Construct a Zo2Layout object
@@ -25,6 +28,7 @@ class Zo2Layout {
      */
     public function __construct($templateName, $layoutName){
         // assign values to private variables
+        $this->_templatePath = JPATH_SITE . '/templates/' . $templateName . '/';
         $layoutDir = JPATH_SITE . '/templates/' . $templateName . '/layouts/';
         $this->_layoutPath = $layoutDir . $layoutName . '.compiled.php';
         $this->_staticsPath = $layoutDir . $layoutName . '.json';
@@ -80,7 +84,7 @@ class Zo2Layout {
     private function processStatics(){
         $footer = "";
         $header = "";
-        if($this->_layoutStatics != null){
+        if ($this->_layoutStatics != null) {
             foreach($this->_layoutStatics as $item) {
                 if ($item['position'] == 'header') {
                     if ($item['type'] == 'css') $header .= $this->generateCssTag($item);
@@ -91,6 +95,28 @@ class Zo2Layout {
                     elseif ($item['type'] == 'js') $footer .= $this->generateJsTag($item);
                 }
             }
+        }
+
+        if (count($this->_styleDeclaration) > 0) {
+            $styles = '';
+            foreach ($this->_styleDeclaration as $style) {
+                $styles .= $style . "\n";
+            }
+
+            $styles = '<style type="text/css">' . $styles . '</style>';
+            $header .= "\n" . $styles;
+        }
+
+        if (count($this->_jsDeclaration) > 0) {
+            $scripts = '';
+
+            foreach ($this->_jsDeclaration as $js) {
+                $scripts .= $js . "\n";
+            }
+
+            $scripts = '<script type="text\javascript">' . $scripts . '</script>';
+
+            $footer .= $scripts;
         }
 
         if(!empty($header)){
@@ -110,10 +136,11 @@ class Zo2Layout {
      * @param $item
      * @return string
      */
-    private function generateJsTag($item){
+    private function generateJsTag($item) {
+        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $this->_templateUri . $item['path'];
         $async = "";
         if(isset($item['options']['async'])) $async = " async=\"" . $item['options']['async'] . "\"";
-        return "<script" . $async . " type=\"text/javascript\" src=\"" . $this->_templateUri . $item['path'] . "\"></script>\n";
+        return "<script" . $async . " type=\"text/javascript\" src=\"" . $path . "\"></script>\n";
     }
 
     /**
@@ -122,9 +149,10 @@ class Zo2Layout {
      * @param $item
      * @return string
      */
-    private function generateCssTag($item){
+    private function generateCssTag($item) {
+        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $this->_templateUri . $item['path'];
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
-        return "<link rel=\"" . $rel . "\" href=\"" . $this->_templateUri . $item['path'] . "\" type=\"text/css\" />\n";
+        return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
     }
 
     /**
@@ -136,7 +164,30 @@ class Zo2Layout {
      */
     public function compile($removeJdoc = false, $layoutBuilder = false) {
         $this->_output = $this->_layoutContent;
-        $this->processStatics();
+
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+
+        // check google fonts
+        $googleFont = $params->get('google_fonts');
+
+        if (isset($googleFont) && !empty($googleFont) && $googleFont != '0') {
+            $this->setGoogleFont($googleFont);
+        }
+
+        // check font awesome
+        $fontAwesome = $params->get('font_awesome');
+
+        if (isset($fontAwesome) && !empty($fontAwesome) && $fontAwesome == '1') {
+            $this->insertCss('/vendor/font-awesome/css/font-awesome.min.css');
+        }
+
+        // check combine level
+        $combineLevel = $params->get('combine_statics');
+
+        if ($combineLevel == '0') $this->processStatics();
+        else $this->combine($combineLevel);
         if($removeJdoc) {
             $this->_output = preg_replace('#<jdoc:include\ type="([^"]+)" (.*)\/>#iU', '', $this->_output);
         }
@@ -145,7 +196,49 @@ class Zo2Layout {
             $this->_output = preg_replace('#<head>#', '<head><jdoc:include type="head" />', $this->_output);
             $this->_output = $this->parseDataComponent($this->_output);
         }
-        return self::compressHtml($this->_output);
+
+        return $this->_output;
+    }
+
+    private function combine($level = 1) {
+        $style = '';
+        $script = '';
+
+        $state = $this->getState();
+
+        $jsPath = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'script.' . $state . '.js';
+        $cssPath = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'style.' . $state . '.css';
+
+        if (!file_exists($jsPath) || !file_exists($cssPath)) {
+            foreach ($this->_layoutStatics as $item) {
+                $path = $this->_templatePath . $item['path'];
+                $path = str_replace('//', '/', $path);
+
+                if ($item['type'] == 'css') $style .= file_get_contents($path) . "\n";
+                elseif ($item['type'] == 'js') $script .= file_get_contents($path) . "\n";
+            }
+
+            Zo2Framework::import('core.class.minify.jsshrink');
+            Zo2Framework::import('core.class.minify.css');
+
+            // minify js first
+            if ($level == '2') {
+                $script = Minifier::minify($script);
+                $style = CssMinifier::minify($style);
+            }
+
+            file_put_contents($jsPath, $script);
+            file_put_contents($cssPath, $style);
+        }
+
+        $jsUri = '/runtime/script.' . $state . '.js';
+        $cssUri = '/runtime/style.' . $state . '.css';
+
+        $scriptTag = $this->generateJsTag(array('path' => $jsUri, 'type' => 'js', 'position' => 'footer'));
+        $cssTag = $this->generateCssTag(array('path' => $cssUri, 'type' => 'css', 'position' => 'header', 'options' => array('rel' => 'stylesheet')));
+
+        $this->_output = str_replace('</head>', $cssTag . '</head>' , $this->_output);
+        $this->_output = str_replace('</body>', $scriptTag . '</body>' , $this->_output);
     }
 
     private function insertLayoutBuilderCss() {
@@ -227,7 +320,49 @@ class Zo2Layout {
         if(!class_exists('PhpClosure', false)) {
             Zo2Framework::import('core.class.minify.closure');
         }
+    }
 
+    public function setGoogleFont($fontname) {
+        $fontname = explode('|', $fontname);
 
+        if (count($fontname) != 2) return;
+
+        $fontPath = 'http://fonts.googleapis.com/css?family=' . $fontname[1];
+        $this->insertCss($fontPath);
+        $selectors = 'body, input, button, select, textarea, .navbar-search .search-query';
+        $options = "\n";
+        $options .= $selectors . '{';
+        $options .= 'font-family:\'' . $fontname[0] . '\', Helvetica, Arial, sans-serif';
+        $options .= '}';
+        $options .= "\n";
+
+        $this->_styleDeclaration[] = $options;
+    }
+
+    private function getState() {
+        $path = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'state.php';
+
+        if (!file_exists($path)) {
+            $state = uniqid();
+            file_put_contents($path, $state);
+            return $state;
+        }
+        else {
+            $state = file_get_contents($path);
+            if (empty($state)) {
+                $state = uniqid();
+                file_put_contents($path, $state);
+                return $state;
+            }
+            else return $state;
+        }
+    }
+
+    private function setState($state = null) {
+        if (!isset($state)) $state = uniqid();
+
+        $path = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'state.php';
+
+        file_put_contents($path, $state);
     }
 }
