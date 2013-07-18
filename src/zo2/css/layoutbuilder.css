@@ -3,4 +3,4 @@
 .zo2-clonedragging{opacity: 0.5;max-width: 800px;min-width: 200px}
 .zo2-hoveron{opacity: 0.5;box-shadow: 0 0 3px #ff6d1f !important}
 .zo2-draggable{z-index:9999}
-div[data-zo2componenttype="data-component"]{width:100%;min-height: 300px;background: #999999 url('../images/icon_datacomponent.png') no-repeat center center}
+div[data-zo2componenttype="data-component"]{width:100%;min-height: 300px;background: #999999 url('../images/icon_datacomponent.png') no-repeat center center;margin-bottom:10px}

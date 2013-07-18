@@ -56,6 +56,8 @@ class plgSystemZo2 extends JPlugin
             $this->addShortCodes();
         }
 
+        // get response
+        //$html = JResponse::getBody();
     }
 
     public function onContentPrepare($context, &$article, &$params, $page = 0)
@@ -211,5 +213,4 @@ class plgSystemZo2 extends JPlugin
         $text .= '</div>';
         return $text;
     }
-
 }

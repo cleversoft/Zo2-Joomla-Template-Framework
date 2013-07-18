@@ -78,7 +78,7 @@
                 name="layout" />
         </fieldset>
 
-        <fieldset name="megamenu">
+        <fieldset name="megamenu" label="Megamenu">
             <field type="assets" name="assets" />
             <field name="hover_type" type="list" default="hover"
                    label="Hover type"

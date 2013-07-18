@@ -15,11 +15,13 @@ jQuery(function($){
         var $layoutBuilder = $('#layoutbuilder-container');
         var $layoutContainer = jQuery('#layoutbuilder-container').closest('.accordion-group');
         $layoutBuilder.addClass('tab-pane').appendTo($tabContent);
+        jQuery('#hfLayoutName').appendTo($layoutBuilder);
         $layoutContainer.remove();
 
         $('#myTabTabs li').eq(3).one('click', function(){
             // wait a bit to init layoutbuilder
             setTimeout(function(){
+                console.log('here');
                 window.workSpace = new WorkSpace();
 
                 workSpace.getLayoutHtml('homepage', function(layoutHtml){

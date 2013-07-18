@@ -186,7 +186,7 @@ class Zo2Layout {
         // check combine level
         $combineLevel = $params->get('combine_statics');
 
-        if ($combineLevel == '0') $this->processStatics();
+        if (!isset($combineLevel) || $combineLevel == '0') $this->processStatics();
         else $this->combine($combineLevel);
         if($removeJdoc) {
             $this->_output = preg_replace('#<jdoc:include\ type="([^"]+)" (.*)\/>#iU', '', $this->_output);
@@ -206,8 +206,15 @@ class Zo2Layout {
 
         $state = $this->getState();
 
-        $jsPath = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'script.' . $state . '.js';
-        $cssPath = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'style.' . $state . '.css';
+        $jsFileName = 'script.' . $this->_layoutName . '.js';
+        $cssFileName = 'style.' . $this->_layoutName . '.css';
+
+        $assetDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . $state;
+
+        if (!is_dir($assetDir)) mkdir($assetDir, 0755);
+
+        $jsPath = $assetDir . DIRECTORY_SEPARATOR . $jsFileName;
+        $cssPath = $assetDir . DIRECTORY_SEPARATOR . $cssFileName;
 
         if (!file_exists($jsPath) || !file_exists($cssPath)) {
             foreach ($this->_layoutStatics as $item) {
@@ -231,11 +238,33 @@ class Zo2Layout {
             file_put_contents($cssPath, $style);
         }
 
-        $jsUri = '/runtime/script.' . $state . '.js';
-        $cssUri = '/runtime/style.' . $state . '.css';
+        $jsUri = '/assets/' . $state . '/' . $jsFileName;
+        $cssUri = '/assets/' . $state . '/' . $cssFileName;
 
         $scriptTag = $this->generateJsTag(array('path' => $jsUri, 'type' => 'js', 'position' => 'footer'));
         $cssTag = $this->generateCssTag(array('path' => $cssUri, 'type' => 'css', 'position' => 'header', 'options' => array('rel' => 'stylesheet')));
+
+        if (count($this->_styleDeclaration) > 0) {
+            $styles = '';
+            foreach ($this->_styleDeclaration as $style) {
+                $styles .= $style . "\n";
+            }
+
+            $styles = '<style type="text/css">' . $styles . '</style>';
+            $cssTag .= "\n" . $styles;
+        }
+
+        if (count($this->_jsDeclaration) > 0) {
+            $scripts = '';
+
+            foreach ($this->_jsDeclaration as $js) {
+                $scripts .= $js . "\n";
+            }
+
+            $scripts = '<script type="text\javascript">' . $scripts . '</script>';
+
+            $scriptTag .= "\n" . $scripts;
+        }
 
         $this->_output = str_replace('</head>', $cssTag . '</head>' , $this->_output);
         $this->_output = str_replace('</body>', $scriptTag . '</body>' , $this->_output);
@@ -287,6 +316,10 @@ class Zo2Layout {
                     $doc = JFactory::getDocument();
                     $zo2 = Zo2Framework::getInstance();
                     return $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+                }
+
+                if ($componentName == 'include_component') {
+                    return '<jdoc:include type="component" />';
                 }
 
                 $classname = 'zo2widget_' . $componentName;
