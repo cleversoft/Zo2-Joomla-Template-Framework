@@ -11,7 +11,12 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	**Todo**
 	+ Smoother drag drop
 	+ More friendly way to add data component
-2. Support Twitter Bootstrap CSS framework
+	
+2. Mega Menu
+
+	**Done**
+	+ Menu builder from backend
+3. Support Twitter Bootstrap CSS framework
 
 	**Done**
 	+ Integrate Twitter Bootstrap
@@ -19,14 +24,14 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	+ Responsive layout
 	+ Typography
 	+ Mobile supported
-3. Multiple layout for different component
+4. Multiple layout for different component
 
 	**Done**
 	+ Route layout for component
 	
 	**Todo**
 	+ Ability to switch between layouts in backend
-4. Shortcode
+5. Shortcode
 
 	**Done**
 	+ Shortcode structure
@@ -34,14 +39,14 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	
 	**Todo**
 	+ OOP and MVC for shortcode
-5. Google Web Fonts
+6. Google Web Fonts
 
 	**Done**
 	+ Ability to choose Google Web Fonts
 	
 	**Todo**
 	+ Google Web Fonts preview in backend
-6. CSS + JS Compress & Combination
+7. CSS + JS Compress & Combination
 	
 	**Done**
 	+ Combine CSS + JS
@@ -52,18 +57,30 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	**Todo**
 	+ Better inline css and js management
 	+ Better JS compression
-7. LESS compiler
+8. LESS compiler
 
 	**Todo**
 	+ Integrate LESS compiler
 	+ Ability to edit LESS in backend
+	
+##Roadmap
+**Beta 1**
++ Layout builder: allow to add/edit/remove grid columns, allow to change settings for data components.
++ OOP for shortcodes
++ Layout by component route
++ LESS Compiler
++ Settings for components
 
 ##Download
 Coming soon
 
 ##Demo
-Coming soon
+[http://beta.zo2framework.org](http://beta.zo2framework.org)
+
+##Released
+1. Beta 1: schedule to release on August 1st, 2013
+
 
 ##Bug tracking
 Found a bug or have a feature request? Feel free to open an issue via this link:
-[https://github.com/t3framework/t3/issues](https://github.com/t3framework/t3/issues)
+[https://github.com/aploss/zo2/issues](https://github.com/aploss/zo2/issues)
