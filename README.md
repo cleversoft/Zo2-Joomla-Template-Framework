@@ -1,4 +1,4 @@
-#Zo2 Framework - A Joomla template framework for enthusiast
+#Zo2 Framework
 Zo2 Framework is a Joomla template framework, built from scratch, and heavily support Bootstrap framework and LESS.
 
 ##Features
@@ -85,3 +85,9 @@ Coming soon
 ##Bug tracking
 Found a bug or have a feature request? Feel free to open an issue via this link:
 [https://github.com/aploss/zo2/issues](https://github.com/aploss/zo2/issues)
+
+##Copyright and License
+Copyright (c) 2008 - 2013 APL Solutions
+
+Zo2Framework is licensed under GNU General Public License (GPL), version 2 or later.
+[http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
