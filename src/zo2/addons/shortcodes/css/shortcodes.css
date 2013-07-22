@@ -11,21 +11,6 @@
     background-repeat: repeat;
     margin-top: 0;
     padding-left: 25px;
+    background-size: 16px 16px !important;
 }
-
-.zo2-icon-bsc-vimeo {
-    background: url(../images/vimeo.png) 0 0 no-repeat;
-}
-.zo2-icon-bsc-youtube {
-    background: url(../images/youtube.png) 0 0 no-repeat;
-}
-
-.zo2-icon-bsc-googlemap {
-    background: url(../images/google_map.png) 0 0 no-repeat;
-}
-
-.zo2-icon-bsc-code {
-    background: url(../images/code.png) 0 0 no-repeat;
-}
-
 

@@ -167,13 +167,13 @@ class plgSystemZo2 extends JPlugin
                 'name' => "Polldaddy",
                 'desc' => "polldaddy",
                 'syntax' => "[polldaddy  poll=\'ID\']<br/>",
-                'image' => "polldaddy.png"
+                'image' => "polldaddy.ico"
             ),
             'gist' => array(
                 'name' => "Gist",
                 'desc' => "gist",
                 'syntax' => "[gist url=\'URL\']<br/>",
-                'image' => "gist.png"
+                'image' => "github.png"
             ),
             'code' => array(
                 'name' => "Code",
@@ -206,7 +206,7 @@ class plgSystemZo2 extends JPlugin
         if (count($shortcoders))
             foreach ($shortcoders as $key => $shortcoder) {
                 $text .= '<a class="btn" href="javascript: void(0);" onclick="jSelectShortcode(\'' . $shortcoder['syntax'] . '\')" title="' . $shortcoder['desc'] . '">';
-                $text .= '<i class="zo2-icon-bsc-' . $key . '"></i>';
+                $text .= '<i class="zo2-icon-bsc-' . $key . '" style="background: url(' . JUri::root() . ZO2_ADMIN_PLUGIN_REL . '/addons/shortcodes/images/' . $shortcoder['image'] . ') 0 0 no-repeat;"></i>';
                 $text .= $shortcoder['name'];
                 $text .= '</a>';
             }
