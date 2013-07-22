@@ -5,7 +5,7 @@
  * @link         http://github.com/aploss/zo2
  * @package      Zo2
  * @author       Duc Nguyen <ducntq@gmail.com>
- * @author       Vu Hiep
+ * @author       Hiepvu <vqhiep2010@gmail.com>
  * @copyright    Copyright ( c ) 2008 - 2013 APL Solutions
  * @license      http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
  */
@@ -252,7 +252,7 @@ class Zo2Framework {
      * @param $menutype
      * @param $template
      */
-    public static function displayMegaMenu($menutype, $template) {
+    public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
         Zo2Framework::import2('core.menu');
         $params = Zo2Framework::getParams();
 //        $file = JPATH_ROOT . '/templates/'.$template.'/layouts/megamenu.json';
@@ -268,7 +268,7 @@ class Zo2Framework {
 //        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/css/megamenu-responsive.css');
         //Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/js/megamenu.js');
 
-        return $menu->renderMenu();
+        return $menu->renderMenu($isAdmin);
     }
 
     /**

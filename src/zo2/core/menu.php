@@ -146,9 +146,15 @@ class ZO2MegaMenu
     /**
      * render menu
      */
-    function renderMenu()
+    function renderMenu($isAdmin = false)
     {
-        $prefix = '<div data-zo2selectable="navbar" class="wrap zo2-menu navbar"><div class="container"><div class="navbar-inner"><div class="nav-collapse collapse">';
+        $prefix = '<div data-zo2selectable="navbar" class="wrap zo2-menu navbar"><div class="container"><div class="navbar-inner">';
+        $prefix .= '<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="nav-collapse collapse">';
         $suffix = '</div></div></div></div>';
         $html = '';
         $hover = ' data-hover="' . $this->_params->get('hover_type', 'hover') . '"';
@@ -163,7 +169,11 @@ class ZO2MegaMenu
             $html .= "<div $class$data$hover>";
             $html .= $this->getMenu(null, $keys[0]);
             $html .= "</div>";
-            return $prefix . $html . $suffix;
+            if ($isAdmin == true) {
+                return $html;
+            } elseif ($isAdmin == false) {
+                return $prefix . $html . $suffix;
+            }
         }
         return '';
     }

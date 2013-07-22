@@ -6,5 +6,13 @@
             "rel": "stylesheet"
         },
         "position": "header"
+    },
+    {
+        "path": "/css/template.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header"
     }
 ]

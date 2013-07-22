@@ -1,1 +1,41 @@
-{"mainmenu":{"item-323":{"submenu":{"rows":[[{"item":494,"width":12}]]}},"item-435":{"submenu":{"width":700,"rows":[[{"module_id":93,"width":4},{"module_id":94,"width":4},{"module_id":33,"width":4}],[{"module_id":105,"width":12}]]}}}}
+{"mainmenu": {
+    "item-323": {
+        "submenu": {
+            "rows": [
+                [
+                    {
+                        "item": 494,
+                        "width": 12
+                    }
+                ]
+            ]
+        }
+    },
+    "item-435": {
+        "submenu": {
+            "width": 700,
+            "rows": [
+                [
+                    {
+                        "module_id": 93,
+                        "width": 4
+                    },
+                    {
+                        "module_id": 94,
+                        "width": 4
+                    },
+                    {
+                        "module_id": 33,
+                        "width": 4
+                    }
+                ],
+                [
+                    {
+                        "module_id": 105,
+                        "width": 12
+                    }
+                ]
+            ]
+        }
+    }
+}}
