@@ -43,6 +43,12 @@
     border-radius: 2px;
 }
 
+.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: .3;
+}
+
 /* Fix for Font Awesome */
 /* fix for align*/
 [class^="icon-align-"]:before,
