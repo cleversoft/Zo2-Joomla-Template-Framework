@@ -11,24 +11,32 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('gist')) {
+Zo2Framework::import2('core.shortcodes');
 
-    function gist($atts, $content = "")
+class Gist extends ZO2Shortcode
+{
+    // set short code tag
+    protected $tagname = 'gist';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+    protected function body()
     {
 
+        // initializing variables for short code
         extract(shortcode_atts(array(
-            'id' => '',
-            'username' => '',
-            'url' => ''
-        ), $atts));
+                'id' => '',
+                'username' => '',
+                'url' => ''
+            ),
+            $this->attrs
+        ));
 
-        if (!is_array($atts)) {
-            return '<!-- Gist shortcode passed invalid attributes -->';
-        }
+        if (!empty($this->content)) {
 
-        if (!empty($url)) {
-
-            $url = JString::parse_url($url);
+            $url = JString::parse_url($this->content);
             $path = $url['path'];
             $info = explode('/', trim($path, '/'));
             $id = $info[1];
@@ -45,6 +53,4 @@ if (!function_exists('gist')) {
 
     }
 
-    add_shortcode('gist', 'gist');
 }
-

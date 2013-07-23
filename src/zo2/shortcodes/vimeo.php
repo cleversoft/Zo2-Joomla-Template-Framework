@@ -11,25 +11,33 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('vimeo')) {
+Zo2Framework::import2('core.shortcodes');
 
-    function vimeo($atts, $content = "")
+class Vimeo extends ZO2Shortcode
+{
+    // set short code tag
+    protected $tagname = 'vimeo';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+
+    protected function body()
     {
-
+        // initializing variables for short code
         extract(shortcode_atts(array(
-            'id' => 69445362,
-            'w' => 720,
-            'h' => 320,
-            'autoplay' => 0
-        ), $atts));
+                'id' => 69445362,
+                'w' => 720,
+                'h' => 320,
+                'autoplay' => 0
+            ),
+            $this->attrs
+        ));
 
-        if ( ! is_array( $atts ) ) {
-            return '<!-- Vimeo shortcode passed invalid attributes -->';
-        }
 
         return '<iframe width="' . $w . '" height="' . $h . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://player.vimeo.com/video/' . $id . '?badge=0&amp;autoplay=' . $autoplay . '" webkitAllowFullScreen mozallowfullscreen allowfullscreen=""></iframe>';
     }
 
-    add_shortcode('vimeo', 'vimeo');
 }
 

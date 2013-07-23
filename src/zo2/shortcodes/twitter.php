@@ -11,19 +11,28 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('twitter')) {
+Zo2Framework::import2('core.shortcodes');
 
-    function twitter($atts, $content = "")
+class Twitter extends ZO2Shortcode
+{
+    // set short code tag
+    protected $tagname = 'twitter';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+
+    protected function body()
     {
-
+        // initializing variables for short code
         extract(shortcode_atts(array(
-            'id' => '',
-            'username' => '',
-        ), $atts));
+                'id' => '',
+                'username' => '',
+            ),
+            $this->attrs
+        ));
 
-        if ( ! is_array( $atts ) ) {
-            return '<!-- Twitter shortcode passed invalid attributes -->';
-        }
         static $bool = false;
         if (!empty($username)) {
             if (!$bool) {
@@ -31,10 +40,9 @@ if (!function_exists('twitter')) {
                 $script = "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");</script>";
             }
             Zo2Framework::getCurrentDocument()->addCustomTag($script);
-            return '<a class="twitter-timeline" href="https://twitter.com/'.$username.'" data-widget-id="'.$id.'">Tweets by @'.$username.'</a>';
+            return '<a class="twitter-timeline" href="https://twitter.com/' . $username . '" data-widget-id="' . $id . '">Tweets by @' . $username . '</a>';
         }
     }
 
-    add_shortcode('twitter', 'twitter');
 }
 

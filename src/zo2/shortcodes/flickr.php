@@ -11,21 +11,29 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('flickr')) {
+Zo2Framework::import2('core.shortcodes');
 
-    function flickr($atts, $content = "")
+class Flickr extends ZO2Shortcode
+{
+    // set short code tag
+    protected $tagname = 'flickr';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+    protected function body()
     {
 
+        // initializing variables for short code
         extract(shortcode_atts(array(
-            'id' => '',
-            'url' => '',
-            'w' => 300,
-            'h' => 100,
-        ), $atts));
-
-        if ( ! is_array( $atts ) ) {
-            return '<!-- Flickr shortcode passed invalid attributes -->';
-        }
+                'id' => '',
+                'url' => '',
+                'w' => 300,
+                'h' => 100,
+            ),
+            $this->attrs
+        ));
 
         $http = JHttpFactory::getHttp();
 
@@ -34,8 +42,8 @@ if (!function_exists('flickr')) {
 //            $body = $response->body;
 //            $info = json_decode($body);
             //$url = 'http://flickr.com/services/oembed?url=http://www.flickr.com/photo.gne?id='. $id .'&format=json';
-        } elseif (!empty($url)) {
-            $url = 'http://flickr.com/services/oembed?url='. $url .'&format=json&maxwidth='.$w.'&maxheight=' . $h;
+        } elseif (!empty($this->content)) {
+            $url = 'http://flickr.com/services/oembed?url=' . $this->content . '&format=json&maxwidth=' . $w . '&maxheight=' . $h;
         }
 
         $response = $http->get($url);
@@ -48,7 +56,4 @@ if (!function_exists('flickr')) {
 
     }
 
-
-    add_shortcode('flickr', 'flickr');
 }
-

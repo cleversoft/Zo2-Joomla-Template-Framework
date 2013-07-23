@@ -12,46 +12,53 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('polldaddy')) {
+Zo2Framework::import2('core.shortcodes');
 
-    function polldaddy($atts, $content = "")
+class Polldaddy extends ZO2Shortcode
+{
+    protected $tagname = 'polldaddy';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+
+    protected function body()
     {
-
+        // initializing variables for short code
         extract(shortcode_atts(array(
-            'survey' => null,
-            'link_text' => 'Take Our Survey',
-            'poll' => 'empty',
-            'rating' => 'empty',
-            'unique_id' => null,
-            'item_id' => null,
-            'title' => null,
-            'permalink' => null,
-            'cb' => 0,
-            'type' => 'button',
-            'body' => '',
-            'button' => '',
-            'text_color' => '000000',
-            'back_color' => 'FFFFFF',
-            'align' => '',
-            'style' => '',
-            'width' => 200,
-            'height' => floor(200 * 3 / 4),
-            'delay' => 100,
-            'visit' => 'single',
-            'domain' => '',
-            'id' => ''
-        ), $atts));
-
-        if (!is_array($atts)) {
-            return '<!-- Polldaddy shortcode passed invalid attributes -->';
-        }
+                'survey' => null,
+                'link_text' => 'Take Our Survey',
+                'poll' => 'empty',
+                'rating' => 'empty',
+                'unique_id' => null,
+                'item_id' => null,
+                'title' => null,
+                'permalink' => null,
+                'cb' => 0,
+                'type' => 'button',
+                'body' => '',
+                'button' => '',
+                'text_color' => '000000',
+                'back_color' => 'FFFFFF',
+                'align' => '',
+                'style' => '',
+                'width' => 200,
+                'height' => floor(200 * 3 / 4),
+                'delay' => 100,
+                'visit' => 'single',
+                'domain' => '',
+                'id' => ''
+            ),
+            $this->attrs
+        ));
 
         if (intval($poll) > 0) {
 
             $poll = intval($poll);
             $poll_url = 'http://polldaddy.com/poll/' . $poll;
             $poll_js = sprintf('%s.polldaddy.com/p/%d.js', 'http://static', $poll);
-            $poll_link = '<a href="'.$poll_url.'">Take Our Poll</a>';
+            $poll_link = '<a href="' . $poll_url . '">Take Our Poll</a>';
 
             $cb = ($cb == 1 ? '?cb=' . mktime() : false);
 
@@ -70,9 +77,9 @@ if (!function_exists('polldaddy')) {
 
                 return '<script type="text/javascript" charset="UTF-8" src="http://i0.poll.fm/survey.js"></script>
                         <script type="text/javascript" charset="UTF-8">
-                            polldaddy.add( '.$settings.' );
+                            polldaddy.add( ' . $settings . ' );
                         </script>
-                        <noscript>'.$poll_link.'</noscript>';
+                        <noscript>' . $poll_link . '</noscript>';
             } else {
                 $cb = ($cb == 1 ? '?cb=' . mktime() : false);
                 $margins = '';
@@ -96,11 +103,4 @@ if (!function_exists('polldaddy')) {
         } else
             return '<!-- no polldaddy -->';
     }
-
-
-    add_shortcode('polldaddy', 'polldaddy');
-
-
-
 }
-

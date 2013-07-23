@@ -43,10 +43,8 @@ class Zo2Framework {
 
         $app = JFactory::getApplication();
 
-        Zo2Framework::import2('core.shortcodes');
         if (!$app->isAdmin()) {
-
-            Zo2Framework::loadShortCodes();
+             Zo2Framework::import2('addons.shortcodes.api');
             // JViewLegacy
             if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.class.legacy');
             // JModuleHelper
@@ -334,7 +332,15 @@ class Zo2Framework {
         $shortcodes = array_unique($shortcodes);
 
         foreach ($shortcodes as $shortcode) {
-            Zo2Framework::import2('shortcodes.' . $shortcode);
+
+            if (Zo2Framework::import2('shortcodes.' . $shortcode)) {
+                if (JFile::exists(ZO2_ADMIN_BASE . '/shortcodes/'.$shortcode.'.php')) {
+                    $class = ucfirst($shortcode);
+                    $shortcode = new $class;
+                    $shortcode->run();
+                }
+            }
+
         }
         return $shortcodes;
     }
