@@ -68,7 +68,7 @@ class plgSystemZo2 extends JPlugin
         }
 
         if (JFactory::getApplication()->isSite()) {
-            $article->text = do_shortcode($article->text);
+            $article->text = $this->doShortCode($article->text);
         }
 
     }
@@ -76,6 +76,16 @@ class plgSystemZo2 extends JPlugin
     public function onRenderModule($module, $params)
     {
 
+    }
+
+    public function doShortCode($content)
+    {
+
+        if (Zo2Framework::loadShortCodes()) {
+            return do_shortcode($content);
+        } else {
+            return $content;
+        }
     }
 
 

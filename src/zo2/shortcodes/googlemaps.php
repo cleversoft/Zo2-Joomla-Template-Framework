@@ -11,25 +11,30 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('googlemaps')) {
-    /**
-     * @param $atts
-     * @param string $content
-     * @return string
-     */
-    function googlemaps($atts, $content = "")
-    {
-        extract(shortcode_atts(array(
-            'lat' => -34.397,
-            'lng' => 150.644,
-            'zoom' => 11,
-            'w' => 100,
-            'h' => 400
-        ), $atts));
+Zo2Framework::import2('core.shortcodes');
 
-        if ( ! is_array( $atts ) ) {
-            return '<!-- Googlemaps shortcode passed invalid attributes -->';
-        }
+class Googlemaps extends ZO2Shortcode
+{
+    // set short code tag
+    protected $tagname = 'googlemaps';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+    protected function body()
+    {
+
+        // initializing variables for short code
+        extract(shortcode_atts(array(
+                'lat' => -34.397,
+                'lng' => 150.644,
+                'zoom' => 11,
+                'w' => 100,
+                'h' => 400
+            ),
+            $this->attrs
+        ));
 
         $w = ($w == '100%') ? $w : $w . 'px';
 
@@ -49,7 +54,7 @@ if (!function_exists('googlemaps')) {
               map = new google.maps.Map(document.getElementById(\'map-canvas\'), mapOptions);
               var marker = new google.maps.Marker({
                             position: myLatlng,
-                            title: "' . $content . '"
+                            title: "' . $this->content . '"
                            });
               marker.setMap(map);
             }
@@ -62,6 +67,4 @@ if (!function_exists('googlemaps')) {
         return '<div id="map-canvas" style="width: ' . $w . '; height: ' . $h . 'px;"></div>';
     }
 
-    add_shortcode('googlemaps', 'googlemaps');
 }
-

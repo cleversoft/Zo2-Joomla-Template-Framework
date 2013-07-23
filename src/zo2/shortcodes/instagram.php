@@ -11,24 +11,32 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('instagram')) {
+Zo2Framework::import2('core.shortcodes');
 
-    function instagram($atts, $content = "")
+class Instagram extends ZO2Shortcode
+{
+    // set short code tag
+    protected $tagname = 'instagram';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+
+    protected function body()
     {
-
+        // initializing variables for short code
         extract(shortcode_atts(array(
-            'url' => '',
-            'w' => 720,
-            'h' => 320,
-        ), $atts));
+                'url' => '',
+                'w' => 720,
+                'h' => 320,
+            ),
+            $this->attrs
+        ));
 
-        if ( ! is_array( $atts ) ) {
-            return '<!-- Instagram shortcode passed invalid attributes -->';
-        }
+        if (!empty($this->content)) {
 
-        if (!empty($url)) {
-
-            $video_json = 'http://api.instagram.com/oembed?url=' . $url;
+            $video_json = 'http://api.instagram.com/oembed?url=' . $this->content;
             $http = JHttpFactory::getHttp();
             $response = $http->get($video_json);
             $body = $response->body;
@@ -37,6 +45,4 @@ if (!function_exists('instagram')) {
         }
     }
 
-    add_shortcode('instagram', 'instagram');
 }
-

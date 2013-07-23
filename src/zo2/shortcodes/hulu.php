@@ -11,24 +11,29 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-if (!function_exists('hulu')) {
+Zo2Framework::import2('core.shortcodes');
 
-    function hulu($atts, $content = "")
+class Hulu extends ZO2Shortcode
+{
+    // set short code tag
+    protected $tagname = 'hulu';
+
+    /**
+     * Overwrites the parent method
+     * @return string the embed HTML
+     */
+    protected function body()
     {
-
+        // initializing variables for short code
         extract(shortcode_atts(array(
-            'id' => 'mijitruv1ycv8yacnpumuq',
-            'w' => 720,
-            'h' => 320,
-        ), $atts));
-
-        if ( ! is_array( $atts ) ) {
-            return '<!-- Hulu shortcode passed invalid attributes -->';
-        }
+                'id' => 'mijitruv1ycv8yacnpumuq',
+                'w' => 720,
+                'h' => 320,
+            ),
+            $this->attrs
+        ));
 
         return '<iframe width="' . $w . '" height="' . $h . '" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.hulu.com/embed.html?eid=' . $id . '" webkitAllowFullScreen mozallowfullscreen allowfullscreen=""></iframe>';
     }
 
-    add_shortcode('hulu', 'hulu');
 }
-
