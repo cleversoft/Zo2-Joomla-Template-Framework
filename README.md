@@ -36,8 +36,6 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	**Done**
 	+ Shortcode structure
 	+ Add basic shortcodes
-	
-	**Todo**
 	+ OOP and MVC for shortcode
 6. Google Web Fonts
 
@@ -53,16 +51,12 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	+ Compress CSS + JS
 	+ Push CSS before end of head tag, and JS before end of body tag
 	+ All inline css and js are merge into one block
-	
-	**Todo**
-	+ Better inline css and js management
-	+ Better JS compression
 8. LESS compiler
 
-	**Todo**
+	**Done**
 	+ Integrate LESS compiler
-	+ Ability to edit LESS in backend
-	
+
+
 ##Roadmap
 **Beta 1**
 + Layout builder: allow to add/edit/remove grid columns, allow to change settings for data components.
