@@ -55,6 +55,8 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 
 	**Done**
 	+ Integrate LESS compiler
+
+
 ##Roadmap
 **Beta 1**
 + Layout builder: allow to add/edit/remove grid columns, allow to change settings for data components.
