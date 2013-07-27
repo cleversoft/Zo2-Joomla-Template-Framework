@@ -223,6 +223,10 @@ class Zo2Layout {
 
                 if ($item['type'] == 'css') $style .= file_get_contents($path) . "\n";
                 elseif ($item['type'] == 'js') $script .= file_get_contents($path) . "\n";
+                elseif ($item['type'] == 'less') {
+                    $lessContent = file_get_contents($path);
+                    $style .= $this->processLess($lessContent) . "\n";
+                }
             }
 
             Zo2Framework::import('core.class.minify.jsshrink');
@@ -268,6 +272,14 @@ class Zo2Layout {
 
         $this->_output = str_replace('</head>', $cssTag . '</head>' , $this->_output);
         $this->_output = str_replace('</body>', $scriptTag . '</body>' , $this->_output);
+    }
+
+    private function processLess($content) {
+        if (!class_exists('lessc', false)) Zo2Framework::import('core.class.less.lessc');
+
+        $compiler = new lessc();
+
+        return $compiler->compile($content);
     }
 
     private function insertLayoutBuilderCss() {

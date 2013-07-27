@@ -61,7 +61,7 @@ var WorkSpace = Backbone.Model.extend({
 
     saveLayout: function()
     {
-        var thisWorkspace = this;
+        //var thisWorkspace = this;
         var html = document.getElementById('layoutframe').contentWindow.document.body.innerHTML;
         var opt = {html: html, name: 'homepage', template: jQuery('#hfLayoutName').val()};
 
@@ -175,15 +175,6 @@ var WorkSpace = Backbone.Model.extend({
                 $draggingEl.addClass('zo2-selected');
                 var $cloneDraggingEl = $draggingEl.clone();
                 $cloneDraggingEl.hide();
-                var pos = thisWorkspace.eventToFramePosition(e);
-
-                /*
-                $cloneDraggingEl.css({
-                    top: pos.y + 5,
-                    left: pos.x + 5,
-                    position: 'absolute'
-                });
-                */
 
                 thisWorkspace.generateElementForm($draggingEl);
 
@@ -193,7 +184,7 @@ var WorkSpace = Backbone.Model.extend({
 
                 // show control toolbar
                 var draggingElOffset = $draggingEl.offset();
-                var $toolbar = jQuery('#layoutbuilder-toolbar').css({
+                jQuery('#layoutbuilder-toolbar').css({
                     display: 'block',
                     top: draggingElOffset.top + 5,
                     left: draggingElOffset.left + $draggingEl.width() - 20 - jQuery('#layoutbuilder-toolbar').width()
@@ -246,7 +237,7 @@ var WorkSpace = Backbone.Model.extend({
 
                 // move toolbar
                 var draggingElOffset = $draggingEl.offset();
-                var $toolbar = jQuery('#layoutbuilder-toolbar').css({
+                jQuery('#layoutbuilder-toolbar').css({
                     display: 'block',
                     top: draggingElOffset.top + 5,
                     left: draggingElOffset.left + $draggingEl.width() - 20 - jQuery('#layoutbuilder-toolbar').width()
