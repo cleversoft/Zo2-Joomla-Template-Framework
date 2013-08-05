@@ -304,7 +304,7 @@ var WorkSpace = Backbone.Model.extend({
     initDraggingOutsideIframe: function () {
         var thisWorkspace = this;
         var $droppable = this.get('droppableEl');
-        var $iframe = jQuery(this.get('iframeEl').contents()[0]);
+        //var $iframe = jQuery(this.get('iframeEl').contents()[0]);
         $droppable.droppable({
             accept: '.zo2-draggable',
             addClasses: false, // don't add stupid jQueryUI classes
@@ -356,7 +356,7 @@ var WorkSpace = Backbone.Model.extend({
             }
         });
     },
-
+    /*
     insertElementByEvent: function(e, el) {
         var pos = this.eventToFramePosition(e);
         return this.insertElementAtPosition(pos, el);
@@ -369,7 +369,7 @@ var WorkSpace = Backbone.Model.extend({
         $el.insertBefore($droppedEl);
         return true;
     },
-
+    */
     generateComponentList: function(componentList) {
         if (componentList === undefined) componentList = this.get('components');
         var thisWorkspace = this;
@@ -385,23 +385,38 @@ var WorkSpace = Backbone.Model.extend({
         component.createDraggableElement().appendTo($container);
     },
 
-    extractAttributes: function(el) {
-        var result = [];
-        jQuery.each(el.attributes, function(index){
-            result.push({name: this.name, value: this.value});
-        });
-        return result;
-    },
-
     generateElementForm: function($el) {
-        jQuery('#inputClass').val($el.attr('class') ? $el.attr('class') : '');
+        var $iframe = jQuery(this.get('iframeEl').contents()[0]);
+        jQuery('#inputClass').val($el.attr('class') ? $el.attr('class').replace('zo2-selected', '') : '');
+        jQuery('#inputId').val($el.attr('id') ? $el.attr('id') : '');
         jQuery('#dynamic-attributes').empty();
 
-        var attr = this.extractAttributes($el[0]);
+        if ($el.attr('data-zo2componenttype') && $el.attr('data-zo2componenttype') == 'data-component') {
+            var components = this.get('components');
+            var baseComponent = components.findById($el.attr('data-zo2componentid'));
 
-        if (attr && attr.length > 0) {
-            for (var i = 0; i < attr.length; i++) {
-                this.generateAttributeRow($el, attr[i]);
+            if (baseComponent && baseComponent.get('attributes')) {
+                var attributes = baseComponent.get('attributes');
+                for(var i = 0, total = attributes.length; i < total; i++) {
+                    var attr = attributes[i];
+                    var attrEl = 'data-zo2' + attr.name;
+                    var inputId = 'input-' + attr.name;
+                    var html = '<div class="control-group"><label class="control-label" for="' + inputId + '">' + attr.label
+                        + '</label><div class="controls"><input type="text" id="' + inputId + '">'
+                        + '</div></div>';
+                    var $row = jQuery(html);
+
+                    $row.appendTo('#dynamic-attributes');
+
+                    var $input = jQuery('#' + inputId);
+
+                    if ($el.attr(attrEl)) $input.val($el.attr(attrEl));
+
+                    $input.on('keyup', function() {
+                        console.log('here');
+                        $el.attr(attrEl, jQuery(this).val());
+                    });
+                }
             }
         }
     },
@@ -415,9 +430,12 @@ var WorkSpace = Backbone.Model.extend({
 
         var $row = jQuery(html);
 
+        /*
         // apply on the fly
         $row.find('input').on('keydown', function(){
+
         });
+        */
 
         $row.appendTo('#dynamic-attributes');
     }
@@ -436,17 +454,18 @@ var Component = Backbone.Model.extend({
             icon: ''
         }
     },
-    createElement: function() {
-        return this.get('html');
-    },
     createDraggableElement: function() {
         var classArray = this.get('class');
         var classes = classArray && classArray.length > 0 ? classArray.join(' ') : '';
+        var icon = this.get('icon') != null && this.get('icon').length > 0 ? this.get('icon') : 'empty.png';
         var html = '<div data-zo2componenttype="' + this.get('type') + '" data-zo2componentid="' + this.get('id') + '" class="' + classes + '">'
-            + '<img src="../plugins/system/zo2/images/components/' + this.get('icon') + '" />'
+            + '<img src="../plugins/system/zo2/images/components/' + icon + '" />'
             + this.get('name')
             + '</div>';
         return jQuery(html);
+    },
+    createElement: function() {
+        return this.get('html');
     }
 });
 

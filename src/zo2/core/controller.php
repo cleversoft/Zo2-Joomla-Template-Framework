@@ -71,9 +71,17 @@ class ZO2Controller
 
     public static function getLayout()
     {
-        if($_GET && isset($_GET['layout']) && $_GET['template']) {
+        if(isset($_GET['layout']) && $_GET['template']) {
             $layout = new Zo2Layout($_GET['template'], $_GET['layout']);
             echo $layout->compile(true, true);
+        }
+    }
+
+    public static function getComponents()
+    {
+        if($_GET['template']) {
+            header('Content-Type: application/json');
+            echo Zo2Framework::getComponents($_GET['template']);
         }
     }
 }

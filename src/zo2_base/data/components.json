@@ -1,0 +1,16 @@
+[
+    {
+        "id": "toparticle",
+        "name": "Top Article",
+        "attributes": [
+            {
+                "name": "limit",
+                "label": "Limit",
+                "type": "text",
+                "default": "1"
+            }
+        ],
+        "icon": null,
+        "html": "<div data-zo2selectable=\"true\" data-zo2componenttype=\"data-component\" data-zo2componentid=\"toparticle\"></div>"
+    }
+]

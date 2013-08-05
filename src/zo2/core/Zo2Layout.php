@@ -334,7 +334,7 @@ class Zo2Layout {
                     return '<jdoc:include type="component" />';
                 }
 
-                $classname = 'zo2widget_' . $componentName;
+                $classname = 'zo2com_' . $componentName;
 
                 if (!class_exists($classname, false)){
                     // as good as include from frontend, may not work on backend
@@ -345,7 +345,7 @@ class Zo2Layout {
 
                 $component = new $classname();
 
-                if ($component instanceof Zo2Widget) {
+                if ($component instanceof Zo2Component) {
                     $component->loadAttributes($attributes);
                     return $component->render();
                 }
@@ -409,5 +409,16 @@ class Zo2Layout {
         $path = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'state.php';
 
         file_put_contents($path, $state);
+    }
+
+    public function getComponents()
+    {
+        $path = $this->_templatePath . 'data' . DIRECTORY_SEPARATOR . 'components.json';
+
+        if (file_exists($path)) {
+            $content = file_get_contents($path);
+            return json_decode($content, true);
+        }
+        else return null;
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-class zo2widget_toparticle extends Zo2Widget
+class zo2com_toparticle extends Zo2Component
 {
     public $viewName = 'toparticle';
 
-    public $article = null;
+    public $articles = null;
 
     public function run()
     {
         $db = JFactory::getDBO();
-        $query = "SELECT * FROM `#__content` ORDER BY `id` DESC LIMIT 1";
+        $limit = $this->attributes['limit'];
+        $query = "SELECT * FROM `#__content` ORDER BY `id` DESC LIMIT " . ($limit ? $limit : 1);
         $db->setQuery($query);
-        $rows = $db->loadObjectList();
-        if(count($rows) > 0) $this->article = $rows[0];
+        $this->articles = $db->loadAssocList();
     }
 }

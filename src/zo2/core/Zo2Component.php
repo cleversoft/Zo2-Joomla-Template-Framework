@@ -1,8 +1,8 @@
 <?php
-class Zo2Widget {
+class Zo2Component {
     public $viewName = '';
 
-    private $attributes = array();
+    protected $attributes = array();
 
     public function render()
     {

@@ -19,6 +19,12 @@
                         <input type="text" id="inputClass">
                     </div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputId">ID</label>
+                    <div class="controls">
+                        <input type="text" id="inputId">
+                    </div>
+                </div>
             </div>
             <div id="dynamic-attributes">
 

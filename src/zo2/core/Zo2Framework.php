@@ -39,7 +39,7 @@ class Zo2Framework {
     public static function init(){
         self::getInstance();
         Zo2Framework::import('core.Zo2Layout');
-        Zo2Framework::import('core.Zo2Widget');
+        Zo2Framework::import('core.Zo2Component');
 
         $app = JFactory::getApplication();
 
@@ -162,6 +162,25 @@ class Zo2Framework {
                 WHERE id = ' . $templateId;
         $db->setQuery($sql);
         return $db->loadResult();
+    }
+
+    /**
+     * Get list of data components of current template. Usable from backend only.
+     *
+     * @param string $templateName
+     * @return string
+     */
+    public static function getComponents($templateName)
+    {
+        if(!empty($templateName)){
+            $path = JPATH_SITE . '/templates/' . $templateName . '/data/components.json';
+            if (file_exists($path)) {
+                $content = file_get_contents($path);
+                echo $content;
+            }
+        }
+
+        return '';
     }
 
     /**
@@ -373,5 +392,4 @@ class Zo2Framework {
     public static function addFooter() {
 
     }
-
 }
