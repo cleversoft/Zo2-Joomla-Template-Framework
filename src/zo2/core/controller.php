@@ -57,15 +57,13 @@ class ZO2Controller
         if($_POST && isset($_POST['name']) && isset($_POST['html']) && isset($_POST['template'])) {
             $templatePath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $_POST['template'] . DIRECTORY_SEPARATOR .
                 'layouts' . DIRECTORY_SEPARATOR . $_POST['name'] . '.compiled.php';
-            if(file_exists($templatePath)) {
-                $html = '<!DOCTYPE html><html lang="en"><head></head><body>' . $_POST['html'] . '</body></html>';
+            $html = '<!DOCTYPE html><html lang="en"><head></head><body>' . $_POST['html'] . '</body></html>';
 
-                // remove annoying javascript
-                $pattern = '|<script type="text/javascript"[^>]+></script>|';
-                $html = preg_replace($pattern, '', $html);
+            // remove annoying javascript
+            $pattern = '|<script type="text/javascript"[^>]+></script>|';
+            $html = preg_replace($pattern, '', $html);
 
-                file_put_contents($templatePath, $html);
-            }
+            file_put_contents($templatePath, $html);
         }
     }
 
@@ -82,6 +80,14 @@ class ZO2Controller
         if($_GET['template']) {
             header('Content-Type: application/json');
             echo Zo2Framework::getComponents($_GET['template']);
+        }
+    }
+
+    public static function getLayouts()
+    {
+        if ($_GET['template']) {
+            header('Content-Type: application/json');
+            echo Zo2Framework::getTemplateLayoutsName($_GET['template']);
         }
     }
 }

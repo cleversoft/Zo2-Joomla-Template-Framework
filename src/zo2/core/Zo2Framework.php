@@ -217,12 +217,33 @@ class Zo2Framework {
      */
     public static function getTemplateLayouts($templateId = 0){
         $templateName = self::getTemplateName($templateId);
+
         if(!empty($templateName)){
             $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.php';
             $layoutFiles = glob($templatePath);
             return array_map('basename', $layoutFiles, array('.php'));
         }
         else return array();
+    }
+
+    public static function getTemplateLayoutsName($templateName) {
+        if(!empty($templateName)) {
+            $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.php';
+            $layoutFiles = glob($templatePath);
+
+            $list = array();
+
+            foreach ($layoutFiles as $path) {
+                if (strpos($path, '.compiled.php') !== false) $list[] = $path;
+            }
+
+            for ($i = 0, $total = count($list); $i < $total; $i++) {
+                $list[$i] = basename($list[$i]);
+                $list[$i] = str_replace('.compiled.php', '', $list[$i]);
+            }
+            return json_encode($list);
+        }
+        else return json_encode(array());
     }
 
     /**

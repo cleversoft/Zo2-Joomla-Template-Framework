@@ -38,7 +38,7 @@ var WorkSpace = Backbone.Model.extend({
     },
 
     getLayoutHtml: function(layoutName, callback) {
-        jQuery.post('index.php?zo2controller=getLayout&layout=' + layoutName + '&template=' + jQuery('#hfLayoutName').val(), function(resp){
+        jQuery.post('index.php?zo2controller=getLayout&layout=' + layoutName + '&template=' + jQuery('#hfTemplateName').val(), function(resp){
             if(typeof callback == 'function') callback(resp);
         });
     },
@@ -51,6 +51,7 @@ var WorkSpace = Backbone.Model.extend({
      */
     setBodyHtmlContent: function(html)
     {
+        this.get('iframeEl').html('');
         var $iframe = this.get('iframeEl').contents();
         var target = $iframe[0];
         target.open();
@@ -63,10 +64,12 @@ var WorkSpace = Backbone.Model.extend({
     {
         //var thisWorkspace = this;
         var html = document.getElementById('layoutframe').contentWindow.document.body.innerHTML;
-        var opt = {html: html, name: 'homepage', template: jQuery('#hfLayoutName').val()};
+        var opt = {html: html, name: jQuery('#hfLayoutName').val(), template: jQuery('#hfTemplateName').val()};
 
-        jQuery.post('index.php?zo2controller=saveLayout', opt, function(resp){
-            console.log(resp);
+        //console.log(opt);return true;
+
+        jQuery.post('index.php?zo2controller=saveLayout', opt, function(resp) {
+            //console.log(resp);
         });
     },
 

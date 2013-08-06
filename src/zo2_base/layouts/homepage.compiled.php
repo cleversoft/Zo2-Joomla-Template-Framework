@@ -6,7 +6,7 @@
 
     <div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="megamenu"></div>
 
-    <div data-zo2limit="2" class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="include_component"></div><div data-zo2selectable="true" class="row-fluid">
+    <div data-zo2limit="2" class="zo2-selected" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="include_component"></div><div data-zo2selectable="true" class="row-fluid">
         <div class="span4">
             <h2 class="" data-zo2selectable="true">Font Awesome icons</h2>
             <p class="" data-zo2selectable="true">
@@ -36,6 +36,9 @@
         <p>© Zo2Framework 2013</p>
     </div>
 </div>
+
+
+
 
 
 

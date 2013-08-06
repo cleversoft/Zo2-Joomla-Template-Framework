@@ -29,5 +29,21 @@
         "path": "/js/megamenu.js",
         "type": "js",
         "position": "footer"
+    },
+    {
+        "path": "/css/style.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header"
+    },
+    {
+        "path": "/css/template.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header"
     }
 ]

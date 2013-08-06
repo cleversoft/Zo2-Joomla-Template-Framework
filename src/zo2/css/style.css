@@ -33,3 +33,7 @@
 #layoutbuilder-toolbar .delete{background: url('../images/icon_trash16.png') no-repeat 0 0}
 #attributes-container input, #attributes-container textarea{width:100%;display:inline-block}
 #attributes-container .controls{margin-left:110px;width:150px}
+#leftSideBar{float:left;width:300px}
+#selectLayoutModal.modal { overflow: visible !important; }
+#selectLayoutModal .modal-body { overflow-y: visible !important; }
+.ui-tabs .ui-tabs-nav li{bottom:-1px;top:auto}

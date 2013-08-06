@@ -38,7 +38,7 @@ class Zo2Layout {
         $this->_templateUri = JUri::root() . 'templates/' . $templateName;
 
         // check layout existence, if layout not existed, get default layout, which is homepage.php
-        if(!file_exists($this->_layoutPath) || !file_exists($this->_staticsPath)) {
+        if(!file_exists($this->_layoutPath)) {
             $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.compiled.php';
             $this->_staticsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
         }
@@ -47,7 +47,7 @@ class Zo2Layout {
         $this->_layoutStatics = array();
         $this->_layoutContent = file_get_contents($this->_layoutPath);
         $coreStaticsJson = file_get_contents($this->_coreStaticsPath);
-        $staticsJson = file_get_contents($this->_staticsPath);
+        $staticsJson = file_exists($this->_staticsPath) ? file_get_contents($this->_staticsPath) : array();
         $coreStatics = json_decode($coreStaticsJson, true);
         $statics = json_decode($staticsJson, true);
 
