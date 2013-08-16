@@ -66,10 +66,7 @@ var WorkSpace = Backbone.Model.extend({
         var html = document.getElementById('layoutframe').contentWindow.document.body.innerHTML;
         var opt = {html: html, name: jQuery('#hfLayoutName').val(), template: jQuery('#hfTemplateName').val()};
 
-        //console.log(opt);return true;
-
         jQuery.post('index.php?zo2controller=saveLayout', opt, function(resp) {
-            //console.log(resp);
         });
     },
 
@@ -112,8 +109,15 @@ var WorkSpace = Backbone.Model.extend({
 
     getElementByEvent: function(e)
     {
-        var pos = this.eventToFramePosition(e);
-        return jQuery(this.getElementByPosition(pos));
+        try {
+            var pos = this.eventToFramePosition(e);
+            var $result = jQuery(this.getElementByPosition(pos));
+            if (!$result.is('body')) return $result;
+            else return null;
+        }
+        catch (e) {
+            return null;
+        }
     },
 
     deleteSelectedElement: function() {
@@ -129,6 +133,44 @@ var WorkSpace = Backbone.Model.extend({
         else return true;
     },
 
+    duplicateAndRearrange: function ($el) {
+        var thisWorkspace = this;
+        var $iframe = jQuery(thisWorkspace.get('iframeEl').contents()[0]);
+        if (!$el) $el = $iframe.find('.zo2-selected');
+
+        var $parent = $el.parent();
+
+        // if not row container, the don't continue
+        if (!$parent.hasClass('row')) return false;
+
+        // span strategy
+        var strategy = [
+            [1], [2, 2], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
+        ];
+
+        var $spans = $parent.find('[class^=span]');
+        var strategyNum = $spans.length;
+
+        if (strategyNum > strategy.length - 1) return false;
+        else {
+            var selectedStrategy = strategy[strategyNum];
+
+            //$el.clone().removeClass('zo2-selected zo2-dragging zo2-clonedragging zo2-hoveron').insertAfter($el);
+            jQuery('<div />').addClass('span').attr('data-zo2selectable', 'true').insertAfter($el);
+
+            $parent.find('[class^=span]').each(function(index) {
+                var $this = jQuery(this);
+                $this.removeClass('zo2-selected span span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12');
+                $this.addClass('span' + selectedStrategy[index]);
+            });
+
+            jQuery('#layoutbuilder-toolbar').hide();
+            jQuery('#layoutbuilder-toolbar .duplicate').hide();
+
+            return true;
+        }
+    },
+
     bindKeyboardDeleteElement: function(){
         var thisWorkspace = this;
         jQuery(document).bind('keydown', function(e){
@@ -142,6 +184,7 @@ var WorkSpace = Backbone.Model.extend({
     bindOverlayToolbar: function(){
         this.bindOverlayRemoveButton();
         this.bindOverlaySettingsButton();
+        this.bindOverlayDuplicateButton();
     },
 
     bindOverlaySettingsButton: function(){
@@ -152,6 +195,13 @@ var WorkSpace = Backbone.Model.extend({
         var thisWorkspace = this;
         jQuery('#layoutbuilder-toolbar .delete').on('click', function(){
             thisWorkspace.deleteSelectedElement();
+        });
+    },
+
+    bindOverlayDuplicateButton: function() {
+        var thisWorkspace = this;
+        jQuery('#layoutbuilder-toolbar .duplicate').on('click', function(){
+            thisWorkspace.duplicateAndRearrange();
         });
     },
 
@@ -186,15 +236,32 @@ var WorkSpace = Backbone.Model.extend({
                 thisWorkspace.set('cloneDraggingEl', $cloneDraggingEl);
 
                 // show control toolbar
-                var draggingElOffset = $draggingEl.offset();
-                jQuery('#layoutbuilder-toolbar').css({
-                    display: 'block',
-                    top: draggingElOffset.top + 5,
-                    left: draggingElOffset.left + $draggingEl.width() - 20 - jQuery('#layoutbuilder-toolbar').width()
-                });
+                if (thisWorkspace.isSpan($draggingEl)) {
+                    jQuery('#layoutbuilder-toolbar .duplicate').show();
+                    jQuery('#layoutbuilder-toolbar').css('width', 55);
+
+                    var draggingElOffset = $draggingEl.offset();
+                    jQuery('#layoutbuilder-toolbar').css({
+                        display: 'block',
+                        top: draggingElOffset.top + 5,
+                        left: draggingElOffset.left + $draggingEl.width() - 20 - jQuery('#layoutbuilder-toolbar').width()
+                    });
+                }
+                else {
+                    jQuery('#layoutbuilder-toolbar .duplicate').hide();
+                    jQuery('#layoutbuilder-toolbar').css('width', 36);
+
+                    var draggingElOffset = $draggingEl.offset();
+                    jQuery('#layoutbuilder-toolbar').css({
+                        display: 'block',
+                        top: draggingElOffset.top + 5,
+                        left: draggingElOffset.left + $draggingEl.width() - 20 - jQuery('#layoutbuilder-toolbar').width()
+                    });
+                }
             }
             else {
                 jQuery('#layoutbuilder-toolbar').hide();
+                jQuery('#layoutbuilder-toolbar .duplicate').hide();
             }
 
             return true;
@@ -235,8 +302,11 @@ var WorkSpace = Backbone.Model.extend({
                 $iframe.find('.zo2-hoveron').removeClass('zo2-hoveron');
                 $hoverOnEl.addClass('zo2-hoveron');
 
-                // TODO: Nghiên cứu thêm để đảm bảo việc drop vào vị trí chuẩn xác hơn. Tính toán để dùng prepend hay insertBefore.
-                $draggingEl.insertBefore($hoverOnEl);
+                try {
+                    if (thisWorkspace.isContainer($hoverOnEl)) $draggingEl.prependTo($hoverOnEl);
+                    else $draggingEl.insertBefore($hoverOnEl);
+                }
+                catch (err) {}
 
                 // move toolbar
                 var draggingElOffset = $draggingEl.offset();
@@ -330,6 +400,7 @@ var WorkSpace = Backbone.Model.extend({
             helper: 'clone',
             revert: 'invalid',
             drag: function(e, ui) {
+
                 // TODO: thêm các hiệu ứng vào cho đẹp. Nghiên cứu lại cái event này, cảm giác lúc drag vào iframe chưa ổn cho nhắm
 
                 if (thisWorkspace.isInsideDroppable(e)) {
@@ -338,15 +409,27 @@ var WorkSpace = Backbone.Model.extend({
                     var com = components.findById(componentId);
                     var html = com.createElement();
                     var hoverOnEl = thisWorkspace.getElementByEvent(e);
+                    if (hoverOnEl == null) return;
                     var $containableEl = hoverOnEl.closest('[data-zo2selectable]');
                     var $el = thisWorkspace.get('outsideDraggingEl');
                     if ($el !== null && $el.length > 0) {
-                        $el.insertBefore($containableEl);
+                        if (!thisWorkspace.isSameElementOrParent($el, hoverOnEl))
+                        {
+                            try {
+                                if (thisWorkspace.isContainer($containableEl)) $el.prependTo($containableEl);
+                                else $el.insertBefore($containableEl);
+                            }
+                            catch (err) {}
+                        }
                     }
                     else {
-                        $el = jQuery(html);
-                        $el.insertBefore($containableEl);
-                        thisWorkspace.set('outsideDraggingEl', $el);
+                        try {
+                            $el = jQuery(html);
+                            if (thisWorkspace.isContainer($containableEl)) $el.prependTo($containableEl);
+                            else $el.insertBefore($containableEl);
+                            thisWorkspace.set('outsideDraggingEl', $el);
+                        }
+                        catch (err) {}
                     }
                 }
                 else {
@@ -358,6 +441,35 @@ var WorkSpace = Backbone.Model.extend({
                 thisWorkspace.set('outsideDraggingEl', null);
             }
         });
+    },
+
+    /**
+     * Compare 2 elements.
+     * If $el2 is $el1, return true
+     * If $el2 has parent is $el1, return true
+     *
+     * Please note the order, result may not be the same with wrong order
+     *
+     * @param $el1
+     * @param $el2
+     */
+    isSameElementOrParent: function ($el1, $el2) {
+        var maxRecursion = 100;
+        var currentRecursion = 0;
+        if ($el1.is($el2)) return true;
+        var $parent = $el2.parent();
+        while (true) {
+            if (currentRecursion >= maxRecursion) {
+                break;
+            }
+            if ($parent.is('body')) break;
+
+            if ($parent.is($el1)) return true;
+            currentRecursion++;
+            $parent = $parent.parent();
+
+        }
+        return false;
     },
     /*
     insertElementByEvent: function(e, el) {
@@ -416,7 +528,6 @@ var WorkSpace = Backbone.Model.extend({
                     if ($el.attr(attrEl)) $input.val($el.attr(attrEl));
 
                     $input.on('keyup', function() {
-                        console.log('here');
                         $el.attr(attrEl, jQuery(this).val());
                     });
                 }
@@ -441,6 +552,30 @@ var WorkSpace = Backbone.Model.extend({
         */
 
         $row.appendTo('#dynamic-attributes');
+    },
+
+    isContainer: function($el) {
+        var containerClasses = ['container', 'span1', 'span2', 'span3', 'span4', 'span5', 'span6', 'span6', 'span7',
+            'span8', 'span9', 'span10', 'span11', 'span12'
+        ];
+
+        for (var i = 0, total = containerClasses.length; i < total; i++) {
+            if ($el.hasClass(containerClasses[i])) return true;
+        }
+
+        return false;
+    },
+
+    isSpan: function($el) {
+        var containerClasses = ['span1', 'span2', 'span3', 'span4', 'span5', 'span6', 'span6', 'span7',
+            'span8', 'span9', 'span10', 'span11', 'span12'
+        ];
+
+        for (var i = 0, total = containerClasses.length; i < total; i++) {
+            if ($el.hasClass(containerClasses[i])) return true;
+        }
+
+        return false;
     }
 });
 

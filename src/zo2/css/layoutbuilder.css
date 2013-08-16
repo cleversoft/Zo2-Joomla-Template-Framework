@@ -4,3 +4,5 @@
 .zo2-hoveron{opacity: 0.5;box-shadow: 0 0 3px #ff6d1f !important}
 .zo2-draggable{z-index:9999}
 div[data-zo2componenttype="data-component"]{width:100%;min-height: 300px;background: #999999 url('../images/icon_datacomponent.png') no-repeat center center;margin-bottom:10px}
+[class^="span"]:empty{min-height: 200px; height:100%}
+[class^="span"]{box-shadow: 0 0 3px #cccccc; border-radius: 6px}

@@ -1,10 +1,4 @@
 jQuery(function($){
-    //var $container = jQuery('#hdLayoutBuilder').parent().clone();
-    //var $optionsContainer = jQuery('#options');
-    //$optionsContainer.empty();
-    //$container.appendTo($optionsContainer);
-    //$container.css('margin-left', 0);
-
     $(window).bind('load', function(){
         // insert tab
         var $tabsContainer = $('#myTabTabs');
@@ -77,8 +71,8 @@ var generateComponentList = function(completeCallback) {
     componentList.add(new Component({id: 'paragraph', icon: 'paragraph.png', name: 'Paragraph', html: '<p data-zo2selectable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>'}));
     componentList.add(new Component({id: 'unorderedlist', name: 'Unordered List', html: '<ul data-zo2selectable="true"><li>Item 1</li><li>Item 2</li></ul>'}));
     componentList.add(new Component({id: 'orderedlist', name: 'Ordered List', html: '<ol data-zo2selectable="true"><li>Item 1</li><li>Item 2</li></ol>'}));
-    componentList.add(new Component({id: 'linkbutton', icon: 'button.png', name: 'Link Button', html: '<a data-zo2selectable="true" class="btn">Header</a>'}));
-    componentList.add(new Component({id: 'grid', icon: null, name: 'Grid', html: '<div data-zo2selectable="true" class="container"><div class="row"><div class="span6">Col 1</div><div class="span6">Col 2</div></div></div>'}));
+    componentList.add(new Component({id: 'linkbutton', icon: 'button.png', name: 'Link Button', html: '<a data-zo2selectable="true" class="btn">Link button</a>'}));
+    componentList.add(new Component({id: 'grid', icon: null, name: 'Grid', html: '<div data-zo2selectable="true" class="container"><div class="row"><div class="span4" data-zo2selectable="true"></div><div class="span4" data-zo2selectable="true"></div><div class="span4" data-zo2selectable="true"></div></div></div>'}));
     //componentList.add(new Component({id: 'toparticle', name: 'Top Article', html: '<div class="" data-zo2selectable="true" data-zo2componenttype="data-component" data-zo2componentid="toparticle"></div>'}));
 
     jQuery.getJSON('index.php?zo2controller=getComponents&template=' + jQuery('#hfTemplateName').val(), function(data) {
