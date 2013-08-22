@@ -38,7 +38,8 @@ class JFormFieldLayout extends JFormField {
         $doc->addScript($vendorPath . 'jqueryui/js/jquery-ui-1.10.3.custom.min.js');
         $doc->addScript($vendorPath . 'underscorejs/underscore-min.js');
         $doc->addScript($vendorPath . 'backbonejs/backbone-min.js');
-        $doc->addScript($jsPath . 'layoutbuildermodels.js');
+        //$doc->addScript($jsPath . 'layoutbuildermodels.js');
+        $doc->addScript($jsPath . 'adminlayout.js');
         $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
         $doc->addStyleSheet($cssPath . 'style.css');
         $doc->addScript($jsPath . 'admin.js');
@@ -70,7 +71,8 @@ class JFormFieldLayout extends JFormField {
      */
     private function generateLayoutBuilder(){
         $layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
-        $path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
+        //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
+        $path = JPATH_SITE.'/plugins/system/zo2/templates/layout.php';
         ob_start();
         include($path);
         $html = ob_get_contents();

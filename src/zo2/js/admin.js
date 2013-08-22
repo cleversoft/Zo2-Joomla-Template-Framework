@@ -15,6 +15,7 @@ jQuery(function($){
 
         $('#myTabTabs li').eq(3).one('click', function(){
             // wait a bit to init layoutbuilder
+            /*
             setTimeout(function(){
                 window.workSpace = new WorkSpace();
 
@@ -30,6 +31,7 @@ jQuery(function($){
                     });
                 });
             }, 500);
+            */
         });
     });
 

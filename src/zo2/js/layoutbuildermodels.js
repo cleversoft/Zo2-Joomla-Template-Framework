@@ -454,7 +454,7 @@ var WorkSpace = Backbone.Model.extend({
      * @param $el2
      */
     isSameElementOrParent: function ($el1, $el2) {
-        var maxRecursion = 100;
+        var maxRecursion = 40;
         var currentRecursion = 0;
         if ($el1.is($el2)) return true;
         var $parent = $el2.parent();
@@ -462,9 +462,11 @@ var WorkSpace = Backbone.Model.extend({
             if (currentRecursion >= maxRecursion) {
                 break;
             }
+
             if ($parent.is('body')) break;
 
             if ($parent.is($el1)) return true;
+
             currentRecursion++;
             $parent = $parent.parent();
 
