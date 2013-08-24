@@ -41,8 +41,8 @@
 
 /**** New layout styles ****/
 .sortable-row{border: solid 1px #5193AD;margin-bottom: 20px;padding:0 0 20px 0}
-.sortable-span{border: solid 1px #76B4CB;height:50px; position: relative;margin-bottom:20px}
-.sortable-row, .sortable-span{background-color: #E7F2F6;border-radius: 2px;position: relative}
+.sortable-span{border: solid 1px #76B4CB; position: relative;margin-bottom:20px;padding: 10px}
+.sortable-row, .sortable-span{background-color: #ffffff;border-radius: 2px;position: relative}
 .row-control{height:60px;line-height:60px;font-size:30px;font-weight: bold}
 .row-control-container{padding: 0 10px}
 .row-control-icon, .col-control-icon {display:block;width:20px;height:20px;cursor:pointer;float:left;margin-left:5px}
@@ -53,4 +53,27 @@
 .col-control-buttons{position: absolute;top:14px;right:10px}
 .sortable-row hr{width:100%;height:1px;background-color:#5193AD;margin:0;margin-bottom:20px}
 .col-name{height:50px;line-height:50px;font-weight: bold;font-size:15px;padding-left:15px}
-.col-container{padding-left:20px}
+.col-container{padding-left:10px}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+.row-fluid{overflow: hidden}

@@ -1,2 +1,73 @@
 [
+    {
+        "type": "row",
+        "name": "Header",
+        "customClass": "",
+        "children": [
+            {
+                "type": "col",
+                "name": "Logo placeholder",
+                "position": "logo",
+                "span": 4,
+                "customClass": "",
+                "children": []
+            },
+            {
+                "type": "col",
+                "name": "(none)",
+                "position": "",
+                "span": 4,
+                "customClass": "",
+                "children": []
+            },
+            {
+                "type": "col",
+                "name": "Search",
+                "position": "search",
+                "span": 4,
+                "customClass": "",
+                "children": []
+            }
+        ]
+    },
+    {
+        "type": "row",
+        "name": "Body",
+        "customClass": "",
+        "children": [
+            {
+                "type": "col",
+                "name": "left",
+                "position": "left",
+                "span": 4,
+                "customClass": "",
+                "children": []
+            },
+            {
+                "type": "col",
+                "name": "components",
+                "position": "components",
+                "span": 4,
+                "customClass": "",
+                "children": []
+            },
+            {
+                "type": "col",
+                "name": "left",
+                "position": "left",
+                "span": 4,
+                "customClass": "",
+                "children": [
+                    {
+                        "type": "row",
+                        "name": "Body",
+                        "customClass": "",
+                        "children": [
+
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
 ]

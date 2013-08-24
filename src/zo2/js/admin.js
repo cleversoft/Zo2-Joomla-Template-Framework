@@ -35,11 +35,6 @@ jQuery(function($){
         });
     });
 
-    $('#btSaveLayout').on('click', function(){
-        workSpace.saveLayout();
-        return false;
-    });
-
     $('#btDuplicateLayout').on('click', function() {
         var $layout = $('#hfLayoutName');
         var currentLayoutName = $layout.val();

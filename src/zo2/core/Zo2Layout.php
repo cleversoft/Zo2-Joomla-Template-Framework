@@ -26,12 +26,13 @@ class Zo2Layout {
      * @param $templateName
      * @param $layoutName
      */
-    public function __construct($templateName, $layoutName){
+    public function __construct($templateName, $layoutName)
+    {
         // assign values to private variables
         $this->_templatePath = JPATH_SITE . '/templates/' . $templateName . '/';
         $layoutDir = JPATH_SITE . '/templates/' . $templateName . '/layouts/';
         $this->_layoutPath = $layoutDir . $layoutName . '.compiled.php';
-        $this->_staticsPath = $layoutDir . $layoutName . '.json';
+        //$this->_staticsPath = $layoutDir . $layoutName . '.json';
         $this->_coreStaticsPath = $layoutDir . 'core.json';
         $this->_templateName = $templateName;
         $this->_layoutName = $layoutName;
@@ -40,19 +41,28 @@ class Zo2Layout {
         // check layout existence, if layout not existed, get default layout, which is homepage.php
         if(!file_exists($this->_layoutPath)) {
             $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.compiled.php';
-            $this->_staticsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
+            //$this->_staticsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
         }
 
         // get template content
         $this->_layoutStatics = array();
         $this->_layoutContent = file_get_contents($this->_layoutPath);
         $coreStaticsJson = file_get_contents($this->_coreStaticsPath);
-        $staticsJson = file_exists($this->_staticsPath) ? file_get_contents($this->_staticsPath) : array();
+        //$staticsJson = file_exists($this->_staticsPath) ? file_get_contents($this->_staticsPath) : array();
         $coreStatics = json_decode($coreStaticsJson, true);
-        $statics = json_decode($staticsJson, true);
+        //$statics = json_decode($staticsJson, true);
 
         // combine layout statics
-        $this->_layoutStatics = array_merge_recursive($coreStatics, $statics);
+        $this->_layoutStatics = $coreStatics;
+    }
+
+    public function getLayoutJson()
+    {
+        $path = $this->_templatePath . 'layouts/' . $this->_layoutName . '.json';
+        if (file_exists($path)) {
+            return file_get_contents($path);
+        }
+        else return '';
     }
 
     public function insertStatic($path, $type, array $options = array(), $position) {

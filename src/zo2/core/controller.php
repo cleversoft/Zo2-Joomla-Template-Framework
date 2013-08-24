@@ -71,7 +71,7 @@ class ZO2Controller
     {
         if(isset($_GET['layout']) && $_GET['template']) {
             $layout = new Zo2Layout($_GET['template'], $_GET['layout']);
-            echo $layout->compile(true, true);
+            echo $layout->getLayoutJson(true, true);
         }
     }
 
