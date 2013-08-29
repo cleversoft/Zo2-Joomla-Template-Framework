@@ -210,6 +210,11 @@ class Zo2Layout {
         return $this->_output;
     }
 
+    public function render()
+    {
+
+    }
+
     private function combine($level = 1) {
         $style = '';
         $script = '';

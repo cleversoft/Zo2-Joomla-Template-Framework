@@ -2,7 +2,6 @@
     position: relative;
     overflow: auto;
     margin-left: 320px;
-    height: 650px
 }
 #layoutbuilder-droppable {
     position: absolute;
@@ -43,18 +42,17 @@
 .sortable-row{border: solid 1px #5193AD;margin-bottom: 20px;padding:0 0 20px 0}
 .sortable-span{border: solid 1px #76B4CB; position: relative;margin-bottom:20px;padding: 10px}
 .sortable-row, .sortable-span{background-color: #ffffff;border-radius: 2px;position: relative}
-.row-control{height:60px;line-height:60px;font-size:30px;font-weight: bold}
+.row-control{line-height:60px;font-size:30px;font-weight: bold}
 .row-control-container{padding: 0 10px}
 .row-control-icon, .col-control-icon {display:block;width:20px;height:20px;cursor:pointer;float:left;margin-left:5px}
 .row-control-container .dragger, .col-control-buttons .dragger{background: url(../images/icon_drag20.png) no-repeat;}
 .row-control-container .duplicate, .col-control-buttons .duplicate{background: url(../images/icon_plus20.png) no-repeat;}
-.row-control-container .duprow{background: url('../images/icon_duprow20.png') no-repeat center center}
+.row-control-container .split{background: url('../images/icon_duprow20.png') no-repeat center center}
 .row-control-buttons{position:absolute;top:20px;right:20px;}
 .col-control-buttons{position: absolute;top:14px;right:10px}
-.sortable-row hr{width:100%;height:1px;background-color:#5193AD;margin:0;margin-bottom:20px}
-.col-name{height:50px;line-height:50px;font-weight: bold;font-size:15px;padding-left:15px}
-.col-container{padding-left:10px}
-
+.sortable-row hr{width:100%;height:1px;background-color:#5193AD;margin: 0 0 20px;}
+.col-name{height:50px;line-height:25px;font-weight: bold;font-size:15px;padding-left:15px}
+.col-container{padding: 0 10px;width: auto}
 .clearfix:after {
     content: ".";
     display: block;

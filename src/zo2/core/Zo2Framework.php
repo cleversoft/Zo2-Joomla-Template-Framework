@@ -389,7 +389,6 @@ class Zo2Framework {
      * Add head
      */
     public static function addHead() {
-
         JHtml::_('jquery.framework');
         Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/vendor/bootstrap/js/bootstrap.min.js');
         Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/vendor/bootstrap/css/bootstrap.min.css');
