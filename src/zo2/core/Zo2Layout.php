@@ -31,7 +31,7 @@ class Zo2Layout {
         // assign values to private variables
         $this->_templatePath = JPATH_SITE . '/templates/' . $templateName . '/';
         $layoutDir = JPATH_SITE . '/templates/' . $templateName . '/layouts/';
-        $this->_layoutPath = $layoutDir . $layoutName . '.compiled.php';
+        $this->_layoutPath = $layoutDir . $layoutName . '.json';
         //$this->_staticsPath = $layoutDir . $layoutName . '.json';
         $this->_coreStaticsPath = $layoutDir . 'core.json';
         $this->_templateName = $templateName;
@@ -40,7 +40,7 @@ class Zo2Layout {
 
         // check layout existence, if layout not existed, get default layout, which is homepage.php
         if(!file_exists($this->_layoutPath)) {
-            $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.compiled.php';
+            $this->_layoutPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
             //$this->_staticsPath = JPATH_SITE . '/templates/' . $templateName . '/layouts/homepage.json';
         }
 
@@ -210,9 +210,22 @@ class Zo2Layout {
         return $this->_output;
     }
 
-    public function render()
+    public function generateHtml()
     {
+        $html = '';
+        if (file_exists($this->_layoutPath))
+        {
+            $data = json_decode(file_get_contents($this->_layoutPath), true);
 
+            var_dump($data);die();
+
+            return $html;
+        }
+        else return '';
+    }
+
+    public static function generateHtmlFromItem($item)
+    {
     }
 
     private function combine($level = 1) {
