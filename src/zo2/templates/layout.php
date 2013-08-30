@@ -59,7 +59,7 @@
             <h3 id="myModalLabel">Row settings</h3>
         </div>
         <div class="modal-body">
-            <form class="form-horizontal">
+            <div class="form-horizontal">
                 <div class="control-group">
                     <label class="control-label" for="txtRowName">Name</label>
                     <div class="controls">
@@ -72,7 +72,7 @@
                         <input type="text" id="txtRowCss" placeholder="Row's custom CSS class">
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -86,13 +86,14 @@
             <h3 id="myModalLabel">Column settings</h3>
         </div>
         <div class="modal-body">
-            <form class="form-horizontal">
+            <div class="form-horizontal">
                 <div class="control-group">
                     <label class="control-label" for="dlColType">Position</label>
                     <div class="controls">
                         <select id="dlColPosition">
                             <option value="">(none)</option>
-                            <option value="component">component</option>
+                            <option value="component">Component</option>
+                            <option value="mega_menu">Mega Menu</option>
                             <?php foreach($positions as $pos) : ?>
                             <option value="<?php echo $pos?>"><?php echo $pos?></option>
                             <?php endforeach; ?>
@@ -124,7 +125,7 @@
                         <input type="text" id="txtColCss" placeholder="Column's custom CSS class">
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>

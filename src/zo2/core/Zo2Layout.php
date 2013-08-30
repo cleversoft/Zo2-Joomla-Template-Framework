@@ -213,19 +213,126 @@ class Zo2Layout {
     public function generateHtml()
     {
         $html = '';
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+        $layoutType = $params->get('layout_type');
+        if ($layoutType == 'fixed') $layoutType = '';
+        else $layoutType = '-fluid';
+
         if (file_exists($this->_layoutPath))
         {
             $data = json_decode(file_get_contents($this->_layoutPath), true);
 
-            var_dump($data);die();
+            $html .= '<div class="container' . $layoutType . '">';
 
+            for ($i = 0, $total = count($data); $i < $total; $i++) {
+                $html .= self::generateHtmlFromItem($data[$i], $layoutType);
+            }
+            $html .= '</div>';
             return $html;
         }
         else return '';
     }
 
-    public static function generateHtmlFromItem($item)
+    private static function generateHtmlFromItem($item, $layoutType)
     {
+        $html = '';
+        if ($item['type'] == 'row') $html .= self::generateRow($item, $layoutType);
+        else if ($item['type'] == 'col') $html .= self::generateColumn($item, $layoutType);
+
+        return $html;
+    }
+
+    private static function generateRow($item, $layoutType)
+    {
+        $html = '';
+        $html .= '<div class="row' . $layoutType . '">';
+
+        for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
+            $html .= self::generateHtmlFromItem($item['children'][$i], $layoutType);
+        }
+
+        $html .= '</div>';
+        return $html;
+    }
+
+    private static function generateColumn($item, $layoutType)
+    {
+        $html = '';
+        $class = 'span' . $item['span'];
+        if (!empty($item['customClass'])) $class .= ' ' . $item['customClass'];
+        $html .= '<div class="' . $class . '">';
+
+        if (!empty($item['position'])) {
+            if ($item['position'] == 'component') $html .= '<jdoc:include type="component" />';
+            else if($item['position'] == 'mega_menu') {
+                $zo2 = Zo2Framework::getInstance();
+                $html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+            }
+            else {
+                $html .= '<!-- module pos: ' . $item['position'] . ' -->';
+                $html .= '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
+                $html .= '<!-- /module pos: ' . $item['position'] . ' -->';
+            }
+        }
+
+        if ($total = count($item['children']) > 0) {
+            for ($i = 0; $i < $total; $i++) {
+                $html .= self::generateHtmlFromItem($item['children'][$i], $layoutType);
+            }
+        }
+
+        $html .= '</div>';
+        return $html;
+    }
+
+    public function insertHeaderAssets()
+    {
+        $html = '';
+        foreach($this->_layoutStatics as $item) {
+            if ($item['position'] == 'header') {
+                if ($item['type'] == 'css') $html .= $this->generateCssTag($item);
+                elseif ($item['type'] == 'js') $html .= $this->generateJsTag($item);
+            }
+        }
+
+        if (count($this->_styleDeclaration) > 0) {
+            $styles = '';
+            foreach ($this->_styleDeclaration as $style) {
+                $styles .= $style . "\n";
+            }
+
+            $styles = '<style type="text/css">' . $styles . '</style>';
+            $html .= "\n" . $styles;
+        }
+
+        return $html;
+    }
+
+    public function insertFooterAssets()
+    {
+        $html = '';
+        foreach($this->_layoutStatics as $item) {
+            if ($item['position'] == 'footer') {
+                if ($item['type'] == 'css') $html .= $this->generateCssTag($item);
+                elseif ($item['type'] == 'js') $html .= $this->generateJsTag($item);
+            }
+        }
+
+        if (count($this->_jsDeclaration) > 0) {
+            $scripts = '';
+
+            foreach ($this->_jsDeclaration as $js) {
+                $scripts .= $js . "\n";
+            }
+
+            $scripts = '<script type="text\javascript">' . $scripts . '</script>';
+
+            $html .= $scripts;
+        }
+
+        return $html;
     }
 
     private function combine($level = 1) {

@@ -18,8 +18,10 @@ $layout = new Zo2Layout($templateName, $layoutName);
 <html>
 <head>
     <jdoc:include type="head" />
+    <?php echo $layout->insertHeaderAssets()?>
 </head>
 <body>
 <?php echo $layout->generateHtml();?>
+<?php echo $layout->insertFooterAssets()?>
 </body>
 </html>
