@@ -54,7 +54,9 @@
 .col-control-buttons{position: absolute;top:14px;right:10px}
 .sortable-row hr{width:100%;height:1px;background-color:#5193AD;margin: 0 0 20px;}
 .col-name{height:50px;line-height:25px;font-weight: bold;font-size:15px;padding-left:15px}
-.col-container{padding: 0 10px;width: auto}
+.col-container{width: auto}
+#layoutbuilder-container .row-fluid [class*="span"]{margin-left: 2.5641% !important;}
+#layoutbuilder-container .row-fluid [class*="span"]:first-child{margin-left:0 !important;}
 .clearfix:after {
     content: ".";
     display: block;
@@ -77,3 +79,7 @@ html[xmlns] .clearfix {
 }
 
 .row-fluid{overflow: hidden}
+
+/** Quick hack for chosen2 work inside bootstrap modal box **/
+#layoutbuilder-container div.modal{overflow: visible !important}
+#layoutbuilder-container .modal-body{overflow: visible !important;}

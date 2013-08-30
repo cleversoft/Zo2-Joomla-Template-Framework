@@ -400,6 +400,21 @@ class Zo2Framework {
 
     }
 
+    public static function getAvailablePositions($templateName)
+    {
+        $path = JPath::clean(JPATH_SITE . '/templates/' . $templateName . '/templateDetails.xml');
+
+        if (file_exists($path) && is_file($path))
+        {
+            $xml = simplexml_load_file($path);
+            $positions = (array) $xml->positions;
+            if (isset($positions['position']))  $positions = $positions['position'];
+            else $positions = array();
+            return $positions;
+        }
+        else return array();
+    }
+
     public static function getCurrentTemplateAbsolutePath()
     {
         return Zo2Framework::$_currentTemplatePath;

@@ -92,7 +92,7 @@ jQuery(document).ready(function($){
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
         $('#txtRowCss').val('').val(rowCustomClass);
-        $('#rowSettingsModal').modal('show');
+        //$('#rowSettingsModal').modal('show');
     });
 
     $('#btnSaveRowSettings').live('click', function () {
@@ -100,6 +100,28 @@ jQuery(document).ready(function($){
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
         $('#rowSettingsModal').modal('hide');
+        return false;
+    });
+
+    $('.col-control-buttons .settings').live('click', function(){
+        var $this = $(this);
+        var $col = $this.closest('.sortable-span');
+        $.data(document.body, 'editingEl', $col);
+        var spanWidth = $col.attr('data-zo2-span');
+        var spanPosition = $col.attr('data-zo2-position');
+        $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
+        $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
+        $('#colSettingsModal').modal('show');
+    });
+
+    $('#btnSaveColSettings').live('click', function() {
+        var $col = $.data(document.body, 'editingEl');
+        $col.attr('data-zo2-span', $('#dlColWidth').val());
+        var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
+        $col.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12').addClass('span' + $('#dlColWidth').val());
+        $col.attr('data-zo2-position', $('#dlColPosition').val());
+        $col.find('>.col-name').text($('#dlColPosition').val());
+        $('#colSettingsModal').modal('hide');
         return false;
     });
 });
