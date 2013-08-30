@@ -52,7 +52,7 @@ jQuery(document).ready(function($){
             var $span = jQuery('<div />').addClass('sortable-span');
             $span.attr('data-zo2-type', 'span');
             $span.attr('data-zo2-position', '');
-            var $meta = jQuery('<div class="col-name">(none)</div><div class="col-control-buttons"><div class="col-control-icon dragger"></div><div class="col-control-icon delete"></div><div class="col-control-icon delete"></div></div></div>');
+            var $meta = jQuery('<div class="col-name">(none)</div><div class="col-control-buttons"><div class="col-control-icon dragger"></div><div class="col-control-icon settings"></div><div class="col-control-icon delete"></div></div></div>');
             $meta.appendTo($span);
             var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
             $spanContainer.appendTo($span);
@@ -92,7 +92,7 @@ jQuery(document).ready(function($){
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
         $('#txtRowCss').val('').val(rowCustomClass);
-        //$('#rowSettingsModal').modal('show');
+        $('#rowSettingsModal').modal('show');
     });
 
     $('#btnSaveRowSettings').live('click', function () {
@@ -187,8 +187,8 @@ var insertCol = function(span, $parent) {
     var $meta = jQuery('<div class="col-name">' + span.name +
         '</div><div class="col-control-buttons"><div class="col-control-icon dragger"></div><div class="col-control-icon settings"></div><div class="col-control-icon delete"></div></div>');
     $meta.appendTo($span);
-    var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
-    $spanContainer.appendTo($span);
+    //var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
+    //$spanContainer.appendTo($span);
 
     for (var i = 0; i < span.children.length; i++) {
         var item = span.children[i];
