@@ -70,7 +70,7 @@ class ZO2ShortCode extends JObject
             return '<!-- '.$this->tagname.' tag passed invalid attributes -->';
         }
 
-        return $this->body();
+        return '<div class="embed-container">' . $this->body() . '</div>';
     }
 
 }

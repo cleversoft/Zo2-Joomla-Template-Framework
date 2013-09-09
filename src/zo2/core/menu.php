@@ -18,7 +18,7 @@ class ZO2MegaMenu
     protected $children = null;
     protected $_items = null;
     protected $edit = false;
-
+    protected $isAdmin = false;
     function __construct($menutype = 'mainmenu', $configs = array(), $params)
     {
         $this->_configs = $configs;
@@ -148,14 +148,19 @@ class ZO2MegaMenu
      */
     function renderMenu($isAdmin = false)
     {
-        $prefix = '<div data-zo2selectable="navbar" class="wrap zo2-menu navbar"><div class="container"><div class="navbar-inner">';
-        $prefix .= '<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+        $this->isAdmin = $isAdmin;
+        //
+        $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation"><div class="container">';
+        $prefix .= '<div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                          <span class="sr-only">ZO2</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
                     </button>
-                    <div class="nav-collapse collapse">';
-        $suffix = '</div></div></div></div>';
+                    <a class="navbar-brand" href="#">Brand</a>
+                    </div>
+                    <div class="navbar-collapse collapse">';
+        $suffix = '</div></div></nav>';
         $html = '';
         $hover = ' data-hover="' . $this->_params->get('hover_type', 'hover') . '"';
         $animation = $this->_params->get('animation', '');
@@ -211,8 +216,9 @@ class ZO2MegaMenu
         }
         $class = '';
         if (!$parent) {
-            $class .= 'nav level-top';
+            $class .= 'nav navbar-nav level-top';
         } else {
+            if (!$this->isAdmin) $class .= 'nav';
             $class .= ' mega-nav';
             $class .= ' level' . $parent->level;
         }
@@ -431,16 +437,22 @@ class ZO2MegaMenu
 
         $end[$menuid] = 0;
         $firstitem = true;
+        $rowClass = 'row-fluid';
+        $colClass = 'span';
+        if (!$this->isAdmin) {
+            $rowClass = 'row';
+            $colClass = 'col-md-';
+        }
 
         foreach ($submenu['rows'] as $row) {
             //start row
-            $html .= '<div class="row-fluid">';
+            $html .= '<div class="'.$rowClass .'">';
 
             foreach ($row as $column) {
 
                 $width = isset($column['width']) ? $column['width'] : '12';
                 $data = "data-width=\"$width\"";
-                $class = "span$width";
+                $class = "$colClass$width";
                 if (isset($column['module_id'])) {
                     $class .= " mega-col-module";
                     $data .= " data-module_id=\"{$column['module_id']}\"";
