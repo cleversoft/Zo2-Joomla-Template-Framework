@@ -2,8 +2,8 @@ var strategy = [
     [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
 ];
 jQuery(document).ready(function($){
-    var width = $('#style-form').width() - 320;
-    $('#droppable-container').css('width', width);
+    //var width = $('#style-form').width() - 320;
+    //$('#droppable-container').css('width', width);
     var layoutName = $('#hfLayoutName').val();
     var templateName = $('#hfTemplateName').val();
 
@@ -29,6 +29,7 @@ jQuery(document).ready(function($){
         var $row = jQuery('<div />').addClass('row-fluid sortable-row').insertAfter($parent);
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
+        $row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
             '</div><div class="row-control-buttons"><div class="row-control-icon dragger"></div><div class="row-control-icon settings"></div><div class="row-control-icon delete"></div><div class="row-control-icon duplicate"></div><div class="row-control-icon split"></div></div></div></div>');
         $meta.appendTo($row);
@@ -45,7 +46,7 @@ jQuery(document).ready(function($){
         var $spans = $colContainer.find('>[data-zo2-type="span"]');
         var strategyNum = $spans.length;
 
-        if ($spans.length > 6) return false;
+        if ($spans.length > 5) return false;
         else
         {
             var selectedStrategy = strategy[strategyNum];
@@ -88,10 +89,12 @@ jQuery(document).ready(function($){
         var $row = $this.closest('.sortable-row');
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
         var rowCustomClass = $row.attr('data-zo2-customClass');
+        var rowLayout = $row.attr('data-zo2-layout');
         if (!rowCustomClass) rowCustomClass = '';
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
         $('#txtRowCss').val('').val(rowCustomClass);
+        $('#ddlRowLayout').val(rowLayout).trigger("liszt:updated");
         $('#rowSettingsModal').modal('show');
     });
 
@@ -99,6 +102,7 @@ jQuery(document).ready(function($){
         var $row = $.data(document.body, 'editingEl');
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
+        $row.attr('data-zo2-layout', $('#ddlRowLayout').val());
         $('#rowSettingsModal').modal('hide');
         return false;
     });
@@ -109,16 +113,20 @@ jQuery(document).ready(function($){
         $.data(document.body, 'editingEl', $col);
         var spanWidth = $col.attr('data-zo2-span');
         var spanPosition = $col.attr('data-zo2-position');
+        var spanOffset = $col.attr('data-zo2-offset');
         $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
         $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
+        $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
         $('#colSettingsModal').modal('show');
     });
 
     $('#btnSaveColSettings').live('click', function() {
         var $col = $.data(document.body, 'editingEl');
         $col.attr('data-zo2-span', $('#dlColWidth').val());
+        $col.attr('data-zo2-offset', $('#ddlColOffset').val());
         var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
         $col.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12').addClass('span' + $('#dlColWidth').val());
+        $col.removeClass('offset1 offset2 offset3 offset4 offset5 offset6 offset7 offset8 offset9 offset10 offset11 offset12').addClass('offset' + $('#ddlColOffset').val());
         $col.attr('data-zo2-position', $('#dlColPosition').val());
         $col.find('>.col-name').text($('#dlColPosition').val());
         $('#colSettingsModal').modal('hide');
@@ -165,6 +173,7 @@ var insertRow = function (row, $parent) {
     var $row = jQuery('<div />').addClass('row-fluid sortable-row').appendTo($parent);
     $row.attr('data-zo2-type', 'row');
     $row.attr('data-zo2-customClass', row.customClass);
+    $row.attr('data-zo2-layout', 'fixed');
     var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">' + row.name +
         '</div><div class="row-control-buttons"><div class="row-control-icon dragger"></div><div class="row-control-icon settings"></div><div class="row-control-icon delete"></div><div class="row-control-icon duplicate"></div><div class="row-control-icon split"></div></div></div></div>');
     $meta.appendTo($row);
@@ -183,12 +192,13 @@ var insertRow = function (row, $parent) {
 var insertCol = function(span, $parent) {
     var $span = jQuery('<div />').addClass('sortable-span').addClass('span'+ span.span).appendTo($parent);
     $span.attr('data-zo2-type', 'span').attr('data-zo2-span', span.span);
+    $span.attr('data-zo2-offset', span.offset);
     $span.attr('data-zo2-position', span.position);
     var $meta = jQuery('<div class="col-name">' + span.name +
         '</div><div class="col-control-buttons"><div class="col-control-icon dragger"></div><div class="col-control-icon settings"></div><div class="col-control-icon delete"></div></div>');
     $meta.appendTo($span);
-    //var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
-    //$spanContainer.appendTo($span);
+    var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
+    $spanContainer.appendTo($span);
 
     for (var i = 0; i < span.children.length; i++) {
         var item = span.children[i];
@@ -215,8 +225,9 @@ var generateItemJson = function($item) {
     if ($item.attr('data-zo2-type') == 'row') {
         result = {
             type: "row",
+            layout: $item.attr('data-zo2-layout'),
             name: $item.find('> .row-control > .row-control-container > .row-name').text(),
-            customClass: "",
+            customClass: $item.attr('data-zo2-customClass'),
             children: []
         };
 
@@ -233,7 +244,8 @@ var generateItemJson = function($item) {
             name: $item.find('> .col-name').text(),
             position: $item.attr('data-zo2-position'),
             span: parseInt($item.attr('data-zo2-span')),
-            customClass: "",
+            offset: parseInt($item.attr('data-zo2-offset')),
+            customClass: $item.attr('data-zo2-customClass'),
             children: []
         };
 
@@ -262,5 +274,7 @@ var rearrangeSpan = function ($container){
             $this.addClass('span' + selectedStrategy[index]);
             $this.attr('data-zo2-span', selectedStrategy[index]);
         });
+
+        return true;
     }
 };

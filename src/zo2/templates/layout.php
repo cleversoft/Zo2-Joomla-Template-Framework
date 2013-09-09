@@ -4,7 +4,7 @@
 <input type="hidden" id="hdLayoutBuilder" value="0" />
 <input type="hidden" id="hfLayoutName" value="homepage" />
 <div id="layoutbuilder-container">
-    <div id="leftSidebar">
+    <div style="display: none" id="leftSidebar">
         <div>
             <button id="btSaveLayout" class="btn btn-success btn-large">Save layout</button>
         </div>
@@ -72,6 +72,15 @@
                         <input type="text" id="txtRowCss" placeholder="Row's custom CSS class">
                     </div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label" for="ddlRowLayout">Row layout</label>
+                    <div class="controls">
+                        <select id="ddlRowLayout">
+                            <option value="fixed">Fixed</option>
+                            <option value="fluid">Fluid</option>
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
@@ -116,6 +125,26 @@
                             <option value="10">span10</option>
                             <option value="11">span11</option>
                             <option value="12">span12</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="ddlColOffset">Offset</label>
+                    <div class="controls">
+                        <select id="ddlColOffset">
+                            <option value="0">No offset</option>
+                            <option value="1">offset1</option>
+                            <option value="2">offset2</option>
+                            <option value="3">offset3</option>
+                            <option value="4">offset4</option>
+                            <option value="5">offset5</option>
+                            <option value="6">offset6</option>
+                            <option value="7">offset7</option>
+                            <option value="8">offset8</option>
+                            <option value="9">offset9</option>
+                            <option value="10">offset10</option>
+                            <option value="11">offset11</option>
+                            <option value="12">offset12</option>
                         </select>
                     </div>
                 </div>
