@@ -41,9 +41,9 @@ class plgSystemZo2 extends JPlugin
             // Load Bootstrap CSS
             //JHtml::_('bootstrap.loadCss');
             Zo2Framework::loadAdminAssets();
-            Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
 
         }
+        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
     }
 
     function onAfterRender()
