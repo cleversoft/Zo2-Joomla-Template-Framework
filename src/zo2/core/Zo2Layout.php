@@ -147,7 +147,9 @@ class Zo2Layout {
      * @return string
      */
     private function generateJsTag($item) {
-        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $this->_templateUri . $item['path'];
+        $basePath = '';
+        if ($item['base'] == 'theme') $basePath = $this->_templateUri;
+        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $async = "";
         if(isset($item['options']['async'])) $async = " async=\"" . $item['options']['async'] . "\"";
         return "<script" . $async . " type=\"text/javascript\" src=\"" . $path . "\"></script>\n";
@@ -160,7 +162,10 @@ class Zo2Layout {
      * @return string
      */
     private function generateCssTag($item) {
-        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $this->_templateUri . $item['path'];
+        $basePath = '';
+        if ($item['base'] == 'theme') $basePath = $this->_templateUri;
+        else if ($item['base'] == 'plugin') $basePath = Zo2Framework::getSystemPluginPath();
+        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
         return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
     }
@@ -224,12 +229,10 @@ class Zo2Layout {
         {
             $data = json_decode(file_get_contents($this->_layoutPath), true);
 
-            $html .= '<div class="container' . $layoutType . '">';
-
             for ($i = 0, $total = count($data); $i < $total; $i++) {
                 $html .= self::generateHtmlFromItem($data[$i], $layoutType);
             }
-            $html .= '</div>';
+
             return $html;
         }
         else return '';
@@ -246,21 +249,24 @@ class Zo2Layout {
 
     private static function generateRow($item, $layoutType)
     {
+        //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
+        $class = 'container';
         $html = '';
-        $html .= '<div class="row' . $layoutType . '">';
+        $html .= '<div class="' . $class . '">'; // start of container
+        $html .= '<div class="row">'; // start of row
 
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
             $html .= self::generateHtmlFromItem($item['children'][$i], $layoutType);
         }
-
-        $html .= '</div>';
+        $html .= '</div>'; // end of row
+        $html .= '</div>'; // end of container
         return $html;
     }
 
     private static function generateColumn($item, $layoutType)
     {
         $html = '';
-        $class = 'span' . $item['span'];
+        $class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
         if (!empty($item['customClass'])) $class .= ' ' . $item['customClass'];
         $html .= '<div class="' . $class . '">';
 
