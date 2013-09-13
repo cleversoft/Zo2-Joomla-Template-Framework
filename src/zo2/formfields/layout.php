@@ -41,8 +41,8 @@ class JFormFieldLayout extends JFormField {
         $doc->addScript($vendorPath . 'bootbox/bootbox-3.3.0.min.js');
         //$doc->addScript($jsPath . 'layoutbuildermodels.js');
         $doc->addScript($jsPath . 'adminlayout.js');
-        //$doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap.min.css');
-        //$doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap-responsive.min.css');
+        $doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap.min.css');
+        $doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap-responsive.min.css');
         $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
         $doc->addStyleSheet($cssPath . 'style.css');
         //$doc->addScript($jsPath . 'admin.js');
