@@ -157,7 +157,6 @@ class ZO2MegaMenu
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Brand</a>
                     </div>
                     <div class="navbar-collapse collapse">';
         $suffix = '</div></div></nav>';

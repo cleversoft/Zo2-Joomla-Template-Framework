@@ -148,7 +148,8 @@ class Zo2Layout {
      */
     private function generateJsTag($item) {
         $basePath = '';
-        if ($item['base'] == 'theme') $basePath = $this->_templateUri;
+        if (isset($item['base']) && $item['base'] == 'theme') $basePath = $this->_templateUri;
+        else $basePath = Zo2Framework::getSystemPluginPath();
         $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $async = "";
         if(isset($item['options']['async'])) $async = " async=\"" . $item['options']['async'] . "\"";
@@ -163,8 +164,8 @@ class Zo2Layout {
      */
     private function generateCssTag($item) {
         $basePath = '';
-        if ($item['base'] == 'theme') $basePath = $this->_templateUri;
-        else if ($item['base'] == 'plugin') $basePath = Zo2Framework::getSystemPluginPath();
+        if (isset($item['base']) && $item['base'] == 'theme') $basePath = $this->_templateUri;
+        else $basePath = Zo2Framework::getSystemPluginPath();
         $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
         return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
