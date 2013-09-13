@@ -83,3 +83,4 @@ html[xmlns] .clearfix {
 
 
 #top-controls{margin-bottom:20px}
+#top-controls > *{float:left;margin-right: 5px}
