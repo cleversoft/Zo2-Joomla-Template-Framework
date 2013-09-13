@@ -28,6 +28,7 @@ jQuery(document).ready(function($){
     var templateName = $('#hfTemplateName').val();
 
     $('#btSaveLayout').on('click', function() {
+        var $overlay = $('<div />').addClass('overlay').appendTo('body').fadeIn();;
         var json = generateJson();
         var postData = {
             zo2controller: 'saveLayout',
@@ -36,6 +37,7 @@ jQuery(document).ready(function($){
             data: json
         };
         $.post('index.php', postData, function(res) {
+            $overlay.remove();
         });
         return false;
     });
@@ -44,7 +46,7 @@ jQuery(document).ready(function($){
 
     $('#btLoadLayout').on('click', function() {
         $('#hfLayoutName').val($('#selectLayouts').val());
-        loadLayout($('#hfTemplateName').val(), $('#hfLayoutName').val());
+        loadLayout($('#hfTemplateName').val(), $('#hfLayoutName').val(), true);
 
         return false;
     });
@@ -186,7 +188,9 @@ var bindSortable = function () {
 };
 
 // jQuery('#hfTemplateName').val()
-var loadLayout = function (templateName, layoutName) {
+var loadLayout = function (templateName, layoutName, showOverlay) {
+    var $overlay = $('<div />').addClass('overlay').appendTo('body');
+    if (showOverlay) $overlay.fadeIn();
     jQuery.getJSON('index.php?zo2controller=getLayout&layout=' + layoutName + '&template=' + templateName, function(data){
         var $rootParent = jQuery('#droppable-container .container-fluid');
         $rootParent.empty();
@@ -197,6 +201,8 @@ var loadLayout = function (templateName, layoutName) {
         }
 
         bindSortable();
+
+        $overlay.remove();
     });
 };
 
