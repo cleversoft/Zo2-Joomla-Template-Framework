@@ -1,7 +1,27 @@
 var strategy = [
     [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
 ];
+
+var $ = jQuery.noConflict();
+
+$(window).bind('load', function(){
+    var $tabsContainer = $('#myTabTabs');
+    var $tabContent = $('#myTabContent');
+    var $tab = $('<li class=""><a href="#layoutbuilder-container" data-toggle="tab">Layout Builder</a></li>');
+    $tab.appendTo($tabsContainer);
+
+    var $layoutBuilder = $('#layoutbuilder-container');
+    var $layoutContainer = jQuery('#layoutbuilder-container').closest('.accordion-group');
+    $layoutBuilder.addClass('tab-pane').appendTo($tabContent);
+    $('#hfTemplateName').appendTo($layoutBuilder);
+    $('#hfLayoutName').appendTo($layoutBuilder);
+    $layoutContainer.remove();
+});
+
 jQuery(document).ready(function($){
+
+    generateLayoutsList();
+
     //var width = $('#style-form').width() - 320;
     //$('#droppable-container').css('width', width);
     var layoutName = $('#hfLayoutName').val();
@@ -21,6 +41,13 @@ jQuery(document).ready(function($){
     });
 
     loadLayout($('#hfTemplateName').val(), $('#hfLayoutName').val());
+
+    $('#btLoadLayout').on('click', function() {
+        $('#hfLayoutName').val($('#selectLayouts').val());
+        loadLayout($('#hfTemplateName').val(), $('#hfLayoutName').val());
+
+        return false;
+    });
 
     $('.row-control-icon.duplicate').live('click', function() {
         var $this = $(this);
@@ -71,17 +98,17 @@ jQuery(document).ready(function($){
 
     $('.row-control-buttons .delete').live('click', function(){
         var $this = $(this);
-        if (confirm('Are you sure want to delete this row?')) {
-            $this.closest('.sortable-row').remove();
-        }
+        bootbox.confirm('Are you sure want to delete this row?', function(result) {
+            if (result) $this.closest('.sortable-row').remove();
+        });
     });
 
     $('.col-control-buttons .delete').live('click', function() {
         var $this = $(this);
 
-        if(confirm('Are you sure want to delete this column?')) {
-            $this.closest('.sortable-span').remove();
-        }
+        bootbox.confirm('Are you sure want to delete this column?', function(result) {
+            if (result) $this.closest('.sortable-span').remove();
+        });
     });
 
     $('.row-control-buttons .settings').live('click', function(){
@@ -159,6 +186,7 @@ var bindSortable = function () {
 var loadLayout = function (templateName, layoutName) {
     jQuery.getJSON('index.php?zo2controller=getLayout&layout=' + layoutName + '&template=' + templateName, function(data){
         var $rootParent = jQuery('#droppable-container .container-fluid');
+        $rootParent.empty();
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
             if (item.type == 'row') insertRow(item, $rootParent);
@@ -277,4 +305,17 @@ var rearrangeSpan = function ($container){
 
         return true;
     }
+};
+
+var generateLayoutsList = function() {
+    jQuery.getJSON('index.php?zo2controller=getLayouts&template=' + jQuery('#hfTemplateName').val(), function(data) {
+        if (data && data.length > 0) {
+            for (var i = 0, total = data.length; i < total; i++) {
+                if (data[i] == 'homepage') continue;
+                jQuery('<option />').attr('value', data[i]).text(data[i]).appendTo('#selectLayouts');
+            }
+
+            jQuery("#selectLayouts").trigger("liszt:updated");
+        }
+    });
 };

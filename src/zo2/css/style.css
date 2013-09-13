@@ -19,7 +19,6 @@
 .relative{
     position: relative
 }
-#btSaveLayout{float:left}
 .zo2-draggable{z-index:9999;width: 120px;height:80px;text-align: center;float:left;}
 #workspace-tabs{float:left;clear:left;width:300px}
 #components-container{width:300px}
@@ -81,3 +80,6 @@ html[xmlns] .clearfix {
 #layoutbuilder-container div.modal{overflow: visible !important}
 #layoutbuilder-container .modal-body{overflow: visible !important;}
 #layoutbuilder-container .container-fluid > .row-fluid{padding: 15px 15px 0}
+
+
+#top-controls{margin-bottom:20px}

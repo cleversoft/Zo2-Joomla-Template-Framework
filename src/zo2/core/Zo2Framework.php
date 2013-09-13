@@ -228,20 +228,19 @@ class Zo2Framework {
 
     public static function getTemplateLayoutsName($templateName) {
         if(!empty($templateName)) {
-            $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.php';
+            $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.json';
             $layoutFiles = glob($templatePath);
 
-            $list = array();
+            $result = array();
 
-            foreach ($layoutFiles as $path) {
-                if (strpos($path, '.compiled.php') !== false) $list[] = $path;
+            for ($i = 0, $total = count($layoutFiles); $i < $total; $i++) {
+                $layoutFiles[$i] = basename($layoutFiles[$i]);
+                if ($layoutFiles[$i] !== 'core.json' && $layoutFiles[$i] !== 'megamenu.json') {
+                    $result[] = str_replace('.json', '', $layoutFiles[$i]);
+                }
             }
 
-            for ($i = 0, $total = count($list); $i < $total; $i++) {
-                $list[$i] = basename($list[$i]);
-                $list[$i] = str_replace('.compiled.php', '', $list[$i]);
-            }
-            return json_encode($list);
+            return json_encode($result);
         }
         else return json_encode(array());
     }

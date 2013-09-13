@@ -267,7 +267,8 @@ class Zo2Layout {
     private static function generateColumn($item, $layoutType)
     {
         $html = '';
-        $class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
+        $class = 'col-md-' . $item['span'];
+        //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
         if (!empty($item['customClass'])) $class .= ' ' . $item['customClass'];
         $html .= '<div class="' . $class . '">';
 

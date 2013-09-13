@@ -14,6 +14,7 @@ $layoutName = $zo2->getCurrentPage();
 $layout = new Zo2Layout($templateName, $layoutName);
 //echo $layout->compile();
 ?>
+<!-- <?php echo $zo2->getCurrentPage();?> -->
 <!DOCTYPE html>
 <html>
 <head>
