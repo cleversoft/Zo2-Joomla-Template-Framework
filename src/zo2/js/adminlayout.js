@@ -80,6 +80,7 @@ jQuery(document).ready(function($){
             var $span = jQuery('<div />').addClass('sortable-span');
             $span.attr('data-zo2-type', 'span');
             $span.attr('data-zo2-position', '');
+            $span.attr('data-zo2-offset', 0);
             var $meta = jQuery('<div class="col-name">(none)</div><div class="col-control-buttons"><div class="col-control-icon dragger"></div><div class="col-control-icon settings"></div><div class="col-control-icon delete"></div></div></div>');
             $meta.appendTo($span);
             var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
@@ -107,7 +108,9 @@ jQuery(document).ready(function($){
         var $this = $(this);
 
         bootbox.confirm('Are you sure want to delete this column?', function(result) {
+            var $container = $this.closest('.col-container');
             if (result) $this.closest('.sortable-span').remove();
+            rearrangeSpan($container);
         });
     });
 
@@ -220,7 +223,7 @@ var insertRow = function (row, $parent) {
 var insertCol = function(span, $parent) {
     var $span = jQuery('<div />').addClass('sortable-span').addClass('span'+ span.span).appendTo($parent);
     $span.attr('data-zo2-type', 'span').attr('data-zo2-span', span.span);
-    $span.attr('data-zo2-offset', span.offset);
+    $span.attr('data-zo2-offset', span.offset !== null ? span.offset : 0);
     $span.attr('data-zo2-position', span.position);
     var $meta = jQuery('<div class="col-name">' + span.name +
         '</div><div class="col-control-buttons"><div class="col-control-icon dragger"></div><div class="col-control-icon settings"></div><div class="col-control-icon delete"></div></div>');
@@ -291,19 +294,32 @@ var generateItemJson = function($item) {
 var rearrangeSpan = function ($container){
     var $ = jQuery;
     var $spans = $container.find('>[data-zo2-type="span"]');
-    var strategyNum = $spans.length;
-    if (strategyNum > strategy.length - 1) return false;
-    else
-    {
-        var selectedStrategy = strategy[strategyNum];
-        $container.find('>[data-zo2-type="span"]').each(function(index) {
-            var $this = jQuery(this);
-            $this.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12');
-            $this.addClass('span' + selectedStrategy[index]);
-            $this.attr('data-zo2-span', selectedStrategy[index]);
-        });
+    if ($spans.length > 0) {
+        if ($spans.length == 1) {
+            var width = 12 - parseInt($spans.attr('data-zo2-offset'));
+            if (width > 0) {
+                $spans.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12');
+                $spans.addClass('span' + width);
+            }
+        }
+        else
+        {
+            var $lastSpan = $spans.eq($spans.length - 1);
+            var totalWidth = 0;
+            for(var i = 0, total = $spans.length - 1; i < total; i++) {
+                var $currentSpan = $spans.eq(i);
+                console.log($currentSpan.attr('data-zo2-span'));
+                totalWidth += parseInt($currentSpan.attr('data-zo2-offset')) + parseInt($currentSpan.attr('data-zo2-span'));
+                console.log(totalWidth);
+            }
+            console.log(totalWidth);
 
-        return true;
+            var width = 12 - totalWidth;
+            if (width > 0) {
+                $lastSpan.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12');
+                $lastSpan.addClass('span' + width);
+            }
+        }
     }
 };
 
