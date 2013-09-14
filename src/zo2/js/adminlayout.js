@@ -301,11 +301,13 @@ var rearrangeSpan = function ($container){
     var $ = jQuery;
     var $spans = $container.find('>[data-zo2-type="span"]');
     if ($spans.length > 0) {
+        var width = 0;
         if ($spans.length == 1) {
-            var width = 12 - parseInt($spans.attr('data-zo2-offset'));
+            width = 12 - parseInt($spans.attr('data-zo2-offset'));
             if (width > 0) {
                 $spans.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12');
                 $spans.addClass('span' + width);
+                $spans.attr('data-zo2-span', width);
             }
         }
         else
@@ -314,16 +316,14 @@ var rearrangeSpan = function ($container){
             var totalWidth = 0;
             for(var i = 0, total = $spans.length - 1; i < total; i++) {
                 var $currentSpan = $spans.eq(i);
-                console.log($currentSpan.attr('data-zo2-span'));
                 totalWidth += parseInt($currentSpan.attr('data-zo2-offset')) + parseInt($currentSpan.attr('data-zo2-span'));
-                console.log(totalWidth);
             }
-            console.log(totalWidth);
 
-            var width = 12 - totalWidth;
+            width = 12 - totalWidth;
             if (width > 0) {
                 $lastSpan.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12');
                 $lastSpan.addClass('span' + width);
+                $lastSpan.attr('data-zo2-span', width);
             }
         }
     }
