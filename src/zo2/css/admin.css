@@ -8,6 +8,7 @@
  * @license  http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
 */
 @import "../vendor/font-awesome/css/font-awesome.min.css";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 .admin-inline-toolbox {
     margin: 15px 0 20px;
@@ -517,3 +518,60 @@
 .icon-out-2:before {
     content: "\e024";
 }
+
+/**Style admin**/
+/*Font*/
+.nav-tabs > li > a{font-family:'Open Sans', Arial, sans-serif;font-weight:600}
+/*Main Tab*/
+#myTabContent{
+    background-color: #f3f5fa;
+}
+#myTabTabs.nav-tabs{background:#e8e8e8;margin-bottom:0;padding:0 10px}
+.nav-tabs > li > a{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;color:#575757;font-size:18px;font-weight:600;line-height:20px;margin-right:0;padding:15px 17px}
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover,
+.nav-tabs > li > a:hover{background-color:#fff!important;color:#000;outline: none;}
+
+
+/*Layout*/
+.sortable-row,
+.sortable-span{
+    border:none;
+}
+#layoutbuilder-container ul{margin:0}
+#layoutbuilder-container{min-height:500px}
+#layoutbuilder-container .row-fluid{width:auto}
+#layoutbuilder-container .ui-sortable>.sortable-row{-webkit-box-shadow:0 0 3px rgba(0,0,0,.2);background:#fbfbfb;box-shadow:0 0 3px rgba(0,0,0,.2);margin:15px 0;padding:15px}
+#layoutbuilder-container .ui-sortable>.sortable-row:hover{-webkit-box-shadow:0 0 3px rgba(0,0,0,.5);background:#f5f5f5;box-shadow:0 0 3px rgba(0,0,0,.5)}
+#layoutbuilder-container .sortable-row .row-fluid.col-container{border-top:1px solid #ddd;margin:15px -15px 0;padding:15px 15px 0}
+#layoutbuilder-container .sortable-row .row-name,
+#layoutbuilder-container .sortable-row .position-name{color:#666;font-size:20px}
+#layoutbuilder-container .sortable-row .position-name{font-size:14px;margin-left:15px}
+#layoutbuilder-container .type-message > span.position-name{color:red}
+#layoutbuilder-container .row-fluid.child-row{border-top:1px solid #ddd;margin:0;padding:0 15px 15px}
+#layoutbuilder-container .sortable-row .child-row .row-fluid.show-grid{margin-top:0}
+#layoutbuilder-container .sortable-row .col-container> [class*=span]{background:#fff;border:1px solid #dadada;border-radius:0;line-height:50px;min-height:50px;box-shadow:0 0 3px 0 rgba(0,0,0,.1);-webkit-box-shadow:0 0 3px 0 rgba(0,0,0,.1)}
+#layoutbuilder-container .sortable-row .col-container> [class*=span].type-component{background:#f8fde9;border:1px solid #809c36}
+#layoutbuilder-container .sortable-row .col-container> [class*=span].type-message > .type-message{text-align:center}
+#layoutbuilder-container .sortable-row .col-container> [class*=span]:hover{border-color:rgba(82,168,236,0.8);outline:thin dotted 9}
+#layoutbuilder-container .sortable-row .sortable-row [class*=span]{margin-top:5px}
+#layoutbuilder-container .row-tools{margin-top:3px}
+#layoutbuilder-container .row-tools a{color:#a5a5a5;font-size:18px;margin:0 0 0 6px}
+#layoutbuilder-container .row-tools a.icon-move{border-right:1px solid #ccc;cursor:move;padding-right:6px}
+#layoutbuilder-container .columntools{-webkit-transition:opacity 300ms;float:right;margin-right:15px;opacity:0}
+#layoutbuilder-container .columntools a{color:#a5a5a5;font-size:14px;margin:0 0 0 3px}
+#layoutbuilder-container .columntools a.icon-move{cursor:move}
+#layoutbuilder-container .row-tools a.icon-remove,
+#layoutbuilder-container .columntools a.icon-remove{color:#e52626}
+#layoutbuilder-container .columntools.open,
+#layoutbuilder-container .column:hover >.columntools,
+#layoutbuilder-container .column:focus >.columntools{opacity:1}
+
+
+/*Detail*/
+#details{padding:15px;position:relative}
+/*Menu Assignment*/
+#assignment{padding:15px;position:relative}
+#assignment #jform_menuselect-lbl{display:none}
+#assignment .btn-toolbar,
+#assignment .jform-rightbtn{position:absolute;right:15px;top:10px}

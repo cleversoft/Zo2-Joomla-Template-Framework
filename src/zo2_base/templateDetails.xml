@@ -54,6 +54,10 @@
 
     <fields name="params" addfieldpath="/plugins/system/zo2/formfields">
         <fieldset name="basic">
+            <fieldset name="overviews" addfieldpath="/plugins/system/helix/fields">
+                <field type="asset" />
+                <field type="include" file="overview.php" />
+            </fieldset>
             <field name="combine_statics" type="list" default="0" label="Combine assets" description="Combine the static assets such as JS and CSS">
                 <option value="0">Disable</option>
                 <option value="1">Combine</option>
