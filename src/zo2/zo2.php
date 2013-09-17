@@ -34,14 +34,15 @@ class plgSystemZo2 extends JPlugin
 
     function onBeforeRender()
     {
+        if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
 
-        $app = JFactory::getApplication();
-        if ($app->isAdmin()) {
+            $app = JFactory::getApplication();
+            if ($app->isAdmin()) {
+                // Load Bootstrap CSS
+                //JHtml::_('bootstrap.loadCss');
+                Zo2Framework::loadAdminAssets();
 
-            // Load Bootstrap CSS
-            //JHtml::_('bootstrap.loadCss');
-            Zo2Framework::loadAdminAssets();
-
+            }
         }
         Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
     }
@@ -117,7 +118,7 @@ class plgSystemZo2 extends JPlugin
         $button = '<a href="#zo2Modal" role="button" class="btn" data-toggle="modal"><i class="icon-arrow-down"></i>ZO2 ShortCodes</a>
             <div id="zo2Modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="zo2ModalLabel" aria-hidden="true">
               <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">ï¿½</button>
                 <h2 id="zo2ModalLabel">ZO2 ShortCodes</h2>
               </div>
               <div class="modal-body">
