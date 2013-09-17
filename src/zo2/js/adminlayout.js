@@ -19,6 +19,7 @@ $(window).bind('load', function(){
 
     insertLogo();
     addIconToMenu();
+    fixToolbarIcon();
 });
 
 jQuery(document).ready(function($){
@@ -356,4 +357,10 @@ var insertLogo = function () {
     var $ = jQuery;
     var $form = $('#style-form');
     $form.prepend('<a href="http://zo2framework.org" target="_blank" id="zo2logo" title="Zo2 Framework"></a>');
+};
+
+var fixToolbarIcon = function () {
+    $('.icon-apply').replaceWith('<i class="icon-check"></i>');
+    $('.icon-save-copy').replaceWith('<i class="icon-copy"></i>');
+    $('.icon-cancel').replaceWith('<i class="icon-remove-sign color4"></i>');
 };
