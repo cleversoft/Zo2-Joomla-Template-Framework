@@ -23,6 +23,7 @@ $(window).bind('load', function(){
 });
 
 jQuery(document).ready(function($){
+    wrapForm();
     generateLayoutsList();
 
     //var width = $('#style-form').width() - 320;
@@ -360,7 +361,15 @@ var insertLogo = function () {
 };
 
 var fixToolbarIcon = function () {
+    var $ = jQuery;
     $('.icon-apply').replaceWith('<i class="icon-check"></i>');
     $('.icon-save-copy').replaceWith('<i class="icon-copy"></i>');
     $('.icon-cancel').replaceWith('<i class="icon-remove-sign color4"></i>');
+};
+
+var wrapForm = function() {
+    var $ = jQuery;
+    var $form = $('#style-form');
+    var $wrapper = $('<div id="zo2-config" />').insertBefore($form);
+    $form.appendTo($wrapper);
 };
