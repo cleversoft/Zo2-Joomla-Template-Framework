@@ -59,6 +59,7 @@
     background-color: #f3f5fa;
 }
 #myTabTabs.nav-tabs{background:#e8e8e8;border:none;margin-bottom:0;padding:0 10px;}
+.nav-tabs > li{margin: 0;}
 .nav-tabs > li > a{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;color:#575757;font-size:18px;font-weight:600;line-height:20px;margin-right:0;padding:15px 17px}
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
@@ -72,7 +73,7 @@
 }
 #layoutbuilder-container ul{margin:0}
 #layoutbuilder-container{min-height:500px}
-#layoutbuilder-container #top-controls{margin: 20px 0;}
+#layoutbuilder-container #top-controls{padding-top: 20px;}
 #layoutbuilder-container .row-fluid{width:auto}
 #layoutbuilder-container .ui-sortable>.sortable-row{-webkit-box-shadow:0 0 3px rgba(0,0,0,.2);background:#fbfbfb;box-shadow:0 0 3px rgba(0,0,0,.2);margin:15px 0;padding:15px}
 #layoutbuilder-container .ui-sortable>.sortable-row:hover{-webkit-box-shadow:0 0 3px rgba(0,0,0,.5);background:#f5f5f5;box-shadow:0 0 3px rgba(0,0,0,.5)}
@@ -91,14 +92,14 @@
 #layoutbuilder-container .row-tools{margin-top:3px}
 #layoutbuilder-container .row-tools a{color:#a5a5a5;font-size:18px;margin:0 0 0 6px}
 #layoutbuilder-container .row-tools a.icon-move{border-right:1px solid #ccc;cursor:move;padding-right:6px}
-#layoutbuilder-container .columntools{-webkit-transition:opacity 300ms;float:right;margin-right:15px;opacity:0}
-#layoutbuilder-container .columntools a{color:#a5a5a5;font-size:14px;margin:0 0 0 3px}
-#layoutbuilder-container .columntools a.icon-move{cursor:move}
+#layoutbuilder-container .col-control-buttons{-webkit-transition:opacity 300ms;float:right;margin-right:15px;opacity:0}
+#layoutbuilder-container .col-control-buttons i{color:#a5a5a5;font-size:14px;margin:0 0 0 3px}
+#layoutbuilder-container .col-control-buttons i.icon-move{cursor:move}
 #layoutbuilder-container .row-tools a.icon-remove,
-#layoutbuilder-container .columntools a.icon-remove{color:#e52626}
+#layoutbuilder-container .col-control-buttons i.icon-remove{color:#e52626}
 #layoutbuilder-container .columntools.open,
-#layoutbuilder-container .column:hover >.columntools,
-#layoutbuilder-container .column:focus >.columntools{opacity:1}
+#layoutbuilder-container .sortable-row .col-container > [class*="span"]:hover >.col-control-buttons,
+#layoutbuilder-container .sortable-row .col-container > [class*="span"]:focus >.col-control-buttons{opacity:1}
 
 
 /*Detail*/
