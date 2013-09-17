@@ -10,6 +10,10 @@
 @import "../vendor/font-awesome/css/font-awesome.min.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
+#zo2-config{
+    background: #f3f5fa;
+    padding: 30px 0;
+}
 .admin-inline-toolbox {
     margin: 15px 0 20px;
     box-sizing: border-box;
@@ -53,17 +57,14 @@
 [class^="icon-"]:before,
 [class*=" icon-"]:before{font-family: 'FontAwesome' !important}
 /*Font*/
-.nav-tabs > li > a{font-family:'Open Sans', Arial, sans-serif;font-weight:600}
+.nav-tabs > li > a{border:none!important;font-family:'Open Sans', Arial, sans-serif;font-weight:600}
 /*Main Tab*/
-#myTabContent{
-    background-color: #f3f5fa;
-}
-#myTabTabs.nav-tabs{background:#e8e8e8;border:none;margin-bottom:0;padding:0 10px;}
+#myTabTabs.nav-tabs{background:#e8e8e8;border:none;margin-bottom:0;margin-top:30px;padding:0 10px;}
 .nav-tabs > li{margin: 0;}
 .nav-tabs > li > a{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;color:#575757;font-size:18px;font-weight:600;line-height:20px;margin-right:0;padding:15px 17px}
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
-.nav-tabs > li > a:hover{background-color:#fff!important;color:#000;outline: none;}
+.nav-tabs > li > a:hover{background-color:#fff!important;border: none !important;color:#000;outline: none;}
 
 
 /*Layout*/
