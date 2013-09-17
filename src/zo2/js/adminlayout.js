@@ -213,7 +213,7 @@ var insertRow = function (row, $parent) {
     $row.attr('data-zo2-customClass', row.customClass);
     $row.attr('data-zo2-layout', 'fixed');
     var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">' + row.name +
-        '</div><div class="row-control-buttons"><div class="row-control-icon dragger"></div><div class="row-control-icon settings"></div><div class="row-control-icon delete"></div><div class="row-control-icon duplicate"></div><div class="row-control-icon split"></div></div></div></div>');
+        '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger" /><i class="icon-cog row-control-icon settings" /><i class="row-control-icon duplicate icon-align-justify" /><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove" /></div></div></div>');
     $meta.appendTo($row);
     //jQuery('<hr />').appendTo($row);
     //var $span12 = jQuery('<div />').addClass('span12').appendTo($row);
@@ -233,7 +233,7 @@ var insertCol = function(span, $parent) {
     $span.attr('data-zo2-offset', span.offset !== null ? span.offset : 0);
     $span.attr('data-zo2-position', span.position);
     var $meta = jQuery('<div class="col-name">' + span.name +
-        '</div><div class="col-control-buttons"><div class="col-control-icon dragger"></div><div class="col-control-icon settings"></div><div class="col-control-icon delete"></div></div>');
+        '</div><div class="col-control-buttons"><i class="col-control-icon dragger icon-move" /><i class="icon-cog col-control-icon settings" /><i class="icon-remove col-control-icon delete" /></div>');
     $meta.appendTo($span);
     var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
     $spanContainer.appendTo($span);
