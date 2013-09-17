@@ -74,7 +74,7 @@ html[xmlns] .clearfix {
     height: 1%;
 }
 
-.row-fluid{overflow: hidden; width: auto !important;}
+.row-fluid{overflow: hidden}
 
 /** Quick hack for chosen2 work inside bootstrap modal box **/
 #layoutbuilder-container div.modal{overflow: visible !important}

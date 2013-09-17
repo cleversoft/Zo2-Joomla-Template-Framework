@@ -28,7 +28,7 @@ jQuery(document).ready(function($){
     var templateName = $('#hfTemplateName').val();
 
     $('#btSaveLayout').on('click', function() {
-        var $overlay = $('<div />').addClass('overlay').appendTo('body').fadeIn();;
+        var $overlay = $('<div />').addClass('overlay').appendTo('body').fadeIn();
         var json = generateJson();
         var postData = {
             zo2controller: 'saveLayout',
@@ -62,7 +62,7 @@ jQuery(document).ready(function($){
         var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
             '</div><div class="row-control-buttons"><div class="row-control-icon dragger"></div><div class="row-control-icon settings"></div><div class="row-control-icon delete"></div><div class="row-control-icon duplicate"></div><div class="row-control-icon split"></div></div></div></div>');
         $meta.appendTo($row);
-        jQuery('<hr />').appendTo($row);
+        //jQuery('<hr />').appendTo($row);
         //var $span12 = jQuery('<div />').addClass('span12').appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
@@ -171,7 +171,7 @@ var bindSortable = function () {
         items: '>.sortable-row',
         handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
         containment: 'parent',
-        tolerance: "pointer",
+        tolerance: 'pointer',
         axis: 'y'
 
     });
@@ -214,7 +214,7 @@ var insertRow = function (row, $parent) {
     var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">' + row.name +
         '</div><div class="row-control-buttons"><div class="row-control-icon dragger"></div><div class="row-control-icon settings"></div><div class="row-control-icon delete"></div><div class="row-control-icon duplicate"></div><div class="row-control-icon split"></div></div></div></div>');
     $meta.appendTo($row);
-    jQuery('<hr />').appendTo($row);
+    //jQuery('<hr />').appendTo($row);
     //var $span12 = jQuery('<div />').addClass('span12').appendTo($row);
     var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
     $colContainer.appendTo($meta);
