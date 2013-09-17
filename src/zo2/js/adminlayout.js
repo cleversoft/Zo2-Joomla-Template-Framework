@@ -16,7 +16,8 @@ $(window).bind('load', function(){
     $('#hfTemplateName').appendTo($layoutBuilder);
     $('#hfLayoutName').appendTo($layoutBuilder);
     $layoutContainer.remove();
-    
+
+    insertLogo();
     addIconToMenu();
 });
 
@@ -349,4 +350,10 @@ var addIconToMenu = function() {
     $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General Options');
     $('#myTabTabs').find('a').eq(2).html('<i class="icon-edit-sign" /> Menu Assignment');
     $('#myTabTabs').find('a').eq(3).html('<i class="icon-th" /> Layout Builder');
+};
+
+var insertLogo = function () {
+    var $ = jQuery;
+    var $form = $('#style-form');
+    $form.prepend('<a href="http://zo2framework.org" target="_blank" id="zo2logo" title="Zo2 Framework"></a>');
 };

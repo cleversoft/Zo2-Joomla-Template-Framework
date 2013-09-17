@@ -43,7 +43,6 @@
 .row-control{line-height:60px;font-size:30px;font-weight: bold}
 .row-control-container{padding: 0 10px}
 .row-control-icon, .col-control-icon {width:20px;height:20px;cursor:pointer;margin-left:5px;color:#373737;font-size:20px}
-.col-control-buttons .duplicate{background: url(../images/icon_plus20.png) no-repeat;}
 .row-control-icon.delete, .col-control-icon.delete{color:#e30004}
 .row-control-buttons{position:absolute;top:0;right:20px;}
 .col-control-buttons{position: absolute;top:0;right:10px}
@@ -83,3 +82,4 @@ html[xmlns] .clearfix {
 #top-controls > *{float:left;margin-right: 5px}
 
 .overlay{position: absolute;z-index:99999;top: 0;left:0;bottom:0;right:0;opacity: 0.5;display:none;background-color:#000000;cursor: wait}
+#zo2logo{width:310px;height:70px;margin: 15px auto;background: url('../images/zo2logo.png') no-repeat 0 0;display:block}
