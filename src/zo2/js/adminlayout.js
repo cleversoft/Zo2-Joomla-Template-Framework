@@ -16,10 +16,11 @@ $(window).bind('load', function(){
     $('#hfTemplateName').appendTo($layoutBuilder);
     $('#hfLayoutName').appendTo($layoutBuilder);
     $layoutContainer.remove();
+    
+    addIconToMenu();
 });
 
 jQuery(document).ready(function($){
-
     generateLayoutsList();
 
     //var width = $('#style-form').width() - 320;
@@ -340,4 +341,12 @@ var generateLayoutsList = function() {
             jQuery("#selectLayouts").trigger("liszt:updated");
         }
     });
+};
+
+var addIconToMenu = function() {
+    var $ = jQuery;
+    $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Details');
+    $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General Options');
+    $('#myTabTabs').find('a').eq(2).html('<i class="icon-icon-edit-sign" /> Menu Assignment');
+    $('#myTabTabs').find('a').eq(3).html('<i class="icon-th" /> Layout Builder');
 };
