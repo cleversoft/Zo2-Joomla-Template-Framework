@@ -57,14 +57,14 @@
 [class^="icon-"]:before,
 [class*=" icon-"]:before{font-family: 'FontAwesome' !important}
 /*Font*/
-.nav-tabs > li > a{border:none;font-family:'Open Sans', Arial, sans-serif;font-weight:600}
+.nav-tabs > li > a{border:none!important;font-family:'Open Sans', Arial, sans-serif;font-weight:600}
 /*Main Tab*/
 #myTabTabs.nav-tabs{background:#e8e8e8;border:none;margin-bottom:0;margin-top:30px;padding:0 10px;}
 .nav-tabs > li{margin: 0;}
 .nav-tabs > li > a{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;color:#575757;font-size:18px;font-weight:600;line-height:20px;margin-right:0;padding:15px 17px}
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
-.nav-tabs > li > a:hover{background-color:#fff!important;border:none;color:#000;outline: none;}
+.nav-tabs > li > a:hover{background-color:#fff!important;border: none !important;color:#000;outline: none;}
 
 
 /*Layout*/
