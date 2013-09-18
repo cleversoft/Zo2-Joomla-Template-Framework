@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
         $row.attr('data-zo2-customClass', '');
         $row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-            '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger" /><i class="icon-cog row-control-icon settings" /><i class="row-control-icon duplicate icon-align-justify" /><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove" /></div></div></div>');
+            '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger" /><i class="icon-cogs row-control-icon settings" /><i class="row-control-icon duplicate icon-align-justify" /><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove" /></div></div></div>');
         $meta.appendTo($row);
         //jQuery('<hr />').appendTo($row);
         //var $span12 = jQuery('<div />').addClass('span12').appendTo($row);
@@ -87,7 +87,7 @@ jQuery(document).ready(function($){
             $span.attr('data-zo2-type', 'span');
             $span.attr('data-zo2-position', '');
             $span.attr('data-zo2-offset', 0);
-            var $meta = jQuery('<div class="col-name">(none)</div><div class="col-control-buttons"><i class="col-control-icon dragger icon-move" /><i class="icon-cog col-control-icon settings" /><i class="icon-remove col-control-icon delete" /></div></div>');
+            var $meta = jQuery('<div class="col-name">(none)</div><div class="col-control-buttons"><i class="col-control-icon dragger icon-move" /><i class="icon-cogs col-control-icon settings" /><i class="icon-remove col-control-icon delete" /></div></div>');
             $meta.appendTo($span);
             var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
             $spanContainer.appendTo($span);
@@ -216,7 +216,7 @@ var insertRow = function (row, $parent) {
     $row.attr('data-zo2-customClass', row.customClass);
     $row.attr('data-zo2-layout', 'fixed');
     var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">' + row.name +
-        '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger" /><i class="icon-cog row-control-icon settings" /><i class="row-control-icon duplicate icon-align-justify" /><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove" /></div></div></div>');
+        '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger" /><i class="icon-cogs row-control-icon settings" /><i class="row-control-icon duplicate icon-align-justify" /><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove" /></div></div></div>');
     $meta.appendTo($row);
     //jQuery('<hr />').appendTo($row);
     //var $span12 = jQuery('<div />').addClass('span12').appendTo($row);

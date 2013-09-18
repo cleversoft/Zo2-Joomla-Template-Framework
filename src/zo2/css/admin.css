@@ -10,103 +10,111 @@
 @import "../vendor/font-awesome/css/font-awesome.min.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
-#zo2-config{
-    background: #f3f5fa;
-    padding: 30px 0;
-}
-.admin-inline-toolbox {
-    margin: 15px 0 20px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    background: #eee;
-    border-bottom: 1px solid #e6e6e6;
-    border-top: 1px solid #e6e6e6;
-}
 
-.admin-inline-toolbox ul {
-    margin: 0;
-    padding: 0;
-}
-
-.admin-inline-toolbox li {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-    list-style: none;
-}
-
-.zo2-progress {
-    display: inline-block;
-    width: 30px;
-    height: 25px;
-    vertical-align: top;
-}
-
-.zo2-progress .bar {
-    border-radius: 2px;
-}
-
-.disabled {
-    pointer-events: none;
-    cursor: default;
-    opacity: .3;
-}
+#zo2-config { background: #ffffff; padding: 30px 10px; }
+.admin-inline-toolbox { -moz-box-sizing: border-box; -o-box-sizing: border-box; -webkit-box-sizing: border-box; background: #eee; border-bottom: 1px solid #e6e6e6; border-top: 1px solid #e6e6e6; box-sizing: border-box; margin: 15px 0 20px; }
+	.admin-inline-toolbox ul { margin: 0; padding: 0; }
+	.admin-inline-toolbox li { display: inline-block; list-style: none; margin: 0; padding: 0; }
+.zo2-progress { display: inline-block; height: 25px; vertical-align: top; width: 30px; }
+	.zo2-progress .bar { border-radius: 2px; }
+.disabled { cursor: default; opacity: .3; pointer-events: none; }
 /**Style admin**/
 [class^="icon-"]:before,
-[class*=" icon-"]:before{font-family: 'FontAwesome' !important}
+[class*=" icon-"]:before { font-family: 'FontAwesome' !important }
 /*Font*/
-.nav-tabs > li > a{border:none!important;font-family:'Open Sans', Arial, sans-serif;font-weight:600}
+.nav-tabs > li > a { border: none!important; font-family: 'Open Sans', Arial, sans-serif; font-weight: 600 }
 /*Main Tab*/
-#myTabTabs.nav-tabs{background:#e8e8e8;border:none;margin-bottom:0;margin-top:30px;padding:0 10px;}
-.nav-tabs > li{margin: 0;}
-.nav-tabs > li > a{-moz-border-radius:0;-webkit-border-radius:0;border-radius:0;color:#575757;font-size:18px;font-weight:600;line-height:20px;margin-right:0;padding:15px 17px}
+#myTabTabs.nav-tabs { background: #629c42; border: none; margin-bottom: 0; margin-top: 30px; padding: 0; }
+.nav-tabs > li { margin: 0; }
+	.nav-tabs > li > a { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; color: #fff; font-size: 16px; font-weight: 600; line-height: 20px; margin-right: 0; padding: 15px 25px }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
-.nav-tabs > li > a:hover{background-color:#fff!important;border: none !important;color:#000;outline: none;}
-
-
+.nav-tabs > .active > a:focus,
+.nav-tabs > li > a:hover { background-color: #444444!important; border: none !important; color: #fff; outline: none; }
+#myTabContent { -moz-box-shadow: 0 1px 5px rgba(0,0,0,.07); -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.07); box-shadow: 0 1px 5px rgba(0,0,0,.07); }
 /*Layout*/
 .sortable-row,
-.sortable-span{
-    border:none;
-}
-#layoutbuilder-container ul{margin:0}
-#layoutbuilder-container{min-height:500px}
-#layoutbuilder-container #top-controls{padding-top: 20px;}
-#layoutbuilder-container .row-fluid{width:auto}
-#layoutbuilder-container .ui-sortable>.sortable-row{-webkit-box-shadow:0 0 3px rgba(0,0,0,.2);background:#fbfbfb;box-shadow:0 0 3px rgba(0,0,0,.2);margin:15px 0;padding:15px}
-#layoutbuilder-container .ui-sortable>.sortable-row:hover{-webkit-box-shadow:0 0 3px rgba(0,0,0,.5);background:#f5f5f5;box-shadow:0 0 3px rgba(0,0,0,.5)}
-#layoutbuilder-container .sortable-row .row-fluid.col-container{border-top:1px solid #ddd;margin:15px -15px 0;padding:15px 15px 0}
-#layoutbuilder-container .sortable-row .row-name,
-#layoutbuilder-container .sortable-row .position-name{color:#666;font-size:20px}
-#layoutbuilder-container .sortable-row .position-name{font-size:14px;margin-left:15px}
-#layoutbuilder-container .type-message > span.position-name{color:red}
-#layoutbuilder-container .row-fluid.child-row{border-top:1px solid #ddd;margin:0;padding:0 15px 15px}
-#layoutbuilder-container .sortable-row .child-row .row-fluid.show-grid{margin-top:0}
-#layoutbuilder-container .sortable-row .col-container> [class*=span]{background:#fff;border:1px solid #dadada;border-radius:0;line-height:50px;min-height:50px;box-shadow:0 0 3px 0 rgba(0,0,0,.1);-webkit-box-shadow:0 0 3px 0 rgba(0,0,0,.1)}
-#layoutbuilder-container .sortable-row .col-container> [class*=span].type-component{background:#f8fde9;border:1px solid #809c36}
-#layoutbuilder-container .sortable-row .col-container> [class*=span].type-message > .type-message{text-align:center}
-#layoutbuilder-container .sortable-row .col-container> [class*=span]:hover{border-color:rgba(82,168,236,0.8);outline:thin dotted 9}
-#layoutbuilder-container .sortable-row .sortable-row [class*=span]{margin-top:5px}
-#layoutbuilder-container .row-tools{margin-top:3px}
-#layoutbuilder-container .row-tools a{color:#a5a5a5;font-size:18px;margin:0 0 0 6px}
-#layoutbuilder-container .row-tools a.icon-move{border-right:1px solid #ccc;cursor:move;padding-right:6px}
-#layoutbuilder-container .col-control-buttons{-webkit-transition:opacity 300ms;float:right;margin-right:15px;opacity:0}
-#layoutbuilder-container .col-control-buttons i{color:#a5a5a5;font-size:14px;margin:0 0 0 3px}
-#layoutbuilder-container .col-control-buttons i.icon-move{cursor:move}
-#layoutbuilder-container .row-tools a.icon-remove,
-#layoutbuilder-container .col-control-buttons i.icon-remove{color:#e52626}
-#layoutbuilder-container .columntools.open,
+.sortable-span { border: none; }
+#layoutbuilder-container ul { margin: 0 }
+#layoutbuilder-container { min-height: 500px }
+	#layoutbuilder-container #top-controls { padding-top: 20px; }
+	#layoutbuilder-container .row-fluid { width: auto }
+	#layoutbuilder-container .ui-sortable>.sortable-row { -moz-box-shadow: 0 1px 4px rgba(0,0,0,.12); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.12); background-color: #fafafa; border: 1px solid #f0f0f0; box-shadow: 0 1px 4px rgba(0,0,0,.12); margin:15px 0;padding: 15px }
+		#layoutbuilder-container .ui-sortable>.sortable-row:hover { -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5); background: #f5f5f5; box-shadow: 0 0 3px rgba(0,0,0,.5) }
+	#layoutbuilder-container .sortable-row .row-fluid.col-container { border-top: 1px solid #f0f0f0; margin: 15px -15px 0; padding: 15px 15px 0 }
+	#layoutbuilder-container .sortable-row .row-name,
+#layoutbuilder-container .sortable-row .position-name { color: #717171; font-size: 20px; font-weight: 400; }
+	#layoutbuilder-container .sortable-row .position-name { font-size:14px;margin-left: 15px }
+	#layoutbuilder-container .type-message > span.position-name { color: red }
+	#layoutbuilder-container .row-fluid.child-row { border-top: 1px solid #ddd; margin: 0; padding: 0 15px 15px }
+	#layoutbuilder-container .sortable-row .child-row .row-fluid.show-grid { margin-top: 0 }
+	#layoutbuilder-container .sortable-row .col-container> [class*=span] { background: #fff; border-radius: 0; border: 1px solid #e9e9e9; line-height: 50px; min-height: 50px; }
+		#layoutbuilder-container .sortable-row .col-container> [class*=span].type-component { background:#f8fde9;border: 1px solid #809c36 }
+		#layoutbuilder-container .sortable-row .col-container> [class*=span].type-message > .type-message { text-align: center }
+		#layoutbuilder-container .sortable-row .col-container> [class*=span]:hover { border-color:rgba(82,168,236,0.8);outline: thin dotted 9 }
+	#layoutbuilder-container .sortable-row .sortable-row [class*=span] { margin-top: 5px }
+	#layoutbuilder-container .row-tools { margin-top: 3px }
+		#layoutbuilder-container .row-tools a { color: #a5a5a5; font-size: 18px; margin: 0 0 0 6px }
+			#layoutbuilder-container .row-tools a.icon-move { border-right: 1px solid #ccc; cursor: move; padding-right: 6px }
+	#layoutbuilder-container .col-control-buttons { -webkit-transition: opacity 300ms; float: right; margin-right: 15px; opacity: 0 }
+		#layoutbuilder-container .col-control-buttons i { color: #a5a5a5; font-size: 14px; margin: 0 0 0 3px }
+			#layoutbuilder-container .col-control-buttons i.icon-move { cursor: move }
+	#layoutbuilder-container .row-tools a.icon-remove,
+#layoutbuilder-container .col-control-buttons i.icon-remove { color: #e52626 }
+	#layoutbuilder-container .columntools.open,
 #layoutbuilder-container .sortable-row .col-container > [class*="span"]:hover >.col-control-buttons,
-#layoutbuilder-container .sortable-row .col-container > [class*="span"]:focus >.col-control-buttons{opacity:1}
-
-
+#layoutbuilder-container .sortable-row .col-container > [class*="span"]:focus >.col-control-buttons { opacity: 1 }
 /*Detail*/
-#details{padding:15px;position:relative}
+#details { padding:15px;position: relative }
 /*Menu Assignment*/
-#assignment{padding:15px;position:relative}
-#assignment #jform_menuselect-lbl{display:none}
-#assignment .btn-toolbar,
-#assignment .jform-rightbtn{position:absolute;right:15px;top:10px}
+#assignment { padding:15px;position: relative }
+	#assignment #jform_menuselect-lbl { display: none }
+	#assignment .btn-toolbar,
+#assignment .jform-rightbtn { position: absolute; right: 15px; top: 10px }
+/*Style*/
+#droppable-container { overflow: auto; position: relative; }
+#layoutbuilder-droppable { height: 5000px; left: 0; position: absolute; top: 0; width: 100%; z-index: 2 }
+#layoutframe { border: none; display: block; height: 5000px; z-index: 1; }
+.relative { position: relative }
+.zo2-draggable { float: left; height: 80px; text-align: center; width: 120px; z-index: 9999; }
+#workspace-tabs { clear: left; float: left; width: 300px }
+#components-container { width: 300px }
+	#components-container .zo2-draggable img { display: block; height: 66px; margin: 0 auto; width: 120px; }
+#layoutbuilder-toolbar { background-color: #ffffff; border-radius: 4px; display: none; height: 16px; opacity: 0.7; padding: 5px; position: absolute; right: 0; top: 0; }
+	#layoutbuilder-toolbar:hover { opacity: 1 }
+	#layoutbuilder-toolbar .icon { display: block; float: left; height: 16px; width: 16px; }
+	#layoutbuilder-toolbar .duplicate { background: url('../images/icon_copy16.png') no-repeat 0 0;margin-right: 3px }
+	#layoutbuilder-toolbar .settings { margin-right: 3px;background: url('../images/icon_settings16.png') no-repeat 0 0 }
+	#layoutbuilder-toolbar .delete { background: url('../images/icon_trash16.png') no-repeat 0 0 }
+#attributes-container input, #attributes-container textarea { width:100%;display: inline-block }
+#attributes-container .controls { margin-left:110px;width: 150px }
+#leftSideBar { float:left;width: 300px }
+#selectLayoutModal.modal { overflow: visible !important; }
+#selectLayoutModal .modal-body { overflow-y: visible !important; }
+.ui-tabs .ui-tabs-nav li { bottom:-1px;top: auto }
+/**** New layout styles ****/
+.sortable-row { margin-bottom: 20px;padding: 0 0 20px 0 }
+.sortable-span { border: solid 1px #76B4CB; margin-bottom: 20px; padding: 10px; position: relative; }
+.sortable-row, .sortable-span { background-color: #ffffff; border-radius: 2px; position: relative }
+.row-control { font-size: 30px; font-weight: bold; line-height: 60px; }
+.row-control-container { padding: 0 10px }
+.row-control-icon, .col-control-icon { color: #373737; cursor: pointer; font-size: 20px; height: 20px; margin-left: 5px; width: 20px; }
+.row-control-icon.delete, .col-control-icon.delete { color: #e30004 }
+.row-control-buttons { position: absolute; right: 20px; top: 0; }
+.col-control-buttons { position: absolute; right: 10px; top: 0; }
+.sortable-row hr { background-color: #5193AD; height: 1px; margin: 0 0 20px; width: 100%; }
+.col-name { color: #272727; font-size: 14px; font-weight: 400; height: 50px; line-height: 25px; padding-left: 15px; }
+.col-container { width: auto }
+.clearfix:after { clear: both; content: "."; display: block; height: 0; line-height: 0; visibility: hidden; }
+.clearfix { display: inline-block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+.row-fluid { overflow: hidden }
+/** Quick hack for chosen2 work inside bootstrap modal box **/
+#layoutbuilder-container div.modal { overflow: visible !important }
+#layoutbuilder-container .modal-body { overflow: visible !important; }
+#layoutbuilder-container .container-fluid > .row-fluid { padding: 15px 15px 0 }
+#top-controls { margin-bottom: 20px }
+	#top-controls > * { float:left;margin-right: 5px }
+.overlay { background-color: #000000; bottom: 0; cursor: wait; display: none; left: 0; opacity: 0.5; position: absolute; right: 0; top: 0; z-index: 99999; }
+#zo2logo { background: url('../images/zo2logo.png') no-repeat 0 0; display: block; height: 70px; margin: 0 auto; width: 310px; }
