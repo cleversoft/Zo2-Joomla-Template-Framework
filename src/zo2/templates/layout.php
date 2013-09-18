@@ -1,10 +1,10 @@
 <?php /* @var $this JFormFieldLayout */ ?>
-<textarea style="display: none" class="hfLayoutHtml" name="<?php echo $this->name?>" id="<?php echo $this->id?>"></textarea>
-<input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplateName()?>" />
-<input type="hidden" id="hdLayoutBuilder" value="0" />
-<input type="hidden" id="hfLayoutName" value="homepage" />
 <div id="layoutbuilder-container">
-    <div id="top-controls" class="container-fluid">
+    <input type="text" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name?>" id="<?php echo $this->id?>" />
+    <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplateName()?>" />
+    <input type="hidden" id="hdLayoutBuilder" value="0" />
+    <input type="hidden" id="hfLayoutName" value="homepage" />
+    <div id="top-controls" class="container-fluid" style="display: none">
         <select id="selectLayouts">
             <option value="homepage">homepage</option>
         </select>
