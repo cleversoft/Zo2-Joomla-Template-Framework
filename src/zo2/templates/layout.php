@@ -66,6 +66,7 @@
                         <select id="dlColPosition">
                             <option value="">(none)</option>
                             <option value="component">Component</option>
+                            <option value="message">Message</option>
                             <option value="mega_menu">Mega Menu</option>
                             <?php foreach($positions as $pos) : ?>
                             <option value="<?php echo $pos?>"><?php echo $pos?></option>
@@ -109,6 +110,19 @@
                             <option value="10">offset10</option>
                             <option value="11">offset11</option>
                             <option value="12">offset12</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="ddlColStyle">Style</label>
+                    <div class="controls">
+                        <select id="ddlColStyle">
+                            <option value="none">None</option>
+                            <option value="rounded">rounded</option>
+                            <option value="table">table</option>
+                            <option value="horz">horz</option>
+                            <option value="xhtml">xhtml</option>
+                            <option value="outline">outline</option>
                         </select>
                     </div>
                 </div>

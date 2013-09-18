@@ -274,12 +274,13 @@ class Zo2Layout {
 
         if (!empty($item['position'])) {
             if ($item['position'] == 'component') $html .= '<jdoc:include type="component" />';
+            else if ($item['position'] == 'message') $html .= '<jdoc:include type="message" />';
             else if($item['position'] == 'mega_menu') {
                 $zo2 = Zo2Framework::getInstance();
                 $html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
             }
             else {
-                $html .= '<!-- module pos: ' . $item['position'] . ' -->';
+                $html .= '<!-- module pos: ' . $item['position'] . ' - ' . $item['style'] . ' -->';
                 $html .= '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
                 $html .= '<!-- /module pos: ' . $item['position'] . ' -->';
             }
