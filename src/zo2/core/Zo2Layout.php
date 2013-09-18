@@ -253,7 +253,8 @@ class Zo2Layout {
         //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
         $class = 'container';
         $html = '';
-        $html .= '<div class="' . $class . '">'; // start of container
+        if (!empty($item['id'])) $html .= '<div id="' . $item['id'] . '" class="' . $class . '">';
+        else $html .= '<div class="' . $class . '">'; // start of container
         $html .= '<div class="row">'; // start of row
 
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
@@ -270,7 +271,8 @@ class Zo2Layout {
         $class = 'col-md-' . $item['span'];
         //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
         if (!empty($item['customClass'])) $class .= ' ' . $item['customClass'];
-        $html .= '<div class="' . $class . '">';
+        if (!empty($item['id'])) $html .= '<div id="' . $item['id'] . '" class="' . $class . '">';
+        else $html .= '<div class="' . $class . '">';
 
         if (!empty($item['position'])) {
             if ($item['position'] == 'component') $html .= '<jdoc:include type="component" />';

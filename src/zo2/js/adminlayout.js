@@ -23,37 +23,22 @@ $(window).bind('load', function(){
 });
 
 jQuery(document).ready(function($){
+    injectFormSubmit();
     wrapForm();
     generateLayoutsList();
+
+    // bind event to generate row id
+    $('#txtRowName').live('keyup', function (e){
+        var $this = $(this);
+        $('#txtRowId').val(generateSlug($this.val()));
+    });
 
     //var width = $('#style-form').width() - 320;
     //$('#droppable-container').css('width', width);
     var layoutName = $('#hfLayoutName').val();
     var templateName = $('#hfTemplateName').val();
 
-    $('#btSaveLayout').on('click', function() {
-        var $overlay = $('<div />').addClass('overlay').appendTo('body').fadeIn();
-        var json = generateJson();
-        var postData = {
-            zo2controller: 'saveLayout',
-            name: layoutName,
-            template: templateName,
-            data: json
-        };
-        $.post('index.php', postData, function(res) {
-            $overlay.remove();
-        });
-        return false;
-    });
-
-    loadLayout($('#hfTemplateName').val(), $('#hfLayoutName').val());
-
-    $('#btLoadLayout').on('click', function() {
-        $('#hfLayoutName').val($('#selectLayouts').val());
-        loadLayout($('#hfTemplateName').val(), $('#hfLayoutName').val(), true);
-
-        return false;
-    });
+    loadLayout(templateName, layoutName);
 
     $('.row-control-icon.duplicate').live('click', function() {
         var $this = $(this);
@@ -87,6 +72,7 @@ jQuery(document).ready(function($){
             $span.attr('data-zo2-type', 'span');
             $span.attr('data-zo2-position', '');
             $span.attr('data-zo2-offset', 0);
+            $span.attr('data-zo2-customClass', '');
             var $meta = jQuery('<div class="col-name">(none)</div><div class="col-control-buttons"><i class="col-control-icon dragger icon-move" /><i class="icon-cogs col-control-icon settings" /><i class="icon-remove col-control-icon delete" /></div></div>');
             $meta.appendTo($span);
             var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
@@ -126,10 +112,12 @@ jQuery(document).ready(function($){
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
         var rowCustomClass = $row.attr('data-zo2-customClass');
         var rowLayout = $row.attr('data-zo2-layout');
+        var rowId = $row.attr('data-zo2-id');
         if (!rowCustomClass) rowCustomClass = '';
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
         $('#txtRowCss').val('').val(rowCustomClass);
+        $('#txtRowId').val(rowId);
         $('#ddlRowLayout').val(rowLayout).trigger("liszt:updated");
         $('#rowSettingsModal').modal('show');
     });
@@ -139,6 +127,7 @@ jQuery(document).ready(function($){
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
         $row.attr('data-zo2-layout', $('#ddlRowLayout').val());
+        $row.attr('data-zo2-id', $('#txtRowId').val());
         $('#rowSettingsModal').modal('hide');
         return false;
     });
@@ -151,10 +140,14 @@ jQuery(document).ready(function($){
         var spanPosition = $col.attr('data-zo2-position');
         var spanOffset = $col.attr('data-zo2-offset');
         var spanStyle = $col.attr('data-zo2-style');
+        var customCss = $col.attr('data-zo2-customClass');
+        var spanId = $col.attr('data-zo2-id');
         $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
         $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
         $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
         $('#ddlColStyle').val(spanStyle).trigger("liszt:updated");
+        $('#txtColCss').val(customCss);
+        $('#txtColId').val(spanId);
         $('#colSettingsModal').modal('show');
     });
 
@@ -163,6 +156,8 @@ jQuery(document).ready(function($){
         $col.attr('data-zo2-span', $('#dlColWidth').val());
         $col.attr('data-zo2-offset', $('#ddlColOffset').val());
         $col.attr('data-zo2-style', $('#ddlColStyle').val());
+        $col.attr('data-zo2-customClass', $('#txtColCss').val());
+        $col.attr('data-zo2-id', $('#txtColId').val());
         var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
         $col.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12').addClass('span' + $('#dlColWidth').val());
         $col.removeClass('offset1 offset2 offset3 offset4 offset5 offset6 offset7 offset8 offset9 offset10 offset11 offset12').addClass('offset' + $('#ddlColOffset').val());
@@ -218,6 +213,7 @@ var insertRow = function (row, $parent) {
     $row.attr('data-zo2-type', 'row');
     $row.attr('data-zo2-customClass', row.customClass);
     $row.attr('data-zo2-layout', 'fixed');
+    $row.attr('data-zo2-id', row.id);
     var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">' + row.name +
         '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger" /><i class="icon-cogs row-control-icon settings" /><i class="row-control-icon duplicate icon-align-justify" /><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove" /></div></div></div>');
     $meta.appendTo($row);
@@ -239,6 +235,8 @@ var insertCol = function(span, $parent) {
     $span.attr('data-zo2-offset', span.offset !== null ? span.offset : 0);
     $span.attr('data-zo2-position', span.position);
     $span.attr('data-zo2-style', span.style);
+    $span.attr('data-zo2-customClass', span.customClass);
+    $span.attr('data-zo2-id', span.id);
     var $meta = jQuery('<div class="col-name">' + span.name +
         '</div><div class="col-control-buttons"><i class="col-control-icon dragger icon-move" /><i class="icon-cog col-control-icon settings" /><i class="icon-remove col-control-icon delete" /></div>');
     $meta.appendTo($span);
@@ -273,6 +271,7 @@ var generateItemJson = function($item) {
             layout: $item.attr('data-zo2-layout'),
             name: $item.find('> .row-control > .row-control-container > .row-name').text(),
             customClass: $item.attr('data-zo2-customClass'),
+            id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
             children: []
         };
 
@@ -290,8 +289,9 @@ var generateItemJson = function($item) {
             position: $item.attr('data-zo2-position'),
             span: parseInt($item.attr('data-zo2-span')),
             offset: parseInt($item.attr('data-zo2-offset')),
-            customClass: $item.attr('data-zo2-customClass'),
+            customClass: $item.attr('data-zo2-customClass') ? $item.attr('data-zo2-customClass') : '',
             style: $item.attr('data-zo2-style'),
+            id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
             children: []
         };
 
@@ -377,4 +377,26 @@ var wrapForm = function() {
     var $form = $('#style-form');
     var $wrapper = $('<div id="zo2-config" />').insertBefore($form);
     $form.appendTo($wrapper);
+};
+
+var injectFormSubmit = function() {
+    var $ = jQuery;
+    var $input = $('.hfLayoutHtml');
+    document.adminForm.onsubmit = function() {
+        $input.val(generateJson());
+        return false;
+    };
+};
+
+var generateSlug = function(str) {
+    str = str.replace(/^\s+|\s+$/g, '');
+    var from = "ÁÀẠẢÃĂẮẰẶẲẴÂẤẦẬẨẪáàạảãăắằặẳẵâấầậẩẫóòọỏõÓÒỌỎÕôốồộổỗÔỐỒỘỔỖơớờợởỡƠỚỜỢỞỠéèẹẻẽÉÈẸẺẼêếềệểễÊẾỀỆỂỄúùụủũÚÙỤỦŨưứừựửữƯỨỪỰỬỮíìịỉĩÍÌỊỈĨýỳỵỷỹÝỲỴỶỸĐđÑñÇç·/_,:;";
+    var to   = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaooooooooooooooooooooooooooooooooooeeeeeeeeeeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuiiiiiiiiiiyyyyyyyyyyddnncc------";
+
+    for (var i = 0, l = from.length ; i < l; i++) {
+        str = str.replace(new RegExp(from[i], "g"), to[i]);
+    }
+    str = str.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\s+/g, '-').toLowerCase();
+    str = str.replace(/(-){2,}/i, '-');
+    return str;
 };
