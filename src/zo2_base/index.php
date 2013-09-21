@@ -3,6 +3,7 @@ defined ('_JEXEC') or die ('Restricted Access');
 //access zo2 framework
 /** @var Zo2Framework $zo2 */
 $zo2 = $this->zo2;
+$doc = JFactory::getDocument();
 $params = $zo2->getParams('debug_visibility');
 $this->language = $doc->language;
 $this->direction = $doc->direction;
