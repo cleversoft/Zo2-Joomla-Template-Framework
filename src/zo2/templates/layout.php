@@ -1,16 +1,9 @@
 <?php /* @var $this JFormFieldLayout */ ?>
-<textarea style="display: none" class="hfLayoutHtml" name="<?php echo $this->name?>" id="<?php echo $this->id?>"></textarea>
-<input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplateName()?>" />
-<input type="hidden" id="hdLayoutBuilder" value="0" />
-<input type="hidden" id="hfLayoutName" value="homepage" />
 <div id="layoutbuilder-container">
-    <div id="top-controls" class="container-fluid">
-        <select id="selectLayouts">
-            <option value="homepage">homepage</option>
-        </select>
-        <button id="btLoadLayout" class="btn btn-info">Load layout</button>
-        <button id="btSaveLayout" class="btn btn-success">Save layout</button>
-    </div>
+    <input type="text" value="<?php echo htmlspecialchars($this->value)?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name?>" id="<?php echo $this->id?>" />
+    <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplateName()?>" />
+    <input type="hidden" id="hdLayoutBuilder" value="0" />
+    <input type="hidden" id="hfLayoutName" value="homepage" />
     <div id="droppable-container">
         <div class="container-fluid">
 
@@ -28,6 +21,12 @@
                     <label class="control-label" for="txtRowName">Name</label>
                     <div class="controls">
                         <input type="text" id="txtRowName" placeholder="Row's name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="txtRowId">ID</label>
+                    <div class="controls">
+                        <input type="text" id="txtRowId" placeholder="Row's ID">
                     </div>
                 </div>
                 <div class="control-group">
@@ -127,7 +126,13 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="txtRowCss">Custom CSS class</label>
+                    <label class="control-label" for="txtColId">ID</label>
+                    <div class="controls">
+                        <input type="text" id="txtColId" placeholder="Column's ID">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="txtColCss">Custom CSS class</label>
                     <div class="controls">
                         <input type="text" id="txtColCss" placeholder="Column's custom CSS class">
                     </div>

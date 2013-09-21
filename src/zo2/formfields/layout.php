@@ -26,10 +26,14 @@ class JFormFieldLayout extends JFormField {
         $template = $this->form->getValue('template');
         $theme_path = JPATH_SITE.'/templates/'.$template.'/';
         $theme_layout_path = $theme_path . 'layouts/';
-        //$current_layout_path = $theme_layout_path . 'homepage.compiled.php';
+        $current_layout_path = $theme_layout_path . 'homepage.json';
+
+        if (!empty($this->value)) {
+            file_put_contents($current_layout_path, $this->value);
+        }
 
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
-        $cssPath = $pluginPath . 'css/';
+        //$cssPath = $pluginPath . 'css/';
         $jsPath = $pluginPath . 'js/';
         $vendorPath = $pluginPath . 'vendor/';
 
@@ -44,7 +48,7 @@ class JFormFieldLayout extends JFormField {
         $doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap.min.css');
         $doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap-responsive.min.css');
         $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
-        $doc->addStyleSheet($cssPath . 'style.css');
+        //$doc->addStyleSheet($cssPath . 'style.css');
         //$doc->addScript($jsPath . 'admin.js');
 
         // Load Bootstrap JS framework

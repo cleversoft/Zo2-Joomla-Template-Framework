@@ -395,10 +395,17 @@ class Zo2Framework {
         // Load optional RTL Bootstrap CSS
         Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/vendor/font-awesome/css/font-awesome.min.css');
         Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/css/template.css');
-        Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/css/style.css');
+        //Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/css/style.css');
 
     }
 
+    /**
+     * Get available positions of the current template.
+     * Use only from backend.
+     *
+     * @param $templateName
+     * @return string[]
+     */
     public static function getAvailablePositions($templateName)
     {
         $path = JPath::clean(JPATH_SITE . '/templates/' . $templateName . '/templateDetails.xml');
@@ -414,6 +421,12 @@ class Zo2Framework {
         else return array();
     }
 
+    /**
+     * Get current template absolute local path.
+     * Use only from backend
+     *
+     * @return string
+     */
     public static function getCurrentTemplateAbsolutePath()
     {
         return Zo2Framework::$_currentTemplatePath;
