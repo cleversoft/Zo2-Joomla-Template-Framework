@@ -85,6 +85,18 @@
                 <option value="Lato|Lato:400,300,300italic,400italic,700,700italic">Lato</option>
                 <option value="Lora|Lora:400,400italic,700,700italic">Lora</option>
             </field>
+
+            <field name="enable_googleauthorship" type="radio" default="0"
+                   label="Google Authorship"
+                   description="Google Authorship" class="btn-group">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="google_profile_url" type="text" default=""
+                   label="Google Profile URL"
+                   description="Google Profile URL" />
+
+
         </fieldset>
         <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
             <field
