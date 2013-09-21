@@ -5,8 +5,8 @@
     <input type="hidden" id="hdLayoutBuilder" value="0" />
     <input type="hidden" id="hfLayoutName" value="homepage" />
     <div id="droppable-container">
-        <div class="container-fluid">
-
+        <div class="zo2-container">
+            <?php $this->renderLayout($layoutData)?>
         </div>
     </div>
 
