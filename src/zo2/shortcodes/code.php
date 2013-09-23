@@ -11,7 +11,7 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-Zo2Framework::import2('core.Zo2shortcode');
+Zo2Framework::import2('core.Zo2Shortcode');
 
 class Code extends ZO2Shortcode
 {
