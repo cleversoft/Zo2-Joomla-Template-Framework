@@ -31,7 +31,7 @@ jQuery(document).ready(function($){
     bindSortable();
 
     // bind event to generate row id
-    $('#txtRowName').live('keyup', function (e){
+    $('#txtRowName').on('keyup', function (e){
         var $this = $(this);
         $('#txtRowId').val(generateSlug($this.val()));
     });
@@ -43,7 +43,7 @@ jQuery(document).ready(function($){
 
     //loadLayout(templateName, layoutName);
 
-    $('.row-control-icon.duplicate').live('click', function() {
+    $('.row-control-icon.duplicate').on('click', function() {
         var $this = $(this);
         var $parent = $this.closest('.zo2-row');
         var $container = $this.closest('.zo2-container, .sortable-col');
@@ -60,7 +60,7 @@ jQuery(document).ready(function($){
         $colContainer.appendTo($meta);
     });
 
-    $('.row-control-icon.split').live('click', function() {
+    $('.row-control-icon.split').on('click', function() {
         var $this = $(this);
         var $container = $this.closest('[data-zo2-type="row"]');
         var $colContainer = $container.find('>.col-md-12>.col-container');
@@ -96,14 +96,14 @@ jQuery(document).ready(function($){
         }
     });
 
-    $('.row-control-buttons .delete').live('click', function(){
+    $('.row-control-buttons .delete').on('click', function(){
         var $this = $(this);
         bootbox.confirm('Are you sure want to delete this row?', function(result) {
             if (result) $this.closest('.sortable-row').remove();
         });
     });
 
-    $('.col-control-buttons .delete').live('click', function() {
+    $('.col-control-buttons .delete').on('click', function() {
         var $this = $(this);
 
         bootbox.confirm('Are you sure want to delete this column?', function(result) {
@@ -113,7 +113,7 @@ jQuery(document).ready(function($){
         });
     });
 
-    $('.row-control-buttons .settings').live('click', function(){
+    $('.row-control-buttons .settings').on('click', function(){
         var $this = $(this);
         var $row = $this.closest('.sortable-row');
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
@@ -129,7 +129,7 @@ jQuery(document).ready(function($){
         $('#rowSettingsModal').modal('show');
     });
 
-    $('#btnSaveRowSettings').live('click', function () {
+    $('#btnSaveRowSettings').on('click', function () {
         var $row = $.data(document.body, 'editingEl');
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
@@ -139,7 +139,7 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    $('.col-control-buttons .settings').live('click', function(){
+    $('.col-control-buttons .settings').on('click', function(){
         var $this = $(this);
         var $col = $this.closest('.sortable-col');
         $.data(document.body, 'editingEl', $col);
@@ -158,7 +158,7 @@ jQuery(document).ready(function($){
         $('#colSettingsModal').modal('show');
     });
 
-    $('#btnSaveColSettings').live('click', function() {
+    $('#btnSaveColSettings').on('click', function() {
         var $col = $.data(document.body, 'editingEl');
         $col.attr('data-zo2-span', $('#dlColWidth').val());
         $col.attr('data-zo2-offset', $('#ddlColOffset').val());
