@@ -148,13 +148,17 @@ class Zo2Framework {
     /**
      * Get template name
      *
+     * Use from backend
+     *
      * @param int $templateId
      * @return string
      */
     public static function getTemplateName($templateId = 0)
     {
+        $jinput = JFactory::getApplication()->input;
         if($templateId == 0 && !isset($_GET['id'])) return '';
-        if($templateId == 0 && isset($_GET['id'])) $templateId = $_GET['id'];
+        if($templateId == 0 && isset($_GET['id'])) $templateId = $jinput->getInt('id');
+
         //if(!isset($_GET['id'])) return '';
         $db  = JFactory::getDBO();
         $sql = 'SELECT template
@@ -186,15 +190,20 @@ class Zo2Framework {
     /**
      * Get template params
      *
+     * Use from backend
+     *
      * @param bool $assocArray
      * @return mixed|string
      */
     public static function getTemplateParams($assocArray = true){
+        $jinput = JFactory::getApplication()->input;
+        $templateId = $jinput->getInt('id');
+
         if(!isset($_GET['id'])) return '';
         $db  = JFactory::getDBO();
         $sql = 'SELECT params
                 FROM #__template_styles
-                WHERE id = ' . $_GET['id'] ;
+                WHERE id = ' . $templateId ;
         $db->setQuery($sql);
         return json_decode($db->loadResult(), $assocArray);
     }
