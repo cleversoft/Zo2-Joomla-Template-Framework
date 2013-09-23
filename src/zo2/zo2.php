@@ -89,6 +89,14 @@ class plgSystemZo2 extends JPlugin
                 $gplus .= ' title="Google Plus Profile for '.$author_name.'" plugin="Google Plus Authorship">'.$author_name.'</a>';
                 $article->text = $gplus . $article->text;
             }
+            if ($config->get('tab_order', 'facebook,gplus,disqus,k2comment')) {
+
+                Zo2Framework::import2('addons.comments.api');
+                $comment = new ZO2Comments();
+
+                $article->text = $article->text .   (string)$comment->renderHtml();;
+
+            }
 
         }
 
