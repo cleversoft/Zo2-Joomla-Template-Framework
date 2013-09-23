@@ -12,7 +12,7 @@
 defined('_JEXEC') or die ('resticted aceess');
 
 
-Zo2Framework::import2('core.shortcodes');
+Zo2Framework::import2('core.Zo2shortcode');
 
 class Bliptv extends ZO2Shortcode
 {

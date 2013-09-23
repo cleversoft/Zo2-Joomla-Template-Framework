@@ -12,7 +12,7 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-Zo2Framework::import2('core.shortcodes');
+Zo2Framework::import2('core.Zo2shortcode');
 
 class Polldaddy extends ZO2Shortcode
 {

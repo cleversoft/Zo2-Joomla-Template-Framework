@@ -341,7 +341,7 @@ class Zo2Framework {
      */
     public static function getController () {
         if ($zo2controller = JFactory::getApplication()->input->getCmd ('zo2controller')) {
-            Zo2Framework::import2 ('core.controller');
+            Zo2Framework::import2 ('core.Zo2controller');
             ZO2Controller::exec($zo2controller);
         }
     }
