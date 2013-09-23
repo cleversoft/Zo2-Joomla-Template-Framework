@@ -301,7 +301,7 @@ class Zo2Framework {
      * @param $template
      */
     public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
-        Zo2Framework::import2('core.menu');
+        Zo2Framework::import2('core.Zo2Megamenu');
         $params = Zo2Framework::getParams();
 //        $file = JPATH_ROOT . '/templates/'.$template.'/layouts/megamenu.json';
 //        $configs = json_decode(JFile::read($file), true);
