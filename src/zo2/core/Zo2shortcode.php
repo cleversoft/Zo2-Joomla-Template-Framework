@@ -14,9 +14,9 @@ defined('_JEXEC') or die ('resticted aceess');
 /**
  * Base class for a Short code
  * @package     zo2
- * @subpackage  ZO2ShortCode
+ * @subpackage  Zo2ShortCode
  */
-class ZO2ShortCode extends JObject
+class Zo2ShortCode extends JObject
 {
     /**
      * The  short code tag

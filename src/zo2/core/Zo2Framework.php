@@ -310,7 +310,7 @@ class Zo2Framework {
         if (JFactory::getApplication()->isAdmin()) {
             $mmconfig['edit'] = true;
         }
-        $menu = new ZO2MegaMenu ($menutype, $mmconfig, $params);
+        $menu = new Zo2MegaMenu ($menutype, $mmconfig, $params);
 
         //Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/megamenu.css');
 //        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/css/megamenu-responsive.css');
@@ -353,7 +353,7 @@ class Zo2Framework {
     public static function getController () {
         if ($zo2controller = JFactory::getApplication()->input->getCmd ('zo2controller')) {
             Zo2Framework::import2 ('core.Zo2Controller');
-            ZO2Controller::exec($zo2controller);
+            Zo2Controller::exec($zo2controller);
         }
     }
 
