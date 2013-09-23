@@ -14,7 +14,7 @@ defined('_JEXEC') or die ('resticted aceess');
 
 Zo2Framework::import2('core.Zo2Shortcode');
 
-class Polldaddy extends ZO2Shortcode
+class Polldaddy extends Zo2Shortcode
 {
     protected $tagname = 'polldaddy';
 

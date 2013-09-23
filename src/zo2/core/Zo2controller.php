@@ -11,11 +11,11 @@
  //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
-class ZO2Controller
+class Zo2Controller
 {
     public static function exec ($controller) {
-        if (method_exists('ZO2Controller', $controller)) {
-            ZO2Controller::$controller();
+        if (method_exists('Zo2Controller', $controller)) {
+            Zo2Controller::$controller();
         }
         exit;
     }

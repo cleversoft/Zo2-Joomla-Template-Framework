@@ -13,7 +13,7 @@ defined('_JEXEC') or die ('resticted aceess');
 
 Zo2Framework::import2('core.Zo2Shortcode');
 
-class Gist extends ZO2Shortcode
+class Gist extends Zo2Shortcode
 {
     // set short code tag
     protected $tagname = 'gist';

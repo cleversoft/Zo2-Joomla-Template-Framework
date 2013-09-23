@@ -11,7 +11,7 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-class ZO2MegaMenu
+class Zo2MegaMenu
 {
     protected $_params = null;
     protected $_configs = null;
