@@ -26,7 +26,7 @@ class Vimeo extends Zo2Shortcode
     protected function body()
     {
         // initializing variables for short code
-        extract(shortcode_atts(array(
+        extract($this->shortcode_atts(array(
                 'id' => 69445362,
                 'w' => 720,
                 'h' => 320,

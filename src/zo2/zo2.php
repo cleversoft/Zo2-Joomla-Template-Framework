@@ -67,7 +67,6 @@ class plgSystemZo2 extends JPlugin
     public function onContentPrepare($context, &$article, &$params, $page = 0)
     {
         $config = Zo2Framework::getParams();
-
         // Don't run this plugin when the content is being indexed
         if ($context == 'com_finder.indexer') {
             return true;
@@ -104,7 +103,7 @@ class plgSystemZo2 extends JPlugin
     {
 
         if (Zo2Framework::loadShortCodes()) {
-            return do_shortcode($content);
+            return Zo2Framework::getInstance()->ShortCode->do_shortcode($content);
         } else {
             return $content;
         }

@@ -26,7 +26,7 @@ class Code extends Zo2Shortcode
     {
 
         // initializing variables for short code
-        extract(shortcode_atts(array(
+        extract($this->shortcode_atts(array(
                 'languages' => '',
                 'firstline' => '1',
                 'highlight' => '',

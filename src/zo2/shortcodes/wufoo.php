@@ -26,7 +26,7 @@ class Wufoo extends Zo2Shortcode
     protected function body()
     {
         // initializing variables for short code
-        extract(shortcode_atts(array(
+        extract($this->shortcode_atts(array(
                 'username' => '',
                 'formhash' => '',
                 'h' => 320,

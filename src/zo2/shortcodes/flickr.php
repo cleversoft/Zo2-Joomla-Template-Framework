@@ -26,7 +26,7 @@ class Flickr extends Zo2Shortcode
     {
 
         // initializing variables for short code
-        extract(shortcode_atts(array(
+        extract($this->shortcode_atts(array(
                 'id' => '',
                 'url' => '',
                 'w' => 300,

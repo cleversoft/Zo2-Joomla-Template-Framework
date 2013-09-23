@@ -46,7 +46,8 @@ class Zo2Framework {
         $app = JFactory::getApplication();
 
         if (!$app->isAdmin()) {
-             Zo2Framework::import2('addons.shortcodes.api');
+            Zo2Framework::import2('addons.shortcodes.WPShortcode');
+            Zo2Framework::getInstance()->ShortCode = new WPShortcode();
             // JViewLegacy
             if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.class.legacy');
             // JModuleHelper

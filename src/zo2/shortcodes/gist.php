@@ -26,7 +26,7 @@ class Gist extends Zo2Shortcode
     {
 
         // initializing variables for short code
-        extract(shortcode_atts(array(
+        extract($this->shortcode_atts(array(
                 'id' => '',
                 'username' => '',
                 'url' => ''

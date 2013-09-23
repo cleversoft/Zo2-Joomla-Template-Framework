@@ -26,7 +26,7 @@ class Bliptv extends Zo2Shortcode
     protected function body()
     {
         // initializing variables for short code
-        extract(shortcode_atts(array(
+        extract($this->shortcode_atts(array(
                 'id' => 6608034,
                 'w' => 720,
                 'h' => 320,

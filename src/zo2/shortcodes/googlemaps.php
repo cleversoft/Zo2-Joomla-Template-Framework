@@ -26,7 +26,7 @@ class Googlemaps extends Zo2Shortcode
     {
 
         // initializing variables for short code
-        extract(shortcode_atts(array(
+        extract($this->shortcode_atts(array(
                 'lat' => -34.397,
                 'lng' => 150.644,
                 'zoom' => 11,

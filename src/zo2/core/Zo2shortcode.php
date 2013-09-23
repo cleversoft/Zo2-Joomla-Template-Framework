@@ -37,7 +37,7 @@ class Zo2Shortcode extends JObject
      * Construct
      */
     public function __construct() {
-
+        $this->ShortCode = Zo2Framework::getInstance()->ShortCode;
     }
 
     /**
@@ -46,10 +46,12 @@ class Zo2Shortcode extends JObject
     public function run()
     {
         if ($this->tagname) {
-            add_shortcode($this->tagname, array(&$this, 'content'));
+            $this->ShortCode->add_shortcode($this->tagname, array(&$this, 'content'));
         }
     }
-
+    public function shortcode_atts($default = array(), $config = array()) {
+        return $this->ShortCode->shortcode_atts($default, $config);
+    }
     /**
      * The content of a short code, it is empty content. So this method must be overwritten by a child method
      */
