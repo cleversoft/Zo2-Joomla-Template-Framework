@@ -56,7 +56,7 @@ jQuery(document).ready(function($){
 
     //loadLayout(templateName, layoutName);
 
-    $('.row-control-icon.duplicate').on('click', function() {
+    $('.row-control-buttons').on('click', '.duplicate', function() {
         var $this = $(this);
         var $parent = $this.closest('.zo2-row');
         var $container = $this.closest('.zo2-container, .sortable-col');
@@ -73,7 +73,7 @@ jQuery(document).ready(function($){
         $colContainer.appendTo($meta);
     });
 
-    $('.row-control-icon.split').on('click', function() {
+    $('.row-control-buttons').on('click', '.split', function() {
         var $this = $(this);
         var $container = $this.closest('[data-zo2-type="row"]');
         var $colContainer = $container.find('>.col-md-12>.col-container');
@@ -109,14 +109,14 @@ jQuery(document).ready(function($){
         }
     });
 
-    $('.row-control-buttons .delete').on('click', function(){
+    $('.row-control-buttons').on('click', '.delete', function(){
         var $this = $(this);
         bootbox.confirm('Are you sure want to delete this row?', function(result) {
             if (result) $this.closest('.sortable-row').remove();
         });
     });
 
-    $('.col-control-buttons .delete').on('click', function() {
+    $('.col-control-buttons').on('click', '.delete', function() {
         var $this = $(this);
 
         bootbox.confirm('Are you sure want to delete this column?', function(result) {
@@ -126,7 +126,7 @@ jQuery(document).ready(function($){
         });
     });
 
-    $('.row-control-buttons .settings').on('click', function(){
+    $('.row-control-buttons').on('click', '.settings', function(){
         var $this = $(this);
         var $row = $this.closest('.sortable-row');
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
@@ -152,7 +152,7 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    $('.col-control-buttons .settings').on('click', function(){
+    $('.col-control-buttons').on('click', '.settings', function(){
         var $this = $(this);
         var $col = $this.closest('.sortable-col');
         $.data(document.body, 'editingEl', $col);
