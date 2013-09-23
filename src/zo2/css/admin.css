@@ -1,22 +1,26 @@
 /**
- * Zo2 Framework (http://zo2framework.org)
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
  *
- * @link     http://github.com/aploss/zo2
- * @package  Zo2
- * @author   Hiepvu
- * @copyright  Copyright ( c ) 2008 - 2013 APL Solutions
- * @license  http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
-*/
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Phuoc Nguyen <phuoc@huuphuoc.me>
+ * @author      Vu Hiep <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ */
+
 @import "../vendor/font-awesome/css/font-awesome.min.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
 
 #zo2-config { background: #ffffff; padding: 30px 10px; }
 .admin-inline-toolbox { -moz-box-sizing: border-box; -o-box-sizing: border-box; -webkit-box-sizing: border-box; background: #eee; border-bottom: 1px solid #e6e6e6; border-top: 1px solid #e6e6e6; box-sizing: border-box; margin: 15px 0 20px; }
-	.admin-inline-toolbox ul { margin: 0; padding: 0; }
-	.admin-inline-toolbox li { display: inline-block; list-style: none; margin: 0; padding: 0; }
+.admin-inline-toolbox ul { margin: 0; padding: 0; }
+.admin-inline-toolbox li { display: inline-block; list-style: none; margin: 0; padding: 0; }
 .zo2-progress { display: inline-block; height: 25px; vertical-align: top; width: 30px; }
-	.zo2-progress .bar { border-radius: 2px; }
+.zo2-progress .bar { border-radius: 2px; }
 .disabled { cursor: default; opacity: .3; pointer-events: none; }
 /**Style admin**/
 [class^="icon-"]:before,
@@ -26,7 +30,7 @@
 /*Main Tab*/
 #myTabTabs.nav-tabs { background: #629c42; border: none; margin-bottom: 0; margin-top: 30px; padding: 0; }
 .nav-tabs > li { margin: 0; }
-	.nav-tabs > li > a { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; color: #fff; font-size: 16px; font-weight: 600; line-height: 20px; margin-right: 0; padding: 15px 25px }
+.nav-tabs > li > a { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; color: #fff; font-size: 16px; font-weight: 600; line-height: 20px; margin-right: 0; padding: 15px 25px }
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus,
@@ -34,42 +38,45 @@
 #myTabContent { -moz-box-shadow: 0 1px 5px rgba(0,0,0,.07); -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.07); box-shadow: 0 1px 5px rgba(0,0,0,.07); }
 /*Layout*/
 .sortable-row,
-.sortable-span { border: none; }
+.sortable-col { border: none; }
 #layoutbuilder-container ul { margin: 0 }
 #layoutbuilder-container { min-height: 500px }
-	#layoutbuilder-container #top-controls { padding-top: 20px; }
-	#layoutbuilder-container .row-fluid { width: auto }
-	#layoutbuilder-container .ui-sortable>.sortable-row { -moz-box-shadow: 0 1px 4px rgba(0,0,0,.12); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.12); background-color: #fafafa; border: 1px solid #f0f0f0; box-shadow: 0 1px 4px rgba(0,0,0,.12); margin:15px 0;padding: 15px }
-		#layoutbuilder-container .ui-sortable>.sortable-row:hover { -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5); background: #f5f5f5; box-shadow: 0 0 3px rgba(0,0,0,.5) }
-	#layoutbuilder-container .sortable-row .row-fluid.col-container { border-top: 1px solid #f0f0f0; margin: 15px -15px 0; padding: 15px 15px 0 }
-	#layoutbuilder-container .sortable-row .row-name,
+#layoutbuilder-container #top-controls { padding-top: 20px; }
+#layoutbuilder-container .row-fluid { width: auto }
+#layoutbuilder-container .ui-sortable>.sortable-row { -moz-box-shadow: 0 1px 4px rgba(0,0,0,.12); -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.12); background-color: #fafafa; border: 1px solid #f0f0f0; box-shadow: 0 1px 4px rgba(0,0,0,.12); margin:15px 0;padding: 15px }
+#layoutbuilder-container .ui-sortable>.sortable-row:hover { -webkit-box-shadow: 0 0 3px rgba(0,0,0,.5); background: #f5f5f5; box-shadow: 0 0 3px rgba(0,0,0,.5) }
+#layoutbuilder-container .sortable-row .row-fluid.col-container { border-top: 1px solid #f0f0f0; margin: 15px -15px 0; padding: 15px 15px 0 }
+#layoutbuilder-container .sortable-row .row-name,
 #layoutbuilder-container .sortable-row .position-name { color: #717171; font-size: 20px; font-weight: 400; }
-	#layoutbuilder-container .sortable-row .position-name { font-size:14px;margin-left: 15px }
-	#layoutbuilder-container .type-message > span.position-name { color: red }
-	#layoutbuilder-container .row-fluid.child-row { border-top: 1px solid #ddd; margin: 0; padding: 0 15px 15px }
-	#layoutbuilder-container .sortable-row .child-row .row-fluid.show-grid { margin-top: 0 }
-	#layoutbuilder-container .sortable-row .col-container> [class*=span] { background: #fff; border-radius: 0; border: 1px solid #e9e9e9; line-height: 50px; min-height: 50px; }
-		#layoutbuilder-container .sortable-row .col-container> [class*=span].type-component { background:#f8fde9;border: 1px solid #809c36 }
-		#layoutbuilder-container .sortable-row .col-container> [class*=span].type-message > .type-message { text-align: center }
-		#layoutbuilder-container .sortable-row .col-container> [class*=span]:hover { border-color:rgba(82,168,236,0.8);outline: thin dotted 9 }
-	#layoutbuilder-container .sortable-row .sortable-row [class*=span] { margin-top: 5px }
-	#layoutbuilder-container .row-tools { margin-top: 3px }
-		#layoutbuilder-container .row-tools a { color: #a5a5a5; font-size: 18px; margin: 0 0 0 6px }
-			#layoutbuilder-container .row-tools a.icon-move { border-right: 1px solid #ccc; cursor: move; padding-right: 6px }
-	#layoutbuilder-container .col-control-buttons { -webkit-transition: opacity 300ms; float: right; margin-right: 15px; opacity: 0 }
-		#layoutbuilder-container .col-control-buttons i { color: #a5a5a5; font-size: 14px; margin: 0 0 0 3px }
-			#layoutbuilder-container .col-control-buttons i.icon-move { cursor: move }
-	#layoutbuilder-container .row-tools a.icon-remove,
+#layoutbuilder-container .sortable-row .position-name { font-size:14px;margin-left: 15px }
+#layoutbuilder-container .type-message > span.position-name { color: red }
+#layoutbuilder-container .row-fluid.child-row { border-top: 1px solid #ddd; margin: 0; padding: 0 15px 15px }
+#layoutbuilder-container .sortable-row .child-row .row-fluid.show-grid { margin-top: 0 }
+#layoutbuilder-container .row-tools { margin-top: 3px }
+#layoutbuilder-container .row-tools a { color: #a5a5a5; font-size: 18px; margin: 0 0 0 6px }
+#layoutbuilder-container .row-tools a.icon-move { border-right: 1px solid #ccc; cursor: move; padding-right: 6px }
+#layoutbuilder-container .col-control-buttons { -webkit-transition: opacity 300ms; float: right; margin-right: 15px; opacity: 0 }
+#layoutbuilder-container .col-control-buttons i { color: #a5a5a5; font-size: 14px; margin: 0 0 0 3px }
+#layoutbuilder-container .col-control-buttons i.icon-move { cursor: move }
+#layoutbuilder-container .row-tools a.icon-remove,
 #layoutbuilder-container .col-control-buttons i.icon-remove { color: #e52626 }
-	#layoutbuilder-container .columntools.open,
-#layoutbuilder-container .sortable-row .col-container > [class*="span"]:hover >.col-control-buttons,
-#layoutbuilder-container .sortable-row .col-container > [class*="span"]:focus >.col-control-buttons { opacity: 1 }
+#layoutbuilder-container .columntools.open,
+
+#layoutbuilder-container .sortable-row .col-container> [class*=col] { border-radius: 0; line-height: 50px; min-height: 50px; }
+#layoutbuilder-container .sortable-row .col-container> [class*=col].type-component { background:#f8fde9;border: 1px solid #809c36 }
+#layoutbuilder-container .sortable-row .col-container> [class*=col].type-message > .type-message { text-align: center }
+#layoutbuilder-container .sortable-row .col-container> [class*=col]:hover { border-color:rgba(82,168,236,0.8);outline: thin dotted 9 }
+#layoutbuilder-container .sortable-row .sortable-row [class*=col] { margin-top: 5px }
+#layoutbuilder-container .sortable-row .col-container > [class*="col"]:hover > .col-wrap >.col-control-buttons,
+#layoutbuilder-container .sortable-row .col-container > [class*="col"]:focus > .col-wrap >.col-control-buttons { opacity: 1 }
+.col-wrap {border: 1px solid #e9e9e9; margin: 5px; border-radius: 3px; background: #ffffff}
+.col-wrap:hover{border-color:rgba(82,168,236,0.8)}
 /*Detail*/
 #details { padding:15px;position: relative }
 /*Menu Assignment*/
 #assignment { padding:15px;position: relative }
-	#assignment #jform_menuselect-lbl { display: none }
-	#assignment .btn-toolbar,
+#assignment #jform_menuselect-lbl { display: none }
+#assignment .btn-toolbar,
 #assignment .jform-rightbtn { position: absolute; right: 15px; top: 10px }
 /*Style*/
 #droppable-container { overflow: auto; position: relative; }
@@ -79,13 +86,13 @@
 .zo2-draggable { float: left; height: 80px; text-align: center; width: 120px; z-index: 9999; }
 #workspace-tabs { clear: left; float: left; width: 300px }
 #components-container { width: 300px }
-	#components-container .zo2-draggable img { display: block; height: 66px; margin: 0 auto; width: 120px; }
+#components-container .zo2-draggable img { display: block; height: 66px; margin: 0 auto; width: 120px; }
 #layoutbuilder-toolbar { background-color: #ffffff; border-radius: 4px; display: none; height: 16px; opacity: 0.7; padding: 5px; position: absolute; right: 0; top: 0; }
-	#layoutbuilder-toolbar:hover { opacity: 1 }
-	#layoutbuilder-toolbar .icon { display: block; float: left; height: 16px; width: 16px; }
-	#layoutbuilder-toolbar .duplicate { background: url('../images/icon_copy16.png') no-repeat 0 0;margin-right: 3px }
-	#layoutbuilder-toolbar .settings { margin-right: 3px;background: url('../images/icon_settings16.png') no-repeat 0 0 }
-	#layoutbuilder-toolbar .delete { background: url('../images/icon_trash16.png') no-repeat 0 0 }
+#layoutbuilder-toolbar:hover { opacity: 1 }
+#layoutbuilder-toolbar .icon { display: block; float: left; height: 16px; width: 16px; }
+#layoutbuilder-toolbar .duplicate { background: url('../images/icon_copy16.png') no-repeat 0 0;margin-right: 3px }
+#layoutbuilder-toolbar .settings { margin-right: 3px;background: url('../images/icon_settings16.png') no-repeat 0 0 }
+#layoutbuilder-toolbar .delete { background: url('../images/icon_trash16.png') no-repeat 0 0 }
 #attributes-container input, #attributes-container textarea { width:100%;display: inline-block }
 #attributes-container .controls { margin-left:110px;width: 150px }
 #leftSideBar { float:left;width: 300px }
@@ -93,10 +100,10 @@
 #selectLayoutModal .modal-body { overflow-y: visible !important; }
 .ui-tabs .ui-tabs-nav li { bottom:-1px;top: auto }
 /**** New layout styles ****/
-.sortable-row { margin-bottom: 20px;padding: 0 0 20px 0 }
-.sortable-span { border: solid 1px #76B4CB; margin-bottom: 20px; padding: 10px; position: relative; }
-.sortable-row, .sortable-span { background-color: #ffffff; border-radius: 2px; position: relative }
-.row-control { font-size: 30px; font-weight: bold; line-height: 60px; }
+.sortable-row { margin-bottom: 20px; padding: 0 0 20px 0 }
+.sortable-col { margin-bottom: 20px; position: relative; padding: 0}
+.sortable-row, .sortable-col { border-radius: 2px; position: relative }
+.row-control { font-size: 30px; font-weight: bold; line-height: 60px; width: auto}
 .row-control-container { padding: 0 10px }
 .row-control-icon, .col-control-icon { color: #373737; cursor: pointer; font-size: 20px; height: 20px; margin-left: 5px; width: 20px; }
 .row-control-icon.delete, .col-control-icon.delete { color: #e30004 }
@@ -115,6 +122,7 @@ html[xmlns] .clearfix { display: block; }
 #layoutbuilder-container .modal-body { overflow: visible !important; }
 #layoutbuilder-container .container-fluid > .row-fluid { padding: 15px 15px 0 }
 #top-controls { margin-bottom: 20px }
-	#top-controls > * { float:left;margin-right: 5px }
+#top-controls > * { float:left;margin-right: 5px }
 .overlay { background-color: #000000; bottom: 0; cursor: wait; display: none; left: 0; opacity: 0.5; position: absolute; right: 0; top: 0; z-index: 99999; }
 #zo2logo { background: url('../images/zo2logo.png') no-repeat 0 0; display: block; height: 70px; margin: 0 auto; width: 310px; }
+.zo2-container{position: relative;padding:0}

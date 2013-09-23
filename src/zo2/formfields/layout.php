@@ -1,18 +1,21 @@
 <?php
 /**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
  *
- * JFormFieldLayout class serves as form input for layout builder
- *
- * @package Zo2 Framework
- * @author JoomShaper http://www.joomvision.com
- * @author Duc Nguyen <ducntq@gmail.com>
- * @copyright Copyright (c) 2008 - 2013 JoomVision
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Phuoc Nguyen <phuoc@huuphuoc.me>
+ * @author      Vu Hiep <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
  */
 
 defined('JPATH_BASE') or die;
 
-class JFormFieldLayout extends JFormField {
+class JFormFieldLayout extends JFormField
+{
     protected $type = 'Layout';
 
     /**
@@ -20,7 +23,8 @@ class JFormFieldLayout extends JFormField {
      *
      * @return string
      */
-    public function getInput(){
+    public function getInput()
+    {
         $doc = JFactory::getDocument();
 
         $template = $this->form->getValue('template');
@@ -33,7 +37,7 @@ class JFormFieldLayout extends JFormField {
         }
 
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
-        //$cssPath = $pluginPath . 'css/';
+        $cssPath = $pluginPath . 'css/';
         $jsPath = $pluginPath . 'js/';
         $vendorPath = $pluginPath . 'vendor/';
 
@@ -48,6 +52,7 @@ class JFormFieldLayout extends JFormField {
         $doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap.min.css');
         $doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap-responsive.min.css');
         $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
+        $doc->addStyleSheet($cssPath . 'bootstrap.gridsystem.css');
         //$doc->addStyleSheet($cssPath . 'style.css');
         //$doc->addScript($jsPath . 'admin.js');
 
@@ -76,16 +81,86 @@ class JFormFieldLayout extends JFormField {
      *
      * @return string
      */
-    private function generateLayoutBuilder(){
+    private function generateLayoutBuilder()
+    {
         $templateName = $template = $this->form->getValue('template');
         $positions = Zo2Framework::getAvailablePositions($templateName);
-        $layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
+        //$layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
+        $layoutPath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName() . '/layouts/homepage.json';
+        $layoutData = json_decode(file_get_contents($layoutPath), true);
         //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
         $path = JPATH_SITE.'/plugins/system/zo2/templates/layout.php';
+
+
+
         ob_start();
         include($path);
         $html = ob_get_contents();
         ob_end_clean();
         return $html;
+    }
+
+    public function renderLayout($data)
+    {
+        for($i = 0, $total = count($data); $i < $total; $i++) {
+            $this->renderRow($data[$i]);
+        }
+    }
+
+    private function renderRow($item)
+    {
+        ?>
+        <div class="zo2-row sortable-row" data-zo2-type="row" data-zo2-customClass="<?php echo $item['customClass']?>"
+             data-zo2-layout="fixed" data-zo2-id="<?php echo $item['id']?>">
+            <div class="col-md-12 row-control">
+                <div class="row-control-container">
+                    <div class="row-name"><?php echo $item['name']?></div>
+                    <div class="row-control-buttons">
+                        <i class="icon-move row-control-icon dragger"></i>
+                        <i class="icon-cogs row-control-icon settings"></i>
+                        <i class="row-control-icon duplicate icon-align-justify"></i>
+                        <i class="row-control-icon split icon-columns"></i>
+                        <i class="row-control-icon delete icon-remove"></i>
+                    </div>
+                </div>
+
+                <div class="col-container zo2-row">
+                    <?php
+                    for($i = 0, $total = count($item['children']); $i < $total; $i++) {
+                        $this->renderColumn($item['children'][$i]);
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    private function renderColumn($item)
+    {
+        ?>
+        <div class="sortable-col col-md-<?php echo $item['span']?> col-md-offset-<?php echo $item['offset']?>" data-zo2-type="span"
+             data-zo2-span="<?php echo $item['span']?>" data-zo2-offset="<?php echo $item['offset']?>"
+             data-zo2-position="<?php echo $item['position']?>" data-zo2-style="<?php echo $item['style']?>"
+             data-zo2-customClass="<?php echo $item['customClass']?>" data-zo2-id="<?php echo $item['id']?>"
+        >
+            <div class="col-wrap">
+                <div class="col-name"><?php echo $item['name']?></div>
+                <div class="col-control-buttons">
+                    <i class="col-control-icon dragger icon-move"></i>
+                    <i class="icon-cog col-control-icon settings"></i>
+                    <i class="icon-remove col-control-icon delete"></i>
+                </div>
+
+                <div class="row-container zo2-row sortable-row">
+                    <?php
+                    for($i = 0, $total = count($item['children']); $i < $total; $i++) {
+                        $this->renderRow($item['children'][$i]);
+                    }
+                    ?>
+                </div>
+            </div>
+        </div>
+        <?php
     }
 }

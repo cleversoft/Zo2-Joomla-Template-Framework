@@ -1,13 +1,15 @@
 <?php
 /**
- * Zo2 Framework (http://zo2framework.org)
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
  *
- * @link         http://github.com/aploss/zo2
- * @package      Zo2
- * @author       Duc Nguyen <ducntq@gmail.com>
- * @author       Hiepvu <vqhiep2010@gmail.com>
- * @copyright    Copyright ( c ) 2008 - 2013 APL Solutions
- * @license      http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Phuoc Nguyen <phuoc@huuphuoc.me>
+ * @author      Vu Hiep <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
  */
 
 defined ('_JEXEC') or die('Resticted access!');
@@ -148,13 +150,17 @@ class Zo2Framework {
     /**
      * Get template name
      *
+     * Use from backend
+     *
      * @param int $templateId
      * @return string
      */
     public static function getTemplateName($templateId = 0)
     {
+        $jinput = JFactory::getApplication()->input;
         if($templateId == 0 && !isset($_GET['id'])) return '';
-        if($templateId == 0 && isset($_GET['id'])) $templateId = $_GET['id'];
+        if($templateId == 0 && isset($_GET['id'])) $templateId = $jinput->getInt('id');
+
         //if(!isset($_GET['id'])) return '';
         $db  = JFactory::getDBO();
         $sql = 'SELECT template
@@ -186,15 +192,20 @@ class Zo2Framework {
     /**
      * Get template params
      *
+     * Use from backend
+     *
      * @param bool $assocArray
      * @return mixed|string
      */
     public static function getTemplateParams($assocArray = true){
+        $jinput = JFactory::getApplication()->input;
+        $templateId = $jinput->getInt('id');
+
         if(!isset($_GET['id'])) return '';
         $db  = JFactory::getDBO();
         $sql = 'SELECT params
                 FROM #__template_styles
-                WHERE id = ' . $_GET['id'] ;
+                WHERE id = ' . $templateId ;
         $db->setQuery($sql);
         return json_decode($db->loadResult(), $assocArray);
     }

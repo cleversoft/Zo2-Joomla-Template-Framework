@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="template" client="site" method="upgrade">
-    <name>zo2_base</name>
+    <name>Zo2 Blank Template</name>
     <creationDate>May 2013</creationDate>
     <author>APL</author>
     <authorEmail>support@apl.vn</authorEmail>
