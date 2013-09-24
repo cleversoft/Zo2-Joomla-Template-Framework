@@ -254,15 +254,15 @@ class Zo2Layout {
         //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
         $class = 'container';
         $html = '';
-        if (!empty($item['id'])) $html .= '<div id="' . $item['id'] . '" class="' . $class . '">';
-        else $html .= '<div class="' . $class . '">'; // start of container
-        $html .= '<div class="row">'; // start of row
+        if (!empty($item['id'])) $html .= '<section id="' . $item['id'] . '" class="' . $class . '">';
+        else $html .= '<section class="' . $class . '">'; // start of container
+        $html .= '<section class="row">'; // start of row
 
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
             $html .= self::generateHtmlFromItem($item['children'][$i], $layoutType);
         }
-        $html .= '</div>'; // end of row
-        $html .= '</div>'; // end of container
+        $html .= '</section>'; // end of row
+        $html .= '</section>'; // end of container
         return $html;
     }
 
@@ -272,8 +272,8 @@ class Zo2Layout {
         $class = 'col-md-' . $item['span'];
         //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
         if (!empty($item['customClass'])) $class .= ' ' . $item['customClass'];
-        if (!empty($item['id'])) $html .= '<div id="' . $item['id'] . '" class="' . $class . '">';
-        else $html .= '<div class="' . $class . '">';
+        if (!empty($item['id'])) $html .= '<section id="' . $item['id'] . '" class="' . $class . '">';
+        else $html .= '<section class="' . $class . '">';
 
         if (!empty($item['position'])) {
             if ($item['position'] == 'component') $html .= '<jdoc:include type="component" />';
@@ -283,9 +283,9 @@ class Zo2Layout {
                 $html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
             }
             else {
-                $html .= '<!-- module pos: ' . $item['position'] . ' - ' . $item['style'] . ' -->';
+                //$html .= '<!-- module pos: ' . $item['position'] . ' - ' . $item['style'] . ' -->';
                 $html .= '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
-                $html .= '<!-- /module pos: ' . $item['position'] . ' -->';
+                //$html .= '<!-- /module pos: ' . $item['position'] . ' -->';
             }
         }
 
@@ -295,7 +295,7 @@ class Zo2Layout {
             }
         }
 
-        $html .= '</div>';
+        $html .= '</section>';
         return $html;
     }
 
