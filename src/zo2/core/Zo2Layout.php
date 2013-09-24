@@ -11,7 +11,7 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-
+defined('_JEXEC') or die ('Restricted access');
 class Zo2Layout {
     /* private */
     private $_layoutName, $_templatePath, $_layoutContent, $_layoutPath, $_templateName, $_staticsPath, $_coreStaticsPath, $_templateUri = '';
