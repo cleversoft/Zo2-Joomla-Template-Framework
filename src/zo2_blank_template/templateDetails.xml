@@ -15,7 +15,7 @@
 	</description>
 
     <languages>
-        <language tag="en-GB">en-GB.tpl_zo2_base.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_base.ini</language>
     </languages>
     <positions>
         <position>top</position>
@@ -47,8 +47,7 @@
         <folder>css</folder>
         <folder>layouts</folder>
         <folder>html</folder>
-        <folder>vendor</folder>
-        <folder>widgets</folder>
+        <folder>assets</folder>
     </files>
     <config>
 

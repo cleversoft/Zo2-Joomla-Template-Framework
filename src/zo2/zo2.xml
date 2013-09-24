@@ -11,7 +11,7 @@
     <description>Zo2 Framework - Template Framework for Joomla 3</description>
 
     <languages>
-        <language tag="en-GB">en-GB.plg_system_zo2.ini</language>
+        <language tag="en-GB">language/en-GB/en-GB.plg_system_zo2.ini</language>
     </languages>
 
     <files>
@@ -19,14 +19,13 @@
         <filename>layoutiframe.php</filename>
         <folder>addons</folder>
         <folder>core</folder>
-        <folder>css</folder>
         <folder>formfields</folder>
         <folder>html</folder>
-        <folder>images</folder>
-        <folder>js</folder>
+        <folder>assets</folder>
         <folder>shortcodes</folder>
         <folder>templates</folder>
         <folder>vendor</folder>
+        <folder>language</folder>
     </files>
     <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
 </extension>
