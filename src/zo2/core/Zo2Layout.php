@@ -303,6 +303,17 @@ class Zo2Layout {
         return $html;
     }
 
+    private function addGoogleAnalytics()
+    {
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+        $code = $params->get('ga_code');
+
+        if (isset($code) && !empty($code)) return $code;
+        else return '';
+    }
+
     public function insertHeaderAssets()
     {
         $html = '';
@@ -322,6 +333,8 @@ class Zo2Layout {
             $styles = '<style type="text/css">' . $styles . '</style>';
             $html .= "\n" . $styles;
         }
+
+        $html .= "\n" . $this->addGoogleAnalytics();
 
         return $html;
     }
