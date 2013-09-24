@@ -10,11 +10,6 @@
     <version>0.0.1</version>
     <description>Zo2 Framework - Template Framework for Joomla 3</description>
 
-    <!--
-    <updateservers>
-        <server type="extension" priority="1" name="Zo2 Framework">http://www.joomshaper.com/updates/plg_system_helix.xml</server>
-    </updateservers>
-    -->
     <languages>
         <language tag="en-GB">en-GB.plg_system_zo2.ini</language>
     </languages>
