@@ -362,7 +362,7 @@ class Zo2Framework {
      */
     public static function loadAdminAssets() {
 
-        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/admin.css');
+        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/assets/css/admin.css');
         JHtml::_('formbehavior.chosen', 'select');
 
     }

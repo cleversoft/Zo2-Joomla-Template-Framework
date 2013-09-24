@@ -7,7 +7,7 @@
         "condition": "if lt IE 9"
     },
     {
-        "path": "/vendor/bootstrap/css/bootstrap.min.css",
+        "path": "/assets/vendor/bootstrap/css/bootstrap.min.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
@@ -16,13 +16,13 @@
         "base": "plugin"
     },
     {
-        "path": "/vendor/jquery/jquery-1.9.1.min.js",
+        "path": "/assets/vendor/jquery/jquery-1.9.1.min.js",
         "type": "js",
         "position": "footer",
         "base": "plugin"
     },
     {
-        "path": "/vendor/bootstrap/js/bootstrap.min.js",
+        "path": "/assets/vendor/bootstrap/js/bootstrap.min.js",
         "type": "js",
         "position": "footer",
         "base": "plugin"

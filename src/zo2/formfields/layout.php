@@ -37,9 +37,10 @@ class JFormFieldLayout extends JFormField
         }
 
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
-        $cssPath = $pluginPath . 'css/';
-        $jsPath = $pluginPath . 'js/';
-        $vendorPath = $pluginPath . 'vendor/';
+        $assetsPath = $pluginPath . 'assets/';
+        $cssPath = $assetsPath . 'css/';
+        $jsPath = $assetsPath . 'js/';
+        $vendorPath = $pluginPath . 'assets/vendor/';
 
         // load jquery & jqueryui newest version, cause joomla's jquery is plain old
         // Load custom js and css

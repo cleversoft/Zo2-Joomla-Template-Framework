@@ -90,9 +90,6 @@
 #layoutbuilder-toolbar { background-color: #ffffff; border-radius: 4px; display: none; height: 16px; opacity: 0.7; padding: 5px; position: absolute; right: 0; top: 0; }
 #layoutbuilder-toolbar:hover { opacity: 1 }
 #layoutbuilder-toolbar .icon { display: block; float: left; height: 16px; width: 16px; }
-#layoutbuilder-toolbar .duplicate { background: url('../images/icon_copy16.png') no-repeat 0 0;margin-right: 3px }
-#layoutbuilder-toolbar .settings { margin-right: 3px;background: url('../images/icon_settings16.png') no-repeat 0 0 }
-#layoutbuilder-toolbar .delete { background: url('../images/icon_trash16.png') no-repeat 0 0 }
 #attributes-container input, #attributes-container textarea { width:100%;display: inline-block }
 #attributes-container .controls { margin-left:110px;width: 150px }
 #leftSideBar { float:left;width: 300px }

@@ -34,7 +34,7 @@ class JFormFieldAssets extends JFormField {
             //JHtml::_('jquery.framework');
             // remove because of empty css
             //$jdoc->addStyleSheet(ZO2_ADMIN_PLUGIN_URL . '/css/assets.css');
-            $jdoc->addScript(ZO2_ADMIN_PLUGIN_URL . '/js/assets.js');
+            $jdoc->addScript(ZO2_ADMIN_PLUGIN_URL . '/assets/js/assets.js');
             JFactory::getDocument()->addScriptDeclaration ( '
 
             jQuery.extend(Assets, {
