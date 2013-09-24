@@ -11,7 +11,7 @@
  * @license     GPL v2
  */
 
-defined ('_JEXEC') or die('Resticted access!');
+defined('_JEXEC') or die ('Restricted access');
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');

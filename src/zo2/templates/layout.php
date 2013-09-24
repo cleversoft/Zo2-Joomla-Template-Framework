@@ -10,7 +10,7 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-
+defined('_JEXEC') or die ('Restricted access');
 /* @var $this JFormFieldLayout */
 ?>
 <div id="layoutbuilder-container">

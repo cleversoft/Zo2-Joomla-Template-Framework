@@ -85,6 +85,8 @@
                 <option value="Lato|Lato:400,300,300italic,400italic,700,700italic">Lato</option>
                 <option value="Lora|Lora:400,400italic,700,700italic">Lora</option>
             </field>
+            <field name="ga_code" filter="raw" type="textarea" default="" label="Google Analytics tracking code" description="Include the Google Analytics code">
+            </field>
 
             <field name="enable_googleauthorship" type="radio" default="0"
                    label="Google Authorship"

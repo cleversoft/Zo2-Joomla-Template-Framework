@@ -11,7 +11,7 @@
  * @license     GPL v2
  */
 
-defined('JPATH_BASE') or die;
+defined('_JEXEC') or die ('Restricted access');
 
 class JFormFieldLayout extends JFormField
 {
