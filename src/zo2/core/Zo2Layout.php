@@ -6,12 +6,12 @@
  * @link        http://www.zo2framework.org
  * @link        http://github.com/aploss/zo2
  * @author      Duc Nguyen <ducntv@gmail.com>
- * @author      Phuoc Nguyen <phuoc@huuphuoc.me>
- * @author      Vu Hiep <vqhiep2010@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-defined('_JEXEC') or die ('Restricted access');
+defined('_JEXEC') or die;
+
 class Zo2Layout {
     /* private */
     private $_layoutName, $_templatePath, $_layoutContent, $_layoutPath, $_templateName, $_staticsPath, $_coreStaticsPath, $_templateUri = '';
@@ -303,17 +303,6 @@ class Zo2Layout {
         return $html;
     }
 
-    private function addGoogleAnalytics()
-    {
-        $app = JFactory::getApplication();
-        $template = $app->getTemplate(true);
-        $params = $template->params;
-        $code = $params->get('ga_code');
-
-        if (isset($code) && !empty($code)) return $code;
-        else return '';
-    }
-
     public function insertHeaderAssets()
     {
         $html = '';
@@ -333,8 +322,6 @@ class Zo2Layout {
             $styles = '<style type="text/css">' . $styles . '</style>';
             $html .= "\n" . $styles;
         }
-
-        $html .= "\n" . $this->addGoogleAnalytics();
 
         return $html;
     }

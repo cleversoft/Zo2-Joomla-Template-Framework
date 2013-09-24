@@ -6,13 +6,12 @@
  * @link        http://www.zo2framework.org
  * @link        http://github.com/aploss/zo2
  * @author      Duc Nguyen <ducntv@gmail.com>
- * @author      Phuoc Nguyen <phuoc@huuphuoc.me>
- * @author      Vu Hiep <vqhiep2010@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
 
-defined('_JEXEC') or die ('Resticted aceess');
+defined('_JEXEC') or die;
 
 jimport('joomla.event.plugin');
 

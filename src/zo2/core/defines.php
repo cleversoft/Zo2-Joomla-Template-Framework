@@ -1,14 +1,15 @@
 <?php
 /**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
  *
- * @package Zo2 Framework
- * @author ZO2 http://www.joomvision.com
- * @author Duc Nguyen <ducntq@gmail.com>
- * @author Vu Hiep <vqhiep2010@gmail.com>
- * @copyright Copyright (c) 2008 - 2013 JoomVision
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
  */
-
 defined('_JEXEC') or die;
 
 define ('ZO2_ADMIN', 'zo2');
