@@ -52,7 +52,6 @@ class Zo2Framework {
             if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.class.legacy');
             // JModuleHelper
             if (!class_exists('JModuleHelper', false)) Zo2Framework::import2('core.class.helper');
-
         }
 
         // set variable for env
@@ -398,6 +397,8 @@ class Zo2Framework {
 
     /**
      * Add head
+     *
+     * Use from frontend
      */
     public static function addHead() {
         JHtml::_('jquery.framework');
