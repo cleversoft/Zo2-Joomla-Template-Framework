@@ -1,13 +1,16 @@
 <?php
 /**
- * @package Zo2 Framework
- * @author Hiepvu
- * @copyright Copyright (c) 2008 - 2013 JoomVision.com
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
  */
  //no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
-
 defined('JPATH_BASE') or die;
 
 jimport('joomla.form.formfield');

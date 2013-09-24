@@ -1,11 +1,14 @@
 /**
- * Zo2 Framework (http://zo2framework.org)
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
  *
- * @link     http://github.com/aploss/zo2
- * @package  Zo2
- * @author   Hiepvu
- * @copyright  Copyright ( c ) 2008 - 2013 APL Solutions
- * @license  http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ *
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
