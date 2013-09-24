@@ -1,5 +1,12 @@
 [
     {
+        "path": "/vendor/html5shiv/html5shiv.js",
+        "type": "js",
+        "position": "header",
+        "base": "template",
+        "condition": "if lt IE 9"
+    },
+    {
         "path": "/vendor/bootstrap/css/bootstrap.min.css",
         "type": "css",
         "options": {
@@ -27,13 +34,13 @@
             "rel": "stylesheet"
         },
         "position": "header",
-        "base": "theme"
+        "base": "template"
     },
     {
         "path": "/js/megamenu.js",
         "type": "js",
         "position": "footer",
-        "base": "theme"
+        "base": "template"
     },
     {
         "path": "/css/style.css",
@@ -42,6 +49,6 @@
             "rel": "stylesheet"
         },
         "position": "header",
-        "base": "theme"
+        "base": "template"
     }
 ]

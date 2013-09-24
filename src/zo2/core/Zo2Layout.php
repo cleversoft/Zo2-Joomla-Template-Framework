@@ -149,12 +149,16 @@ class Zo2Layout {
      */
     private function generateJsTag($item) {
         $basePath = '';
-        if (isset($item['base']) && $item['base'] == 'theme') $basePath = $this->_templateUri;
+        if (isset($item['base']) && $item['base'] == 'template') $basePath = $this->_templateUri;
         else $basePath = Zo2Framework::getSystemPluginPath();
         $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $async = "";
-        if(isset($item['options']['async'])) $async = " async=\"" . $item['options']['async'] . "\"";
-        return "<script" . $async . " type=\"text/javascript\" src=\"" . $path . "\"></script>\n";
+        if (isset($item['options']['async'])) $async = " async=\"" . $item['options']['async'] . "\"";
+        $result = "<script" . $async . " type=\"text/javascript\" src=\"" . $path . "\"></script>\n";
+        if (isset($item['condition']) && !empty($item['condition'])) {
+            $result = '<!--[' . $item['condition'] . ']>' . $result . '<![endif]-->';
+        }
+        return $result;
     }
 
     /**
@@ -165,7 +169,7 @@ class Zo2Layout {
      */
     private function generateCssTag($item) {
         $basePath = '';
-        if (isset($item['base']) && $item['base'] == 'theme') $basePath = $this->_templateUri;
+        if (isset($item['base']) && $item['base'] == 'template') $basePath = $this->_templateUri;
         else $basePath = Zo2Framework::getSystemPluginPath();
         $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
