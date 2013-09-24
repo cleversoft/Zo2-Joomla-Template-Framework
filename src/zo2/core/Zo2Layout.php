@@ -380,8 +380,8 @@ class Zo2Layout {
                 }
             }
 
-            Zo2Framework::import('core.classes.minify.jsshrink');
-            Zo2Framework::import('core.classes.minify.css');
+            Zo2Framework::import('vendor.minify.jsshrink');
+            Zo2Framework::import('vendor.minify.css');
 
             // minify js first
             if ($level == '2') {
@@ -426,7 +426,7 @@ class Zo2Layout {
     }
 
     private function processLess($content) {
-        if (!class_exists('lessc', false)) Zo2Framework::import('core.classes.less.lessc');
+        if (!class_exists('lessc', false)) Zo2Framework::import('vendor.less.lessc');
 
         $compiler = new lessc();
 
@@ -514,7 +514,7 @@ class Zo2Layout {
 
     public function combineJS() {
         if(!class_exists('PhpClosure', false)) {
-            Zo2Framework::import('core.classes.minify.closure');
+            Zo2Framework::import('vendor.minify.closure');
         }
     }
 
