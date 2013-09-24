@@ -28,7 +28,7 @@
         "base": "plugin"
     },
     {
-        "path": "/css/megamenu.css",
+        "path": "/assets/css/megamenu.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
@@ -37,13 +37,13 @@
         "base": "template"
     },
     {
-        "path": "/js/megamenu.js",
+        "path": "/assets/js/megamenu.js",
         "type": "js",
         "position": "footer",
         "base": "template"
     },
     {
-        "path": "/css/style.css",
+        "path": "/assets/css/style.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
