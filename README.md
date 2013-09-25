@@ -37,13 +37,14 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	+ Shortcode structure
 	+ Add basic shortcodes
 	+ OOP and MVC for shortcode
-6. Google Web Fonts
+6. Fonts Options
 
 	**Done**
 	+ Ability to choose Google Web Fonts
 	
 	**Todo**
 	+ Google Web Fonts preview in backend
+	+ FontDeck Support
 7. CSS + JS Compress & Combination
 	
 	**Done**
@@ -56,6 +57,7 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	**Done**
 	+ Integrate LESS compiler
 
+9. Allowing opt-in/opt-out for "EU Cookie Law"
 
 ##Roadmap
 **Beta 1**
