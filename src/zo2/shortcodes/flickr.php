@@ -44,14 +44,12 @@ class Flickr extends Zo2Shortcode
 //            $body = $response->body;
 //            $info = json_decode($body);
             //$url = 'http://flickr.com/services/oembed?url=http://www.flickr.com/photo.gne?id='. $id .'&format=json';
-        } elseif (!empty($this->content)) {
-            $url = 'http://flickr.com/services/oembed?url=' . $this->content . '&format=json&maxwidth=' . $w . '&maxheight=' . $h;
+        } elseif (!empty($url)) {
+            $url = 'http://flickr.com/services/oembed?url=' . $url . '&format=json&maxwidth=' . $w . '&maxheight=' . $h;
         }
-
         $response = $http->get($url);
         $body = $response->body;
         $info = json_decode($body);
-
         if (isset($info->html)) {
             return $info->html;
         }
