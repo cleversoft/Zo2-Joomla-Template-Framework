@@ -15,6 +15,8 @@ var strategy = [
 ];
 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
+var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
+    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
 var $ = jQuery.noConflict();
 
@@ -66,7 +68,7 @@ jQuery(document).ready(function($){
 
     //loadLayout(templateName, layoutName);
 
-    $('.row-control-buttons').on('click', '.duplicate', function() {
+    $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function() {
         var $this = $(this);
         var $parent = $this.closest('.zo2-row');
         var $container = $this.closest('.zo2-container, .sortable-col');
@@ -74,16 +76,21 @@ jQuery(document).ready(function($){
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
         $row.attr('data-zo2-layout', 'fixed');
-        var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-            '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger">' +
-            '</i><i class="icon-cogs row-control-icon settings"></i><i class="row-control-icon duplicate icon-align-justify">' +
-            '</i><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove"></i></div></div></div>');
+        var $meta = jQuery('<div class="col-md-12 row-control">' +
+            '<div class="row-control-container">' +
+            '<div class="row-name">(unnamed row)</div>' +
+            '<div class="row-control-buttons">' +
+            '<i class="icon-move row-control-icon dragger"></i>' +
+            '<i class="icon-cogs row-control-icon settings"></i>' +
+            '<i class="row-control-icon duplicate icon-align-justify"></i>' +
+            '<i class="row-control-icon split icon-columns"></i>' +
+            '<i class="row-control-icon delete icon-remove"></i>' +
+            '</div></div>' +
+            '<div class="col-container"></div></div>');
         $meta.appendTo($row);
-        var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
-        $colContainer.appendTo($meta);
     });
 
-    $('.row-control-buttons').on('click', '.split', function() {
+    $('#droppable-container').on('click', '.row-control-buttons > .split', function() {
         var $this = $(this);
         var $container = $this.closest('[data-zo2-type="row"]');
         var $colContainer = $container.find('>.col-md-12>.col-container');
@@ -102,11 +109,14 @@ jQuery(document).ready(function($){
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
                 '<div class="col-control-buttons">' +
                 '<i class="col-control-icon dragger icon-move"></i><i class="icon-cogs col-control-icon settings"></i>' +
-                '<i class="icon-remove col-control-icon delete"></i></div></div></div>';
+                '<i class="col-control-icon add-row icon-align-justify"></i>' +
+                '<i class="icon-remove col-control-icon delete"></i></div><div class="row-container"></div></div></div>';
             var $meta = jQuery(metaHtml);
             $meta.appendTo($span);
+            /*
             var $spanContainer = jQuery('<div />').addClass('row-container zo2-row sortable-row');
             $spanContainer.appendTo($meta);
+             */
             $span.appendTo($colContainer);
 
             // apply new span number
@@ -119,14 +129,14 @@ jQuery(document).ready(function($){
         }
     });
 
-    $('.row-control-buttons').on('click', '.delete', function(){
+    $('#droppable-container').on('click', '.row-control-buttons > .delete', function(){
         var $this = $(this);
         bootbox.confirm('Are you sure want to delete this row?', function(result) {
             if (result) $this.closest('.sortable-row').remove();
         });
     });
 
-    $('.col-control-buttons').on('click', '.delete', function() {
+    $('#droppable-container').on('click', '.col-control-buttons > .delete', function() {
         var $this = $(this);
 
         bootbox.confirm('Are you sure want to delete this column?', function(result) {
@@ -136,7 +146,24 @@ jQuery(document).ready(function($){
         });
     });
 
-    $('.row-control-buttons').on('click', '.settings', function(){
+    $('#droppable-container').on('click', '.col-control-buttons > .add-row', function() {
+        var $this = $(this);
+        var $container = $this.parents('.col-wrap').find('>.row-container');
+
+        var $row = jQuery('<div />').addClass('zo2-row sortable-row').appendTo($container);
+        $row.attr('data-zo2-type', 'row');
+        $row.attr('data-zo2-customClass', '');
+        $row.attr('data-zo2-layout', 'fixed');
+        var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
+            '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger">' +
+            '</i><i class="icon-cogs row-control-icon settings"></i><i class="row-control-icon duplicate icon-align-justify">' +
+            '</i><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove"></i></div></div></div>');
+        $meta.appendTo($row);
+        var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
+        $colContainer.appendTo($meta);
+    });
+
+    $('#droppable-container').on('click', '.row-control-buttons > .settings', function(){
         var $this = $(this);
         var $row = $this.closest('.sortable-row');
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
@@ -162,7 +189,7 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    $('.col-control-buttons').on('click', '.settings', function(){
+    $('#droppable-container').on('click', '.col-control-buttons > .settings', function(){
         var $this = $(this);
         var $col = $this.closest('.sortable-col');
         $.data(document.body, 'editingEl', $col);
@@ -189,8 +216,8 @@ jQuery(document).ready(function($){
         $col.attr('data-zo2-customClass', $('#txtColCss').val());
         $col.attr('data-zo2-id', $('#txtColId').val());
         var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
-        $col.removeClass('span1 span2 span3 span4 span5 span6 span7 span8 span9 span10 span11 span12').addClass('span' + $('#dlColWidth').val());
-        $col.removeClass('offset1 offset2 offset3 offset4 offset5 offset6 offset7 offset8 offset9 offset10 offset11 offset12').addClass('offset' + $('#ddlColOffset').val());
+        $col.removeClass(allColClass).addClass('col-md-' + $('#dlColWidth').val());
+        $col.removeClass(allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
         $col.attr('data-zo2-position', $('#dlColPosition').val());
         $col.find('>.col-name').text($('#dlColPosition').val());
         $('#colSettingsModal').modal('hide');
@@ -199,86 +226,25 @@ jQuery(document).ready(function($){
 });
 
 var bindSortable = function () {
+    // thêm > vào items
     jQuery('#droppable-container > .zo2-container').sortable({
         items: '>.sortable-row',
         handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
         containment: 'parent',
         tolerance: 'pointer',
+        forcePlaceholderSize: true,
         axis: 'y'
-
     });
 
     jQuery('.sortable-row').sortable({
-        items: '.sortable-col',
-        connectWith: '>.sortable-row',
+        items: '>.row-control>.col-container>.sortable-col',
+        //connectWith: '>.sortable-row',
         handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
         containment: 'parent',
         tolerance: "pointer",
         helper: 'clone',
         axis: 'x'
     });
-};
-
-// jQuery('#hfTemplateName').val()
-var loadLayout = function (templateName, layoutName, showOverlay) {
-    var $overlay = $('<div />').addClass('overlay').appendTo('body');
-    if (showOverlay) $overlay.fadeIn();
-    jQuery.getJSON('index.php?zo2controller=getLayout&layout=' + layoutName + '&template=' + templateName, function(data){
-        var $rootParent = jQuery('#droppable-container .container-fluid');
-        $rootParent.empty();
-        for (var i = 0; i < data.length; i++) {
-            var item = data[i];
-            if (item.type == 'row') insertRow(item, $rootParent);
-            else if(item.type == 'col') insertCol(item, $rootParent);
-        }
-
-        bindSortable();
-
-        $overlay.remove();
-    });
-};
-
-var insertRow = function (row, $parent) {
-    var $row = jQuery('<div />').addClass('row-fluid sortable-row').appendTo($parent);
-    $row.attr('data-zo2-type', 'row');
-    $row.attr('data-zo2-customClass', row.customClass);
-    $row.attr('data-zo2-layout', 'fixed');
-    $row.attr('data-zo2-id', row.id);
-    var $meta = jQuery('<div class="span12 row-control"><div class="row-control-container"><div class="row-name">' + row.name +
-        '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger" /><i class="icon-cogs row-control-icon settings" /><i class="row-control-icon duplicate icon-align-justify" /><i class="row-control-icon split icon-columns" /><i class="row-control-icon delete icon-remove" /></div></div></div>');
-    $meta.appendTo($row);
-    //jQuery('<hr />').appendTo($row);
-    //var $span12 = jQuery('<div />').addClass('span12').appendTo($row);
-    var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
-    $colContainer.appendTo($meta);
-
-    for (var i = 0; i < row.children.length; i++) {
-        var item = row.children[i];
-        if (item.type == 'row') insertRow(item, $colContainer);
-        else if(item.type == 'col') insertCol(item, $colContainer);
-    }
-};
-
-var insertCol = function(span, $parent) {
-    var $span = jQuery('<div />').addClass('sortable-col').addClass('span'+ span.span).appendTo($parent);
-    $span.attr('data-zo2-type', 'span').attr('data-zo2-span', span.span);
-    $span.attr('data-zo2-offset', span.offset !== null ? span.offset : 0);
-    $span.attr('data-zo2-position', span.position);
-    $span.attr('data-zo2-style', span.style);
-    $span.attr('data-zo2-customClass', span.customClass);
-    $span.attr('data-zo2-id', span.id);
-    var $meta = jQuery('<div class="col-name">' + span.name +
-        '</div><div class="col-control-buttons"><i class="col-control-icon dragger icon-move" /><i class="icon-cog col-control-icon settings" /><i class="icon-remove col-control-icon delete" /></div>');
-    $meta.appendTo($span);
-    var $spanContainer = jQuery('<div />').addClass('row-container row-fluid sortable-row');
-    $spanContainer.appendTo($span);
-
-    for (var i = 0; i < span.children.length; i++) {
-        var item = span.children[i];
-
-        if (item.type == 'row') insertRow(item, $spanContainer);
-        else if(item.type == 'col') insertCol(item, $spanContainer);
-    }
 };
 
 var generateJson = function() {
@@ -305,7 +271,7 @@ var generateItemJson = function($item) {
             children: []
         };
 
-        $childrenContainer = $item.find('> .row-control > .zo2-row');
+        $childrenContainer = $item.find('> .row-control > .col-container');
 
         $childrenContainer.find('> [data-zo2-type]').each(function() {
             var childItem = generateItemJson(jQuery(this));
@@ -325,9 +291,10 @@ var generateItemJson = function($item) {
             children: []
         };
 
-        $childrenContainer = $item.find('> .zo2-row');
+        $childrenContainer = $item.find('> .col-wrap > .row-container');
 
         $childrenContainer.find('> [data-zo2-type]').each(function() {
+            console.log($(this));
             var childItem = generateItemJson(jQuery(this));
             result.children.push(childItem);
         });

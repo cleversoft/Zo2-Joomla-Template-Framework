@@ -54,7 +54,7 @@
 #layoutbuilder-container .row-tools { margin-top: 3px }
 #layoutbuilder-container .row-tools a { color: #a5a5a5; font-size: 18px; margin: 0 0 0 6px }
 #layoutbuilder-container .row-tools a.icon-move { border-right: 1px solid #ccc; cursor: move; padding-right: 6px }
-#layoutbuilder-container .col-control-buttons { -webkit-transition: opacity 300ms; float: right; margin-right: 15px; opacity: 0 }
+#layoutbuilder-container .col-control-buttons { -webkit-transition: opacity 300ms; opacity: 0 }
 #layoutbuilder-container .col-control-buttons i { color: #a5a5a5; font-size: 14px; margin: 0 0 0 3px }
 #layoutbuilder-container .col-control-buttons i.icon-move { cursor: move }
 #layoutbuilder-container .row-tools a.icon-remove,
@@ -65,7 +65,6 @@
 #layoutbuilder-container .sortable-row .col-container> [class*=col].type-component { background:#f8fde9;border: 1px solid #809c36 }
 #layoutbuilder-container .sortable-row .col-container> [class*=col].type-message > .type-message { text-align: center }
 #layoutbuilder-container .sortable-row .col-container> [class*=col]:hover { border-color:rgba(82,168,236,0.8);outline: thin dotted 9 }
-#layoutbuilder-container .sortable-row .sortable-row [class*=col] { margin-top: 5px }
 #layoutbuilder-container .sortable-row .col-container > [class*="col"]:hover > .col-wrap >.col-control-buttons,
 #layoutbuilder-container .sortable-row .col-container > [class*="col"]:focus > .col-wrap >.col-control-buttons { opacity: 1 }
 .col-wrap {border: 1px solid #e9e9e9; margin: 5px; border-radius: 3px; background: #ffffff}
@@ -101,10 +100,11 @@
 .sortable-row, .sortable-col { border-radius: 2px; position: relative }
 .row-control { font-size: 30px; font-weight: bold; line-height: 60px; width: auto}
 .row-control-container { padding: 0 10px }
-.row-control-icon, .col-control-icon { color: #373737; cursor: pointer; font-size: 20px; height: 20px; margin-left: 5px; width: 20px; }
+.row-control-icon, .col-control-icon { color: #373737; cursor: pointer; font-size: 20px; height: 20px; margin: 0 0 0 10px; width: 20px; display: block; float:left}
+.col-control-icon{width: 15px}
 .row-control-icon.delete, .col-control-icon.delete { color: #e30004 }
 .row-control-buttons { position: absolute; right: 20px; top: 0; }
-.col-control-buttons { position: absolute; right: 10px; top: 0; }
+.col-control-buttons { position: absolute; right: 10px; top: 15px; }
 .sortable-row hr { background-color: #5193AD; height: 1px; margin: 0 0 20px; width: 100%; }
 .col-name { color: #272727; font-size: 14px; font-weight: 400; height: 50px; line-height: 25px; padding-left: 15px; }
 .col-container { width: auto }
@@ -122,3 +122,4 @@ html[xmlns] .clearfix { display: block; }
 .overlay { background-color: #000000; bottom: 0; cursor: wait; display: none; left: 0; opacity: 0.5; position: absolute; right: 0; top: 0; z-index: 99999; }
 #zo2logo { background: url('../images/zo2logo.png') no-repeat 0 0; display: block; height: 70px; margin: 0 auto; width: 310px; }
 .zo2-container{position: relative;padding:0}
+.row-container{overflow: hidden}

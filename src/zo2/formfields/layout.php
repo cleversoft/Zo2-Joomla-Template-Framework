@@ -86,12 +86,25 @@ class JFormFieldLayout extends JFormField
         $templateName = $template = $this->form->getValue('template');
         $positions = Zo2Framework::getAvailablePositions($templateName);
         //$layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
-        $layoutPath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName() . '/layouts/homepage.json';
+        $templatePath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName();
+        $layoutPath = $templatePath . '/layouts/homepage.json';
         $layoutData = json_decode(file_get_contents($layoutPath), true);
         //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
         $path = JPATH_SITE.'/plugins/system/zo2/templates/layout.php';
 
+        $customModuleStylePath = $templatePath . '/html/modules.php';
 
+        if (file_exists($customModuleStylePath)) include_once $customModuleStylePath;
+
+        $definedFunctions = get_defined_functions();
+        $definedUserFunctions = $definedFunctions['user'];
+        $customStyles = array();
+
+        for ($i = 0, $total = count($definedUserFunctions); $i < $total; $i++) {
+            if (strpos(strtolower($definedUserFunctions[$i]), 'modchrome_') !== false) {
+                $customStyles[] = substr($definedUserFunctions[$i], 10);
+            }
+        }
 
         ob_start();
         include($path);
@@ -124,7 +137,7 @@ class JFormFieldLayout extends JFormField
                     </div>
                 </div>
 
-                <div class="col-container zo2-row">
+                <div class="col-container">
                     <?php
                     for($i = 0, $total = count($item['children']); $i < $total; $i++) {
                         $this->renderColumn($item['children'][$i]);
@@ -149,10 +162,11 @@ class JFormFieldLayout extends JFormField
                 <div class="col-control-buttons">
                     <i class="col-control-icon dragger icon-move"></i>
                     <i class="icon-cog col-control-icon settings"></i>
+                    <i class="col-control-icon add-row icon-align-justify"></i>
                     <i class="icon-remove col-control-icon delete"></i>
                 </div>
 
-                <div class="row-container zo2-row sortable-row">
+                <div class="row-container">
                     <?php
                     for($i = 0, $total = count($item['children']); $i < $total; $i++) {
                         $this->renderRow($item['children'][$i]);

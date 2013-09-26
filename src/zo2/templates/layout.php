@@ -131,6 +131,9 @@ defined('_JEXEC') or die ('Restricted access');
                     <div class="controls">
                         <select id="ddlColStyle">
                             <option value="none">None</option>
+                            <?php foreach($customStyles as $cs) : ?>
+                                <option value="<?php echo $cs?>"><?php echo $cs?></option>
+                            <?php endforeach; ?>
                             <option value="rounded">rounded</option>
                             <option value="table">table</option>
                             <option value="horz">horz</option>
