@@ -46,7 +46,7 @@ class plgSystemZo2 extends JPlugin
 
             }
         }
-        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
+        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
     }
 
     function onAfterRender()
@@ -278,7 +278,7 @@ class plgSystemZo2 extends JPlugin
                 foreach ($items as $shortcoder) {
 
                     $text .= '  <a class="btn" href="javascript: void(0);" onclick="jSelectShortcode(\'' . $shortcoder['syntax'] . '\')" title="' . $shortcoder['desc'] . '">';
-                    $text .= '  <i class="zo2-icon-bsc-' . $i++ . '" style="background: url(' . JUri::root() . ZO2_ADMIN_PLUGIN_REL . '/addons/shortcodes/images/' . $shortcoder['image'] . ') 0 0 no-repeat;"></i>';
+                    $text .= '  <i class="zo2-icon-bsc-' . $i++ . '" style="background: url(' . JUri::root() . ZO2_PLUGIN_REL . '/addons/shortcodes/images/' . $shortcoder['image'] . ') 0 0 no-repeat;"></i>';
                     $text .= $shortcoder['name'];
                     $text .= '  </a>';
                 }

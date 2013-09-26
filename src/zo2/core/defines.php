@@ -12,9 +12,9 @@
  */
 defined('_JEXEC') or die;
 
-define ('ZO2_ADMIN', 'zo2');
+define ('ZO2', 'zo2');
 //define ('ZO2_ADMIN_PATH', dirname(dirname(__FILE__)));
 define ('ZO2_ADMIN_BASE', realpath(dirname(__FILE__) . '/..'));
 define ('ZO2_SYSTEM_PLUGIN', 'plg_system_zo2');
-define ('ZO2_ADMIN_PLUGIN_REL', 'plugins/system/'.ZO2_ADMIN);
-define ('ZO2_ADMIN_PLUGIN_URL', JURI::root(true).'/'.ZO2_ADMIN_PLUGIN_REL);
+define ('ZO2_PLUGIN_REL', 'plugins/system/'.ZO2);
+define ('ZO2_PLUGIN_URL', JURI::root(true).'/'.ZO2_PLUGIN_REL);

@@ -311,9 +311,9 @@ class Zo2Framework {
         }
         $menu = new Zo2MegaMenu ($menutype, $mmconfig, $params);
 
-        //Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/css/megamenu.css');
-//        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/css/megamenu-responsive.css');
-        //Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/js/megamenu.js');
+        //Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/css/megamenu.css');
+//        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL.'/css/megamenu-responsive.css');
+        //Zo2Framework::addJsScript(ZO2_PLUGIN_URL.'/js/megamenu.js');
 
         return $menu->renderMenu($isAdmin);
     }
@@ -361,7 +361,7 @@ class Zo2Framework {
      */
     public static function loadAdminAssets() {
 
-        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL . '/assets/css/admin.css');
+        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/css/admin.css');
         JHtml::_('formbehavior.chosen', 'select');
 
     }
@@ -401,8 +401,8 @@ class Zo2Framework {
      */
     public static function addHead() {
         JHtml::_('jquery.framework');
-        Zo2Framework::addJsScript(ZO2_ADMIN_PLUGIN_URL.'/vendor/bootstrap/js/bootstrap.min.js');
-        Zo2Framework::addCssStylesheet(ZO2_ADMIN_PLUGIN_URL.'/vendor/bootstrap/css/bootstrap.min.css');
+        Zo2Framework::addJsScript(ZO2_PLUGIN_URL.'/vendor/bootstrap/js/bootstrap.min.js');
+        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL.'/vendor/bootstrap/css/bootstrap.min.css');
         // Add Stylesheets
         // Load optional RTL Bootstrap CSS
         Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/vendor/font-awesome/css/font-awesome.min.css');

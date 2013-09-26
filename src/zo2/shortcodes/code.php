@@ -51,7 +51,7 @@ class Code extends Zo2Shortcode
     {
 
         static $bool = false;
-        $url = JUri::root() . ZO2_ADMIN_PLUGIN_REL . '/addons/syntaxhighlighter/';
+        $url = JUri::root() . ZO2_PLUGIN_REL . '/addons/syntaxhighlighter/';
         if (!$bool) {
 
             // Script

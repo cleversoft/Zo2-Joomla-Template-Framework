@@ -39,9 +39,9 @@ class JFormFieldMegaMenu extends JFormFieldHidden
             JFactory::getLanguage()->load(ZO2_SYSTEM_PLUGIN, JPATH_ADMINISTRATOR);
 
             $jdoc = JFactory::getDocument();
-            $jdoc->addStylesheet(ZO2_ADMIN_PLUGIN_URL . '/assets/css/megamenu.css');
-            $jdoc->addStyleSheet(ZO2_ADMIN_PLUGIN_URL . '/formfields/css/megamenu.css');
-            $jdoc->addScript(ZO2_ADMIN_PLUGIN_URL . '/formfields/js/megamenu.js');
+            $jdoc->addStylesheet(ZO2_PLUGIN_URL . '/assets/css/megamenu.css');
+            $jdoc->addStyleSheet(ZO2_PLUGIN_URL . '/assets/css/adminmegamenu.css');
+            $jdoc->addScript(ZO2_PLUGIN_URL . '/assets/js/adminmegamenu.js');
 
         }
 
