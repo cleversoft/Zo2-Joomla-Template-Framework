@@ -29,10 +29,17 @@ class JFormFieldLayout extends JFormField
         $template = $this->form->getValue('template');
         $theme_path = JPATH_SITE.'/templates/'.$template.'/';
         $theme_layout_path = $theme_path . 'layouts/';
-        $current_layout_path = $theme_layout_path . 'homepage.json';
+        $current_layout_path = $theme_layout_path . 'layout.json';
+        $caches = array(
+            $theme_layout_path . 'layout.php', $theme_layout_path . 'header.php', $theme_layout_path . 'footer.php'
+        );
 
         if (!empty($this->value)) {
             file_put_contents($current_layout_path, $this->value);
+
+            foreach ($caches as $file) {
+                if (file_exists($file)) unlink($file);
+            }
         }
 
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
@@ -87,15 +94,14 @@ class JFormFieldLayout extends JFormField
         $positions = Zo2Framework::getAvailablePositions($templateName);
         //$layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
         $templatePath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName();
-        $layoutPath = $templatePath . '/layouts/homepage.json';
+        $layoutPath = $templatePath . '/layouts/layout.json';
         $layoutData = json_decode(file_get_contents($layoutPath), true);
         //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
         $path = JPATH_SITE.'/plugins/system/zo2/templates/layout.php';
 
+        // generate list of custom module style
         $customModuleStylePath = $templatePath . '/html/modules.php';
-
         if (file_exists($customModuleStylePath)) include_once $customModuleStylePath;
-
         $definedFunctions = get_defined_functions();
         $definedUserFunctions = $definedFunctions['user'];
         $customStyles = array();
@@ -106,6 +112,7 @@ class JFormFieldLayout extends JFormField
             }
         }
 
+        // generate the html for layout builder
         ob_start();
         include($path);
         $html = ob_get_contents();
@@ -113,6 +120,11 @@ class JFormFieldLayout extends JFormField
         return $html;
     }
 
+    /**
+     * Generate layout
+     *
+     * @param $data
+     */
     public function renderLayout($data)
     {
         for($i = 0, $total = count($data); $i < $total; $i++) {

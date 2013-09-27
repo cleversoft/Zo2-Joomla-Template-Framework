@@ -12,19 +12,17 @@
  */
 
 defined ('_JEXEC') or die ('Restricted Access');
+if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
 //access zo2 framework
 /** @var Zo2Framework $zo2 */
-$zo2 = $this->zo2;
+$zo2 = Zo2Framework::getInstance();
 $doc = JFactory::getDocument();
 $params = $zo2->getParams('debug_visibility');
 $this->language = $doc->language;
 $this->direction = $doc->direction;
-/* @var $this JDocumentHTML */
 if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
-$zo2 = Zo2Framework::getInstance();
 $templateName = $this->template;
-$layout = new Zo2Layout($templateName, 'homepage');
-//echo $layout->compile();
+$layout = new Zo2Layout($templateName);
 ?>
 <!DOCTYPE html>
 <html>
