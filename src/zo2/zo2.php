@@ -75,7 +75,7 @@ class plgSystemZo2 extends JPlugin
 
         if (JFactory::getApplication()->isSite()) {
             $article->text = $this->doShortCode($article->text);
-
+            /* Google Authorship */
             if ((int)$config->get("enable_googleauthorship", 0)) {
                 $author_name = "+";
                 $user = JFactory::getUser();
@@ -87,6 +87,13 @@ class plgSystemZo2 extends JPlugin
                 $gplus = '<a href="'.$config->get('google_profile_url', '').'/?rel='.$rel.'"';
                 $gplus .= ' title="Google Plus Profile for '.$author_name.'" plugin="Google Plus Authorship">'.$author_name.'</a>';
                 $article->text = $gplus . $article->text;
+            }
+            /* Comments System */
+            if ($config->get('enable_comments', 0)) {
+
+                Zo2Framework::import2('addons.comments.Zo2Comments');
+                $comment = new Zo2Comments();
+                $article->text = $article->text . $comment->renderHtml();
             }
 
         }

@@ -154,6 +154,39 @@
 
         </fieldset>
 
+        <fieldset name="comments" label="Comments Options">
+
+            <field name="enable_comments" type="radio" default="0" label="Enable Comments" description="Enable Comments" class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field name="tab_order" type="text" default="facebook,gplus,disqus,k2comment"
+                   label="Tabs Order"
+                   description="Only tabs listed will be showed" />
+
+            <field name="disqus_shortname" type="text" default="zootemplates"
+                   label="Disqus Shortname"
+                   description="Required if showing the disqus tab" />
+
+            <field name="facebook_label" type="text" default="Facebook"
+                   label="Facebook Label"
+                   description="" />
+
+            <field name="gplus_label" type="text" default="Google+"
+                   label="Google+ Label"
+                   description="" />
+
+            <field name="disqus_label" type="text" default="Disqus"
+                   label="Disqus Label"
+                   description="" />
+
+            <field name="k2comment_label" type="text" default="ZO2 Framework"
+                   label="K2 Comment Label"
+                   description="" />
+
+        </fieldset>
+
     </fields>
     </config>
 </extension>
