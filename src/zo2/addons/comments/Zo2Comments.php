@@ -18,11 +18,15 @@ defined('_JEXEC') or die ('resticted aceess');
  * @package     zo2
  * @subpackage  Zo2Comments
  */
+JLoader::register('K2HelperUtilities', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DS . 'utilities.php');
+JLoader::register('K2HelperRoute', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DS . 'route.php');
+
 class Zo2Comments
 {
-    function __construct()
+    function __construct($article)
     {
         $this->http = JHttpFactory::getHttp();
+        $this->row = $article;
     }
 
     function getFacebookCount($url = "")
@@ -90,6 +94,68 @@ class Zo2Comments
         return 0;
     }
 
+    function getCountItem($itemID, $url, $published = true)
+    {
+
+        $itemID = (int)$itemID;
+
+        $index = $itemID . '_' . (int)$published;
+        static $ItemComment = array();
+        if (isset($ItemComment[$index])) {
+            return $ItemComment[$index];
+        }
+
+        $db = JFactory::getDBO();
+        $query = "SELECT COUNT(*) FROM #__k2_comments WHERE itemID=" . $itemID . " AND commentURL=" . $db->quote($url);
+        if ($published) {
+            $query .= " AND published=1 ";
+        }
+
+        $db->setQuery($query);
+        $result = $db->loadResult();
+        if ($result) {
+            $ItemComment[$index] = $result;
+
+            return $ItemComment[$index];
+        }
+        return 0;
+
+    }
+
+    function getItemComments($itemId)
+    {
+
+        //$comments = JTable::getInstance('K2Comments', 'Table');
+
+       // $comments->load($itemId);
+
+        $db = JFactory::getDBO();
+        $query = "SELECT * FROM #__k2_comments WHERE itemID=" . $itemId;
+        $db->setQuery($query);
+
+        $comments = $db->loadObjectList();
+
+        foreach ($comments as $comment) {
+
+            $comment->commentText = nl2br($comment->commentText);
+            $comment->commentText = preg_replace("/([^\w\/])(www\.[a-z0-9\-]+\.[a-z0-9\-]+)/i", "$1http://$2", $comment->commentText);
+            $comment->commentText = preg_replace("/([\w]+:\/\/[\w-?&;#~=\.\/\@]+[\w\/])/i", "<a target=\"_blank\" rel=\"nofollow\" href=\"$1\">$1</A>", $comment->commentText);
+            $comment->commentText = preg_replace("/([\w-?&;#~=\.\/]+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,3}|[0-9]{1,3})(\]?))/i", "<a href=\"mailto:$1\">$1</A>", $comment->commentText);
+
+            $comment->userImage = K2HelperUtilities::getAvatar($comment->userID, $comment->commentEmail, 50);
+
+            if ($comment->userID > 0) {
+                $comment->userLink = K2HelperRoute::getUserRoute($comment->userID);
+            } else {
+                $comment->userLink = $comment->commentURL;
+            }
+
+        }
+
+        return $comments;
+
+    }
+
     function renderHtml()
     {
 
@@ -110,6 +176,10 @@ class Zo2Comments
 
         $html .= '<h3 name="comments">' . JText::_('ZO2 Comments') . '</h3>';
         $html .= '<ul class="nav nav-tabs nav-justified ">';
+
+        if (JFactory::getApplication()->input->getCmd('option') == 'com_k2') {
+           unset($tab_order['k2comment']);
+        }
 
 
         foreach ($tab_order as $key => $tab) {
@@ -182,18 +252,13 @@ class Zo2Comments
 
                     jimport('joomla.application.component.helper');
 
-                    if(!JComponentHelper::isEnabled('com_k2', true))
-                    {
+                    if (!JComponentHelper::isEnabled('com_k2', true)) {
                         $html .= '' . JText::_('Zo2 Framework requires k2 component installed');
 
                     } else {
 
                         JHtml::_('behavior.formvalidation');
                         JHtml::_('behavior.keepalive');
-
-                        //JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
-                        //$comment = JTable::getInstance('K2Comments', 'Table');
-                        //$comment->load($item->id);
 
                         $html .= '
                             <script type=\"text/javascript\">
@@ -211,8 +276,8 @@ class Zo2Comments
                         // $user = JFactory::getUser();
                         //$user->guest;
 
-                        $html .= '<div id="zo2framework-comments">
-                            <form action="'.JURI::root(true).'/index.php" method="post" name="adminForm" id="comment-form" class="form-validate form-horizontal" role="form">
+                        $html .= '<div id="zo2framework-comments" class="itemComments">
+                            <form action="' . JURI::root(true) . '/index.php" method="post" name="adminForm" id="comment-form" class="form-validate form-horizontal" role="form">
 
                                 <div class="form-group">
                                     <label id="commentText-lbl" for="commentText" class="col-lg-2 hasTip required control-label formComment" title="">Message<span class="star">&nbsp;*</span></label>
@@ -255,10 +320,64 @@ class Zo2Comments
                                 <input type="hidden" name="option" value="com_k2" />
                                 <input type="hidden" name="view" value="item" />
                                 <input type="hidden" name="task" value="comment" />
-                                <input type="hidden" name="itemID" value="'.JRequest::getInt('id').'" />
-                                '.JHTML::_('form.token').'
-                            </form></div>
-                            ';
+                                <input type="hidden" name="itemID" value="' . JRequest::getInt('id') . '" />
+                                ' . JHTML::_('form.token') . '
+                            </form>';
+
+                        //var_dump($this->row);die;
+                        $numOfComments = $this->getCountItem($this->row->id, $this->row->readmore_link, true);
+                        $comments = $this->getItemComments($this->row->id);
+                        if ($comments) {
+
+                            $html .= '
+                              <h3 class="itemCommentsCounter">
+                                <span>' . $numOfComments . '</span> ' . ($numOfComments > 1) ? JText::_('Comments') : JText::_('Comment') . '
+                              </h3>';
+                            $html .= '<ul class="itemCommentsList">';
+
+                            foreach ($comments as $key => $comment) {
+
+                                $class = ($key % 2) ? "odd" : "even" . ' ' . (!$this->row->created_by_alias && $comment->userID == $this->row->created_by) ? " authorResponse" : "" . ' ' . ($comment->published) ? '' : ' unpublishedComment';
+
+                                $html .= '<li class="' . $class . '">';
+
+                                $html .= '<span class="commentLink">
+                                                <a href="' . $this->row->readmore_link . '#comment' . $comment->id . '" name="comment' . $comment->id . '" id="comment' . $comment->id . '">
+                                                    ' . JText::_('Comment Link') . '
+                                                </a>
+                                             </span>';
+
+                                if ($comment->userImage) {
+                                    $html .= '<img src="' . $comment->userImage . '" alt="' . JFilterOutput::cleanText($comment->userName) . '" width="50" />';
+                                }
+
+                                $html .= '<span class="commentDate">
+                                             ' . JHTML::_('date', $comment->commentDate, JText::_('DATE_FORMAT_LC2')) . '
+                                             </span>';
+
+                                $html .= '<span class="commentAuthorName">';
+                                $html .= JText::_('Post By');
+                                if (empty($comment->userLink)) {
+                                    $html .= '<a href="' . JFilterOutput::cleanText($comment->userLink) . '" title="' . JFilterOutput::cleanText($comment->userName) . '" target="_blank" rel="nofollow">
+                                                              ' . $comment->userName . '
+                                                        </a>';
+                                } else {
+                                    $html .= $comment->userName;
+                                }
+
+                                $html .= '</span>';
+
+                                $html .= '<p>' . $comment->commentText . '</p>';
+
+                                $html .= '</li>';
+
+                            }
+
+                            $html .= '</ul>';
+                        }
+
+
+                        $html .= '</div>';
                     }
 
                     break;
