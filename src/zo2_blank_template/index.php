@@ -17,7 +17,8 @@ if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
 /** @var Zo2Framework $zo2 */
 $zo2 = Zo2Framework::getInstance();
 $doc = JFactory::getDocument();
-$params = $zo2->getParams('debug_visibility');
+$debug = $zo2->getParams('debug_visibility');
+$responsive = $zo2->getParams('responsive_layout');
 $this->language = $doc->language;
 $this->direction = $doc->direction;
 if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
@@ -27,6 +28,9 @@ $layout = new Zo2Layout($templateName);
 <!DOCTYPE html>
 <html>
 <head>
+    <?php if ($responsive) : ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php endif;?>
     <jdoc:include type="head" />
     <?php echo $layout->insertHeaderAssets()?>
 </head>
@@ -35,7 +39,7 @@ $layout = new Zo2Layout($templateName);
     <?php echo $layout->generateHtml();?>
     <?php echo $layout->insertFooterAssets()?>
 </section>
-<?php if ($params['debug_visibility'] == 1) : ?>
+<?php if ($debug == 1) : ?>
 <jdoc:include type="modules" name="debug" />
 <?php endif; ?>
 </body>

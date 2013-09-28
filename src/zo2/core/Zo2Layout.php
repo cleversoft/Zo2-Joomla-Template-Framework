@@ -181,8 +181,8 @@ class Zo2Layout {
      */
     private function generateJsTag($item) {
         $basePath = '';
-        if (isset($item['base']) && $item['base'] == 'template') $basePath = $this->_templateUri;
-        else $basePath = Zo2Framework::getSystemPluginPath();
+        if (isset($item['base']) && $item['base'] == 'plugin') $basePath = Zo2Framework::getSystemPluginPath();
+        else $basePath = $this->_templateUri;
         $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $async = "";
         if (isset($item['options']['async'])) $async = " async=\"" . $item['options']['async'] . "\"";
@@ -201,8 +201,8 @@ class Zo2Layout {
      */
     private function generateCssTag($item) {
         $basePath = '';
-        if (isset($item['base']) && $item['base'] == 'template') $basePath = $this->_templateUri;
-        else $basePath = Zo2Framework::getSystemPluginPath();
+        if (isset($item['base']) && $item['base'] == 'plugin') $basePath = Zo2Framework::getSystemPluginPath();
+        else $basePath = $this->_templateUri;
         $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
         return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
@@ -339,6 +339,14 @@ class Zo2Layout {
         $path = $this->_layourDir . $cache;
         if (file_exists($path)) return file_get_contents($path);
         else {
+            $app = JFactory::getApplication();
+            $template = $app->getTemplate(true);
+            $params = $template->params;
+            $responsive = $params->get('responsive_layout');
+
+            if (!$responsive)
+                $this->insertCss('/assets/css/non-responsive.css');
+
             $html = '';
             foreach($this->_layoutStatics as $item) {
                 if ($item['position'] == 'header') {

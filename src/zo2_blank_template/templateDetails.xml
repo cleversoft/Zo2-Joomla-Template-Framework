@@ -59,9 +59,13 @@
                 <field type="include" file="overview.php" />
             </fieldset>
             -->
-            <field name="debug_visibility" type="list" default="0" label="Debug visibility" description="Show or hide the debug module">
-                <option value="0">Hide</option>
-                <option value="1">Visible</option>
+            <field name="debug_visibility" type="radio" default="0" label="Debug visibility" class="btn-group" description="Show or hide the debug module">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="responsive_layout" type="radio" default="1" label="Responsive Layout" class="btn-group" description="Enable or disable responsive layout">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
             </field>
             <field name="combine_statics" type="list" default="0" label="Combine assets" description="Combine the static assets such as JS and CSS">
                 <option value="0">Disable</option>
