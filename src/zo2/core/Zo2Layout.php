@@ -216,8 +216,10 @@ class Zo2Layout {
     public function generateHtml()
     {
         $html = '';
-        if (file_exists($this->_compiledLayoutPath)) {
-            $html = file_get_contents($this->_compiledLayoutPath);
+        $cache = 'layout.php';
+        $path = $this->_layourDir . $cache;
+        if (file_exists($path)) {
+            $html = file_get_contents($path);
             return $html;
         }
         else {
@@ -236,7 +238,7 @@ class Zo2Layout {
                     $html .= self::generateHtmlFromItem($data[$i], $layoutType);
                 }
 
-                file_put_contents($this->_compiledLayoutPath, $html);
+                file_put_contents($path, $html);
 
                 return $html;
             }
