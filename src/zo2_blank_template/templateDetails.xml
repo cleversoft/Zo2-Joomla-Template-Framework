@@ -59,6 +59,8 @@
                 <field type="include" file="overview.php" />
             </fieldset>
             -->
+            <field name="site_name" type="text" default="" label="Site name" />
+            <field name="site_slogan" type="text" default="" label="Site slogan" />
             <field name="debug_visibility" type="radio" default="0" label="Debug visibility" class="btn-group" description="Show or hide the debug module">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
@@ -84,7 +86,7 @@
                 <option value="Lato|Lato:400,300,300italic,400italic,700,700italic">Lato</option>
                 <option value="Lora|Lora:400,400italic,700,700italic">Lora</option>
             </field>
-            <field name="ga_code" filter="raw" type="textarea" default="" label="Google Analytics tracking code" description="Include the Google Analytics code">
+            <field name="ga_code" filter="raw" type="textarea" default="" label="Tracking code" description="Include the Google Analytics code">
             </field>
 
             <field name="enable_googleauthorship" type="radio" default="0"
@@ -152,6 +154,21 @@
                    description=""
                     />
 
+        </fieldset>
+
+        <fieldset name="header" label="Header Options">
+            <field name="header_logo" type="media" default="" label="Header logo" />
+            <field name="header_retina_logo" type="media" default="" label="Header Retina logo" />
+        </fieldset>
+
+        <fieldset name="footer" label="Footer Options">
+            <field name="footer_copyright" type="textarea" default="" label="Copyright" />
+            <field name="footer_logo" type="media" default="" label="Logo" />
+            <field name="footer_gototop" type="radio" default="0" label="Show &quot;Go to top&quot;"
+                   class="btn-group">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
         </fieldset>
 
         <fieldset name="comments" label="Comments Options">
