@@ -1,5 +1,15 @@
 <?php
 /**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ *
  * @package     Joomla.Legacy
  * @subpackage  View
  *
@@ -727,7 +737,13 @@ class JViewLegacy extends JObject
 				if (isset($app))
 				{
 					$component = preg_replace('/[^A-Z0-9_\.-]/i', '', $component);
-                    $this->_addPath('template', ZO2_ADMIN_BASE . '/html/' . $component . '/' . $this->getName());
+                    if ($app->isAdmin()) {
+                        $this->_addPath('template', ZO2_ADMIN_BASE . '/html/admin/' . $component . '/' . $this->getName());
+                        return;
+                    } else {
+                        $this->_addPath('template', ZO2_ADMIN_BASE . '/html/' . $component . '/' . $this->getName());
+                        return;
+                    }
                     $fallback = JPATH_THEMES . '/' . $app->getTemplate() . '/html/' . $component . '/' . $this->getName();
                     $this->_addPath('template', $fallback);
 				}

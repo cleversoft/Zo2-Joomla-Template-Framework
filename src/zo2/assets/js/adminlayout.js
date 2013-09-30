@@ -21,28 +21,28 @@ var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offse
 var $ = jQuery.noConflict();
 
 $(window).bind('load', function(){
-    var $tabsContainer = $('#myTabTabs');
-    var $tabContent = $('#myTabContent');
-    var $tab = $('<li class=""><a href="#layoutbuilder-container" data-toggle="tab">Layout Builder</a></li>');
-    $tab.appendTo($tabsContainer);
-
-    //add mega menu tab
-    var $tabMenu = $('<li class=""><a href="#megamenubuilder-container" data-toggle="tab">MegaMenu Builder</a></li>');
-    $tabMenu.appendTo($tabsContainer);
-    var $megamenuInner = $('#zo2-admin-megamenu').closest('.accordion-inner');
-    var $wrapMenu = $megamenuInner.closest('.accordion-group');
-    var $megaContainer = $('<div id="megamenubuilder-container" class="tab-pane" />');
-    $megaContainer.append($megamenuInner);
-    $megaContainer.appendTo($tabContent);
-    $wrapMenu.remove();
-
-   // add layout builder tab
-    var $layoutBuilder = $('#layoutbuilder-container');
-    var $layoutContainer = jQuery('#layoutbuilder-container').closest('.accordion-group');
-    $layoutBuilder.addClass('tab-pane').appendTo($tabContent);
-    $('#hfTemplateName').appendTo($layoutBuilder);
-    $('#hfLayoutName').appendTo($layoutBuilder);
-    $layoutContainer.remove();
+//    var $tabsContainer = $('#myTabTabs');
+//    var $tabContent = $('#myTabContent');
+//    var $tab = $('<li class=""><a href="#layoutbuilder-container" data-toggle="tab">Layout Builder</a></li>');
+//    $tab.appendTo($tabsContainer);
+//
+//    //add mega menu tab
+//    var $tabMenu = $('<li class=""><a href="#megamenubuilder-container" data-toggle="tab">MegaMenu Builder</a></li>');
+//    $tabMenu.appendTo($tabsContainer);
+//    var $megamenuInner = $('#zo2-admin-megamenu').closest('.accordion-inner');
+//    var $wrapMenu = $megamenuInner.closest('.accordion-group');
+//    var $megaContainer = $('<div id="megamenubuilder-container" class="tab-pane" />');
+//    $megaContainer.append($megamenuInner);
+//    $megaContainer.appendTo($tabContent);
+//    $wrapMenu.remove();
+//
+//   // add layout builder tab
+//    var $layoutBuilder = $('#layoutbuilder-container');
+//    var $layoutContainer = jQuery('#layoutbuilder-container').closest('.accordion-group');
+//    $layoutBuilder.addClass('tab-pane').appendTo($tabContent);
+//    $('#hfTemplateName').appendTo($layoutBuilder);
+//    $('#hfLayoutName').appendTo($layoutBuilder);
+//    $layoutContainer.remove();
 
     insertLogo();
     addIconToMenu();
@@ -51,7 +51,7 @@ $(window).bind('load', function(){
 
 jQuery(document).ready(function($){
     injectFormSubmit();
-    wrapForm();
+    //wrapForm();
 
     bindSortable();
 
@@ -336,11 +336,12 @@ var rearrangeSpan = function ($container){
 };
 var addIconToMenu = function() {
     var $ = jQuery;
-    $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Details');
+    $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Overview');
     $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General Options');
-    $('#myTabTabs').find('a').eq(2).html('<i class="icon-edit-sign" /> Menu Assignment');
-    $('#myTabTabs').find('a').eq(3).html('<i class="icon-th" /> Layout Builder');
-    $('#myTabTabs').find('a').eq(4).html('<i class="icon-list-alt" /> MegaMenu Builder');
+    $('#myTabTabs').find('a').eq(2).html('<i class="icon-th" /> Layout Builder');
+    $('#myTabTabs').find('a').eq(3).html('<i class="icon-list-alt" /> Mega Menus');
+    $('#myTabTabs').find('a').eq(4).html('<i class="icon-edit-sign" /> Assignment');
+    $('#myTabTabs').find('a').eq(5).html('<i class="icon-wrench" /> Advanced');
 };
 
 var insertLogo = function () {

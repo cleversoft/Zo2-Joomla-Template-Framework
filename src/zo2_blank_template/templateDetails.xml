@@ -82,80 +82,21 @@
             </field>
             <field name="ga_code" filter="raw" type="textarea" default="" label="Tracking code" description="Include the Google Analytics code">
             </field>
-
-            <field name="enable_googleauthorship" type="radio" default="0"
-                   label="Google Authorship"
-                   description="Google Authorship" class="btn-group">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
-            <field name="google_profile_url" type="text" default=""
-                   label="Google Profile URL"
-                   description="Google Profile URL" />
-
-
-        </fieldset>
-        <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
             <field
-                type="layout"
-                name="layout" />
-        </fieldset>
-
-        <fieldset name="megamenu" label="Megamenu">
-            <field type="assets" name="assets" />
-            <field name="hover_type" type="list" default="hover"
-                   label="Hover type"
-                   description="Hover type">
-                <option value="hover">Mouse Hover</option>
-                <option value="click">Mouse Click</option>
-            </field>
-
-            <field name="nav_type" type="list" default="joomla"
-                   label="Navigation type"
-                   description="Navigation type">
-                <option value="megamenu">Megamenu</option>
-            </field>
-
-            <field name="animation" type="list" default=""
-                   global="1"
-                   label="Animation"
-                   description="Animation">
-                <option value="">None</option>
-                <option value="fading">Fading</option>
-                <option value="slide">Slide</option>
-                <option value="zoom">Zoom</option>
-                <option value="elastic">Elastic</option>
-            </field>
-            <field name="duration" type="text" default="400"
-                   global="1"
-                   label="Duration"
-                   description="Duration" />
-
-            <field name="show_submenu" type="radio" default="1"
-                   label="Show submenu"
-                   description="Show submenu" class="btn-group">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
-
-            <field name="menu_type" type="menutype" default="mainmenu"
-                   label="Menu type"
-                   description="Menu type"
+                    name="b_header"
+                    type="spacer"
+                    hr="true"
                     />
 
-            <field name="menu_config" type="megamenu" hide="true"
-                   label=""
-                   description=""
-                    />
-
-        </fieldset>
-
-        <fieldset name="header" label="Header Options">
+            <!--Header Option-->
             <field name="header_logo" type="media" default="" label="Header logo" />
             <field name="header_retina_logo" type="media" default="" label="Header Retina logo" />
-        </fieldset>
-
-        <fieldset name="footer" label="Footer Options">
+            <field
+                    name="b_footer"
+                    type="spacer"
+                    hr="true"
+                    />
+            <!--Footer Option-->
             <field name="footer_copyright" type="textarea" default="" label="Copyright" />
             <field name="footer_logo" type="media" default="" label="Logo" />
             <field name="footer_gototop" type="radio" default="0" label="Show &quot;Go to top&quot;"
@@ -163,41 +104,119 @@
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
-        </fieldset>
+        		
+            </fieldset>
 
-        <fieldset name="comments" label="Comments Options">
+            <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
+                <field
+                    type="layout"
+                    name="layout" />
+            </fieldset>
+            <!--Mega Menus-->
+            <fieldset name="megamenu" label="Megamenu">
 
-            <field name="enable_comments" type="radio" default="0" label="Enable Comments" description="Enable Comments" class="btn-group">
-                <option value="1">JYES</option>
-                <option value="0">JNO</option>
-            </field>
+                <field type="assets" name="assets" />
+                <field name="hover_type" type="list" default="hover"
+                       label="Hover type"
+                       description="Hover type">
+                    <option value="hover">Mouse Hover</option>
+                    <option value="click">Mouse Click</option>
+                </field>
 
-            <field name="tab_order" type="text" default="facebook,gplus,disqus,k2comment"
-                   label="Tabs Order"
-                   description="Only tabs listed will be showed" />
+                <field name="nav_type" type="list" default="joomla"
+                       label="Navigation type"
+                       description="Navigation type">
+                    <option value="megamenu">Megamenu</option>
+                </field>
 
-            <field name="disqus_shortname" type="text" default="zootemplates"
-                   label="Disqus Shortname"
-                   description="Required if showing the disqus tab" />
+                <field name="animation" type="list" default=""
+                       global="1"
+                       label="Animation"
+                       description="Animation">
+                    <option value="">None</option>
+                    <option value="fading">Fading</option>
+                    <option value="slide">Slide</option>
+                    <option value="zoom">Zoom</option>
+                    <option value="elastic">Elastic</option>
+                </field>
+                <field name="duration" type="text" default="400"
+                       global="1"
+                       label="Duration"
+                       description="Duration" />
 
-            <field name="facebook_label" type="text" default="Facebook"
-                   label="Facebook Label"
-                   description="" />
+                <field name="show_submenu" type="radio" default="1"
+                       label="Show submenu"
+                       description="Show submenu" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
 
-            <field name="gplus_label" type="text" default="Google+"
-                   label="Google+ Label"
-                   description="" />
+                <field name="menu_type" type="menutype" default="mainmenu"
+                       label="Menu type"
+                       description="Menu type"
+                        />
 
-            <field name="disqus_label" type="text" default="Disqus"
-                   label="Disqus Label"
-                   description="" />
+                <field name="menu_config" type="megamenu" hide="true"
+                       label=""
+                       description=""
+                        />
 
-            <field name="k2comment_label" type="text" default="ZO2 Framework"
-                   label="K2 Comment Label"
-                   description="" />
+            </fieldset>
 
-        </fieldset>
 
-    </fields>
+            <fieldset name="advanced" label="Advanced">
+
+                <field name="ga_code" filter="raw" type="textarea" default="" label="Google Analytics tracking code" description="Include the Google Analytics code">
+                </field>
+
+                <field name="enable_googleauthorship" type="radio" default="0"
+                       label="Google Authorship"
+                       description="Google Authorship" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="google_profile_url" type="text" default=""
+                       label="Google Profile URL"
+                       description="Google Profile URL" />
+                <field
+                        name="ad_comment"
+                        type="spacer"
+                        hr="true"
+                        />
+
+                <!--Comment-->
+                <field name="enable_comments" type="radio" default="0" label="Enable Comments" description="Enable Comments" class="btn-group">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+                <field name="tab_order" type="text" default="facebook,gplus,disqus,k2comment"
+                       label="Tabs Order"
+                       description="Only tabs listed will be showed" />
+
+                <field name="disqus_shortname" type="text" default="zootemplates"
+                       label="Disqus Shortname"
+                       description="Required if showing the disqus tab" />
+
+                <field name="facebook_label" type="text" default="Facebook"
+                       label="Facebook Label"
+                       description="" />
+
+                <field name="gplus_label" type="text" default="Google+"
+                       label="Google+ Label"
+                       description="" />
+
+                <field name="disqus_label" type="text" default="Disqus"
+                       label="Disqus Label"
+                       description="" />
+
+                <field name="k2comment_label" type="text" default="ZO2 Framework"
+                       label="K2 Comment Label"
+                       description="" />
+
+
+            </fieldset>
+
+        </fields>
     </config>
 </extension>

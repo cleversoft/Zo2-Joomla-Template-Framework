@@ -44,13 +44,16 @@ class Zo2Framework {
 
         $app = JFactory::getApplication();
 
+        // JViewLegacy
+        if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.classes.legacy');
+
         if (!$app->isAdmin()) {
             Zo2Framework::import2('addons.shortcodes.WPShortcode');
             Zo2Framework::getInstance()->ShortCode = new WPShortcode();
-            // JViewLegacy
-            if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.classes.legacy');
             // JModuleHelper
             if (!class_exists('JModuleHelper', false)) Zo2Framework::import2('core.classes.helper');
+        } else {
+
         }
 
         // set variable for env
