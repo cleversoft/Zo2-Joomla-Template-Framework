@@ -16,6 +16,15 @@
         "base": "plugin"
     },
     {
+        "path": "/assets/vendor/font-awesome/css/font-awesome.min.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header",
+        "base": "plugin"
+    },
+    {
         "path": "/assets/vendor/jquery/jquery-1.9.1.min.js",
         "type": "js",
         "position": "footer",

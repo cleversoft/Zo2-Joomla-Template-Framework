@@ -19,6 +19,7 @@
     </languages>
     <positions>
         <position>top</position>
+        <position>header_logo</position>
         <position>logo</position>
         <position>menu</position>
         <position>breadcrumb</position>
@@ -35,8 +36,11 @@
         <position>bottom2</position>
         <position>bottom3</position>
         <position>bottom4</position>
+        <position>footer_logo</position>
         <position>footer1</position>
         <position>footer2</position>
+        <position>footer_copyright</position>
+
     </positions>
 	
     <files>
@@ -55,14 +59,11 @@
         <fieldset name="basic">
             <field name="site_name" type="text" default="" label="Site name" />
             <field name="site_slogan" type="text" default="" label="Site slogan" />
-            <field name="debug_visibility" type="radio" default="0" label="Debug visibility" class="btn-group" description="Show or hide the debug module">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
             <field name="responsive_layout" type="radio" default="1" label="Responsive Layout" class="btn-group" description="Enable or disable responsive layout">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
+            <field name="favicon" type="media" default="" label="Favicon" />
             <field name="combine_statics" type="list" default="0" label="Combine assets" description="Combine the static assets such as JS and CSS">
                 <option value="0">Disable</option>
                 <option value="1">Combine</option>
@@ -197,7 +198,12 @@
                    description="" />
 
         </fieldset>
-
+        <fieldset name="other_basic" label="Other Options">
+            <field name="debug_visibility" type="radio" default="0" label="Debug" class="btn-group" description="Allow to debug">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+        </fieldset>
     </fields>
     </config>
 </extension>

@@ -219,7 +219,7 @@ jQuery(document).ready(function($){
         $col.removeClass(allColClass).addClass('col-md-' + $('#dlColWidth').val());
         $col.removeClass(allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
         $col.attr('data-zo2-position', $('#dlColPosition').val());
-        $col.find('>.col-name').text($('#dlColPosition').val());
+        $col.find('>.col-wrap>.col-name').text(colName);
         $('#colSettingsModal').modal('hide');
         return false;
     });

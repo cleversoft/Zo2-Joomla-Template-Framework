@@ -22,6 +22,8 @@ class Zo2Layout {
     private $_styleDeclaration = array();
     private $_jsDeclaration = array();
 
+    private $_components = array();
+
     /**
      * Construct a Zo2Layout object
      *
@@ -54,6 +56,8 @@ class Zo2Layout {
 
         // combine layout statics
         $this->_layoutStatics = $coreStatics;
+
+        $this->importComponents();
     }
 
     /**
@@ -93,6 +97,16 @@ class Zo2Layout {
     public function insertJs($path, array $options = array(), $position = 'footer')
     {
         $this->insertStatic($path, 'js', $options, $position);
+    }
+
+    public function insertCssDeclaration($style)
+    {
+        $this->_styleDeclaration[] = $style;
+    }
+
+    public function insertJsDeclaration($js)
+    {
+        $this->_jsDeclaration[] = $js;
     }
 
     /**
@@ -157,7 +171,7 @@ class Zo2Layout {
                 $scripts .= $js . "\n";
             }
 
-            $scripts = '<script type="text\javascript">' . $scripts . '</script>';
+            $scripts = '<script type="text/javascript">' . $scripts . '</script>';
 
             $footer .= $scripts;
         }
@@ -215,17 +229,19 @@ class Zo2Layout {
      */
     public function generateHtml()
     {
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+        $debug = $params->get('debug_visibility');
+
         $html = '';
         $cache = 'layout.php';
         $path = $this->_layourDir . $cache;
-        if (file_exists($path)) {
+        if (file_exists($path) && !$debug) {
             $html = file_get_contents($path);
             return $html;
         }
         else {
-            $app = JFactory::getApplication();
-            $template = $app->getTemplate(true);
-            $params = $template->params;
             $layoutType = $params->get('layout_type');
             if ($layoutType == 'fixed') $layoutType = '';
             else $layoutType = '-fluid';
@@ -235,7 +251,7 @@ class Zo2Layout {
                 $data = json_decode(file_get_contents($this->_layoutPath), true);
 
                 for ($i = 0, $total = count($data); $i < $total; $i++) {
-                    $html .= self::generateHtmlFromItem($data[$i], $layoutType);
+                    $html .= $this->generateHtmlFromItem($data[$i], $layoutType);
                 }
 
                 file_put_contents($path, $html);
@@ -253,11 +269,11 @@ class Zo2Layout {
      * @param $layoutType
      * @return string
      */
-    private static function generateHtmlFromItem($item, $layoutType)
+    private function generateHtmlFromItem($item, $layoutType)
     {
         $html = '';
-        if ($item['type'] == 'row') $html .= self::generateRow($item, $layoutType);
-        else if ($item['type'] == 'col') $html .= self::generateColumn($item, $layoutType);
+        if ($item['type'] == 'row') $html .= $this->generateRow($item, $layoutType);
+        else if ($item['type'] == 'col') $html .= $this->generateColumn($item, $layoutType);
 
         return $html;
     }
@@ -269,7 +285,7 @@ class Zo2Layout {
      * @param $layoutType
      * @return string
      */
-    private static function generateRow($item, $layoutType)
+    private function generateRow($item, $layoutType)
     {
         //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
         $class = 'container';
@@ -295,8 +311,9 @@ class Zo2Layout {
      * @param $layoutType
      * @return string
      */
-    private static function generateColumn($item, $layoutType)
+    private function generateColumn($item, $layoutType)
     {
+        $zo2 = Zo2Framework::getInstance();
         $html = '';
         $class = 'col-md-' . $item['span'];
         //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
@@ -308,13 +325,26 @@ class Zo2Layout {
             if ($item['position'] == 'component') $html .= '<jdoc:include type="component" />';
             else if ($item['position'] == 'message') $html .= '<jdoc:include type="message" />';
             else if($item['position'] == 'mega_menu') {
-                $zo2 = Zo2Framework::getInstance();
                 $html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
             }
             else {
-                //$html .= '<!-- module pos: ' . $item['position'] . ' - ' . $item['style'] . ' -->';
-                $html .= '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
-                //$html .= '<!-- /module pos: ' . $item['position'] . ' -->';
+                $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
+                $componentHtml = '';
+                if ($componentPath = $this->_components[$item['position']]) {
+                    $componentClassName = "Zo2Component_" . $item['position'];
+                    if (file_exists($componentPath)) require_once $componentPath;
+                    if (class_exists($componentClassName)) {
+                        $component = new $componentClassName();
+                        if ($component instanceof Zo2Component) {
+                            $componentHtml = $component->render();
+
+                            if ($component->position == Zo2Component::RENDER_BEFORE) $html .= $componentHtml . "\n" . $moduleJdoc;
+                            else if ($component->position == Zo2Component::RENDER_AFTER) $html .= $moduleJdoc . "\n" . $componentHtml;
+                        }
+                    }
+                }
+
+                if (empty($componentHtml)) $html .= $moduleJdoc;
             }
         }
 
@@ -337,13 +367,14 @@ class Zo2Layout {
      */
     public function insertHeaderAssets()
     {
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+        $debug = $params->get('debug_visibility');
         $cache = 'header.php';
         $path = $this->_layourDir . $cache;
-        if (file_exists($path)) return file_get_contents($path);
+        if (file_exists($path) && !$debug) return file_get_contents($path);
         else {
-            $app = JFactory::getApplication();
-            $template = $app->getTemplate(true);
-            $params = $template->params;
             $responsive = $params->get('responsive_layout');
 
             if (!$responsive)
@@ -382,9 +413,13 @@ class Zo2Layout {
      */
     public function insertFooterAssets()
     {
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+        $debug = $params->get('debug_visibility');
         $cache = 'footer.php';
         $path = $this->_layourDir . $cache;
-        if (file_exists($path)) return file_get_contents($path);
+        if (file_exists($path) && !$debug) return file_get_contents($path);
         else {
             $html = '';
 
@@ -402,7 +437,7 @@ class Zo2Layout {
                     $scripts .= $js . "\n";
                 }
 
-                $scripts = '<script type="text\javascript">' . $scripts . '</script>';
+                $scripts = '<script type="text/javascript">' . $scripts . '</script>';
 
                 $html .= $scripts;
             }
@@ -590,5 +625,28 @@ class Zo2Layout {
         $path = $this->_templatePath . 'runtime' . DIRECTORY_SEPARATOR . 'state.php';
 
         file_put_contents($path, $state);
+    }
+
+    /**
+     * Import components
+     */
+    public function importComponents()
+    {
+        $zo2 = Zo2Framework::getInstance();
+        $pluginComponentsPath = $zo2->getPluginPath() . '/components/*.php';
+        $templateComponentsPath = $this->_templatePath . 'components/*.php';
+
+        $pluginComponents = glob($pluginComponentsPath);
+        $templateComponents = glob($templateComponentsPath);
+
+        foreach($pluginComponents as $comp) {
+            $compName = JFILE::stripExt(basename($comp));
+            $this->_components[$compName] = $comp;
+        }
+
+        foreach($templateComponents as $comp) {
+            $compName = JFILE::stripExt(basename($comp));
+            $this->_components[$compName] = $comp;
+        }
     }
 }

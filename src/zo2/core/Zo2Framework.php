@@ -30,6 +30,11 @@ class Zo2Framework {
      */
     private static $_instance;
 
+    /**
+     * @var Zo2Layout
+     */
+    private $_layout = null;
+
     private static $_currentTemplatePath;
 
     public function __construct(){}
@@ -80,7 +85,8 @@ class Zo2Framework {
      *
      * @return JDocument
      */
-    public static function getCurrentDocument(){
+    public static function getCurrentDocument()
+    {
         return JFactory::getDocument();
     }
 
@@ -90,7 +96,8 @@ class Zo2Framework {
      * @param string $script Path to the js script
      * @return Zo2Framework
      */
-    public static function addJsScript($script){
+    public static function addJsScript($script)
+    {
         self::getInstance()->document->addScript($script);
         return self::getInstance();
     }
@@ -101,7 +108,8 @@ class Zo2Framework {
      * @param string $style Path to the css stylesheet
      * @return Zo2Framework
      */
-    public static function addCssStylesheet($style){
+    public static function addCssStylesheet($style)
+    {
         self::getInstance()->document->addStyleSheet($style);
         return self::getInstance();
     }
@@ -111,8 +119,21 @@ class Zo2Framework {
      * @param $script
      * @return Zo2Framework
      */
-    public static function addScriptDeclaration($script){
+    public static function addScriptDeclaration($script)
+    {
         self::getInstance()->document->addScriptDeclaration($script);
+        return self::getInstance();
+    }
+
+    /**
+     * Add custom CSS style
+     *
+     * @param $style
+     * @return Zo2Framework
+     */
+    public static function addStyleDeclaration($style)
+    {
+        self::getInstance()->document->addStyleDeclaration($style);
         return self::getInstance();
     }
 
@@ -212,11 +233,17 @@ class Zo2Framework {
     /**
      * Set layout for output
      *
-     * @param $layoutName
+     * @param $layout Zo2Layout
      * @return bool
      */
-    public static function setLayout($layoutName){
-        return true;
+    public static function setLayout($layout){
+        self::getInstance()->_layout = $layout;
+        return self::getInstance();
+    }
+
+    public static function getLayout()
+    {
+        return self::getInstance()->_layout;
     }
 
     /**
@@ -442,13 +469,5 @@ class Zo2Framework {
     public static function getCurrentTemplateAbsolutePath()
     {
         return Zo2Framework::$_currentTemplatePath;
-    }
-
-    public static function addBody() {
-
-    }
-
-    public static function addFooter() {
-
     }
 }

@@ -19,11 +19,13 @@ $zo2 = Zo2Framework::getInstance();
 $doc = JFactory::getDocument();
 $debug = $zo2->getParams('debug_visibility');
 $responsive = $zo2->getParams('responsive_layout');
+$favicon = $zo2->getParams('favicon');
 $this->language = $doc->language;
 $this->direction = $doc->direction;
 if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
 $templateName = $this->template;
 $layout = new Zo2Layout($templateName);
+$zo2->setLayout($layout);
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +33,9 @@ $layout = new Zo2Layout($templateName);
     <?php if ($responsive) : ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php endif;?>
+    <?php if($favicon) : ?>
+    <link rel="icon" type="image/x-icon" href="<?php echo $favicon?>" />
+    <?php endif; ?>
     <jdoc:include type="head" />
     <?php echo $layout->insertHeaderAssets()?>
 </head>
