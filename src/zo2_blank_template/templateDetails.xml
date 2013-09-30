@@ -53,12 +53,6 @@
 
     <fields name="params" addfieldpath="/plugins/system/zo2/formfields">
         <fieldset name="basic">
-            <!--
-            <fieldset name="overviews" addfieldpath="/plugins/system/helix/fields">
-                <field type="asset" />
-                <field type="include" file="overview.php" />
-            </fieldset>
-            -->
             <field name="site_name" type="text" default="" label="Site name" />
             <field name="site_slogan" type="text" default="" label="Site slogan" />
             <field name="debug_visibility" type="radio" default="0" label="Debug visibility" class="btn-group" description="Show or hide the debug module">
