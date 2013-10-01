@@ -100,7 +100,7 @@ class Zo2Layout {
     public function insertJs($path, array $options = array(), $position = 'footer')
     {
         $this->insertStatic($path, 'js', $options, $position);
-        return this;
+        return $this;
     }
 
     public function insertCssDeclaration($style)
