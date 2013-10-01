@@ -38,7 +38,7 @@ class Zo2Component_header_logo extends Zo2Component {
 
             // still having bug with this
             //$zo2->getLayout()->insertCssDeclaration($customStyle);
-            $zo2->document->addStyleDeclaration($customStyle);
+            $zo2->getLayout()->insertCssDeclaration($customStyle);
 
             $html = '<header id="header_logo"><h1><a href="/" title="' . (!empty($sitename) ? $sitename : '') . '">';
             $html .= '<img class="logo_normal" src="' . $logo . '" />';

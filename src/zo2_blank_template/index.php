@@ -11,6 +11,7 @@
  * @license     GPL v2
  */
 
+// Do all the preparation
 defined ('_JEXEC') or die ('Restricted Access');
 if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
 //access zo2 framework
@@ -24,8 +25,19 @@ $this->language = $doc->language;
 $this->direction = $doc->direction;
 if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
 $templateName = $this->template;
+
+// Init layout
 $layout = new Zo2Layout($templateName);
 $zo2->setLayout($layout);
+
+// init body
+$body = $layout->generateHtml();
+
+// init header assets
+$header = $layout->insertHeaderAssets();
+
+// init footer assets
+$footer = $layout->insertFooterAssets();
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,15 +49,15 @@ $zo2->setLayout($layout);
     <link rel="icon" type="image/x-icon" href="<?php echo $favicon?>" />
     <?php endif; ?>
     <jdoc:include type="head" />
-    <?php echo $layout->insertHeaderAssets()?>
+    <?php echo $header?>
 </head>
 <body>
 <section class="wrapper">
-    <?php echo $layout->generateHtml();?>
-    <?php echo $layout->insertFooterAssets()?>
+    <?php echo $body;?>
 </section>
 <?php if ($debug == 1) : ?>
 <jdoc:include type="modules" name="debug" />
 <?php endif; ?>
+<?php echo $footer ?>
 </body>
 </html>

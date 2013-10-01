@@ -81,10 +81,12 @@ class Zo2Layout {
      * @param $type
      * @param array $options
      * @param $position string Must be 'footer' or 'header'
+     * @return $this
      */
     public function insertStatic($path, $type, array $options = array(), $position)
     {
         $this->_layoutStatics[] = array('path' => $path, 'type' => $type, 'options' => $options, 'position' => $position);
+        return $this;
     }
 
     /**
@@ -93,20 +95,24 @@ class Zo2Layout {
      * @param $path
      * @param array $options
      * @param string $position
+     * @return $this
      */
     public function insertJs($path, array $options = array(), $position = 'footer')
     {
         $this->insertStatic($path, 'js', $options, $position);
+        return this;
     }
 
     public function insertCssDeclaration($style)
     {
         $this->_styleDeclaration[] = $style;
+        return $this;
     }
 
     public function insertJsDeclaration($js)
     {
         $this->_jsDeclaration[] = $js;
+        return $this;
     }
 
     /**
@@ -115,10 +121,12 @@ class Zo2Layout {
      * @param $path
      * @param array $options
      * @param string $position
+     * @return $this
      */
     public function insertCss($path, array $options = array(), $position = 'header')
     {
         $this->insertStatic($path, 'css', $options, $position);
+        return $this;
     }
 
     /**
