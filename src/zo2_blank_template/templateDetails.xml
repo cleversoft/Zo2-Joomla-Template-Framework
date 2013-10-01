@@ -182,13 +182,15 @@
                 <option value="0">JNO</option>
             </field>
 
-            <field name="tab_order" type="text" default="facebook,gplus,disqus,k2comment"
-                   label="Tabs Order"
-                   description="Only tabs listed will be showed" />
+                <field name="tab_order" type="taborder" default="facebook,gplus,disqus,k2comment"
+                       label="Tabs Order"
+                       description="Only tabs listed will be showed"
+                       desc=""
+                        />
 
-            <field name="disqus_shortname" type="text" default="zootemplates"
-                   label="Disqus Shortname"
-                   description="Required if showing the disqus tab" />
+                <field name="disqus_shortname" type="disqus" default="zootemplates"
+                       label="Disqus Shortname"
+                       description="Required if showing the disqus tab" />
 
             <field name="facebook_label" type="text" default="Facebook"
                    label="Facebook Label"
