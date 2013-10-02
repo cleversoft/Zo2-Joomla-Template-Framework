@@ -14,6 +14,8 @@ var strategy = [
     [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
 ];
 
+var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 'data-zo2-visibility-md', 'data-zo2-visibility-lg'];
+
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
     'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
@@ -75,7 +77,10 @@ jQuery(document).ready(function($){
         var $row = jQuery('<div />').addClass('zo2-row sortable-row').insertAfter($parent);
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
-        $row.attr('data-zo2-layout', 'fixed');
+        for(var i = 0; i < visibilityAttributes.length; i++) {
+            $row.attr(visibilityAttributes[i], '1');
+        }
+        //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control">' +
             '<div class="row-control-container">' +
             '<div class="row-name">(unnamed row)</div>' +
@@ -106,6 +111,9 @@ jQuery(document).ready(function($){
             $span.attr('data-zo2-position', '');
             $span.attr('data-zo2-offset', 0);
             $span.attr('data-zo2-customClass', '');
+            for(var i = 0; i < visibilityAttributes.length; i++) {
+                $span.attr(visibilityAttributes[i], '1');
+            }
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
                 '<div class="col-control-buttons">' +
                 '<i class="col-control-icon dragger icon-move"></i><i class="icon-cogs col-control-icon settings"></i>' +
@@ -153,7 +161,10 @@ jQuery(document).ready(function($){
         var $row = jQuery('<div />').addClass('zo2-row sortable-row').appendTo($container);
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
-        $row.attr('data-zo2-layout', 'fixed');
+        for(var i = 0; i < visibilityAttributes.length; i++) {
+            $row.attr(visibilityAttributes[i], '1');
+        }
+        //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
             '</div><div class="row-control-buttons"><i class="icon-move row-control-icon dragger">' +
             '</i><i class="icon-cogs row-control-icon settings"></i><i class="row-control-icon duplicate icon-align-justify">' +
@@ -168,22 +179,37 @@ jQuery(document).ready(function($){
         var $row = $this.closest('.sortable-row');
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
         var rowCustomClass = $row.attr('data-zo2-customClass');
-        var rowLayout = $row.attr('data-zo2-layout');
+        //var rowLayout = $row.attr('data-zo2-layout');
         var rowId = $row.attr('data-zo2-id');
         if (!rowCustomClass) rowCustomClass = '';
+
+        $('#cbRowPhoneVisibility').attr('checked', $row.attr('data-zo2-visibility-xs') == '1');
+        $('#cbRowTabletVisibility').attr('checked', $row.attr('data-zo2-visibility-sm') == '1');
+        $('#cbRowDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-md') == '1');
+        $('#cbRowLargeDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-lg') == '1');
+
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
         $('#txtRowCss').val('').val(rowCustomClass);
         $('#txtRowId').val(rowId);
-        $('#ddlRowLayout').val(rowLayout).trigger("liszt:updated");
-        $('#rowSettingsModal').modal('show');
+        //$('#ddlRowLayout').val(rowLayout).trigger("liszt:updated");
+        var $modal = $('#rowSettingsModal');
+        $modal.find('.zo2-tabs').find('li a').removeClass('active');
+        $modal.find('.zo2-tabs-content').find('> div').removeClass('active');
+        $modal.find('.zo2-tabs').find('li a:first').addClass('active');
+        $modal.find('.zo2-tabs-content').find('> div:first').addClass('active');
+        $modal.modal('show');
     });
 
     $('#btnSaveRowSettings').on('click', function () {
         var $row = $.data(document.body, 'editingEl');
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
-        $row.attr('data-zo2-layout', $('#ddlRowLayout').val());
+        $row.attr('data-zo2-visibility-xs', $('#cbRowPhoneVisibility').attr('checked') ? '1' : '0');
+        $row.attr('data-zo2-visibility-sm', $('#cbRowTabletVisibility').attr('checked') ? '1' : '0');
+        $row.attr('data-zo2-visibility-md', $('#cbRowDesktopVisibility').attr('checked') ? '1' : '0');
+        $row.attr('data-zo2-visibility-lg', $('#cbRowLargeDesktopVisibility').attr('checked') ? '1' : '0');
+        //$row.attr('data-zo2-layout', $('#ddlRowLayout').val());
         $row.attr('data-zo2-id', $('#txtRowId').val());
         $('#rowSettingsModal').modal('hide');
         return false;
@@ -199,13 +225,24 @@ jQuery(document).ready(function($){
         var spanStyle = $col.attr('data-zo2-style');
         var customCss = $col.attr('data-zo2-customClass');
         var spanId = $col.attr('data-zo2-id');
+
+        $('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
+        $('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
+        $('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
+        $('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
+
         $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
         $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
         $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
         $('#ddlColStyle').val(spanStyle).trigger("liszt:updated");
         $('#txtColCss').val(customCss);
         $('#txtColId').val(spanId);
-        $('#colSettingsModal').modal('show');
+        var $modal = $('#colSettingsModal');
+        $modal.find('.zo2-tabs').find('li a').removeClass('active');
+        $modal.find('.zo2-tabs-content').find('> div').removeClass('active');
+        $modal.find('.zo2-tabs').find('li a:first').addClass('active');
+        $modal.find('.zo2-tabs-content').find('> div:first').addClass('active');
+        $modal.modal('show');
     });
 
     $('#btnSaveColSettings').on('click', function() {
@@ -215,6 +252,12 @@ jQuery(document).ready(function($){
         $col.attr('data-zo2-style', $('#ddlColStyle').val());
         $col.attr('data-zo2-customClass', $('#txtColCss').val());
         $col.attr('data-zo2-id', $('#txtColId').val());
+
+        $col.attr('data-zo2-visibility-xs', $('#cbColumnPhoneVisibility').attr('checked') ? '1' : '0');
+        $col.attr('data-zo2-visibility-sm', $('#cbColumnTabletVisibility').attr('checked') ? '1' : '0');
+        $col.attr('data-zo2-visibility-md', $('#cbColumnDesktopVisibility').attr('checked') ? '1' : '0');
+        $col.attr('data-zo2-visibility-lg', $('#cbColumnLargeDesktopVisibility').attr('checked') ? '1' : '0');
+
         var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
         $col.removeClass(allColClass).addClass('col-md-' + $('#dlColWidth').val());
         $col.removeClass(allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
@@ -222,6 +265,20 @@ jQuery(document).ready(function($){
         $col.find('>.col-wrap>.col-name').text(colName);
         $('#colSettingsModal').modal('hide');
         return false;
+    });
+
+    // cause joomla does not have bootstrap tabs :|
+    $('.zo2-tabs').on('click', 'li a', function() {
+        var $this = $(this);
+        var $tabs = $this.closest('.zo2-tabs');
+        var $actives = $tabs.find('.active');
+        $actives.removeClass('active');
+        $actives.each(function(){
+            var $activeTab = $('#' + $(this).attr('data-toggle'));
+            $activeTab.removeClass('active');
+        });
+        $this.addClass('active');
+        $('#' + $this.attr('data-toggle')).addClass('active');
     });
 });
 
@@ -264,10 +321,16 @@ var generateItemJson = function($item) {
     if ($item.attr('data-zo2-type') == 'row') {
         result = {
             type: "row",
-            layout: $item.attr('data-zo2-layout'),
+            //layout: $item.attr('data-zo2-layout'),
             name: $item.find('> .row-control > .row-control-container > .row-name').text(),
             customClass: $item.attr('data-zo2-customClass'),
             id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
+            visibility: {
+                xs: $item.attr('data-zo2-visibility-xs') == '1',
+                sm: $item.attr('data-zo2-visibility-sm') == '1',
+                md: $item.attr('data-zo2-visibility-md') == '1',
+                lg: $item.attr('data-zo2-visibility-lg') == '1'
+            },
             children: []
         };
 
@@ -288,13 +351,19 @@ var generateItemJson = function($item) {
             customClass: $item.attr('data-zo2-customClass') ? $item.attr('data-zo2-customClass') : '',
             style: $item.attr('data-zo2-style'),
             id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
+            visibility: {
+                xs: $item.attr('data-zo2-visibility-xs') == '1',
+                sm: $item.attr('data-zo2-visibility-sm') == '1',
+                md: $item.attr('data-zo2-visibility-md') == '1',
+                lg: $item.attr('data-zo2-visibility-lg') == '1'
+            },
             children: []
         };
 
         $childrenContainer = $item.find('> .col-wrap > .row-container');
 
         $childrenContainer.find('> [data-zo2-type]').each(function() {
-            console.log($(this));
+            //console.log($(this));
             var childItem = generateItemJson(jQuery(this));
             result.children.push(childItem);
         });

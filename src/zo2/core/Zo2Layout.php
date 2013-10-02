@@ -274,29 +274,38 @@ class Zo2Layout {
      * Generate html for an item such as a row or a column.
      *
      * @param $item
-     * @param $layoutType
      * @return string
      */
-    private function generateHtmlFromItem($item, $layoutType)
+    private function generateHtmlFromItem($item)
     {
         $html = '';
-        if ($item['type'] == 'row') $html .= $this->generateRow($item, $layoutType);
-        else if ($item['type'] == 'col') $html .= $this->generateColumn($item, $layoutType);
+        if ($item['type'] == 'row') $html .= $this->generateRow($item);
+        else if ($item['type'] == 'col') $html .= $this->generateColumn($item);
 
         return $html;
+    }
+
+    private static function generateVisibilityClass($visibilityData)
+    {
+        $classes = array();
+        $classes[] = $visibilityData['xs'] ? 'visible-xs' : 'hidden-xs';
+        $classes[] = $visibilityData['sm'] ? 'visible-sm' : 'hidden-sm';
+        $classes[] = $visibilityData['md'] ? 'visible-md' : 'hidden-md';
+        $classes[] = $visibilityData['lg'] ? 'visible-lg' : 'hidden-lg';
+        return implode(' ', $classes);
     }
 
     /**
      * Generate html from a row item
      *
      * @param $item
-     * @param $layoutType
      * @return string
      */
-    private function generateRow($item, $layoutType)
+    private function generateRow($item)
     {
         //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
         $class = 'container';
+        $class .= ' ' . self::generateVisibilityClass($item['visibility']);
         $html = '';
         if (!empty($item['id'])) $html .= '<section id="' . $item['id'] . '" class="' . $item['customClass'] . '">';
         else $html .= '<section class="' . $item['customClass'] . '">';
@@ -304,7 +313,7 @@ class Zo2Layout {
         $html .= '<section class="row">'; // start of row
 
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
-            $html .= self::generateHtmlFromItem($item['children'][$i], $layoutType);
+            $html .= self::generateHtmlFromItem($item['children'][$i]);
         }
         $html .= '</section>'; // end of row
         $html .= '</section>'; // end of container
@@ -316,14 +325,14 @@ class Zo2Layout {
      * Generate html from a column item
      *
      * @param $item
-     * @param $layoutType
      * @return string
      */
-    private function generateColumn($item, $layoutType)
+    private function generateColumn($item)
     {
         $zo2 = Zo2Framework::getInstance();
         $html = '';
         $class = 'col-md-' . $item['span'];
+        $class .= ' ' . self::generateVisibilityClass($item['visibility']);
         //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
         if (!empty($item['customClass'])) $class .= ' ' . $item['customClass'];
         if (!empty($item['id'])) $html .= '<section id="' . $item['id'] . '" class="' . $class . '">';
@@ -358,7 +367,7 @@ class Zo2Layout {
 
         if ($total = count($item['children']) > 0) {
             for ($i = 0; $i < $total; $i++) {
-                $html .= self::generateHtmlFromItem($item['children'][$i], $layoutType);
+                $html .= self::generateHtmlFromItem($item['children'][$i]);
             }
         }
 

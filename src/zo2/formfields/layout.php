@@ -134,9 +134,19 @@ class JFormFieldLayout extends JFormField
 
     private function renderRow($item)
     {
+        if (!isset($item['visibility'])) {
+            $item['visibility']['xs'] = true;
+            $item['visibility']['sm'] = true;
+            $item['visibility']['md'] = true;
+            $item['visibility']['lg'] = true;
+        }
         ?>
         <div class="zo2-row sortable-row" data-zo2-type="row" data-zo2-customClass="<?php echo $item['customClass']?>"
-             data-zo2-layout="fixed" data-zo2-id="<?php echo $item['id']?>">
+             data-zo2-id="<?php echo $item['id']?>"
+             data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0?>"
+             data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0?>"
+             data-zo2-visibility-md="<?php echo $item['visibility']['md'] ? 1 : 0?>"
+             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0?>">
             <div class="col-md-12 row-control">
                 <div class="row-control-container">
                     <div class="row-name"><?php echo $item['name']?></div>
@@ -163,11 +173,21 @@ class JFormFieldLayout extends JFormField
 
     private function renderColumn($item)
     {
+        if (!isset($item['visibility'])) {
+            $item['visibility']['xs'] = true;
+            $item['visibility']['sm'] = true;
+            $item['visibility']['md'] = true;
+            $item['visibility']['lg'] = true;
+        }
         ?>
         <div class="sortable-col col-md-<?php echo $item['span']?> col-md-offset-<?php echo $item['offset']?>" data-zo2-type="span"
              data-zo2-span="<?php echo $item['span']?>" data-zo2-offset="<?php echo $item['offset']?>"
              data-zo2-position="<?php echo $item['position']?>" data-zo2-style="<?php echo $item['style']?>"
              data-zo2-customClass="<?php echo $item['customClass']?>" data-zo2-id="<?php echo $item['id']?>"
+             data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0?>"
+             data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0?>"
+             data-zo2-visibility-md="<?php echo $item['visibility']['md'] ? 1 : 0?>"
+             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0?>"
         >
             <div class="col-wrap">
                 <div class="col-name"><?php echo $item['name']?></div>

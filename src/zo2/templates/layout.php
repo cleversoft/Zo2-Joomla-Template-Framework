@@ -27,35 +27,64 @@ defined('_JEXEC') or die ('Restricted access');
     <div id="rowSettingsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Row settings</h3>
+            <h3>Row settings</h3>
+            <ul class="zo2-tabs">
+                <li><a class="active" href="#row-basic" data-toggle="tab">Basic</a></li>
+                <li><a href="#row-responsive" data-toggle="tab">Responsive</a></li>
+            </ul>
         </div>
         <div class="modal-body">
             <div class="form-horizontal">
-                <div class="control-group">
-                    <label class="control-label" for="txtRowName">Name</label>
-                    <div class="controls">
-                        <input type="text" id="txtRowName" placeholder="Row's name">
+                <div class="zo2-tabs-content">
+                    <div class="active" id="row-basic">
+                        <div class="control-group">
+                            <label class="control-label" for="txtRowName">Name</label>
+                            <div class="controls">
+                                <input type="text" id="txtRowName" placeholder="Row's name">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="txtRowId">ID</label>
+                            <div class="controls">
+                                <input type="text" id="txtRowId" placeholder="Row's ID">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="txtRowCss">Custom CSS class</label>
+                            <div class="controls">
+                                <input type="text" id="txtRowCss" placeholder="Row's custom CSS class">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="txtRowId">ID</label>
-                    <div class="controls">
-                        <input type="text" id="txtRowId" placeholder="Row's ID">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="txtRowCss">Custom CSS class</label>
-                    <div class="controls">
-                        <input type="text" id="txtRowCss" placeholder="Row's custom CSS class">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="ddlRowLayout">Row layout</label>
-                    <div class="controls">
-                        <select id="ddlRowLayout">
-                            <option value="fixed">Fixed</option>
-                            <option value="fluid">Fluid</option>
-                        </select>
+                    <div id="row-responsive">
+                        <div class="control-group">
+                            <span class="switch_title">Phone</span>
+                            <label class="switch_wrap" for="cbRowPhoneVisibility">
+                                <input id="cbRowPhoneVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
+                        <div class="control-group">
+                            <span class="switch_title">Tablet</span>
+                            <label class="switch_wrap" for="cbRowTabletVisibility">
+                                <input id="cbRowTabletVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
+                        <div class="control-group">
+                            <span class="switch_title">Desktop</span>
+                            <label class="switch_wrap" for="cbRowDesktopVisibility">
+                                <input id="cbRowDesktopVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
+                        <div class="control-group">
+                            <span class="switch_title">Large desktop</span>
+                            <label class="switch_wrap" for="cbRowLargeDesktopVisibility">
+                                <input id="cbRowLargeDesktopVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,89 +98,129 @@ defined('_JEXEC') or die ('Restricted access');
     <div id="colSettingsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Column settings</h3>
+            <h3>Column settings</h3>
+            <ul class="zo2-tabs">
+                <li><a class="active" href="#column-basic" data-toggle="tab">Basic</a></li>
+                <li><a href="#column-responsive" data-toggle="tab">Responsive</a></li>
+            </ul>
         </div>
         <div class="modal-body">
             <div class="form-horizontal">
-                <div class="control-group">
-                    <label class="control-label" for="dlColType">Position</label>
-                    <div class="controls">
-                        <select id="dlColPosition">
-                            <option value="">(none)</option>
-                            <option value="component">Component</option>
-                            <option value="message">Message</option>
-                            <option value="mega_menu">Mega Menu</option>
-                            <?php foreach($positions as $pos) : ?>
-                            <option value="<?php echo $pos?>"><?php echo $pos?></option>
-                            <?php endforeach; ?>
-                        </select>
+                <div class="zo2-tabs-content">
+                    <div class="active" id="column-basic">
+                        <!-- begin -->
+                        <div class="control-group">
+                            <label class="control-label" for="dlColType">Position</label>
+                            <div class="controls">
+                                <select id="dlColPosition">
+                                    <option value="">(none)</option>
+                                    <option value="component">Component</option>
+                                    <option value="message">Message</option>
+                                    <option value="mega_menu">Mega Menu</option>
+                                    <?php foreach($positions as $pos) : ?>
+                                    <option value="<?php echo $pos?>"><?php echo $pos?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="dlColWidth">Width</label>
+                            <div class="controls">
+                                <select id="dlColWidth">
+                                    <option value="1">span1</option>
+                                    <option value="2">span2</option>
+                                    <option value="3">span3</option>
+                                    <option value="4">span4</option>
+                                    <option value="5">span5</option>
+                                    <option value="6">span6</option>
+                                    <option value="7">span7</option>
+                                    <option value="8">span8</option>
+                                    <option value="9">span9</option>
+                                    <option value="10">span10</option>
+                                    <option value="11">span11</option>
+                                    <option value="12">span12</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="ddlColOffset">Offset</label>
+                            <div class="controls">
+                                <select id="ddlColOffset">
+                                    <option value="0">No offset</option>
+                                    <option value="1">offset1</option>
+                                    <option value="2">offset2</option>
+                                    <option value="3">offset3</option>
+                                    <option value="4">offset4</option>
+                                    <option value="5">offset5</option>
+                                    <option value="6">offset6</option>
+                                    <option value="7">offset7</option>
+                                    <option value="8">offset8</option>
+                                    <option value="9">offset9</option>
+                                    <option value="10">offset10</option>
+                                    <option value="11">offset11</option>
+                                    <option value="12">offset12</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="ddlColStyle">Style</label>
+                            <div class="controls">
+                                <select id="ddlColStyle">
+                                    <option value="none">None</option>
+                                    <?php foreach($customStyles as $cs) : ?>
+                                        <option value="<?php echo $cs?>"><?php echo $cs?></option>
+                                    <?php endforeach; ?>
+                                    <option value="rounded">rounded</option>
+                                    <option value="table">table</option>
+                                    <option value="horz">horz</option>
+                                    <option value="xhtml">xhtml</option>
+                                    <option value="outline">outline</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="txtColId">ID</label>
+                            <div class="controls">
+                                <input type="text" id="txtColId" placeholder="Column's ID">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="txtColCss">Custom CSS class</label>
+                            <div class="controls">
+                                <input type="text" id="txtColCss" placeholder="Column's custom CSS class">
+                            </div>
+                        </div>
+                        <!-- end -->
                     </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="dlColWidth">Width</label>
-                    <div class="controls">
-                        <select id="dlColWidth">
-                            <option value="1">span1</option>
-                            <option value="2">span2</option>
-                            <option value="3">span3</option>
-                            <option value="4">span4</option>
-                            <option value="5">span5</option>
-                            <option value="6">span6</option>
-                            <option value="7">span7</option>
-                            <option value="8">span8</option>
-                            <option value="9">span9</option>
-                            <option value="10">span10</option>
-                            <option value="11">span11</option>
-                            <option value="12">span12</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="ddlColOffset">Offset</label>
-                    <div class="controls">
-                        <select id="ddlColOffset">
-                            <option value="0">No offset</option>
-                            <option value="1">offset1</option>
-                            <option value="2">offset2</option>
-                            <option value="3">offset3</option>
-                            <option value="4">offset4</option>
-                            <option value="5">offset5</option>
-                            <option value="6">offset6</option>
-                            <option value="7">offset7</option>
-                            <option value="8">offset8</option>
-                            <option value="9">offset9</option>
-                            <option value="10">offset10</option>
-                            <option value="11">offset11</option>
-                            <option value="12">offset12</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="ddlColStyle">Style</label>
-                    <div class="controls">
-                        <select id="ddlColStyle">
-                            <option value="none">None</option>
-                            <?php foreach($customStyles as $cs) : ?>
-                                <option value="<?php echo $cs?>"><?php echo $cs?></option>
-                            <?php endforeach; ?>
-                            <option value="rounded">rounded</option>
-                            <option value="table">table</option>
-                            <option value="horz">horz</option>
-                            <option value="xhtml">xhtml</option>
-                            <option value="outline">outline</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="txtColId">ID</label>
-                    <div class="controls">
-                        <input type="text" id="txtColId" placeholder="Column's ID">
-                    </div>
-                </div>
-                <div class="control-group">
-                    <label class="control-label" for="txtColCss">Custom CSS class</label>
-                    <div class="controls">
-                        <input type="text" id="txtColCss" placeholder="Column's custom CSS class">
+                    <div id="column-responsive">
+                        <div class="control-group">
+                            <span class="switch_title">Phone</span>
+                            <label class="switch_wrap" for="cbColumnPhoneVisibility">
+                                <input id="cbColumnPhoneVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
+                        <div class="control-group">
+                            <span class="switch_title">Tablet</span>
+                            <label class="switch_wrap" for="cbColumnTabletVisibility">
+                                <input id="cbColumnTabletVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
+                        <div class="control-group">
+                            <span class="switch_title">Desktop</span>
+                            <label class="switch_wrap" for="cbColumnDesktopVisibility">
+                                <input id="cbColumnDesktopVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
+                        <div class="control-group">
+                            <span class="switch_title">Large desktop</span>
+                            <label class="switch_wrap" for="cbColumnLargeDesktopVisibility">
+                                <input id="cbColumnLargeDesktopVisibility" type="checkbox" value="1" />
+                                <div class="switch"><span class="bullet"></span></div>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
