@@ -36,9 +36,8 @@ class plgSystemZo2 extends JPlugin
 
     function onBeforeRender()
     {
+        $app = JFactory::getApplication();
         if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
-
-            $app = JFactory::getApplication();
             if ($app->isAdmin()) {
                 // Load Bootstrap CSS
                 //JHtml::_('bootstrap.loadCss');
@@ -47,6 +46,9 @@ class plgSystemZo2 extends JPlugin
             }
         }
         Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
+        if ($app->isSite()) {
+            Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
+        }
     }
 
     function onAfterRender()
@@ -57,10 +59,15 @@ class plgSystemZo2 extends JPlugin
         if ($app->isAdmin()) {
             // Add shortcodes button into editor
             $this->addShortCodes();
+        } else {
+
+            // get response
+            $body = JResponse::getBody();
+            $body = $this->doShortCode($body);
+            JResponse::setBody($body);
+
         }
 
-        // get response
-        //$html = JResponse::getBody();
     }
 
     public function onContentPrepare($context, &$article, &$params, $page = 0)
@@ -71,10 +78,8 @@ class plgSystemZo2 extends JPlugin
             return true;
         }
 
-
-
         if (JFactory::getApplication()->isSite()) {
-            $article->text = $this->doShortCode($article->text);
+            //$article->text = $this->doShortCode($article->text);
             /* Google Authorship */
             if ((int)$config->get("enable_googleauthorship", 0)) {
                 $author_name = "+";
