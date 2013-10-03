@@ -20,6 +20,8 @@ class Instagram extends Zo2Shortcode
     // set short code tag
     protected $tagname = 'instagram';
 
+    protected $embed = true;
+
     /**
      * Overwrites the parent method
      * @return string the embed HTML

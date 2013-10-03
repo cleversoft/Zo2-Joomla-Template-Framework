@@ -271,7 +271,126 @@ class plgSystemZo2 extends JPlugin
                 'image' => "wufoo.png",
                 'type' => "form"
             ),
+            'accordion' => array(
+                'name'		=> "Accordion",
+                'desc'		=> "Accordion",
+                'syntax'	=> "[accordion]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[/accordion]<br/>",
+                'image'		=> "accordion.png",
+                'type' => "form"
+            ),
+            'blockquote' => array(
+                'name'		=> "Blockquote",
+                'desc'		=> "Blockquote",
+                'syntax'	=> "[quote align=\'center\' color=\'#999999\']ADD_CONTENT_HERE[/quote]",
+                'image'		=> "blockquote.png",
+                'type' => "form"
+            ),
+            'buttons' => array(
+                'name'		=> "Buttons",
+                'desc'		=> "Buttons",
+                'syntax'	=> "[button type=\'primary\' size=\'large\' state=\'enable\']ADD_BUTTON_CONTENT[/button]",
+                'image'		=> "buttons.png",
+                'type' => "form"
+            ),
+            'column' => array(
+                'name'		=> "Column",
+                'desc'		=> "Column",
+                'syntax'	=> "[columns]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[/columns]",
+                'image'		=> "column.png",
+                'type' => "form"
+            ),
+            'dropcap' => array(
+                'name'		=> "Dropcap",
+                'desc'		=> "Dropcap",
+                'syntax'	=> "[dropcap type=\'circle\' color=\'#COLOR_CODE\' background=\'#COLOR_CODE\']ADD_CONTENT_HERE[/dropcap]",
+                'image'		=> "dropcap.png",
+                'type' => "form"
+            ),
+            'gallery' => array(
+                'name'		=> "Gallery",
+                'desc'		=> "Gallery",
+                'syntax'	=> "[gallery title=\'GALLERY_TITLE\' width=\'IMAGE_THUMB_WIDTH\' height=\'IMAGE_THUMB_HEIGHT\' columns=\'3\']<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[/gallery]",
+                'image'		=> "gallery.png",
+                'type' => "photo"
+            ),
+            'lightbox' => array(
+                'name'		=> "Lightbox",
+                'desc'		=> "Lightbox",
+                'syntax'	=> "[lightbox src=\'IMAGE_SRC\' width=\'IMAGE_WIDTH\' height=\'IMAGE_HEIGHT\' lightbox=\'on\' title=\'IMAGE_TITLE\' align=\'left\']",
+                'image'		=> "lightbox.png",
+                'type' => "form"
+            ),
+            'liststyle' => array(
+                'name'		=> "List Style",
+                'desc'		=> "List Style",
+                'syntax'	=> "[list type=\'check\']<br/><ul><li>ADD_LIST_CONTENT</li>\<li>ADD_LIST_CONTENT</li></ul>[/list]",
+                'image'		=> "list.png",
+                'type' => "form"
+            ),
+            'message' => array(
+                'name'		=> "Message Boxes",
+                'desc'		=> "Message Boxes",
+                'syntax'	=> "[message_box title=\'MESSAGE_TITLE\' color=\'red\' show_close=\'Yes/No\']ADD_CONTENT_HERE[/message_box]",
+                'image'		=> "message.png",
+                'type' => "form"
+            ),
+            'social' => array(
+                'name'		=> "Social Icons",
+                'desc'		=> "Social Icons",
+                'syntax'	=> "[social type=\'facebook\' opacity=\'dark\']PLACE_LINK_HERE[/social]",
+                'image'		=> "social.png",
+                'type' => "social"
+            ),
+            'tabs' => array(
+                'name'		=> "Tabs",
+                'desc'		=> "Tabs",
+                'syntax'	=> "[tabs]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[/tabs]",
+                'image'		=> "tabs.png",
+                'type' => "form"
+            ),
+            'testimonial' => array(
+                'name'		=> "Testimonial",
+                'desc'		=> "Testimonial",
+                'syntax'	=> "[testimonial author=\'TESTIMONIAL_AUTHOR\' position=\'AUTHOR_POSITION\']ADD_TESTIMONIAL_HERE[/testimonial]",
+                'image'		=> "testimonial.png",
+                'type' => "form"
+            ),
+            'toggle' => array(
+                'name'		=> "Toggle Boxes",
+                'desc'		=> "Toggle Boxes",
+                'syntax'	=> "[toggle_box]<br/>[toggle_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/toggle_item]<br/>[toggle_item title=\'ITEM_TITLE\' active=\'true\']ADD_CONTENT_HERE[/toggle_item]<br/>[/toggle_box]",
+                'image'		=> "toggle.png",
+                'type' => "form"
+            ),
 
+            'divider' => array(
+                'name'		=> "Divider",
+                'desc'		=> "Divider",
+                'syntax'	=> "[divider scroll_text=\'SCROLL_TEXT\']<br/>",
+                'image'		=> "divider.png",
+                'type' => "form"
+            ),
+            'spacer' => array(
+                'name'		=> "Add Space",
+                'desc'		=> "Add Space",
+                'syntax'	=> "[space height=\'HEIGHT\']<br/>",
+                'image'		=> "space.png",
+                'type' => "form"
+            ),
+            'highlighter' => array(
+                'name'		=> "Syntax Highlighting",
+                'desc'		=> "Syntax highlighting of code snippets in a web page",
+                'syntax'	=> "[highlighter lang=\'js\' linenums=\'true\' startnums=\'1\']YOUR_CODE_HERE[/highlighter]<br/>",
+                'image'		=> "highlighter.png",
+                 'type' => "code"
+            ),
+            'pricing' => array(
+                'name'		=> "Pricing Tables",
+                'desc'		=> "Pricing Tables",
+                'syntax'	=> "[pricing columns=\'3\']<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[/pricing]<br/>",
+                'image'		=> "pricing.png",
+                'type' => "form"
+            ),
         );
 
         $shortcodetype = array();

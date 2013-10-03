@@ -35,6 +35,7 @@ class Zo2Shortcode extends JObject
      */
     protected $content = "";
 
+    protected $embed = false;
     /**
      * Construct
      */
@@ -54,6 +55,11 @@ class Zo2Shortcode extends JObject
     public function shortcode_atts($default = array(), $config = array()) {
         return $this->ShortCode->shortcode_atts($default, $config);
     }
+
+    public function do_shortcode($content) {
+        return $this->ShortCode->do_shortcode($content);
+    }
+
     /**
      * The content of a short code, it is empty content. So this method must be overwritten by a child method
      */
@@ -65,16 +71,21 @@ class Zo2Shortcode extends JObject
      * @param string $content the url attempting to be embedded.
      * @return string the embed HTML on success
      */
-    public function content($attrs, $content = "")
+    public function content($attrs = null, $content = "")
     {
         $this->attrs = $attrs;
         $this->content = $content;
 
-        if (!is_array($this->attrs)) {
-            return '<!-- '.$this->tagname.' tag passed invalid attributes -->';
+        if ($this->attrs != null) {
+            if (!is_array($this->attrs)) {
+                return ''.$this->tagname.' tag passed invalid attributes';
+            }
         }
-
-        return '<div class="embed-container">' . $this->body() . '</div>';
+        if ($this->embed) {
+            return '<div class="embed-container">' . $this->body() . '</div>';
+        } else {
+            return $this->body();
+        }
     }
 
 }

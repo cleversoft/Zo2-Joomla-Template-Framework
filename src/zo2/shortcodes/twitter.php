@@ -20,6 +20,8 @@ class Twitter extends Zo2Shortcode
     // set short code tag
     protected $tagname = 'twitter';
 
+    protected $embed = true;
+
     /**
      * Overwrites the parent method
      * @return string the embed HTML

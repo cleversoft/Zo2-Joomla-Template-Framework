@@ -20,6 +20,8 @@ class Googlemaps extends Zo2Shortcode
     // set short code tag
     protected $tagname = 'googlemaps';
 
+    protected $embed = true;
+
     /**
      * Overwrites the parent method
      * @return string the embed HTML
