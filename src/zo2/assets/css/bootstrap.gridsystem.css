@@ -152,7 +152,7 @@
 }
 @media (min-width: 768px) {
   .zo2-container {
-    max-width: 750px;
+    /*max-width: 750px;*/
   }
   .col-sm-1,
   .col-sm-2,
@@ -305,7 +305,7 @@
 }
 @media (min-width: 992px) {
   .zo2-container {
-    max-width: 970px;
+    /*max-width: 970px;*/
   }
   .col-md-1,
   .col-md-2,
@@ -467,7 +467,7 @@
 }
 @media (min-width: 1200px) {
   .zo2-container {
-    max-width: 1170px;
+    /*max-width: 1170px;*/
   }
   .col-lg-1,
   .col-lg-2,
@@ -627,3 +627,5 @@
     margin-left: 91.66666666666666%;
   }
 }
+
+.zo2-container{width:99%;max-width: 100%}
