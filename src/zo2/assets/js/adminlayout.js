@@ -280,6 +280,88 @@ jQuery(document).ready(function($){
         $this.addClass('active');
         $('#' + $this.attr('data-toggle')).addClass('active');
     });
+
+    // font
+    if ($('.txtColorPicker').length > 0) {
+        $('.txtColorPicker').colorpicker().on('change', function() {
+            var $this = $(this);
+            var $parent = $this.parent();
+            var $container = $this.closest('.font-container');
+            var $preview = $parent.find('.color-preview');
+            if ($this.val().length > 0) $preview.css('background-color', $this.val());
+            else $preview.css('background-color', 'transparent');
+
+            $container.trigger('font-change');
+        });
+    }
+
+    // init font container: show/hide depends on active
+    $('.cbEnableFont').each(function(){
+        var $this = $(this);
+        var $container = $this.closest('.font-container');
+        var $optionsContainer = $container.find('>.font_options');
+
+        if ($this.attr('checked')) $optionsContainer.show();
+        else $optionsContainer.hide();
+    });
+
+    // bind on/off for font
+    $('.font-container').on('click', '.cbEnableFont', function() {
+        var $this = $(this);
+        var $container = $this.closest('.font-container');
+        var $optionsContainer = $container.find('>.font_options');
+
+        if ($this.attr('checked')) $optionsContainer.slideDown();
+        else $optionsContainer.slideUp();
+    });
+
+    $('.font-container').on('click', '.btnStandardFonts', function(){
+        var $this = $(this);
+        var $container = $this.closest('.font-container');
+        $container.find('.font-options-google').slideUp(300);
+        $container.find('.font-options-fontdeck').slideUp(300);
+        $container.find('.font-options-standard').slideDown(400, function(){
+            $container.trigger('font-change');
+        });
+    });
+
+    $('.font-container').on('click', '.btnGoogleFonts', function(){
+        var $this = $(this);
+        var $container = $this.closest('.font-container');
+        $container.find('.font-options-standard').slideUp(300);
+        $container.find('.font-options-fontdeck').slideUp(300);
+        $container.find('.font-options-google').slideDown(400, function() {
+            $container.trigger('font-change');
+        });
+    });
+
+    $('.font-container').on('click', '.btnFontDeck', function(){
+        var $this = $(this);
+        var $container = $this.closest('.font-container');
+        $container.find('.font-options-standard').slideUp(300);
+        $container.find('.font-options-google').slideUp(300);
+        $container.find('.font-options-fontdeck').slideDown(400, function() {
+            $container.trigger('font-change');
+        });
+    });
+
+    $('.txtGoogleFontSelect').fontselect();
+
+    // listen to font options change
+    $('#font_chooser').on('font-change', '.font-container', function() {
+        var $this = $(this);
+
+        generateFontOptions($this);
+    });
+
+    var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
+        '.ddlStandardFont';
+
+    $('.font-container').on('change', changeSelector, function() {
+        var $this = $(this);
+        var $container = $this.closest('.font-container');
+        $container.trigger('font-change');
+    });
 });
 
 var bindSortable = function () {
@@ -302,6 +384,51 @@ var bindSortable = function () {
         helper: 'clone',
         axis: 'x'
     });
+};
+
+var generateFontOptions = function ($container) {
+    var $result = $container.find(' > input:first');
+    var $enable = $container.find('.cbEnableFont');
+    if (!$enable.attr('checked')) {
+        $result.val('');
+        return;
+    }
+
+    var options = {};
+
+    var size = parseInt($container.find('.txtFontSize').val());
+    if (isNaN(size)) size = 12;
+    if (size <= 0) size = 12;
+
+    if ($container.find('.btnStandardFonts').hasClass('active')) {
+        options = {
+            type: 'standard',
+            family: $container.find('.ddlStandardFont').val(),
+            size: size,
+            color: $container.find('.txtColorPicker').val(),
+            style: $container.find('.ddlFontStyle').val()
+        };
+    }
+    else if ($container.find('.btnGoogleFonts').hasClass('active')) {
+        options = {
+            type: 'googlefonts',
+            family: $container.find('.txtGoogleFontSelect').val(),
+            size: size,
+            color: $container.find('.txtColorPicker').val(),
+            style: $container.find('.ddlFontStyle').val()
+        };
+    }
+    else if ($container.find('.btnFontDeck').hasClass('active')) {
+        options = {
+            type: 'fontdeck',
+            family: $container.find('.txtFontDeckCss').val(),
+            size: size,
+            color: $container.find('.txtColorPicker').val(),
+            style: $container.find('.ddlFontStyle').val()
+        };
+    }
+
+    $result.val(JSON.stringify(options));
 };
 
 var generateJson = function() {
@@ -363,7 +490,6 @@ var generateItemJson = function($item) {
         $childrenContainer = $item.find('> .col-wrap > .row-container');
 
         $childrenContainer.find('> [data-zo2-type]').each(function() {
-            //console.log($(this));
             var childItem = generateItemJson(jQuery(this));
             result.children.push(childItem);
         });
@@ -407,10 +533,11 @@ var addIconToMenu = function() {
     var $ = jQuery;
     $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Overview');
     $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General Options');
-    $('#myTabTabs').find('a').eq(2).html('<i class="icon-th" /> Layout Builder');
-    $('#myTabTabs').find('a').eq(3).html('<i class="icon-list-alt" /> Mega Menus');
-    $('#myTabTabs').find('a').eq(4).html('<i class="icon-edit-sign" /> Assignment');
-    $('#myTabTabs').find('a').eq(5).html('<i class="icon-wrench" /> Advanced');
+    $('#myTabTabs').find('a').eq(2).html('<i class="icon-font" /> Fonts');
+    $('#myTabTabs').find('a').eq(3).html('<i class="icon-th" /> Layout Builder');
+    $('#myTabTabs').find('a').eq(4).html('<i class="icon-list-alt" /> Mega Menus');
+    $('#myTabTabs').find('a').eq(5).html('<i class="icon-edit-sign" /> Assignment');
+    $('#myTabTabs').find('a').eq(6).html('<i class="icon-wrench" /> Advanced');
 };
 
 var insertLogo = function () {

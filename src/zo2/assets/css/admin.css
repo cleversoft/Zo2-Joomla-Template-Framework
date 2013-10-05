@@ -136,26 +136,11 @@ html[xmlns] .clearfix { display: block; }
 .zo2-tabs-content > div.active, zo2-tabs-content > section.active{display: block}
 
 .switch_wrap{float:left}
-.switch_wrap input[type="checkbox"] {
-    display: none;
-}
-
-.switch_wrap input[type="checkbox"]:checked + .switch {
-    background-color: #6cbc43;
-}
-
-.switch_wrap input[type="checkbox"]:checked + .switch::before {
-    display: block;
-}
-
-.switch_wrap input[type="checkbox"]:checked + .switch::after {
-    display: none;
-}
-
-.switch_wrap input[type="checkbox"]:checked + .switch .bullet {
-    left: 70px;
-}
-
+.switch_wrap input[type="checkbox"] {display: none;}
+.switch_wrap input[type="checkbox"]:checked + .switch {background-color: #6cbc43;}
+.switch_wrap input[type="checkbox"]:checked + .switch::before {display: block;}
+.switch_wrap input[type="checkbox"]:checked + .switch::after {display: none;}
+.switch_wrap input[type="checkbox"]:checked + .switch .bullet {left: 70px;}
 .switch_wrap .switch {
     position: relative;
     display: inline-block;
@@ -186,11 +171,11 @@ html[xmlns] .clearfix { display: block; }
     text-align: center;
 }
 
-.switch_wrap .switch::after {
-    content: 'Hide';
-    display: block;
-    right: 0;
-}
+.switch_wrap.enable_type .switch::before,
+.switch_wrap.enable_type .switch::after {content: 'ON'}
+
+.switch_wrap .switch::after {content: 'Hide';display: block;right: 0;}
+.switch_wrap.enable_type .switch::after {content: 'OFF'}
 
 .switch_wrap .switch .bullet {
     position: relative;
@@ -232,9 +217,21 @@ html[xmlns] .clearfix { display: block; }
     -webkit-box-shadow: 1px 0 0 white, 1px 0 0 white inset;
     box-shadow: 1px 0 0 white, 1px 0 0 white inset;
 }
-
-.switch_wrap .switch .bullet::after {
-    margin-left: 2px;
-}
-
+.switch_wrap .switch .bullet::after {margin-left: 2px;}
 .switch_title{width:120px;float:left}
+#font_chooser{margin-top:20px}
+#font_chooser .accordion-heading a{text-decoration: none;font-weight: bold;}
+.font-container{position: relative;border-bottom:solid 1px #909090;padding:10px 0 10px 0;}
+.font-container h3{border-bottom: solid 1px #E2E2E2;padding-bottom:5px;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif}
+.font-container .control-label{width:160px}
+.font-desc{color:#444;font-style: italic;font-weight: normal}
+.font-container .font-label{font-weight: bold}
+.font-container .txtFontSize{width:30px}
+.font-container .txtColorPicker{width:60px;display:block;float:left}
+.floatdiv > div {float:left;margin-right:10px}
+.color-preview {display:block;float:left;width:25px;height:25px;background-color: transparent;border:solid 1px #323e41;margin-left:5px}
+.colorpicker-container{width:120px}
+.font-options-standard, .font-options-google, .font-options-fontdeck{display:none}
+#font_chooser .control-label{width:160px}
+.control-label label{font-weight: bold;color:#333333}
+.font-deck-code textarea{width:500px;height:150px;margin-bottom: 20px}

@@ -397,6 +397,8 @@ class Zo2Layout {
             if (!$responsive)
                 $this->insertCss('/assets/css/non-responsive.css');
 
+            $this->insertCustomFontStyles();
+
             $html = '';
             foreach($this->_layoutStatics as $item) {
                 if ($item['position'] == 'header') {
@@ -419,6 +421,153 @@ class Zo2Layout {
 
             return $html;
         }
+    }
+
+    /**
+     * Generate custom CSS style for custom Font options.
+     * Font options can be changed from backend
+     */
+    private function insertCustomFontStyles()
+    {
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+
+        $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
+            'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
+            'h5_font' => 'h5', 'h6_font' => 'h6'
+        );
+
+        foreach ($selectors as $param => $selector) {
+            $value = $params->get($param);
+
+            if (!empty($value)) {
+                $data = json_decode($value, true);
+                $style = '';
+                switch($data['type']) {
+                    case 'standard':
+                        $style = $this->buildStandardFontStyle($data, $selector);
+                        break;
+                    case 'googlefonts':
+                        $style = $this->buildGoogleFontsStyle($data, $selector);
+                        break;
+                    case 'fontdeck':
+                        $style = $this->buildFontDeckStyle($data, $selector);
+                        break;
+                    default:
+                        break;
+                }
+
+                if (!empty($style)) $this->insertCssDeclaration($style);
+            }
+        }
+    }
+
+    /**
+     * Generate custom CSS style for Standard Font option
+     *
+     * @param $data
+     * @param $selector
+     * @return string
+     */
+    private function buildStandardFontStyle($data, $selector)
+    {
+        $style = '';
+        if (!empty($data['family'])) $style .= 'font-family:' . $data['family'] . ';';
+        if (!empty($data['size']) && $data['size'] > 0) $style .= 'font-size:' . $data['size'] . 'px;';
+        if (!empty($data['color'])) $style .= 'color:' . $data['color'] . ';';
+        if (!empty($data['style'])) {
+            switch($data['style']) {
+                case 'b': $style .= 'font-weight:bold;'; break;
+                case 'i': $style .= 'font-style:italic;'; break;
+                case 'bi':
+                case 'ib':
+                    $style .= 'font-weight:bold;font-style:italic;';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (!empty($style)) $style = $selector . '{' . $style . '}' . "\n";
+
+        return $style;
+    }
+
+    /**
+     * Generate custom CSS style for Google Fonts option
+     *
+     * @param $data
+     * @param $selector
+     * @return string
+     */
+    private function buildGoogleFontsStyle($data, $selector)
+    {
+        $api = 'http://fonts.googleapis.com/css?family=';
+        $style = '';
+        if (!empty($data['family'])) {
+            $style .= 'font-family:' . $data['family'] . ';';
+            $this->insertCss($api . $data['family']);
+        }
+        else return '';
+        if (!empty($data['size']) && $data['size'] > 0) $style .= 'font-size:' . $data['size'] . 'px;';
+        if (!empty($data['color'])) $style .= 'color:' . $data['color'] . ';';
+        if (!empty($data['style'])) {
+            switch($data['style']) {
+                case 'b': $style .= 'font-weight:bold;'; break;
+                case 'i': $style .= 'font-style:italic;'; break;
+                case 'bi':
+                case 'ib':
+                    $style .= 'font-weight:bold;font-style:italic;';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (!empty($style)) $style = $selector . '{' . $style . '}' . "\n";
+        return $style;
+    }
+
+    /**
+     * Generate custom CSS style for FontDeck option
+     *
+     * @param $data
+     * @param $selector
+     * @return string
+     */
+    private function buildFontDeckStyle($data, $selector)
+    {
+        $app = JFactory::getApplication();
+        $template = $app->getTemplate(true);
+        $params = $template->params;
+
+        $fontdeckCode = $params->get('fontdeck_code');
+
+        if (!empty($fontdeckCode)) {
+            $this->insertJsDeclaration($fontdeckCode);
+        }
+
+        $style = '';
+        if (!empty($data['family'])) $style .= 'font-family:' . $data['family'] . ';';
+        if (!empty($data['size']) && $data['size'] > 0) $style .= 'font-size:' . $data['size'] . 'px;';
+        if (!empty($data['color'])) $style .= 'color:' . $data['color'] . ';';
+        if (!empty($data['style'])) {
+            switch($data['style']) {
+                case 'b': $style .= 'font-weight:bold;'; break;
+                case 'i': $style .= 'font-style:italic;'; break;
+                case 'bi':
+                case 'ib':
+                    $style .= 'font-weight:bold;font-style:italic;';
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (!empty($style)) $style = $selector . '{' . $style . '}' . "\n";
+
+        return $style;
     }
 
     /**

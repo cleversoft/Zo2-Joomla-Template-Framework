@@ -51,8 +51,6 @@ class JFormFieldLayout extends JFormField
         // load jquery & jqueryui newest version, cause joomla's jquery is plain old
         // Load custom js and css
         $doc->addScript($vendorPath . 'jqueryui/js/jquery-ui-1.10.3.custom.min.js');
-        $doc->addScript($vendorPath . 'underscorejs/underscore-min.js');
-        $doc->addScript($vendorPath . 'backbonejs/backbone-min.js');
         $doc->addScript($vendorPath . 'bootbox/bootbox-3.3.0.min.js');
         //$doc->addScript($jsPath . 'layoutbuildermodels.js');
         $doc->addScript($jsPath . 'adminlayout.js');
