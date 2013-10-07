@@ -99,6 +99,11 @@ $canDo = TemplatesHelper::getActions();
 					echo $this->loadTemplate('options'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 
+            <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'fonts', JText::_('Fonts', true)); ?>
+        <?php //get the menu parameters that are automatically set but may be modified.
+        echo $this->loadTemplate('fonts'); ?>
+            <?php echo JHtml::_('bootstrap.endTab'); ?>
+
             <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'layoutbuiler', JText::_('Layout Builder', true)); ?>
                 <?php echo $this->loadTemplate('layoutbuilder'); ?>
             <?php echo JHtml::_('bootstrap.endTab'); ?>

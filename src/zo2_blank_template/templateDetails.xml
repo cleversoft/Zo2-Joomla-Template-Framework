@@ -73,14 +73,6 @@
                 <option value="1">Enable</option>
                 <option value="0">Disable</option>
             </field>
-            <field name="google_fonts" type="list" default="0" label="Google fonts" description="Choose font from Google Web Fonts">
-                <option value="0">Disabled</option>
-                <option value="Open Sans|Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic">Open Sans</option>
-                <option value="Oswald|Oswald:400,700,300">Oswald</option>
-                <option value="Droid Sans|Droid+Sans:400,700">Droid Sans</option>
-                <option value="Lato|Lato:400,300,300italic,400italic,700,700italic">Lato</option>
-                <option value="Lora|Lora:400,400italic,700,700italic">Lora</option>
-            </field>
             <!--Header Option-->
             <field name="header_logo" type="media" default="" label="Header logo" />
             <field name="header_retina_logo" type="media" default="" label="Header Retina logo" />
@@ -155,6 +147,17 @@
 
         </fieldset>
 
+        <fieldset name="fonts" label="Fonts">
+            <field name="body_font" type="font" filter="raw" />
+            <field name="h1_font" type="font" filter="raw" />
+            <field name="h2_font" type="font" filter="raw" />
+            <field name="h3_font" type="font" filter="raw" />
+            <field name="h4_font" type="font" filter="raw" />
+            <field name="h5_font" type="font" filter="raw" />
+            <field name="h6_font" type="font" filter="raw" />
+            <field name="fontdeck_code" type="textarea" filter="raw" label="FontDeck code"
+                   description="Paste the JS script code from Step 1 in FontDeck website" />
+        </fieldset>
 
         <fieldset name="advanced" label="Advanced">
 
