@@ -94,7 +94,7 @@ $canDo = TemplatesHelper::getActions();
 				<?php endif; ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'options', JText::_('General Option', true)); ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'options', JText::_('General', true)); ?>
 				<?php //get the menu parameters that are automatically set but may be modified.
 					echo $this->loadTemplate('options'); ?>
 			<?php echo JHtml::_('bootstrap.endTab'); ?>
@@ -104,7 +104,7 @@ $canDo = TemplatesHelper::getActions();
             echo $this->loadTemplate('fonts'); ?>
             <?php echo JHtml::_('bootstrap.endTab'); ?>
 
-        <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'theme', JText::_('Theme Colors', true)); ?>
+        <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'theme', JText::_('Preset Styles', true)); ?>
         <?php //get the menu parameters that are automatically set but may be modified.
         echo $this->loadTemplate('themecolors'); ?>
         <?php echo JHtml::_('bootstrap.endTab'); ?>
