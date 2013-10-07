@@ -13,7 +13,7 @@
 @import "../vendor/font-awesome/css/font-awesome.min.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
-
+#zo2{min-width: 1150px}
 #zo2-config { background: #ffffff; padding: 30px 10px; }
 .admin-inline-toolbox { -moz-box-sizing: border-box; -o-box-sizing: border-box; -webkit-box-sizing: border-box; background: #eee; border-bottom: 1px solid #e6e6e6; border-top: 1px solid #e6e6e6; box-sizing: border-box; margin: 15px 0 20px; }
 .admin-inline-toolbox ul { margin: 0; padding: 0; }
@@ -29,7 +29,7 @@
 /*Main Tab*/
 #myTabTabs.nav-tabs { background: #629c42; border: none; margin-bottom: 0; margin-top: 30px; padding: 0; }
 .nav-tabs > li { margin: 0; }
-.nav-tabs > li > a { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; color: #fff; font-size: 16px; font-weight: 600; line-height: 20px; margin-right: 0; padding: 15px 25px }
+.nav-tabs > li > a { -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0; color: #fff; font-size: 16px; font-weight: 600; line-height: 20px; margin-right: 0; padding: 15px}
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus,
@@ -235,3 +235,9 @@ html[xmlns] .clearfix { display: block; }
 #font_chooser .control-label{width:160px}
 .control-label label{font-weight: bold;color:#333333}
 .font-deck-code textarea{width:500px;height:150px;margin-bottom: 20px}
+
+#zo2_themes{display: block;width:auto;padding: 20px;text-align: center}
+#zo2_themes li{display:inline-block;cursor: pointer;margin: 0 5px}
+#zo2_themes li .theme_thumbnail{padding:5px;border: solid 1px #e9e9e9;border-radius: 3px}
+#zo2_themes li .theme_title{font-weight: bold;margin-bottom: 3px}
+#zo2_themes li:hover .theme_thumbnail, #zo2_themes li.active .theme_thumbnail{border-color:rgba(82,168,236,0.8)}

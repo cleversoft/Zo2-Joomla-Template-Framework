@@ -21,7 +21,6 @@
         <position>top</position>
         <position>header_logo</position>
         <position>logo</position>
-        <position>header_logo</position>
         <position>menu</position>
         <position>breadcrumb</position>
         <position>search</position>
@@ -158,6 +157,10 @@
             <field name="h6_font" type="font" filter="raw" />
             <field name="fontdeck_code" type="textarea" filter="raw" label="FontDeck code"
                    description="Paste the JS script code from Step 1 in FontDeck website" />
+        </fieldset>
+
+        <fieldset name="themecolors" label="Theme Colors">
+            <field name="theme" type="themecolor" filter="raw" default="default" />
         </fieldset>
 
         <fieldset name="comments" label="Comments">

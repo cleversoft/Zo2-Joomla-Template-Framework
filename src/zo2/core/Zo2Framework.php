@@ -62,7 +62,7 @@ class Zo2Framework {
         }
 
         // set variable for env
-        Zo2Framework::$_currentTemplatePath = JPATH_BASE .  '/templates/' . $app->getTemplate();
+        Zo2Framework::$_currentTemplatePath = JPATH_SITE .  '/templates/' . Zo2Framework::getTemplateName();
 
         JFactory::getLanguage()->load(ZO2_SYSTEM_PLUGIN, JPATH_ADMINISTRATOR);
     }

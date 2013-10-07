@@ -393,6 +393,12 @@ class Zo2Layout {
         if (file_exists($path) && !$debug) return file_get_contents($path);
         else {
             $responsive = $params->get('responsive_layout');
+            $theme = $params->get('theme');
+
+            if (!empty($theme)) {
+                $themeUri = '/assets/css/themes/' . $theme . '.css';
+                $this->insertCss($themeUri);
+            }
 
             if (!$responsive)
                 $this->insertCss('/assets/css/non-responsive.css');

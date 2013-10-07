@@ -362,6 +362,16 @@ jQuery(document).ready(function($){
         var $container = $this.closest('.font-container');
         $container.trigger('font-change');
     });
+
+    $('#zo2_themes').on('click', '> li', function () {
+        var $this = $(this);
+        var $container = $('#zo2_themes_container');
+        var $list = $('#zo2_themes');
+        var $input = $container.find('> input');
+        $list.find('>li').removeClass('active');
+        $this.addClass('active');
+        $input.val($this.attr('data-zo2-theme'));
+    });
 });
 
 var bindSortable = function () {
@@ -534,11 +544,12 @@ var addIconToMenu = function() {
     $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Overview');
     $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General Options');
     $('#myTabTabs').find('a').eq(2).html('<i class="icon-font" /> Fonts');
-    $('#myTabTabs').find('a').eq(3).html('<i class="icon-th" /> Layout Builder');
-    $('#myTabTabs').find('a').eq(4).html('<i class="icon-list-alt" /> Mega Menus');
-    $('#myTabTabs').find('a').eq(5).html('<i class="icon-comments" /> Comments');
-    $('#myTabTabs').find('a').eq(6).html('<i class="icon-edit-sign" /> Assignment');
-    $('#myTabTabs').find('a').eq(7).html('<i class="icon-wrench" /> Advanced');
+    $('#myTabTabs').find('a').eq(3).html('<i class="icon-pencil" /> Theme Colors');
+    $('#myTabTabs').find('a').eq(4).html('<i class="icon-th" /> Layout Builder');
+    $('#myTabTabs').find('a').eq(5).html('<i class="icon-list-alt" /> Mega Menus');
+    $('#myTabTabs').find('a').eq(6).html('<i class="icon-comments" /> Comments');
+    $('#myTabTabs').find('a').eq(7).html('<i class="icon-edit-sign" /> Assignment');
+    $('#myTabTabs').find('a').eq(8).html('<i class="icon-wrench" /> Advanced');
 };
 
 var insertLogo = function () {
