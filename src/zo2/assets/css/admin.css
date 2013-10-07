@@ -241,3 +241,13 @@ html[xmlns] .clearfix { display: block; }
 #zo2_themes li .theme_thumbnail{padding:5px;border: solid 1px #e9e9e9;border-radius: 3px}
 #zo2_themes li .theme_title{font-weight: bold;margin-bottom: 3px}
 #zo2_themes li:hover .theme_thumbnail, #zo2_themes li.active .theme_thumbnail{border-color:rgba(82,168,236,0.8)}
+
+/* Header */
+.zo2-label {
+    font-weight: bold;
+    color: #FFF;
+    padding: 4px 12px 4px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+}
