@@ -159,6 +159,41 @@
                    description="Paste the JS script code from Step 1 in FontDeck website" />
         </fieldset>
 
+        <fieldset name="comments" label="Comments">
+
+            <field name="enable_comments" type="radio" default="0" label="Enable Comments" description="Enable Comments" class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field name="tab_order" type="taborder" default="facebook,gplus,disqus,k2comment"
+                   label="Tabs Order"
+                   description="Only tabs listed will be showed"
+                   desc=""
+                    />
+
+            <field name="disqus_shortname" type="disqus" default="zootemplates"
+                   label="Disqus Shortname"
+                   description="Required if showing the disqus tab" />
+
+            <field name="facebook_label" type="text" default="Facebook"
+                   label="Facebook Label"
+                   description="" />
+
+            <field name="gplus_label" type="text" default="Google+"
+                   label="Google+ Label"
+                   description="" />
+
+            <field name="disqus_label" type="text" default="Disqus"
+                   label="Disqus Label"
+                   description="" />
+
+            <field name="k2comment_label" type="text" default="ZO2 Framework"
+                   label="K2 Comment Label"
+                   description="" />
+
+        </fieldset>
+
         <fieldset name="advanced" label="Advanced">
 
             <field name="ga_code" filter="raw" type="textarea" default="" label="Tracking code" description="Include the tracking code">
@@ -178,38 +213,6 @@
                     type="spacer"
                     hr="true"
                     />
-
-            <!--Comment-->
-            <field name="enable_comments" type="radio" default="0" label="Enable Comments" description="Enable Comments" class="btn-group">
-                <option value="1">JYES</option>
-                <option value="0">JNO</option>
-            </field>
-
-                <field name="tab_order" type="taborder" default="facebook,gplus,disqus,k2comment"
-                       label="Tabs Order"
-                       description="Only tabs listed will be showed"
-                       desc=""
-                        />
-
-                <field name="disqus_shortname" type="disqus" default="zootemplates"
-                       label="Disqus Shortname"
-                       description="Required if showing the disqus tab" />
-
-            <field name="facebook_label" type="text" default="Facebook"
-                   label="Facebook Label"
-                   description="" />
-
-            <field name="gplus_label" type="text" default="Google+"
-                   label="Google+ Label"
-                   description="" />
-
-            <field name="disqus_label" type="text" default="Disqus"
-                   label="Disqus Label"
-                   description="" />
-
-            <field name="k2comment_label" type="text" default="ZO2 Framework"
-                   label="K2 Comment Label"
-                   description="" />
 
         </fieldset>
     </fields>

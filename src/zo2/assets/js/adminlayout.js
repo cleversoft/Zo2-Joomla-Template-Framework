@@ -536,8 +536,9 @@ var addIconToMenu = function() {
     $('#myTabTabs').find('a').eq(2).html('<i class="icon-font" /> Fonts');
     $('#myTabTabs').find('a').eq(3).html('<i class="icon-th" /> Layout Builder');
     $('#myTabTabs').find('a').eq(4).html('<i class="icon-list-alt" /> Mega Menus');
-    $('#myTabTabs').find('a').eq(5).html('<i class="icon-edit-sign" /> Assignment');
-    $('#myTabTabs').find('a').eq(6).html('<i class="icon-wrench" /> Advanced');
+    $('#myTabTabs').find('a').eq(5).html('<i class="icon-comments" /> Comments');
+    $('#myTabTabs').find('a').eq(6).html('<i class="icon-edit-sign" /> Assignment');
+    $('#myTabTabs').find('a').eq(7).html('<i class="icon-wrench" /> Advanced');
 };
 
 var insertLogo = function () {

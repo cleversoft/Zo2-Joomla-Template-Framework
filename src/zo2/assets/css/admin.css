@@ -70,7 +70,7 @@
 .col-wrap {border: 1px solid #e9e9e9; margin: 5px; border-radius: 3px; background: #ffffff}
 .col-wrap:hover{border-color:rgba(82,168,236,0.8)}
 /*Detail*/
-#details,#options { padding:15px;position: relative }
+#details,#options,#comments { padding:15px;position: relative }
 /*Menu Assignment*/
 #assignment { padding:15px;position: relative }
 #assignment #jform_menuselect-lbl { display: none }
