@@ -17,6 +17,6 @@ defined('_JEXEC') or die;
 <?php foreach ($this->form->getFieldset('layout') as $field) : ?>
 
             <?php echo $field->input; ?>
-     
+
 <?php endforeach;
 

@@ -21,6 +21,7 @@
         <position>top</position>
         <position>header_logo</position>
         <position>logo</position>
+        <position>header_logo</position>
         <position>menu</position>
         <position>breadcrumb</position>
         <position>search</position>
