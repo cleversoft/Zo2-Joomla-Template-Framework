@@ -19,13 +19,15 @@ $fields = $this->form->getFieldset('fonts');
     <?php if ($field instanceof JFormFieldFont) : ?>
     <?php echo $field->input?>
     <?php else : ?>
-    <div class="control-group font-deck-code" style="margin-top:20px">
-        <div class="control-label">
-            <div class="font-label"><?php echo $field->label; ?></div>
-            <div class="font-desc"><?php echo $field->description?></div>
-        </div>
-        <div class="controls">
-            <?php echo $field->input; ?>
+    <div class="font-container">
+        <div class="control-group font-deck-code" style="margin-top:20px">
+            <div class="control-label">
+                <div class="font-label"><?php echo $field->label; ?></div>
+                <div class="font-desc"><?php echo $field->description?></div>
+            </div>
+            <div class="controls">
+                <?php echo $field->input; ?>
+            </div>
         </div>
     </div>
     <?php endif; ?>

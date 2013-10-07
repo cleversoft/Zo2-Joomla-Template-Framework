@@ -34,7 +34,7 @@
 .nav-tabs > .active > a:hover,
 .nav-tabs > .active > a:focus,
 .nav-tabs > li > a:hover { background-color: #444444!important; border: none !important; color: #fff; outline: none; }
-#myTabContent { -moz-box-shadow: 0 1px 5px rgba(0,0,0,.07); -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.07); box-shadow: 0 1px 5px rgba(0,0,0,.07); }
+#myTabContent { -moz-box-shadow: 0 1px 5px rgba(0,0,0,.07); -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.07); box-shadow: 0 1px 5px rgba(0,0,0,.07); border:solid 1px #EBECF1}
 /*Layout*/
 .sortable-row,
 .sortable-col { border: none; }
@@ -219,9 +219,9 @@ html[xmlns] .clearfix { display: block; }
 }
 .switch_wrap .switch .bullet::after {margin-left: 2px;}
 .switch_title{width:120px;float:left}
-#font_chooser{margin-top:20px}
+#fonts{position: relative}
 #font_chooser .accordion-heading a{text-decoration: none;font-weight: bold;}
-.font-container{position: relative;border-bottom:solid 1px #909090;padding:10px 0 10px 0;}
+.font-container{position: relative;border-bottom:solid 1px #909090;padding:0 15px 10px 15px}
 .font-container h3{border-bottom: solid 1px #E2E2E2;padding-bottom:5px;font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif}
 .font-container .control-label{width:160px}
 .font-desc{color:#444;font-style: italic;font-weight: normal}
