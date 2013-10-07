@@ -10,21 +10,6 @@
 * @license     GPL v2
 */
 
-[class^="zo2-icon-"], [class*=" zo2-icon-"] {
-
-    display: inline;
-    width: auto;
-    height: auto;
-    line-height: normal;
-    vertical-align: baseline;
-    background-image: none;
-    background-position: 0% 0%;
-    background-repeat: repeat;
-    margin-top: 0;
-    padding-left: 25px;
-    background-size: 16px 16px !important;
-}
-
 .shortcode-items a {
     margin-bottom: 5px;
 }
