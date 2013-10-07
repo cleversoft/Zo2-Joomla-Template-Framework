@@ -45,10 +45,12 @@ class plgSystemZo2 extends JPlugin
 
             }
         }
-        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
         if ($app->isSite()) {
             Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
+        } else {
+            Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
         }
+        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
     }
 
     function onAfterRender()
@@ -178,6 +180,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "Vimeo",
                 'syntax' => "[vimeo id=\ID\ h=\'HEIGHT\' w=\'WIDTH\' autoplay=0]",
                 'image' => "vimeo.png",
+                'class' => 'zo2-icon-vimeo-1',
                 'type' => "media"
             ),
             'youtube' => array(
@@ -185,6 +188,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "Youtube",
                 'syntax' => "[youtube id=\ID\ h=\'HEIGHT\' w=\'WIDTH\']",
                 'image' => "youtube.png",
+                'class' => 'zo2-icon-youtube-squared',
                 'type' => "media"
             ),
             'bliptv' => array(
@@ -192,6 +196,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "Blip.tv",
                 'syntax' => "[blip.tv id=\ID\ h=\'HEIGHT\' w=\'WIDTH\' autoplay=false]",
                 'image' => "bliptv.png",
+                'class' => 'icon-play',
                 'type' => "media"
             ),
             'dailymotion' => array(
@@ -199,6 +204,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "dailymotion",
                 'syntax' => "[dailymotion id=\ID\ h=\'HEIGHT\' w=\'WIDTH\' autoplay=0]PLACE_LINK_HERE[/dailymotion]",
                 'image' => "dailymotion.png",
+                'class' => 'zo2-icon-play-1',
                 'type' => "media"
             ),
             'hulu' => array(
@@ -206,6 +212,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "hulu",
                 'syntax' => "[hulu id=\ID\ h=\'HEIGHT\' w=\'WIDTH\']",
                 'image' => "hulu.png",
+                'class' => 'zo2-icon-play',
                 'type' => "media"
             ),
             'instagram' => array(
@@ -213,6 +220,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "instagram",
                 'syntax' => "[instagram  url=\PLACE_LINK_HERE\ h=\'HEIGHT\' w=\'WIDTH\']",
                 'image' => "instagram.png",
+                'class' => ' zo2-icon-instagramm',
                 'type' => "media"
             ),
             'slideshare' => array(
@@ -220,6 +228,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "slideshare",
                 'syntax' => "[slideshare id=\ID\ h=\'HEIGHT\' w=\'WIDTH\']",
                 'image' => "slideshare.png",
+                'class' => 'zo2-icon-doc',
                 'type' => "document"
             ),
             'googlemap' => array(
@@ -234,6 +243,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "polldaddy",
                 'syntax' => "[polldaddy  poll=\'ID\']<br/>",
                 'image' => "polldaddy.ico",
+                'class' => 'icon-tasks',
                 'type' => "poll"
             ),
             'gist' => array(
@@ -241,6 +251,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "gist",
                 'syntax' => "[gist url=\'URL\']<br/>",
                 'image' => "github.png",
+                'class' => 'zo2-icon-github-1',
                 'type' => "code"
             ),
             'code' => array(
@@ -248,6 +259,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "Syntax highlighting of code snippets in a web page",
                 'syntax' => "[code languages=\'js\' first-line=\'1\']Your Code[/code]<br/>",
                 'image' => "code.png",
+                'class' => 'zo2-icon-code-1',
                 'type' => "code"
             ),
             'twitter' => array(
@@ -255,6 +267,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "twitter",
                 'syntax' => "[twitter id=\'ID\' username=\'USERNAME\']<br/>",
                 'image' => "twitter.png",
+                'class' => 'zo2-icon-twitter-1',
                 'type' => "social"
             ),
             'flickr' => array(
@@ -262,6 +275,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "flickr",
                 'syntax' => "[flickr url=\'PLACE_LINK_HERE\']<br/>",
                 'image' => "flickr.png",
+                'class' => 'zo2-icon-flickr',
                 'type' => "photo"
             ),
             'wufoo' => array(
@@ -269,6 +283,7 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "wufoo",
                 'syntax' => "[wufoo username=\'USERNAME\' formhash=\'FROMHASH\' h=\'HEIGHT\']<br/>",
                 'image' => "wufoo.png",
+                'class'     => "icon-table",
                 'type' => "form"
             ),
             'accordion' => array(
@@ -283,6 +298,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Blockquote",
                 'syntax'	=> "[quote align=\'center\' color=\'#999999\']ADD_CONTENT_HERE[/quote]",
                 'image'		=> "blockquote.png",
+                'class'     => "zo2-icon-quote-right",
                 'type' => "form"
             ),
             'buttons' => array(
@@ -290,6 +306,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Buttons",
                 'syntax'	=> "[button type=\'primary\' size=\'large\' state=\'enable\']ADD_BUTTON_CONTENT[/button]",
                 'image'		=> "buttons.png",
+                'class'     => "icon-link",
                 'type' => "form"
             ),
             'column' => array(
@@ -297,6 +314,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Column",
                 'syntax'	=> "[columns]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[/columns]",
                 'image'		=> "column.png",
+                'class'     => "zo2-icon-columns",
                 'type' => "form"
             ),
             'dropcap' => array(
@@ -311,6 +329,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Gallery",
                 'syntax'	=> "[gallery title=\'GALLERY_TITLE\' width=\'IMAGE_THUMB_WIDTH\' height=\'IMAGE_THUMB_HEIGHT\' columns=\'3\']<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[/gallery]",
                 'image'		=> "gallery.png",
+                'class'     => "zo2-icon-art-gallery",
                 'type' => "photo"
             ),
             'lightbox' => array(
@@ -325,6 +344,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "List Style",
                 'syntax'	=> "[list type=\'check\']<br/><ul><li>ADD_LIST_CONTENT</li>\<li>ADD_LIST_CONTENT</li></ul>[/list]",
                 'image'		=> "list.png",
+                'class'     => "zo2-icon-menu",
                 'type' => "form"
             ),
             'message' => array(
@@ -332,6 +352,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Message Boxes",
                 'syntax'	=> "[message_box title=\'MESSAGE_TITLE\' color=\'red\' show_close=\'Yes/No\']ADD_CONTENT_HERE[/message_box]",
                 'image'		=> "message.png",
+                'class'     => "zo2-icon-pencil",
                 'type' => "form"
             ),
             'social' => array(
@@ -339,6 +360,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Social Icons",
                 'syntax'	=> "[social type=\'facebook\' opacity=\'dark\']PLACE_LINK_HERE[/social]",
                 'image'		=> "social.png",
+                'class'     => "zo2-icon-share",
                 'type' => "social"
             ),
             'tabs' => array(
@@ -346,6 +368,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Tabs",
                 'syntax'	=> "[tabs]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[/tabs]",
                 'image'		=> "tabs.png",
+                'class' => 'zo2-icon-video',
                 'type' => "form"
             ),
             'testimonial' => array(
@@ -353,6 +376,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Testimonial",
                 'syntax'	=> "[testimonial author=\'TESTIMONIAL_AUTHOR\' position=\'AUTHOR_POSITION\']ADD_TESTIMONIAL_HERE[/testimonial]",
                 'image'		=> "testimonial.png",
+                'class'		=> "zo2-icon-comment",
                 'type' => "form"
             ),
             'toggle' => array(
@@ -360,6 +384,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Toggle Boxes",
                 'syntax'	=> "[toggle_box]<br/>[toggle_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/toggle_item]<br/>[toggle_item title=\'ITEM_TITLE\' active=\'true\']ADD_CONTENT_HERE[/toggle_item]<br/>[/toggle_box]",
                 'image'		=> "toggle.png",
+                'class' => 'zo2-icon-exchange',
                 'type' => "form"
             ),
 
@@ -368,6 +393,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Divider",
                 'syntax'	=> "[divider scroll_text=\'SCROLL_TEXT\']<br/>",
                 'image'		=> "divider.png",
+                'class' => 'zo2-icon-divide',
                 'type' => "form"
             ),
             'spacer' => array(
@@ -375,6 +401,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Add Space",
                 'syntax'	=> "[space height=\'HEIGHT\']<br/>",
                 'image'		=> "space.png",
+                'class' => 'zo2-icon-myspace',
                 'type' => "form"
             ),
             'highlighter' => array(
@@ -382,6 +409,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Syntax highlighting of code snippets in a web page",
                 'syntax'	=> "[highlighter lang=\'js\' linenums=\'true\' startnums=\'1\']YOUR_CODE_HERE[/highlighter]<br/>",
                 'image'		=> "highlighter.png",
+                'class' => 'zo2-icon-code',
                  'type' => "code"
             ),
             'pricing' => array(
@@ -389,6 +417,7 @@ class plgSystemZo2 extends JPlugin
                 'desc'		=> "Pricing Tables",
                 'syntax'	=> "[pricing columns=\'3\']<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[/pricing]<br/>",
                 'image'		=> "pricing.png",
+                'class' => 'zo2-icon-money',
                 'type' => "form"
             ),
         );
@@ -411,7 +440,7 @@ class plgSystemZo2 extends JPlugin
                 foreach ($items as $shortcoder) {
 
                     $text .= '  <a class="btn" href="javascript: void(0);" onclick="jSelectShortcode(\'' . $shortcoder['syntax'] . '\')" title="' . $shortcoder['desc'] . '">';
-                    $text .= '  <i class="zo2-icon-bsc-' . $i++ . '" style="background: url(' . JUri::root() . ZO2_PLUGIN_REL . '/addons/shortcodes/images/' . $shortcoder['image'] . ') 0 0 no-repeat;"></i>';
+                    $text .= '  <i class="zo2-icon-bsc-' . $i++ . ' '.(isset($shortcoder['class']) ? $shortcoder['class'] : '').'" ></i>';
                     $text .= $shortcoder['name'];
                     $text .= '  </a>';
                 }
