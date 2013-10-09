@@ -61,7 +61,7 @@
         "base": "template"
     },
     {
-        "path": "/assets/less/test.less",
+        "path": "/assets/less/style.less",
         "type": "less",
         "options": {
             "rel": "stylesheet"
