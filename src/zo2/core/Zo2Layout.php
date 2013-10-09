@@ -512,7 +512,7 @@ class Zo2Layout {
         $api = 'http://fonts.googleapis.com/css?family=';
         $style = '';
         if (!empty($data['family'])) {
-            $style .= 'font-family:' . $data['family'] . ';';
+            $style .= 'font-family:' . urldecode($data['family']) . ';';
             $this->insertCss($api . $data['family']);
         }
         else return '';
