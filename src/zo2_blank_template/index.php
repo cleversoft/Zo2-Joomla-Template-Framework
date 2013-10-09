@@ -51,7 +51,7 @@ $footer = $layout->insertFooterAssets();
     <jdoc:include type="head" />
     <?php echo $header?>
 </head>
-<body>
+<body class="<?php echo $layout->getBodyClass()?>">
 <section class="wrapper">
     <?php echo $body;?>
 </section>

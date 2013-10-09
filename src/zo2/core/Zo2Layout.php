@@ -807,4 +807,13 @@ class Zo2Layout {
             $this->_components[$compName] = $comp;
         }
     }
+
+    public function getBodyClass($customClass = '')
+    {
+        //$jinput = JFactory::getApplication()->input;
+        $classes = array();
+        //$classes[] = $jinput->get('view');
+        $classes[] = Zo2Framework::getCurrentPage();
+        return trim(implode(' ', $classes) . ' ' . $customClass);
+    }
 }
