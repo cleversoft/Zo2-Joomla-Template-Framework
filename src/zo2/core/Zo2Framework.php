@@ -53,8 +53,10 @@ class Zo2Framework {
         if (!class_exists('JViewLegacy', false)) Zo2Framework::import2('core.classes.legacy');
 
         if (!$app->isAdmin()) {
+            Zo2Framework::import2('addons.socialshare.Zo2Socialshare');
             Zo2Framework::import2('addons.shortcodes.WPShortcode');
             Zo2Framework::getInstance()->ShortCode = new WPShortcode();
+            Zo2Framework::getInstance()->zo2Social = new Zo2Socialshare(Zo2Framework::getParams());
             // JModuleHelper
             if (!class_exists('JModuleHelper', false)) Zo2Framework::import2('core.classes.helper');
         } else {

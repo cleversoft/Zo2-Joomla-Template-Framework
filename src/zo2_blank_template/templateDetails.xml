@@ -163,8 +163,21 @@
             <field name="theme" type="themecolor" filter="raw" default="default" />
         </fieldset>
 
-        <fieldset name="comments" label="Comments">
+        <fieldset name="advanced" label="Advanced">
 
+            <field name="ga_code" filter="raw" type="textarea" default="" label="Tracking code" description="Include the tracking code">
+            </field>
+
+            <field name="enable_googleauthorship" type="radio" default="0"
+                   label="Google Authorship"
+                   description="Google Authorship" class="btn-group">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="google_profile_url" type="text" default=""
+                   label="Google Profile URL"
+                   description="Google Profile URL" />
+            <!--Comments-->
             <field name="enable_comments" type="radio" default="0" label="Enable Comments" description="Enable Comments" class="btn-group">
                 <option value="1">JYES</option>
                 <option value="0">JNO</option>
@@ -195,28 +208,114 @@
             <field name="k2comment_label" type="text" default="ZO2 Framework"
                    label="K2 Comment Label"
                    description="" />
-
-        </fieldset>
-
-        <fieldset name="advanced" label="Advanced">
-
-            <field name="ga_code" filter="raw" type="textarea" default="" label="Tracking code" description="Include the tracking code">
-            </field>
-
-            <field name="enable_googleauthorship" type="radio" default="0"
-                   label="Google Authorship"
-                   description="Google Authorship" class="btn-group">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
-            <field name="google_profile_url" type="text" default=""
-                   label="Google Profile URL"
-                   description="Google Profile URL" />
-            <field
-                    name="ad_comment"
-                    type="spacer"
-                    hr="true"
+            <!--Share Social-->
+            <field name="ordering_buttons" type="social" default="facebook,twitter,linkedin,gplus"
+                   label="Ordering buttons"
+                   description="Only tabs listed will be showed"
+                   desc=""
                     />
+
+            <field name="social_style" type="list" default="default" label="Social type"
+                   description="Social type">
+                <option value="default">default</option>
+                <option value="floating">floating</option>
+            </field>
+
+            <field name="show_in_article" type="radio" default="0" label="Show in Article"
+                   description="Display the plugin in Article or not." class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field name="show_in_category" type="radio" default="0" label="Show in Category"
+                   description="Display the plugin in Category or not." class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field name="show_in_featured" type="radio" default="0" label="Show in Featured"
+                   description="Display the plugin in Featured or not." class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                    name="box_top"
+                    type="text"
+                    default="200"
+                    label="Initial Top Position"
+                    description="Initial Top Position"/>
+            <field
+                    name="box_left"
+                    type="text"
+                    default="80"
+                    label="Left Position"
+                    description="Left Position"/>
+
+            <field name="Twitter" type="spacer" class="zt-header" hr="true"/>
+
+            <field
+                    name="tw_username"
+                    type="text"
+                    default=""
+                    label="Twitter Username"
+                    description="Your twitter username without @ sign."/>
+            <field name="tw_recommended" type="text" default="" label="Recommended Acccounts"
+                   description="Enter recommended Twitter account(s)."/>
+            <field name="tw_hashtags" type="text" default="" label="Twitter Hashtags"
+                   description="Enter a Hashtag."/>
+
+            <field name="Facebook" type="spacer" class="zt-header" hr="true"/>
+
+            <field
+                    name="fb_url"
+                    type="text"
+                    default=""
+                    label="Facebook Url"
+                    description="You facebook page."/>
+
+            <field name="fb_action" type="list" default="like" label="Facebook Like " description="Facebook Like">
+                <option value="like">Like</option>
+                <option value="recommend">Recommend</option>
+            </field>
+
+            <field name="fb_send" type="radio" default="0" label="Show Send Button" description="Show Send Button" class="btn-group">
+                <option value="0">Hide</option>
+                <option value="1">Show</option>
+            </field>
+
+            <field name="enable_popup" type="radio" default="0" label="Enable popup"
+                   description="Enable popup" class="btn-group">
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                    name="days_popup_again"
+                    type="text"
+                    default="1"
+                    label="Days shows again"
+                    description="Days shows again"/>
+            <field
+                    name="show_popup"
+                    type="text"
+                    default="1"
+                    label="Show popup in"
+                    description="popup will be shown after X seconds"/>
+            <field
+                    name="close_popup"
+                    type="text"
+                    default="0"
+                    label="Close popup in"
+                    description="Popup will be close after X seconds. 0 to disable"/>
+
+            <field name="menuexin" type="radio" default="0" label="Include/Exclude menus"
+                   description="Include/Exclude menus" class="btn-group">
+                <option value="1">Exclude</option>
+                <option value="0">Include</option>
+            </field>
+            <field name="excl_menu" size="10" type="menuitem" label="Menus"
+                   description="Menus" multiple="multiple"/>
 
         </fieldset>
     </fields>
