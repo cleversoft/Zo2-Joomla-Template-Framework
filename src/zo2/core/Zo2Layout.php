@@ -44,7 +44,7 @@ class Zo2Layout {
         $this->_templateUri = JUri::root() . 'templates/' . $templateName;
 
         // check layout existence, if layout not existed, get default layout, which is homepage.php
-        if(!file_exists($this->_layoutPath)) throw new Exception('Layout find cannot be found!');
+        if(!file_exists($this->_layoutPath)) throw new Exception('Layout file cannot be found!');
 
         // get template content
         $this->_layoutStatics = array();
