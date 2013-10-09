@@ -113,14 +113,9 @@ $canDo = TemplatesHelper::getActions();
                 <?php echo $this->loadTemplate('layoutbuilder'); ?>
             <?php echo JHtml::_('bootstrap.endTab'); ?>
 
-
             <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'megamenu', JText::_('Mega Menu', true)); ?>
                 <?php echo $this->loadTemplate('megamenu'); ?>
             <?php echo JHtml::_('bootstrap.endTab'); ?>
-
-        <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'comments', JText::_('Comments', true)); ?>
-        <?php echo $this->loadTemplate('comments'); ?>
-        <?php echo JHtml::_('bootstrap.endTab'); ?>
 
         <?php if ($user->authorise('core.edit', 'com_menu') && $this->item->client_id == 0):?>
             <?php if ($canDo->get('core.edit.state')) : ?>
