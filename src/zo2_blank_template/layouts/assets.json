@@ -59,5 +59,14 @@
         },
         "position": "header",
         "base": "template"
+    },
+    {
+        "path": "/assets/less/test.less",
+        "type": "less",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header",
+        "base": "template"
     }
 ]

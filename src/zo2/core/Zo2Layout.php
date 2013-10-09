@@ -129,6 +129,23 @@ class Zo2Layout {
         return $this;
     }
 
+    public function insertLess($path, array $options = array(), $position = 'header')
+    {
+        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
+        if (!is_dir($cacheDir)) mkdir($cacheDir, 0755, true);
+
+        $fileName = md5($path) . '.css';
+        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
+        $filePath = $cacheDir . DIRECTORY_SEPARATOR . $fileName;
+        $relativePath = '/assets/cache/' . $fileName;
+        $content = $this->processLess(file_get_contents($path));
+        file_put_contents($filePath, $content);
+
+        $this->insertCss($relativePath);
+
+        return $this;
+    }
+
     /**
      * Get current layout content
      *
@@ -226,6 +243,28 @@ class Zo2Layout {
         if (isset($item['base']) && $item['base'] == 'plugin') $basePath = Zo2Framework::getSystemPluginPath();
         else $basePath = $this->_templateUri;
         $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
+        $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
+        return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
+    }
+
+    /**
+     * Insert link tag for LESS
+     *
+     * @param $item
+     * @return string
+     */
+    private function generateLessTag($item) {
+        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
+        if (!is_dir($cacheDir)) mkdir($cacheDir, 0755, true);
+
+        $fileName = md5($item['path']) . '.css';
+        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
+        $filePath = $cacheDir . DIRECTORY_SEPARATOR . $fileName;
+        $relativePath = '/assets/cache/' . $fileName;
+        $content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
+        file_put_contents($filePath, $content);
+
+        $path = $this->_templateUri . $relativePath;
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
         return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
     }
@@ -392,8 +431,10 @@ class Zo2Layout {
         $path = $this->_layourDir . $cache;
         if (file_exists($path) && !$debug) return file_get_contents($path);
         else {
+            $html = '';
             $responsive = $params->get('responsive_layout');
             $theme = $params->get('theme');
+            $combineLevel = $params->get('combine_statics');
 
             if (!empty($theme)) {
                 $themeUri = '/assets/css/themes/' . $theme . '.css';
@@ -405,26 +446,55 @@ class Zo2Layout {
 
             $this->insertCustomFontStyles();
 
-            $html = '';
-            foreach($this->_layoutStatics as $item) {
-                if ($item['position'] == 'header') {
-                    if ($item['type'] == 'css') $html .= $this->generateCssTag($item);
-                    elseif ($item['type'] == 'js') $html .= $this->generateJsTag($item);
-                }
-            }
-
-            if (count($this->_styleDeclaration) > 0) {
-                $styles = '';
-                foreach ($this->_styleDeclaration as $style) {
-                    $styles .= $style . "\n";
+            //if (empty($combineLevel) || $combineLevel == '0') {
+                foreach($this->_layoutStatics as $item) {
+                    if ($item['position'] == 'header') {
+                        if ($item['type'] == 'css') $html .= $this->generateCssTag($item);
+                        elseif ($item['type'] == 'js') $html .= $this->generateJsTag($item);
+                        elseif ($item['type'] == 'less') $html .= $this->generateLessTag($item);
+                    }
                 }
 
-                $styles = '<style type="text/css">' . $styles . '</style>';
-                $html .= "\n" . $styles;
-            }
+                if (count($this->_styleDeclaration) > 0) {
+                    $styles = '';
+                    foreach ($this->_styleDeclaration as $style) {
+                        $styles .= $style . "\n";
+                    }
+
+                    $styles = '<style type="text/css">' . $styles . '</style>';
+                    $html .= "\n" . $styles;
+                }
+            //}
+            //else {
+                /*
+                $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
+                if (!is_dir($cacheDir)) mkdir($cacheDir, 0755, true);
+                $cssPath = $cacheDir . DIRECTORY_SEPARATOR . 'style.css';
+
+                foreach ($this->_layoutStatics as $item) {
+                    $path = $this->_templatePath . $item['path'];
+                    $path = str_replace('//', '/', $path);
+
+                    if ($item['type'] == 'css') $style .= file_get_contents($path) . "\n";
+                    elseif ($item['type'] == 'js') $script .= file_get_contents($path) . "\n";
+                    elseif ($item['type'] == 'less') {
+                        $lessContent = file_get_contents($path);
+                        $style .= $this->processLess($lessContent) . "\n";
+                    }
+                }
+
+                Zo2Framework::import('vendor.minify.jsshrink');
+                Zo2Framework::import('vendor.minify.css');
+
+                // minify js first
+                if ($combineLevel == '2') {
+                    $script = Minifier::minify($script);
+                    $style = CssMinifier::minify($style);
+                }
+                */
+            //}
 
             file_put_contents($path, $html);
-
             return $html;
         }
     }
@@ -617,90 +687,6 @@ class Zo2Layout {
 
             return $html;
         }
-    }
-
-    /**
-     * Combine and minify statics assets.
-     *
-     * Level 1: combine only.
-     * Level 2: combine then minify.
-     *
-     * Level 2 is facing some issues, such as url value in background is pointing to the wrong path
-     *
-     * @param int $level
-     */
-    private function combine($level = 1) {
-        $style = '';
-        $script = '';
-
-        $state = $this->getState();
-
-        $jsFileName = 'script.' . $this->_layoutName . '.js';
-        $cssFileName = 'style.' . $this->_layoutName . '.css';
-
-        $assetDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . $state;
-
-        if (!is_dir($assetDir)) mkdir($assetDir, 0755);
-
-        $jsPath = $assetDir . DIRECTORY_SEPARATOR . $jsFileName;
-        $cssPath = $assetDir . DIRECTORY_SEPARATOR . $cssFileName;
-
-        if (!file_exists($jsPath) || !file_exists($cssPath)) {
-            foreach ($this->_layoutStatics as $item) {
-                $path = $this->_templatePath . $item['path'];
-                $path = str_replace('//', '/', $path);
-
-                if ($item['type'] == 'css') $style .= file_get_contents($path) . "\n";
-                elseif ($item['type'] == 'js') $script .= file_get_contents($path) . "\n";
-                elseif ($item['type'] == 'less') {
-                    $lessContent = file_get_contents($path);
-                    $style .= $this->processLess($lessContent) . "\n";
-                }
-            }
-
-            Zo2Framework::import('vendor.minify.jsshrink');
-            Zo2Framework::import('vendor.minify.css');
-
-            // minify js first
-            if ($level == '2') {
-                $script = Minifier::minify($script);
-                $style = CssMinifier::minify($style);
-            }
-
-            file_put_contents($jsPath, $script);
-            file_put_contents($cssPath, $style);
-        }
-
-        $jsUri = '/assets/' . $state . '/' . $jsFileName;
-        $cssUri = '/assets/' . $state . '/' . $cssFileName;
-
-        $scriptTag = $this->generateJsTag(array('path' => $jsUri, 'type' => 'js', 'position' => 'footer'));
-        $cssTag = $this->generateCssTag(array('path' => $cssUri, 'type' => 'css', 'position' => 'header', 'options' => array('rel' => 'stylesheet')));
-
-        if (count($this->_styleDeclaration) > 0) {
-            $styles = '';
-            foreach ($this->_styleDeclaration as $style) {
-                $styles .= $style . "\n";
-            }
-
-            $styles = '<style type="text/css">' . $styles . '</style>';
-            $cssTag .= "\n" . $styles;
-        }
-
-        if (count($this->_jsDeclaration) > 0) {
-            $scripts = '';
-
-            foreach ($this->_jsDeclaration as $js) {
-                $scripts .= $js . "\n";
-            }
-
-            $scripts = '<script type="text\javascript">' . $scripts . '</script>';
-
-            $scriptTag .= "\n" . $scripts;
-        }
-
-        $this->_output = str_replace('</head>', $cssTag . '</head>' , $this->_output);
-        $this->_output = str_replace('</body>', $scriptTag . '</body>' , $this->_output);
     }
 
     /**
