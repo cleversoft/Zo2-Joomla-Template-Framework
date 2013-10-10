@@ -343,7 +343,7 @@ class Zo2Layout {
     private function generateRow($item)
     {
         //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
-        $class = 'container';
+        $class = $item['fullwidth'] ? '' : 'container';
         $class .= ' ' . self::generateVisibilityClass($item['visibility']);
         $html = '';
         if (!empty($item['id'])) $html .= '<section id="' . $item['id'] . '" class="' . $item['customClass'] . '">';
