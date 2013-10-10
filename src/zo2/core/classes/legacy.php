@@ -740,9 +740,6 @@ class JViewLegacy extends JObject
                     if ($app->isAdmin()) {
                         $this->_addPath('template', ZO2_ADMIN_BASE . '/html/admin/' . $component . '/' . $this->getName());
                         return;
-                    } else {
-                        $this->_addPath('template', ZO2_ADMIN_BASE . '/html/' . $component . '/' . $this->getName());
-                        return;
                     }
                     $fallback = JPATH_THEMES . '/' . $app->getTemplate() . '/html/' . $component . '/' . $this->getName();
                     $this->_addPath('template', $fallback);
