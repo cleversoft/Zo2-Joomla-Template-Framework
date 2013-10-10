@@ -55,6 +55,17 @@ defined('_JEXEC') or die ('Restricted access');
                                 <input type="text" id="txtRowCss" placeholder="Row's custom CSS class">
                             </div>
                         </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <div class="control-label">Full Width</div>
+                            </div>
+                            <div class="controls">
+                                <label class="switch_wrap enable_type" for="cbRowFullWidth">
+                                    <input id="cbRowFullWidth" type="checkbox" />
+                                    <div class="switch"><span class="bullet"></span></div>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div id="row-responsive">
                         <div class="control-group">

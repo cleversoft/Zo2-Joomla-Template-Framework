@@ -33,7 +33,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
         $html .= '</a>';
         $html .= '<section style="float:left">' . $copyright . '</section>';
         if ($gototop) {
-            $html .= '<a href="#" id="gototop" title="Go to top"><i class="icon-chevron-sign-up" /></a>';
+            $html .= '<a href="#" id="gototop" title="Go to top"><i class="icon-chevron-sign-up"></i></a>';
 
             $style = '#gototop{display:block;position:fixed;width:20px;height:20px;right:40px;bottom:40px;font-size:30px;text-decoration:none}';
 

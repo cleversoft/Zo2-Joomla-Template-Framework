@@ -144,7 +144,9 @@ class JFormFieldLayout extends JFormField
              data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0?>"
              data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0?>"
              data-zo2-visibility-md="<?php echo $item['visibility']['md'] ? 1 : 0?>"
-             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0?>">
+             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0?>"
+             data-zo2-fullwidth="<?php echo $item['fullwidth'] ? 1 : 0?>"
+        >
             <div class="col-md-12 row-control">
                 <div class="row-control-container">
                     <div class="row-name"><?php echo $item['name']?></div>

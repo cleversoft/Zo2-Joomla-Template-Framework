@@ -77,6 +77,7 @@ jQuery(document).ready(function($){
         var $row = jQuery('<div />').addClass('zo2-row sortable-row').insertAfter($parent);
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
+        $row.attr('data-zo2-fullwidth', '0');
         for(var i = 0; i < visibilityAttributes.length; i++) {
             $row.attr(visibilityAttributes[i], '1');
         }
@@ -161,6 +162,7 @@ jQuery(document).ready(function($){
         var $row = jQuery('<div />').addClass('zo2-row sortable-row').appendTo($container);
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
+        $row.attr('data-zo2-fullwidth', '0');
         for(var i = 0; i < visibilityAttributes.length; i++) {
             $row.attr(visibilityAttributes[i], '1');
         }
@@ -187,6 +189,7 @@ jQuery(document).ready(function($){
         $('#cbRowTabletVisibility').attr('checked', $row.attr('data-zo2-visibility-sm') == '1');
         $('#cbRowDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-md') == '1');
         $('#cbRowLargeDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-lg') == '1');
+        $('#cbRowFullWidth').attr('checked', $row.attr('data-zo2-fullwidth') == '1');
 
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
@@ -209,6 +212,7 @@ jQuery(document).ready(function($){
         $row.attr('data-zo2-visibility-sm', $('#cbRowTabletVisibility').attr('checked') ? '1' : '0');
         $row.attr('data-zo2-visibility-md', $('#cbRowDesktopVisibility').attr('checked') ? '1' : '0');
         $row.attr('data-zo2-visibility-lg', $('#cbRowLargeDesktopVisibility').attr('checked') ? '1' : '0');
+        $row.attr('data-zo2-fullwidth', $('#cbRowFullWidth').attr('checked') ? '1' : '0');
         //$row.attr('data-zo2-layout', $('#ddlRowLayout').val());
         $row.attr('data-zo2-id', $('#txtRowId').val());
         $('#rowSettingsModal').modal('hide');
@@ -462,6 +466,7 @@ var generateItemJson = function($item) {
             name: $item.find('> .row-control > .row-control-container > .row-name').text(),
             customClass: $item.attr('data-zo2-customClass'),
             id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
+            fullwidth: $item.attr('data-zo2-fullwidth') == '1',
             visibility: {
                 xs: $item.attr('data-zo2-visibility-xs') == '1',
                 sm: $item.attr('data-zo2-visibility-sm') == '1',
@@ -542,9 +547,9 @@ var rearrangeSpan = function ($container){
 var addIconToMenu = function() {
     var $ = jQuery;
     $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Overview');
-    $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General Options');
+    $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General');
     $('#myTabTabs').find('a').eq(2).html('<i class="icon-font" /> Fonts');
-    $('#myTabTabs').find('a').eq(3).html('<i class="icon-pencil" /> Theme Colors');
+    $('#myTabTabs').find('a').eq(3).html('<i class="icon-pencil" /> Preset Styles');
     $('#myTabTabs').find('a').eq(4).html('<i class="icon-th" /> Layout Builder');
     $('#myTabTabs').find('a').eq(5).html('<i class="icon-list-alt" /> Mega Menus');
     $('#myTabTabs').find('a').eq(6).html('<i class="icon-edit-sign" /> Assignment');
