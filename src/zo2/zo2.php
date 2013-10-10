@@ -37,6 +37,7 @@ class plgSystemZo2 extends JPlugin
     function onBeforeRender()
     {
         $app = JFactory::getApplication();
+
         if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
             if ($app->isAdmin()) {
                 // Load Bootstrap CSS
@@ -46,7 +47,16 @@ class plgSystemZo2 extends JPlugin
             }
         }
         if ($app->isSite()) {
+
             Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
+            // Share social
+            $params = Zo2Framework::getParams();
+            if ($params->get('enable_popup', 0)) {
+                if (!$_COOKIE['show_modal']) {
+                    Zo2Framework::getInstance()->zo2Social->loadScript('#zo2-social-popup');
+                }
+            }
+
         } else {
             Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
         }
@@ -64,9 +74,33 @@ class plgSystemZo2 extends JPlugin
         } else {
 
             // get response
+            $params = Zo2Framework::getParams();
             $body = JResponse::getBody();
             $body = $this->doShortCode($body);
+
+            // Share social
+            if ($params->get('enable_popup', 0)) {
+                $body = Zo2Framework::getInstance()->zo2Social->renderPopup($body);
+            }
+
             JResponse::setBody($body);
+
+        }
+
+    }
+
+    public function onContentBeforeDisplay($context, &$article, &$params, $limitstart = 0)
+    {
+        $app = JFactory::getApplication();
+
+        if ($app->isSite()) {
+
+            $document = JFactory::getDocument();
+            $type = $document->getType();
+
+            if ($type == 'html') {
+                Zo2Framework::getInstance()->zo2Social->renderSocial($article, '.zo2-social-wrap');
+            }
 
         }
 
@@ -91,8 +125,8 @@ class plgSystemZo2 extends JPlugin
                     $rel = 'author';
                 }
 
-                $gplus = '<a href="'.$config->get('google_profile_url', '').'/?rel='.$rel.'"';
-                $gplus .= ' title="Google Plus Profile for '.$author_name.'" plugin="Google Plus Authorship">'.$author_name.'</a>';
+                $gplus = '<a href="' . $config->get('google_profile_url', '') . '/?rel=' . $rel . '"';
+                $gplus .= ' title="Google Plus Profile for ' . $author_name . '" plugin="Google Plus Authorship">' . $author_name . '</a>';
                 $article->text = $gplus . $article->text;
             }
             /* Comments System */
@@ -157,7 +191,7 @@ class plgSystemZo2 extends JPlugin
                 <h2 id="zo2ModalLabel">ZO2 ShortCodes</h2>
               </div>
               <div class="modal-body">
-                '.$button.'
+                ' . $button . '
               </div>
               <div class="modal-footer">
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -284,143 +318,143 @@ class plgSystemZo2 extends JPlugin
                 'desc' => "wufoo",
                 'syntax' => "[wufoo username=\'USERNAME\' formhash=\'FROMHASH\' h=\'HEIGHT\']<br/>",
                 'image' => "wufoo.png",
-                'class'     => "zo2-icon-wufoo",
+                'class' => "zo2-icon-wufoo",
                 'type' => "form"
             ),
             'accordion' => array(
-                'name'		=> "Accordion",
-                'desc'		=> "Accordion",
-                'syntax'	=> "[accordion]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[/accordion]<br/>",
-                'image'		=> "accordion.png",
-                'class'     => "zo2-icon-accordion",
+                'name' => "Accordion",
+                'desc' => "Accordion",
+                'syntax' => "[accordion]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[acc_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/acc_item]<br/>[/accordion]<br/>",
+                'image' => "accordion.png",
+                'class' => "zo2-icon-accordion",
                 'type' => "form"
             ),
             'blockquote' => array(
-                'name'		=> "Blockquote",
-                'desc'		=> "Blockquote",
-                'syntax'	=> "[quote align=\'center\' color=\'#999999\']ADD_CONTENT_HERE[/quote]",
-                'image'		=> "blockquote.png",
-                'class'     => "zo2-icon-blockquote",
+                'name' => "Blockquote",
+                'desc' => "Blockquote",
+                'syntax' => "[quote align=\'center\' color=\'#999999\']ADD_CONTENT_HERE[/quote]",
+                'image' => "blockquote.png",
+                'class' => "zo2-icon-blockquote",
                 'type' => "form"
             ),
             'buttons' => array(
-                'name'		=> "Buttons",
-                'desc'		=> "Buttons",
-                'syntax'	=> "[button type=\'primary\' size=\'large\' state=\'enable\']ADD_BUTTON_CONTENT[/button]",
-                'image'		=> "buttons.png",
-                'class'     => "zo2-icon-buttons",
+                'name' => "Buttons",
+                'desc' => "Buttons",
+                'syntax' => "[button type=\'primary\' size=\'large\' state=\'enable\']ADD_BUTTON_CONTENT[/button]",
+                'image' => "buttons.png",
+                'class' => "zo2-icon-buttons",
                 'type' => "form"
             ),
             'column' => array(
-                'name'		=> "Column",
-                'desc'		=> "Column",
-                'syntax'	=> "[columns]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[/columns]",
-                'image'		=> "column.png",
-                'class'     => "zo2-icon-columns",
+                'name' => "Column",
+                'desc' => "Column",
+                'syntax' => "[columns]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[column_item col=\'4\']ADD_CONTENT_HERE[/column_item]<br/>[/columns]",
+                'image' => "column.png",
+                'class' => "zo2-icon-columns",
                 'type' => "form"
             ),
             'dropcap' => array(
-                'name'		=> "Dropcap",
-                'desc'		=> "Dropcap",
-                'syntax'	=> "[dropcap type=\'circle\' color=\'#COLOR_CODE\' background=\'#COLOR_CODE\']ADD_CONTENT_HERE[/dropcap]",
-                'image'		=> "dropcap.png",
-                'class'     => "zo2-icon-dropcap",
+                'name' => "Dropcap",
+                'desc' => "Dropcap",
+                'syntax' => "[dropcap type=\'circle\' color=\'#COLOR_CODE\' background=\'#COLOR_CODE\']ADD_CONTENT_HERE[/dropcap]",
+                'image' => "dropcap.png",
+                'class' => "zo2-icon-dropcap",
                 'type' => "form"
             ),
             'gallery' => array(
-                'name'		=> "Gallery",
-                'desc'		=> "Gallery",
-                'syntax'	=> "[gallery title=\'GALLERY_TITLE\' width=\'IMAGE_THUMB_WIDTH\' height=\'IMAGE_THUMB_HEIGHT\' columns=\'3\']<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[/gallery]",
-                'image'		=> "gallery.png",
-                'class'     => "zo2-icon-gallery",
+                'name' => "Gallery",
+                'desc' => "Gallery",
+                'syntax' => "[gallery title=\'GALLERY_TITLE\' width=\'IMAGE_THUMB_WIDTH\' height=\'IMAGE_THUMB_HEIGHT\' columns=\'3\']<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[gallery_item title=\'IMAGE_TITLE\' src=\'IMAGE_SRC\']IMAGE_DESCRIPTION[/gallery_item]<br/>[/gallery]",
+                'image' => "gallery.png",
+                'class' => "zo2-icon-gallery",
                 'type' => "photo"
             ),
             'lightbox' => array(
-                'name'		=> "Lightbox",
-                'desc'		=> "Lightbox",
-                'syntax'	=> "[lightbox src=\'IMAGE_SRC\' width=\'IMAGE_WIDTH\' height=\'IMAGE_HEIGHT\' lightbox=\'on\' title=\'IMAGE_TITLE\' align=\'left\']",
-                'image'		=> "lightbox.png",
-                'class'     => "zo2-icon-lightbox",
+                'name' => "Lightbox",
+                'desc' => "Lightbox",
+                'syntax' => "[lightbox src=\'IMAGE_SRC\' width=\'IMAGE_WIDTH\' height=\'IMAGE_HEIGHT\' lightbox=\'on\' title=\'IMAGE_TITLE\' align=\'left\']",
+                'image' => "lightbox.png",
+                'class' => "zo2-icon-lightbox",
                 'type' => "form"
             ),
             'liststyle' => array(
-                'name'		=> "List Style",
-                'desc'		=> "List Style",
-                'syntax'	=> "[list type=\'check\']<br/><ul><li>ADD_LIST_CONTENT</li>\<li>ADD_LIST_CONTENT</li></ul>[/list]",
-                'image'		=> "list.png",
-                'class'     => "zo2-icon-list",
+                'name' => "List Style",
+                'desc' => "List Style",
+                'syntax' => "[list type=\'check\']<br/><ul><li>ADD_LIST_CONTENT</li>\<li>ADD_LIST_CONTENT</li></ul>[/list]",
+                'image' => "list.png",
+                'class' => "zo2-icon-list",
                 'type' => "form"
             ),
             'message' => array(
-                'name'		=> "Message Boxes",
-                'desc'		=> "Message Boxes",
-                'syntax'	=> "[message_box title=\'MESSAGE_TITLE\' color=\'red\' show_close=\'Yes/No\']ADD_CONTENT_HERE[/message_box]",
-                'image'		=> "message.png",
-                'class'     => "zo2-icon-message",
+                'name' => "Message Boxes",
+                'desc' => "Message Boxes",
+                'syntax' => "[message_box title=\'MESSAGE_TITLE\' color=\'red\' show_close=\'Yes/No\']ADD_CONTENT_HERE[/message_box]",
+                'image' => "message.png",
+                'class' => "zo2-icon-message",
                 'type' => "form"
             ),
             'social' => array(
-                'name'		=> "Social Icons",
-                'desc'		=> "Social Icons",
-                'syntax'	=> "[social type=\'facebook\' opacity=\'dark\']PLACE_LINK_HERE[/social]",
-                'image'		=> "social.png",
-                'class'     => "zo2-icon-social",
+                'name' => "Social Icons",
+                'desc' => "Social Icons",
+                'syntax' => "[social type=\'facebook\' opacity=\'dark\']PLACE_LINK_HERE[/social]",
+                'image' => "social.png",
+                'class' => "zo2-icon-social",
                 'type' => "social"
             ),
             'tabs' => array(
-                'name'		=> "Tabs",
-                'desc'		=> "Tabs",
-                'syntax'	=> "[tabs]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[/tabs]",
-                'image'		=> "tabs.png",
+                'name' => "Tabs",
+                'desc' => "Tabs",
+                'syntax' => "[tabs]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[tab_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/tab_item]<br/>[/tabs]",
+                'image' => "tabs.png",
                 'class' => 'zo2-icon-tabs',
                 'type' => "form"
             ),
             'testimonial' => array(
-                'name'		=> "Testimonial",
-                'desc'		=> "Testimonial",
-                'syntax'	=> "[testimonial author=\'TESTIMONIAL_AUTHOR\' position=\'AUTHOR_POSITION\']ADD_TESTIMONIAL_HERE[/testimonial]",
-                'image'		=> "testimonial.png",
-                'class'		=> "zo2-icon-testimonial",
+                'name' => "Testimonial",
+                'desc' => "Testimonial",
+                'syntax' => "[testimonial author=\'TESTIMONIAL_AUTHOR\' position=\'AUTHOR_POSITION\']ADD_TESTIMONIAL_HERE[/testimonial]",
+                'image' => "testimonial.png",
+                'class' => "zo2-icon-testimonial",
                 'type' => "form"
             ),
             'toggle' => array(
-                'name'		=> "Toggle Boxes",
-                'desc'		=> "Toggle Boxes",
-                'syntax'	=> "[toggle_box]<br/>[toggle_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/toggle_item]<br/>[toggle_item title=\'ITEM_TITLE\' active=\'true\']ADD_CONTENT_HERE[/toggle_item]<br/>[/toggle_box]",
-                'image'		=> "toggle.png",
+                'name' => "Toggle Boxes",
+                'desc' => "Toggle Boxes",
+                'syntax' => "[toggle_box]<br/>[toggle_item title=\'ITEM_TITLE\']ADD_CONTENT_HERE[/toggle_item]<br/>[toggle_item title=\'ITEM_TITLE\' active=\'true\']ADD_CONTENT_HERE[/toggle_item]<br/>[/toggle_box]",
+                'image' => "toggle.png",
                 'class' => 'zo2-icon-toggle',
                 'type' => "form"
             ),
 
             'divider' => array(
-                'name'		=> "Divider",
-                'desc'		=> "Divider",
-                'syntax'	=> "[divider scroll_text=\'SCROLL_TEXT\']<br/>",
-                'image'		=> "divider.png",
+                'name' => "Divider",
+                'desc' => "Divider",
+                'syntax' => "[divider scroll_text=\'SCROLL_TEXT\']<br/>",
+                'image' => "divider.png",
                 'class' => 'zo2-icon-divider',
                 'type' => "form"
             ),
             'spacer' => array(
-                'name'		=> "Add Space",
-                'desc'		=> "Add Space",
-                'syntax'	=> "[space height=\'HEIGHT\']<br/>",
-                'image'		=> "space.png",
+                'name' => "Add Space",
+                'desc' => "Add Space",
+                'syntax' => "[space height=\'HEIGHT\']<br/>",
+                'image' => "space.png",
                 'class' => 'zo2-icon-space',
                 'type' => "form"
             ),
             'highlighter' => array(
-                'name'		=> "Syntax Highlighting",
-                'desc'		=> "Syntax highlighting of code snippets in a web page",
-                'syntax'	=> "[highlighter lang=\'js\' linenums=\'true\' startnums=\'1\']YOUR_CODE_HERE[/highlighter]<br/>",
-                'image'		=> "highlighter.png",
+                'name' => "Syntax Highlighting",
+                'desc' => "Syntax highlighting of code snippets in a web page",
+                'syntax' => "[highlighter lang=\'js\' linenums=\'true\' startnums=\'1\']YOUR_CODE_HERE[/highlighter]<br/>",
+                'image' => "highlighter.png",
                 'class' => 'zo2-icon-syntax',
                 'type' => "code"
             ),
             'pricing' => array(
-                'name'		=> "Pricing Tables",
-                'desc'		=> "Pricing Tables",
-                'syntax'	=> "[pricing columns=\'3\']<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[/pricing]<br/>",
-                'image'		=> "pricing.png",
+                'name' => "Pricing Tables",
+                'desc' => "Pricing Tables",
+                'syntax' => "[pricing columns=\'3\']<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[plan title=\'PRICING_TITLE\' button_link=\'http://\' button_label=\'PRICING_BUTTON_LABEL\' price=\'$200\' featured=\'false\' per=\'month\']TEXT_OF_PLAN[/plan]<br/>[/pricing]<br/>",
+                'image' => "pricing.png",
                 'class' => 'zo2-icon-tables',
                 'type' => "form"
             ),
@@ -438,18 +472,18 @@ class plgSystemZo2 extends JPlugin
         $text = '';
         if (count($shortcodetype))
             $i = 0;
-            foreach ($shortcodetype as $type => $items) {
-                $text .= '<h3>'.ucwords($type).'</h3>';
-                $text .= '<div class="shortcode-items">';
-                foreach ($items as $shortcoder) {
+        foreach ($shortcodetype as $type => $items) {
+            $text .= '<h3>' . ucwords($type) . '</h3>';
+            $text .= '<div class="shortcode-items">';
+            foreach ($items as $shortcoder) {
 
-                    $text .= '  <a class="btn" href="javascript: void(0);" onclick="jSelectShortcode(\'' . $shortcoder['syntax'] . '\')" title="' . $shortcoder['desc'] . '">';
-                    $text .= '  <i class="zo2-icon-bsc-' . $i++ . ' '.(isset($shortcoder['class']) ? $shortcoder['class'] : '').'" ></i>';
-                    $text .= $shortcoder['name'];
-                    $text .= '  </a>';
-                }
-                $text .= '</div>';
+                $text .= '  <a class="btn" href="javascript: void(0);" onclick="jSelectShortcode(\'' . $shortcoder['syntax'] . '\')" title="' . $shortcoder['desc'] . '">';
+                $text .= '  <i class="zo2-icon-bsc-' . $i++ . ' ' . (isset($shortcoder['class']) ? $shortcoder['class'] : '') . '" ></i>';
+                $text .= $shortcoder['name'];
+                $text .= '  </a>';
             }
+            $text .= '</div>';
+        }
         return $text;
     }
 }

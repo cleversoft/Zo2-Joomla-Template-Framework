@@ -1,0 +1,36 @@
+/**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ */
+
+.horizontal .zo2-social-box {
+    display: inline-block;
+    margin: 4px;
+}
+
+.horizontal .zo2-social-box .zo2-social-inner {
+    /*height: 25px;*/
+}
+
+[class^="socialbox-"],
+[class*="socialbox-"] {
+    width: auto;
+    height: auto;
+}
+
+.socialbox-left {
+    float: left;
+    margin-left: -87px;
+}
+
+.socialbox-right {
+    float: right;
+    margin-left: 5px;
+}
