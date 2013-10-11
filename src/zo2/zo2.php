@@ -37,6 +37,37 @@ class plgSystemZo2 extends JPlugin
     function onBeforeRender()
     {
         $app = JFactory::getApplication();
+        $doc = JFactory::getDocument();
+        $params = Zo2Framework::getParams();
+        $disableMootols = $params->get('disable_mootools');
+
+        if (!$app->isAdmin() && $disableMootols) {
+            try {
+                // remove stupid mootools
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/core.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/caption.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/modal.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools.js']);
+                unset($doc->_scripts[JURI::root(true) . '/plugins/system/mtupgrade/mootools.js']);
+
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core-uncompressed.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/core-uncompressed.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/caption-uncompressed.js']);
+
+                unset($doc->_styleSheets[JUri::root(true) . '/media/system/css/modal.css']);
+
+                if (isset($doc->_script['text/javascript']))
+                {
+                    $doc->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $this->_script['text/javascript']);
+                    if (empty($doc->_script['text/javascript']))
+                        unset($doc->_script['text/javascript']);
+                }
+
+            }
+            catch(Exception $e){}
+        }
 
         if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
             if ($app->isAdmin()) {

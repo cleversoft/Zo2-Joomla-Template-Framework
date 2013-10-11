@@ -49,6 +49,7 @@ $(window).bind('load', function(){
     insertLogo();
     addIconToMenu();
     fixToolbarIcon();
+    fixPreviewIcon();
 });
 
 jQuery(document).ready(function($){
@@ -376,7 +377,95 @@ jQuery(document).ready(function($){
         $this.addClass('active');
         $input.val($this.attr('data-zo2-theme'));
     });
+
+    $('.field-logo-container').on('click', '.btn-remove-preview', function() {
+        var $this = $(this);
+        var $container = $this.closest('.field-logo-container');
+        var $preview = $container.find('.logo-preview');
+        var $input = $container.find('.logoInput');
+
+        $preview.empty();
+        return false;
+    });
+
+    $('.logo-type-switcher').on('click', 'button', function (){
+        var $this = $(this);
+        var $container = $this.closest('.field-logo-container');
+        var $buttons = $this.closest('.logo-type-switcher').find('button');
+        $buttons.removeClass('active btn-success');
+        $this.addClass('active btn-success');
+
+        if ($this.hasClass('logo-type-none')) {
+            $container.find('.logo-image').fadeOut(300);
+            $container.find('.logo-text').fadeOut(300);
+        }
+        else if ($this.hasClass('logo-type-image')) {
+            $container.find('.logo-image').fadeIn(300);
+            $container.find('.logo-text').fadeOut(300);
+        }
+        else if ($this.hasClass('logo-type-text')) {
+
+            $container.find('.logo-image').fadeOut(300);
+            $container.find('.logo-text').fadeIn(300);
+        }
+        return false;
+    });
 });
+
+var refreshLogoPreview = function (ele) {
+    var $ = jQuery;
+    var $this = $(ele);
+    var $container = $this.closest('.field-logo-container');
+    var $preview = $container.find('.logo-preview');
+    var baseUri = $container.find('.basePath').val();
+    var $input = $container.find('.logoInput');
+    var $logoWidth = $container.find('.logo-width');
+    var $logoHeight = $container.find('.logo-height');
+
+    $preview.empty();
+    var $previewImg = $('<img />').appendTo($preview);
+    $logoWidth.val('0');
+    $logoHeight.val('0');
+    $previewImg.on('load', function() {
+        $logoWidth.val(this.naturalWidth);
+        $logoHeight.val(this.naturalHeight);
+    });
+    $previewImg.attr('src', baseUri + '/' + $this.val());
+};
+
+var generateLogoJson = function ($container) {
+    var $buttons = $container.find('.logo-type-switcher').find('button');
+    var $input = $container.find('.logoInput');
+    var $activeButton = $container.find('.logo-type-switcher').find('button.active');
+
+    var data = {type: "none"};
+
+    if ($activeButton.hasClass('logo-type-none')) {
+        data = {type: "none"};
+    }
+    else if ($activeButton.hasClass('logo-type-image')) {
+        var logoPath = $container.find('.logo-path').val();
+        var width = parseInt($container.find('.logo-width').val());
+        var height = parseInt($container.find('.logo-height').val());
+        if (isNaN(width)) width = 0;
+        if (isNaN(height)) height = 0;
+
+        data = {
+            type: "image",
+            path: logoPath,
+            width: width,
+            height: height
+        };
+    }
+    else if ($activeButton.hasClass('logo-type-text')) {
+        data = {
+            type: "text",
+            text: $container.find('.logo-text-input').val()
+        };
+    }
+
+    $input.val(JSON.stringify(data));
+};
 
 var bindSortable = function () {
     // thêm > vào items
@@ -569,6 +658,11 @@ var fixToolbarIcon = function () {
     $('.icon-cancel').replaceWith('<i class="icon-remove-sign color4"></i>');
 };
 
+var fixPreviewIcon = function () {
+    var $ = jQuery;
+    $('.icon-eye').removeClass('icon-eye').addClass('icon-eye-open');
+};
+
 var wrapForm = function() {
     var $ = jQuery;
     var $form = $('#style-form');
@@ -580,6 +674,10 @@ var injectFormSubmit = function() {
     var $ = jQuery;
     var $input = $('.hfLayoutHtml');
     document.adminForm.onsubmit = function() {
+        $('.field-logo-container').each(function() {
+            generateLogoJson($(this));
+        });
+
         $input.val(generateJson());
         return false;
     };

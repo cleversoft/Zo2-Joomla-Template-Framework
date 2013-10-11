@@ -39,6 +39,12 @@ class Zo2Framework {
 
     public function __construct(){}
 
+    private static $_scripts = array();
+    private static $_scriptDeclarations = array();
+    private static $_styles = array();
+    private static $_styleDeclarations = array();
+    private static $_isAdmin = false;
+
     /**
      * Init Zo2Framework
      */
@@ -67,6 +73,9 @@ class Zo2Framework {
         Zo2Framework::$_currentTemplatePath = JPATH_SITE .  '/templates/' . Zo2Framework::getTemplateName();
 
         JFactory::getLanguage()->load(ZO2_SYSTEM_PLUGIN, JPATH_ADMINISTRATOR);
+
+        $app = JFactory::getApplication();
+        self::$_isAdmin = $app->isAdmin();
     }
 
     /**
@@ -103,7 +112,8 @@ class Zo2Framework {
      */
     public static function addJsScript($script)
     {
-        self::getInstance()->document->addScript($script);
+        if (self::$_isAdmin) self::getInstance()->document->addScript($script);
+        else self::$_scripts[] = $script;
         return self::getInstance();
     }
 
@@ -115,7 +125,8 @@ class Zo2Framework {
      */
     public static function addCssStylesheet($style)
     {
-        self::getInstance()->document->addStyleSheet($style);
+        if (self::$_isAdmin) self::getInstance()->document->addStyleSheet($style);
+        else self::$_styles[] = $style;
         return self::getInstance();
     }
 
@@ -126,7 +137,8 @@ class Zo2Framework {
      */
     public static function addScriptDeclaration($script)
     {
-        self::getInstance()->document->addScriptDeclaration($script);
+        if (self::$_isAdmin) self::getInstance()->document->addScriptDeclaration($script);
+        else self::$_scriptDeclarations[] = $script;
         return self::getInstance();
     }
 
@@ -138,7 +150,8 @@ class Zo2Framework {
      */
     public static function addStyleDeclaration($style)
     {
-        self::getInstance()->document->addStyleDeclaration($style);
+        if (self::$_isAdmin) self::getInstance()->document->addStyleDeclaration($style);
+        else self::$_styleDeclarations[] = $style;
         return self::getInstance();
     }
 
@@ -242,6 +255,18 @@ class Zo2Framework {
      * @return bool
      */
     public static function setLayout($layout){
+        foreach (self::$_scripts as $s) {
+            $layout->insertJs($s);
+        }
+        foreach (self::$_scriptDeclarations as $sd) {
+            $layout->insertJsDeclaration($sd);
+        }
+        foreach (self::$_styles as $s) {
+            $layout->insertCss($s);
+        }
+        foreach (self::$_styleDeclarations as $sd) {
+            $layout->insertCssDeclaration($sd);
+        }
         self::getInstance()->_layout = $layout;
         return self::getInstance();
     }

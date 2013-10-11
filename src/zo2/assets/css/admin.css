@@ -251,3 +251,11 @@ html[xmlns] .clearfix { display: block; }
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
 }
+
+.logo-preview{display:inline-block;height:26px;border-radius: 4px 0 0 4px;background-color:#eeeeee;width:150px;border:1px solid #ccc;border-right: 0;float:left;text-align: center}
+.logo-preview img{max-width: 150px;max-height: 25px;}
+.logo-image, .logo-text{float:left;display:block;padding-left:10px}
+.logo-type-switcher{padding-left: 0;float:left}
+.logo-image label, .logo-text label{display:inline-block}
+.logo-image, .logo-text{display:none}
+.logo-image.show, .logo-text.show{display:block}
