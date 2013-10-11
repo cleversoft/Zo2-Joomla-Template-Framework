@@ -475,4 +475,21 @@ class Zo2Framework {
     {
         return Zo2Framework::$_currentTemplatePath;
     }
+
+    /**
+     * @return bool
+     */
+    public static function isFrontPage(){
+
+        $app = JFactory::getApplication();
+        $menu = $app->getMenu();
+        $tag = JFactory::getLanguage()->getTag();
+
+        if ($menu->getActive() == $menu->getDefault($tag)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
