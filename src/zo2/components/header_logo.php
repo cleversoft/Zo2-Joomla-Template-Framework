@@ -49,10 +49,10 @@ class Zo2Component_header_logo extends Zo2Component {
             }
             else {
                 if ($logo['type'] == 'image' && !empty($logo['path'])) {
-                    $html .= '<a style="width: ' . $logo['width'] . 'px; height: ' . $logo['height'] . 'px;background-image: url(' . JUri::root(true) . $logo['path'] . ')" class="logo_normal" href="' . JUri::root(true) . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
+                    $html .= '<a style="width: ' . $logo['width'] . 'px; height: ' . $logo['height'] . 'px;background-image: url(' . JUri::root(true) . '/' . $logo['path'] . ')" class="logo_normal" href="' . JUri::root(true) . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
                 }
                 if ($logoRetina['type'] == 'image' && !empty($logoRetina['path'])) {
-                    $html .= '<a style="width: ' . $logoRetina['width'] . 'px; height: ' . $logoRetina['height'] . 'px" class="logo_retina" href="' . JUri::root(true) . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
+                    $html .= '<a style="width: ' . $logoRetina['width'] . 'px; height: ' . $logoRetina['height'] . 'px" class="logo_retina" href="' . JUri::root(true) . '/' . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
                 }
             }
             $html .= '</h1>';
