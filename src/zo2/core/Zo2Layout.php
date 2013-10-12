@@ -351,6 +351,40 @@ class Zo2Layout {
         $html .= '<section class="' . $class . '">'; // start of container
         $html .= '<section class="row">'; // start of row
 
+        // count column and remove empty module here
+        $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+        $doc = JFactory::getDocument();
+        $freeSpace = 0;
+        $totalTakenSpace = 0;
+        for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
+            $col = $item['children'][$i];
+            $modulesInPosition = $doc->countModules($col['position']);
+            if (in_array($col['position'], $exceptPos)) $modulesInPosition = max($modulesInPosition, 1);
+            if ($modulesInPosition == 0) {
+                $freeSpace += $col['span'];
+                unset($item['children'][$i]);
+                continue;
+            }
+            else if ($modulesInPosition > 0 && $freeSpace > 0) {
+                $item['children'][$i]['span'] += $freeSpace;
+                $freeSpace = 0;
+            }
+
+            $totalTakenSpace += $item['children'][$i]['span'];
+        }
+
+        $tempChildren = array();
+        foreach($item['children'] as $c) {
+            $tempChildren[] = $c;
+        }
+        $item['children'] = $tempChildren;
+
+        if ($totalTakenSpace < 12) {
+            $remainingSpace = 12 - $totalTakenSpace;
+            $totalChildren = count($item['children']);
+            $item['children'][$totalChildren - 1]['span'] += $remainingSpace;
+        }
+
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
             $html .= self::generateHtmlFromItem($item['children'][$i]);
         }
