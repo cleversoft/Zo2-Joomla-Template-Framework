@@ -28,10 +28,12 @@ class Zo2Component_footer_copyright extends Zo2Component {
         $gototop = $zo2->getParams('footer_gototop');
 
         $html = '<footer>';
-        $html .= '<a href="http://zo2framework.org" style="display:block;float:left;margin-right: 20px">';
-        $html .= '<img src="' . $logo . '" />';
-        $html .= '</a>';
-        $html .= '<section style="float:left">' . $copyright . '</section>';
+        $html .= '<section style="text-align:center">' . $copyright . '</section>';
+        if ($logo == 1) {
+            $html .= '<a href="http://zo2framework.org" style="display:block;clear:both;margin:auto;text-align: center">';
+            $html .= '<img src="' . JUri::root(true) . '/plugins/system/zo2/assets/images/zo2logo.png" />';
+            $html .= '</a>';
+        }
         if ($gototop) {
             $html .= '<a href="#" id="gototop" title="Go to top"><i class="icon-chevron-sign-up"></i></a>';
 
