@@ -486,7 +486,10 @@ class Zo2Layout {
                     if ($item['position'] == 'header') {
                         if ($item['type'] == 'css') $html .= $this->generateCssTag($item);
                         elseif ($item['type'] == 'js') $html .= $this->generateJsTag($item);
-                        elseif ($item['type'] == 'less') $html .= $this->generateLessTag($item);
+                        elseif ($item['type'] == 'less') {
+                            $compileLess = $params->get('less_compile');
+                            if ($compileLess == 1) $html .= $this->generateLessTag($item);
+                        }
                     }
                 }
 
