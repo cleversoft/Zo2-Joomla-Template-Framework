@@ -43,7 +43,7 @@ class Zo2Component_header_logo extends Zo2Component {
             //$zo2->getLayout()->insertCssDeclaration($customStyle);
             $zo2->getLayout()->insertCssDeclaration($customStyle);
 
-            $html = '<header id="header_logo"><h1>';
+            $html = '<header id="header_logo">';
             if ($logo['type'] == 'text') {
                 $html .= htmlspecialchars($logo['text']);
             }
@@ -55,7 +55,6 @@ class Zo2Component_header_logo extends Zo2Component {
                     $html .= '<a style="width: ' . $logoRetina['width'] . 'px; height: ' . $logoRetina['height'] . 'px" class="logo_retina" href="' . JUri::root(true) . '/' . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
                 }
             }
-            $html .= '</h1>';
             $html .= !empty($slogan) ? '<h2 class="header_slogan">' . $slogan . '</h2>' : '';
             $html .= '</header>';
 
