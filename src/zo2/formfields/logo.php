@@ -57,7 +57,7 @@ class JFormFieldLogo extends JFormField {
             </div>
             <div class="logo-image <?php echo $data['type'] == 'image' ? 'show' : ''?>">
                 <input type="hidden" class="basePath" value="<?php JUri::root(true)?>" />
-                <input onchange="refreshLogoPreview(this)" type="hidden" id="<?php echo $this->id . '_path'?>" class="logo-path" />
+                <input onchange="refreshLogoPreview(this)" type="hidden" id="<?php echo $this->id . '_path'?>" class="logo-path" value="<?php echo $data['path']?>" />
                 <div class="btn-group">
                     <span class="logo-preview">
                         <?php if ($data['type'] == 'image' && !empty($data['path'])) : ?>
