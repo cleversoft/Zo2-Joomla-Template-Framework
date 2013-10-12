@@ -69,9 +69,9 @@
                 <option value="1">Combine</option>
                 <option value="2">Combine and Minify</option>
             </field>
-            <field name="font_awesome" type="list" default="1" label="Include Font Awesome" description="Include Font Awesome">
-                <option value="1">Enable</option>
-                <option value="0">Disable</option>
+            <field name="font_awesome" type="radio" default="1" label="Include Font Awesome" description="Include Font Awesome" class="btn-group">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
             </field>
             <!--Header Option-->
             <field name="header_logo" type="logo" default="" label="Header logo" />
