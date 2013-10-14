@@ -24,7 +24,7 @@ defined('_JEXEC') or die ('Restricted access');
         </div>
     </div>
 
-    <div id="rowSettingsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="rowSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3>Row settings</h3>
@@ -59,42 +59,78 @@ defined('_JEXEC') or die ('Restricted access');
                             <div class="control-label">
                                 <div class="control-label">Full Width</div>
                             </div>
-                            <div class="controls">
-                                <label class="switch_wrap enable_type" for="cbRowFullWidth">
-                                    <input id="cbRowFullWidth" type="checkbox" />
-                                    <div class="switch"><span class="bullet"></span></div>
-                                </label>
+                            <div class="controls btn-group btn-group-onoff" id="btgFullWidth">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
                             </div>
                         </div>
                     </div>
                     <div id="row-responsive">
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Phone</span>
                             <label class="switch_wrap" for="cbRowPhoneVisibility">
                                 <input id="cbRowPhoneVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+                            <div class="control-label">
+                                <div class="control-label">Phone</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgRowPhone">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Tablet</span>
                             <label class="switch_wrap" for="cbRowTabletVisibility">
                                 <input id="cbRowTabletVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+                            <div class="control-label">
+                                <div class="control-label">Tablet</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgRowTablet">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Desktop</span>
                             <label class="switch_wrap" for="cbRowDesktopVisibility">
                                 <input id="cbRowDesktopVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+
+                            <div class="control-label">
+                                <div class="control-label">Desktop</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgRowDesktop">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Large desktop</span>
                             <label class="switch_wrap" for="cbRowLargeDesktopVisibility">
                                 <input id="cbRowLargeDesktopVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+
+                            <div class="control-label">
+                                <div class="control-label">Large desktop</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgRowLargeDesktop">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +142,7 @@ defined('_JEXEC') or die ('Restricted access');
         </div>
     </div>
 
-    <div id="colSettingsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3>Column settings</h3>
@@ -205,32 +241,68 @@ defined('_JEXEC') or die ('Restricted access');
                     </div>
                     <div id="column-responsive">
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Phone</span>
                             <label class="switch_wrap" for="cbColumnPhoneVisibility">
                                 <input id="cbColumnPhoneVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+                            <div class="control-label">
+                                <div class="control-label">Phone</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgColPhone">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Tablet</span>
                             <label class="switch_wrap" for="cbColumnTabletVisibility">
                                 <input id="cbColumnTabletVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+                            <div class="control-label">
+                                <div class="control-label">Tablet</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgColTablet">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Desktop</span>
                             <label class="switch_wrap" for="cbColumnDesktopVisibility">
                                 <input id="cbColumnDesktopVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+                            <div class="control-label">
+                                <div class="control-label">Desktop</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgColDesktop">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                         <div class="control-group">
+                            <!--
                             <span class="switch_title">Large desktop</span>
                             <label class="switch_wrap" for="cbColumnLargeDesktopVisibility">
                                 <input id="cbColumnLargeDesktopVisibility" type="checkbox" value="1" />
                                 <div class="switch"><span class="bullet"></span></div>
                             </label>
+                            -->
+                            <div class="control-label">
+                                <div class="control-label">Large desktop</div>
+                            </div>
+                            <div class="controls btn-group btn-group-onoff" id="btgColLargeDesktop">
+                                <button class="btn btn-on">On</button>
+                                <button class="btn btn-off">Off</button>
+                            </div>
                         </div>
                     </div>
                 </div>

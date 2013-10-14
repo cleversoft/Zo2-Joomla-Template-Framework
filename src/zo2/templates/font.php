@@ -37,11 +37,17 @@ $fontStyles = array(
         <div class="control-label">
             <div class="font-label">Enable</div>
         </div>
+        <!--
         <div class="controls">
             <label class="switch_wrap enable_type" for="cb<?php echo $this->fieldname?>">
                 <input id="cb<?php echo $this->fieldname?>" class="cbEnableFont" type="checkbox" <?php echo $data ? 'checked' : '' ?> />
                 <div class="switch"><span class="bullet"></span></div>
             </label>
+        </div>
+        -->
+        <div class="controls btn-group btn-group-onoff cbEnableFont">
+            <button class="btn btn-on <?php echo $data ? 'active btn-success' : ''?>">On</button>
+            <button class="btn btn-off <?php echo !$data ? 'active btn-danger' : ''?>">Off</button>
         </div>
     </div>
     <div class="font_options" <?php echo $data ? 'style="display:block"' : 'style="display:none"' ?>>
@@ -51,10 +57,10 @@ $fontStyles = array(
                 <div class="font-desc">Choose the type of font you want to use for <?php echo strtolower($this->getLabel())?></div>
             </div>
             <div class="controls">
-                <div class="btn-group" data-toggle="buttons-radio">
-                    <button type="button" class="btn btnStandardFonts <?php echo $data['type'] == 'standard' ? 'active' : ''?>">Standard Fonts</button>
-                    <button type="button" class="btn btnGoogleFonts <?php echo $data['type'] == 'googlefonts' ? 'active' : ''?>">Google Fonts</button>
-                    <button type="button" class="btn btnFontDeck <?php echo $data['type'] == 'fontdeck' ? 'active' : ''?>">FontDeck</button>
+                <div class="btn-group font-types" data-toggle="buttons-radio">
+                    <button type="button" class="btn btnStandardFonts <?php echo $data['type'] == 'standard' ? 'active btn-success' : ''?>">Standard Fonts</button>
+                    <button type="button" class="btn btnGoogleFonts <?php echo $data['type'] == 'googlefonts' ? 'active btn-success' : ''?>">Google Fonts</button>
+                    <button type="button" class="btn btnFontDeck <?php echo $data['type'] == 'fontdeck' ? 'active btn-success' : ''?>">FontDeck</button>
                 </div>
             </div>
         </div>

@@ -71,6 +71,17 @@ jQuery(document).ready(function($){
 
     //loadLayout(templateName, layoutName);
 
+    $('.btn-group-onoff > button').on('click', function(e){
+        var $this = $(this);
+        var $container = $this.closest('.btn-group-onoff');
+
+        $container.find('button').removeClass('active btn-success btn-danger');
+        if ($this.hasClass('btn-on')) $this.addClass('active btn-success');
+        else $this.addClass('active btn-danger');
+
+        return false;
+    });
+
     $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function() {
         var $this = $(this);
         var $parent = $this.closest('.zo2-row');
@@ -186,11 +197,27 @@ jQuery(document).ready(function($){
         var rowId = $row.attr('data-zo2-id');
         if (!rowCustomClass) rowCustomClass = '';
 
-        $('#cbRowPhoneVisibility').attr('checked', $row.attr('data-zo2-visibility-xs') == '1');
-        $('#cbRowTabletVisibility').attr('checked', $row.attr('data-zo2-visibility-sm') == '1');
-        $('#cbRowDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-md') == '1');
-        $('#cbRowLargeDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-lg') == '1');
-        $('#cbRowFullWidth').attr('checked', $row.attr('data-zo2-fullwidth') == '1');
+        //$('#cbRowPhoneVisibility').attr('checked', $row.attr('data-zo2-visibility-xs') == '1');
+        $('#btgRowPhone').find('button').removeClass('active btn-success btn-danger');
+        if ($row.attr('data-zo2-visibility-xs') == '1') $('#btgRowPhone').find('.btn-on').addClass('active btn-success');
+        else $('#btgRowPhone').find('.btn-off').addClass('active btn-danger');
+        //$('#cbRowTabletVisibility').attr('checked', $row.attr('data-zo2-visibility-sm') == '1');
+        $('#btgRowTablet').find('button').removeClass('active btn-success btn-danger');
+        if ($row.attr('data-zo2-visibility-sm') == '1') $('#btgRowTablet').find('.btn-on').addClass('active btn-success');
+        else $('#btgRowTablet').find('.btn-off').addClass('active btn-danger');
+        //$('#cbRowDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-md') == '1');
+        $('#btgRowDesktop').find('button').removeClass('active btn-success btn-danger');
+        if ($row.attr('data-zo2-visibility-md') == '1') $('#btgRowDesktop').find('.btn-on').addClass('active btn-success');
+        else $('#btgRowDesktop').find('.btn-off').addClass('active btn-danger');
+        //$('#cbRowLargeDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-lg') == '1');
+        $('#btgRowLargeDesktop').find('button').removeClass('active btn-success btn-danger');
+        if ($row.attr('data-zo2-visibility-lg') == '1') $('#btgRowLargeDesktop').find('.btn-on').addClass('active btn-success');
+        else $('#btgRowLargeDesktop').find('.btn-off').addClass('active btn-danger');
+
+        //$('#cbRowFullWidth').attr('checked', $row.attr('data-zo2-fullwidth') == '1');
+        $('#btgFullWidth').find('button').removeClass('active btn-danger btn-success');
+        if ($row.attr('data-zo2-fullwidth') == '1') $('#btgFullWidth').find('.btn-on').addClass('btn-success active');
+        else $('#btgFullWidth').find('.btn-off').addClass('btn-danger active');
 
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
@@ -209,11 +236,11 @@ jQuery(document).ready(function($){
         var $row = $.data(document.body, 'editingEl');
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
-        $row.attr('data-zo2-visibility-xs', $('#cbRowPhoneVisibility').attr('checked') ? '1' : '0');
-        $row.attr('data-zo2-visibility-sm', $('#cbRowTabletVisibility').attr('checked') ? '1' : '0');
-        $row.attr('data-zo2-visibility-md', $('#cbRowDesktopVisibility').attr('checked') ? '1' : '0');
-        $row.attr('data-zo2-visibility-lg', $('#cbRowLargeDesktopVisibility').attr('checked') ? '1' : '0');
-        $row.attr('data-zo2-fullwidth', $('#cbRowFullWidth').attr('checked') ? '1' : '0');
+        $row.attr('data-zo2-visibility-xs', $('#btgRowPhone').find('.btn-on').hasClass('active') ? '1' : '0');
+        $row.attr('data-zo2-visibility-sm', $('#btgRowTablet').find('.btn-on').hasClass('active') ? '1' : '0');
+        $row.attr('data-zo2-visibility-md', $('#btgRowDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
+        $row.attr('data-zo2-visibility-lg', $('#btgRowLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
+        $row.attr('data-zo2-fullwidth', $('#btgFullWidth').find('.btn-on').hasClass('active') ? '1' : '0');
         //$row.attr('data-zo2-layout', $('#ddlRowLayout').val());
         $row.attr('data-zo2-id', $('#txtRowId').val());
         $('#rowSettingsModal').modal('hide');
@@ -231,10 +258,22 @@ jQuery(document).ready(function($){
         var customCss = $col.attr('data-zo2-customClass');
         var spanId = $col.attr('data-zo2-id');
 
-        $('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
-        $('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
-        $('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
-        $('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
+        //$('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
+        $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
+        if ($col.attr('data-zo2-visibility-xs') == '1') $('#btgColPhone').find('.btn-on').addClass('btn-success active');
+        else $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
+        //$('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
+        $('#btgColTablet').find('button').removeClass('active btn-danger btn-success');
+        if ($col.attr('data-zo2-visibility-sm') == '1') $('#btgColTablet').find('.btn-on').addClass('btn-success active');
+        else $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
+        //$('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
+        $('#btgColDesktop').find('button').removeClass('active btn-danger btn-success');
+        if ($col.attr('data-zo2-visibility-md') == '1') $('#btgColDesktop').find('.btn-on').addClass('btn-success active');
+        else $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
+        //$('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
+        $('#btgColLargeDesktop').find('button').removeClass('active btn-danger btn-success');
+        if ($col.attr('data-zo2-visibility-lg') == '1') $('#btgColLargeDesktop').find('.btn-on').addClass('btn-success active');
+        else $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
 
         $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
         $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
@@ -258,10 +297,10 @@ jQuery(document).ready(function($){
         $col.attr('data-zo2-customClass', $('#txtColCss').val());
         $col.attr('data-zo2-id', $('#txtColId').val());
 
-        $col.attr('data-zo2-visibility-xs', $('#cbColumnPhoneVisibility').attr('checked') ? '1' : '0');
-        $col.attr('data-zo2-visibility-sm', $('#cbColumnTabletVisibility').attr('checked') ? '1' : '0');
-        $col.attr('data-zo2-visibility-md', $('#cbColumnDesktopVisibility').attr('checked') ? '1' : '0');
-        $col.attr('data-zo2-visibility-lg', $('#cbColumnLargeDesktopVisibility').attr('checked') ? '1' : '0');
+        $col.attr('data-zo2-visibility-xs', $('#btgColPhone').find('.btn-on').hasClass('active') ? '1' : '0');
+        $col.attr('data-zo2-visibility-sm', $('#btgColTablet').find('.btn-on').hasClass('active') ? '1' : '0');
+        $col.attr('data-zo2-visibility-md', $('#btgColDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
+        $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
 
         var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
         $col.removeClass(allColClass).addClass('col-md-' + $('#dlColWidth').val());
@@ -306,26 +345,28 @@ jQuery(document).ready(function($){
         var $container = $this.closest('.font-container');
         var $optionsContainer = $container.find('>.font_options');
 
-        if ($this.attr('checked')) $optionsContainer.show();
+        if ($this.find('.btn-on').hasClass('active')) $optionsContainer.show();
         else $optionsContainer.hide();
     });
 
     // bind on/off for font
-    $('.font-container').on('click', '.cbEnableFont', function() {
+    $('.cbEnableFont > button').on('click', function() {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         var $optionsContainer = $container.find('>.font_options');
 
-        if ($this.attr('checked')) $optionsContainer.slideDown();
-        else $optionsContainer.slideUp();
+        if ($container.find('.btn-on').hasClass('active')) $optionsContainer.stop().slideDown();
+        else $optionsContainer.stop().slideUp();
     });
 
     $('.font-container').on('click', '.btnStandardFonts', function(){
         var $this = $(this);
         var $container = $this.closest('.font-container');
-        $container.find('.font-options-google').slideUp(300);
-        $container.find('.font-options-fontdeck').slideUp(300);
-        $container.find('.font-options-standard').slideDown(400, function(){
+        $container.find('.font-types').find('button').removeClass('btn-success');
+        $this.addClass('btn-success');
+        $container.find('.font-options-google').stop().slideUp(300);
+        $container.find('.font-options-fontdeck').stop().slideUp(300);
+        $container.find('.font-options-standard').stop().slideDown(400, function(){
             $container.trigger('font-change');
         });
     });
@@ -333,9 +374,11 @@ jQuery(document).ready(function($){
     $('.font-container').on('click', '.btnGoogleFonts', function(){
         var $this = $(this);
         var $container = $this.closest('.font-container');
-        $container.find('.font-options-standard').slideUp(300);
-        $container.find('.font-options-fontdeck').slideUp(300);
-        $container.find('.font-options-google').slideDown(400, function() {
+        $container.find('.font-types').find('button').removeClass('btn-success');
+        $this.addClass('btn-success');
+        $container.find('.font-options-standard').stop().slideUp(300);
+        $container.find('.font-options-fontdeck').stop().slideUp(300);
+        $container.find('.font-options-google').stop().slideDown(400, function() {
             $container.trigger('font-change');
         });
     });
@@ -343,9 +386,11 @@ jQuery(document).ready(function($){
     $('.font-container').on('click', '.btnFontDeck', function(){
         var $this = $(this);
         var $container = $this.closest('.font-container');
-        $container.find('.font-options-standard').slideUp(300);
-        $container.find('.font-options-google').slideUp(300);
-        $container.find('.font-options-fontdeck').slideDown(400, function() {
+        $container.find('.font-types').find('button').removeClass('btn-success');
+        $this.addClass('btn-success');
+        $container.find('.font-options-standard').stop().slideUp(300);
+        $container.find('.font-options-google').stop().slideUp(300);
+        $container.find('.font-options-fontdeck').stop().slideDown(400, function() {
             $container.trigger('font-change');
         });
     });

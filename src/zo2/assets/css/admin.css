@@ -259,3 +259,5 @@ html[xmlns] .clearfix { display: block; }
 .logo-image label, .logo-text label{display:inline-block}
 .logo-image, .logo-text{display:none}
 .logo-image.show, .logo-text.show{display:block}
+
+.zo2-tabs-content .btn-group, #font_chooser .btn-group{display:block}
