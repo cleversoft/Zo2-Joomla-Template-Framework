@@ -24,6 +24,8 @@ class Zo2Layout {
 
     private $_components = array();
 
+    const MEGAMENU_PLACEHOLDER = '<!-- zo2_megamenu_placeholder -->';
+
     /**
      * Construct a Zo2Layout object
      *
@@ -286,7 +288,6 @@ class Zo2Layout {
         $path = $this->_layourDir . $cache;
         if (file_exists($path) && !$debug) {
             $html = file_get_contents($path);
-            return $html;
         }
         else {
             $layoutType = $params->get('layout_type');
@@ -302,11 +303,15 @@ class Zo2Layout {
                 }
 
                 file_put_contents($path, $html);
-
-                return $html;
             }
             else return '';
         }
+        if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
+            $zo2 = Zo2Framework::getInstance();
+            $megamenu = $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+            $html = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $html);
+        }
+        return $html;
     }
 
     /**
@@ -402,7 +407,7 @@ class Zo2Layout {
      */
     private function generateColumn($item)
     {
-        $zo2 = Zo2Framework::getInstance();
+        //$zo2 = Zo2Framework::getInstance();
         $html = '';
         $class = 'col-md-' . $item['span'];
         $class .= ' ' . self::generateVisibilityClass($item['visibility']);
@@ -416,7 +421,8 @@ class Zo2Layout {
             if (($item['position'] == 'component')&& (!$this->hideComponent())) $html .= '<jdoc:include type="component" />';
             else if (($item['position'] == 'message') && (!$this->hideComponent())) $html .= '<jdoc:include type="message" />';
             else if($item['position'] == 'mega_menu') {
-                $html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+                //$html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+                $html .= Zo2Layout::MEGAMENU_PLACEHOLDER;
             }
             else {
                 $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
