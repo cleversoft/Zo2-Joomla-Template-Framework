@@ -71,6 +71,12 @@ class plgSystemZo2 extends JPlugin
         if (!$app->isAdmin()) {
             try {
                 // remove default jquery and bootstrap 2
+                JHtml::_('bootstrap.framework',false);
+                JHtml::_('jquery.framework',false);
+                //JHtml::_('behavior.tooltip', false);
+                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
