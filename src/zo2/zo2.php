@@ -45,7 +45,6 @@ class plgSystemZo2 extends JPlugin
             try {
                 // remove stupid mootools
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
-                unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-more.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/core.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/caption.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/modal.js']);
@@ -65,6 +64,16 @@ class plgSystemZo2 extends JPlugin
                         unset($doc->_script['text/javascript']);
                 }
 
+            }
+            catch(Exception $e){}
+        }
+
+        if (!$app->isAdmin()) {
+            try {
+                // remove default jquery and bootstrap 2
+                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
             }
             catch(Exception $e){}
         }
