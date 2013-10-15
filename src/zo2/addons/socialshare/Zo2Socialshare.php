@@ -51,15 +51,15 @@ class Zo2Socialshare
                 $style = 'default';
             }
 
-            Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/addons/socialshare/css/social.css');
-            //Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/assets/vendor/jquery/jquery-1.9.1.min.js');
-            //Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/assets/vendor/bootstrap/js/bootstrap.min.js');
-            Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/jquery.cookie.js');
-            Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/socialite.min.js');
-            Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.pinterest.js');
-            Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.bufferapp.js');
-            Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialshare.js');
-            Zo2Framework::addScriptDeclaration('
+            $document->addStyleSheet(ZO2_PLUGIN_URL . '/addons/socialshare/css/social.css');
+            //$document->addScript(ZO2_PLUGIN_URL . '/assets/vendor/jquery/jquery-1.9.1.min.js');
+            //$document->addScript(ZO2_PLUGIN_URL . '/assets/vendor/bootstrap/js/bootstrap.min.js');
+            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/jquery.cookie.js');
+            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/socialite.min.js');
+            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.pinterest.js');
+            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.bufferapp.js');
+            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialshare.js');
+            $document->addScriptDeclaration('
                 jQuery(document).ready(
                     function($){
                         $("' . $selector . '").Zo2Socialshare({

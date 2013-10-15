@@ -48,8 +48,8 @@ $footer = $layout->insertFooterAssets();
     <?php if($favicon) : ?>
     <link rel="icon" type="image/x-icon" href="<?php echo $favicon?>" />
     <?php endif; ?>
-    <jdoc:include type="head" />
     <?php echo $header?>
+    <jdoc:include type="head" />
 </head>
 <body class="<?php echo $layout->getBodyClass()?>">
 <section class="wrapper">
