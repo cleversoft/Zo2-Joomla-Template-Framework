@@ -474,12 +474,18 @@ class Zo2Layout {
         else {
             $html = '';
             $responsive = $params->get('responsive_layout');
-            $theme = $params->get('theme');
+            $preset = $params->get('theme');
             $combineLevel = $params->get('combine_statics');
 
-            if (!empty($theme)) {
-                $themeUri = '/assets/css/themes/' . $theme . '.css';
-                $this->insertCss($themeUri);
+            if (!empty($preset)) {
+                $presetData = json_decode($preset, true);
+                $style = '';
+                if (!empty($presetData['background'])) $style .= 'body{background-color:' . $presetData['background'] . '}';
+                if (!empty($presetData['header'])) $style .= '#header{background-color:' . $presetData['header'] . '}';
+                if (!empty($presetData['text'])) $style .= 'body{color:' . $presetData['text'] . '}';
+                if (!empty($presetData['link'])) $style .= 'a{color:' . $presetData['link'] . '}';
+                $this->insertCss($preset['css']);
+                $this->insertCssDeclaration($style);
             }
 
             if (!$responsive)

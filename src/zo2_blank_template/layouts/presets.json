@@ -1,0 +1,38 @@
+[
+    {
+        "name": "default",
+        "css": "",
+        "less": "",
+        "thumbnail": "/assets/images/presets/default.jpg",
+        "variables": {
+            "background": "",
+            "header": "",
+            "link": "",
+            "text": ""
+        }
+    },
+    {
+        "name": "black",
+        "css": "/assets/css/presets/black.css",
+        "less": "",
+        "thumbnail": "/assets/images/presets/black.jpg",
+        "variables": {
+            "background": "#dedede",
+            "header": "#333333",
+            "link": "#212121",
+            "text": "#ffffff"
+        }
+    },
+    {
+        "name": "blue",
+        "css": "/assets/css/presets/blue.css",
+        "less": "",
+        "thumbnail": "/assets/images/presets/blue.jpg",
+        "variables": {
+            "background": "#3288c7",
+            "header": "#95c5e8",
+            "link": "#184587",
+            "text": "#fff"
+        }
+    }
+]

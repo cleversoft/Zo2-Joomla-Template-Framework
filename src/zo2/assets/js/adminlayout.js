@@ -326,18 +326,16 @@ jQuery(document).ready(function($){
     });
 
     // font
-    if ($('.txtColorPicker').length > 0) {
-        $('.txtColorPicker').colorpicker().on('change', function() {
-            var $this = $(this);
-            var $parent = $this.parent();
-            var $container = $this.closest('.font-container');
-            var $preview = $parent.find('.color-preview');
-            if ($this.val().length > 0) $preview.css('background-color', $this.val());
-            else $preview.css('background-color', 'transparent');
+    $('.font-container .txtColorPicker').colorpicker().on('change', function() {
+        var $this = $(this);
+        var $parent = $this.parent();
+        var $container = $this.closest('.font-container');
+        var $preview = $parent.find('.color-preview');
+        if ($this.val().length > 0) $preview.css('background-color', $this.val());
+        else $preview.css('background-color', 'transparent');
 
-            $container.trigger('font-change');
-        });
-    }
+        $container.trigger('font-change');
+    });
 
     // init font container: show/hide depends on active
     $('.cbEnableFont').each(function(){
@@ -413,6 +411,16 @@ jQuery(document).ready(function($){
         $container.trigger('font-change');
     });
 
+    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function() {
+        var $this = $(this);
+        var $parent = $this.parent();
+        var $preview = $parent.find('.color-preview');
+        if ($this.val().length > 0) $preview.css('background-color', $this.val());
+        else $preview.css('background-color', 'transparent');
+
+        generatePresetData();
+    });
+
     $('#zo2_themes').on('click', '> li', function () {
         var $this = $(this);
         var $container = $('#zo2_themes_container');
@@ -421,6 +429,24 @@ jQuery(document).ready(function($){
         $list.find('>li').removeClass('active');
         $this.addClass('active');
         $input.val($this.attr('data-zo2-theme'));
+
+        $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
+        $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header'));
+        $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
+        $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
+        /*
+        $('#color_background').val($this.attr('data-zo2-background'));
+        $('#color_header').val($this.attr('data-zo2-header'));
+        $('#color_text').val($this.attr('data-zo2-text'));
+        $('#color_link').val($this.attr('data-zo2-link'));
+         */
+
+        $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
+        $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
+        $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
+        $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
+
+        generatePresetData();
     });
 
     $('.field-logo-container').on('click', '.btn-remove-preview', function() {
@@ -456,6 +482,21 @@ jQuery(document).ready(function($){
         return false;
     });
 });
+
+var generatePresetData = function () {
+    var $preset = $('#zo2_themes').find('.active');
+    var data = {
+        name: $preset.attr('data-zo2-theme'),
+        css: $preset.attr('data-zo2-css'),
+        less: $preset.attr('data-zo2-less'),
+        background: $('#color_background').val(),
+        header: $('#color_header').val(),
+        text: $('#color_text').val(),
+        link: $('#color_link').val()
+    };
+
+    $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
+};
 
 var refreshLogoPreview = function (ele) {
     var $ = jQuery;

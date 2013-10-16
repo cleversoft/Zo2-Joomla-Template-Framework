@@ -70,7 +70,7 @@
 .col-wrap {border: 1px solid #e9e9e9; margin: 5px; border-radius: 3px; background: #ffffff}
 .col-wrap:hover{border-color:rgba(82,168,236,0.8)}
 /*Detail*/
-#details,#options,#comments { padding:15px;position: relative }
+#details,#options,#comments,#theme { padding:15px;position: relative }
 /*Menu Assignment*/
 #assignment { padding:15px;position: relative }
 #assignment #jform_menuselect-lbl { display: none }
@@ -261,3 +261,5 @@ html[xmlns] .clearfix { display: block; }
 .logo-image.show, .logo-text.show{display:block}
 
 .zo2-tabs-content .btn-group, #font_chooser .btn-group{display:block}
+#zo2_themes_container .color-preview{float:left}
+#zo2_themes_container .txtColorPicker{float:left;width:60px}

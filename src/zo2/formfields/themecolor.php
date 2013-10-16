@@ -24,12 +24,11 @@ class JFormFieldThemeColor extends JFormField
     public function getInput()
     {
         $zo2 = Zo2Framework::getInstance();
-        $themesPath = $zo2->getCurrentTemplateAbsolutePath() . '/assets/css/themes/';
-        $imgUri = JURI::root(true) . '/templates/' . $zo2->getTemplateName() . '/assets/images/themes/';
-        $themesFiles = glob($themesPath . '*.css');
-        $defaultThemes = array('default');
-        $themes = array_map(array($this, 'mapThemes'), $themesFiles);
-        $themes = array_unique(array_merge($defaultThemes, $themes));
+        $presetPath = $zo2->getCurrentTemplateAbsolutePath() . '/layouts/presets.json';
+        $presets = array();
+        if (file_exists($presetPath)) {
+            $presets = json_decode(file_get_contents($presetPath), true);
+        }
         $path = JPATH_SITE.'/plugins/system/zo2/templates/themecolor.php';
         ob_start();
         include($path);
