@@ -10,7 +10,9 @@ else $currentData = array('name' => 'default');
         <?php foreach ($presets as $p) : ?>
         <li class="<?php echo $p['name'] == $currentData['name'] ? 'active' : ''?>"
             data-zo2-theme="<?php echo $p['name']?>" data-zo2-background="<?php echo $p['variables']['background']?>"
-            data-zo2-header="<?php echo $p['variables']['header']?>" data-zo2-link="<?php echo $p['variables']['link']?>"
+            data-zo2-header="<?php echo $p['variables']['header']?>"
+            data-zo2-link="<?php echo $p['variables']['link']?>"
+            data-zo2-link-hover="<?php echo $p['variables']['link_hover']?>"
             data-zo2-text="<?php echo $p['variables']['text']?>"
             data-zo2-css="<?php echo $p['css']?>" data-zo2-less="<?php echo $p['less']?>"
         >
@@ -63,6 +65,17 @@ else $currentData = array('name' => 'default');
             <div class="colorpicker-container">
                 <input id="color_link" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $currentData['link']?>">
                 <span id="color_link_preview" class="color-preview" style="background-color: <?php echo empty($currentData['link']) ? 'transparent' : $currentData['link']?>"></span>
+            </div>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="control-label">
+            <label for="color_link_hover">Link hover</label>
+        </div>
+        <div class="controls">
+            <div class="colorpicker-container">
+                <input id="color_link_hover" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $currentData['link_hover']?>">
+                <span id="color_link_hover_preview" class="color-preview" style="background-color: <?php echo empty($currentData['link_hover']) ? 'transparent' : $currentData['link_hover']?>"></span>
             </div>
         </div>
     </div>

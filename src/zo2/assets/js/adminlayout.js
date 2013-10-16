@@ -434,6 +434,7 @@ jQuery(document).ready(function($){
         $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header'));
         $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
         $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
+        $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
         /*
         $('#color_background').val($this.attr('data-zo2-background'));
         $('#color_header').val($this.attr('data-zo2-header'));
@@ -445,6 +446,7 @@ jQuery(document).ready(function($){
         $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
         $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
         $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
+        $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
 
         generatePresetData();
     });
@@ -492,7 +494,8 @@ var generatePresetData = function () {
         background: $('#color_background').val(),
         header: $('#color_header').val(),
         text: $('#color_text').val(),
-        link: $('#color_link').val()
+        link: $('#color_link').val(),
+        link_hover: $('#color_link_hover').val()
     };
 
     $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));

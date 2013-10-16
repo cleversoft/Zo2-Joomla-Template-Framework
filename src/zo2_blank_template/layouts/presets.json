@@ -8,6 +8,7 @@
             "background": "",
             "header": "",
             "link": "",
+            "link_hover": "",
             "text": ""
         }
     },
@@ -20,6 +21,7 @@
             "background": "#dedede",
             "header": "#333333",
             "link": "#212121",
+            "link_hover": "#5eaf28",
             "text": "#ffffff"
         }
     },
@@ -32,6 +34,7 @@
             "background": "#3288c7",
             "header": "#95c5e8",
             "link": "#184587",
+            "link_hover": "#5eaf28",
             "text": "#fff"
         }
     }

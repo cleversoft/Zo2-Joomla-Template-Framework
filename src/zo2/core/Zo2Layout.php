@@ -484,6 +484,7 @@ class Zo2Layout {
                 if (!empty($presetData['header'])) $style .= '#header{background-color:' . $presetData['header'] . '}';
                 if (!empty($presetData['text'])) $style .= 'body{color:' . $presetData['text'] . '}';
                 if (!empty($presetData['link'])) $style .= 'a{color:' . $presetData['link'] . '}';
+                if (!empty($presetData['link_hover'])) $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
                 $this->insertCss($preset['css']);
                 $this->insertCssDeclaration($style);
             }
