@@ -357,22 +357,17 @@ class Zo2Framework {
      * @param $template
      */
     public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
+
         Zo2Framework::import2('core.Zo2Megamenu');
         $params = Zo2Framework::getParams();
-//        $file = JPATH_ROOT . '/templates/'.$template.'/layouts/megamenu.json';
-//        $configs = json_decode(JFile::read($file), true);
         $configs = json_decode($params->get('menu_config', ''), true);
         $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
         if (JFactory::getApplication()->isAdmin()) {
             $mmconfig['edit'] = true;
         }
         $menu = new Zo2MegaMenu ($menutype, $mmconfig, $params);
-
-        //Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/css/megamenu.css');
-//        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL.'/css/megamenu-responsive.css');
-        //Zo2Framework::addJsScript(ZO2_PLUGIN_URL.'/js/megamenu.js');
-
         return $menu->renderMenu($isAdmin);
+
     }
 
     /**
@@ -450,24 +445,6 @@ class Zo2Framework {
         }
         return $shortcodes;
     }
-
-    /**
-     * Add head
-     *
-     * Use from frontend
-     */
-    public static function addHead() {
-        JHtml::_('jquery.framework');
-        Zo2Framework::addJsScript(ZO2_PLUGIN_URL.'/vendor/bootstrap/js/bootstrap.min.js');
-        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL.'/vendor/bootstrap/css/bootstrap.min.css');
-        // Add Stylesheets
-        // Load optional RTL Bootstrap CSS
-        Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/vendor/font-awesome/css/font-awesome.min.css');
-        Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/css/template.css');
-        //Zo2Framework::addCssStylesheet('templates/'.Zo2Framework::getTemplate()->template.'/css/style.css');
-
-    }
-
     /**
      * Get available positions of the current template.
      * Use only from backend.

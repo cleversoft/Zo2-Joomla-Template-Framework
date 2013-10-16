@@ -32,7 +32,7 @@
 .zo2-megamenu .mega-inner:after {
   clear: both;
 }
-.zo2-megamenu .row + .row {
+.zo2-megamenu .row-fluid + .row-fluid {
   padding-top: 10px;
   border-top: 1px solid #eeeeee;
 }
@@ -91,7 +91,7 @@
 .zo2-megamenu .mega-group-content:after {
   clear: both;
 }
-.zo2-megamenu .mega-group-content > .row > [class*="col-md"] > .mega-inner {
+.zo2-megamenu .mega-group-content > .row-fluid > [class*="span"] > .mega-inner {
   padding: 0;
 }
 .zo2-megamenu .span12.mega-col-nav .mega-inner {
@@ -175,11 +175,6 @@
 .zo2-megamenu .nav [class^="icon-"],
 .zo2-megamenu .nav [class*=" icon-"] {
   margin-right: 5px;
-}
-/* Fixed for bootstrap 3.0*/
-.zo2-megamenu .mega.dropdown-submenu:hover > .mega-dropdown-menu {
-    top: 0;
-    left: 100%;
 }
 
 @media (min-width: 768px) {
