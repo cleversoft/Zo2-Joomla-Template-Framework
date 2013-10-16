@@ -59,6 +59,11 @@ class Zo2MegaMenu
             $itemid = 'item-' . $item->id;
             $config = isset($this->_configs[$itemid]) ? $this->_configs[$itemid] : array();
 
+    
+            if (isset($config['caption']) && $config['caption']) $config['caption'] = str_replace(array('[lt]','[gt]'), array('<','>'), $config['caption']);
+            if ($item->level == 1 && isset($config['caption']) && $config['caption']) {
+                $item->top_level_caption = true;
+            }
             // active - current
             $class = '';
             if ($item->id == $menu_id) {
@@ -195,23 +200,31 @@ class Zo2MegaMenu
     {
 
         $html = '';
-        $menus = array();
-        if ($start) {
+
+        if ($start > 0) {
             if (!isset($this->_items[$start])) return;
             $parent_id = $this->_items[$start]->parent_id;
-
+            $menus = array();
+            $started = false;
             foreach ($this->children[$parent_id] as $item) {
-                if ($item->id == $start) {
+
+                if ($started) {
+                    if ($item->id == $end) break;
                     array_push($menus, $item);
-                } else if ($item->id != $start) {
-                    if ($item->id == $end) {
-                        return;
-                    } else {
+                } else {
+                    if ($item->id == $start) {
+                        $started = true;
                         array_push($menus, $item);
                     }
                 }
             }
 
+            if (!count($menus)) return;
+
+        } else if ($start === 0){
+            $pid = $parent->id;
+            if (!isset($this->children[$pid])) return ;
+            $menus = $this->children[$pid];
         } else {
             return;
         }
@@ -224,7 +237,10 @@ class Zo2MegaMenu
             $class .= ' level' . $parent->level;
         }
 
-        $html .= '<ul class="' . $class . '">';
+        if ($class) $class = 'class="'.trim($class).'"';
+
+        $html .= '<ul '.$class.'>';
+
         foreach ($menus as $menu) {
             $html .= $this->getLiTag($menu);
         }
@@ -265,6 +281,7 @@ class Zo2MegaMenu
         $dropdown = '';
         $caption = '';
         $linktype = '';
+        $icon = '';
         $caret = '<b class="caret"></b>';
         if ($menu->isdropdown && $menu->level < 2) {
             $class .= 'dropdown-toggle';
@@ -285,10 +302,14 @@ class Zo2MegaMenu
             $linktype = $menu->title;
         }
 
-        if (isset($config['caption'])) {
-            $caption = '<span class="caption">' . $config['caption'] . '</span>';
-        } else {
-            $caption = '<span class="empty-caption"></span>';
+        if (isset($config['xicon']) && $config['xicon']) {
+            $icon = '<i class="'.$config['xicon'].'"></i>';
+        }
+
+        if (isset($config['caption']) && $config['caption']) {
+            $caption = '<span class="mega-caption">' . $config['caption'] . '</span>';
+        } else if ($menu->level==1 && isset($menu->top_level_caption) && $menu->top_level_caption) {
+            $caption = '<span class="mega-caption mega-caption-empty"></span>';
         }
 
         $html = '';
@@ -296,18 +317,18 @@ class Zo2MegaMenu
         switch ($menu->type) {
             case 'separator':
                 $class .= " separator";
-                $html = "<span class=\"$class\">$title $linktype$caption</span>";
+                $html = "<span class=\"$class\">$icon$title $linktype$caption</span>";
                 break;
             case 'component':
 
                 switch ($menu->browserNav) {
                     default:
                     case 0:
-                        $html = "<a class=\"$class\" href=\"{$menu->flink}\" $title $dropdown>$linktype $caret$caption</a>";
+                        $html = "<a class=\"$class\" href=\"{$menu->flink}\" $title $dropdown>$icon$linktype$caret$caption</a>";
                         break;
                     case 1:
                         // _blank
-                        $html = "<a class=\"$class\" href=\"{$menu->flink}\" target=\"_blank\" $title $dropdown>$linktype $caret$caption</a>";
+                        $html = "<a class=\"$class\" href=\"{$menu->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
                         break;
                     case 2:
                         // window.open
@@ -322,16 +343,16 @@ class Zo2MegaMenu
 
                     default:
                     case 0:
-                        $html = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$linktype$caret$caption</a>";
+                        $html = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
                         break;
                     case 1:
                         // _blank
-                        $html = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$linktype$caret$caption</a>";
+                        $html = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
                         break;
                     case 2:
                         // window.open
                         $options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $menu->params->get('window_open');
-                        $html = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$linktype$caret$caption</a>";
+                        $html = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype$caret$caption</a>";
                         break;
                 }
 
@@ -365,7 +386,7 @@ class Zo2MegaMenu
             $class .= " {$config['class']}";
         }
 
-        if (isset($setting['alignsub'])) {
+        if (isset($config['alignsub'])) {
             $data .= " data-alignsub=\"{$config['alignsub']}\"";
             $class .= " mega-align-{$config['alignsub']}";
         }
@@ -413,30 +434,43 @@ class Zo2MegaMenu
         $style = '';
 
         if (isset($config['class'])) $data .= " data-class=\"{$config['class']}\"";
-        if (isset($submenu['width'])) {
-            if ($parent->isdropdown) {
-                $style = " style=\"width:{$submenu['width']}px\"";
+        if (isset($config['alignsub']) && $config['alignsub'] == 'justify') {
+            if ($this->isAdmin) {
+                $class .= " span12";
+            } else {
+                $class .= " col-md-12";
             }
-            $data .= " data-width=\"{$submenu['width']}\"";
+        } else {
+            if (isset($submenu['width'])) {
+                if ($parent->isdropdown) {
+                    $style = " style=\"width:{$submenu['width']}px\"";
+                }
+                $data .= " data-width=\"{$submenu['width']}\"";
+            }
         }
-        $class = 'class="' . $class . '"';
+
+        if ($class) $class = 'class="'.trim($class).'"';
 
         $html .= "<div $style $class $data><div class=\"mega-dropdown-inner\">";
 
-        $end = array();
-        $menuid = 0;
+        $endItems = array();
+        $key1 = 0;
+        $key2 = 0;
         foreach ($submenu['rows'] as $row) {
+
             foreach ($row as $column) {
                 if (!isset($column['module_id'])) {
-                    if ($menuid) {
-                        $end[$menuid] = $column['item'];
+                    if ($key1) {
+                        $key2 = $column['item'];
+                        if (!isset($this->_items[$key2]) || $this->_items[$key2]->parent_id != $parent->id) break;
+                        $endItems[$key1] = $key2;
                     }
-                    $menuid = $column['item'];
+                    $key1 = $column['item'];
                 }
             }
         }
 
-        $end[$menuid] = 0;
+        $endItems[$key1] = 0;
         $firstitem = true;
         $rowClass = 'row-fluid';
         $colClass = 'span';
@@ -444,13 +478,10 @@ class Zo2MegaMenu
             $rowClass = 'row';
             $colClass = 'col-md-';
         }
-
-        foreach ($submenu['rows'] as $row) {
+        foreach ($submenu['rows'] as $key => $row) {
             //start row
             $html .= '<div class="'.$rowClass .'">';
-
             foreach ($row as $column) {
-
                 $width = isset($column['width']) ? $column['width'] : '12';
                 $data = "data-width=\"$width\"";
                 $class = "$colClass$width";
@@ -474,9 +505,10 @@ class Zo2MegaMenu
                 if (isset($column['module_id'])) {
                     $html .= $this->getModule($column['module_id']);
                 } else {
-                    $endId = $end[$column['item']];
+                    if (!isset($endItems[$column['item']])) continue;
+                    $endId = $endItems[$column['item']];
                     $startId = $firstitem ? $fitem : $column['item'];
-                    $html .= $this->getMenu($parent, $startId, $endId);
+                    $html .= $this->getMenu($parent, (int) $startId, (int)$endId);
                     $firstitem = false;
                 }
 

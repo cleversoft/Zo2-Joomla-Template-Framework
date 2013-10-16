@@ -94,7 +94,7 @@ class plgSystemZo2 extends JPlugin
         }
         if ($app->isSite()) {
 
-            Zo2Framework::addJsScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
+            $doc->addScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
             // Share social
             $params = Zo2Framework::getParams();
             if ($params->get('enable_popup', 0)) {
@@ -106,7 +106,7 @@ class plgSystemZo2 extends JPlugin
         } else {
             Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
         }
-        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
+        $doc->addStyleSheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
     }
 
     function onAfterRender()
