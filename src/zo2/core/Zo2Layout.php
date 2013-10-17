@@ -489,7 +489,7 @@ class Zo2Layout {
                 if (!empty($presetData['bottom1'])) $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
                 if (!empty($presetData['bottom2'])) $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
                 if (!empty($presetData['footer'])) $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
-                $this->insertCss($preset['css']);
+                if (!empty($presetData['css'])) $this->insertCss($presetData['css']);
                 $this->insertCssDeclaration($style);
             }
 
