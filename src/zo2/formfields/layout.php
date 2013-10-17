@@ -151,11 +151,11 @@ class JFormFieldLayout extends JFormField
                 <div class="row-control-container">
                     <div class="row-name"><?php echo $item['name']?></div>
                     <div class="row-control-buttons">
-                        <i class="icon-move row-control-icon dragger"></i>
-                        <i class="icon-cogs row-control-icon settings"></i>
-                        <i class="row-control-icon duplicate icon-align-justify"></i>
-                        <i class="row-control-icon split icon-columns"></i>
-                        <i class="row-control-icon delete icon-remove"></i>
+                        <i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>
+                        <i title="Row's settings" class="icon-cogs row-control-icon settings hasTooltip"></i>
+                        <i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip"></i>
+                        <i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>
+                        <i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>
                     </div>
                 </div>
 
@@ -192,10 +192,10 @@ class JFormFieldLayout extends JFormField
             <div class="col-wrap">
                 <div class="col-name"><?php echo $item['name']?></div>
                 <div class="col-control-buttons">
-                    <i class="col-control-icon dragger icon-move"></i>
-                    <i class="icon-cog col-control-icon settings"></i>
-                    <i class="col-control-icon add-row icon-align-justify"></i>
-                    <i class="icon-remove col-control-icon delete"></i>
+                    <i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>
+                    <i title="Column's settings" class="icon-cog col-control-icon settings hasTooltip"></i>
+                    <i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>
+                    <i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>
                 </div>
 
                 <div class="row-container">
