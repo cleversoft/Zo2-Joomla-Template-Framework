@@ -460,9 +460,13 @@ jQuery(document).ready(function($){
 
         $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
         $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
+        $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
         $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
         $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
         $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
+        $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
+        $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
+        $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
 
         generatePresetData();
     });
@@ -509,9 +513,13 @@ var generatePresetData = function () {
         less: $preset.attr('data-zo2-less'),
         background: $('#color_background').val(),
         header: $('#color_header').val(),
+        header_top: $('#color_header_top').val(),
         text: $('#color_text').val(),
         link: $('#color_link').val(),
-        link_hover: $('#color_link_hover').val()
+        link_hover: $('#color_link_hover').val(),
+        bottom1: $('#color_bottom1').val(),
+        bottom2: $('#color_bottom2').val(),
+        footer: $('#color_footer').val()
     };
 
     $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
