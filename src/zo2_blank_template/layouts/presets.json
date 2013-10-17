@@ -7,9 +7,13 @@
         "variables": {
             "background": "",
             "header": "",
+            "header_top": "",
             "link": "",
             "link_hover": "",
-            "text": ""
+            "text": "",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": ""
         }
     },
     {
@@ -20,9 +24,13 @@
         "variables": {
             "background": "#dedede",
             "header": "#333333",
+            "header_top": "",
             "link": "#212121",
             "link_hover": "#5eaf28",
-            "text": "#ffffff"
+            "text": "#ffffff",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": ""
         }
     },
     {
@@ -33,9 +41,13 @@
         "variables": {
             "background": "#3288c7",
             "header": "#95c5e8",
+            "header_top": "",
             "link": "#184587",
             "link_hover": "#5eaf28",
-            "text": "#fff"
+            "text": "#fff",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": ""
         }
     }
 ]
