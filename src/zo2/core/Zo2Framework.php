@@ -131,6 +131,20 @@ class Zo2Framework {
     }
 
     /**
+     * Add custom Less stylesheet file to the document
+     * Will not work on backend
+     *
+     * @param $less
+     * @return Zo2Framework
+     */
+    public static function addLessStyleSheet($less)
+    {
+        if (!self::$_isAdmin) self::$_styles[] = $less;
+        //else
+        return self::getInstance();
+    }
+
+    /**
      * Adds a script to the page
      * @param $script
      * @return Zo2Framework
@@ -153,6 +167,19 @@ class Zo2Framework {
         if (self::$_isAdmin) self::getInstance()->document->addStyleDeclaration($style);
         else self::$_styleDeclarations[] = $style;
         return self::getInstance();
+    }
+
+    /**
+     * Add custom LESS style
+     *
+     * @param $less
+     */
+    public static function addLessDeclaration($less)
+    {
+        if (!class_exists('lessc', false)) Zo2Framework::import('vendor.less.lessc');
+        $compiler = new lessc();
+        $style = $compiler->compile($less);
+        self::addStyleDeclaration($style);
     }
 
     /**
@@ -262,7 +289,8 @@ class Zo2Framework {
             $layout->insertJsDeclaration($sd);
         }
         foreach (self::$_styles as $s) {
-            $layout->insertCss($s);
+            if (strpos($s, '.less') !== false) $layout->insertLess($s);
+            else $layout->insertCss($s);
         }
         foreach (self::$_styleDeclarations as $sd) {
             $layout->insertCssDeclaration($sd);

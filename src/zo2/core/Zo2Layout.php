@@ -117,6 +117,14 @@ class Zo2Layout {
         return $this;
     }
 
+    public function insertLessDeclaration($less)
+    {
+        if (!class_exists('lessc', false)) Zo2Framework::import('vendor.less.lessc');
+        $compiler = new lessc();
+        $style = $compiler->compile($less);
+        $this->insertCssDeclaration($style);
+    }
+
     /**
      * Insert a CSS file into output
      *
