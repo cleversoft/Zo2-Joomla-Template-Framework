@@ -182,6 +182,24 @@ class Zo2Framework {
         self::addStyleDeclaration($style);
     }
 
+    public static function compileLess($lessPath, $templateName = '')
+    {
+        $filename = md5($lessPath) . '.css';
+        $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
+            DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
+        $relPath = 'assets/cache/' . $filename;
+        if (!file_exists($absPath)) {
+            if (!class_exists('lessc', false)) Zo2Framework::import('vendor.less.lessc');
+            $absLessPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . $lessPath;
+
+            $compiler = new lessc();
+            $style = $compiler->compileFile($absLessPath);
+
+            file_put_contents($absPath, $style);
+        }
+        return $relPath;
+    }
+
     /**
      * Get Zo2 Framework plugin path
      *
