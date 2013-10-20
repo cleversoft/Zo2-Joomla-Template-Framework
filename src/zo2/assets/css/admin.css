@@ -263,3 +263,9 @@ html[xmlns] .clearfix { display: block; }
 .zo2-tabs-content .btn-group, #font_chooser .btn-group{display:block}
 #zo2_themes_container .color-preview{float:left}
 #zo2_themes_container .txtColorPicker{float:left;width:60px}
+
+.zo2_themes_row{clear:both}
+.zo2_themes_row .zo2_themes_label{width:15%;float:left;font-size: 20px;line-height: 25px;font-weight: bold}
+.zo2_themes_row .zo2_themes_form{width:75%;float:right}
+
+#myTabTabs .icon-edit:before, .icon-pencil:before{color:#ffffff} /* dirty fix for preset icon */
