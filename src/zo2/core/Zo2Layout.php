@@ -148,7 +148,7 @@ class Zo2Layout {
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         $filePath = $cacheDir . DIRECTORY_SEPARATOR . $fileName;
         $relativePath = '/assets/cache/' . $fileName;
-        $content = $this->processLess(file_get_contents($path));
+        $content = $this->processLessFile($path);
         file_put_contents($filePath, $content);
 
         $this->insertCss($relativePath);
@@ -271,7 +271,8 @@ class Zo2Layout {
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         $filePath = $cacheDir . DIRECTORY_SEPARATOR . $fileName;
         $relativePath = '/assets/cache/' . $fileName;
-        $content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
+        //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
+        $content = $this->processLessFile($this->_templatePath . $item['path']);
         file_put_contents($filePath, $content);
 
         $path = $this->_templateUri . $relativePath;
@@ -764,6 +765,15 @@ class Zo2Layout {
         $compiler = new lessc();
 
         return $compiler->compile($content);
+    }
+
+    private function processLessFile($path)
+    {
+        if (!class_exists('lessc', false)) Zo2Framework::import('vendor.less.lessc');
+
+        $compiler = new lessc();
+
+        return $compiler->compileFile($path);
     }
 
     /**
