@@ -167,62 +167,6 @@ class Zo2Layout {
     }
 
     /**
-     * Process javascript and css, then insert into document.
-     * Combine and minify if needed.
-     *
-     * @return string
-     */
-    private function processStatics()
-    {
-        $footer = "";
-        $header = "";
-        if ($this->_layoutStatics != null) {
-            foreach($this->_layoutStatics as $item) {
-                if ($item['position'] == 'header') {
-                    if ($item['type'] == 'css') $header .= $this->generateCssTag($item);
-                    elseif ($item['type'] == 'js') $header .= $this->generateJsTag($item);
-                }
-                elseif ($item['position'] == 'footer') {
-                    if ($item['type'] == 'css') $footer .= $this->generateCssTag($item);
-                    elseif ($item['type'] == 'js') $footer .= $this->generateJsTag($item);
-                }
-            }
-        }
-
-        if (count($this->_styleDeclaration) > 0) {
-            $styles = '';
-            foreach ($this->_styleDeclaration as $style) {
-                $styles .= $style . "\n";
-            }
-
-            $styles = '<style type="text/css">' . $styles . '</style>';
-            $header .= "\n" . $styles;
-        }
-
-        if (count($this->_jsDeclaration) > 0) {
-            $scripts = '';
-
-            foreach ($this->_jsDeclaration as $js) {
-                $scripts .= $js . "\n";
-            }
-
-            $scripts = '<script type="text/javascript">' . $scripts . '</script>';
-
-            $footer .= $scripts;
-        }
-
-        if(!empty($header)){
-            $this->_output = str_replace('</head>', $header . '</head>' , $this->_output);
-        }
-
-        if(!empty($header)){
-            $this->_output = str_replace('</body>', $footer . '</body>' , $this->_output);
-        }
-        return $this->_output;
-    }
-
-
-    /**
      * Insert script tag for js
      *
      * @param $item
