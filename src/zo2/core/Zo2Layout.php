@@ -429,6 +429,18 @@ class Zo2Layout {
             $responsive = $params->get('responsive_layout');
             $preset = $params->get('theme');
             $combineLevel = $params->get('combine_statics');
+            $compileLess = $params->get('less_compile');
+
+            if ($compileLess == 1) {
+                $pathToCache = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
+                $cachedCss = glob($pathToCache . DIRECTORY_SEPARATOR . '*.css');
+                foreach($cachedCss as $css) {
+                    try {
+                        unlink($css);
+                    }
+                    catch(Exception $e) {}
+                }
+            }
 
             if (!empty($preset)) {
                 $presetData = json_decode($preset, true);
@@ -457,8 +469,7 @@ class Zo2Layout {
                         if ($item['type'] == 'css') $html .= $this->generateCssTag($item);
                         elseif ($item['type'] == 'js') $html .= $this->generateJsTag($item);
                         elseif ($item['type'] == 'less') {
-                            $compileLess = $params->get('less_compile');
-                            if ($compileLess == 1) $html .= $this->generateLessTag($item);
+                            $html .= $this->generateLessTag($item);
                         }
                     }
                 }
