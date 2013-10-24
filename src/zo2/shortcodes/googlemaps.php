@@ -42,8 +42,6 @@ class Googlemaps extends Zo2Shortcode
 
         $w = ($w == '100%') ? $w : $w . 'px';
 
-        Zo2Framework::addJsScript('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false');
-
         $script = '
 
             var map;
@@ -66,9 +64,11 @@ class Googlemaps extends Zo2Shortcode
             google.maps.event.addDomListener(window, \'load\', initialize);
 
         ';
-        Zo2Framework::addScriptDeclaration($script);
 
-        return '<div id="map-canvas" style="width: ' . $w . '; height: ' . $h . 'px;"></div>';
+        return '<div id="map-canvas" style="width: ' . $w . '; height: ' . $h . 'px;"></div>
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+                <script type="text/javascript">'.$script.'</script>
+                ';
     }
 
 }

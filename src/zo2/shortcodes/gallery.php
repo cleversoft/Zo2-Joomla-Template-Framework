@@ -27,12 +27,18 @@ class Gallery extends Zo2Shortcode
      */
     protected function body()
     {
+        global $gwidth, $gheight;
+
         extract($this->shortcode_atts(array(
             "title" 	=> 'Photo Gallery',
             "width"		=> 100,
             "height"	=> 100,
             "columns"	=> 3
         ), $this->attrs));
+
+
+        $gwidth  = $width;
+        $gheight = $height;
 
         $gallery  = '<div class="highslide-gallery">';
         $gallery .= '<h3>' . $title . '</h3>';
