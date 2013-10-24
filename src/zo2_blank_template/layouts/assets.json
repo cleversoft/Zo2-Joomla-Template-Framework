@@ -46,6 +46,15 @@
         "base": "template"
     },
     {
+        "path": "/assets/css/megamenu-responsive.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header",
+        "base": "template"
+    },
+    {
         "path": "/assets/js/megamenu.js",
         "type": "js",
         "position": "footer",
