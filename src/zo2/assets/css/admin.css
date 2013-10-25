@@ -269,3 +269,18 @@ html[xmlns] .clearfix { display: block; }
 .zo2_themes_row .zo2_themes_form{width:75%;float:right}
 
 #myTabTabs .icon-edit:before, .icon-pencil:before{color:#ffffff} /* dirty fix for preset icon */
+
+/*Social*/
+.include_categories {
+
+    padding: 9px;
+    background-color: #F7F7F7;
+    border: 1px solid #E0E0E0;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+
+}
+.include_categories > ul > li {
+    list-style: none !important;
+}

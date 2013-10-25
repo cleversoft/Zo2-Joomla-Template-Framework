@@ -231,9 +231,8 @@
 
             <field
                     name="catid"
-                    type="category"
+                    type="includecats"
                     extension="com_content"
-                    multiple="true"
                     size="10"
                     default=""
                     label="Include categories"

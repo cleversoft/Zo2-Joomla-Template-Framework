@@ -126,6 +126,14 @@ var Zo2Social = window.Zo2Social || {};
                 Zo2Social.toggleType($type)
             });
 
+            $('#checkAll').click(function() {
+                $('.treeCategories input').attr('checked', 'checked');
+            });
+
+            $('#uncheckAll').click(function() {
+                $('.treeCategories input').attr('checked', false);
+            });
+
         },
         toggleType: function (value) {
 
