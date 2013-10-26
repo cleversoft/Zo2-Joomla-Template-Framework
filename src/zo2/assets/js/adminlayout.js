@@ -784,16 +784,46 @@ var wrapForm = function() {
 };
 
 var injectFormSubmit = function() {
+    /*
+     var $ = jQuery;
+     var $input = $('.hfLayoutHtml');
+     document.adminForm.onsubmit = function() {
+     console.log('will this run');
+     $('.field-logo-container').each(function() {
+     generateLogoJson($(this));
+     });
+     $input.val(generateJson());
+     return true;
+     };
+     */
+};
+
+/* Override default submit function */
+Joomla.submitform = function(task, form) {
+    if (typeof(form) === 'undefined') {
+        form = document.getElementById('adminForm');
+    }
+
+    if (typeof(task) !== 'undefined') {
+        form.task.value = task;
+    }
+
+    // Submit the form.
+    if (typeof form.onsubmit == 'function') {
+        form.onsubmit();
+    }
+    if (typeof form.fireEvent == "function") {
+        form.fireEvent('submit');
+    }
+
     var $ = jQuery;
     var $input = $('.hfLayoutHtml');
-    document.adminForm.onsubmit = function() {
-        $('.field-logo-container').each(function() {
-            generateLogoJson($(this));
-        });
+    $('.field-logo-container').each(function() {
+        generateLogoJson($(this));
+    });
+    $input.val(generateJson());
 
-        $input.val(generateJson());
-        return false;
-    };
+    form.submit();
 };
 
 var generateSlug = function(str) {
