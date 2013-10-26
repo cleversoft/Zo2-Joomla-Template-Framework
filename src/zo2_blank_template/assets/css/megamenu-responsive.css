@@ -13,9 +13,9 @@
   .zo2-megamenu .mega-inner {
     padding: 10px 20px;
   }
-  .zo2-megamenu .row-fluid,
+  .zo2-megamenu .row,
   .zo2-megamenu .mega-dropdown-menu,
-  .zo2-megamenu .row-fluid [class*="span"] {
+  .zo2-megamenu .row [class*="col-md-"] {
     width: 100% !important;
     min-width: 100% !important;
     left: 0 !important;
@@ -26,13 +26,13 @@
     -ms-transform: none !important;
     -o-transform: none !important;
   }
-  .zo2-megamenu .row-fluid + .row-fluid {
+  .zo2-megamenu .row + .row {
     padding-top: 10px;
     border-top: 1px solid #eee;
   }
   .zo2-megamenu .hidden-collapse,
   .zo2-megamenu .always-show  .caret,
-  .zo2-megamenu .sub-hidden-collapse > .nav-child,
+  .zo2-megamenu .sub-hidden-collapse > .menu-child,
   .zo2-megamenu .sub-hidden-collapse .caret,
   .zo2-megamenu .sub-hidden-collapse > a:after,
   .zo2-megamenu .always-show .dropdown-submenu > a:after {
@@ -46,7 +46,7 @@
   .zo2-megamenu .mega-inner {
     padding: 10px 20px;
   }
-  .zo2-megamenu .row-fluid + .row-fluid {
+  .zo2-megamenu .row + .row {
     border-top: 1px solid #999;
   }
   .zo2-megamenu .span12.mega-col-nav .mega-inner {

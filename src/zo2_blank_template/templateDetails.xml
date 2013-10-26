@@ -210,17 +210,6 @@
                    label="K2 Comment Label"
                    description="" />
             <!--Share Social-->
-            <field name="ordering_buttons" type="social" default="facebook,twitter,linkedin,gplus"
-                   label="Ordering buttons"
-                   description="Only tabs listed will be showed"
-                   desc=""
-                    />
-
-            <field name="social_style" type="list" default="default" label="Social type"
-                   description="Social type">
-                <option value="default">default</option>
-                <option value="floating">floating</option>
-            </field>
 
             <field name="show_in_article" type="radio" default="0" label="Show in Article"
                    description="Display the plugin in Article or not." class="btn-group">
@@ -241,6 +230,35 @@
             </field>
 
             <field
+                    name="catid"
+                    type="includecats"
+                    extension="com_content"
+                    size="10"
+                    default=""
+                    label="Include categories"
+                    description="Include categories" >
+                <option value="">JOPTION_ALL_CATEGORIES</option>
+            </field>
+
+            <field name="display_type" type="list" default="normal" label="Display type"
+                   description="Display type">
+                <option value="normal">Normal</option>
+                <option value="floating">Floating</option>
+            </field>
+
+            <field name="normal_position" type="list" label="Normal type"
+                   description="Normal position" >
+                <option value="top">Top</option>
+                <option value="bottom">Bottom</option>
+            </field>
+
+            <field name="floating_position" type="list" label="Floating type"
+                   description="Float position" >
+                <option value="float_left">Left</option>
+                <option value="float_right">Right</option>
+            </field>
+
+            <field
                     name="box_top"
                     type="text"
                     default="200"
@@ -249,9 +267,18 @@
             <field
                     name="box_left"
                     type="text"
-                    default="80"
+                    default="200"
                     label="Left Position"
                     description="Left Position"/>
+            <field
+                    name="box_right"
+                    type="text"
+                    default="300"
+                    label="Right Position"
+                    description="Right Position"/>
+
+            <field name="social_order" type="socialorder" label="" description="test"/>
+
 
             <field name="Twitter" type="spacer" class="zt-header" hr="true"/>
 

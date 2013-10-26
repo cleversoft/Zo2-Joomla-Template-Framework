@@ -27,13 +27,15 @@ class Galleryitem extends Zo2Shortcode
      */
     protected function body()
     {
+        global $gwidth, $gheight;
+
         extract($this->shortcode_atts(array(
             "title" => '',
             "src"	=> ''
         ), $this->attrs));
 
         $src    = (strpos($src, "http://") === false) ? JURI::base() . $src : $src;
-        $simage = JURI::base() . "plugins/system/zo2/addons/timthumb.php?w=100&amp;h=100&amp;src=" . $src;
+        $simage = JURI::base() . "plugins/system/zo2/addons/timthumb.php?w=".$gwidth."&amp;h=".$gheight."&amp;src=" . $src;
         $gallery_item = "<li class='gallery-item'>";
         $gallery_item .= "<a title='" . $title . "' href='" . $src . "' data-rel='prettyPhoto[bkpGallery]'>";
         $gallery_item .= "<img src='" . $simage . "' title='" . $title . "' alt='" . $title . "' />";
