@@ -77,7 +77,7 @@
             <field name="header_logo" type="logo" default="" label="Header logo" />
             <field name="header_retina_logo" type="logo" default="" label="Header Retina logo" />
             <!--Footer Option-->
-            <field name="footer_copyright" type="textarea" default="" label="Copyright" />
+            <field name="footer_copyright" type="textarea" default="" label="Copyright" filter="raw" />
             <field name="footer_logo" type="radio" default="1" label="Show footer logo" class="btn-group" description="Show Zo2 Framework footer logo">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
