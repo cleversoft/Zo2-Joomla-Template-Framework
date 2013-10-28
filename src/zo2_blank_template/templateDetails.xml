@@ -283,7 +283,7 @@
                     label="Box style"
                     description="Box style"/>
 
-            <field name="social_order" type="socialorder" label="" description="test"/>
+            <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
 
 
             <field name="Twitter" type="spacer" class="zt-header" hr="true"/>

@@ -113,9 +113,8 @@ class JFormFieldSocialorder extends JFormFieldHidden
             foreach ($layouts as $key => $layout) {
                 $options[] = JHtml::_('select.option', $key, JText::_($layout));
             }
-
             $html .= '<tr class="row' . $count . '">
-                                    <td class="nowrap center" name="' . $item->name . '"><i class="icon-reorder"></i></td>
+                                    <td class="nowrap center" name="' . $item->name . '"><i class="icon-move hasTooltip" data-original-title="Drag and drop to change position of button"></i></td>
                                     <td class="index sequence order nowrap center">' . $item->index . '</td>
                                     <td class="left">
                                         <a href="' . $item->link . '" title="twitter">' . $item->website . '</a>
