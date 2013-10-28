@@ -276,6 +276,12 @@
                     default="300"
                     label="Right Position"
                     description="Right Position"/>
+            <field
+                    name="box_style"
+                    type="text"
+                    default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
+                    label="Box style"
+                    description="Box style"/>
 
             <field name="social_order" type="socialorder" label="" description="test"/>
 

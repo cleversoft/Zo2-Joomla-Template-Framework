@@ -116,6 +116,7 @@ var Zo2Social = window.Zo2Social || {};
             $('#jform_params_box_top').closest('.control-group').hide();
             $('#jform_params_box_left').closest('.control-group').hide();
             $('#jform_params_box_right').closest('.control-group').hide();
+            $('#jform_params_box_style').closest('.control-group').hide();
             var $type = $('#jform_params_display_type').val();
             Zo2Social.toggleType($type);
         },
@@ -143,12 +144,14 @@ var Zo2Social = window.Zo2Social || {};
                 $('#jform_params_box_top').closest('.control-group').hide();
                 $('#jform_params_box_left').closest('.control-group').hide();
                 $('#jform_params_box_right').closest('.control-group').hide();
+                $('#jform_params_box_style').closest('.control-group').hide();
             } else if (value == 'floating') {
                 $('#jform_params_normal_position').closest('.control-group').hide();
                 $('#jform_params_floating_position').closest('.control-group').show();
                 $('#jform_params_box_top').closest('.control-group').show();
                 $('#jform_params_box_left').closest('.control-group').show();
                 $('#jform_params_box_right').closest('.control-group').show();
+                $('#jform_params_box_style').closest('.control-group').show();
             }
         }
     });
