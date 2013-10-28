@@ -58,16 +58,14 @@
 
             var $this = $(e);
             if ($this.hasClass('mega')) {
-                $this.addClass('hovering');
-                clearTimeout($this.data('timeout'));
-                $this.data('timeout', setTimeout(function () {
-                    $this.removeClass('hovering')
-                }), timeout);
-
+                $this.addClass ('hovering');
+                clearTimeout ($this.data('hoverTime'));
                 $this.data('hoverTime',
-                    setTimeout(function () {
-                        $this.addClass('open')
-                    }, 100));
+                    setTimeout(function(){$this.removeClass ('hovering')}, timeout));
+
+                clearTimeout ($this.data('hoverTime'));
+                $this.data('hoverTime',
+                    setTimeout(function(){$this.addClass ('open')}, 100));
             } else {
                 clearTimeout($this.data('hoverTime'));
                 $this.data('hoverTime',
