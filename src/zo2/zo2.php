@@ -176,7 +176,7 @@ class plgSystemZo2 extends JPlugin
                 $article->text = $gplus . $article->text;
             }
             /* Comments System */
-            if ($config->get('enable_comments', 0)) {
+            if ($config->get('enable_comments', 0) && !Zo2Framework::isFrontPage()) {
                 if (JFactory::getApplication()->input->getCmd('option') != 'com_k2') {
                     Zo2Framework::import2('addons.comments.Zo2Comments');
                     $comment = new Zo2Comments($article);
