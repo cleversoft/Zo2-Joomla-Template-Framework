@@ -18,8 +18,8 @@ defined('_JEXEC') or die ('resticted aceess');
  * @package     zo2
  * @subpackage  Zo2Comments
  */
-JLoader::register('K2HelperUtilities', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DS . 'utilities.php');
-JLoader::register('K2HelperRoute', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DS . 'route.php');
+JLoader::register('K2HelperUtilities', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'utilities.php');
+JLoader::register('K2HelperRoute', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR. 'route.php');
 
 class Zo2Comments
 {
@@ -252,9 +252,13 @@ class Zo2Comments
 
                     jimport('joomla.application.component.helper');
 
-                    if (!JComponentHelper::isEnabled('com_k2', true)) {
-                        $html .= '' . JText::_('Zo2 Framework requires k2 component installed');
+                    $option = 'com_k2';
+                    $option = preg_replace('/[^A-Z0-9_\.-]/i', '', $option);
+                    $file = substr($option, 4);
+                    $path = JPATH_COMPONENT . '/' . $file . '.php';
 
+                    if (!file_exists($path)) {
+                        $html .= '' . JText::_('Zo2 Framework requires k2 component installed');
                     } else {
 
                         JHtml::_('behavior.formvalidation');
