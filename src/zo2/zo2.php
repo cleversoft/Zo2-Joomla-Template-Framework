@@ -71,7 +71,7 @@ class plgSystemZo2 extends JPlugin
         if (!$app->isAdmin()) {
             try {
                 // remove default jquery and bootstrap 2
-                JHtml::_('bootstrap.framework',false);
+                if (!Zo2Framework::isJoomla25()) JHtml::_('bootstrap.framework',false);
                 JHtml::_('jquery.framework',false);
                 //JHtml::_('behavior.tooltip', false);
                 unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
@@ -178,9 +178,12 @@ class plgSystemZo2 extends JPlugin
             /* Comments System */
             if ($config->get('enable_comments', 0) && !Zo2Framework::isFrontPage()) {
                 if (JFactory::getApplication()->input->getCmd('option') != 'com_k2') {
-                    Zo2Framework::import2('addons.comments.Zo2Comments');
-                    $comment = new Zo2Comments($article);
-                    $article->text = $article->text . $comment->renderHtml();
+                    $view = JFactory::getApplication()->input->get('view');
+                    if ($view == 'article') {
+                        Zo2Framework::import2('addons.comments.Zo2Comments');
+                        $comment = new Zo2Comments($article);
+                        $article->text = $article->text . $comment->renderHtml();
+                    }
                 }
 
             }
