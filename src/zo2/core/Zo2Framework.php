@@ -87,7 +87,6 @@ class Zo2Framework {
         if(!self::$_instance) {
             self::$_instance = new self();
             self::$_instance->document = self::getInstance()->getCurrentDocument();
-
             // attach Zo2Framework to current document
             self::getInstance()->getCurrentDocument()->zo2 = self::getInstance();
         }
@@ -540,4 +539,15 @@ class Zo2Framework {
         }
     }
 
+    public static function isJoomla25()
+    {
+        $result = false;
+
+        $jVer = new JVersion();
+        $version = $jVer->getShortVersion();
+
+        if (substr($version, 0, 2) == '3.') $result = false;
+        else if (substr($version, 0, 4) == '2.5.') $result = true;
+        return $result;
+    }
 }
