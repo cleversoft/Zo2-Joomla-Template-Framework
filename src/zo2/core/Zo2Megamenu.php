@@ -226,6 +226,7 @@ class Zo2MegaMenu
         }
         $html = empty($submenuHtml) ? '<li>' : '<li class="nav-parent">';
         $html .= '<a href="' . $menu->flink . '">' . $menu->title . '</a>';
+        $html .= $submenuHtml;
         $html .= '</li>';
         return $html;
     }
