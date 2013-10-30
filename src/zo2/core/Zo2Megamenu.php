@@ -215,16 +215,17 @@ class Zo2MegaMenu
 
     private function generateOffCanvasHtml($menu)
     {
-        $html = '<li>';
-        $html .= '<a href="' . $menu->flink . '">' . $menu->title . '</a>';
+        $submenuHtml = '';
         $menus = isset($this->children[$menu->id]) ? $this->children[$menu->id] : array();
         if (!empty($menus)) {
-            $html .= '<ul class="submenu">';
+            $submenuHtml = '<ul class="submenu nav-sub">';
             foreach ($menus as $submenu) {
-                $html .= $this->generateOffCanvasHtml($submenu);
+                $submenuHtml .= $this->generateOffCanvasHtml($submenu);
             }
-            $html .= '</ul>';
+            $submenuHtml .= '</ul>';
         }
+        $html = empty($submenuHtml) ? '<li>' : '<li class="nav-parent">';
+        $html .= '<a href="' . $menu->flink . '">' . $menu->title . '</a>';
         $html .= '</li>';
         return $html;
     }
