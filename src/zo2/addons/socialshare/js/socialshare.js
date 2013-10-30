@@ -21,6 +21,7 @@
             box_top: 200,
             box_left: 200,
             box_right: 300,
+            box_style: 'text-align: center; border: 1px solid #A09999; padding: 7px; float: left;',
             enablePopup: false,
             popupParams: {
                 sClose: 10,
@@ -59,6 +60,8 @@
                 });
 
                 if ($config.display_style == 'floating') {
+
+                    $container.addClass('hide');
 
                     $(window).load(function () {
                         scrollBox();
@@ -117,15 +120,16 @@
 
                 }
                 if ($social_box.length > 0) {
-
+                    var $border = $config.box_style;
                     if ($scrollY > $y) {
-                        $social_box.stop().attr('style', 'position: fixed; z-index: 9999; top: ' + $top_scrolled + 'px; left: ' + $x + 'px');
+                        $social_box.stop().attr('style', 'position: fixed; z-index: 9999; top: ' + $top_scrolled + 'px; left: ' + $x + 'px;' + $border);
                     } else if ($scrollY < $y) {
-                        $social_box.attr('style', 'position: fixed; z-index: 9999; top: ' + $config.box_top + 'px; left: ' + $x + 'px');
+                        $social_box.attr('style', 'position: fixed; z-index: 9999; top: ' + $config.box_top + 'px; left: ' + $x + 'px;' + $border);
                     }
 
                 }
 
+                $container.removeClass('hide');
             }
 
             /*For popup*/

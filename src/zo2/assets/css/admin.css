@@ -289,3 +289,6 @@ html[xmlns] .clearfix { display: block; }
     margin-bottom: 0px;
     margin-top: 0px;
 }
+.ui-sortable > tr {
+    cursor: move;
+}

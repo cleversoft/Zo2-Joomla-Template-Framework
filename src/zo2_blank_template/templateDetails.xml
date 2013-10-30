@@ -77,7 +77,7 @@
             <field name="header_logo" type="logo" default="" label="Header logo" />
             <field name="header_retina_logo" type="logo" default="" label="Header Retina logo" />
             <!--Footer Option-->
-            <field name="footer_copyright" type="textarea" default="" label="Copyright" />
+            <field name="footer_copyright" type="textarea" default="" label="Copyright" filter="raw" />
             <field name="footer_logo" type="radio" default="1" label="Show footer logo" class="btn-group" description="Show Zo2 Framework footer logo">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
@@ -276,8 +276,14 @@
                     default="300"
                     label="Right Position"
                     description="Right Position"/>
+            <field
+                    name="box_style"
+                    type="text"
+                    default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
+                    label="Box style"
+                    description="Box style"/>
 
-            <field name="social_order" type="socialorder" label="" description="test"/>
+            <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
 
 
             <field name="Twitter" type="spacer" class="zt-header" hr="true"/>

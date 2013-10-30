@@ -212,6 +212,15 @@ defined('_JEXEC') or die;
 
                     <div class="control-group">
                         <div class="control-label">
+                            <?php echo $this->form->getLabel('box_style', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('box_style', 'params'); ?>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
                             <?php echo $this->form->getLabel('social_order', 'params'); ?>
                         </div>
                         <div class="controls">

@@ -178,9 +178,12 @@ class plgSystemZo2 extends JPlugin
             /* Comments System */
             if ($config->get('enable_comments', 0) && !Zo2Framework::isFrontPage()) {
                 if (JFactory::getApplication()->input->getCmd('option') != 'com_k2') {
-                    Zo2Framework::import2('addons.comments.Zo2Comments');
-                    $comment = new Zo2Comments($article);
-                    $article->text = $article->text . $comment->renderHtml();
+                    $view = JFactory::getApplication()->input->get('view');
+                    if ($view == 'article') {
+                        Zo2Framework::import2('addons.comments.Zo2Comments');
+                        $comment = new Zo2Comments($article);
+                        $article->text = $article->text . $comment->renderHtml();
+                    }
                 }
 
             }
