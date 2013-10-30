@@ -33,3 +33,7 @@
     float: right;
     margin-left: 5px;
 }
+.floating .zo2-social-box .zo2-social-inner {
+    padding: 2px;
+    text-align: center;
+}

@@ -47,6 +47,25 @@ class JFormFieldSocialorder extends JFormFieldHidden
             'top' => 'Vertical Count',
             'none' => 'No Count',
         );
+        $layout_button['reddit'] = array(
+            'horizontal' => 'Horizontal Count',
+            'vertical' => 'Vertical Count',
+            'none' => 'No Count',
+        );
+        $layout_button['pinterest'] = array(
+            'beside' => 'Horizontal Count',
+            'above' => 'Vertical Count',
+            'none' => 'No Count',
+        );
+        $layout_button['tumblr'] = array(
+            'share_1' => 'Share 1',
+            'share_2' => 'Share 2',
+            'share_3' => 'Share 3',
+            'share_4' => 'Share 4',
+        );
+        $layout_button['delicious'] = array(
+            'logo' => 'default',
+        );
 
         // default
         $default = array(
@@ -82,6 +101,40 @@ class JFormFieldSocialorder extends JFormFieldHidden
                 'link' => 'http://www.linkedin.com',
                 'enable' => 1,
                 'button_design' => 'top'
+            ),
+            array(
+                'name' => 'reddit',
+                'index' => 5,
+                'website' => 'Reddit',
+                'link' => 'http://www.reddit.com',
+                'enable' => 1,
+                'button_design' => 'vertical'
+            ),
+
+            array(
+                'name' => 'pinterest',
+                'index' => 6,
+                'website' => 'Pinterest',
+                'link' => 'http://www.pinterest.com',
+                'enable' => 1,
+                'button_design' => 'vertical'
+            ),
+
+            array(
+                'name' => 'tumblr',
+                'index' => 7,
+                'website' => 'Tumblr',
+                'link' => 'http://www.tumblr.com',
+                'enable' => 1,
+                'button_design' => 'share_2'
+            ),
+            array(
+                'name' => 'delicious',
+                'index' => 8,
+                'website' => 'Delicious',
+                'link' => 'http://www.delicious.com',
+                'enable' => 1,
+                'button_design' => 'logo'
             ),
 
         );

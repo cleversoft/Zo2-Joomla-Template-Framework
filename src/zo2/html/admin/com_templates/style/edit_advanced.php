@@ -116,7 +116,6 @@ defined('_JEXEC') or die;
         ?>
             <ul class="nav nav-pills">
                 <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-                <li><a href="#social" data-toggle="tab">Social</a></li>
                 <li><a href="#popup" data-toggle="tab">Popup</a></li>
             </ul>
             <div class="tab-content">
@@ -246,67 +245,7 @@ defined('_JEXEC') or die;
                     </div>
 
                 </div>
-                <div id="social" class="tab-pane">
 
-                    <fieldset id="twitter-params">
-                        <legend><span class="zo2-label label-info">Twitter</span></legend>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <?php echo $this->form->getLabel('tw_username', 'params'); ?>
-                            </div>
-                            <div class="controls">
-                                <?php echo $this->form->getInput('tw_username', 'params'); ?>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <?php echo $this->form->getLabel('tw_recommended', 'params'); ?>
-                            </div>
-                            <div class="controls">
-                                <?php echo $this->form->getInput('tw_recommended', 'params'); ?>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <?php echo $this->form->getLabel('tw_hashtags', 'params'); ?>
-                            </div>
-                            <div class="controls">
-                                <?php echo $this->form->getInput('tw_hashtags', 'params'); ?>
-                            </div>
-                        </div>
-                    </fieldset>
-
-                    <fieldset id="facebook-params">
-
-                        <legend><span class="zo2-label label-info">Facebook</span></legend>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <?php echo $this->form->getLabel('fb_url', 'params'); ?>
-                            </div>
-                            <div class="controls">
-                                <?php echo $this->form->getInput('fb_url', 'params'); ?>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <?php echo $this->form->getLabel('fb_action', 'params'); ?>
-                            </div>
-                            <div class="controls">
-                                <?php echo $this->form->getInput('fb_action', 'params'); ?>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <?php echo $this->form->getLabel('fb_send', 'params'); ?>
-                            </div>
-                            <div class="controls">
-                                <?php echo $this->form->getInput('fb_send', 'params'); ?>
-                            </div>
-                        </div>
-
-                    </fieldset>
-
-                </div>
                 <div id="popup" class="tab-pane">
                     <div class="control-group">
                         <div class="control-label">
@@ -314,6 +253,55 @@ defined('_JEXEC') or die;
                         </div>
                         <div class="controls">
                             <?php echo $this->form->getInput('enable_popup', 'params'); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('tw_username', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('tw_username', 'params'); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('tw_recommended', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('tw_recommended', 'params'); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('tw_hashtags', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('tw_hashtags', 'params'); ?>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('fb_url', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('fb_url', 'params'); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('fb_action', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('fb_action', 'params'); ?>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('fb_send', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('fb_send', 'params'); ?>
                         </div>
                     </div>
 
@@ -361,6 +349,7 @@ defined('_JEXEC') or die;
                             <?php echo $this->form->getInput('excl_menu', 'params'); ?>
                         </div>
                     </div>
+
                 </div>
             </div>
         <?php

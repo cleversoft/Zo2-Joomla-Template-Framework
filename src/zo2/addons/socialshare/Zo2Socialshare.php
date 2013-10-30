@@ -87,6 +87,7 @@ class Zo2Socialshare
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/socialite.min.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.pinterest.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.bufferapp.js');
+            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.reddit.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialshare.js');
             $document->addScriptDeclaration('
                 jQuery(document).ready(
@@ -177,7 +178,7 @@ class Zo2Socialshare
                     $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . $article->link;
                 }
 
-                $html = '<div class="zo2-social-wrap" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
+                $html = '<div class="zo2-social-wrap '.$params->get('display_type').'" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
 
                 if ($view == 'article') {
 
