@@ -20,6 +20,7 @@ class Zo2MegaMenu
     protected $_items = null;
     protected $edit = false;
     protected $isAdmin = false;
+    private $_activeMenuId = -1;
     function __construct($menutype = 'mainmenu', $configs = array(), $params)
     {
         $this->_configs = $configs;
@@ -37,6 +38,7 @@ class Zo2MegaMenu
 
         $active_menu = $menu->getActive() ? $menu->getActive() : $menu->getDefault();
         $menu_id = $active_menu ? $active_menu->id : 0;
+        $this->_activeMenuId = $menu_id;
         $menu_tree = $active_menu->tree ? $active_menu->tree : array();
 
         // Get all child menus for a parent menu
@@ -223,7 +225,10 @@ class Zo2MegaMenu
             }
             $submenuHtml .= '</ul>';
         }
-        $html = empty($submenuHtml) ? '<li>' : '<li class="nav-parent">';
+        $liClass = array();
+        if (!empty($submenuHtml)) $liClass[] = 'nav-parent>';
+        if ($this->_activeMenuId == $menu->id) $liClass[] = 'nav-active';
+        $html = '<li class="' . implode(' ', $liClass) . '">';
         $html .= '<a href="' . $menu->flink . '">' . $menu->title . '</a>';
         $html .= $submenuHtml;
         $html .= '</li>';
