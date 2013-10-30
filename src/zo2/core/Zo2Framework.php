@@ -397,9 +397,10 @@ class Zo2Framework {
     }
 
     /**
-     * Display megamenu
      * @param $menutype
      * @param $template
+     * @param bool $isAdmin
+     * @return string
      */
     public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
@@ -412,7 +413,19 @@ class Zo2Framework {
         }
         $menu = new Zo2MegaMenu ($menutype, $mmconfig, $params);
         return $menu->renderMenu($isAdmin);
+    }
 
+    public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false)
+    {
+        Zo2Framework::import2('core.Zo2Megamenu');
+        $params = Zo2Framework::getParams();
+        $configs = json_decode($params->get('menu_config', ''), true);
+        $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
+        if (JFactory::getApplication()->isAdmin()) {
+            $mmconfig['edit'] = true;
+        }
+        $menu = new Zo2MegaMenu ($menutype, $mmconfig, $params);
+        return $menu->renderOffCanvasMenu($isAdmin);
     }
 
     /**

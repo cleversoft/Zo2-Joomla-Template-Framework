@@ -150,6 +150,85 @@ class Zo2MegaMenu
 
     }
 
+    public function renderOffCanvasMenu($isAdmin = false)
+    {
+        $this->isAdmin = $isAdmin;
+        $html = '<div class="offcanvas offcanvas-left hidden-lg hidden-md hidden-sm visible-xs"><div class="sidebar-nav">';
+
+        $keys = array_keys($this->_items);
+        $html .= $this->getOffCanvasMenu(null, $keys[0]);
+        $html .= '</div></div>';
+        return $html;
+    }
+
+    function getOffCanvasMenu($parent = null, $start = 0, $end = 0)
+    {
+        $html = '';
+        if ($start > 0) {
+            if (!isset($this->_items[$start])) return;
+            $parent_id = $this->_items[$start]->parent_id;
+            $menus = array();
+            $started = false;
+            foreach ($this->children[$parent_id] as $item) {
+
+                if ($started) {
+                    if ($item->id == $end) break;
+                    array_push($menus, $item);
+                } else {
+                    if ($item->id == $start) {
+                        $started = true;
+                        array_push($menus, $item);
+                    }
+                }
+            }
+
+            if (!count($menus)) return;
+
+        } else if ($start === 0){
+            $pid = $parent->id;
+            if (!isset($this->children[$pid])) return ;
+            $menus = $this->children[$pid];
+        } else {
+            return;
+        }
+
+
+        $class = '';
+        if (!$parent) {
+            $class .= ''; //additional class here
+        } else {
+            if (!$this->isAdmin) $class .= 'nav';
+            $class .= ' level' . $parent->level;
+        }
+
+        if ($class) $class = 'class="'.trim($class).'"';
+
+        $html .= '<ul '.$class.'>';
+
+        foreach ($menus as $menu) {
+            $html .= $this->generateOffCanvasHtml($menu);
+        }
+        $html .= '</ul>';
+
+        return $html;
+    }
+
+    private function generateOffCanvasHtml($menu)
+    {
+        $html = '<li>';
+        $html .= '<a href="' . $menu->flink . '">' . $menu->title . '</a>';
+        $menus = isset($this->children[$menu->id]) ? $this->children[$menu->id] : array();
+        if (!empty($menus)) {
+            $html .= '<ul class="submenu">';
+            foreach ($menus as $submenu) {
+                $html .= $this->generateOffCanvasHtml($submenu);
+            }
+            $html .= '</ul>';
+        }
+        $html .= '</li>';
+        return $html;
+    }
+
     /**
      * render menu
      */
@@ -158,13 +237,25 @@ class Zo2MegaMenu
         $this->isAdmin = $isAdmin;
         //
         $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation"><div class="container">';
-        $prefix .= '<div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        $prefix .= '<div class="navbar-header">';
+
+        /*
+        $prefix .= '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                           <span class="sr-only">ZO2</span>
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
-                    </button>
-                    </div>
+                    </button>';
+        */
+
+        $prefix .= '<button type="button" class="navbar-toggle off-canvas-trigger" data-toggle="offcanvas">
+                          <span class="sr-only">ZO2</span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                    </button>';
+
+        $prefix .= '</div>
                     <div class="navbar-collapse collapse">';
         $suffix = '</div></div></nav>';
         $html = '';
