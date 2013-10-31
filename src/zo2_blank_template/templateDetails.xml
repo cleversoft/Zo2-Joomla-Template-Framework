@@ -293,25 +293,25 @@
 
             <field
                     name="tw_username"
-                    type="text"
+                    type="textdesc"
                     default=""
                     label="Twitter Username"
                     description="Your twitter username without @ sign."/>
-            <field name="tw_recommended" type="text" default="" label="Recommended Acccounts"
+            <field name="tw_recommended" type="textdesc" default="" label="Recommended Accounts"
                    description="Enter recommended Twitter account(s)."/>
-            <field name="tw_hashtags" type="text" default="" label="Twitter Hashtags"
+            <field name="tw_hashtags" type="textdesc" default="" label="Twitter Hashtags"
                    description="Enter a Hashtag."/>
 
             <field name="Facebook" type="spacer" class="zt-header" hr="true"/>
 
             <field
                     name="fb_url"
-                    type="text"
+                    type="textdesc"
                     default=""
                     label="Facebook Url"
-                    description="You facebook page."/>
+                    description="Your facebook page you want to like. Leave blank for current page."/>
 
-            <field name="fb_action" type="list" default="like" label="Facebook Like " description="Facebook Like">
+            <field name="fb_action" type="list" default="like" label="Facebook action " description="Facebook action">
                 <option value="like">Like</option>
                 <option value="recommend">Recommend</option>
             </field>
@@ -323,19 +323,19 @@
 
             <field
                     name="days_popup_again"
-                    type="text"
+                    type="textdesc"
                     default="1"
                     label="Days shows again"
                     description="Days shows again"/>
             <field
                     name="show_popup"
-                    type="text"
+                    type="textdesc"
                     default="1"
                     label="Show popup in"
                     description="popup will be shown after X seconds"/>
             <field
                     name="close_popup"
-                    type="text"
+                    type="textdesc"
                     default="0"
                     label="Close popup in"
                     description="Popup will be close after X seconds. 0 to disable"/>
