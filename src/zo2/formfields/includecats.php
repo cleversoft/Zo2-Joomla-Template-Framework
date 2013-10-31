@@ -42,7 +42,7 @@ class JFormFieldIncludecats extends JFormField
                 $count = count($categories);
 
                 foreach ($categories as $category) :
-                $checked = in_array($category->id, $this->value) ? ' checked="checked"' : '';
+                $checked = in_array($category->id, is_array($this->value) ? $this->value : array()) ? ' checked="checked"' : '';
                 ?>
                 <li class="category-item">
                     <input type="checkbox" class="checkbox" name="<?php echo $this->name; ?>[]"

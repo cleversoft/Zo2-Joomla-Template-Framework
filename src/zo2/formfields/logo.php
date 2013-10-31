@@ -56,7 +56,7 @@ class JFormFieldLogo extends JFormField {
             </div>
             <div class="logo-image <?php echo $data['type'] == 'image' ? 'show' : ''?>">
                 <input type="hidden" class="basePath" value="<?php echo JUri::root(true)?>" />
-                <input onchange="refreshLogoPreview(this)" type="hidden" id="<?php echo $this->id . '_path'?>" class="logo-path" value="<?php echo $data['path']?>" />
+                <input onchange="refreshLogoPreview(this)" type="hidden" id="<?php echo $this->id . '_path'?>" class="logo-path" value="<?php echo isset($data['path']) ? $data['path'] : ''?>" />
                 <div class="btn-group">
                     <span class="logo-preview">
                         <?php if ($data['type'] == 'image' && !empty($data['path'])) : ?>
@@ -66,11 +66,11 @@ class JFormFieldLogo extends JFormField {
                     <a href="<?php echo $link?>" class="btn btn-primary btn-select-logo modal" rel="{handler: 'iframe', size: {x: 800, y: 600}}">Select</a>
                     <a href="#" class="btn btn-danger btn-remove-preview"><i class="icon-remove"></i></a>
                 </div>
-                <label>Width</label> <input type="text" class="logo-width input-mini" value="<?php echo $data['width']?>" />
-                <label>Height</label> <input type="text" class="logo-height input-mini" value="<?php echo $data['height']?>" />
+                <label>Width</label> <input type="text" class="logo-width input-mini" value="<?php echo isset($data['width']) ? $data['width'] : ''?>" />
+                <label>Height</label> <input type="text" class="logo-height input-mini" value="<?php echo isset($data['height']) ? $data['height'] : ''?>" />
             </div>
             <div class="logo-text <?php echo $data['type'] == 'text' ? 'show' : ''?>">
-                <label>Text</label> <input type="text" class="logo-text-input" value="<?php echo $data['text']?>" />
+                <label>Text</label> <input type="text" class="logo-text-input" value="<?php echo isset($data['text']) ? $data['text'] : ''?>" />
             </div>
         </div>
         <?php
