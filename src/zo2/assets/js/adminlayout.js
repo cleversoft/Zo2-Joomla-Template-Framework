@@ -413,7 +413,6 @@ jQuery(document).ready(function($){
     // listen to font options change
     $('#font_chooser').on('font-change', '.font-container', function() {
         var $this = $(this);
-
         generateFontOptions($this);
     });
 
@@ -604,7 +603,7 @@ var bindSortable = function () {
 var generateFontOptions = function ($container) {
     var $result = $container.find(' > input:first');
     var $enable = $container.find('.cbEnableFont');
-    if (!$enable.attr('checked')) {
+    if (!$enable.find('.btn-on').hasClass('active')) {
         $result.val('');
         return;
     }
