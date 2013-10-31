@@ -4,8 +4,7 @@
  *
  * @link        http://www.zo2framework.org
  * @link        http://github.com/aploss/zo2
- * @author      Duc Nguyen <ducntv@gmail.com>
- * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @author      ZooTemplate <http://zootemplate.com>
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
@@ -35,7 +34,11 @@
             facebook: 'http://www.facebook.com/sharer.php?u={URL}&amp;title={TITLE}',
             twitter: 'http://twitter.com/share?text={TITLE}&amp;url={URL}',
             google: 'https://plus.google.com/share?url={URL}',
-            linkedin: 'http://www.linkedin.com/shareArticle?mini=true&amp;url={URL}&amp;title={TITLE}'
+            linkedin: 'http://www.linkedin.com/shareArticle?mini=true&amp;url={URL}&amp;title={TITLE}',
+            reddit: 'http://www.reddit.com/submit?url={URL}&amp;title={TITLE}',
+            pinterest: 'http://www.pinterest.com/pin/create/button/?url={URL}&amp;description={TITLE}',
+            tumblr: 'http://www.tumblr.com/share/link?url={URL}&name={TITLE}',
+            delicious: 'https://delicious.com/save?v=5&noui&jump=close&url={URL}&title={TITLE}'
         };
 
 
@@ -202,7 +205,69 @@
                             '<span class="zo2-share-btn">Share on LinkedIn</span></a>';
 
                         break;
+                    case 'reddit':
 
+                        var $redditbutton = type.button_design;
+                        var $itemUrl = encodeURIComponent($container.data('url'));
+                        var $itemTitle = encodeURIComponent($container.data('title'));
+
+                        if ($config.display_style == 'floating') {
+                            $redditbutton = 'vertical';
+                        }
+
+                        if ('https:' == document.location.protocol) {
+                            var base_url = 'https://redditstatic.s3.amazonaws.com'
+                        } else {
+                            var base_url = 'http://www.reddit.com/static'
+                        }
+
+                        if ($redditbutton == 'none') {
+                            var styled_submit = '<a style="color: #369; text-decoration: none;" href="'+$url+'" target="_parent">';
+                            var unstyled_submit = '<a href="'+$url+'" target="'+$url+'">';
+
+                            $html +='<span class="reddit_button" style="';
+                            $html += 'color: grey;';
+                            $html += '">';
+                            $html += unstyled_submit + '<img style="height: 2.3ex; vertical-align:top; margin-right: 1ex" src="http://www.redditstatic.com/spreddit1.gif">' + "</a>";
+                            $html += styled_submit + 'submit';
+                            $html += '</a>';
+                            $html += '</span>';
+
+                        } else if ($redditbutton == 'horizontal') {
+                            $html +='<iframe src="' + base_url + '/button/button1.html?newwindow=1&width=120&url='+$itemUrl+'&title='+$itemTitle+'"  height="22" width="80" scrolling="no" frameborder="0"></iframe>';
+                        } else if ($redditbutton == 'vertical') {
+                            $html +='<iframe src="' + base_url + '/button/button2.html?newwindow=1&width=51&url='+$itemUrl+'&title='+$itemTitle+'"  height="69" width="51" scrolling="no" frameborder="0"></iframe>';
+                        }
+
+                        break;
+
+                    case 'pinterest':
+
+                        var $pinterestCount = type.button_design;
+
+                        if ($config.display_style == "floating") {
+                            $pinterestCount = 'above';
+                        }
+
+                        $html += '<a href="' + $url + '" class="socialite pinterest-pinit" data-default-href="' + $url + '" data-pin-do="buttonPin" data-pin-config="'+$pinterestCount+'">' +
+                            '<span class="zo2-share-btn">Share on Pinterest</span></a>';
+
+                        break;
+                    case 'tumblr':
+
+                        var $src = 'http://platform.tumblr.com/v1/'+type.button_design+'.png';
+                        $html += '<div> <a href="'+$url+'" target="_blank"><img src="'+$src+'" border="0" title="Share on Tumblr"/></a> </div>';
+
+                        break;
+
+                    case 'delicious':
+
+                        var $src = 'http://delicious.com/img/logo.png';
+                        $html += '<div class="socialite delicious"> <a href="#" onclick="window.open(\''+$url+'\', \'delicious\',\'toolbar=no,width=550,height=550\'); return false;">';
+                        $html +=  '<img src="'+$src+'" height="16" width="16" alt="Delicious" />';
+                        $html +=  'Save</a></div>';
+
+                        break;
                 }
 
                 return $beforeHtml + $html + $afterHtml;

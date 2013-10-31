@@ -285,8 +285,11 @@
 
             <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
 
-
-            <field name="Twitter" type="spacer" class="zt-header" hr="true"/>
+            <field name="enable_popup" type="radio" default="0" label="Enable/Disabled"
+                   description="Enable popup" class="btn-group">
+                <option value="1">Enabled</option>
+                <option value="0">Disabled</option>
+            </field>
 
             <field
                     name="tw_username"
@@ -316,12 +319,6 @@
             <field name="fb_send" type="radio" default="0" label="Show Send Button" description="Show Send Button" class="btn-group">
                 <option value="0">Hide</option>
                 <option value="1">Show</option>
-            </field>
-
-            <field name="enable_popup" type="radio" default="0" label="Enable popup"
-                   description="Enable popup" class="btn-group">
-                <option value="1">JYES</option>
-                <option value="0">JNO</option>
             </field>
 
             <field
