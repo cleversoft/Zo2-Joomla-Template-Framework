@@ -35,7 +35,7 @@ else $currentData = array('name' => 'default');
                         data-zo2-footer="<?php echo $p['variables']['footer']?>"
                         data-zo2-css="<?php echo $p['css']?>" data-zo2-less="<?php echo $p['less']?>"
                         >
-                        <div class="theme_title"><?php echo ucfirst($p->name)?></div>
+                        <div class="theme_title"><?php echo ucfirst($p['name'])?></div>
                         <div class="theme_thumbnail">
                             <img src="<?php echo $templatePath . $p['thumbnail']?>">
                         </div>

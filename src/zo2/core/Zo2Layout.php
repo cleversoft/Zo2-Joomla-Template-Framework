@@ -339,7 +339,9 @@ class Zo2Layout {
         if ($totalTakenSpace < 12) {
             $remainingSpace = 12 - $totalTakenSpace;
             $totalChildren = count($item['children']);
-            $item['children'][$totalChildren - 1]['span'] += $remainingSpace;
+            $index = $totalChildren - 1;
+            if ($index < 0) $index = 0;
+            if (isset($item['children'][$index])) $item['children'][$index]['span'] += $remainingSpace;
         }
 
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
@@ -379,7 +381,7 @@ class Zo2Layout {
             else {
                 $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
                 $componentHtml = '';
-                if ($componentPath = $this->_components[$item['position']]) {
+                if (isset($this->_components[$item['position']]) && $componentPath = $this->_components[$item['position']]) {
                     $componentClassName = "Zo2Component_" . $item['position'];
                     if (file_exists($componentPath)) require_once $componentPath;
                     if (class_exists($componentClassName)) {
