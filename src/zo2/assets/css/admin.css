@@ -291,3 +291,10 @@ html[xmlns] .clearfix { display: block; }
 .ui-sortable > tr {
     cursor: move;
 }
+.zo2-field-desc {
+    color: #444;
+    font-style: italic;
+    font-weight: normal;
+    margin-top: 4px;
+}
+/* End Social */
