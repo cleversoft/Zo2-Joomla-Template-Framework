@@ -154,7 +154,9 @@ class Zo2MegaMenu
     public function renderOffCanvasMenu($isAdmin = false)
     {
         $this->isAdmin = $isAdmin;
-        $html = '<div class="offcanvas offcanvas-left hidden-lg hidden-md hidden-sm visible-xs"><div class="sidebar-nav">';
+        $html = '<div class="offcanvas offcanvas-left hidden-lg hidden-md hidden-sm visible-xs">'.
+            '<a href="#" class="sidebar-close"></a>'.
+            '<div class="sidebar-nav">';
 
         $keys = array_keys($this->_items);
         $html .= $this->getOffCanvasMenu(null, $keys[0]);
