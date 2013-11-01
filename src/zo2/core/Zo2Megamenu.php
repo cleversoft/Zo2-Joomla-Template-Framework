@@ -221,17 +221,18 @@ class Zo2MegaMenu
         $submenuHtml = '';
         $menus = isset($this->children[$menu->id]) ? $this->children[$menu->id] : array();
         if (!empty($menus)) {
-            $submenuHtml = '<ul class="submenu nav-sub">';
+            $submenuHtml = '<ul class="submenu nav-sub collapse" id="ocSub-' . $menu->id . '">';
             foreach ($menus as $submenu) {
                 $submenuHtml .= $this->generateOffCanvasHtml($submenu);
             }
             $submenuHtml .= '</ul>';
         }
         $liClass = array();
-        if (!empty($submenuHtml)) $liClass[] = 'nav-parent>';
+        if (!empty($submenuHtml)) $liClass[] = 'nav-parent';
         if ($this->_activeMenuId == $menu->id) $liClass[] = 'nav-active';
         $html = '<li class="' . implode(' ', $liClass) . '">';
         $html .= '<a href="' . $menu->flink . '">' . $menu->title . '</a>';
+        if (!empty($submenuHtml)) $html .= '<a href="#" class="nav-oc-toggle icon-caret-down" data-toggle="collapse" data-target="#ocSub-' . $menu->id . '"></a>';
         $html .= $submenuHtml;
         $html .= '</li>';
         return $html;
