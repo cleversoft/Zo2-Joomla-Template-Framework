@@ -115,19 +115,19 @@
 
                 if ($config.floating_position == 'float_left') {
 
-                    $x = parseInt($main_box.offset().left) - $config.box_left;
+                    $x = 'left: ' + $config.box_left + 'px';
 
                 } else if ($config.floating_position == 'float_right') {
 
-                    $x = parseInt($main_box.width()) + parseInt($config.box_right);
+                    $x = 'right: ' + $config.box_right + 'px';
 
                 }
                 if ($social_box.length > 0) {
                     var $border = $config.box_style;
                     if ($scrollY > $y) {
-                        $social_box.stop().attr('style', 'position: fixed; z-index: 9999; top: ' + $top_scrolled + 'px; left: ' + $x + 'px;' + $border);
+                        $social_box.stop().attr('style', 'position: fixed; z-index: 9999; top: ' + $top_scrolled + 'px; ' + $x + ';' + $border);
                     } else if ($scrollY < $y) {
-                        $social_box.attr('style', 'position: fixed; z-index: 9999; top: ' + $config.box_top + 'px; left: ' + $x + 'px;' + $border);
+                        $social_box.attr('style', 'position: fixed; z-index: 9999; top: ' + $config.box_top + 'px; ' + $x + ';' + $border);
                     }
 
                 }
