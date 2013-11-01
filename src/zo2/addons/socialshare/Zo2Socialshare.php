@@ -178,7 +178,7 @@ class Zo2Socialshare
                     $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . $article->link;
                 }
 
-                $html = '<div class="zo2-social-wrap '.$params->get('display_type').'" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
+                $html = '<div class="zo2-social-wrap hidden-xs '.$params->get('display_type').'" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
 
                 if ($view == 'article') {
 
