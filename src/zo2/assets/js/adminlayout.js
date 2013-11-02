@@ -370,6 +370,8 @@ jQuery(document).ready(function($){
 
         if ($container.find('.btn-on').hasClass('active')) $optionsContainer.stop().slideDown();
         else $optionsContainer.stop().slideUp();
+
+        $container.trigger('font-change');
     });
 
     $('.font-container').on('click', '.btnStandardFonts', function(){
