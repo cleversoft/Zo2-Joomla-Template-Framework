@@ -29,13 +29,18 @@ class JFormFieldLayout extends JFormField
         $theme_path = JPATH_SITE.'/templates/'.$template.'/';
         $theme_layout_path = $theme_path . 'layouts/';
         $current_layout_path = $theme_layout_path . 'layout.json';
-        $caches = array(
-            $theme_layout_path . 'layout.php', $theme_layout_path . 'header.php', $theme_layout_path . 'footer.php'
-        );
+
+        $layoutCachePattern = $theme_layout_path . 'cache/layout_*.php';
+        $caches = glob($layoutCachePattern);
+
+        $caches[] = $theme_layout_path . 'header.php';
+        $caches[] = $theme_layout_path . 'footer.php';
 
         if (!empty($this->value)) {
+            // write new layout settings
             file_put_contents($current_layout_path, $this->value);
 
+            // remove cache
             foreach ($caches as $file) {
                 if (file_exists($file)) unlink($file);
             }
