@@ -760,7 +760,7 @@ var addIconToMenu = function() {
 
 var insertLogo = function () {
     var $ = jQuery;
-    var $form = $('#style-form');
+    var $form = $('#adminForm');
     $form.prepend('<a href="http://zo2framework.org" target="_blank" id="zo2logo" title="Zo2 Framework"></a>');
 };
 
@@ -774,13 +774,6 @@ var fixToolbarIcon = function () {
 var fixPreviewIcon = function () {
     var $ = jQuery;
     $('.icon-eye').removeClass('icon-eye').addClass('icon-eye-open');
-};
-
-var wrapForm = function() {
-    var $ = jQuery;
-    var $form = $('#style-form');
-    var $wrapper = $('<div id="zo2-config" />').insertBefore($form);
-    $form.appendTo($wrapper);
 };
 
 var injectFormSubmit = function() {
@@ -800,9 +793,10 @@ var injectFormSubmit = function() {
 
 /* Override default submit function */
 Joomla.submitform = function(task, form) {
-    if (typeof(form) === 'undefined') {
-        form = document.getElementById('adminForm');
+    if (typeof(form) === 'undefined' || form === null) {
+        form = document.adminForm;
     }
+    console.log(form);
 
     if (typeof(task) !== 'undefined') {
         form.task.value = task;

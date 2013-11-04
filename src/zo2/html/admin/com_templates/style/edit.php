@@ -21,16 +21,6 @@ $canDo = TemplatesHelper::getActions();
 
 if (Zo2Framework::allowOverrideAdminTemplate()) :
 ?>
-<script type="text/javascript">
-	Joomla.submitbutton = function(task)
-	{
-		if (task == 'style.cancel' || document.formvalidator.isValid(document.id('style-form')))
-		{
-			Joomla.submitform(task, document.getElementById('style-form'));
-		}
-	}
-</script>
-
 <form id="adminForm" action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="style-form" class="form-validate form-horizontal">
 	<fieldset id="zo2">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'details')); ?>
