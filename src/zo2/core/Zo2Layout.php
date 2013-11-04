@@ -236,8 +236,11 @@ class Zo2Layout {
         $debug = $params->get('debug_visibility');
 
         $html = '';
-        $cache = 'layout.php';
-        $path = $this->_layourDir . $cache;
+        $menu = &JSite::getMenu();
+        $menuItem = $menu->getActive();
+        $cache = 'layout_' . $menuItem->id . '.php';
+        $layoutCacheDir = $this->_layourDir . 'cache/';
+        $path = $layoutCacheDir . $cache;
         if (file_exists($path) && !$debug) {
             $html = file_get_contents($path);
         }
@@ -254,6 +257,7 @@ class Zo2Layout {
                     $html .= $this->generateHtmlFromItem($data[$i], $layoutType);
                 }
 
+                if (!is_dir($layoutCacheDir)) mkdir($layoutCacheDir, 0755);
                 file_put_contents($path, $html);
             }
             else return '';
