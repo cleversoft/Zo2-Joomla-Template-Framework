@@ -796,7 +796,7 @@ Joomla.submitform = function(task, form) {
     if (typeof(form) === 'undefined' || form === null) {
         form = document.adminForm;
     }
-    console.log(form);
+    jQuery('.toolbox-saveConfig').trigger('click'); // dirty hack for megamenu save
 
     if (typeof(task) !== 'undefined') {
         form.task.value = task;
