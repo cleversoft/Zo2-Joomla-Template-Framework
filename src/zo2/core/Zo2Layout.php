@@ -330,6 +330,8 @@ class Zo2Layout {
             $totalTakenSpace += $item['children'][$i]['span'];
         }
 
+        if ($totalTakenSpace <= 0) return !empty($item['name']) ? '<!-- empty row: ' . $item['name'] . ' -->' : '';
+
         $tempChildren = array();
         foreach($item['children'] as $c) {
             $tempChildren[] = $c;
