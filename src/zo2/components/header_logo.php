@@ -33,7 +33,10 @@ class Zo2Component_header_logo extends Zo2Component {
             $logoRetina = json_decode($logoRetina, true);
             $customStyle = '.logo_retina { display: none; }
                 .logo_normal {display:block}
-                @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+                @media screen and (min-resolution: 2dppx), @media screen and (-webkit-min-device-pixel-ratio: 2) {
+                    .logo_normal { display: none; }
+                    .logo_retina { display: block; }
+                }@media screen and (-webkit-min-device-pixel-ratio: 2){
                     .logo_normal { display: none; }
                     .logo_retina { display: block; }
                 }';
@@ -51,7 +54,7 @@ class Zo2Component_header_logo extends Zo2Component {
                     $html .= '<a style="width: ' . $logo['width'] . 'px; height: ' . $logo['height'] . 'px;background-image: url(' . JUri::root(true) . '/' . $logo['path'] . ')" class="logo_normal" href="' . JUri::root(true) . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
                 }
                 if ($logoRetina['type'] == 'image' && !empty($logoRetina['path'])) {
-                    $html .= '<a style="width: ' . $logoRetina['width'] . 'px; height: ' . $logoRetina['height'] . 'px" class="logo_retina" href="' . JUri::root(true) . '/' . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
+                    $html .= '<a style="width: ' . $logoRetina['width'] . 'px; height: ' . $logoRetina['height'] . 'px;background-image: url(' . JUri::root(true) . '/' . $logoRetina['path'] . ')" class="logo_retina" href="' . JUri::root(true) . '/' . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
                 }
             }
             $html .= !empty($slogan) ? '<h2 class="header_slogan">' . $slogan . '</h2>' : '';
