@@ -570,7 +570,7 @@ class Zo2Framework {
 
         if ($app->isAdmin()) {
             $templateName = Zo2Framework::getTemplateName();
-            if (strpos($templateName, 'zo2') !== false) return true;
+            if (strpos(strtolower($templateName), 'zo2') !== false) return true;
             else return false;
         }
         else return false;
