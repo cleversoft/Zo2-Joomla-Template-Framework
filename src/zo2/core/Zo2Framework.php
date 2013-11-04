@@ -468,11 +468,12 @@ class Zo2Framework {
     /**
      * Load Assets for admin
      */
-    public static function loadAdminAssets() {
-
-        Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/css/admin.css');
-        JHtml::_('formbehavior.chosen', 'select');
-
+    public static function loadAdminAssets()
+    {
+        if (Zo2Framework::allowOverrideAdminTemplate()) {
+            Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/css/admin.css');
+            JHtml::_('formbehavior.chosen', 'select');
+        }
     }
 
     /**
@@ -561,5 +562,17 @@ class Zo2Framework {
         if (substr($version, 0, 2) == '3.') $result = false;
         else if (substr($version, 0, 4) == '2.5.') $result = true;
         return $result;
+    }
+
+    public static function allowOverrideAdminTemplate()
+    {
+        $app = JFactory::getApplication();
+
+        if ($app->isAdmin()) {
+            $templateName = Zo2Framework::getTemplateName();
+            if (strpos($templateName, 'zo2') !== false) return true;
+            else return false;
+        }
+        else return false;
     }
 }

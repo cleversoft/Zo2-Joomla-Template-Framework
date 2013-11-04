@@ -103,9 +103,9 @@ class plgSystemZo2 extends JPlugin
             }
 
         } else {
-            Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
+            if (Zo2Framework::allowOverrideAdminTemplate()) Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
         }
-        $doc->addStyleSheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
+        if (Zo2Framework::allowOverrideAdminTemplate()) $doc->addStyleSheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
     }
 
     function onAfterRender()
