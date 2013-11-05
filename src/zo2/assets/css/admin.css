@@ -74,7 +74,7 @@
 #assignment { padding:15px;position: relative }
 #assignment #jform_menuselect-lbl { display: none }
 #assignment .btn-toolbar,
-#assignment .jform-rightbtn { position: absolute; right: 15px; top: 10px }
+#assignment .jform-rightbtn {}
 
 /*Detail*/
 #megamenu, #advanced { padding:15px;position: relative }
