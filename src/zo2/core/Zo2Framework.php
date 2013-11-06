@@ -573,6 +573,6 @@ class Zo2Framework {
             if (strpos(strtolower($templateName), 'zo2') !== false) return true;
             else return false;
         }
-        else return false;
+        else return true;
     }
 }
