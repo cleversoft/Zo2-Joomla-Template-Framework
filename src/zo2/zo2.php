@@ -96,11 +96,13 @@ class plgSystemZo2 extends JPlugin
             $doc->addScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
             // Share social
             $params = Zo2Framework::getParams();
+            /*
             if ($params->get('enable_popup', 0)) {
                 if (!$_COOKIE['show_modal']) {
                     Zo2Framework::getInstance()->zo2Social->loadScript('#zo2-social-popup');
                 }
             }
+            */
 
         } else {
             if (Zo2Framework::allowOverrideAdminTemplate()) Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
@@ -124,9 +126,11 @@ class plgSystemZo2 extends JPlugin
             $body = $this->doShortCode($body);
 
             // Share social
+            /*
             if ($params->get('enable_popup', 0)) {
                 $body = Zo2Framework::getInstance()->zo2Social->renderPopup($body);
             }
+            */
 
             JResponse::setBody($body);
 

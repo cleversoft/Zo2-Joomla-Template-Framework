@@ -114,244 +114,129 @@ defined('_JEXEC') or die;
         echo JHtml::_('bootstrap.endSlide');
         echo JHtml::_('bootstrap.addSlide', 'advanced', JText::_('Social Sharing'), 'social_sharing');
         ?>
-            <ul class="nav nav-pills">
-                <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-                <li><a href="#popup" data-toggle="tab">Popup</a></li>
-            </ul>
-            <div class="tab-content">
-                <div id="basic" class="tab-pane active">
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('show_in_article', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('show_in_article', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('show_in_category', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('show_in_category', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('show_in_featured', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('show_in_featured', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('catid', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('catid', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('display_type', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('display_type', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('normal_position', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('normal_position', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('floating_position', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('floating_position', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('box_top', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('box_top', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('box_left', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('box_left', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('box_right', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('box_right', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('box_style', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('box_style', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('social_order', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('social_order', 'params'); ?>
-                        </div>
-                    </div>
-
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('button_layout', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('button_layout', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('social_position', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('social_position', 'params'); ?>
-                        </div>
-                    </div>
-
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('show_in_article', 'params'); ?>
                 </div>
-
-                <div id="popup" class="tab-pane">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('enable_popup', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('enable_popup', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('tw_username', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('tw_username', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('tw_recommended', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('tw_recommended', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('tw_hashtags', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('tw_hashtags', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('fb_url', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('fb_url', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('fb_action', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('fb_action', 'params'); ?>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('fb_send', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('fb_send', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('days_popup_again', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('days_popup_again', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('appear_popup', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('appear_popup', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('close_popup', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('close_popup', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('menuexin', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('menuexin', 'params'); ?>
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <div class="control-label">
-                            <?php echo $this->form->getLabel('excl_menu', 'params'); ?>
-                        </div>
-                        <div class="controls">
-                            <?php echo $this->form->getInput('excl_menu', 'params'); ?>
-                        </div>
-                    </div>
-
+                <div class="controls">
+                    <?php echo $this->form->getInput('show_in_article', 'params'); ?>
                 </div>
             </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('show_in_category', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('show_in_category', 'params'); ?>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('show_in_featured', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('show_in_featured', 'params'); ?>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('catid', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('catid', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('display_type', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('display_type', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('normal_position', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('normal_position', 'params'); ?>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('floating_position', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('floating_position', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('box_top', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('box_top', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('box_left', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('box_left', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('box_right', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('box_right', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('box_style', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('box_style', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('social_order', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('social_order', 'params'); ?>
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('button_layout', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('button_layout', 'params'); ?>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('social_position', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('social_position', 'params'); ?>
+                </div>
+            </div>
+
         <?php
         echo JHtml::_('bootstrap.endSlide');
         echo JHtml::_('bootstrap.addSlide', 'advanced', JText::_('Advanced'), 'advanced_options');

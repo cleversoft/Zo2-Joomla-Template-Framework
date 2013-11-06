@@ -100,7 +100,7 @@ class Zo2Socialshare
                             box_left: "' . $this->params->get('box_left', 0) . '",
                             box_right: "' . $this->params->get('box_right', 0) . '",
                             box_style: "' . $this->params->get('box_style', 'text-align: center; border: 1px solid #A09999; padding: 7px; float: left;') . '",
-                            enablePopup: ' . $this->params->get('enable_popup', 0) . ',
+                            enablePopup: ' . /*$this->params->get('enable_popup', 0)*/ 0 . ',
                             popupParams: {
                                 sClose: "' . $close_popup . '",
                                 sPopup: "' . $open_popup . '",

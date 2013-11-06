@@ -78,6 +78,7 @@
                     });
                 }
 
+                /*
                 if ($config.enablePopup) {
 
                     var show = $.cookie('show_modal');
@@ -100,6 +101,7 @@
                     }
 
                 }
+                */
             }
 
             /*For floating*/
