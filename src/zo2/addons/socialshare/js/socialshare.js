@@ -31,7 +31,7 @@
         }, options);
 
         var $links = {
-            facebook: 'http://www.facebook.com/sharer.php?u={URL}&amp;title={TITLE}',
+            facebook: '{URL}',
             twitter: 'http://twitter.com/share?text={TITLE}&amp;url={URL}',
             google: 'https://plus.google.com/share?url={URL}',
             linkedin: 'http://www.linkedin.com/shareArticle?mini=true&amp;url={URL}&amp;title={TITLE}',
@@ -165,7 +165,7 @@
                         }
 
                         $html += '<div id="fb-root"></div>' +
-                            '<a href="' + $url + '" class="socialite facebook-like" data-href="' + $url + '" data-layout="' + $fblayout + '" data-send="' + $params.fb_send + '" data-action="' + $params.fb_action + '" data-width="80" data-show-faces="false" data-font="arial" target="_blank">' +
+                            '<a href="' + $url + '" class="socialite facebook-like" data-href="' + decodeURIComponent($url) + '" data-layout="' + $fblayout + '" data-send="' + $params.fb_send + '" data-action="' + $params.fb_action + '" data-width="80" data-show-faces="false" data-font="arial" target="_blank">' +
                             '<span class="zo2-share-btn">Share on Facebook</span></a>';
 
                         break;
