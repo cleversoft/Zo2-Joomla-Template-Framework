@@ -62,7 +62,7 @@ class Zo2Socialshare
                         $social->params = array(
                             'fb_url' => $this->params->get('fb_url'),
                             'fb_send' => ($this->params->get('fb_send') ? 'true' : 'false'),
-                            'fb_action' => $this->params->get('fb_action'),
+                            'fb_action' => $this->params->get('fb_action', 'like'),
                         );
                     } else if ($social->name == 'twitter') {
                         $social->params = array(

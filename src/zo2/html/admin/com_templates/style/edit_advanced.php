@@ -141,6 +141,22 @@ defined('_JEXEC') or die;
             </div>
             <div class="control-group">
                 <div class="control-label">
+                    <?php echo $this->form->getLabel('fb_action', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('fb_action', 'params'); ?>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('fb_send', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('fb_send', 'params'); ?>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
                     <?php echo $this->form->getLabel('catid', 'params'); ?>
                 </div>
                 <div class="controls">
