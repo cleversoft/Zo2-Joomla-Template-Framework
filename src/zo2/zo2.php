@@ -76,9 +76,6 @@ class plgSystemZo2 extends JPlugin
                 unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
-                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
-                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
-                unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
             }
             catch(Exception $e){}
         }

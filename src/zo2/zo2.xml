@@ -16,7 +16,6 @@
 
     <files>
         <filename plugin="zo2">zo2.php</filename>
-        <filename>layoutiframe.php</filename>
         <folder>addons</folder>
         <folder>core</folder>
         <folder>formfields</folder>
