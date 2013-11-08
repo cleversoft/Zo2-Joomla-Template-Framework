@@ -449,21 +449,47 @@ class Zo2Layout {
                 }
             }
 
-            if (!empty($preset)) {
-                $presetData = json_decode($preset, true);
-                $style = '';
-                if (!empty($presetData['background'])) $style .= 'body{background-color:' . $presetData['background'] . '}';
-                if (!empty($presetData['header'])) $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
-                if (!empty($presetData['header_top'])) $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
-                if (!empty($presetData['text'])) $style .= 'body{color:' . $presetData['text'] . '}';
-                if (!empty($presetData['link'])) $style .= 'a{color:' . $presetData['link'] . '}';
-                if (!empty($presetData['link_hover'])) $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
-                if (!empty($presetData['bottom1'])) $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
-                if (!empty($presetData['bottom2'])) $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
-                if (!empty($presetData['footer'])) $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
-                if (!empty($presetData['css'])) $this->insertCss($presetData['css']);
-                $this->insertCssDeclaration($style);
+            // insert preset data
+            if (empty($preset)) {
+                $zo2 = Zo2Framework::getInstance();
+                $presetPath = $zo2->getCurrentTemplateAbsolutePath() . '/layouts/presets.json';
+                $presets = array();
+                if (file_exists($presetPath)) {
+                    $presets = json_decode(file_get_contents($presetPath), true);
+                }
+                $defaultData = array();
+                for ($i= 0; $i < count($presets); $i++) {
+                    if ($presets[$i]['default']) $defaultData = $presets[$i];
+                }
+                if (empty($defaultData) && count($presets) > 0) $presetData = $presets[0];
+                else $presetData = array(
+                    'name' => $defaultData['name'],
+                    'css' => $defaultData['css'],
+                    'less' => $defaultData['less'],
+                    'background' => $defaultData['variables']['background'],
+                    'header' => $defaultData['variables']['header'],
+                    'header_top' => $defaultData['variables']['header_top'],
+                    'text' => $defaultData['variables']['text'],
+                    'link' => $defaultData['variables']['link'],
+                    'link_hover' => $defaultData['variables']['link_hover'],
+                    'bottom1' => $defaultData['variables']['bottom1'],
+                    'bottom2' => $defaultData['variables']['bottom2'],
+                    'footer' => $defaultData['variables']['footer']
+                );
             }
+            if(!empty($preset)) $presetData = json_decode($preset, true);
+            $style = '';
+            if (!empty($presetData['background'])) $style .= 'body{background-color:' . $presetData['background'] . '}';
+            if (!empty($presetData['header'])) $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
+            if (!empty($presetData['header_top'])) $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
+            if (!empty($presetData['text'])) $style .= 'body{color:' . $presetData['text'] . '}';
+            if (!empty($presetData['link'])) $style .= 'a{color:' . $presetData['link'] . '}';
+            if (!empty($presetData['link_hover'])) $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
+            if (!empty($presetData['bottom1'])) $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
+            if (!empty($presetData['bottom2'])) $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
+            if (!empty($presetData['footer'])) $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
+            if (!empty($presetData['css'])) $this->insertCss($presetData['css']);
+            $this->insertCssDeclaration($style);
 
             if (!$responsive)
                 $this->insertCss('/assets/css/non-responsive.css');

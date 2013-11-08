@@ -238,17 +238,24 @@ class Zo2Framework {
      */
     public static function getTemplateName($templateId = 0)
     {
-        $jinput = JFactory::getApplication()->input;
-        if($templateId == 0 && !isset($_GET['id'])) return '';
-        if($templateId == 0 && isset($_GET['id'])) $templateId = $jinput->getInt('id');
+        $app = JFactory::getApplication();
+        if ($app->isAdmin()) {
+            $jinput = JFactory::getApplication()->input;
+            if($templateId == 0 && !isset($_GET['id'])) return '';
+            if($templateId == 0 && isset($_GET['id'])) $templateId = $jinput->getInt('id');
 
-        //if(!isset($_GET['id'])) return '';
-        $db  = JFactory::getDBO();
-        $sql = 'SELECT template
-                FROM #__template_styles
-                WHERE id = ' . $templateId;
-        $db->setQuery($sql);
-        return $db->loadResult();
+            //if(!isset($_GET['id'])) return '';
+            $db  = JFactory::getDBO();
+            $sql = 'SELECT template
+                    FROM #__template_styles
+                    WHERE id = ' . $templateId;
+            $db->setQuery($sql);
+            return $db->loadResult();
+        }
+        else if ($app->isSite()) {
+            return $app->getTemplate();
+        }
+        else return '';
     }
 
     /**

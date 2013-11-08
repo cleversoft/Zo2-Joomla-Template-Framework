@@ -12,7 +12,27 @@
 $templatePath = JUri::root(true) . '/templates/' . $zo2->getTemplateName();
 if (!isset($presets)) $presets = array();
 if (!empty($this->value)) $currentData = json_decode($this->value, true);
-else $currentData = array('name' => 'default');
+else {
+    $defaultData = array();
+    for ($i= 0; $i < count($presets); $i++) {
+        if ($presets[$i]['default']) $defaultData = $presets[$i];
+    }
+    if (empty($defaultData) && count($presets) > 0) $defaultData = $presets[0];
+    $currentData = array(
+        'name' => $defaultData['name'],
+        'css' => $defaultData['css'],
+        'less' => $defaultData['less'],
+        'background' => $defaultData['variables']['background'],
+        'header' => $defaultData['variables']['header'],
+        'header_top' => $defaultData['variables']['header_top'],
+        'text' => $defaultData['variables']['text'],
+        'link' => $defaultData['variables']['link'],
+        'link_hover' => $defaultData['variables']['link_hover'],
+        'bottom1' => $defaultData['variables']['bottom1'],
+        'bottom2' => $defaultData['variables']['bottom2'],
+        'footer' => $defaultData['variables']['footer']
+    );
+}
 ?>
 <div id="zo2_themes_container">
     <input type="hidden" value="<?php echo htmlspecialchars($this->value)?>" name="<?php echo $this->name?>" id="<?php echo $this->id?>" />

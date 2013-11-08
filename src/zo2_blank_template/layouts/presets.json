@@ -1,6 +1,7 @@
 [
     {
         "name": "default",
+        "default": true,
         "css": "",
         "less": "",
         "thumbnail": "/assets/images/presets/default.jpg",
@@ -18,6 +19,7 @@
     },
     {
         "name": "black",
+        "default": false,
         "css": "/assets/css/presets/black.css",
         "less": "",
         "thumbnail": "/assets/images/presets/black.jpg",
@@ -35,6 +37,7 @@
     },
     {
         "name": "blue",
+        "default": false,
         "css": "/assets/css/presets/blue.css",
         "less": "",
         "thumbnail": "/assets/images/presets/blue.jpg",
