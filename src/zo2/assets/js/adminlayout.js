@@ -506,6 +506,7 @@ jQuery(document).ready(function($){
 });
 
 var generatePresetData = function () {
+    var $ = jQuery;
     var $preset = $('#zo2_themes').find('.active');
     var data = {
         name: $preset.attr('data-zo2-theme'),
