@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 
 class Zo2Socialshare
 {
+    public $addedSocialScript = false;
 
     function __construct($params)
     {
@@ -89,27 +90,31 @@ class Zo2Socialshare
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.bufferapp.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.reddit.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialshare.js');
-            $document->addScriptDeclaration('
-                jQuery(document).ready(
-                    function($){
-                        $("' . $selector . '").Zo2Socialshare({
-                            buttons: $.parseJSON(' . $newSocials . '),
-                            display_style: "' . $display_type . '",
-                            floating_position: "' . $this->params->get('floating_position', 'left') . '",
-                            box_top: "' . $this->params->get('box_top', 100) . '",
-                            box_left: "' . $this->params->get('box_left', 0) . '",
-                            box_right: "' . $this->params->get('box_right', 0) . '",
-                            box_style: "' . $this->params->get('box_style', 'text-align: center; border: 1px solid #A09999; padding: 7px; float: left;') . '",
-                            enablePopup: ' . /*$this->params->get('enable_popup', 0)*/ 0 . ',
-                            popupParams: {
-                                sClose: "' . $close_popup . '",
-                                sPopup: "' . $open_popup . '",
-                                dPopup: "' . $days_popup . '",
-                                domain: "' . JUri::getInstance()->toString(array('scheme', 'host', 'port')) . '"
-                            }
-                        });
-                });');
+            if (!$this->addedSocialScript) {
+                $document->addScriptDeclaration('
+                    jQuery(document).ready(
+                        function($){
+                            $("' . $selector . '").Zo2Socialshare({
+                                buttons: $.parseJSON(' . $newSocials . '),
+                                display_style: "' . $display_type . '",
+                                floating_position: "' . $this->params->get('floating_position', 'left') . '",
+                                box_top: "' . $this->params->get('box_top', 100) . '",
+                                box_left: "' . $this->params->get('box_left', 0) . '",
+                                box_right: "' . $this->params->get('box_right', 0) . '",
+                                box_style: "' . $this->params->get('box_style', 'text-align: center; border: 1px solid #A09999; padding: 7px; float: left;') . '",
+                                enablePopup: ' . /*$this->params->get('enable_popup', 0)*/ 0 . ',
+                                popupParams: {
+                                    sClose: "' . $close_popup . '",
+                                    sPopup: "' . $open_popup . '",
+                                    dPopup: "' . $days_popup . '",
+                                    domain: "' . JUri::getInstance()->toString(array('scheme', 'host', 'port')) . '"
+                                }
+                            });
+                    });'
+                );
 
+                $this->addedSocialScript = true;
+            }
         }
 
     }
@@ -170,8 +175,6 @@ class Zo2Socialshare
 
             if (($cats[0] == '') || in_array($article->catid, $cats)) {
 
-                $this->loadScript($selector);
-
                 if ($option == 'com_content') {
                     $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catslug));
                 } else if ($option == 'com_k2') {
@@ -179,6 +182,7 @@ class Zo2Socialshare
                 }
 
                 $html = '<div class="zo2-social-wrap hidden-xs '.$params->get('display_type').'" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
+                $catHtml = $html = '<div class="zo2-social-wrap hidden-xs normal" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
 
                 if ($view == 'article') {
 
@@ -191,14 +195,16 @@ class Zo2Socialshare
                         }
 
                     } else {
-                        $html = $html . $article->text;
+                        $html = $catHtml . $article->text;
                     }
 
                     $article->text = $html;
 
-                } else if ($view == 'featured') {
+                } else if ($view == 'featured' || $view == 'category') {
                     $article->introtext = $html . $article->introtext;
                 }
+
+                $this->loadScript($selector);
             }
 
         }
