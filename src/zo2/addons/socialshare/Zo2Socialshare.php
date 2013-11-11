@@ -90,6 +90,7 @@ class Zo2Socialshare
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.bufferapp.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.reddit.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialshare.js');
+            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/social.js');
             if (!$this->addedSocialScript) {
                 $document->addScriptDeclaration('
                     jQuery(document).ready(
@@ -112,6 +113,8 @@ class Zo2Socialshare
                             });
                     });'
                 );
+
+                $document->addScriptDeclaration('jQuery(document).ready(function($){$("' . $selector . '").Zo2Social();});');
 
                 $this->addedSocialScript = true;
             }
@@ -182,7 +185,7 @@ class Zo2Socialshare
                 }
 
                 $html = '<div class="zo2-social-wrap hidden-xs '.$params->get('display_type').'" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
-                $catHtml = $html = '<div class="zo2-social-wrap hidden-xs normal" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
+                $catHtml = '<div class="zo2-social-wrap hidden-xs normal" data-id="' . $article->id . '" data-url="' . $article->link . '" data-title="' . $article->title . '" ></div>';
 
                 if ($view == 'article') {
 
@@ -201,6 +204,8 @@ class Zo2Socialshare
                     $article->text = $html;
 
                 } else if ($view == 'featured' || $view == 'category') {
+                    $html = '<div class="zo2-social-wrap hidden-xs floating" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
+                    if (!$this->addedSocialScript) $article->introtext .= $html;
                     $article->introtext = $html . $article->introtext;
                 }
 
