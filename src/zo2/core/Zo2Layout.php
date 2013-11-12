@@ -875,6 +875,7 @@ class Zo2Layout {
         $classes = array();
         //$classes[] = $jinput->get('view');
         $classes[] = Zo2Framework::getCurrentPage();
+
         return trim(implode(' ', $classes) . ' ' . $customClass);
     }
 

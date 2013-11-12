@@ -14,8 +14,11 @@ defined('_JEXEC') or die;
 class Zo2Socialshare
 {
     public $addedSocialScript = false;
+    public $socials = array();
+    public $optionAttributes = array();
+    public $optionAttributesHtml = '';
 
-    function __construct($params)
+    public function __construct($params)
     {
         $this->params = $params;
         $this->init();
@@ -24,17 +27,20 @@ class Zo2Socialshare
     /**
      *
      */
-    function init()
+    public function init()
     {
         $lang = JFactory::getLanguage();
         $lang->load('plg_system_zo2', JPATH_ADMINISTRATOR);
+
+        $this->loadScript();
+        $this->generateOptionAttributes();
+        $this->generateOptionAttributesHtml();
     }
 
     /**
      * Loading Scripts/stylesheets
-     * @param $selector
      */
-    function loadScript($selector)
+    public function loadScript()
     {
 
         $document = JFactory::getDocument();
@@ -47,10 +53,6 @@ class Zo2Socialshare
             $close_popup = (int)$this->params->get('close_popup', 10);
             $days_popup = (int)$this->params->get('days_popup_again', 1);
             $view = $this->getView();
-            $display_type = $this->params->get('display_type', 'normal');
-            if (($display_type == 'floating') && ($view != "article")) {
-                $display_type = 'normal';
-            }
 
             $socials = json_decode($this->params->get('social_order'));
             $newSocials = array();
@@ -75,23 +77,20 @@ class Zo2Socialshare
                         $social->params = array();
                     }
 
-                    $newSocials[] = $social;
+                    $this->socials[] = $social;
                 }
             }
 
-            $newSocials = "'" . addslashes(json_encode($newSocials)) . "'";
-
             $document->addStyleSheet(ZO2_PLUGIN_URL . '/addons/socialshare/css/social.css');
-            //$document->addScript(ZO2_PLUGIN_URL . '/assets/vendor/jquery/jquery-1.9.1.min.js');
-            //$document->addScript(ZO2_PLUGIN_URL . '/assets/vendor/bootstrap/js/bootstrap.min.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/jquery.cookie.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/socialite.min.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.pinterest.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.bufferapp.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialite/extensions/socialite.reddit.js');
-            $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialshare.js');
+            //$document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/socialshare.js');
             $document->addScript(ZO2_PLUGIN_URL . '/addons/socialshare/js/social.js');
             if (!$this->addedSocialScript) {
+                /*
                 $document->addScriptDeclaration('
                     jQuery(document).ready(
                         function($){
@@ -103,7 +102,6 @@ class Zo2Socialshare
                                 box_left: "' . $this->params->get('box_left', 0) . '",
                                 box_right: "' . $this->params->get('box_right', 0) . '",
                                 box_style: "' . $this->params->get('box_style', 'text-align: center; border: 1px solid #A09999; padding: 7px; float: left;') . '",
-                                enablePopup: ' . /*$this->params->get('enable_popup', 0)*/ 0 . ',
                                 popupParams: {
                                     sClose: "' . $close_popup . '",
                                     sPopup: "' . $open_popup . '",
@@ -113,48 +111,12 @@ class Zo2Socialshare
                             });
                     });'
                 );
+                */
 
-                $document->addScriptDeclaration('jQuery(document).ready(function($){$("' . $selector . '").Zo2Social();});');
+                $document->addScriptDeclaration('jQuery(document).ready(function($){$(".zo2-social-wrap").Zo2Social();});');
 
                 $this->addedSocialScript = true;
             }
-        }
-
-    }
-
-    /**
-     * Render popup
-     * @param $body the body html
-     * @return $body
-     */
-    function renderPopup($body)
-    {
-
-        if ($this->checkMenu()) {
-
-            $html = '<div class="modal fade" id="zo2Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                              <h4 class="modal-title">' . JText::_('Please support our') . '</h4>
-                            </div>
-                            <div class="modal-body">
-                                <p>' . JText::_('By clicking any of these buttons you help our site to get better') . '</p>
-                                <div id="zo2-social-popup"></div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                          </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                      </div><!-- /.modal -->';
-
-            $body = str_replace('</body>', $html . '</body>', $body);
-            return $body;
-
-        } else {
-            return $body;
         }
 
     }
@@ -164,9 +126,8 @@ class Zo2Socialshare
      * @param $article
      * @param string $selector
      */
-    function renderSocial($article, $selector = '.zo12-social-wrap')
+    public function renderSocial($article, $selector = '.zo12-social-wrap')
     {
-
         $url = '';
         $option = JFactory::getApplication()->input->getCmd('option', '');
         $view = $this->getView();
@@ -183,33 +144,23 @@ class Zo2Socialshare
                 } else if ($option == 'com_k2') {
                     $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . $article->link;
                 }
-
-                $html = '<div class="zo2-social-wrap hidden-xs '.$params->get('display_type').'" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
-                $catHtml = '<div class="zo2-social-wrap hidden-xs normal" data-id="' . $article->id . '" data-url="' . $article->link . '" data-title="' . $article->title . '" ></div>';
-
                 if ($view == 'article') {
+                    $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
+                    $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
 
-                    if ($params->get('display_type') == 'normal') {
-
-                        if ($params->get('normal_position') == 'top') {
-                            $html = $html . $article->text;
-                        } else if ($params->get('normal_position') == 'bottom') {
-                            $html = $article->text . $html;
-                        }
-
-                    } else {
-                        $html = $catHtml . $article->text;
+                    if ($params->get('normal_position') == 'top') {
+                        $article->text = $socialWrap . $article->text;
+                    } else if ($params->get('normal_position') == 'bottom') {
+                        $article->text = $article->text . $socialWrap;
                     }
 
-                    $article->text = $html;
-
-                } else if ($view == 'featured' || $view == 'category') {
-                    $html = '<div class="zo2-social-wrap hidden-xs floating" data-id="' . $article->id . '" data-url="' . $url . '" data-title="' . $article->title . '" ></div>';
-                    if (!$this->addedSocialScript) $article->introtext .= $html;
-                    $article->introtext = $html . $article->introtext;
                 }
-
-                $this->loadScript($selector);
+                else if ($view == 'featured' || $view == 'category') {
+                    $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
+                    $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
+                    if (!$this->addedSocialScript) $article->introtext .= $socialWrap;
+                    $article->introtext = $socialWrap . $article->introtext;
+                }
             }
 
         }
@@ -217,11 +168,47 @@ class Zo2Socialshare
         return;
     }
 
+    public function renderFloatSocial($selector = '.zo12-social-wrap')
+    {
+        $pattern = '<div class="zo2-social-float zo2-social-wrap hidden-xs hidden-md" data-social-type="floating" data-id="%s" data-url="%s" data-title="%s" %s></div>';
+        $url = JUri::current();
+        $doc = JFactory::getDocument();
+        $params = Zo2Framework::getParams();
+        $title = $doc->getTitle();
+
+        if ($params->get('display_type', 0)) {
+            return sprintf($pattern, 0, $url, $title, $this->optionAttributesHtml);
+        }
+        else return '';
+    }
+
+    public function generateOptionAttributes()
+    {
+        $services = array();
+        foreach($this->socials as $s) {
+            foreach($s->params as $key=>$value) {
+                $this->optionAttributes[$key] = $value;
+            }
+
+            if ($s->enable) $services[] = $s->name;
+        }
+        $this->optionAttributes['services'] = implode(' ', $services);
+    }
+
+    public function generateOptionAttributesHtml()
+    {
+        $html = array();
+        foreach($this->optionAttributes as $key=>$value) {
+            $html[] = 'data-social-' . $key . '="' . htmlspecialchars($value) . '"';
+        }
+        $this->optionAttributesHtml = implode(' ', $html);
+    }
+
     /**
      * Include/exclude menus
      * @return bool
      */
-    function checkMenu()
+    public function checkMenu()
     {
 
         $app = JFactory::getApplication();

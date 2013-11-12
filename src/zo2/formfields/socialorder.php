@@ -47,25 +47,31 @@ class JFormFieldSocialorder extends JFormFieldHidden
             'top' => 'Vertical Count',
             'none' => 'No Count',
         );
+        /*
         $layout_button['reddit'] = array(
             'horizontal' => 'Horizontal Count',
             'vertical' => 'Vertical Count',
             'none' => 'No Count',
         );
+        */
         $layout_button['pinterest'] = array(
             'beside' => 'Horizontal Count',
             'above' => 'Vertical Count',
             'none' => 'No Count',
         );
+        /*
         $layout_button['tumblr'] = array(
             'share_1' => 'Share 1',
             'share_2' => 'Share 2',
             'share_3' => 'Share 3',
             'share_4' => 'Share 4',
         );
+        */
+        /*
         $layout_button['delicious'] = array(
             'logo' => 'default',
         );
+        */
 
         // default
         $default = array(
@@ -102,6 +108,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
                 'enable' => 1,
                 'button_design' => 'top'
             ),
+            /*
             array(
                 'name' => 'reddit',
                 'index' => 5,
@@ -110,7 +117,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
                 'enable' => 1,
                 'button_design' => 'vertical'
             ),
-
+            */
             array(
                 'name' => 'pinterest',
                 'index' => 6,
@@ -119,7 +126,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
                 'enable' => 1,
                 'button_design' => 'vertical'
             ),
-
+            /*
             array(
                 'name' => 'tumblr',
                 'index' => 7,
@@ -136,7 +143,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
                 'enable' => 1,
                 'button_design' => 'logo'
             ),
-
+            */
         );
         $rows = json_decode($this->value);
         if (count($rows) == count($default)) {
