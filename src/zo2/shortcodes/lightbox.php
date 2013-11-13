@@ -47,7 +47,7 @@ class Lightbox extends Zo2Shortcode
         $frame = "<img src='" . $isrc . "' style='width:" . $width . "; height:" . $height . ";' alt='" . $title . "' />";
 
         if($lightbox == 'on') {
-            $frame = "<a href='" . $src . "' title='" . $title . "' >" . $frame . "</a>";
+            $frame = "<a href='" . $src . "' data-toggle=\"lightbox\" title='" . $title . "' >" . $frame . "</a>";
         }
 
         $frame = "<div class='zt-image-frame shortcode-image-" . $align . "' style='max-width: 100%; float: " . $align . "; width: " . $width . "; height: " . $height . "; '>" . $frame . "</div>";
