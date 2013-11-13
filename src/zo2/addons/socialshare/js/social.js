@@ -25,11 +25,11 @@
                         + '<span class="zo2-share-btn">Share on Facebook</span></a>';
                     break;
                 case 'twitter':
-                    socialHtml += '<a rel="nofollow" href="' + href + '" class="socialite twitter-share" data-url="' + href + '" data-count="' + (options.float ? 'none' : '1') + '" target="_blank">'
+                    socialHtml += '<a rel="nofollow" href="' + href + '" class="socialite twitter-share" data-url="' + href + '" data-count="' + (options.float ? 'vertical' : '') + '" data-count="' + (options.float ? '1' : '1') + '" target="_blank">'
                         + '<span class="zo2-share-btn">Share on Twitter</span></a>';
                     break;
                 case 'google':
-                    socialHtml += '<a rel="nofollow" href="' + href + '" class="socialite googleplus-one" data-href="' + href + '" data-action="share" data-size="medium" data-annotation="bubble">'
+                    socialHtml += '<a rel="nofollow" href="' + href + '" class="socialite googleplus-one" data-href="' + href + '" data-action="share" data-size="' + (options.float ? 'tall' : '') + '" data-annotation="bubble">'
                         + '<span class="zo2-share-btn">Share on Google+</span></a>';
                     break;
                 case 'linkedin':
