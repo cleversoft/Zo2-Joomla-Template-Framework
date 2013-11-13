@@ -53,12 +53,14 @@ class plgSystemZo2 extends JPlugin
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core-uncompressed.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/core-uncompressed.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/caption-uncompressed.js']);
+                unset($doc->_scripts[JURI::root(true) . '/media/system/js/tabs-state.js']);
 
                 unset($doc->_styleSheets[JUri::root(true) . '/media/system/css/modal.css']);
 
                 if (isset($doc->_script) && isset($doc->_script['text/javascript']))
                 {
                     $doc->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $doc->_script['text/javascript']);
+                    $doc->_script['text/javascript'] = preg_replace('%new JCaption\(\'img.caption\'\);%', '', $doc->_script['text/javascript']);
                     if (empty($doc->_script['text/javascript']))
                         unset($doc->_script['text/javascript']);
                 }

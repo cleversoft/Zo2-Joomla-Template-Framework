@@ -189,7 +189,7 @@ class timthumb {
 		$this->salt = @filemtime(__FILE__) . '-' . @fileinode(__FILE__);
 		$this->debug(3, "Salt is: " . $this->salt);
 		if(FILE_CACHE_DIRECTORY){
-			if(! is_dir(FILE_CACHE_DIRECTORY)){
+			if(! is_dir(FILE_CACHE_DIRECTORY)) {
 				@mkdir(FILE_CACHE_DIRECTORY);
 				if(! is_dir(FILE_CACHE_DIRECTORY)){
 					$this->error("Could not create the file cache directory.");

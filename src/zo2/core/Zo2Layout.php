@@ -707,6 +707,8 @@ class Zo2Layout {
      */
     public function insertFooterAssets()
     {
+        //dirty fix
+        $this->insertJsDeclaration('jQuery(document).ready(function($){window.$ = jQuery});console.log($);');
         $app = JFactory::getApplication();
         $template = $app->getTemplate(true);
         $params = $template->params;
@@ -725,14 +727,8 @@ class Zo2Layout {
             }
 
             if (count($this->_jsDeclaration) > 0) {
-                $scripts = '';
-
-                foreach ($this->_jsDeclaration as $js) {
-                    $scripts .= $js . "\n";
-                }
-
+                $scripts = implode("\n", $this->_jsDeclaration);
                 $scripts = '<script type="text/javascript">' . $scripts . '</script>';
-
                 $html .= $scripts;
             }
             file_put_contents($path, $html);
