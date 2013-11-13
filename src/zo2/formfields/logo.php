@@ -48,7 +48,7 @@ class JFormFieldLogo extends JFormField {
 
         ?>
         <div class="field-logo-container">
-            <input class="logoInput" type="hidden" id="<?php echo $this->id?>" name="<?php echo $this->name?>" value="<?php echo $this->value?>" />
+            <input class="logoInput" type="hidden" id="<?php echo $this->id?>" name="<?php echo $this->name?>" value="<?php echo htmlspecialchars($this->value)?>" />
             <div class="radio btn-group logo-type-switcher">
                 <button class="btn logo-type-none <?php echo $data['type'] == 'none' ? 'active btn-success' : ''?>">None</button>
                 <button class="btn logo-type-image <?php echo $data['type'] == 'image' ? 'active btn-success' : ''?>">Image</button>
