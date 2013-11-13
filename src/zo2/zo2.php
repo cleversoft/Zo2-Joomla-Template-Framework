@@ -39,8 +39,11 @@ class plgSystemZo2 extends JPlugin
         $doc = JFactory::getDocument();
         $params = Zo2Framework::getParams();
         $disableMootols = $params->get('disable_mootools');
+        $input = JFactory::getApplication()->input;
+        $view = $input->get('view', '');
+        $layout = $input->get('layout');
 
-        if (!$app->isAdmin() && $disableMootols) {
+        if (!$app->isAdmin() && $disableMootols && ($view != 'form' && $layout != 'edit')) {
             try {
                 // remove stupid mootools
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
