@@ -503,6 +503,20 @@ jQuery(document).ready(function($){
         }
         return false;
     });
+
+    var $select = $('#display_type_choose').find('select:first');
+    var $normal_display = $('.display_type_normal');
+
+    if ($select.val() == 'normal') $normal_display.show();
+    else $normal_display.hide();
+
+    jQuery('#display_type_choose').find('select:first').change(function() {
+        var $this = $(this);
+        console.log($this.val());
+
+        if ($this.val() == 'normal') $normal_display.slideDown();
+        else $normal_display.slideUp();
+    });
 });
 
 var generatePresetData = function () {
