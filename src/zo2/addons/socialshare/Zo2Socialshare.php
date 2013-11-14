@@ -133,7 +133,7 @@ class Zo2Socialshare
         $view = $this->getView();
         $params = Zo2Framework::getParams();
 
-        if ($this->showIn($view)) {
+        if ($this->showIn($view) && $params->get('display_type', 'normal') == 'normal') {
 
             $cats = $params->get('catid');
 
@@ -144,6 +144,7 @@ class Zo2Socialshare
                 } else if ($option == 'com_k2') {
                     $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . $article->link;
                 }
+
                 if ($view == 'article') {
                     $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
                     $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
@@ -155,7 +156,7 @@ class Zo2Socialshare
                     }
 
                 }
-                else if ($view == 'featured' || $view == 'category') {
+                else if ($view == 'category') {
                     $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
                     $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
                     if (!$this->addedSocialScript) $article->introtext .= $socialWrap;
@@ -170,16 +171,17 @@ class Zo2Socialshare
 
     public function renderFloatSocial($selector = '.zo12-social-wrap')
     {
-        $pattern = '<div class="zo2-social-float zo2-social-wrap hidden-xs hidden-md" data-social-type="floating" data-id="%s" data-url="%s" data-title="%s" %s></div>';
-        $url = JUri::current();
         $doc = JFactory::getDocument();
         $params = Zo2Framework::getParams();
-        $title = $doc->getTitle();
-
-        if ($params->get('display_type', 0)) {
+        $view = $this->getView();
+        if ($view == 'article' && $params->get('display_type', 'normal') == 'float') {
+            $pattern = '<div class="zo2-social-float zo2-social-wrap hidden-xs hidden-md" data-social-type="floating" data-id="%s" data-url="%s" data-title="%s" %s></div>';
+            $url = JUri::current();
+            $title = $doc->getTitle();
             return sprintf($pattern, 0, $url, $title, $this->optionAttributesHtml);
         }
-        else return '';
+
+        return '';
     }
 
     public function generateOptionAttributes()

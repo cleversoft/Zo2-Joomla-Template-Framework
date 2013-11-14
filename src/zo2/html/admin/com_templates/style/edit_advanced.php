@@ -116,31 +116,6 @@ defined('_JEXEC') or die;
         ?>
             <div class="control-group">
                 <div class="control-label">
-                    <?php echo $this->form->getLabel('show_in_article', 'params'); ?>
-                </div>
-                <div class="controls">
-                    <?php echo $this->form->getInput('show_in_article', 'params'); ?>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">
-                    <?php echo $this->form->getLabel('show_in_category', 'params'); ?>
-                </div>
-                <div class="controls">
-                    <?php echo $this->form->getInput('show_in_category', 'params'); ?>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <?php echo $this->form->getLabel('show_in_featured', 'params'); ?>
-                </div>
-                <div class="controls">
-                    <?php echo $this->form->getInput('show_in_featured', 'params'); ?>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
                     <?php echo $this->form->getLabel('fb_action', 'params'); ?>
                 </div>
                 <div class="controls">
@@ -164,12 +139,29 @@ defined('_JEXEC') or die;
                 </div>
             </div>
 
-            <div class="control-group">
+            <div class="control-group" id="display_type_choose">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('display_type', 'params'); ?>
                 </div>
                 <div class="controls">
                     <?php echo $this->form->getInput('display_type', 'params'); ?>
+                </div>
+            </div>
+            <div class="control-group display_type_normal">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('show_in_article', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('show_in_article', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group display_type_normal">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('show_in_category', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('show_in_category', 'params'); ?>
                 </div>
             </div>
 
