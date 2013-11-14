@@ -36,14 +36,6 @@ $fontStyles = array(
         <div class="control-label">
             <div class="font-label">Enable</div>
         </div>
-        <!--
-        <div class="controls">
-            <label class="switch_wrap enable_type" for="cb<?php echo $this->fieldname?>">
-                <input id="cb<?php echo $this->fieldname?>" class="cbEnableFont" type="checkbox" <?php echo $data ? 'checked' : '' ?> />
-                <div class="switch"><span class="bullet"></span></div>
-            </label>
-        </div>
-        -->
         <div class="controls btn-group btn-group-onoff cbEnableFont">
             <button class="btn btn-on <?php echo $data ? 'active btn-success' : ''?>">On</button>
             <button class="btn btn-off <?php echo !$data ? 'active btn-danger' : ''?>">Off</button>
@@ -104,7 +96,7 @@ $fontStyles = array(
                 <div class="font-desc">Specify the <?php echo strtolower($this->getLabel())?> font properties</div>
             </div>
             <div class="controls floatdiv clearfix">
-                <div><input type="number" class="txtFontSize" value="<?php echo $data['size']?>" /> px</div>
+                <div><input type="text" class="txtFontSize" value="<?php echo $data['size']?>" /> px</div>
 
                 <div class="colorpicker-container">
                     <input type="text" class="txtColorPicker" value="<?php echo $data['color']?>" />
