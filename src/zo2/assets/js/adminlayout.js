@@ -512,8 +512,6 @@ jQuery(document).ready(function($){
 
     jQuery('#display_type_choose').find('select:first').change(function() {
         var $this = $(this);
-        console.log($this.val());
-
         if ($this.val() == 'normal') $normal_display.slideDown();
         else $normal_display.slideUp();
     });
