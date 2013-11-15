@@ -133,49 +133,59 @@ class Zo2Socialshare
         $view = $this->getView();
         $params = Zo2Framework::getParams();
 
-        if ($this->showIn($view) && $params->get('display_type', 'normal') == 'normal') {
+        $cats = $params->get('catid');
 
-            $cats = $params->get('catid');
+        if (($cats[0] == '') || in_array($article->catid, $cats)) {
 
-            if (($cats[0] == '') || in_array($article->catid, $cats)) {
-
-                if ($option == 'com_content') {
-                    $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catslug));
-                } else if ($option == 'com_k2') {
-                    $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . $article->link;
-                }
-
-                if ($view == 'article') {
-                    $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
-                    $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
-
-                    if ($params->get('normal_position') == 'top') {
-                        $article->text = $socialWrap . $article->text;
-                    } else if ($params->get('normal_position') == 'bottom') {
-                        $article->text = $article->text . $socialWrap;
-                    }
-
-                }
-                else if ($view == 'category') {
-                    $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
-                    $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
-                    if (!$this->addedSocialScript) $article->introtext .= $socialWrap;
-                    $article->introtext = $socialWrap . $article->introtext;
-                }
+            if ($option == 'com_content') {
+                $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catslug));
+            } else if ($option == 'com_k2') {
+                $url = JUri::getInstance()->toString(array('scheme', 'host', 'port')) . $article->link;
             }
 
+            if ($view == 'article' && $params->get('display_type', 'normal') == 'normal' && $this->showIn($view)) {
+                $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
+                $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
+
+                if ($params->get('normal_position') == 'top') {
+                    $article->text = $socialWrap . $article->text;
+                } else if ($params->get('normal_position') == 'bottom') {
+                    $article->text = $article->text . $socialWrap;
+                }
+            }
+            else if (($view == 'category' || $view = 'featured') && $params->get('show_social_article_list', '1')) {
+                $socialWrapPattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
+                $socialWrap = sprintf($socialWrapPattern, $article->id, $url, $article->title, $this->optionAttributesHtml);
+                //if (!$this->addedSocialScript) $article->introtext = $socialWrap . $article->introtext;
+                $article->introtext = $socialWrap . $article->introtext;
+            }
         }
 
         return;
     }
 
-    public function renderFloatSocial($selector = '.zo12-social-wrap')
+    public function renderFloatSocial()
     {
         $doc = JFactory::getDocument();
         $params = Zo2Framework::getParams();
         $view = $this->getView();
-        if ($view == 'article' && $params->get('display_type', 'normal') == 'float') {
+        if ($params->get('display_type', 'normal') == 'float' && $this->showIn($view)) {
             $pattern = '<div class="zo2-social-float zo2-social-wrap hidden-xs hidden-md" data-social-type="floating" data-id="%s" data-url="%s" data-title="%s" %s></div>';
+            $url = JUri::current();
+            $title = $doc->getTitle();
+            return sprintf($pattern, 0, $url, $title, $this->optionAttributesHtml);
+        }
+
+        return '';
+    }
+
+    public function renderCurrentPageNormalSocial()
+    {
+        $doc = JFactory::getDocument();
+        $params = Zo2Framework::getParams();
+        //$view = $this->getView();
+        if ($params->get('display_type', 'normal') == 'normal') {
+            $pattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
             $url = JUri::current();
             $title = $doc->getTitle();
             return sprintf($pattern, 0, $url, $title, $this->optionAttributesHtml);
@@ -254,24 +264,23 @@ class Zo2Socialshare
      */
     public function showIn($view)
     {
-
-        $bool = false;
+        $result = false;
         switch ($view) {
             case 'article':
-                $bool = $this->params->get('show_in_article', 0) ? true : false;
+                $result = $this->params->get('show_in_article', 0) ? true : false;
                 break;
             case 'category':
-                $bool = $this->params->get('show_in_category', 0) ? true : false;
+                $result = $this->params->get('show_in_category', 0) ? true : false;
                 break;
             case 'featured':
-                $bool = $this->params->get('show_in_featured', 0) ? true : false;
+                $result = $this->params->get('show_in_featured', 0) ? true : false;
                 break;
             default:
-                $bool = true;
+                $result = true;
                 break;
         }
 
-        return $bool;
+        return $result;
     }
 
     /**

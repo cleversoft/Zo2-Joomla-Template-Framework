@@ -504,6 +504,8 @@ jQuery(document).ready(function($){
         return false;
     });
 
+    /*
+
     var $select = $('#display_type_choose').find('select:first');
     var $normal_display = $('.display_type_normal');
 
@@ -515,6 +517,7 @@ jQuery(document).ready(function($){
         if ($this.val() == 'normal') $normal_display.slideDown();
         else $normal_display.slideUp();
     });
+    */
 });
 
 var generatePresetData = function () {

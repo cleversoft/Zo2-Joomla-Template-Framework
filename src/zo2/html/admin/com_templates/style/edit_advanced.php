@@ -165,6 +165,24 @@ defined('_JEXEC') or die;
                 </div>
             </div>
 
+            <div class="control-group display_type_normal">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('show_in_featured', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('show_in_featured', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group display_type_normal">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('show_social_article_list', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('show_social_article_list', 'params'); ?>
+                </div>
+            </div>
+
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('normal_position', 'params'); ?>
