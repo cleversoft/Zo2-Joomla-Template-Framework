@@ -18,6 +18,8 @@ class plgSystemZo2 extends JPlugin
 {
     function onAfterInitialise()
     {
+        $app = JFactory::getApplication();
+        $app->loadLanguage();
         include_once dirname(__FILE__) . '/core/defines.php';
 
         $frameworkPath = JPATH_PLUGINS . '/system/zo2/core/Zo2Framework.php';
