@@ -96,7 +96,15 @@ class plgSystemZo2 extends JPlugin
             }
         }
         if ($app->isSite()) {
-
+            
+            /*
+             * Include RTL css for frontend template
+             * @use Please put your include extra files here if needed for RTL support
+             */
+            if ($params->get('rtl_layout') == 1) {
+                $doc->addStyleSheet(ZO2_PLUGIN_URL . '/assets/css/rtl.css');              
+            }
+            
             $doc->addScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
             // Share social
             $params = Zo2Framework::getParams();
