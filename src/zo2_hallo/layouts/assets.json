@@ -1,0 +1,69 @@
+[
+    {
+        "path": "/assets/js/jquery.min.js",
+        "type": "js",
+        "position": "header",
+        "base": "template"
+    },
+    {
+        "path": "/assets/js/jquery-noconflict.js",
+        "type": "js",
+        "position": "header",
+        "base": "template"
+    },
+    {
+        "path": "/assets/js/ekko-lightbox.js",
+        "type": "js",
+        "position": "footer",
+        "base": "template"
+    },
+    {
+        "path": "/assets/css/normalize.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header",
+        "base": "template"
+    },
+    {
+        "path": "/assets/vendor/bootstrap/css/bootstrap.min.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header",
+        "base": "plugin"
+    },
+    {
+        "path": "/assets/vendor/font-awesome/css/font-awesome.min.css",
+        "type": "css",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header",
+        "base": "plugin"
+    },
+    {
+        "path": "/assets/vendor/bootstrap/js/bootstrap.min.js",
+        "type": "js",
+        "position": "footer",
+        "base": "plugin"
+    },
+    {
+        "path": "/assets/js/megamenu.js",
+        "type": "js",
+        "position": "footer",
+        "base": "template"
+    },
+    {
+        "path": "/assets/less/template.less",
+        "type": "less",
+        "options": {
+            "rel": "stylesheet"
+        },
+        "position": "header",
+        "base": "template"
+    }
+]
+
