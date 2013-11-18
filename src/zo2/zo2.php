@@ -16,10 +16,16 @@ jimport('joomla.event.plugin');
 
 class plgSystemZo2 extends JPlugin
 {
+    
+    public function __construct(& $subject, $config)
+    {
+        parent::__construct($subject, $config);
+        $this->loadLanguage();
+    }
+    
     function onAfterInitialise()
     {
-        $app = JFactory::getApplication();
-        $app->loadLanguage();
+       
         include_once dirname(__FILE__) . '/core/defines.php';
 
         $frameworkPath = JPATH_PLUGINS . '/system/zo2/core/Zo2Framework.php';
