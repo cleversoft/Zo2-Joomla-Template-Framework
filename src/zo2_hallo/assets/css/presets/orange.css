@@ -1,0 +1,47 @@
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus,
+nav.zo2-menu .navbar-nav > .active > a,
+nav.zo2-menu .navbar-nav > .active > a:hover,
+nav.zo2-menu .navbar-nav > .active > a:focus{
+    color: #D35400;
+}
+#top-search form {
+    border-left: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+}
+#zo2-header-top{
+    border-bottom: 1px solid #dddddd;
+}
+#zo2-bottom1 .btn,
+#zo2-bottom1 .zo2-mail{
+    border: 1px solid #405972;
+}
+#zo2-bottom1 .container{
+    border-bottom: 1px solid #405972;
+}
+#zo2-bottom1 h3.moduletitle,
+#zo2-bottom2 h3.moduletitle {
+    background: url("../../images/orange/module-title-line-dark.jpg") no-repeat scroll left bottom rgba(0, 0, 0, 0);
+}
+.social.footer-social a {
+    background-color: #283746;
+}
+.btn-success{
+    background-color: #D35400;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+btn-success.active,
+.open .dropdown-toggle.btn-success{
+    background-color: #ea6913;
+}
+.zo2-feature:hover .circle{
+    background-color: #D35400;
+}
+.circle:before {
+    box-shadow: 0 0 0 3px #D35400;}
+.circle i {
+    color: #D35400;
+}
