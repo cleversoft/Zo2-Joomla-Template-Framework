@@ -16,10 +16,16 @@ jimport('joomla.event.plugin');
 
 class plgSystemZo2 extends JPlugin
 {
+    
+    public function __construct(& $subject, $config)
+    {
+        parent::__construct($subject, $config);
+        $this->loadLanguage();
+    }
+    
     function onAfterInitialise()
     {
-        $app = JFactory::getApplication();
-        $app->loadLanguage();
+       
         include_once dirname(__FILE__) . '/core/defines.php';
 
         $frameworkPath = JPATH_PLUGINS . '/system/zo2/core/Zo2Framework.php';
@@ -96,7 +102,15 @@ class plgSystemZo2 extends JPlugin
             }
         }
         if ($app->isSite()) {
-
+            
+            /*
+             * Include RTL css for frontend template
+             * @use Please put your include extra files here if needed for RTL support
+             */
+            if ($params->get('rtl_layout') == 1) {
+                $doc->addStyleSheet(ZO2_PLUGIN_URL . '/assets/css/rtl.css');              
+            }
+            
             $doc->addScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
             // Share social
             $params = Zo2Framework::getParams();
