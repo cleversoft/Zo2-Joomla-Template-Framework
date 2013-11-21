@@ -71,10 +71,10 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 Coming soon
 
 ##Demo
-[http://beta.zo2framework.org](http://beta.zo2framework.org)
+[http://beta.zo2framework.org](http://demo.zo2framework.org)
 
 ##Release
-1. Alpha: released on July 15th, 2013 [http://beta.zo2framework.org](http://beta.zo2framework.org)
+1. Alpha: released on July 15th, 2013 [http://demo.zo2framework.org](http://demo.zo2framework.org)
 1. Beta 1: schedule to release on August 1st, 2013
 
 
