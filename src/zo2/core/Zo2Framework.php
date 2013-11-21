@@ -51,6 +51,7 @@ class Zo2Framework {
         self::getInstance();
         Zo2Framework::import('core.Zo2Layout');
         Zo2Framework::import('core.Zo2Component');
+        Zo2Framework::import('core.Zo2AssetsManager');
 
         $app = JFactory::getApplication();
 

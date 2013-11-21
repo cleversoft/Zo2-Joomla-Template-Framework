@@ -59,6 +59,9 @@ class Zo2Layout {
         $this->_layoutStatics = $coreStatics;
 
         $this->importComponents();
+        Zo2Framework::import('core.Zo2AssetsHelper');
+        Zo2Framework::import('vendor.minify.jsshrink');
+        Zo2Framework::import('vendor.minify.css');
     }
 
     /**
@@ -210,13 +213,19 @@ class Zo2Layout {
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         if (!is_dir($cacheDir)) mkdir($cacheDir, 0755, true);
 
-        $fileName = md5($item['path']) . '.css';
+        //$fileName = md5($item['path']) . '.css';
+        $fileName = str_replace('.less', '.css', basename($item['path']));
+        $oldPath = str_replace('.less', '.css', $item['path']);
+        $absoluteOldPath = str_replace('//', '/', $this->_templatePath . $oldPath);
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
-        $filePath = $cacheDir . DIRECTORY_SEPARATOR . $fileName;
-        $relativePath = '/assets/cache/' . $fileName;
+        $filePath = $cacheDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
+        $filePath = str_replace('//', '/', $filePath); // fix double slashes
+        $relativePath = str_replace('//', '/', '/assets/cache/' . $oldPath);
         //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
         $content = $this->processLessFile($this->_templatePath . $item['path']);
-        file_put_contents($filePath, $content);
+        $content = CssMinifier::minify($content);
+        $content = Zo2AssetsHelper::fixCssUrl($content, $filePath, dirname($absoluteOldPath));
+        Zo2AssetsHelper::forcePutContent($filePath, $content);
 
         $path = $this->_templateUri . $relativePath;
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
@@ -429,13 +438,13 @@ class Zo2Layout {
         $params = $template->params;
         $debug = $params->get('debug_visibility');
         $cache = 'header.php';
-        $path = $this->_layourDir . $cache;
+        $path = $this->_layourDir . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $cache;
         if (file_exists($path) && !$debug) return file_get_contents($path);
         else {
             $html = '';
             $responsive = $params->get('responsive_layout');
             $preset = $params->get('theme');
-            $combineLevel = $params->get('combine_statics');
+            $combineLevel = $params->get('combine_statics', 0);
             $compileLess = $params->get('less_compile');
 
             if ($compileLess == 1) {
@@ -496,7 +505,7 @@ class Zo2Layout {
 
             $this->insertCustomFontStyles();
 
-            //if (empty($combineLevel) || $combineLevel == '0') {
+            if (empty($combineLevel) || $combineLevel == '0') {
                 foreach($this->_layoutStatics as $item) {
                     if ($item['position'] == 'header') {
                         if ($item['type'] == 'css') $html .= $this->generateCssTag($item);
@@ -506,45 +515,60 @@ class Zo2Layout {
                         }
                     }
                 }
-
-                if (count($this->_styleDeclaration) > 0) {
-                    $styles = '';
-                    foreach ($this->_styleDeclaration as $style) {
-                        $styles .= $style . "\n";
-                    }
-
-                    $styles = '<style type="text/css">' . $styles . '</style>';
-                    $html .= "\n" . $styles;
-                }
-            //}
-            //else {
-                /*
+            }
+            else {
                 $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
-                if (!is_dir($cacheDir)) mkdir($cacheDir, 0755, true);
                 $cssPath = $cacheDir . DIRECTORY_SEPARATOR . 'style.css';
+                $jsPath = $cacheDir . DIRECTORY_SEPARATOR . 'script.js';
+                $cssUri = $this->_templateUri . '/assets/cache/style.css';
+                $jsUri = $this->_templateUri . '/assets/cache/script.js';
+
+                if (!is_dir($cacheDir)) mkdir($cacheDir, 0755, true);
+                $combineScript = '';
+                $combineStyle = '';
 
                 foreach ($this->_layoutStatics as $item) {
-                    $path = $this->_templatePath . $item['path'];
-                    $path = str_replace('//', '/', $path);
+                    if ($item['position'] == 'header') {
+                        $assetPath = $this->_templatePath . $item['path'];
+                        $assetPath = str_replace('//', '/', $assetPath);
 
-                    if ($item['type'] == 'css') $style .= file_get_contents($path) . "\n";
-                    elseif ($item['type'] == 'js') $script .= file_get_contents($path) . "\n";
-                    elseif ($item['type'] == 'less') {
-                        $lessContent = file_get_contents($path);
-                        $style .= $this->processLess($lessContent) . "\n";
+                        if ($item['type'] == 'css') {
+                            $tempStyle = CssMinifier::minify(file_get_contents($assetPath));
+
+                            Zo2AssetsHelper::fixCssUrl($tempStyle, $cssPath, $assetPath);
+
+                            $combineStyle .= '/* ' . basename($assetPath) . ' */' . "\n" . $tempStyle . "\n";
+                        }
+                        elseif ($item['type'] == 'js') $combineScript .= file_get_contents($assetPath) . "\n";
+                        elseif ($item['type'] == 'less') {
+                            $tempStyle = CssMinifier::minify($this->processLessFile($assetPath));
+
+                            Zo2AssetsHelper::fixCssUrl($tempStyle, $cssPath, $assetPath);
+
+                            $combineStyle .= '/* ' . basename($assetPath) . ' */' . "\n" . $tempStyle . "\n";
+                        }
                     }
                 }
 
-                Zo2Framework::import('vendor.minify.jsshrink');
-                Zo2Framework::import('vendor.minify.css');
+                $combineStyle = Zo2AssetsHelper::moveCssImportToBeginning($combineStyle);
 
-                // minify js first
-                if ($combineLevel == '2') {
-                    $script = Minifier::minify($script);
-                    $style = CssMinifier::minify($style);
+                Zo2AssetsHelper::forcePutContent($cssPath, $combineStyle);
+                Zo2AssetsHelper::forcePutContent($jsPath, $combineScript);
+
+                $cssTag = '<link rel="stylesheet" type="text/css" href="' . $cssUri . '" />';
+                $jsTag = '<script type="text/javascript" src="' . $jsUri . '"></script>';
+                $html .= "\n" . $cssTag . "\n" . $jsTag;
+            }
+
+            if (count($this->_styleDeclaration) > 0) {
+                $styles = '';
+                foreach ($this->_styleDeclaration as $style) {
+                    $styles .= $style . "\n";
                 }
-                */
-            //}
+
+                $styles = '<style type="text/css">' . $styles . '</style>';
+                $html .= "\n" . $styles;
+            }
 
             file_put_contents($path, $html);
             return $html;
@@ -708,13 +732,13 @@ class Zo2Layout {
     public function insertFooterAssets()
     {
         //dirty fix
-        $this->insertJsDeclaration('jQuery(document).ready(function($){window.$ = jQuery});console.log($);');
+        $this->insertJsDeclaration('jQuery(document).ready(function($){window.$ = jQuery});');
         $app = JFactory::getApplication();
         $template = $app->getTemplate(true);
         $params = $template->params;
         $debug = $params->get('debug_visibility');
         $cache = 'footer.php';
-        $path = $this->_layourDir . $cache;
+        $path = $this->_layourDir . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $cache;
         if (file_exists($path) && !$debug) return file_get_contents($path);
         else {
             $html = '';
