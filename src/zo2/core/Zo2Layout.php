@@ -204,6 +204,7 @@ class Zo2Layout {
     }
 
     /**
+     * Compile LESS into CSS then
      * Insert link tag for LESS
      *
      * @param $item
@@ -220,7 +221,9 @@ class Zo2Layout {
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         $filePath = $cacheDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
         $filePath = str_replace('//', '/', $filePath); // fix double slashes
-        $relativePath = str_replace('//', '/', '/assets/cache/' . $oldPath);
+        $filePath = str_replace('/cache/assets/less/', '/css/', $filePath);
+        $relativePath = str_replace('//', '/', $oldPath);
+        $relativePath = str_replace('/less/', '/css/', $relativePath);
         //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
         $content = $this->processLessFile($this->_templatePath . $item['path']);
         $content = CssMinifier::minify($content);
