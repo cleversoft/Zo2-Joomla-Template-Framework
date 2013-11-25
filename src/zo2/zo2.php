@@ -66,6 +66,8 @@ class plgSystemZo2 extends JPlugin
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/caption-uncompressed.js']);
                 unset($doc->_scripts[JURI::root(true) . '/media/system/js/tabs-state.js']);
 
+                unset($doc->_scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
+
                 unset($doc->_styleSheets[JUri::root(true) . '/media/system/css/modal.css']);
 
                 if (isset($doc->_script) && isset($doc->_script['text/javascript']))

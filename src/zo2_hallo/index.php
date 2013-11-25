@@ -69,7 +69,7 @@ $social = $zo2->zo2Social;
 <?php endif; ?>
 <?php echo $footer ?>
 <script type="text/javascript">
-    $('a, .clickable').live('touchend', function(){
+    $('a, .clickable').on('touchend', function(){
     $(this).mouseout();
     });
 </script>
