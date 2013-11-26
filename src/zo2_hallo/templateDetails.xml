@@ -67,14 +67,6 @@
                 <option value="1">JYES</option>
             </field>
             <field name="favicon" type="media" default="images/favicon.ico" label="Favicon" />
-            <field name="combine_statics" type="list" default="0" label="Combine assets" description="Combine the static assets such as JS and CSS">
-                <option value="0">Disable</option>
-                <option value="1">Combine</option>
-            </field>
-            <field name="font_awesome" type="radio" default="1" label="Include Font Awesome" description="Include Font Awesome" class="btn-group">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
             <!--Header Option-->
             <field name="header_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header logo" />
             <field name="header_retina_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header Retina logo" />
@@ -87,10 +79,6 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 <option value="1">JYES</option>
             </field>
             <field name="footer_gototop" type="radio" default="0" label="Show &quot;Go to top&quot;" class="btn-group">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
-            <field name="less_compile" type="radio" default="1" label="Compile LESS" class="btn-group">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
@@ -311,6 +299,22 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
             <field name="excl_menu" size="10" type="menuitem" label="Menus"
                    description="Menus" multiple="multiple"/>
 
+            <field name="less_compile" type="radio" default="1" label="Compile LESS" class="btn-group">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="combine_statics" type="list" default="0" label="Combine assets" description="Combine the static assets such as JS and CSS">
+                <option value="0">Disable</option>
+                <option value="1">Combine</option>
+            </field>
+            <field name="combine_css" type="list" default="0" label="Combine CSS" description="Combine CSS files">
+                <option value="0">Disable</option>
+                <option value="1">Combine</option>
+            </field>
+            <field name="combine_js" type="list" default="0" label="Combine JS" description="Combine JS files">
+                <option value="0">Disable</option>
+                <option value="1">Combine</option>
+            </field>
             <field name="component_area" type="radio" default="0" label="Hide Component Area" description="Show component area from front page" class="btn-group">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>

@@ -217,11 +217,12 @@ class Zo2Layout {
         //$fileName = md5($item['path']) . '.css';
         $fileName = str_replace('.less', '.css', basename($item['path']));
         $oldPath = str_replace('.less', '.css', $item['path']);
-        $absoluteOldPath = str_replace('//', '/', $this->_templatePath . $oldPath);
+        $absoluteOldPath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $this->_templatePath . $oldPath);
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         $filePath = $cacheDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
-        $filePath = str_replace('//', '/', $filePath); // fix double slashes
-        $filePath = str_replace('/cache/assets/less/', '/css/', $filePath);
+        $filePath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $filePath); // fix double slashes
+        $pathReplace = array('cache', 'assets', 'less');
+        $filePath = str_replace(implode(DIRECTORY_SEPARATOR, $pathReplace), DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR, $filePath);
         $relativePath = str_replace('//', '/', $oldPath);
         $relativePath = str_replace('/less/', '/css/', $relativePath);
         //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
@@ -448,6 +449,8 @@ class Zo2Layout {
             $responsive = $params->get('responsive_layout');
             $preset = $params->get('theme');
             $combineLevel = $params->get('combine_statics', 0);
+            $combineJs = $params->get('combine_js', 0);
+            $combineCss = $params->get('combine_css', 0);
             $compileLess = $params->get('less_compile');
 
             if ($compileLess == 1) {
