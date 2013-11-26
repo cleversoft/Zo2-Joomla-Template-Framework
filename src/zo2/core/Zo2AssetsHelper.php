@@ -122,11 +122,11 @@ class Zo2AssetsHelper {
 
     public static function forcePutContent($path, $content)
     {
-        $parts = explode('/', $path);
+        $parts = explode(DIRECTORY_SEPARATOR, $path);
         $file = array_pop($parts);
         $dir = '';
-        foreach($parts as $part) if(!is_dir($dir .= "/$part")) mkdir($dir);
-        return file_put_contents("$dir/$file", $content);
+        foreach($parts as $part) if(!is_dir($dir .= DIRECTORY_SEPARATOR . $part)) mkdir($dir);
+        return file_put_contents($dir . DIRECTORY_SEPARATOR .$file, $content);
     }
 
     public static function moveCssImportToBeginning($style)

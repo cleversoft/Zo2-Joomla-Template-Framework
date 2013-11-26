@@ -35,8 +35,8 @@ class Zo2Layout {
     public function __construct($templateName)
     {
         // assign values to private variables
-        $this->_templatePath = JPATH_SITE . '/templates/' . $templateName . '/';
-        $this->_layourDir = JPATH_SITE . '/templates/' . $templateName . '/layouts/';
+        $this->_templatePath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR;
+        $this->_layourDir = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR;
         $this->_layoutPath = $this->_layourDir . 'layout.json';
         //$this->_compiledLayoutPath = $this->_layourDir . 'layout.php';
         //$this->_staticsPath = $this->_layourDir . $layoutName . '.json';
@@ -71,7 +71,7 @@ class Zo2Layout {
      */
     public function getLayoutJson()
     {
-        $path = $this->_templatePath . 'layouts/' . $this->_layoutName . '.json';
+        $path = $this->_templatePath . 'layouts' . DIRECTORY_SEPARATOR . $this->_layoutName . '.json';
         if (file_exists($path)) {
             return file_get_contents($path);
         }
@@ -222,14 +222,16 @@ class Zo2Layout {
         $filePath = $cacheDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
         $filePath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $filePath); // fix double slashes
         $pathReplace = array('cache', 'assets', 'less');
-        $filePath = str_replace(implode(DIRECTORY_SEPARATOR, $pathReplace), DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR, $filePath);
+        $filePath = str_replace(implode(DIRECTORY_SEPARATOR, $pathReplace), 'css', $filePath);
         $relativePath = str_replace('//', '/', $oldPath);
         $relativePath = str_replace('/less/', '/css/', $relativePath);
         //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
         $content = $this->processLessFile($this->_templatePath . $item['path']);
         $content = CssMinifier::minify($content);
         $content = Zo2AssetsHelper::fixCssUrl($content, $filePath, dirname($absoluteOldPath));
-        Zo2AssetsHelper::forcePutContent($filePath, $content);
+        file_put_contents($filePath, $content);
+        if (file_exists($filePath)) file_put_contents($filePath, $content);
+        else Zo2AssetsHelper::forcePutContent($filePath, $content);
 
         $path = $this->_templateUri . $relativePath;
         $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
