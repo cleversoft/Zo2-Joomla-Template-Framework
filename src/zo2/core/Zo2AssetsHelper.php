@@ -72,7 +72,7 @@ class Zo2AssetsHelper {
      * @param $to
      * @return string
      */
-    public function getAbsolutePath($base, $to)
+    public static function getAbsolutePath($base, $to)
     {
         if (is_file($base)) $base = dirname($base);
         if (substr($base, strlen($base) - 1, 1) !== DIRECTORY_SEPARATOR) $base .= DIRECTORY_SEPARATOR;
