@@ -30,7 +30,7 @@ class Zo2AssetsHelper {
      * @param $to
      * @return string
      */
-    public function getRelativePath($from, $to)
+    public static function getRelativePath($from, $to)
     {
         // some compatibility fixes for Windows paths
         $from = is_dir($from) ? rtrim($from, '\/') . '/' : $from;
