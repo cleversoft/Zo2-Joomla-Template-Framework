@@ -321,7 +321,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
             </field>
 
 
-            <field name="debug_visibility" type="radio" default="0" label="Debug" class="btn-group" description="Allow to debug">
+            <field name="debug_visibility" type="radio" default="0" label="Debug" class="btn-group" description="Allow Developer to rebuild the cache. ONLY use this feature if you are developer">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
