@@ -16,17 +16,15 @@
 
     <files>
         <filename plugin="zo2">zo2.php</filename>
-        <folder>addons</folder>
-        <folder>core</folder>
-        <folder>formfields</folder>
-        <folder>html</folder>
         <folder>assets</folder>
-        <folder>shortcodes</folder>
-        <folder>templates</folder>
+        <folder>helpers</folder>
+        <folder>html</folder>
+		<folder>includes</folder>
+        <folder>language</folder>       
+        <folder>libraries</folder>
         <folder>vendor</folder>
-        <folder>language</folder>
     </files>
-    <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
+    <fieldset addfieldpath="/plugins/system/zo2/libraries/formfields"></fieldset>
     <updateservers>		
         <server type="extension" name="Zo2 Framework's Updates">http://update.zo2framework.org/zo2/extension.xml</server>
     </updateservers>

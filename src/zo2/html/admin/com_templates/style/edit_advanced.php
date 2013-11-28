@@ -269,29 +269,6 @@ defined('_JEXEC') or die;
         ?>
             <div class="control-group">
                 <div class="control-label">
-                    <label>Cache Settings</label>
-                </div>
-                <div class="controls">
-                    <div style="width:50%;float:left;">
-                        <div style="font-weight: bold">CSS Combine</div>
-                        <div><?php echo $this->form->getInput('combine_css', 'params'); ?></div>
-                    </div>
-                    <div style="width:50%;float:left;">
-                        <div style="font-weight: bold">JS Combine</div>
-                        <div><?php echo $this->form->getInput('combine_js', 'params'); ?></div>
-                    </div>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <?php echo $this->form->getLabel('less_compile', 'params'); ?>
-                </div>
-                <div class="controls">
-                    <?php echo $this->form->getInput('less_compile', 'params'); ?>
-                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
                     <?php echo $this->form->getLabel('ga_code', 'params'); ?>
                 </div>
                 <div class="controls">
@@ -306,27 +283,24 @@ defined('_JEXEC') or die;
                     <?php echo $this->form->getInput('component_area', 'params'); ?>
                 </div>
             </div>
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('debug_visibility', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('debug_visibility', 'params'); ?>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('disable_mootools', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('disable_mootools', 'params'); ?>
+                </div>
+            </div>
         <?php
         echo JHtml::_('bootstrap.endSlide');
-        echo JHtml::_('bootstrap.addSlide', 'advanced', JText::_('Developer Options'), 'developer_options');
-        ?>
-        <div class="control-group">
-            <div class="control-label">
-                <?php echo $this->form->getLabel('debug_visibility', 'params'); ?>
-            </div>
-            <div class="controls">
-                <?php echo $this->form->getInput('debug_visibility', 'params'); ?>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <div class="control-label">
-                <?php echo $this->form->getLabel('disable_mootools', 'params'); ?>
-            </div>
-            <div class="controls">
-                <?php echo $this->form->getInput('disable_mootools', 'params'); ?>
-            </div>
-        </div>
-        <?php echo JHtml::_('bootstrap.endSlide');
     echo JHtml::_('bootstrap.endAccordion');
 ?>
