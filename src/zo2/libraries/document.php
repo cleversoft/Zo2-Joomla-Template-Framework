@@ -18,7 +18,7 @@ defined('_JEXEC') or die;
 if (!class_exists('Zo2Document')) {
 
     /**
-     * 
+     *
      */
     class Zo2Document {
 
@@ -60,6 +60,23 @@ if (!class_exists('Zo2Document')) {
         public function addLess($filePath) {
             $this->_styleSheets[$filePath]['mime'] = 'less';
             return $this;
+        }
+
+        /**
+         * Do remove scripts in JDocument
+         * @param type $urls
+         */
+        public function scriptRemove($urls) {
+            $documents = JFactory::getDocument();
+            if (!is_array($urls)) {
+                if (isset($documents->_scripts[$urls]))
+                    unset($documents->_scripts[$urls]);
+            } else {
+                foreach ($urls as $url) {
+                    if (isset($documents->_scripts[$url]))
+                        unset($documents->_scripts[$url]);
+                }
+            }
         }
 
         public function load() {

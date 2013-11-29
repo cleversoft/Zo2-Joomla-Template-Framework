@@ -40,48 +40,50 @@ if (!class_exists('plgSystemZo2')) {
         }
 
         /**
-         * 
+         * @uses This event is triggered immediately before the framework has rendered the application.
          */
         public function onBeforeRender() {
             /* We do flush our scripts into JDocument */
-            Zo2Document::getInstance()->load();
+            $document = Zo2Document::getInstance();
+            $document->load();
             $app = JFactory::getApplication();
             $doc = JFactory::getDocument();
+
             $params = Zo2Framework::getParams();
             $disableMootols = $params->get('disable_mootools');
             $input = JFactory::getApplication()->input;
             $view = $input->get('view', '');
             $layout = $input->get('layout');
 
-            if (!$app->isAdmin() && $disableMootols && ($view != 'form' && $layout != 'edit')) {
-                try {
-                    // remove stupid mootools
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/core.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/caption.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/modal.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/plugins/system/mtupgrade/mootools.js']);
-
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/mootools-core-uncompressed.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/core-uncompressed.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/caption-uncompressed.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/system/js/tabs-state.js']);
-
-                    unset($doc->_styleSheets[JUri::root(true) . '/media/system/css/modal.css']);
-
-                    if (isset($doc->_script) && isset($doc->_script['text/javascript'])) {
-                        $doc->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $doc->_script['text/javascript']);
-                        $doc->_script['text/javascript'] = preg_replace('%new JCaption\(\'img.caption\'\);%', '', $doc->_script['text/javascript']);
-                        if (empty($doc->_script['text/javascript']))
-                            unset($doc->_script['text/javascript']);
-                    }
-                } catch (Exception $e) {
-                    
-                }
-            }
-
+            /* Frontend process */
             if (!$app->isAdmin()) {
+                if ($disableMootols && ($view != 'form' && $layout != 'edit')) {
+                    try {
+
+                        /* Do remove Mootools and relative stuffs */
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/mootools-core.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/core.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/caption.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/modal.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/mootools.js');
+                        $document->scriptRemove(JURI::root(true) . '/plugins/system/mtupgrade/mootools.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/mootools-core-uncompressed.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/core-uncompressed.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/caption-uncompressed.js');
+                        $document->scriptRemove(JURI::root(true) . '/media/system/js/tabs-state.js');
+                        $document->scriptRemove(JUri::root(true) . '/media/system/css/modal.css');
+
+                        if (isset($doc->_script) && isset($doc->_script['text/javascript'])) {
+                            $doc->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $doc->_script['text/javascript']);
+                            $doc->_script['text/javascript'] = preg_replace('%new JCaption\(\'img.caption\'\);%', '', $doc->_script['text/javascript']);
+                            if (empty($doc->_script['text/javascript']))
+                                unset($doc->_script['text/javascript']);
+                        }
+                    } catch (Exception $e) {
+
+                    }
+                }
+
                 try {
                     // remove default jquery and bootstrap 2
                     if (!Zo2Framework::isJoomla25())
@@ -92,19 +94,8 @@ if (!class_exists('plgSystemZo2')) {
                     unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
                     unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
                 } catch (Exception $e) {
-                    
-                }
-            }
 
-            if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
-                if ($app->isAdmin()) {
-                    // Load Bootstrap CSS
-                    //JHtml::_('bootstrap.loadCss');
-                    Zo2Framework::loadAdminAssets();
                 }
-            }
-            if ($app->isSite()) {
-
                 /*
                  * Include RTL css for frontend template
                  * @use Please put your include extra files here if needed for RTL support
@@ -124,9 +115,16 @@ if (!class_exists('plgSystemZo2')) {
                   }
                  */
             } else {
+                if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
+
+                    // Load Bootstrap CSS
+                    //JHtml::_('bootstrap.loadCss');
+                    Zo2Framework::loadAdminAssets();
+                }
                 //if (Zo2Framework::allowOverrideAdminTemplate())
                 //Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
             }
+
             //if (Zo2Framework::allowOverrideAdminTemplate())
             //$doc->addStyleSheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
         }
@@ -207,7 +205,7 @@ if (!class_exists('plgSystemZo2')) {
         }
 
         public function onRenderModule($module, $params) {
-            
+
         }
 
         public function doShortCode($content) {
