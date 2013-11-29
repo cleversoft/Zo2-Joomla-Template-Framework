@@ -23,7 +23,7 @@ if (!class_exists('plgSystemZo2')) {
     class plgSystemZo2 extends JPlugin {
 
         /**
-         * 
+         *
          * @param type $subject
          * @param type $config
          */
