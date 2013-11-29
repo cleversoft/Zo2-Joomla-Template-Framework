@@ -143,8 +143,9 @@ class Zo2Layout {
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         $filePath = $cacheDir . DIRECTORY_SEPARATOR . $fileName;
         $relativePath = '/assets/cache/' . $fileName;
-        $content = $this->processLessFile($path);
-        file_put_contents($filePath, $content);
+        //$content = $this->processLessFile($path);
+        //file_put_contents($filePath, $content);
+        Zo2HelperCompiler::less($path, $filePath);
 
         $this->insertCss($relativePath);
 
@@ -213,7 +214,7 @@ class Zo2Layout {
             mkdir($cacheDir, 0755, true);
 
         //$fileName = md5($item['path']) . '.css';
-        $fileName = str_replace('.less', '.css', basename($item['path']));
+        //$fileName = str_replace('.less', '.css', basename($item['path']));
         $oldPath = str_replace('.less', '.css', $item['path']);
         $absoluteOldPath = str_replace('//', '/', $this->_templatePath . $oldPath);
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';

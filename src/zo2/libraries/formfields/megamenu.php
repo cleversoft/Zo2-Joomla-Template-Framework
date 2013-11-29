@@ -35,12 +35,12 @@ class JFormFieldMegaMenu extends JFormFieldHidden
         if (!defined ('ZO_MEGAMENU_ASSET')) {
             define ('ZO_MEGAMENU_ASSET', 1);
 
-            JFactory::getLanguage()->load(ZO2_SYSTEM_PLUGIN, JPATH_ADMINISTRATOR);
+            JFactory::getLanguage()->load('plg_system_zo2', JPATH_ADMINISTRATOR);
 
             $jdoc = JFactory::getDocument();
-            $jdoc->addStylesheet(ZO2_PLUGIN_URL . '/assets/css/megamenu.css');
-            $jdoc->addStyleSheet(ZO2_PLUGIN_URL . '/assets/css/adminmegamenu.css');
-            $jdoc->addScript(ZO2_PLUGIN_URL . '/assets/js/adminmegamenu.js');
+            $jdoc->addStylesheet(JURI::root(true).'/plugins/system/zo2/assets/zo2/css/megamenu.css');
+            $jdoc->addStyleSheet(JURI::root(true).'/plugins/system/zo2/assets/zo2//css/adminmegamenu.css');
+            $jdoc->addScript(JURI::root(true).'/plugins/system/zo2/assets/zo2//js/adminmegamenu.js');
 
         }
 

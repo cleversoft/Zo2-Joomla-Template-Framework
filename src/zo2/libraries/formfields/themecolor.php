@@ -28,7 +28,7 @@ class JFormFieldThemeColor extends JFormField
         if (file_exists($presetPath)) {
             $presets = json_decode(file_get_contents($presetPath), true);
         }
-        $path = JPATH_SITE.'/plugins/system/zo2/templates/themecolor.php';
+        $path = JPATH_SITE.'/plugins/system/zo2/html/formfields/themecolor.php';
         ob_start();
         include($path);
         $html = ob_get_contents();

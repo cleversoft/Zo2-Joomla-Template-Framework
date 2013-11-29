@@ -23,7 +23,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
     public function getInput()
     {
         $document = JFactory::getDocument();
-        $document->addScript(ZO2_PLUGIN_URL . '/assets/js/adminsocial.js');
+        $document->addScript(JURI::root(true).'/plugins/system/zo2/assets/zo2/js/adminsocial.js');
 
         $layout_button = array();
         $layout_button['facebook'] = array(

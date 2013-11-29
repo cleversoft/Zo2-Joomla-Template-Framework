@@ -443,7 +443,7 @@ class Zo2Framework {
      */
     public static function getController() {
         if ($zo2controller = JFactory::getApplication()->input->getCmd('zo2controller')) {
-            Zo2Framework::import2('core.Zo2Controller');
+            //Zo2Framework::import('core.Zo2Controller');
             Zo2Controller::exec($zo2controller);
         }
     }
@@ -453,6 +453,8 @@ class Zo2Framework {
      */
     public static function loadAdminAssets() {
         if (Zo2Framework::allowOverrideAdminTemplate()) {
+            $doc = JFactory::getDocument();
+            $doc->addStyleSheet(JURI::root(true).'/plugins/system/zo2/assets/zo2/css/admin.css');
             //Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/css/admin.css');
             JHtml::_('formbehavior.chosen', 'select');
         }

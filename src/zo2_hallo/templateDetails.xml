@@ -58,7 +58,7 @@
     </files>
     <config>
 
-    <fields name="params" addfieldpath="/plugins/system/zo2/formfields">
+    <fields name="params" addfieldpath="/plugins/system/zo2/libraries/formfields">
         <fieldset name="basic">
             <field name="site_name" type="text" default="Zo2 Hallo" label="Site name" />
             <field name="site_slogan" type="text" default="" label="Site slogan" />

@@ -48,22 +48,17 @@ class JFormFieldLayout extends JFormField
 
         $pluginPath = JURI::root(true).'/plugins/system/zo2/';
         $assetsPath = $pluginPath . 'assets/';
-        $cssPath = $assetsPath . 'css/';
-        $jsPath = $assetsPath . 'js/';
+        $cssPath = $assetsPath . 'zo2/css/';
+        $jsPath = $assetsPath . 'zo2/js/';
         $vendorPath = $pluginPath . 'assets/vendor/';
 
         // load jquery & jqueryui newest version, cause joomla's jquery is plain old
         // Load custom js and css
         $doc->addScript($vendorPath . 'jqueryui/js/jquery-ui-1.10.3.custom.min.js');
-        $doc->addScript($vendorPath . 'bootbox/bootbox-3.3.0.min.js');
-        //$doc->addScript($jsPath . 'layoutbuildermodels.js');
+        $doc->addScript($vendorPath . 'bootbox-3.3.0.min.js');
         $doc->addScript($jsPath . 'adminlayout.js');
-        //$doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap.min.css');
-        //$doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap-responsive.min.css');
         $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
-        $doc->addStyleSheet($cssPath . 'bootstrap.gridsystem.css');
-        //$doc->addStyleSheet($cssPath . 'style.css');
-        //$doc->addScript($jsPath . 'admin.js');
+        $doc->addStyleSheet($vendorPath . 'bootstrap/core/css/bootstrap.gridsystem.css');
 
         // Load Bootstrap JS framework
         //JHtml::_('bootstrap.framework');
@@ -99,7 +94,7 @@ class JFormFieldLayout extends JFormField
         $layoutPath = $templatePath . '/layouts/layout.json';
         $layoutData = json_decode(file_get_contents($layoutPath), true);
         //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
-        $path = JPATH_SITE.'/plugins/system/zo2/templates/layout.php';
+        $path = JPATH_SITE.'/plugins/system/zo2/html/formfields/layout.php';
 
         // generate list of custom module style
         $customModuleStylePath = $templatePath . '/html/modules.php';
