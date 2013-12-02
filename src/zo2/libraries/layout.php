@@ -218,9 +218,9 @@ class Zo2Layout {
         $oldPath = str_replace('.less', '.css', $item['path']);
         $absoluteOldPath = str_replace('//', '/', $this->_templatePath . $oldPath);
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
-        $filePath = $cacheDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
+        $filePath = $this->_templatePath . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
         $filePath = str_replace('//', '/', $filePath); // fix double slashes
-        $filePath = str_replace('/cache/assets/less/', '/css/', $filePath);
+        $filePath = str_replace('/less/', '/css/', $filePath);
         $relativePath = str_replace('//', '/', $oldPath);
         $relativePath = str_replace('/less/', '/css/', $relativePath);
         //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
