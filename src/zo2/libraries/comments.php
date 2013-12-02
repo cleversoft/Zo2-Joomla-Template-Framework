@@ -162,7 +162,6 @@ class Zo2Comments
         $tab_order = explode(',', $params->get('tab_order', 'facebook,gplus,disqus,k2comment'));
         $url = JUri::getInstance()->toString();
         $document = JFactory::getDocument();
-        $document->addStyleSheet(ZO2_PLUGIN_URL . '/addons/comments/css/comments.css');
         $document->addScriptDeclaration('
                 jQuery(document).ready(function() {
                     comment_width = jQuery(\'#zo2comment-tabs\').innerWidth();

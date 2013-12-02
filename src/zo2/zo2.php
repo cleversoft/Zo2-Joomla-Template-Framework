@@ -104,16 +104,7 @@ if (!class_exists('plgSystemZo2')) {
                     //$doc->addStyleSheet(ZO2_PLUGIN_URL . '/assets/css/rtl.css');
                 }
 
-                //$doc->addScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
-                // Share social
-                $params = Zo2Framework::getParams();
-                /*
-                  if ($params->get('enable_popup', 0)) {
-                  if (!$_COOKIE['show_modal']) {
-                  Zo2Framework::getInstance()->zo2Social->loadScript('#zo2-social-popup');
-                  }
-                  }
-                 */
+                $doc->addScript(JURI::root(true) . '/plugins/system/zo2/assets/zo2/js/shortcodes.js');
             } else {
                 if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
 
@@ -126,7 +117,7 @@ if (!class_exists('plgSystemZo2')) {
             }
 
             //if (Zo2Framework::allowOverrideAdminTemplate())
-            //$doc->addStyleSheet(ZO2_PLUGIN_URL . '/addons/shortcodes/css/shortcodes.css');
+            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zo2/assets/zo2/css/shortcodes.css');
         }
 
         function onAfterRender() {

@@ -58,8 +58,8 @@ class Zo2Framework {
             Zo2Framework::import('libraries.classes.legacy');
 
         if (!$app->isAdmin()) {
-            Zo2Framework::import('libraries.socialshare.Zo2Socialshare');
-            Zo2Framework::import('libraries.shortcodes.WPShortcode');
+            //Zo2Framework::import('libraries.socialshare.Zo2Socialshare');
+            //Zo2Framework::import('libraries.shortcodes.WPShortcode');
             Zo2Framework::getInstance()->ShortCode = new WPShortcode();
             Zo2Framework::getInstance()->zo2Social = new Zo2Socialshare(Zo2Framework::getParams());
             // JModuleHelper
@@ -475,14 +475,13 @@ class Zo2Framework {
                 array_push($shortcodes, $ShortCodeName);
             }
         }
-
         $shortcodes = array_unique($shortcodes);
+        array_shift($shortcodes);
 
         foreach ($shortcodes as $shortcode) {
-
-            if (Zo2Framework::import('shortcodes.' . $shortcode)) {
-                if (JFile::exists(ZO2_ADMIN_BASE . '/shortcodes/' . $shortcode . '.php')) {
-                    $class = ucfirst($shortcode);
+            if (Zo2Framework::import('libraries.shortcodes.' . $shortcode)) {
+                $class = ucfirst($shortcode);
+                if (class_exists($class)) {
                     $shortcode = new $class;
                     $shortcode->run();
                 }

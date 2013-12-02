@@ -12,8 +12,6 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-Zo2Framework::import2('core.Zo2Shortcode');
-
 class Vimeo extends Zo2Shortcode
 {
     // set short code tag

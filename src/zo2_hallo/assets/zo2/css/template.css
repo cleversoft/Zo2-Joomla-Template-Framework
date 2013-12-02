@@ -1973,3 +1973,10 @@ nav.zo2-menu .navbar-nav > .active > a:focus {
         width: 30px;
     }
 }
+
+#zo2comment-tabs {
+    height: auto;
+    width: 100%;
+    margin: 10px 0;
+    overflow: auto;
+}

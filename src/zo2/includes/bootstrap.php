@@ -22,8 +22,9 @@ JLoader::discover('Zo2', ZO2PATH_ROOT . '/libraries');
 JLoader::discover('Zo2Helper', ZO2PATH_ROOT . '/helpers');
 
 /* Temporary import un-standard files */
-require_once ZO2PATH_ROOT . '/libraries/Zo2AssetsHelper.php';
+//require_once ZO2PATH_ROOT . '/libraries/Zo2AssetsHelper.php';
 require_once ZO2PATH_ROOT . '/libraries/classes/admin/menu.php';
+require_once ZO2PATH_ROOT . '/libraries/shortcodes/WPShortcode.php';
 
 Zo2Framework::init();
 Zo2Framework::getTemplateLayouts();
