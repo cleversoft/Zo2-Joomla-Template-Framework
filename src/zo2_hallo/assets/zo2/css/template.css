@@ -9,7 +9,7 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-@import "../vendor/font-awesome/css/font-awesome.min.css";
+@import "../../vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 html.ltr{ direction: ltr;}
 body {line-height: 20px;font-size: 12px; font-family: 'Open Sans', sans-serif; color: #4e4d4d; background-color:#fff; }

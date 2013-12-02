@@ -1,24 +1,44 @@
 [
     {
-        "path": "/assets/js/jquery.min.js",
+        "path": "/assets/vendor/jquery/core/jquery-1.8.3.min.js",
         "type": "js",
         "position": "header",
         "base": "template"
     },
     {
-        "path": "/assets/js/jquery-noconflict.js",
+        "path": "/assets/vendor/jquery/core/jquery-noconflict.js",
         "type": "js",
         "position": "header",
         "base": "template"
     },
     {
-        "path": "/assets/js/ekko-lightbox.js",
+        "path": "/assets/vendor/modernizr.custom.js",
         "type": "js",
         "position": "footer",
         "base": "template"
     },
     {
-        "path": "/assets/css/normalize.css",
+        "path": "/assets/vendor/bootstrap/addons/ekko-lightbox.js",
+        "type": "js",
+        "position": "footer",
+        "base": "template"
+    },
+    {
+        "path": "/assets/vendor/html5shiv.js",
+        "type": "js",
+        "position": "header",
+        "base": "template",
+        "condition": "if lt IE 9"
+    },
+    {
+        "path": "/assets/vendor/respond.min.js",
+        "type": "js",
+        "position": "header",
+        "base": "template",
+        "condition": "if lt IE 9"
+    },
+    {
+        "path": "/assets/zo2/css/normalize.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
@@ -27,37 +47,37 @@
         "base": "template"
     },
     {
-        "path": "/assets/vendor/bootstrap/css/bootstrap.min.css",
+        "path": "/assets/vendor/bootstrap/core/css/bootstrap.min.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
         },
         "position": "header",
-        "base": "plugin"
+        "base": "template"
     },
     {
-        "path": "/assets/vendor/font-awesome/css/font-awesome.min.css",
+        "path": "/assets/vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
         },
         "position": "header",
-        "base": "plugin"
+        "base": "template"
     },
     {
-        "path": "/assets/vendor/bootstrap/js/bootstrap.min.js",
+        "path": "/assets/vendor/bootstrap/core/js/bootstrap.min.js",
         "type": "js",
         "position": "footer",
         "base": "plugin"
     },
     {
-        "path": "/assets/js/megamenu.js",
+        "path": "/assets/zo2/js/megamenu.js",
         "type": "js",
         "position": "footer",
         "base": "template"
     },
     {
-        "path": "/assets/less/template.less",
+        "path": "/assets/zo2/less/template.less",
         "type": "less",
         "options": {
             "rel": "stylesheet"
