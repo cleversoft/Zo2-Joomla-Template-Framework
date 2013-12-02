@@ -36,6 +36,9 @@ class Zo2Framework {
     private $_layout = null;
     private static $_currentTemplatePath;
 
+    /** @var JRegistry */
+    protected static $_registry = null;
+
     public function __construct() {
         
     }
@@ -277,27 +280,6 @@ class Zo2Framework {
         return '';
     }
 
-    /**
-     * Get template params
-     *
-     * Use from backend
-     *
-     * @param bool $assocArray
-     * @return mixed|string
-     */
-    public static function getTemplateParams($assocArray = true) {
-        $jinput = JFactory::getApplication()->input;
-        $templateId = $jinput->getInt('id');
-
-        if (!isset($_GET['id']))
-            return '';
-        $db = JFactory::getDBO();
-        $sql = 'SELECT params
-                FROM #__template_styles
-                WHERE id = ' . $templateId;
-        $db->setQuery($sql);
-        return json_decode($db->loadResult(), $assocArray);
-    }
 
     /**
      * Set layout for output
@@ -389,7 +371,7 @@ class Zo2Framework {
     public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
         $params = Zo2Framework::getParams();
-        $configs = json_decode($params->get('menu_config', ''), true);
+        $configs = json_decode($params->get('responsive_layout', ''), true);
         $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
         if (JFactory::getApplication()->isAdmin()) {
             $mmconfig['edit'] = true;
@@ -398,8 +380,8 @@ class Zo2Framework {
         return $menu->renderMenu($isAdmin);
     }
 
-    public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false) {
-
+    public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false)
+    {
         $params = Zo2Framework::getParams();
         $configs = json_decode($params->get('menu_config', ''), true);
         $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
@@ -568,20 +550,75 @@ class Zo2Framework {
 
     /**
      * Get template param' property
-     * @param type $property
-     * @param type $default
+     * @param string $property
+     * @param mixed $default
+     *
+     * @return mixed
      */
     public static function get($property, $default = null) {
-        
+        if (!self::$_registry) {
+            $params = Zo2Framework::getTemplateParams(true);
+            self::$_registry = new JRegistry();
+            self::$_registry->loadArray($params);
+        }
+        return self::$_registry->get($property, $default);
     }
 
     /**
      * Set template param' property
-     * @param type $property
-     * @param type $value
+     * @param string $property
+     * @param mixed $value
      */
     public static function set($property, $value) {
-        
+        if (!self::$_registry) {
+            $params = Zo2Framework::getTemplateParams(true);
+            self::$_registry = new JRegistry();
+            self::$_registry->loadArray($params);
+        }
+
+        self::$_registry->set($property, $value);
+        self::updateTemplateParams();
     }
 
+    /**
+     * Get current template params
+     *
+     * @param bool $assocArray
+     * @return mixed|string
+     */
+    public static function getTemplateParams($assocArray = true)
+    {
+        $app = JFactory::getApplication();
+        $db = JFactory::getDBO();
+        $templateId = false;
+        $jinput = JFactory::getApplication()->input;
+        if ($app->isAdmin()) $templateId = $jinput->getInt('id');
+        else if ($app->isSite()) $templateId = $app->getTemplate('template')->id;
+        $sql = 'SELECT params FROM #__template_styles WHERE id = ' . $templateId;
+        $db->setQuery($sql);
+        return json_decode($db->loadResult(), $assocArray);
+    }
+
+    /**
+     * Update current template's registry params to database
+     */
+    public static function updateTemplateParams()
+    {
+        $app = JFactory::getApplication();
+        $db = JFactory::getDBO();
+        if ($app->isAdmin()) {
+            $jinput = JFactory::getApplication()->input;
+            $templateId = $jinput->getInt('id');
+            if (!isset($_GET['id'])) return;
+            $sql = 'UPDATE #__template_styles SET params = "' . $db->escape(self::$_registry->toString()) . '" WHERE id = ' . $templateId;
+            $db->setQuery($sql);
+            $db->execute();
+        }
+        else if ($app->isSite()) {
+            $templateName = $app->getTemplate();
+            $sql = 'UPDATE #__template_styles SET params = "' . $db->escape(self::$_registry->toString()) . '" WHERE template = "' . $templateName . '"';
+            $db->setQuery($sql);
+            $db->execute();
+        }
+    }
 }
