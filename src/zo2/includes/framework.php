@@ -591,9 +591,12 @@ class Zo2Framework {
         $app = JFactory::getApplication();
         $db = JFactory::getDBO();
         $templateId = false;
-        $jinput = JFactory::getApplication()->input;
+        $jinput = $app->input;
         if ($app->isAdmin()) $templateId = $jinput->getInt('id');
         else if ($app->isSite()) $templateId = $app->getTemplate('template')->id;
+
+        if (!$templateId) return false;
+
         $sql = 'SELECT params FROM #__template_styles WHERE id = ' . $templateId;
         $db->setQuery($sql);
         return json_decode($db->loadResult(), $assocArray);
@@ -601,24 +604,23 @@ class Zo2Framework {
 
     /**
      * Update current template's registry params to database
+     *
+     * @return bool
      */
     public static function updateTemplateParams()
     {
         $app = JFactory::getApplication();
         $db = JFactory::getDBO();
-        if ($app->isAdmin()) {
-            $jinput = JFactory::getApplication()->input;
-            $templateId = $jinput->getInt('id');
-            if (!isset($_GET['id'])) return;
-            $sql = 'UPDATE #__template_styles SET params = "' . $db->escape(self::$_registry->toString()) . '" WHERE id = ' . $templateId;
-            $db->setQuery($sql);
-            $db->execute();
-        }
-        else if ($app->isSite()) {
-            $templateName = $app->getTemplate();
-            $sql = 'UPDATE #__template_styles SET params = "' . $db->escape(self::$_registry->toString()) . '" WHERE template = "' . $templateName . '"';
-            $db->setQuery($sql);
-            $db->execute();
-        }
+        $jinput = $app->input;
+        $templateId = false;
+        if ($app->isAdmin()) $templateId = $jinput->getInt('id');
+        else if ($app->isSite()) $templateId = $app->getTemplate('template')->id;
+
+        if (!$templateId) return false;
+
+        $sql = 'UPDATE #__template_styles SET params = ' . $db->quote(self::$_registry->toString()) . ' WHERE id = ' . $templateId;
+        $db->setQuery($sql);
+        $db->execute();
+        return true;
     }
 }
