@@ -11,9 +11,6 @@
 defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
-if(version_compare(JVERSION, '3.0', 'ge')){
-	JHtml::_('bootstrap.tooltip');
-}
 ?>
 <?php if ($type == 'logout') : ?>
 <form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form" class="form-vertical">

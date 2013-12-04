@@ -438,7 +438,7 @@ class Zo2Framework {
             $doc = JFactory::getDocument();
             $doc->addStyleSheet(JURI::root(true).'/plugins/system/zo2/assets/zo2/css/admin.css');
             //Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/css/admin.css');
-            JHtml::_('formbehavior.chosen', 'select');
+            //JHtml::_('formbehavior.chosen', 'select');
         }
     }
 

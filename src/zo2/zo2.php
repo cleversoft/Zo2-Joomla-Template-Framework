@@ -37,6 +37,10 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/includes/bootstrap.php';
+            if (!Zo2Framework::isJoomla25()) {
+                $app = JFactory::getApplication();
+                $app->loadLanguage();
+            }
         }
 
         /**
@@ -86,13 +90,14 @@ if (!class_exists('plgSystemZo2')) {
 
                 try {
                     // remove default jquery and bootstrap 2
-                    if (!Zo2Framework::isJoomla25())
+                    if (!Zo2Framework::isJoomla25()) {
                         JHtml::_('bootstrap.framework', false);
-                    JHtml::_('jquery.framework', false);
-                    //JHtml::_('behavior.tooltip', false);
-                    unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
-                    unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
+                        JHtml::_('jquery.framework', false);
+                        //JHtml::_('behavior.tooltip', false);
+                        unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
+                        unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
+                        unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
+                    }
                 } catch (Exception $e) {
 
                 }
