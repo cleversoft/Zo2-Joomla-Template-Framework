@@ -14,7 +14,7 @@ defined('_JEXEC') or die ('Restricted access');
 ?>
 <div id="layoutbuilder-container">
     <input type="text" value="<?php echo htmlspecialchars($this->value)?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name?>" id="<?php echo $this->id?>" />
-    <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplateName()?>" />
+    <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplate()->template; ?>" />
     <input type="hidden" id="hdLayoutBuilder" value="0" />
     <input type="hidden" id="hfLayoutName" value="homepage" />
     <div id="droppable-container">

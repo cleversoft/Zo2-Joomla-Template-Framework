@@ -18,7 +18,8 @@ defined('_JEXEC') or die;
 if (!class_exists('Zo2Document')) {
 
     /**
-     *
+     * Zo2 Document class
+     * @uses This class used to wrapper JDocument with adding features like addLess & do compress before render
      */
     class Zo2Document {
 
@@ -43,6 +44,14 @@ if (!class_exists('Zo2Document')) {
                 return self::$instance;
         }
 
+        /**
+         *
+         * @param type $filePath
+         * @param type $type
+         * @param type $defer
+         * @param type $async
+         * @return \Zo2Document
+         */
         public function addScript($filePath, $type = "text/javascript", $defer = false, $async = false) {
             $this->_scripts[$filePath]['mime'] = $type;
             $this->_scripts[$filePath]['defer'] = $defer;
@@ -50,6 +59,14 @@ if (!class_exists('Zo2Document')) {
             return $this;
         }
 
+        /**
+         *
+         * @param type $filePath
+         * @param type $type
+         * @param type $media
+         * @param type $attribs
+         * @return \Zo2Document
+         */
         public function addStyleSheet($filePath, $type = 'text/css', $media = null, $attribs = array()) {
             $this->_styleSheets[$filePath]['mime'] = $type;
             $this->_styleSheets[$filePath]['media'] = $media;
@@ -57,6 +74,11 @@ if (!class_exists('Zo2Document')) {
             return $this;
         }
 
+        /**
+         *
+         * @param type $filePath
+         * @return \Zo2Document
+         */
         public function addLess($filePath) {
             $this->_styleSheets[$filePath]['mime'] = 'less';
             return $this;
@@ -79,6 +101,9 @@ if (!class_exists('Zo2Document')) {
             }
         }
 
+        /**
+         *
+         */
         public function load() {
             /**
              * @todo Checksum or last modified before process to improve performance
@@ -108,7 +133,7 @@ if (!class_exists('Zo2Document')) {
                 }
             }
 
-            /* StyleSheet process */
+            /* Stylesheet process */
             $styleSheetFiles = array();
             foreach ($this->_styleSheets as $script => $data) {
                 if (isset($data['mime'])) {
@@ -168,8 +193,15 @@ if (!class_exists('Zo2Document')) {
             }
             /* Do merge all stylesheet file
              * css.php. In this file we'll use JFile::read to load all javascipt file and also do gzip if possible */
-            if (Zo2Framework::get('merge_css')) {
-                $document->addStyleSheet(rtrim(JUri::root(), '/') . '/cache/zo2/css.php');
+            if (Zo2Framework::get('merge_css', 1)) {
+                $buffer = '';
+                foreach ($styleSheetFiles as $script) {
+                    if (JFile::exists($script)) {
+                        $buffer .= JFile::read($script);
+                    }
+                }
+                JFile::write(JPATH_ROOT . '/cache/zo2.css', $buffer);
+                $document->addStyleSheet(rtrim(JUri::root(), '/') . '/cache/zo2.css');
             } else {
                 /* No merging so let's load all scripts step by step */
                 foreach ($styleSheetFiles as $script) {

@@ -37,27 +37,23 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/includes/bootstrap.php';
-            if (!Zo2Framework::isJoomla25()) {
-                $app = JFactory::getApplication();
-                $app->loadLanguage();
-            }
         }
 
         /**
          * @uses This event is triggered immediately before the framework has rendered the application.
          */
         public function onBeforeRender() {
-            /* We do flush our scripts into JDocument */
             $document = Zo2Document::getInstance();
-            $document->load();
             $app = JFactory::getApplication();
-            $doc = JFactory::getDocument();
-
-            $params = Zo2Framework::getParams();
-            $disableMootols = $params->get('disable_mootools');
+            $jdoc = JFactory::getDocument();
             $input = JFactory::getApplication()->input;
+
+            $option = $input->getWord('option');
             $view = $input->get('view', '');
             $layout = $input->get('layout');
+
+            $disableMootols = Zo2Framework::get('disable_mootools');
+            $enableRtl = Zo2Framework::get('rtl_layout');
 
             /* Frontend process */
             if (!$app->isAdmin()) {
@@ -77,11 +73,11 @@ if (!class_exists('plgSystemZo2')) {
                         $document->scriptRemove(JURI::root(true) . '/media/system/js/tabs-state.js');
                         $document->scriptRemove(JUri::root(true) . '/media/system/css/modal.css');
 
-                        if (isset($doc->_script) && isset($doc->_script['text/javascript'])) {
-                            $doc->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $doc->_script['text/javascript']);
-                            $doc->_script['text/javascript'] = preg_replace('%new JCaption\(\'img.caption\'\);%', '', $doc->_script['text/javascript']);
-                            if (empty($doc->_script['text/javascript']))
-                                unset($doc->_script['text/javascript']);
+                        if (isset($jdoc->_script) && isset($jdoc->_script['text/javascript'])) {
+                            $jdoc->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $jdoc->_script['text/javascript']);
+                            $jdoc->_script['text/javascript'] = preg_replace('%new JCaption\(\'img.caption\'\);%', '', $jdoc->_script['text/javascript']);
+                            if (empty($jdoc->_script['text/javascript']))
+                                unset($jdoc->_script['text/javascript']);
                         }
                     } catch (Exception $e) {
 
@@ -93,11 +89,10 @@ if (!class_exists('plgSystemZo2')) {
                     if (!Zo2Framework::isJoomla25()) {
                         JHtml::_('bootstrap.framework', false);
                         JHtml::_('jquery.framework', false);
-                        //JHtml::_('behavior.tooltip', false);
-                        unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
-                        unset($doc->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
-                        unset($doc->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
                     }
+                    $document->scriptRemove(JURI::root(true) . '/media/jui/js/jquery.min.js');
+                    $document->scriptRemove(JURI::root(true) . '/media/jui/js/jquery-noconflict.js');
+                    $document->scriptRemove(JURI::root(true) . '/media/jui/js/bootstrap.min.js');
                 } catch (Exception $e) {
 
                 }
@@ -105,24 +100,22 @@ if (!class_exists('plgSystemZo2')) {
                  * Include RTL css for frontend template
                  * @use Please put your include extra files here if needed for RTL support
                  */
-                if ($params->get('rtl_layout') == 1) {
-                    //$doc->addStyleSheet(ZO2_PLUGIN_URL . '/assets/css/rtl.css');
-                }
+                if ($enableRtl == 1)
+                    $document->addStyleSheet(ZO2URL_ASSETS_VENDOR . '/bootstrap/addons/morteza/css/bootstrap-rtl.min.css');
 
-                $doc->addScript(JURI::root(true) . '/plugins/system/zo2/assets/zo2/js/shortcodes.js');
+                /* Shortcodes */
+                $document->addScript(ZO2URL_ASSETS_ZO2 . '/js/shortcodes.js');
             } else {
-                if (isset($_GET['option']) && $_GET['option'] == 'com_templates' && isset($_GET['id'])) {
-
-                    // Load Bootstrap CSS
-                    //JHtml::_('bootstrap.loadCss');
+                if ($option == 'com_templates' && $input->get('id')) {
+                    // Load Bootstrap CSS                    
                     Zo2Framework::loadAdminAssets();
                 }
-                //if (Zo2Framework::allowOverrideAdminTemplate())
-                //Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/vendor/fontello/css/fontello.css');
+                if (Zo2Framework::allowOverrideAdminTemplate())
+                    Zo2Framework::addCssStylesheet(ZO2URL_ASSETS_VENDOR . '/fontello/css/fontello.css');
             }
 
-            //if (Zo2Framework::allowOverrideAdminTemplate())
-            $doc->addStyleSheet(JURI::root(true) . '/plugins/system/zo2/assets/zo2/css/shortcodes.css');
+            if (Zo2Framework::allowOverrideAdminTemplate())
+                $document->addStyleSheet(ZO2URL_ASSETS_ZO2 . '/css/shortcodes.css');
         }
 
         function onAfterRender() {
@@ -135,16 +128,15 @@ if (!class_exists('plgSystemZo2')) {
             } else {
 
                 // get response
-                $params = Zo2Framework::getParams();
                 $body = JResponse::getBody();
                 $body = $this->doShortCode($body);
 
                 // Share social
-                /*
-                  if ($params->get('enable_popup', 0)) {
-                  $body = Zo2Framework::getInstance()->zo2Social->renderPopup($body);
-                  }
-                 */
+
+                if (Zo2Framework::get('enable_popup', 0)) {
+                    $body = Zo2Framework::getInstance()->zo2Social->renderPopup($body);
+                }
+
 
                 JResponse::setBody($body);
             }

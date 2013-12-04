@@ -39,8 +39,18 @@ class Zo2Framework {
     /** @var JRegistry */
     protected static $_registry = null;
 
-    public function __construct() {
-        
+    /**
+     *
+     * @var object
+     */
+    protected static $_siteTemplate = null;
+    protected static $_adminTemplate = null;
+
+    /**
+     * Prevent declare new instance
+     */
+    protected function __construct() {
+
     }
 
     private static $_scripts = array();
@@ -72,8 +82,37 @@ class Zo2Framework {
             
         }
 
-        // set variable for env
-        Zo2Framework::$_currentTemplatePath = JPATH_THEMES . '/' . Zo2Framework::getTemplateName();
+        /**
+         * Init variables
+         */
+        $db = JFactory::getDBO();
+        $jinput = JFactory::getApplication()->input;
+
+        /* Get template object */
+        if ($app->isAdmin()) {
+
+            if ($jinput->get('id')) {
+                $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') . ' WHERE ' . $db->quoteName('id') . ' = ' . $db->quote((int) $jinput->get('id'));
+            } else {
+                $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') . ' WHERE ' . $db->quoteName('template') . ' = ' . $db->quote($app->getTemplate());
+            }
+
+            $db->setQuery($query);
+            $template = $db->loadObject();
+
+            $registry = new JRegistry($template->params);
+            $template->params = $registry;
+            Zo2Framework::$_adminTemplate = $template;
+            unset($registry);
+            unset($template);
+        } else {
+            Zo2Framework::$_siteTemplate = $app->getTemplate(true);
+        }
+
+        if (self::getTemplate()) {
+            // set variable for env
+            Zo2Framework::$_currentTemplatePath = JPATH_THEMES . '/' . self::getTemplate()->template;
+        }
 
         self::$_isAdmin = $app->isAdmin();
     }
@@ -314,14 +353,13 @@ class Zo2Framework {
     /**
      * Get list of layouts from this template
      *
-     * @param int $templateId If pass null, or 0, templateId will get from $_GET['id']
      * @return array
      */
-    public static function getTemplateLayouts($templateId = 0) {
-        $templateName = self::getTemplateName($templateId);
+    public static function getTemplateLayouts() {
+        $templateName = self::getTemplate()->template;
 
         if (!empty($templateName)) {
-            $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.php';
+            $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/* .php';
             $layoutFiles = glob($templatePath);
             return array_map('basename', $layoutFiles, array('.php'));
         }
@@ -393,16 +431,18 @@ class Zo2Framework {
     }
 
     /**
-     * Get current template object
-     * @return array|string
+     * Get current template
+     *
+     * @return bool|null|object
      */
     public static function getTemplate() {
-        $template = JFactory::getApplication()->getTemplate(true);
-        if ($template) {
-            return $template;
+        $app = JFactory::getApplication();
+        if ($app->isAdmin()) {
+            return self::$_adminTemplate;
         } else {
-            return array();
+            return self::$_siteTemplate;
         }
+        return false;
     }
 
     /**
@@ -556,71 +596,33 @@ class Zo2Framework {
      * @return mixed
      */
     public static function get($property, $default = null) {
-        if (!self::$_registry) {
-            $params = Zo2Framework::getTemplateParams(true);
-            self::$_registry = new JRegistry();
-            self::$_registry->loadArray($params);
+        if (self::getTemplate()) {
+            return self::getTemplate()->params->get($property, $default);
         }
-        return self::$_registry->get($property, $default);
+        return $default;
     }
 
     /**
-     * Set template param' property
-     * @param string $property
-     * @param mixed $value
+     * @param $property
+     * @param $value
+     * @return mixed
      */
     public static function set($property, $value) {
-        if (!self::$_registry) {
-            $params = Zo2Framework::getTemplateParams(true);
-            self::$_registry = new JRegistry();
-            self::$_registry->loadArray($params);
+        if (self::getTemplate()) {
+            return self::getTemplate()->params->set($property, $value);
         }
-
-        self::$_registry->set($property, $value);
-        self::updateTemplateParams();
+        return false;
     }
 
-    /**
-     * Get current template params
-     *
-     * @param bool $assocArray
-     * @return mixed|string
-     */
-    public static function getTemplateParams($assocArray = true)
-    {
+    public static function flush() {
+        /* Flush all data into database */
         $app = JFactory::getApplication();
         $db = JFactory::getDBO();
-        $templateId = false;
-        $jinput = $app->input;
-        if ($app->isAdmin()) $templateId = $jinput->getInt('id');
-        else if ($app->isSite()) $templateId = $app->getTemplate('template')->id;
-
-        if (!$templateId) return false;
-
-        $sql = 'SELECT params FROM #__template_styles WHERE id = ' . $templateId;
-        $db->setQuery($sql);
-        return json_decode($db->loadResult(), $assocArray);
-    }
-
-    /**
-     * Update current template's registry params to database
-     *
-     * @return bool
-     */
-    public static function updateTemplateParams()
-    {
-        $app = JFactory::getApplication();
-        $db = JFactory::getDBO();
-        $jinput = $app->input;
-        $templateId = false;
-        if ($app->isAdmin()) $templateId = $jinput->getInt('id');
-        else if ($app->isSite()) $templateId = $app->getTemplate('template')->id;
-
-        if (!$templateId) return false;
-
-        $sql = 'UPDATE #__template_styles SET params = ' . $db->quote(self::$_registry->toString()) . ' WHERE id = ' . $templateId;
+        $sql = ' UPDATE '
+            . $db->quoteName('#__template_styles')
+            . ' SET  ' . $db->quoteName('params') . ' = ' . $db->quote(self::getTemplate()->params->toString())
+            . ' WHERE  ' . $db->quoteName('id') . ' = ' . $db->quote(self::getTemplate()->id);
         $db->setQuery($sql);
         $db->execute();
-        return true;
     }
 }

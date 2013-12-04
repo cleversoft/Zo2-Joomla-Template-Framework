@@ -40,6 +40,8 @@ $footer = $layout->insertFooterAssets();
 
 /** @var Zo2Socialshare $social */
 $social = $zo2->zo2Social;
+$document = Zo2Document::getInstance();
+$document->load();
 ?>
 <!DOCTYPE html>
 <html>
