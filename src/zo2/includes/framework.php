@@ -465,19 +465,33 @@ class Zo2Framework {
         }
     }
 
-    /**
-     * Load Assets for admin
-     */
-    public static function loadAdminAssets() {
-        if (Zo2Framework::allowOverrideAdminTemplate()) {
-            $document = Zo2Document::getInstance();
+    public static function loadAssets() {
+        $application = JFactory::getApplication();
+        $jnput = JFactory::getApplication()->input;
+        $document = Zo2Document::getInstance();
+
+        /**
+         * Load for both of frontend & backend
+         */
+        if (self::isJoomla25()) {
             /* jQuery */
             $document->addScript(ZO2PATH_ASSETS . '/vendor/jquery-1.9.1.min.js');
-            /* Bootstrap */
-            $document->addScript(ZO2PATH_ASSETS . '/vendor/bootstrap/core/js/bootstrap.min.js');
-            $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/bootstrap/core/css/bootstrap.min.css');
-            
-            $document->addLess(ZO2PATH_ASSETS . '/zo2/development/less/admin.less');
+        }
+
+
+
+        /* Backend loading */
+        if ($application->isAdmin()) {
+            /* Is Zo2 Template or not */
+            if (Zo2Framework::allowOverrideAdminTemplate()) {
+                /* Bootstrap */
+                $document->addScript(ZO2PATH_ASSETS . '/vendor/bootstrap/core/js/bootstrap.min.js');
+                $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/bootstrap/core/css/bootstrap.min.css');
+                /* Font hello */
+                $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/fontello/css/fontello.css');
+                /* Our style */
+                $document->addLess(ZO2PATH_ASSETS . '/zo2/development/less/admin.less');
+            }
         }
     }
 
@@ -559,30 +573,31 @@ class Zo2Framework {
         }
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public static function isJoomla25() {
-        $result = false;
-
         $jVer = new JVersion();
-        $version = $jVer->getShortVersion();
-
-        if (substr($version, 0, 2) == '3.')
-            $result = false;
-        else if (substr($version, 0, 4) == '2.5.')
-            $result = true;
-        return $result;
+        return $jVer->RELEASE == '2.5';
     }
 
+    /**
+     * 
+     * @return boolean
+     */
     public static function allowOverrideAdminTemplate() {
-        $app = JFactory::getApplication();
+        $application = JFactory::getApplication();
+        $jinput = JFactory::getApplication()->input;
 
-        if ($app->isAdmin()) {
-            $templateName = Zo2Framework::getTemplateName();
-            if (strpos(strtolower($templateName), 'zo2') !== false)
-                return true;
-            else
-                return false;
-        } else
-            return true;
+        if ($application->isAdmin()) {
+            if ($jinput->get('option') == 'com_templates' && $jinput->get('id')) {
+                $templateName = Zo2Framework::getTemplateName();
+                if (strpos(strtolower($templateName), 'zo2') !== false)
+                    return true;
+            }
+        }
+        return false;
     }
 
     /**

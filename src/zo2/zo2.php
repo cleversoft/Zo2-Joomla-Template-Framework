@@ -101,22 +101,18 @@ if (!class_exists('plgSystemZo2')) {
                  * @use Please put your include extra files here if needed for RTL support
                  */
                 if ($enableRtl == 1)
-                    $document->addStyleSheet(ZO2URL_ASSETS_VENDOR . '/bootstrap/addons/morteza/css/bootstrap-rtl.min.css');
+                    $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/bootstrap/addons/morteza/css/bootstrap-rtl.min.css');
 
                 /* Shortcodes */
                 $document->addScript(ZO2URL_ASSETS_ZO2 . '/js/shortcodes.js');
             } else {
-                if ($option == 'com_templates' && $input->get('id')) {
-                    // Load Bootstrap CSS                    
-                    Zo2Framework::loadAdminAssets();
-                }
-                if (Zo2Framework::allowOverrideAdminTemplate())
-                    Zo2Framework::addCssStylesheet(ZO2URL_ASSETS_VENDOR . '/fontello/css/fontello.css');
+                
             }
 
-            if (Zo2Framework::allowOverrideAdminTemplate())
-                $document->addStyleSheet(ZO2URL_ASSETS_ZO2 . '/css/shortcodes.css');
-            
+            Zo2Framework::loadAssets();
+            //if (Zo2Framework::allowOverrideAdminTemplate())
+            //$document->addStyleSheet(ZO2URL_ASSETS_ZO2 . '/css/shortcodes.css');
+
             $document->load();
         }
 
