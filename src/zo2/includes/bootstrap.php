@@ -29,5 +29,3 @@ require_once ZO2PATH_ROOT . '/libraries/shortcodes/WPShortcode.php';
 Zo2Framework::init();
 Zo2Framework::getTemplateLayouts();
 Zo2Framework::getController();
-
-//Zo2Document::getInstance()->addLess(ZO2PATH_ASSETS .'/zo2/development/less/test.less');
