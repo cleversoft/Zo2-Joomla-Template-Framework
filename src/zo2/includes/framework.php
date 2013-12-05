@@ -487,8 +487,8 @@ class Zo2Framework {
             /* Is Zo2 Template or not */
             if (Zo2Framework::allowOverrideAdminTemplate()) {
                 /* Bootstrap */
-                $document->addScript(ZO2PATH_ASSETS . '/vendor/bootstrap/core/js/bootstrap.min.js');
-                $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/bootstrap/core/css/bootstrap.min.css');
+                //$document->addScript(ZO2PATH_ASSETS . '/vendor/bootstrap/core/js/bootstrap.min.js');
+                //$document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/bootstrap/core/css/bootstrap.min.css');
                 /* Font hello */
                 $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/fontello/css/fontello.css');
                 /* Our style */
