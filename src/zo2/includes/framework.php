@@ -465,6 +465,9 @@ class Zo2Framework {
         }
     }
 
+    /**
+     * 
+     */
     public static function loadAssets() {
         $application = JFactory::getApplication();
         $jnput = JFactory::getApplication()->input;
@@ -473,12 +476,11 @@ class Zo2Framework {
         /**
          * Load for both of frontend & backend
          */
+        /* Only for Joomla! 2.5 */
         if (self::isJoomla25()) {
             /* jQuery */
             $document->addScript(ZO2PATH_ASSETS . '/vendor/jquery-1.9.1.min.js');
         }
-
-
 
         /* Backend loading */
         if ($application->isAdmin()) {
@@ -492,6 +494,8 @@ class Zo2Framework {
                 /* Our style */
                 $document->addLess(ZO2PATH_ASSETS . '/zo2/development/less/admin.less');
             }
+        } else {
+            /* Frontend loading */
         }
     }
 
