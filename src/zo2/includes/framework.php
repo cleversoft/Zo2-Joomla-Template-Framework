@@ -480,6 +480,8 @@ class Zo2Framework {
         if (self::isJoomla25()) {
             /* jQuery */
             $document->addScript(ZO2PATH_ASSETS . '/vendor/jquery-1.9.1.min.js');
+
+            /* include bootstrap 2.3 here */
         }
 
         /* Backend loading */
