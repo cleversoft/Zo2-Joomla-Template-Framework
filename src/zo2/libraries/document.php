@@ -102,24 +102,37 @@ if (!class_exists('Zo2Document')) {
         }
 
         /**
-         *
+         * Flush all script into document
          */
         public function load() {
             /**
              * @todo Checksum or last modified before process to improve performance
              */
             $javascriptFiles = array();
+            $stylesheetFiles = array();
+            $outputDir = JPATH_ROOT . '/cache/zo2';
+            $outputDirCss = $outputDir . '/css';
+            $outputDirJs = $outputDir . '/js';
+
+            if (!JFolder::exists($outputDir)) {
+                JFolder::create($outputDir);
+            }
+            if (!JFolder::exists($outputDirCss)) {
+                JFolder::create($outputDirCss);
+            }
+            if (!JFolder::exists($outputDirJs)) {
+                JFolder::create($outputDirJs);
+            }
+
             /* Javascript process */
             foreach ($this->_scripts as $script => $data) {
                 if (isset($data['mime'])) {
                     switch ($data['mime']) {
                         case 'text/javascript':
                             $pathInfo = pathinfo($script);
-                            $outputFile = ZO2PATH_ROOT . '/assets/zo2/js/' . $pathInfo['filename'] . '.' . $pathInfo['extension'];
-                            if (Zo2Framework::get('compress_javascript')) {
-                                /**
-                                 * @todo Compress and save into /assets/zo2/js
-                                 */
+                            $outputFile = $outputDirJs . '/' . $pathInfo['filename'] . '.min.' . $pathInfo['extension'];
+                            /* Do compress */
+                            if (Zo2Framework::get('compress_javascript', 1)) {
                                 Zo2HelperCompiler::javascript($script, $outputFile);
                                 /* Replace original script file by compressed file */
                                 $script = $outputFile; /* Full filePath of compressed file */
@@ -140,8 +153,9 @@ if (!class_exists('Zo2Document')) {
                     switch ($data['mime']) {
                         case 'text/css':
                             $pathInfo = pathinfo($script);
-                            $outputFile = ZO2PATH_ROOT . '/assets/zo2/css/' . $pathInfo['filename'] . '.css';
-                            if (Zo2Framework::get('compress_css')) {
+                            $outputFile = $outputDirCss . '/' . $pathInfo['filename'] . '.min.' . $pathInfo['extension'];
+                            /* Do compress */
+                            if (Zo2Framework::get('compress_css', 1)) {
                                 /**
                                  * @todo Compress and save into /assets/zo2/css
                                  */
@@ -154,13 +168,13 @@ if (!class_exists('Zo2Document')) {
                         case 'less':
                             /* For less files we must do compile first */
                             $pathInfo = pathinfo($script);
-                            $outputFile = ZO2PATH_ROOT . '/assets/zo2/css/' . $pathInfo['filename'] . '.css';
+                            $outputFile = $outputDirCss . '/' . $pathInfo['filename'] . '.min.css';
 
                             /* We don't do check bool return here because if less do not compile because file diff checking */
                             Zo2HelperCompiler::less($script, $outputFile);
 
                             /* And now do compress or merge */
-                            if (Zo2Framework::get('compress_css')) {
+                            if (Zo2Framework::get('compress_css', 1)) {
                                 /**
                                  * @todo Compress and save into /assets/zo2/css
                                  */
@@ -183,30 +197,29 @@ if (!class_exists('Zo2Document')) {
             /* Do merge all javascript file
              * js.php. In this file we'll use JFile::read to load all javascipt file and also do gzip if possible */
             if (Zo2Framework::get('merge_javascript')) {
-                $document->addScript(rtrim(JUri::root(), '/') . '/cache/zo2/js.php');
+                if (!JFile::exists(JPATH_ROOT . '/cache/zo2/js/js.php')) {
+                    JFile::copy(ZO2PATH_ASSETS . '/js.php', JPATH_ROOT . '/cache/zo2/js/js.php');
+                }
+                $document->addScript(rtrim(JUri::root(), '/') . '/cache/zo2/js/js.php');
             } else {
                 /* No merging so let's load all scripts step by step */
                 foreach ($javascriptFiles as $script) {
                     $pathInfo = pathinfo($script);
-                    $document->addScript(ZO2URL_ASSETS_ZO2 . '/js/' . $pathInfo['filename'] . '.js');
+                    $document->addScript(rtrim(JUri::root(), '/') . '/cache/zo2/js/' . $pathInfo['filename'] . '.js');
                 }
             }
             /* Do merge all stylesheet file
              * css.php. In this file we'll use JFile::read to load all javascipt file and also do gzip if possible */
             if (Zo2Framework::get('merge_css', 1)) {
-                $buffer = '';
-                foreach ($styleSheetFiles as $script) {
-                    if (JFile::exists($script)) {
-                        $buffer .= JFile::read($script);
-                    }
+                if (!JFile::exists(JPATH_ROOT . '/cache/zo2/css/css.php')) {
+                    JFile::copy(ZO2PATH_ASSETS . '/css.php', JPATH_ROOT . '/cache/zo2/css/css.php');
                 }
-                JFile::write(JPATH_ROOT . '/cache/zo2.css', $buffer);
-                $document->addStyleSheet(rtrim(JUri::root(), '/') . '/cache/zo2.css');
+                $document->addStyleSheet(rtrim(JUri::root(), '/') . '/cache/zo2/css/css.php');
             } else {
                 /* No merging so let's load all scripts step by step */
                 foreach ($styleSheetFiles as $script) {
                     $pathInfo = pathinfo($script);
-                    $document->addStyleSheet(ZO2URL_ASSETS_ZO2 . '/css/' . $pathInfo['filename'] . '.css');
+                    $document->addStyleSheet(rtrim(JUri::root(), '/') . '/cache/zo2/css/' . $pathInfo['filename'] . '.css');
                 }
             }
         }

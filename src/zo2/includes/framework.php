@@ -50,7 +50,7 @@ class Zo2Framework {
      * Prevent declare new instance
      */
     protected function __construct() {
-
+        
     }
 
     private static $_scripts = array();
@@ -296,8 +296,7 @@ class Zo2Framework {
         }
         else if ($app->isSite()) {
             return $app->getTemplate();
-        }
-        else
+        } else
             return '';
     }
 
@@ -318,7 +317,6 @@ class Zo2Framework {
 
         return '';
     }
-
 
     /**
      * Set layout for output
@@ -362,8 +360,7 @@ class Zo2Framework {
             $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/* .php';
             $layoutFiles = glob($templatePath);
             return array_map('basename', $layoutFiles, array('.php'));
-        }
-        else
+        } else
             return array();
     }
 
@@ -382,8 +379,7 @@ class Zo2Framework {
             }
 
             return json_encode($result);
-        }
-        else
+        } else
             return json_encode(array());
     }
 
@@ -418,8 +414,7 @@ class Zo2Framework {
         return $menu->renderMenu($isAdmin);
     }
 
-    public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false)
-    {
+    public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false) {
         $params = Zo2Framework::getParams();
         $configs = json_decode($params->get('menu_config', ''), true);
         $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
@@ -475,10 +470,14 @@ class Zo2Framework {
      */
     public static function loadAdminAssets() {
         if (Zo2Framework::allowOverrideAdminTemplate()) {
-            $doc = JFactory::getDocument();
-            $doc->addStyleSheet(JURI::root(true).'/plugins/system/zo2/assets/zo2/css/admin.css');
-            //Zo2Framework::addCssStylesheet(ZO2_PLUGIN_URL . '/assets/css/admin.css');
-            //JHtml::_('formbehavior.chosen', 'select');
+            $document = Zo2Document::getInstance();
+            /* jQuery */
+            $document->addScript(ZO2PATH_ASSETS . '/vendor/jquery-1.9.1.min.js');
+            /* Bootstrap */
+            $document->addScript(ZO2PATH_ASSETS . '/vendor/bootstrap/core/js/bootstrap.min.js');
+            $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/bootstrap/core/css/bootstrap.min.css');
+            
+            $document->addLess(ZO2PATH_ASSETS . '/zo2/development/less/admin.less');
         }
     }
 
@@ -530,8 +529,7 @@ class Zo2Framework {
             else
                 $positions = array();
             return $positions;
-        }
-        else
+        } else
             return array();
     }
 
@@ -583,8 +581,7 @@ class Zo2Framework {
                 return true;
             else
                 return false;
-        }
-        else
+        } else
             return true;
     }
 
@@ -619,10 +616,11 @@ class Zo2Framework {
         $app = JFactory::getApplication();
         $db = JFactory::getDBO();
         $sql = ' UPDATE '
-            . $db->quoteName('#__template_styles')
-            . ' SET  ' . $db->quoteName('params') . ' = ' . $db->quote(self::getTemplate()->params->toString())
-            . ' WHERE  ' . $db->quoteName('id') . ' = ' . $db->quote(self::getTemplate()->id);
+                . $db->quoteName('#__template_styles')
+                . ' SET  ' . $db->quoteName('params') . ' = ' . $db->quote(self::getTemplate()->params->toString())
+                . ' WHERE  ' . $db->quoteName('id') . ' = ' . $db->quote(self::getTemplate()->id);
         $db->setQuery($sql);
         $db->execute();
     }
+
 }

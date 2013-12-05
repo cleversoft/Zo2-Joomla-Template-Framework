@@ -80,7 +80,7 @@ if (!class_exists('plgSystemZo2')) {
                                 unset($jdoc->_script['text/javascript']);
                         }
                     } catch (Exception $e) {
-
+                        
                     }
                 }
 
@@ -94,7 +94,7 @@ if (!class_exists('plgSystemZo2')) {
                     $document->scriptRemove(JURI::root(true) . '/media/jui/js/jquery-noconflict.js');
                     $document->scriptRemove(JURI::root(true) . '/media/jui/js/bootstrap.min.js');
                 } catch (Exception $e) {
-
+                    
                 }
                 /*
                  * Include RTL css for frontend template
@@ -116,6 +116,8 @@ if (!class_exists('plgSystemZo2')) {
 
             if (Zo2Framework::allowOverrideAdminTemplate())
                 $document->addStyleSheet(ZO2URL_ASSETS_ZO2 . '/css/shortcodes.css');
+            
+            $document->load();
         }
 
         function onAfterRender() {
@@ -190,10 +192,6 @@ if (!class_exists('plgSystemZo2')) {
                     }
                 }
             }
-        }
-
-        public function onRenderModule($module, $params) {
-
         }
 
         public function doShortCode($content) {
