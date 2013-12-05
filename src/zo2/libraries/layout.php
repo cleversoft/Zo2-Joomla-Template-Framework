@@ -225,7 +225,7 @@ class Zo2Layout {
         $relativePath = str_replace('/less/', '/css/', $relativePath);
         //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
         $content = $this->processLessFile($this->_templatePath . $item['path']);
-        $content = CssMinifier::minify($content);
+        //$content = CssMinifier::minify($content);
         $content = Zo2AssetsHelper::fixCssUrl($content, $filePath, dirname($absoluteOldPath));
         Zo2AssetsHelper::forcePutContent($filePath, $content);
 
