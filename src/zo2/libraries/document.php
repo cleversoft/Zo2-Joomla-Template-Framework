@@ -210,7 +210,7 @@ if (!class_exists('Zo2Document')) {
             }
             /* Do merge all stylesheet file
              * css.php. In this file we'll use JFile::read to load all javascipt file and also do gzip if possible */
-            if (Zo2Framework::get('merge_css', 1)) {
+            if (Zo2Framework::get('merge_css')) {
                 if (!JFile::exists(JPATH_ROOT . '/cache/zo2/css/css.php')) {
                     JFile::copy(ZO2PATH_ASSETS . '/css.php', JPATH_ROOT . '/cache/zo2/css/css.php');
                 }
