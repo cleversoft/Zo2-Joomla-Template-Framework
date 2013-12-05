@@ -19,7 +19,7 @@ function compress($buffer) {
 // list CSS files to be included
 $files = scandir(__DIR__);
 foreach ($files as $file) {
-    if ($file != '.' && $file != '..' && $file != 'css.php') {
+    if ($file != '.' && $file != '..' && $file != 'js.php') {
         include($file);
     }
 }

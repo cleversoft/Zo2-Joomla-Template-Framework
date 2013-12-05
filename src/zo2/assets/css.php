@@ -19,9 +19,8 @@ function compress($buffer) {
 // list CSS files to be included
 $files = scandir(__DIR__);
 foreach ($files as $file) {
-    if ($file != '.' && $file != '..' && $file != 'css.php') {        
-        echo $file . '<br />';
-        //include($file);
+    if ($file != '.' && $file != '..' && $file != 'css.php') {                
+        include($file);
     }
 }
 if (extension_loaded('zlib')) {
