@@ -532,6 +532,7 @@ class Zo2Layout {
 
             $this->insertCustomFontStyles();
 
+            /*
             if (empty($combineLevel) || $combineLevel == '0') {
                 foreach ($this->_layoutStatics as $item) {
                     if ($item['position'] == 'header') {
@@ -544,50 +545,64 @@ class Zo2Layout {
                         }
                     }
                 }
-            } else {
+            }
+            */
+            //else {
                 $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
                 $cssPath = $cacheDir . DIRECTORY_SEPARATOR . 'style.css';
                 $jsPath = $cacheDir . DIRECTORY_SEPARATOR . 'script.js';
                 $cssUri = $this->_templateUri . '/assets/cache/style.css';
                 $jsUri = $this->_templateUri . '/assets/cache/script.js';
+                $doc = Zo2Document::getInstance();
 
                 if (!is_dir($cacheDir))
                     mkdir($cacheDir, 0755, true);
                 $combineScript = '';
                 $combineStyle = '';
 
+
                 foreach ($this->_layoutStatics as $item) {
-                    if ($item['position'] == 'header') {
-                        $assetPath = $this->_templatePath . $item['path'];
-                        $assetPath = str_replace('//', '/', $assetPath);
+                    $assetPath = $this->_templatePath . $item['path'];
+                    $assetPath = str_replace('//', '/', $assetPath);
 
-                        if ($item['type'] == 'css') {
-                            $tempStyle = CssMinifier::minify(file_get_contents($assetPath));
+                    //new method
+                    if ($item['type'] == 'css') $doc->addStyleSheet($assetPath);
+                    else if ($item['type'] == 'js') $doc->addScript($assetPath);
+                    else if ($item['type'] == 'less') $doc->addLess($assetPath);
 
-                            Zo2AssetsHelper::fixCssUrl($tempStyle, $cssPath, $assetPath);
-
-                            $combineStyle .= '/* ' . basename($assetPath) . ' */' . "\n" . $tempStyle . "\n";
-                        } elseif ($item['type'] == 'js')
-                            $combineScript .= file_get_contents($assetPath) . "\n";
-                        elseif ($item['type'] == 'less') {
-                            $tempStyle = CssMinifier::minify($this->processLessFile($assetPath));
-
-                            Zo2AssetsHelper::fixCssUrl($tempStyle, $cssPath, $assetPath);
-
-                            $combineStyle .= '/* ' . basename($assetPath) . ' */' . "\n" . $tempStyle . "\n";
-                        }
-                    }
+                    //old method
+//
+//                    if ($item['position'] == 'header') {
+//                        $assetPath = $this->_templatePath . $item['path'];
+//                        $assetPath = str_replace('//', '/', $assetPath);
+//
+//                        if ($item['type'] == 'css') {
+//                            $tempStyle = CssMinifier::minify(file_get_contents($assetPath));
+//
+//                            Zo2AssetsHelper::fixCssUrl($tempStyle, $cssPath, $assetPath);
+//
+//                            $combineStyle .= '/* ' . basename($assetPath) . ' */' . "\n" . $tempStyle . "\n";
+//                        } elseif ($item['type'] == 'js')
+//                            $combineScript .= file_get_contents($assetPath) . "\n";
+//                        elseif ($item['type'] == 'less') {
+//                            $tempStyle = CssMinifier::minify($this->processLessFile($assetPath));
+//
+//                            Zo2AssetsHelper::fixCssUrl($tempStyle, $cssPath, $assetPath);
+//
+//                            $combineStyle .= '/* ' . basename($assetPath) . ' */' . "\n" . $tempStyle . "\n";
+//                        }
+//                    }
                 }
 
-                $combineStyle = Zo2AssetsHelper::moveCssImportToBeginning($combineStyle);
+                //$combineStyle = Zo2AssetsHelper::moveCssImportToBeginning($combineStyle);
 
-                Zo2AssetsHelper::forcePutContent($cssPath, $combineStyle);
-                Zo2AssetsHelper::forcePutContent($jsPath, $combineScript);
+                //Zo2AssetsHelper::forcePutContent($cssPath, $combineStyle);
+                //Zo2AssetsHelper::forcePutContent($jsPath, $combineScript);
 
-                $cssTag = '<link rel="stylesheet" type="text/css" href="' . $cssUri . '" />';
-                $jsTag = '<script type="text/javascript" src="' . $jsUri . '"></script>';
-                $html .= "\n" . $cssTag . "\n" . $jsTag;
-            }
+                //$cssTag = '<link rel="stylesheet" type="text/css" href="' . $cssUri . '" />';
+                //$jsTag = '<script type="text/javascript" src="' . $jsUri . '"></script>';
+                //$html .= "\n" . $cssTag . "\n" . $jsTag;
+            //}
 
             if (count($this->_styleDeclaration) > 0) {
                 $styles = '';
@@ -786,6 +801,7 @@ class Zo2Layout {
         else {
             $html = '';
 
+            /*
             foreach ($this->_layoutStatics as $item) {
                 if ($item['position'] == 'footer') {
                     if ($item['type'] == 'css')
@@ -800,6 +816,7 @@ class Zo2Layout {
                 $scripts = '<script type="text/javascript">' . $scripts . '</script>';
                 $html .= $scripts;
             }
+            */
             file_put_contents($path, $html);
 
             return $html;
