@@ -32,22 +32,6 @@ if (!class_exists('Zo2Document')) {
         public static $instance;
         private $_scripts = array();
         private $_styleSheets = array();
-        private $_contentSHA1 = array();
-
-        /**
-         * Construction
-         */
-        public function __construct() {
-            /* Create compressed directory if not existed */
-            if (!JFolder::exists(ZO2PATH_ASSET_COMPRESSED))
-                JFolder::create(ZO2PATH_ASSET_COMPRESSED);
-            /* Js compressed location */
-            if (!JFolder::exists(ZO2PATH_ASSET_COMPRESSED . '/js'))
-                JFolder::create(ZO2PATH_ASSET_COMPRESSED . '/js');
-            /* css compressed location */
-            if (!JFolder::exists(ZO2PATH_ASSET_COMPRESSED . '/css'))
-                JFolder::create(ZO2PATH_ASSET_COMPRESSED . '/css');
-        }
 
         /**
          * Add script $content to document, if different salt allow duplicate
@@ -58,11 +42,7 @@ if (!class_exists('Zo2Document')) {
          */
         public function addScriptDeclaration($content, $type = 'text/javascript', $salt = 'js') {
             $document = JFactory::getDocument();
-            $checkSUM = sha($content . ':' . $salt);
-            if (!isset($this->_contentSHA1[$checkSUM])) {
-                $this->_contentSHA1[$checkSUM] = true;
-                return $document->addScriptDeclaration($content, $type);
-            }
+            return $document->addScriptDeclaration($content, $type);
         }
 
         /**
@@ -74,11 +54,7 @@ if (!class_exists('Zo2Document')) {
          */
         public function addStyleDeclaration($content, $type = 'text/css', $salt = 'css') {
             $document = JFactory::getDocument();
-            $checkSUM = sha($content . ':' . $salt);
-            if (!isset($this->_contentSHA1[$checkSUM])) {
-                $this->_contentSHA1[$checkSUM] = true;
-                return $document->addStyleDeclaration($content, $type);
-            }
+            return $document->addStyleDeclaration($content, $type);
         }
 
         /**
@@ -143,9 +119,9 @@ if (!class_exists('Zo2Document')) {
          * @return \Zo2Document
          */
         public function addLess($filePath) {
-            if(self::_isRelativePath($filePath)){
+            if (self::_isRelativePath($filePath)) {
                 $this->_styleSheets[$filePath]['mime'] = 'less';
-            }            
+            }
             return $this;
         }
 
@@ -170,11 +146,17 @@ if (!class_exists('Zo2Document')) {
          * Flush all script into document
          */
         public function load() {
-            $javascriptFiles = array();
-            $outputDir = ZO2PATH_ASSET_COMPRESSED;
+            /* One time locker */
+            static $locker = false;
+            if ($locker === true)
+                return;
+            $locker = true;
+
+            $outputDir = ZO2PATH_ASSETS_ZO2;
             $outputDirCss = $outputDir . '/css';
             $outputDirJs = $outputDir . '/js';
-
+            
+            $javascriptFiles = array();
             /* Javascript process */
             foreach ($this->_scripts as $script => $data) {
                 if (isset($data['mime'])) {
@@ -244,37 +226,56 @@ if (!class_exists('Zo2Document')) {
             }
 
             $document = JFactory::getDocument();
-
             /* Do merge all javascript file
              * js.php. In this file we'll use JFile::read to load all javascipt file and also do gzip if possible */
             if (Zo2Framework::get('merge_javascript')) {
-                if (!JFile::exists(ZO2PATH_ASSET_COMPRESSED . '/js/js.php')) {
-                    JFile::copy(ZO2PATH_ASSETS . '/js.php', ZO2PATH_ASSET_COMPRESSED . '/js/js.php');
-                }
-                $document->addScript(ZO2URL_ASSET_COMPRESSED . '/js/js.php');
-            } else {
-                /* No merging so let's load all scripts step by step */
+                $files = array();
                 foreach ($javascriptFiles as $script) {
-                    $pathInfo = pathinfo($script);
-                    $document->addScript(ZO2URL_ASSET_COMPRESSED . '/js/' . $pathInfo['filename'] . '.js');
+                    $files[] = base64_encode(JPATH_ROOT . '/' . $script);
+                }
+                if (!JFile::exists(ZO2PATH_ASSETS . '/js.php')) {
+                    $document->addScript(ZO2URL_ASSETS . '/js.php?files=' . implode(';', $files));
+                }
+            } else {
+                if (Zo2Framework::get('compress_javascript', 1)) {
+                    /* No merging so let's load all scripts step by step */
+                    foreach ($javascriptFiles as $script) {
+                        $pathInfo = pathinfo($script);
+                        $document->addScript(ZO2URL_ASSETS_ZO2 . '/js/' . $pathInfo['filename'] . '.js');
+                    }
+                } else {
+                    /* No merging so let's load all scripts step by step */
+                    foreach ($javascriptFiles as $script) {
+                        $document->addScript(rtrim(JUri::root(), '/') . '/' . $script);
+                    }
                 }
             }
             /* Do merge all stylesheet file
              * css.php. In this file we'll use JFile::read to load all javascipt file and also do gzip if possible */
             if (Zo2Framework::get('merge_css')) {
-                if (!JFile::exists(ZO2PATH_ASSET_COMPRESSED . '/css/css.php')) {
-                    JFile::copy(ZO2PATH_ASSETS . '/css.php', ZO2PATH_ASSET_COMPRESSED . '/css/css.php');
-                }
-                $document->addStyleSheet(ZO2URL_ASSET_COMPRESSED . '/css/css.php');
-            } else {
-                /* No merging so let's load all scripts step by step */
+                $files = array();
                 foreach ($styleSheetFiles as $script) {
-                    $pathInfo = pathinfo($script);
-                    $document->addStyleSheet(ZO2URL_ASSET_COMPRESSED . '/css/' . $pathInfo['filename'] . '.css');
+                    $files[] = base64_encode(JPATH_ROOT . '/' . $script);
+                }
+                if (!JFile::exists(ZO2PATH_ASSETS . '/css.php')) {
+                    $document->addScript(ZO2URL_ASSETS . '/css.php?files=' . implode(';', $files));
+                }
+            } else {
+                if (Zo2Framework::get('compress_css', 1)) {
+                    /* No merging so let's load all scripts step by step */
+                    foreach ($styleSheetFiles as $script) {
+                        $pathInfo = pathinfo($script);
+                        $document->addStyleSheet(ZO2URL_ASSETS_ZO2 . '/css/' . $pathInfo['filename'] . '.css');
+                    }
+                } else {
+                    /* No merging so let's load all scripts step by step */
+                    foreach ($javascriptFiles as $script) {
+                        $document->addStyleSheet(rtrim(JUri::root(), '/') . '/' . $script);
+                    }
                 }
             }
         }
-        
+
     }
 
 }

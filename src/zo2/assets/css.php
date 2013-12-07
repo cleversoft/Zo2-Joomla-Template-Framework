@@ -16,13 +16,22 @@ function compress($buffer) {
     return $buffer;
 }
 
-// list CSS files to be included
-$files = scandir(__DIR__);
-foreach ($files as $file) {
-    if ($file != '.' && $file != '..' && $file != 'css.php') {                
-        include($file);
+if (isset($_GET['files'])) {
+    /* Get base64 encode file name */
+    $files = $_GET['files'];
+    /* Explode file to array */
+    $fileList = explode(';', $files);
+    foreach ($fileList as $_file) {
+        /* Decode filename */
+        if (!empty($_file) && ($fileName = base64_decode(trim($_file))) !== false) {
+            /* Check extension */
+            if (strtolower(substr($fileName, strlen($fileName) - 4, 4)) == ".css") {
+                include $fileName;
+            }
+        }
     }
 }
+
 if (extension_loaded('zlib')) {
     ob_end_flush();
 }
