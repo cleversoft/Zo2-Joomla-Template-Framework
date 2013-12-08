@@ -31,13 +31,13 @@ class JFormFieldAssets extends JFormField {
 
         if (!defined ('ZO2_ASSET')) {
             define ('ZO2_ASSET', 1);
-            $jdoc = JFactory::getDocument();
+            $document = Zo2Document::getInstance();
             JFactory::getLanguage()->load('plg_system_zo2', JPATH_ADMINISTRATOR);
             //JHtml::_('jquery.framework');
             // remove because of empty css
             //$jdoc->addStyleSheet(ZO2_PLUGIN_URL . '/css/assets.css');
-            $jdoc->addScript(JURI::root(true). '/plugins/system/zo2/assets/zo2/js/assets.js');
-            JFactory::getDocument()->addScriptDeclaration ( '
+            $document->addScript(ZO2RTP_ASSETS_ZO2 . '/development/js/assets.js');
+            $document->addScriptDeclaration ( '
 
             jQuery.extend(Assets, {
                 url: \'' . JFactory::getURI()->toString() . '\',

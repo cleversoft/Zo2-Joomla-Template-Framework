@@ -37,10 +37,10 @@ class JFormFieldMegaMenu extends JFormFieldHidden
 
             JFactory::getLanguage()->load('plg_system_zo2', JPATH_ADMINISTRATOR);
 
-            $jdoc = JFactory::getDocument();
-            $jdoc->addStylesheet(JURI::root(true).'/plugins/system/zo2/assets/zo2/css/megamenu.css');
-            $jdoc->addStyleSheet(JURI::root(true).'/plugins/system/zo2/assets/zo2//css/adminmegamenu.css');
-            $jdoc->addScript(JURI::root(true).'/plugins/system/zo2/assets/zo2//js/adminmegamenu.js');
+            $document = Zo2Document::getInstance();
+            $document->addStylesheet(ZO2RTP_ASSETS_ZO2 . '/css/megamenu.css');
+            $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/adminmegamenu.css');
+            $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/adminmegamenu.js');
 
         }
 

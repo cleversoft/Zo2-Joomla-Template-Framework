@@ -23,7 +23,7 @@ class JFormFieldLayout extends JFormField
      */
     public function getInput()
     {
-        $doc = JFactory::getDocument();
+        $document = Zo2Document::getInstance();
 
         $template = $this->form->getValue('template');
         $theme_path = JPATH_SITE.'/templates/'.$template.'/';
@@ -46,19 +46,13 @@ class JFormFieldLayout extends JFormField
             }
         }
 
-        $pluginPath = JURI::root(true).'/plugins/system/zo2/';
-        $assetsPath = $pluginPath . 'assets/';
-        $cssPath = $assetsPath . 'zo2/css/';
-        $jsPath = $assetsPath . 'zo2/js/';
-        $vendorPath = $pluginPath . 'assets/vendor/';
-
         // load jquery & jqueryui newest version, cause joomla's jquery is plain old
         // Load custom js and css
-        $doc->addScript($vendorPath . 'jqueryui/js/jquery-ui-1.10.3.custom.min.js');
-        $doc->addScript($vendorPath . 'bootbox-3.3.0.min.js');
-        $doc->addScript($jsPath . 'adminlayout.js');
-        $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
-        $doc->addStyleSheet($vendorPath . 'bootstrap/core/css/bootstrap.gridsystem.css');
+        $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jqueryui/js/jquery-ui-1.10.3.custom.min.js');
+        $document->addScript(ZO2RTP_ASSETS_VENDOR . '/bootbox-3.3.0.min.js');
+        $document->addScript(ZO2RTP_ASSETS_ZO2 . '/adminlayout.js');
+        $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/jqueryui/css/jquery-ui-1.10.3.custom.min.css');
+        $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/css/bootstrap.gridsystem.css');
 
         // Load Bootstrap JS framework
         //JHtml::_('bootstrap.framework');

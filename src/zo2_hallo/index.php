@@ -16,7 +16,7 @@ if(!class_exists('Zo2Framework')) die('Zo2Framework not found');
 //access zo2 framework
 /** @var Zo2Framework $zo2 */
 $zo2 = Zo2Framework::getInstance();
-$doc = JFactory::getDocument();
+$doc = Zo2Document::getInstance();
 $debug = $zo2->getParams('debug_visibility');
 $responsive = $zo2->getParams('responsive_layout');
 $favicon = $zo2->getParams('favicon');

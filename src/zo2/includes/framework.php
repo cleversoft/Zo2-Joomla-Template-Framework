@@ -19,7 +19,7 @@ class Zo2Framework {
     /* public */
 
     /**
-     * @var JDocument
+     * @var ZoDocument
      */
     public $document;
 
@@ -133,12 +133,12 @@ class Zo2Framework {
     }
 
     /**
-     * Get current JDocument
+     * Get current ZoDocument
      *
-     * @return JDocument
+     * @return ZoDocument
      */
     public static function getCurrentDocument() {
-        return JFactory::getDocument();
+        return Zo2Document::getInstance();
     }
 
     /**
@@ -296,7 +296,8 @@ class Zo2Framework {
         }
         else if ($app->isSite()) {
             return $app->getTemplate();
-        } else
+        }
+        else
             return '';
     }
 
@@ -360,7 +361,8 @@ class Zo2Framework {
             $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/* .php';
             $layoutFiles = glob($templatePath);
             return array_map('basename', $layoutFiles, array('.php'));
-        } else
+        }
+        else
             return array();
     }
 
@@ -379,7 +381,8 @@ class Zo2Framework {
             }
 
             return json_encode($result);
-        } else
+        }
+        else
             return json_encode(array());
     }
 
@@ -479,7 +482,7 @@ class Zo2Framework {
         /* Only for Joomla! 2.5 */
         if (self::isJoomla25()) {
             /* jQuery */
-            $document->addScript(ZO2PATH_ASSETS . '/vendor/jquery-1.9.1.min.js');
+            $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery-1.9.1.min.js');
 
             /* include bootstrap 2.3 here */
         }
@@ -488,13 +491,16 @@ class Zo2Framework {
         if ($application->isAdmin()) {
             /* Is Zo2 Template or not */
             if (Zo2Framework::allowOverrideAdminTemplate()) {
-                /* Bootstrap */
-                //$document->addScript(ZO2PATH_ASSETS . '/vendor/bootstrap/core/js/bootstrap.min.js');
-                //$document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/bootstrap/core/css/bootstrap.min.css');
+                if (self::isJoomla25()) {
+                    /* Bootstrap */
+                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/js/bootstrap.min.js');
+                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/css/bootstrap.min.css');
+                }
+                $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/font-awesome/css/font-awesome.min.css');
                 /* Font hello */
-                $document->addStyleSheet(ZO2PATH_ASSETS . '/vendor/fontello/css/fontello.css');
+                $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/fontello/css/fontello.css');
                 /* Our style */
-                $document->addLess(ZO2PATH_ASSETS . '/zo2/development/less/admin.less');
+                $document->addLess(ZO2RTP_ASSETS_ZO2 . '/zo2/development/less/admin.less');
             }
         } else {
             /* Frontend loading */
@@ -549,7 +555,8 @@ class Zo2Framework {
             else
                 $positions = array();
             return $positions;
-        } else
+        }
+        else
             return array();
     }
 

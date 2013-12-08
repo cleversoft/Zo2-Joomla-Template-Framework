@@ -22,13 +22,11 @@ class JFormFieldFont extends JFormField
      */
     public function getInput()
     {
-        $doc = JFactory::getDocument();
-        $pluginPath = JURI::root(true).'/plugins/system/zo2/';
-        $vendorPath = $pluginPath . 'assets/vendor/';
-        $doc->addScript($vendorPath . 'fontselect/jquery.fontselect.js');
-        $doc->addScript($vendorPath . 'bootstrap/addons/bootstrap-colorpicker/js/bootstrap-colorpicker.js');
-        $doc->addStyleSheet($vendorPath . 'fontselect/fontselect.css');
-        $doc->addStyleSheet($vendorPath . 'bootstrap/addons/bootstrap-colorpicker/css/bootstrap-colorpicker.css');
+        $document = Zo2Document::getInstance();
+        $document->addScript(ZO2RTP_ASSETS_VENDOR  . '/fontselect/jquery.fontselect.js');
+        $document->addScript(ZO2RTP_ASSETS_VENDOR  . '/bootstrap/addons/bootstrap-colorpicker/js/bootstrap-colorpicker.js');
+        $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR  . '/fontselect/fontselect.css');
+        $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR  . '/bootstrap/addons/bootstrap-colorpicker/css/bootstrap-colorpicker.css');
 
         $path = JPATH_SITE.'/plugins/system/zo2/html/formfields/font.php';
         ob_start();

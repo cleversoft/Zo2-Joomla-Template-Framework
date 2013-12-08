@@ -325,7 +325,7 @@ class Zo2Layout {
         $html .= '<section class="row">'; // start of row
         // count column and remove empty module here
         $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
-        $doc = JFactory::getDocument();
+        $doc = Zo2Document::getInstance();
         $freeSpace = 0;
         $totalTakenSpace = 0;
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {

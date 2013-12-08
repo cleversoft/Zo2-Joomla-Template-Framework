@@ -41,7 +41,7 @@ class Zo2Socialshare {
      */
     public function loadScript() {
 
-        $document = JFactory::getDocument();
+        $document = Zo2Document::getInstance();
         $type = $document->getType();
 
 
@@ -84,13 +84,13 @@ class Zo2Socialshare {
             /**
              * Scripts loading
              */
-            $document->addStyleSheet(ZO2URL_ASSETS_ZO2 . '/css/social.css');
-            $document->addScript(ZO2URL_ASSETS_VENDOR . '/jquery.cookie.js');
-            $document->addScript(ZO2URL_ASSETS_VENDOR . '/socialite/socialite.min.js');
-            $document->addScript(ZO2URL_ASSETS_VENDOR . '/socialite/extensions/socialite.pinterest.js');
-            $document->addScript(ZO2URL_ASSETS_VENDOR . '/socialite/extensions/socialite.bufferapp.js');
-            $document->addScript(ZO2URL_ASSETS_VENDOR . '/socialite/extensions/socialite.reddit.js');
-            $document->addScript(ZO2URL_ASSETS_ZO2 . '/js/social.js');
+            $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/social.css');
+            $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery.cookie.js');
+            $document->addScript(ZO2RTP_ASSETS_VENDOR . '/socialite/socialite.min.js');
+            $document->addScript(ZO2RTP_ASSETS_VENDOR . '/socialite/extensions/socialite.pinterest.js');
+            $document->addScript(ZO2RTP_ASSETS_VENDOR . '/socialite/extensions/socialite.bufferapp.js');
+            $document->addScript(ZO2RTP_ASSETS_VENDOR . '/socialite/extensions/socialite.reddit.js');
+            $document->addScript(ZO2RTP_ASSETS_ZO2 . '/development/js/social.js');
 
             if (!$this->addedSocialScript) {
                 /*
@@ -165,13 +165,13 @@ class Zo2Socialshare {
     }
 
     public function renderFloatSocial() {
-        $doc = JFactory::getDocument();
+        $document = Zo2Document::getInstance();
         $params = Zo2Framework::getParams();
         $view = $this->getView();
         if ($params->get('display_type', 'normal') == 'float' && $this->showIn($view)) {
             $pattern = '<div class="zo2-social-float zo2-social-wrap hidden-xs hidden-md" data-social-type="floating" data-id="%s" data-url="%s" data-title="%s" %s></div>';
             $url = JUri::current();
-            $title = $doc->getTitle();
+            $title = $document->getTitle();
             return sprintf($pattern, 0, $url, $title, $this->optionAttributesHtml);
         }
 
@@ -179,13 +179,13 @@ class Zo2Socialshare {
     }
 
     public function renderCurrentPageNormalSocial() {
-        $doc = JFactory::getDocument();
+        $document = Zo2Document::getInstance();
         $params = Zo2Framework::getParams();
         //$view = $this->getView();
         if ($params->get('display_type', 'normal') == 'normal') {
             $pattern = '<div class="zo2-social-wrap hidden-xs hidden-md" data-id="%s" data-url="%s" data-title="%s" %s></div>';
             $url = JUri::current();
-            $title = $doc->getTitle();
+            $title = $document->getTitle();
             return sprintf($pattern, 0, $url, $title, $this->optionAttributesHtml);
         }
 
