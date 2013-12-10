@@ -54,7 +54,7 @@ class Zo2Socialshare
             $days_popup = (int)$this->params->get('days_popup_again', 1);
             $view = $this->getView();
 
-            $socials = json_decode($this->params->get('social_order'));
+            $socials = json_decode($this->params->get('social_order', '[]'));
             $newSocials = array();
 
             foreach ($socials as $social) {

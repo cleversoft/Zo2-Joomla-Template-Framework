@@ -25,7 +25,7 @@ $templateName = $this->template;
 	<title><?php echo $this->error->getCode(); ?> - <?php echo $this->title; ?></title>
 
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/zo2_hallo/assets/vendor/bootstrap/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl . '/templates/zo2_hallo/' . Zo2Framework::compileLess('/assets/less/error.less', $templateName); ?>" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseurl . '/templates/zo2_hallo/' . Zo2Framework::compileLess('/assets/zo2/less/error.less', $templateName); ?>" type="text/css" />
 	<?php if ($this->direction == 'rtl') : ?>
 	<link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/system/css/error_rtl.css" type="text/css" />
 	<?php endif; ?>
