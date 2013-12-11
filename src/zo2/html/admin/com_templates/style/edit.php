@@ -76,7 +76,7 @@ if (Zo2Framework::allowOverrideAdminTemplate()) :
 								<?php echo JText::_('COM_TEMPLATES_TEMPLATE_DESCRIPTION'); ?>
 							</label>
 							<div class="controls">
-								<span class="disabled"><?php echo JText::_($text); ?></span>
+								<span><?php echo JText::_($text); ?></span>
 							</div>
 						</div>
 					<?php endif; ?>
