@@ -6,11 +6,9 @@ Socialite provides a very easy way to implement and activate a plethora of socia
 
 [For a demo visit: **socialitejs.com**](http://www.socialitejs.com/)
 
-Author: David Bushell [http://dbushell.com](http://dbushell.com) [@dbushell](http://twitter.com/dbushell)
+Author: **Socialite is no longer under active development**
 
-Contributor: Tom Morton [http://twmorton.com](http://twmorton.com) [@tmort](http://twitter.com/tmort)
-
-Copyright © 2013
+Copyright © 2012
 
 ### Changes from Version 1
 
@@ -133,9 +131,9 @@ The main core of Socialite is built for extensibility. It's basically a fancy sc
 
 With these two functions you can add extended support. See the source code for examples (more guides to come here). I'm always working on support and settings for more networks, check back frequently!
 
-## WordPress Plugin
+Thanks,
 
-Tom Morton [@tmort](http://twitter.com/tmort/) has also created a WordPress plugin that packages WPSocialite and makes it a one step installation into your WordPress powered website. Download it from here: http://wordpress.org/plugins/wpsocialite/.
+[@dbushell](http://twitter.com/dbushell/)
 
 ## Change Log
 

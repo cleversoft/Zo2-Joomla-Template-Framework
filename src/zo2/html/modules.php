@@ -9,7 +9,7 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-//no direct accees
+ //no direct accees
 defined ('_JEXEC') or die ('resticted aceess');
 
 function modChrome_ZO2Xhtml($module, &$params, &$attribs)

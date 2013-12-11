@@ -46,17 +46,9 @@ if (!class_exists('Zo2HelperCompiler')) {
         public static function javascript($inputFile, $outputFile) {
             if (JFile::exists($inputFile) && (!is_file($outputFile) || filemtime($inputFile) > filemtime($outputFile))) {
                 $content = JFile::read($inputFile);
-                $content = preg_replace('#\s+#', ' ', $content);
-                $content = preg_replace('#/\*.*?\*/#s', '', $content);
-                $content = str_replace('; ', ';', $content);
-                $content = str_replace(': ', ':', $content);
-                $content = str_replace(' {', '{', $content);
-                $content = str_replace('{ ', '{', $content);
-                $content = str_replace(', ', ',', $content);
-                $content = str_replace('} ', '}', $content);
-                $content = str_replace(';}', '}', $content);
-                $pattern = '#url\([\'"]?([a-zA-Z/.-]+)[\'"]?\)#';
-                $content = preg_replace($pattern, 'url($1)', $content);
+                /**
+                 * @todo apply javascript compress method here
+                 */
                 return JFile::write($outputFile, $content);
             }
             return false;
@@ -71,7 +63,7 @@ if (!class_exists('Zo2HelperCompiler')) {
          */
         public static function styleSheet($inputFile, $outputFile) {
             if (JFile::exists($inputFile) && (!is_file($outputFile) || filemtime($inputFile) > filemtime($outputFile))) {
-                $content = str_replace('; ', ';', str_replace(' }', '}', str_replace('{ ', '{', str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), "", preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', JFile::read($inputFile))))));
+                $content = CssMinifier::minify($content);
                 return JFile::write($outputFile, $content);
             }
             return false;
