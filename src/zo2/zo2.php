@@ -87,7 +87,7 @@ if (!class_exists('plgSystemZo2')) {
 				}                                   
             }
             else {
-				if (!Zo2Framework::isJoomla25())
+				if (!Zo2Framework::isJoomla25() && Zo2Framework::allowOverrideAdminTemplate())
 					unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
             }
         }

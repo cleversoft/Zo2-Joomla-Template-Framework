@@ -144,13 +144,13 @@ if (!class_exists('Zo2Framework')) {
                     $document->addStyleSheet(ZO2URL_ROOT . '/addons/shortcodes/css/shortcodes.css');
                     /* Our script */
                     $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/admin.css');
+                    /* Shortcodes */
+                    $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/shortcodes.css');
+                    $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/shortcodes.min.js');
                 }
             } else {
                 
             }
-            /* Shortcodes */
-            $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/shortcodes.css');
-            $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/shortcodes.min.js');
         }
 
         /**
