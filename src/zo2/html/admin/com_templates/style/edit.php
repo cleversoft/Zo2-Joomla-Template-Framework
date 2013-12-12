@@ -19,7 +19,7 @@ $canDo = TemplatesHelper::getActions();
 if (Zo2Framework::allowOverrideAdminTemplate()) :
 ?>
 <form id="adminForm" action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="style-form" class="form-validate form-horizontal">
-	<fieldset id="zo2">
+	<fieldset id="zo2" class="<?php echo Zo2Framework::isJoomla25() ? 'j25' : 'j3'?>">
         <!-- tabs header -->
         <ul class="nav nav-tabs" id="zo2Tabs">
             <li class="active">
