@@ -27,7 +27,7 @@
         "base": "template"
     },
     {
-        "path": "/assets/vendor/bootstrap/css/bootstrap.min.css",
+        "path": "/assets/vendor/bootstrap/core/css/bootstrap.min.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
@@ -36,7 +36,7 @@
         "base": "plugin"
     },
     {
-        "path": "/assets/vendor/font-awesome/css/font-awesome.min.css",
+        "path": "/assets/vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
@@ -45,7 +45,7 @@
         "base": "plugin"
     },
     {
-        "path": "/assets/vendor/bootstrap/js/bootstrap.min.js",
+        "path": "/assets/vendor/bootstrap/core/js/bootstrap.min.js",
         "type": "js",
         "position": "footer",
         "base": "plugin"
