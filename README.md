@@ -4,44 +4,30 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 ##Features
 
 1. Layout Builder
-
 	+ Drag and drop component
 	+ Component
 	+ Smoother drag drop
 	+ Advanced grid and responsive settings based on Twitter Bootstrap 3
-	
 2. Mega Menu
-
 	+ Menu builder from backend
-
 3. Support Twitter Bootstrap CSS framework
-
 	+ Integrate Twitter Bootstrap
 	+ Font Awesome Icons
 	+ Responsive layout
 	+ Typography
 	+ Mobile supported
-
 4. Shortcode
-
 	+ Shortcode structure
 	+ OOP for shortcode
-
 5. Fonts Options
-
 	+ Choose from hundreds Google Web Fonts with live preview
 	+ Support FontDeck
 	+ Many options to style your font
-
 6. CSS + JS Compress & Combination
-
 	+ Combine CSS + JS
 	+ Compress CSS + JS	
-
 7. LESS compiler
-
 	+ Integrate LESS compiler
-
 8. Allowing opt-in/opt-out for "EU Cookie Law"
 
 ##Download
@@ -52,7 +38,7 @@ Version 1.0: [zo2_v1.0_package.zip](http://download.zootemplate.com/download/52a
 
 ##Release
 1. Version 1.0: released on December 07th, 2013 [http://demo.zo2framework.org](http://demo.zo2framework.org)
-1. Version 1.1: schedule to release on January, 2013
+2. Version 1.1: schedule to release on January, 2013
 
 
 ##Bug tracking
