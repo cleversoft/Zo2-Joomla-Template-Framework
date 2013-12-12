@@ -119,17 +119,15 @@ if (!class_exists('Zo2Framework')) {
             if (self::isJoomla25()) {
                 
             }
-            /* Shortcodes */
-            $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/shortcodes.css');
-            $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/shortcodes.min.js');
 
             /* Backend loading */
             if ($application->isAdmin()) {
                 if (self::allowOverrideAdminTemplate()) {
+                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');
+                    unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
                     /* Only for Joomla! 2.5 */
                     if (self::isJoomla25()) {
                         /* jQuery: Only for backend. In frontend we include that into template index.php */
-                        $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');
                         $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery.noConflict.js');
                         /* For Joomla! 2.5 we need load Bootstrap 2.x */
                         $document->addScript(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/2.3.2/js/bootstrap.min.js');
@@ -151,6 +149,9 @@ if (!class_exists('Zo2Framework')) {
             } else {
                 
             }
+            /* Shortcodes */
+            $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/shortcodes.css');
+            $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/shortcodes.min.js');
         }
 
         /**

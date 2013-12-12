@@ -85,6 +85,9 @@ if (!class_exists('plgSystemZo2')) {
                 unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
                 unset($document->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
             }
+            else {
+                unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
+            }
         }
 
         function onAfterRender() {
