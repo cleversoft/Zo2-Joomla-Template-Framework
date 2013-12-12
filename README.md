@@ -4,78 +4,54 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 ##Features
 1. Layout Builder
 
-	**Done**
 	+ Drag and drop component
-	+ Data component
-	
-	**Todo**
+	+ Component
 	+ Smoother drag drop
-	+ More friendly way to add data component
+	+ Advanced grid and responsive settings based on Twitter Bootstrap 3
 	
 2. Mega Menu
 
-	**Done**
 	+ Menu builder from backend
+
 3. Support Twitter Bootstrap CSS framework
 
-	**Done**
 	+ Integrate Twitter Bootstrap
 	+ Font Awesome Icons
 	+ Responsive layout
 	+ Typography
 	+ Mobile supported
-4. Multiple layout for different component
 
-	**Done**
-	+ Route layout for component
-	
-	**Todo**
-	+ Ability to switch between layouts in backend
-5. Shortcode
+4. Shortcode
 
-	**Done**
 	+ Shortcode structure
-	+ Add basic shortcodes
-	+ OOP and MVC for shortcode
-6. Fonts Options
+	+ OOP for shortcode
 
-	**Done**
-	+ Ability to choose Google Web Fonts
-	
-	**Todo**
-	+ Google Web Fonts preview in backend
-	+ FontDeck Support
-7. CSS + JS Compress & Combination
-	
-	**Done**
+5. Fonts Options
+
+	+ Choose from hundreds Google Web Fonts with live preview
+	+ Support FontDeck
+	+ Many options to style your font
+
+6. CSS + JS Compress & Combination
+
 	+ Combine CSS + JS
-	+ Compress CSS + JS
-	+ Push CSS before end of head tag, and JS before end of body tag
-	+ All inline css and js are merge into one block
-8. LESS compiler
+	+ Compress CSS + JS	
 
-	**Done**
+7. LESS compiler
+
 	+ Integrate LESS compiler
 
-9. Allowing opt-in/opt-out for "EU Cookie Law"
-
-##Roadmap
-**Beta 1**
-+ Layout builder: allow to add/edit/remove grid columns, allow to change settings for data components.
-+ OOP for shortcodes
-+ Layout by component route
-+ LESS Compiler
-+ Settings for components
+8. Allowing opt-in/opt-out for "EU Cookie Law"
 
 ##Download
-Coming soon
+Version 1.0: [zo2_v1.0_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_v1.0_package.zip)
 
 ##Demo
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
 
 ##Release
-1. Alpha: released on July 15th, 2013 [http://demo.zo2framework.org](http://demo.zo2framework.org)
-1. Beta 1: schedule to release on August 1st, 2013
+1. Version 1.0: released on December 07th, 2013 [http://demo.zo2framework.org](http://demo.zo2framework.org)
+1. Version 1.1: schedule to release on January, 2013
 
 
 ##Bug tracking
