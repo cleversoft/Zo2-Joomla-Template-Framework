@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="templates/zo2_hallo/assets/css/normalize.css" type="text/css" />
+<link rel="stylesheet" href="templates/zo2_hallo/assets/css/template.css" type="text/css" />
+<link rel="stylesheet" href="templates/zo2_hallo/assets/css/presets/black.css" type="text/css" />
 
 <style type="text/css">.logo_retina { display: none; }
                 .logo_normal {display:block}
