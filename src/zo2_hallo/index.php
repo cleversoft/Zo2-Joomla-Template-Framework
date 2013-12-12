@@ -44,7 +44,7 @@ $footer = $layout->insertFooterAssets();
 $social = $zo2->zo2Social;
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
     <head>
         <?php if ($responsive) { ?>
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
