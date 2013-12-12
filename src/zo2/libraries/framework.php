@@ -123,8 +123,7 @@ if (!class_exists('Zo2Framework')) {
             /* Backend loading */
             if ($application->isAdmin()) {
                 if (self::allowOverrideAdminTemplate()) {
-                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');
-                    unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
+                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');                    				
                     /* Only for Joomla! 2.5 */
                     if (self::isJoomla25()) {
                         /* jQuery: Only for backend. In frontend we include that into template index.php */

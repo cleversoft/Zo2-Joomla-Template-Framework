@@ -77,16 +77,18 @@ if (!class_exists('plgSystemZo2')) {
                     }
                 }
                 // remove default jquery and bootstrap 2
-                if (!Zo2Framework::isJoomla25())
-                    JHtml::_('bootstrap.framework', false);
-                //JHtml::_('jquery.framework', false);
-                //JHtml::_('behavior.tooltip', false);
-                unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
-                unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
-                unset($document->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
+                if (!Zo2Framework::isJoomla25()) {				
+					JHtml::_('bootstrap.framework', false);
+					//JHtml::_('jquery.framework', false);
+					//JHtml::_('behavior.tooltip', false);
+					unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
+					unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
+					unset($document->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
+				}                                   
             }
             else {
-                unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
+				if (!Zo2Framework::isJoomla25())
+					unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
             }
         }
 
