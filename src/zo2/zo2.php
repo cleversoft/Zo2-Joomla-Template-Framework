@@ -25,6 +25,10 @@ if (!class_exists('plgSystemZo2')) {
         public function __construct(& $subject, $config) {
             parent::__construct($subject, $config);
             $this->loadLanguage();
+
+            // fix PHP Fatal error:  Call to a member function getTag() on a non-object
+            $app = JFactory::getApplication();
+            $app->loadLanguage();
         }
 
         /**
