@@ -133,7 +133,7 @@ if (!class_exists('Zo2Framework')) {
                         $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/2.3.2/css/bootstrap.min.css');
                     }
                     /* Extra Bootstrap addons */
-                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/font-awesome/css/font-awesome.min.css');
+                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/font-awesome/css/font-awesome.min.css');										
                     $document->addScript(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-colorpicker/js/bootstrap-colorpicker.js');
                     $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-colorpicker/css/bootstrap-colorpicker.css');
                     /* Font Select */
@@ -149,7 +149,8 @@ if (!class_exists('Zo2Framework')) {
                     $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/shortcodes.min.js');
                 }
             } else {
-                
+				if ( self::get('enable_rtl') == 1 ) 
+					$document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
             }
         }
 
