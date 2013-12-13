@@ -109,9 +109,9 @@ class plgSystemZo2 extends JPlugin
             /*
              * Include RTL css for frontend template
              * @use Please put your include extra files here if needed for RTL support
-             */
-            if ($params->get('rtl_layout') == 1) {
-                $doc->addStyleSheet(ZO2_PLUGIN_URL . '/assets/css/rtl.css');              
+             */                        
+            if ($params->get('rtl_layout') == 1) {                
+                $doc->addStyleSheet(ZO2_PLUGIN_URL . '/vendor/morteza/bootstrap-rtl.min.css');              
             }
             
             $doc->addScript(ZO2_PLUGIN_URL . '/addons/shortcodes/js/shortcodes.js');
