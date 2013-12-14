@@ -45,7 +45,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
                 }
             });';
 
-            $zo2->getLayout()->insertJsDeclaration($script);
+            $zo2->getLayout()->addStyleDeclaration($script);
         }
         $html .= '</footer>';
 

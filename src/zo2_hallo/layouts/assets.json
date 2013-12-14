@@ -27,30 +27,6 @@
         "base": "template"
     },
     {
-        "path": "/assets/vendor/bootstrap/core/css/bootstrap.min.css",
-        "type": "css",
-        "options": {
-            "rel": "stylesheet"
-        },
-        "position": "header",
-        "base": "plugin"
-    },
-    {
-        "path": "/assets/vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css",
-        "type": "css",
-        "options": {
-            "rel": "stylesheet"
-        },
-        "position": "header",
-        "base": "plugin"
-    },
-    {
-        "path": "/assets/vendor/bootstrap/core/js/bootstrap.min.js",
-        "type": "js",
-        "position": "footer",
-        "base": "plugin"
-    },
-    {
         "path": "/assets/js/megamenu.js",
         "type": "js",
         "position": "footer",

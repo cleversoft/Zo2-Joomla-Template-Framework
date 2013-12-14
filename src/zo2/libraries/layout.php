@@ -18,9 +18,11 @@ class Zo2Layout {
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
             $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
+    private $_script = array();
+    private $_style = array();
     private $_layoutStatics = array();
     private $_styleDeclaration = array();
-    private $_jsDeclaration = array();
+    private $_scriptDeclaration = array();
     private $_components = array();
 
     const MEGAMENU_PLACEHOLDER = '<!-- zo2_megamenu_placeholder -->';
@@ -32,35 +34,54 @@ class Zo2Layout {
      *
      * @throws Exception
      */
-    public function __construct($templateName) {
-        // assign values to private variables
-        $this->_templatePath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR;
-        $this->_layourDir = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR;
-        $this->_layoutPath = $this->_layourDir . 'layout.json';
-        //$this->_compiledLayoutPath = $this->_layourDir . 'layout.php';
-        //$this->_staticsPath = $this->_layourDir . $layoutName . '.json';
-        $this->_coreStaticsPath = $this->_layourDir . 'assets.json';
-        $this->_templateName = $templateName;
-        $this->_templateUri = JUri::root() . 'templates/' . $templateName;
+    public function __construct($templateName = '') {
+        $app = JFactory::getApplication();
 
-        // check layout existence, if layout not existed, get default layout, which is homepage.php
-        if (!file_exists($this->_layoutPath))
-            throw new Exception('Layout file cannot be found!');
+        if ($app->isSite()) {
+            // assign values to private variables
+            $this->_templatePath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR;
+            $this->_layourDir = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR;
+            $this->_layoutPath = $this->_layourDir . 'layout.json';
+            //$this->_compiledLayoutPath = $this->_layourDir . 'layout.php';
+            //$this->_staticsPath = $this->_layourDir . $layoutName . '.json';
+            $this->_coreStaticsPath = $this->_layourDir . 'assets.json';
+            $this->_templateName = $templateName;
+            $this->_templateUri = JUri::base(true) . 'templates/' . $templateName;
 
-        // get template content
-        $this->_layoutStatics = array();
-        $this->_layoutContent = file_get_contents($this->_layoutPath);
-        $coreStaticsJson = file_get_contents($this->_coreStaticsPath);
-        //$staticsJson = file_exists($this->_staticsPath) ? file_get_contents($this->_staticsPath) : array();
-        $coreStatics = json_decode($coreStaticsJson, true);
-        //$statics = json_decode($staticsJson, true);
-        // combine layout statics
-        $this->_layoutStatics = $coreStatics;
+            // check layout existence, if layout not existed, get default layout, which is homepage.php
+            if (!file_exists($this->_layoutPath))
+                throw new Exception('Layout file cannot be found!');
 
-        $this->importComponents();
-        Zo2Framework::import('core.Zo2AssetsHelper');
-        Zo2Framework::import('vendor.minify.jsshrink');
-        Zo2Framework::import('vendor.minify.css');
+            // get template content
+            $this->_layoutStatics = array();
+            $this->_layoutContent = file_get_contents($this->_layoutPath);
+            $coreStaticsJson = file_get_contents($this->_coreStaticsPath);
+            //$staticsJson = file_exists($this->_staticsPath) ? file_get_contents($this->_staticsPath) : array();
+            $coreStatics = json_decode($coreStaticsJson, true);
+            //$statics = json_decode($staticsJson, true);
+            // combine layout statics
+            $this->_layoutStatics = $coreStatics;
+
+            //var_dump(JUri::base());die();
+
+            $this->insertBootstrap();
+            foreach($coreStatics as $static) {
+                if ($static['type'] == 'js') {
+                    $this->addScript($this->_templateUri . $static['path']);
+                }
+                else if ($static['type'] == 'css') {
+                    $this->addStyleSheet($this->_templateUri . $static['path']);
+                }
+                else if ($static['type'] == 'less') {
+                    $this->addStyleSheet($this->_templateUri . $static['path'], 'text/less');
+                }
+            }
+
+            $this->importComponents();
+            Zo2Framework::import('core.Zo2AssetsHelper');
+            Zo2Framework::import('vendor.minify.jsshrink');
+            Zo2Framework::import('vendor.minify.css');
+        }
     }
 
     /**
@@ -85,7 +106,7 @@ class Zo2Layout {
      * @param $position string Must be 'footer' or 'header'
      * @return $this
      */
-    public function insertStatic($path, $type, array $options = array(), $position) {
+    private function insertStatic($path, $type, array $options = array(), $position) {
         $this->_layoutStatics[] = array('path' => $path, 'type' => $type, 'options' => $options, 'position' => $position);
         return $this;
     }
@@ -98,22 +119,22 @@ class Zo2Layout {
      * @param string $position
      * @return $this
      */
-    public function insertJs($path, array $options = array(), $position = 'footer') {
+    private function insertJs($path, array $options = array(), $position = 'footer') {
         $this->insertStatic($path, 'js', $options, $position);
         return $this;
     }
 
-    public function insertCssDeclaration($style) {
+    private function insertCssDeclaration($style) {
         $this->_styleDeclaration[] = $style;
         return $this;
     }
 
-    public function insertJsDeclaration($js) {
-        $this->_jsDeclaration[] = $js;
+    private function insertJsDeclaration($js) {
+        $this->_scriptDeclaration[] = $js;
         return $this;
     }
 
-    public function insertLessDeclaration($less) {
+    private function insertLessDeclaration($less) {
         if (!class_exists('lessc', false))
             Zo2Framework::import('vendor.less.lessc');
         $compiler = new lessc();
@@ -204,27 +225,30 @@ class Zo2Layout {
      * Compile LESS into CSS then
      * Insert link tag for LESS
      *
-     * @param $item
+     * @param $path
      * @return string
      */
-    private function generateLessTag($item) {
+    private function generateLessTag($path) {
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         if (!is_dir($cacheDir))
             mkdir($cacheDir, 0755, true);
 
+        $absoluteLessPath = JPATH_SITE . DIRECTORY_SEPARATOR . $path;
+
         //$fileName = md5($item['path']) . '.css';
-        $fileName = str_replace('.less', '.css', basename($item['path']));
-        $oldPath = str_replace('.less', '.css', $item['path']);
-        $absoluteOldPath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $this->_templatePath . $oldPath);
+        $fileName = str_replace('.less', '.css', basename($path));
+        $oldPath = str_replace('.less', '.css', $path);
+        $oldPath = str_replace('templates/zo2_hallo/assets/', '', $oldPath);
+        $absoluteOldPath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, JPATH_SITE . DIRECTORY_SEPARATOR . $oldPath);
         $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
         $filePath = $cacheDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
         $filePath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $filePath); // fix double slashes
         $pathReplace = array('cache', 'assets', 'less');
         $filePath = str_replace(implode(DIRECTORY_SEPARATOR, $pathReplace), 'css', $filePath);
         $relativePath = str_replace('//', '/', $oldPath);
-        $relativePath = str_replace('/less/', '/css/', $relativePath);
+        $relativePath = str_replace('less/', 'css/', $relativePath);
         //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
-        $content = $this->processLessFile($this->_templatePath . $item['path']);
+        $content = $this->processLessFile($absoluteLessPath);
         $content = CssMinifier::minify($content);
         $content = Zo2AssetsHelper::fixCssUrl($content, $filePath, dirname($absoluteOldPath));
         file_put_contents($filePath, $content);
@@ -233,9 +257,10 @@ class Zo2Layout {
         else
             Zo2AssetsHelper::forcePutContent($filePath, $content);
 
-        $path = $this->_templateUri . $relativePath;
-        $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
-        return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
+        $newPath = JUri::base(false) . $this->_templateUri . '/assets/' . $relativePath;
+        //echo $newPath;die();
+        $rel = "stylesheet";
+        return "<link rel=\"" . $rel . "\" href=\"" . $newPath . "\" type=\"text/css\" />\n";
     }
 
     /**
@@ -441,6 +466,21 @@ class Zo2Layout {
     }
 
     /**
+     * Generate the HTML link & script tag for bootstrap
+     *
+     * @return string
+     */
+    private function insertBootstrap()
+    {
+        $bootstrapCssPath = JUri::base(true) . 'plugins/system/zo2/assets/vendor/bootstrap/core/css/bootstrap.min.css';
+        $fontAwesomeCssPath = JUri::base(true) . 'plugins/system/zo2/assets/vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css';
+        $bootstrapJsPath = JUri::base(true) . 'plugins/system/zo2/assets/vendor/bootstrap/core/js/bootstrap.min.js';
+        $this->addStyleSheet($bootstrapCssPath);
+        $this->addStyleSheet($fontAwesomeCssPath);
+        $this->addScript($bootstrapJsPath);
+    }
+
+    /**
      * Generate header assets html. Usable from frontend.
      *
      * Cache result into PHP file, create on the first time
@@ -461,7 +501,7 @@ class Zo2Layout {
             $responsive = $params->get('responsive_layout');
             $preset = $params->get('theme');
             $combineLevel = $params->get('combine_statics', 0);
-            $combineJs = $params->get('combine_js', 0);
+            $combineJs = $params->get('combine_script', 0);
             $combineCss = $params->get('combine_css', 0);
             $compileLess = $params->get('less_compile');
 
@@ -539,6 +579,7 @@ class Zo2Layout {
             $this->insertCustomFontStyles();
 
             if (empty($combineLevel) || $combineLevel == '0') {
+                /*
                 foreach ($this->_layoutStatics as $item) {
                     if ($item['position'] == 'header') {
                         if ($item['type'] == 'css')
@@ -549,6 +590,17 @@ class Zo2Layout {
                             $html .= $this->generateLessTag($item);
                         }
                     }
+                }
+                */
+                foreach ($this->_style as $style) {
+                    if ($style['mime'] == 'text/css') $html .= '<link rel="stylesheet" href="' . $style['path'] . '" />';
+                    else if ($style['mime'] == 'text/less') {
+                        $html .= $this->generateLessTag($style['path']);
+                    }
+                }
+
+                foreach($this->_script as $script) {
+                    $html .= '<script type="' . $script['mime'] . '" src="' . $script['path'] . '"></script>';
                 }
             } else {
                 $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
@@ -598,7 +650,7 @@ class Zo2Layout {
             if (count($this->_styleDeclaration) > 0) {
                 $styles = '';
                 foreach ($this->_styleDeclaration as $style) {
-                    $styles .= $style . "\n";
+                    $styles .= $style['content'] . "\n";
                 }
 
                 $styles = '<style type="text/css">' . $styles . '</style>';
@@ -801,8 +853,8 @@ class Zo2Layout {
                 }
             }
 
-            if (count($this->_jsDeclaration) > 0) {
-                $scripts = implode("\n", $this->_jsDeclaration);
+            if (count($this->_scriptDeclaration) > 0) {
+                $scripts = implode("\n", $this->_scriptDeclaration);
                 $scripts = '<script type="text/javascript">' . $scripts . '</script>';
                 $html .= $scripts;
             }
@@ -964,4 +1016,28 @@ class Zo2Layout {
         }
     }
 
+    public function addStyleSheet($url, $type = 'text/css')
+    {
+        $this->_style[] = array('path' => $url, 'mime' => $type);
+    }
+
+    public function addStyleDeclaration($content, $type = 'text/css')
+    {
+        $this->_styleDeclaration[] = array('content' => $content, 'mime' => $type);
+    }
+
+    public function addScriptDeclaration($content, $type = 'text/javascript')
+    {
+        $this->_scriptDeclaration[] = array('content' => $content, 'mime' => $type);
+    }
+
+    public function addScript($url, $type = 'text/javascript')
+    {
+        $this->_script[] = array('path' => $url, 'mime' => $type);
+    }
+
+    public static function getInstance()
+    {
+        return Zo2Framework::getInstance()->getLayout();
+    }
 }

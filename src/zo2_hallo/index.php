@@ -25,12 +25,8 @@ $this->language = $doc->language;
 $this->direction = $doc->direction;
 if (!class_exists('Zo2Framework'))
     die('Zo2Framework not found');
-$templateName = $this->template;
 
-// Init layout
-$layout = new Zo2Layout($templateName);
-$zo2->setLayout($layout);
-
+$layout = Zo2Framework::getInstance()->getLayout();
 // init body
 $body = $layout->generateHtml();
 

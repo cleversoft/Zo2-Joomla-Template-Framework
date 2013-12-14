@@ -39,7 +39,6 @@ if (!class_exists('Zo2Framework')) {
         private static $_currentTemplatePath;
 
         public function __construct() {
-            
         }
 
         private static $_scripts = array();
@@ -52,12 +51,17 @@ if (!class_exists('Zo2Framework')) {
          * Init Zo2Framework
          */
         public static function init() {
-            self::getInstance();
+            $zo2 = self::getInstance();
             Zo2Framework::import('core.Zo2Layout');
             Zo2Framework::import('core.Zo2Component');
             Zo2Framework::import('core.Zo2AssetsManager');
 
             $app = JFactory::getApplication();
+
+            $app = JFactory::getApplication();
+            $templateName = $app->getTemplate();
+            $layout = new Zo2Layout($templateName);
+            $zo2->setLayout($layout);
 
             // JViewLegacy
             if (!class_exists('JViewLegacy', false))
@@ -72,7 +76,7 @@ if (!class_exists('Zo2Framework')) {
                 if (!class_exists('JModuleHelper', false))
                     Zo2Framework::import('core.classes.helper');
             } else {
-                
+
             }
 
             // set variable for env
