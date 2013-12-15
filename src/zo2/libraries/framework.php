@@ -39,6 +39,7 @@ if (!class_exists('Zo2Framework')) {
         private static $_currentTemplatePath;
 
         public function __construct() {
+            
         }
 
         private static $_scripts = array();
@@ -68,15 +69,12 @@ if (!class_exists('Zo2Framework')) {
                 Zo2Framework::import('core.classes.legacy');
 
             if (!$app->isAdmin()) {
-                Zo2Framework::import('addons.socialshare.Zo2Socialshare');
-                Zo2Framework::import('addons.shortcodes.WPShortcode');
-                Zo2Framework::getInstance()->ShortCode = new WPShortcode();
-                Zo2Framework::getInstance()->zo2Social = new Zo2Socialshare(Zo2Framework::getParams());
+
                 // JModuleHelper
                 if (!class_exists('JModuleHelper', false))
                     Zo2Framework::import('core.classes.helper');
             } else {
-
+                
             }
 
             // set variable for env
@@ -127,7 +125,7 @@ if (!class_exists('Zo2Framework')) {
             /* Backend loading */
             if ($application->isAdmin()) {
                 if (self::allowOverrideAdminTemplate()) {
-                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');                    				
+                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');
                     /* Only for Joomla! 2.5 */
                     if (self::isJoomla25()) {
                         /* jQuery: Only for backend. In frontend we include that into template index.php */
@@ -137,7 +135,7 @@ if (!class_exists('Zo2Framework')) {
                         $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/2.3.2/css/bootstrap.min.css');
                     }
                     /* Extra Bootstrap addons */
-                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/font-awesome/css/font-awesome.min.css');										
+                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/font-awesome/css/font-awesome.min.css');
                     $document->addScript(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-colorpicker/js/bootstrap-colorpicker.js');
                     $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-colorpicker/css/bootstrap-colorpicker.css');
                     /* Font Select */
@@ -153,8 +151,8 @@ if (!class_exists('Zo2Framework')) {
                     $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/shortcodes.min.js');
                 }
             } else {
-				if ( self::get('enable_rtl') == 1 ) 
-					$document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+                if (self::get('enable_rtl') == 1)
+                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
             }
         }
 
