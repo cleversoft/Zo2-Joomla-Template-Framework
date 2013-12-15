@@ -30,7 +30,14 @@ if (!class_exists('Zo2Shortcodes')) {
          * @todo Allow dynamic variables
          */
         private $_tags = array(
-            '[messagebox title={title} show_close={show_close}]{content}[/messagebox]' => 'messagebox'
+            '[accordion]{content}[/accordion]' => 'accordion',
+            '[accordionitem title={title}]{content}[/accordionitem]' => 'accordionitem',
+            '[blockquote align={align}]{content}[/blockquote]' => 'blockquote',
+            '[column col={col}]{content}[/column]',
+            '[icon icon={icon}][/youtube]' => 'icon',
+            '[messagebox title={title} show_close={show_close}]{content}[/messagebox]' => 'messagebox',
+            '[youtube width={width} height={height} id={id}][/youtube]' => 'youtube',
+            
         );
 
         /**
@@ -102,7 +109,7 @@ if (!class_exists('Zo2Shortcodes')) {
                             ob_end_clean();
                             $replace[] = $buffer;
                         } else {
-                            $replace[] = 'File not found';
+                            $replace[] = JText::_('PLG_SYSTEM_ZO2_FILE_NOT_FOUND');
                         }
                     }
                 }
@@ -112,6 +119,11 @@ if (!class_exists('Zo2Shortcodes')) {
             return $text;
         }
 
+        /**
+         * 
+         * @param type $fullString
+         * @return type
+         */
         private function _addEscapes($fullString) {
             $fullString = str_replace("\\", "\\\\", $fullString);
             $fullString = str_replace("[", "\[", $fullString);
