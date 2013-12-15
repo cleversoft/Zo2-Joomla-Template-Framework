@@ -38,6 +38,7 @@ class Zo2Layout {
         $app = JFactory::getApplication();
 
         if ($app->isSite()) {
+            
             // assign values to private variables
             $this->_templatePath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR;
             $this->_layourDir = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR;
@@ -49,8 +50,11 @@ class Zo2Layout {
             $this->_templateUri = JUri::base(true) . 'templates/' . $templateName;
 
             // check layout existence, if layout not existed, get default layout, which is homepage.php
-            if (!file_exists($this->_layoutPath))
-                throw new Exception('Layout file cannot be found!');
+            if (!file_exists($this->_layoutPath)) {
+                //throw new Exception('Layout file cannot be found!');
+                return;
+            }
+                
 
             // get template content
             $this->_layoutStatics = array();
