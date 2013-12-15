@@ -33,7 +33,7 @@ if (!class_exists('Zo2Shortcodes')) {
             '[accordion]{content}[/accordion]' => 'accordion',
             '[accordionitem title={title}]{content}[/accordionitem]' => 'accordionitem',
             '[blockquote align={align}]{content}[/blockquote]' => 'blockquote',
-            '[column col={col}]{content}[/column]',
+            '[column col={col}]{content}[/column]'=> 'column',
             '[icon icon={icon}][/youtube]' => 'icon',
             '[messagebox title={title} show_close={show_close}]{content}[/messagebox]' => 'messagebox',
             '[youtube width={width} height={height} id={id}][/youtube]' => 'youtube',
@@ -94,6 +94,7 @@ if (!class_exists('Zo2Shortcodes')) {
                             $tokens[] = $k;
                         }
                     }
+                    
                     /* Process for all instances */
                     for ($i = 0; $i < count($results[0]); $i++) {
                         $params = new JRegistry();
@@ -102,13 +103,14 @@ if (!class_exists('Zo2Shortcodes')) {
                             $params->set($token, str_replace('{', '', str_replace('}', '', $results[$token][$i])));
                         }
                         $tmplFile = ZO2PATH_ROOT . '/libraries/shortcodes/html/' . $val . '.php';
-                        if (JFile::exists($tmplFile)) {
+                        
+                        if (JFile::exists($tmplFile)) {                            
                             ob_start();
                             include $tmplFile;
                             $buffer = ob_get_contents();
                             ob_end_clean();
                             $replace[] = $buffer;
-                        } else {
+                        } else {                    
                             $replace[] = JText::_('PLG_SYSTEM_ZO2_FILE_NOT_FOUND');
                         }
                     }
