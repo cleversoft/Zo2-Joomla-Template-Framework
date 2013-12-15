@@ -36,8 +36,6 @@ $header = $layout->insertHeaderAssets();
 // init footer assets
 $footer = $layout->insertFooterAssets();
 
-/** @var Zo2Socialshare $social */
-$social = $zo2->zo2Social;
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -59,8 +57,7 @@ $social = $zo2->zo2Social;
             <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="<?php echo $layout->getBodyClass() ?>">
-        <?php echo $social->renderFloatSocial() ?>
+    <body class="<?php echo $layout->getBodyClass() ?>">        
         <?php echo Zo2Framework::displayOffCanvasMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate()) ?>
         <section class="wrapper">
             <?php echo $body; ?>
