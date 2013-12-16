@@ -740,7 +740,7 @@ class Zo2Layout {
     public function insertFooterAssets()
     {
         //dirty fix
-        $this->insertJsDeclaration('jQuery(document).ready(function($){window.$ = jQuery});');
+        //$this->insertJsDeclaration('jQuery(document).ready(function($){window.$ = jQuery});');
         $app = JFactory::getApplication();
         $template = $app->getTemplate(true);
         $params = $template->params;

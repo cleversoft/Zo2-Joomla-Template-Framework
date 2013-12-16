@@ -5,7 +5,6 @@ https://github.com/ashleydw/lightbox
 
 License: https://github.com/ashleydw/lightbox/blob/master/LICENSE
 */
-var $ = jQuery.noConflict();
 
 (function() {
   "use strict";
@@ -13,7 +12,7 @@ var $ = jQuery.noConflict();
 
   EkkoLightbox = function(element, options) {
     var content, footer, header, youtube;
-    this.options = $.extend({
+    this.options = jQuery.extend({
       title: null,
       footer: null,
       remote: null,
@@ -23,19 +22,19 @@ var $ = jQuery.noConflict();
       onHide: function() {},
       onHidden: function() {
         if (this.gallery) {
-          $(document).off('keydown.ekkoLightbox');
+          jQuery(document).off('keydown.ekkoLightbox');
         }
         return this.modal.remove();
       },
       id: false
     }, options || {});
-    this.$element = $(element);
+    this.$element = jQuery(element);
     content = '';
     this.modal_id = this.options.modal_id ? this.options.modal_id : 'ekkoLightbox-' + Math.floor((Math.random() * 1000) + 1);
     header = this.options.title ? '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title">' + this.options.title + '</h4></div>' : '';
     footer = this.options.footer ? '<div class="modal-footer">' + this.options.footer + '</div>' : '';
-    $(document.body).append('<div id="' + this.modal_id + '" class="modal fade" tabindex="-1"><div class="modal-dialog"><div class="modal-content">' + header + '<div class="modal-body"></div>' + footer + '</div></div></div>');
-    this.modal = $('#' + this.modal_id);
+    jQuery(document.body).append('<div id="' + this.modal_id + '" class="modal fade" tabindex="-1"><div class="modal-dialog"><div class="modal-content">' + header + '<div class="modal-body"></div>' + footer + '</div></div></div>');
+    this.modal = jQuery('#' + this.modal_id);
     this.modal_body = this.modal.find('.modal-body').first();
     this.padding = {
       left: parseFloat(this.modal_body.css('padding-left'), 10),
@@ -57,7 +56,7 @@ var $ = jQuery.noConflict();
       if (this.gallery) {
         this.gallery_items = this.$element.parents('*:not(.row)').first().find('*[data-toggle="lightbox"][data-gallery="' + this.gallery + '"]');
         this.gallery_index = this.gallery_items.index(this.$element);
-        $(document).on('keydown.ekkoLightbox', this.navigate.bind(this));
+        jQuery(document).on('keydown.ekkoLightbox', this.navigate.bind(this));
       }
     }
     this.modal.on('show.bs.modal', this.options.onShow.bind(this)).on('shown.bs.modal', this.options.onShown.bind(this)).on('hide.bs.modal', this.options.onHide.bind(this)).on('hidden.bs.modal', this.options.onHidden.bind(this)).modal('show', options);
@@ -86,7 +85,7 @@ var $ = jQuery.noConflict();
       if (event.keyCode === 39 || event.keyCode === 37) {
         if (event.keyCode === 39 && this.gallery_index + 1 < this.gallery_items.length) {
           this.gallery_index++;
-          this.$element = $(this.gallery_items.get(this.gallery_index));
+          this.$element = jQuery(this.gallery_items.get(this.gallery_index));
           src = this.$element.attr('data-source') || this.$element.attr('href');
           if (this.isImage(src)) {
             this.preloadImage(src, true);
@@ -94,7 +93,7 @@ var $ = jQuery.noConflict();
             this.showYoutubeVideo(youtube);
           }
           if (this.gallery_index + 1 < this.gallery_items.length) {
-            next = $(this.gallery_items.get(this.gallery_index + 1), false);
+            next = jQuery(this.gallery_items.get(this.gallery_index + 1), false);
             src = next.attr('data-source') || next.attr('href');
             if (this.isImage(src)) {
               return this.preloadImage(src, false);
@@ -102,7 +101,7 @@ var $ = jQuery.noConflict();
           }
         } else if (event.keyCode === 37 && this.gallery_index > 0) {
           this.gallery_index--;
-          this.$element = $(this.gallery_items.get(this.gallery_index));
+          this.$element = jQuery(this.gallery_items.get(this.gallery_index));
           src = this.$element.attr('data-source') || this.$element.attr('href');
           if (this.isImage(src)) {
             return this.preloadImage(src, true);
@@ -147,7 +146,7 @@ var $ = jQuery.noConflict();
     center: function() {
       return this.modal.find('.modal-dialog').css({
         'left': function() {
-          return -($(this).width() / 2);
+          return -(jQuery(this).width() / 2);
         }
       });
     },
@@ -163,18 +162,18 @@ var $ = jQuery.noConflict();
     },
     checkImageDimensions: function(img) {
       var w;
-      w = $(window);
+      w = jQuery(window);
       if ((img.width + (this.padding.left + this.padding.right + 20)) > w.width()) {
         return img.width = w.width() - (this.padding.left + this.padding.right + 20);
       }
     }
   };
 
-  $.fn.ekkoLightbox = function(options, _relatedTarget) {
+  jQuery.fn.ekkoLightbox = function(options, _relatedTarget) {
     return this.each(function() {
       var $this;
-      $this = $(this);
-      options = $.extend({
+      $this = jQuery(this);
+      options = jQuery.extend({
         remote: $this.attr('data-source') || $this.attr('href')
       }, $this.data());
       new EkkoLightbox(this, options);
@@ -182,10 +181,10 @@ var $ = jQuery.noConflict();
     });
   };
 
-  $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+  jQuery(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
     var $this;
     event.preventDefault();
-    $this = $(this);
+    $this = jQuery(this);
     return $this.ekkoLightbox({
       remote: $this.attr('data-source') || $this.attr('href')
     }).one('hide', function() {
