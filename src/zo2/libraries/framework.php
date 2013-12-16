@@ -58,8 +58,11 @@ if (!class_exists('Zo2Framework')) {
             Zo2Framework::import('core.Zo2AssetsManager');
 
             $app = JFactory::getApplication();
+            /* temporary fix for Joomla! 3.2 */
+            if (!Zo2Framework::isJoomla25()) {
+                $app->loadLanguage();
+            }
 
-            $app = JFactory::getApplication();
             $templateName = $app->getTemplate();
             $layout = new Zo2Layout($templateName);
             $zo2->setLayout($layout);
