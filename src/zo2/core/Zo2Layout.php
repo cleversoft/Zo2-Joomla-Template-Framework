@@ -42,7 +42,7 @@ class Zo2Layout {
         //$this->_staticsPath = $this->_layourDir . $layoutName . '.json';
         $this->_coreStaticsPath = $this->_layourDir . 'assets.json';
         $this->_templateName = $templateName;
-        $this->_templateUri = JUri::root() . 'templates/' . $templateName;
+        $this->_templateUri = JUri::base(true) . '/templates/' . $templateName;
 
         // check layout existence, if layout not existed, get default layout, which is homepage.php
         if(!file_exists($this->_layoutPath)) throw new Exception('Layout file cannot be found!');
