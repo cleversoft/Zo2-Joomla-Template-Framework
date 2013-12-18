@@ -16,7 +16,7 @@ class Zo2Layout {
     /* private */
 
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -38,7 +38,7 @@ class Zo2Layout {
         $app = JFactory::getApplication();
 
         if ($app->isSite()) {
-            
+
             // assign values to private variables
             $this->_templatePath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR;
             $this->_layourDir = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR;
@@ -47,14 +47,14 @@ class Zo2Layout {
             //$this->_staticsPath = $this->_layourDir . $layoutName . '.json';
             $this->_coreStaticsPath = $this->_layourDir . 'assets.json';
             $this->_templateName = $templateName;
-            $this->_templateUri = JUri::base(true) . 'templates/' . $templateName;
+            $this->_templateUri = JUri::base(true) . '/templates/' . $templateName;
 
             // check layout existence, if layout not existed, get default layout, which is homepage.php
             if (!file_exists($this->_layoutPath)) {
                 //throw new Exception('Layout file cannot be found!');
                 return;
             }
-                
+
 
             // get template content
             $this->_layoutStatics = array();
@@ -65,8 +65,6 @@ class Zo2Layout {
             //$statics = json_decode($staticsJson, true);
             // combine layout statics
             $this->_layoutStatics = $coreStatics;
-
-            //var_dump(JUri::base());die();
 
             $this->insertBootstrap();
             foreach($coreStatics as $static) {
@@ -233,7 +231,8 @@ class Zo2Layout {
      * @return string
      */
     private function generateLessTag($path) {
-        $absoluteLessPath = JPATH_SITE . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $path);
+        $absoluteLessPath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . ltrim(str_replace('\\', DIRECTORY_SEPARATOR, $path), DIRECTORY_SEPARATOR);
+        //echo $absoluteLessPath;die();
         $lessFileName = basename($path);
         $fileName = substr($lessFileName, 0, strlen($lessFileName) - 5) . '.css';
 
@@ -241,6 +240,7 @@ class Zo2Layout {
         $cssDirPath = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'css';
 
         $filePath = dirname(str_replace($lessDirPath, $cssDirPath, $absoluteLessPath)) . DIRECTORY_SEPARATOR . $fileName;
+        //echo $path . '<br />' . $absoluteLessPath;die();
         $content = $this->processLessFile($absoluteLessPath);
         $content = CssMinifier::minify($content);
         $content = Zo2AssetsHelper::fixCssUrl($content, $filePath, dirname($cssDirPath));
@@ -250,7 +250,7 @@ class Zo2Layout {
         else
             Zo2AssetsHelper::forcePutContent($filePath, $content);
 
-        $cssUri = JUri::root(true) . $this->_templateUri . '/assets/css' . str_replace($cssDirPath, '', $filePath);
+        $cssUri = JUri::base(true) . '/templates/' . $this->_templateName . '/assets/css' . str_replace($cssDirPath, '', $filePath);
         return "<link rel=\"stylesheet\" href=\"" . $cssUri . "\" type=\"text/css\" />\n";
     }
 
@@ -463,9 +463,9 @@ class Zo2Layout {
      */
     private function insertBootstrap()
     {
-        $bootstrapCssPath = JUri::base(true) . 'plugins/system/zo2/assets/vendor/bootstrap/core/css/bootstrap.min.css';
-        $fontAwesomeCssPath = JUri::base(true) . 'plugins/system/zo2/assets/vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css';
-        $bootstrapJsPath = JUri::base(true) . 'plugins/system/zo2/assets/vendor/bootstrap/core/js/bootstrap.min.js';
+        $bootstrapCssPath = JUri::base(true) . '/plugins/system/zo2/assets/vendor/bootstrap/core/css/bootstrap.min.css';
+        $fontAwesomeCssPath = JUri::base(true) . '/plugins/system/zo2/assets/vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css';
+        $bootstrapJsPath = JUri::base(true) . '/plugins/system/zo2/assets/vendor/bootstrap/core/js/bootstrap.min.js';
         $this->addStyleSheet($bootstrapCssPath);
         $this->addStyleSheet($fontAwesomeCssPath);
         $this->addScript($bootstrapJsPath);
@@ -503,7 +503,7 @@ class Zo2Layout {
                     try {
                         unlink($css);
                     } catch (Exception $e) {
-                        
+
                     }
                 }
             }
