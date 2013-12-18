@@ -184,46 +184,6 @@ class Zo2Layout {
     }
 
     /**
-     * Insert script tag for js
-     *
-     * @param $item
-     * @return string
-     */
-    private function generateJsTag($item) {
-        $basePath = '';
-        if (isset($item['base']) && $item['base'] == 'plugin')
-            $basePath = Zo2Framework::getSystemPluginPath();
-        else
-            $basePath = $this->_templateUri;
-        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
-        $async = "";
-        if (isset($item['options']['async']))
-            $async = " async=\"" . $item['options']['async'] . "\"";
-        $result = "<script" . $async . " type=\"text/javascript\" src=\"" . $path . "\"></script>\n";
-        if (isset($item['condition']) && !empty($item['condition'])) {
-            $result = '<!--[' . $item['condition'] . ']>' . $result . '<![endif]-->';
-        }
-        return $result;
-    }
-
-    /**
-     * Insert link tag for css
-     *
-     * @param $item
-     * @return string
-     */
-    private function generateCssTag($item) {
-        $basePath = '';
-        if (isset($item['base']) && $item['base'] == 'plugin')
-            $basePath = Zo2Framework::getSystemPluginPath();
-        else
-            $basePath = $this->_templateUri;
-        $path = strpos($item['path'], 'http://') !== false ? $item['path'] : $basePath . $item['path'];
-        $rel = isset($item['options']['rel']) ? $item['options']['rel'] : "stylesheet";
-        return "<link rel=\"" . $rel . "\" href=\"" . $path . "\" type=\"text/css\" />\n";
-    }
-
-    /**
      * Compile LESS into CSS then
      * Insert link tag for LESS
      *
@@ -834,15 +794,6 @@ class Zo2Layout {
             return file_get_contents($path);
         else {
             $html = '';
-
-            foreach ($this->_layoutStatics as $item) {
-                if ($item['position'] == 'footer') {
-                    if ($item['type'] == 'css')
-                        $html .= $this->generateCssTag($item);
-                    elseif ($item['type'] == 'js')
-                        $html .= $this->generateJsTag($item);
-                }
-            }
 
             if (count($this->_scriptDeclaration) > 0) {
                 $scripts = implode("\n", $this->_scriptDeclaration);
