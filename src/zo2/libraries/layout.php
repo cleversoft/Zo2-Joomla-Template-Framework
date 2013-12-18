@@ -233,38 +233,25 @@ class Zo2Layout {
      * @return string
      */
     private function generateLessTag($path) {
-        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
-        if (!is_dir($cacheDir))
-            mkdir($cacheDir, 0755, true);
+        $absoluteLessPath = JPATH_SITE . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR, $path);
+        $lessFileName = basename($path);
+        $fileName = substr($lessFileName, 0, strlen($lessFileName) - 5) . '.css';
 
-        $absoluteLessPath = JPATH_SITE . DIRECTORY_SEPARATOR . $path;
+        $lessDirPath = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'less';
+        $cssDirPath = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'css';
 
-        //$fileName = md5($item['path']) . '.css';
-        $fileName = str_replace('.less', '.css', basename($path));
-        $oldPath = str_replace('.less', '.css', $path);
-        $oldPath = str_replace('templates/zo2_hallo/assets/', '', $oldPath);
-        $absoluteOldPath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, JPATH_SITE . DIRECTORY_SEPARATOR . $oldPath);
-        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
-        $filePath = $cacheDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $oldPath);
-        $filePath = str_replace(DIRECTORY_SEPARATOR . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $filePath); // fix double slashes
-        $pathReplace = array('cache', 'assets', 'less');
-        $filePath = str_replace(implode(DIRECTORY_SEPARATOR, $pathReplace), 'css', $filePath);
-        $relativePath = str_replace('//', '/', $oldPath);
-        $relativePath = str_replace('less/', 'css/', $relativePath);
-        //$content = $this->processLess(file_get_contents($this->_templatePath . $item['path']));
+        $filePath = dirname(str_replace($lessDirPath, $cssDirPath, $absoluteLessPath)) . DIRECTORY_SEPARATOR . $fileName;
         $content = $this->processLessFile($absoluteLessPath);
         $content = CssMinifier::minify($content);
-        $content = Zo2AssetsHelper::fixCssUrl($content, $filePath, dirname($absoluteOldPath));
+        $content = Zo2AssetsHelper::fixCssUrl($content, $filePath, dirname($cssDirPath));
         file_put_contents($filePath, $content);
         if (file_exists($filePath))
             file_put_contents($filePath, $content);
         else
             Zo2AssetsHelper::forcePutContent($filePath, $content);
 
-        $newPath = JUri::base(false) . $this->_templateUri . '/assets/' . $relativePath;
-        //echo $newPath;die();
-        $rel = "stylesheet";
-        return "<link rel=\"" . $rel . "\" href=\"" . $newPath . "\" type=\"text/css\" />\n";
+        $cssUri = JUri::root(true) . $this->_templateUri . '/assets/css' . str_replace($cssDirPath, '', $filePath);
+        return "<link rel=\"stylesheet\" href=\"" . $cssUri . "\" type=\"text/css\" />\n";
     }
 
     /**
