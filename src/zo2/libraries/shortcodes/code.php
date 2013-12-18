@@ -50,14 +50,19 @@ class Code extends Zo2Shortcode
     {
 
         static $bool = false;
-        $url = JUri::root() . ZO2_PLUGIN_REL . '/addons/syntaxhighlighter/';
+        $url = JUri::root(true) . ZO2_PLUGIN_REL . '/addons/syntaxhighlighter/';
         if (!$bool) {
 
             // Script
-            Zo2Framework::addJsScript($url . "scripts/shCore.js");
-            Zo2Framework::addJsScript($url . "scripts/shAutoloader.js");
-            Zo2Framework::addCssStylesheet($url . "styles/shCore.css");
-            Zo2Framework::addCssStylesheet($url . "styles/shThemeDefault.css");
+            //Zo2Framework::addJsScript($url . "scripts/shCore.js");
+            //Zo2Framework::addJsScript($url . "scripts/shAutoloader.js");
+            //Zo2Framework::addCssStylesheet($url . "styles/shCore.css");
+            //Zo2Framework::addCssStylesheet($url . "styles/shThemeDefault.css");
+            $layout = Zo2Layout::getInstance();
+            $layout->addScript($url . "scripts/shCore.js");
+            $layout->addScript($url . "scripts/shAutoloader.js");
+            $layout->addStyleSheet($url . "styles/shCore.css");
+            $layout->addStyleSheet($url . "styles/shThemeDefault.css");
 
             //params
             $config = "";
@@ -118,7 +123,7 @@ class Code extends Zo2Shortcode
 
 EOF;
 
-            Zo2Framework::addScriptDeclaration($js);
+            $layout->addScriptDeclaration($js);
             $bool = true;
         }
     }

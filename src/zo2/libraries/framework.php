@@ -159,88 +159,6 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        /**
-         * Add js script file to the document
-         *
-         * @param string $script Path to the js script
-         * @return Zo2Framework
-         */
-        public static function addJsScript($script) {
-            if (self::$_isAdmin)
-                self::getInstance()->document->addScript($script);
-            else
-                self::$_scripts[] = $script;
-            return self::getInstance();
-        }
-
-        /**
-         * Add css stylesheet file to the document
-         *
-         * @param string $style Path to the css stylesheet
-         * @return Zo2Framework
-         */
-        public static function addCssStylesheet($style) {
-            if (self::$_isAdmin)
-                self::getInstance()->document->addStyleSheet($style);
-            else
-                self::$_styles[] = $style;
-            return self::getInstance();
-        }
-
-        /**
-         * Add custom Less stylesheet file to the document
-         * Will not work on backend
-         *
-         * @param $less
-         * @return Zo2Framework
-         */
-        public static function addLessStyleSheet($less) {
-            if (!self::$_isAdmin)
-                self::$_styles[] = $less;
-            //else
-            return self::getInstance();
-        }
-
-        /**
-         * Adds a script to the page
-         * @param $script
-         * @return Zo2Framework
-         */
-        public static function addScriptDeclaration($script) {
-            if (self::$_isAdmin)
-                self::getInstance()->document->addScriptDeclaration($script);
-            else
-                self::$_scriptDeclarations[] = $script;
-            return self::getInstance();
-        }
-
-        /**
-         * Add custom CSS style
-         *
-         * @param $style
-         * @return Zo2Framework
-         */
-        public static function addStyleDeclaration($style) {
-            if (self::$_isAdmin)
-                self::getInstance()->document->addStyleDeclaration($style);
-            else
-                self::$_styleDeclarations[] = $style;
-            return self::getInstance();
-        }
-
-        /**
-         * Add custom LESS style
-         *
-         * @param $less
-         */
-        public static function addLessDeclaration($less) {
-            if (!class_exists('lessc', false))
-                Zo2Framework::import('vendor.less.lessc');
-            $compiler = new lessc();
-            $style = $compiler->compile($less);
-            self::addStyleDeclaration($style);
-        }
-
         public static function compileLess($lessPath, $templateName = '') {
             $filename = md5($lessPath) . '.css';
             $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
@@ -367,6 +285,7 @@ if (!class_exists('Zo2Framework')) {
          * @return bool
          */
         public static function setLayout($layout) {
+            /*
             foreach (self::$_scripts as $s) {
                 $layout->insertJs($s);
             }
@@ -382,6 +301,7 @@ if (!class_exists('Zo2Framework')) {
             foreach (self::$_styleDeclarations as $sd) {
                 $layout->insertCssDeclaration($sd);
             }
+            */
             self::getInstance()->_layout = $layout;
             return self::getInstance();
         }
