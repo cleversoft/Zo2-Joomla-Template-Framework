@@ -31,7 +31,7 @@ if (!class_exists('Zo2HelperCompiler')) {
         public static function less($inputFile, $outputFile) {
             if (JFile::exists($inputFile)) {
                 $less = new lessc();
-                return $less->checkedCompile($inputFile, $outputFile);
+                return $less->compileFile($inputFile, $outputFile);
             }
             return false;
         }
