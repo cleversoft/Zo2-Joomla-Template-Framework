@@ -159,7 +159,7 @@ if (!class_exists('plgSystemZo2')) {
                     if (JFactory::getApplication()->input->getCmd('option') != 'com_k2') {
                         $view = JFactory::getApplication()->input->get('view');
                         if ($view == 'article') {
-                            Zo2Framework::import2('addons.comments.Zo2Comments');
+                            Zo2Framework::import('addons.comments.Zo2Comments');
                             $comment = new Zo2Comments($article);
                             $article->text = $article->text . $comment->renderHtml();
                         }
