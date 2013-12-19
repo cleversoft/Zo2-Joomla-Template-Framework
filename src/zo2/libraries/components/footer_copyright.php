@@ -38,7 +38,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
 
             $script = 'jQuery("#gototop").click(function(){jQuery("body, html").animate({scrollTop: 0}); return false;});';
 
-            $zo2->getLayout()->insertJsDeclaration($script);
+            $zo2->getLayout()->addScriptDeclaration($script);
         }
         $html .= '</footer>';
 

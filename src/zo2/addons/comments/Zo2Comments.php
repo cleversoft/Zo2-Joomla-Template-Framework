@@ -157,13 +157,13 @@ class Zo2Comments
 
     function renderHtml()
     {
-
+        $layout = Zo2Layout::getInstance();
         $params = Zo2Framework::getParams();
         $tab_order = explode(',', $params->get('tab_order', 'facebook,gplus,disqus,k2comment'));
         $url = JUri::getInstance()->toString();
-        $document = JFactory::getDocument();
-        $document->addStyleSheet(ZO2_PLUGIN_URL . '/addons/comments/css/comments.css');
-        $document->addScriptDeclaration('
+        //$document = JFactory::getDocument();
+        $layout->addStyleSheet(ZO2URL_ROOT . '/addons/comments/css/comments.css');
+        $layout->addScriptDeclaration('
                 jQuery(document).ready(function() {
                     comment_width = jQuery(\'#zo2comment-tabs\').innerWidth();
                 });'

@@ -100,81 +100,6 @@ class Zo2Layout {
     }
 
     /**
-     * Insert a static file into output
-     *
-     * @param $path
-     * @param $type
-     * @param array $options
-     * @param $position string Must be 'footer' or 'header'
-     * @return $this
-     */
-    private function insertStatic($path, $type, array $options = array(), $position) {
-        $this->_layoutStatics[] = array('path' => $path, 'type' => $type, 'options' => $options, 'position' => $position);
-        return $this;
-    }
-
-    /**
-     * Insert a JS file into output
-     *
-     * @param $path
-     * @param array $options
-     * @param string $position
-     * @return $this
-     */
-    private function insertJs($path, array $options = array(), $position = 'footer') {
-        $this->insertStatic($path, 'js', $options, $position);
-        return $this;
-    }
-
-    private function insertCssDeclaration($style) {
-        $this->_styleDeclaration[] = $style;
-        return $this;
-    }
-
-    private function insertJsDeclaration($js) {
-        $this->_scriptDeclaration[] = $js;
-        return $this;
-    }
-
-    private function insertLessDeclaration($less) {
-        if (!class_exists('lessc', false))
-            Zo2Framework::import('vendor.less.lessc');
-        $compiler = new lessc();
-        $style = $compiler->compile($less);
-        $this->insertCssDeclaration($style);
-    }
-
-    /**
-     * Insert a CSS file into output
-     *
-     * @param $path
-     * @param array $options
-     * @param string $position
-     * @return $this
-     */
-    public function insertCss($path, array $options = array(), $position = 'header') {
-        $this->insertStatic($path, 'css', $options, $position);
-        return $this;
-    }
-
-    public function insertLess($path, array $options = array(), $position = 'header') {
-        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
-        if (!is_dir($cacheDir))
-            mkdir($cacheDir, 0755, true);
-
-        $fileName = md5($path) . '.css';
-        $cacheDir = $this->_templatePath . 'assets' . DIRECTORY_SEPARATOR . 'cache';
-        $filePath = $cacheDir . DIRECTORY_SEPARATOR . $fileName;
-        $relativePath = '/assets/cache/' . $fileName;
-        $content = $this->processLessFile($path);
-        file_put_contents($filePath, $content);
-
-        $this->insertCss($relativePath);
-
-        return $this;
-    }
-
-    /**
      * Get current layout content
      *
      * @return string
@@ -521,11 +446,11 @@ class Zo2Layout {
             if (!empty($presetData['footer']))
                 $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
             if (!empty($presetData['css']))
-                $this->insertCss($presetData['css']);
-            $this->insertCssDeclaration($style);
+                $this->addStyleSheet($this->_templateUri . '/' .$presetData['css']);
+            $this->addStyleDeclaration($style);
 
             if (!$responsive)
-                $this->insertCss('/assets/css/non-responsive.css');
+                $this->addStyleSheet($this->_templateUri . '/assets/css/non-responsive.css');
 
             $this->insertCustomFontStyles();
 
@@ -648,7 +573,7 @@ class Zo2Layout {
                 }
 
                 if (!empty($style))
-                    $this->insertCssDeclaration($style);
+                    $this->addStyleDeclaration($style);
             }
         }
     }
@@ -701,7 +626,7 @@ class Zo2Layout {
         $style = '';
         if (!empty($data['family'])) {
             $style .= 'font-family:' . urldecode($data['family']) . ';';
-            $this->insertCss($api . $data['family']);
+            $this->addStyleDeclaration($api . $data['family']);
         } else
             return '';
         if (!empty($data['size']) && $data['size'] > 0)
@@ -743,7 +668,7 @@ class Zo2Layout {
         $fontdeckCode = $params->get('fontdeck_code');
 
         if (!empty($fontdeckCode)) {
-            $this->insertJsDeclaration($fontdeckCode);
+            $this->addScriptDeclaration($fontdeckCode);
         }
 
         $style = '';
@@ -796,7 +721,10 @@ class Zo2Layout {
             $html = '';
 
             if (count($this->_scriptDeclaration) > 0) {
-                $scripts = implode("\n", $this->_scriptDeclaration);
+                $scripts = '';
+                foreach ($this->_scriptDeclaration as $script) {
+                    $scripts .= $script['content'] . "\n";
+                }
                 $scripts = '<script type="text/javascript">' . $scripts . '</script>';
                 $html .= $scripts;
             }
@@ -863,7 +791,7 @@ class Zo2Layout {
             return;
 
         $fontPath = 'http://fonts.googleapis.com/css?family=' . $fontname[1];
-        $this->insertCss($fontPath);
+        $this->addStyleSheet($fontPath);
         $selectors = 'body, input, button, select, textarea, .navbar-search .search-query';
         $options = "\n";
         $options .= $selectors . '{';
@@ -871,7 +799,7 @@ class Zo2Layout {
         $options .= '}';
         $options .= "\n";
 
-        $this->_styleDeclaration[] = $options;
+        $this->addStyleDeclaration($options);
     }
 
     /**
@@ -981,5 +909,10 @@ class Zo2Layout {
     public static function getInstance()
     {
         return Zo2Framework::getInstance()->getLayout();
+    }
+
+    public function getTemplateUri()
+    {
+        return $this->_templateUri;
     }
 }

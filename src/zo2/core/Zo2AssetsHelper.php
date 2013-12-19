@@ -44,7 +44,7 @@ class Zo2AssetsHelper {
 
         foreach ($from as $depth => $dir) {
             // find first non-matching dir
-            if ($dir === $to[$depth]) {
+            if (isset($to[$depth]) && $dir === $to[$depth]) {
                 // ignore this directory
                 array_shift($relPath);
             }
