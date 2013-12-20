@@ -86,4 +86,12 @@ class Zo2Controller
             echo Zo2Framework::getTemplateLayoutsName($_GET['template']);
         }
     }
+
+    public static function getFonts()
+    {
+        header('Content-Type: application/json');
+        if (isset($_GET['query'])) {
+            echo json_encode(Zo2HelperGoogleFonts::search($_GET['query']));
+        }
+    }
 }

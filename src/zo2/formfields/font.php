@@ -22,8 +22,6 @@ class JFormFieldFont extends JFormField
      */
     public function getInput()
     {
-     
-
         $path = JPATH_SITE.'/plugins/system/zo2/templates/font.php';
         ob_start();
         include($path);

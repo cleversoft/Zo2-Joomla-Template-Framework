@@ -625,8 +625,9 @@ class Zo2Layout {
         $api = 'http://fonts.googleapis.com/css?family=';
         $style = '';
         if (!empty($data['family'])) {
-            $style .= 'font-family:' . urldecode($data['family']) . ';';
-            $this->addStyleDeclaration($api . $data['family']);
+            $style .= 'font-family:' . $data['family'] . ';';
+            $url = $api . urlencode($data['family']);
+            $this->addStyleSheet($url);
         } else
             return '';
         if (!empty($data['size']) && $data['size'] > 0)
