@@ -38,15 +38,11 @@ if (!class_exists('Zo2Framework')) {
         private $_layout = null;
         private static $_currentTemplatePath;
 
+        private static $_isAdmin = false;
+
         public function __construct() {
             
         }
-
-        private static $_scripts = array();
-        private static $_scriptDeclarations = array();
-        private static $_styles = array();
-        private static $_styleDeclarations = array();
-        private static $_isAdmin = false;
 
         /**
          * Init Zo2Framework
