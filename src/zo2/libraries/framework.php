@@ -142,7 +142,7 @@ if (!class_exists('Zo2Framework')) {
                     $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/fontselect/fontselect.css');
 
                     $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/fontello/css/fontello.css');
-                    $document->addStyleSheet(ZO2URL_ROOT . '/addons/shortcodes/css/shortcodes.css');
+                    //$document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/addons/shortcodes/css/shortcodes.css');
                     /* Our script */
                     $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/admin.css');
                     /* Shortcodes */

@@ -90,7 +90,7 @@
             'Cuprum',
             'Quattrocento',
             'Quattrocento Sans',
-            'Droid',
+            'Droid Sans',
             'Vollkorn',
             'PT Mono',
             'Gravitas One'
