@@ -623,11 +623,11 @@ class Zo2Layout {
      */
     private function buildGoogleFontsStyle($data, $selector) {
         $api = 'http://fonts.googleapis.com/css?family=';
+        $url = '';
         $style = '';
         if (!empty($data['family'])) {
             $style .= 'font-family:' . $data['family'] . ';';
             $url = $api . urlencode($data['family']);
-            $this->addStyleSheet($url);
         } else
             return '';
         if (!empty($data['size']) && $data['size'] > 0)
@@ -636,18 +636,24 @@ class Zo2Layout {
             $style .= 'color:' . $data['color'] . ';';
         if (!empty($data['style'])) {
             switch ($data['style']) {
-                case 'b': $style .= 'font-weight:bold;';
+                case 'b':
+                    $style .= 'font-weight:bold;';
+                    $url .= ':700';
                     break;
-                case 'i': $style .= 'font-style:italic;';
+                case 'i':
+                    $style .= 'font-style:italic;';
+                    $url .= ':400italic';
                     break;
                 case 'bi':
                 case 'ib':
                     $style .= 'font-weight:bold;font-style:italic;';
+                    $url .= ':700italic';
                     break;
                 default:
                     break;
             }
         }
+        $this->addStyleSheet($url);
 
         if (!empty($style))
             $style = $selector . '{' . $style . '}' . "\n";
