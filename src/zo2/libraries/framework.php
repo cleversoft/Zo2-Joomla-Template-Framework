@@ -59,9 +59,11 @@ if (!class_exists('Zo2Framework')) {
                 $app->loadLanguage();
             }
 
-            $templateName = $app->getTemplate();
-            $layout = new Zo2Layout($templateName);
-            $zo2->setLayout($layout);
+            if ($zo2->isZo2Template()) {
+                $templateName = $app->getTemplate();
+                $layout = new Zo2Layout($templateName);
+                $zo2->setLayout($layout);
+            }
 
             // JViewLegacy
             if (!class_exists('JViewLegacy', false))
@@ -123,7 +125,7 @@ if (!class_exists('Zo2Framework')) {
 
             /* Backend loading */
             if ($application->isAdmin()) {
-                if (self::allowOverrideAdminTemplate()) {
+                if (self::isZo2Template()) {
                     $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');
                     /* Only for Joomla! 2.5 */
                     if (self::isJoomla25()) {
@@ -508,12 +510,12 @@ if (!class_exists('Zo2Framework')) {
             return $jVer->RELEASE == '2.5';
         }
 
-        public static function allowOverrideAdminTemplate() {
+        public static function isZo2Template() {
             $app = JFactory::getApplication();
 
             if ($app->isAdmin()) {
                 $templateName = Zo2Framework::getTemplateName();
-                if (strpos(strtolower($templateName), 'zo2') !== false)
+                if (strpos(strtolower($templateName), 'zo2') !== false || strpos(strtolower($templateName), 'zt') !== false)
                     return true;
                 else
                     return false;
