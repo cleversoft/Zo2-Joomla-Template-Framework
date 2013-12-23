@@ -10,7 +10,11 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+$content = $this->get('content');
+$shortcodes = Zo2Shortcodes::getInstance();
 ?>
 <div class="show-grid">
-<?php echo $params->get('content'); ?>
+    <?php if ($content) { ?>
+        <?php echo $shortcodes->execute($content); ?>
+    <?php } ?>
 </div>

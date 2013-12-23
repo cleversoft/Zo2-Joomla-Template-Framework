@@ -11,6 +11,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<div class="shortcode-block-quote-<?php echo $params->get('align'); ?>" style="color:<?php echo $params->get('color'); ?>" >
-    <?php echo $params->get('content'); ?>
+<div class="shortcode-block-quote-<?php echo $this->get('align'); ?>" style="color:<?php echo $this->get('color'); ?>" >
+    <?php echo $this->get('content'); ?>
 </div>

@@ -14,9 +14,9 @@ defined('_JEXEC') or die('Restricted access');
 <li class="zt-divider">
     <span class="accordion-head-image"></span>
     <h3 class="accordion-head title-color zt-title">
-        <?php echo $params->get('title'); ?>
+        <?php echo $this->get('title'); ?>
     </h3>
     <div class="accordion-content">
-        <?php echo $params->get('content'); ?>
+        <?php echo $this->get('content'); ?>
     </div>
 </li>

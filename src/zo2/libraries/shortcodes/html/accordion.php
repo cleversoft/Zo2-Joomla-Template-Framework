@@ -10,11 +10,11 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-$content = $params->get('content');
-$shortcodes = new Zo2Shortcodes();
+$content = $this->get('content');
+$shortcodes = Zo2Shortcodes::getInstance();
 ?>
 <ul class='zt-accordion'>
     <?php if ($content) { ?>
-        <?php echo $shortcodes->process($content); ?>
+        <?php echo $shortcodes->execute($content); ?>
     <?php } ?>
 </ul>

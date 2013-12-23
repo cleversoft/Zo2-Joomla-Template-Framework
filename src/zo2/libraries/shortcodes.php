@@ -24,102 +24,111 @@ if (!class_exists('Zo2Shortcodes')) {
     class Zo2Shortcodes {
 
         /**
-         * @uses [tag key={varName} ...]{keyContent}[/tag]
+         * Array of shortcodes object
          * @var array 
-         * @todo Should we move into ini file?
-         * @todo Allow dynamic variables
          */
-        private $_tags = array(
-            '[accordion]{content}[/accordion]' => 'accordion',
-            '[accordionitem title={title}]{content}[/accordionitem]' => 'accordionitem',
-            '[blockquote align={align}]{content}[/blockquote]' => 'blockquote',
-            '[column col={col}]{content}[/column]' => 'column',
-            '[icon icon={icon}][/youtube]' => 'icon',
-            '[messagebox title={title} show_close={show_close}]{content}[/messagebox]' => 'messagebox',
-            '[plan title={title} button_link={button_link} button_label={button_label} featured={featured} percent={percent}]{content}[/plan]' => 'plan',
-            '[space height={height}]{content}[/space]' => 'space',
-            '[youtube width={width} height={height} id={id}][/youtube]' => 'youtube',
-        );
+        private $_data = array();
+
+        /**
+         * Singleton instance
+         * @var Zo2Shortcodes
+         */
+        public static $instance;
 
         /**
          * 
-         * @param type $text
-         * @return string
          */
-        public function process($text) {
-            return $this->_replaceCode($text);
+        public function __construct() {
+            $this->load(ZO2PATH_ASSETS . '/zo2/shortcodes.json');
+        }
+
+        public static function getInstance() {
+            if (empty(self::$instance)) {
+                self::$instance = new self ();
+            }
+            if (!empty(self::$instance)) {
+                return self::$instance;
+            }
         }
 
         /**
          * 
-         * @param type $text
-         * @return boolean
+         * @param type $file
+         * @return \Zo2Shortcodes
          */
-        private function _replaceCode(&$text) {
+        public function load($file) {
+            $buffer = JFile::read($file);
+            $this->_data = array_merge($this->_data, json_decode($buffer));
+            return $this;
+        }
 
-            /**
-             * Work on all tags
-             */
-            foreach ($this->_tags as $key => $val) {
-
-                $search = array();
-                $replace = array();
-                $tokens = array();
-                /* Save original text */
-                $workingText = $text;
-
-                /* build the regexp for the tag */
-                $openTag = substr($key, 0, strpos($key, ']') + 1);
-                $partialOpenTag = substr($openTag, 0, (strpos($openTag, ' ')) ? strpos($openTag, ' ') : strpos($openTag, ']'));
-                $tokenedOpenTag = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>.*?)', $openTag);
-
-                /* Escaped tag exists */
-                if (strpos($openTag, "/]")) {
-                    $escapedKey = $this->_addEscapes($tokenedOpenTag);
-                } else {
-                    $tagContents = substr($key, strpos($key, ']') + 1, strrpos($key, '[') - (strpos($key, ']') + 1));
-                    $tokened_tag_contens = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>(?s:(?!' . $partialOpenTag . ').)*?)', $tagContents);
-                    $closetag = substr($key, strrpos($key, '['), strrpos($key, ']') - strrpos($key, '[') + 1);
-                    $escapedKey = $this->_addEscapes($tokenedOpenTag . $tokened_tag_contens . $closetag);
-                }
-                $finalTagPattern = "%" . $escapedKey . "%";
-
-                /* Process */
-                preg_match_all($finalTagPattern, $workingText, $results);
-
-                if (!empty($results[0])) {
-                    $search = array_merge($search, $results[0]);
-                    /* Build array of tokens */
-                    foreach ($results as $k => $v) {
-                        if (!is_numeric($k)) {
-                            $tokens[] = $k;
-                        }
-                    }
-
-                    /* Process for all instances */
-                    for ($i = 0; $i < count($results[0]); $i++) {
-                        $params = new JRegistry();
-                        foreach ($tokens as $token) {
-                            //$tmpval = str_replace("{" . $token . "}", $results[$token][$i], $tmpval);
-                            $params->set($token, str_replace('{', '', str_replace('}', '', $results[$token][$i])));
-                        }
-                        $tmplFile = ZO2PATH_ROOT . '/libraries/shortcodes/html/' . $val . '.php';
-
-                        if (JFile::exists($tmplFile)) {
-                            ob_start();
-                            include $tmplFile;
-                            $buffer = ob_get_contents();
-                            ob_end_clean();
-                            $replace[] = $buffer;
-                        } else {
-                            $replace[] = JText::_('PLG_SYSTEM_ZO2_FILE_NOT_FOUND');
-                        }
-                    }
-                }
-                /* Feww completed */
-                $text = str_replace($search, $replace, $text);
+        /**
+         * Do process replace text with ALL shortcodes
+         * @param type $text
+         * @return string
+         */
+        public function execute($text) {
+            foreach ($this->_data as $shortCode) {
+                $text = $this->replace($shortCode, $text);
             }
             return $text;
+        }
+
+        /**
+         * Do replace for each shortcode
+         * @param type $shortCode
+         * @param type $text
+         * @return type
+         */
+        public function replace($shortCode, $text) {
+            $search = array();
+            $replace = array();
+            $tokens = array();
+
+            $shortCodePattern = $shortCode->pattern;
+
+            /**
+             * @todo Allow empty params
+             */
+            /* build the regexp for the tag */
+            $openTag = substr($shortCodePattern, 0, strpos($shortCodePattern, ']') + 1);
+            $partialOpenTag = substr($openTag, 0, (strpos($openTag, ' ')) ? strpos($openTag, ' ') : strpos($openTag, ']'));
+            $tokenedOpenTag = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>.*?)', $openTag);
+
+            /* Escaped tag exists */
+            if (strpos($openTag, "/]")) {
+                $escapedKey = $this->_addEscapes($tokenedOpenTag);
+            } else {
+                $tagContents = substr($shortCodePattern, strpos($shortCodePattern, ']') + 1, strrpos($shortCodePattern, '[') - (strpos($shortCodePattern, ']') + 1));
+                $tokened_tag_contens = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<$1>(?s:(?!' . $partialOpenTag . ').)*?)', $tagContents);
+                $closetag = substr($shortCodePattern, strrpos($shortCodePattern, '['), strrpos($shortCodePattern, ']') - strrpos($shortCodePattern, '[') + 1);
+                $escapedKey = $this->_addEscapes($tokenedOpenTag . $tokened_tag_contens . $closetag);
+            }
+            $finalTagPattern = "%" . $escapedKey . "%";
+
+            /* Process */
+            preg_match_all($finalTagPattern, $text, $results);
+
+            if (!empty($results[0])) {
+                $search = array_merge($search, $results[0]);
+                /* Build array of tokens */
+                foreach ($results as $k => $v) {
+                    if (!is_numeric($k)) {
+                        $tokens[] = $k;
+                    }
+                }
+                /* Process for all instances */
+                for ($i = 0; $i < count($results[0]); $i++) {
+                    /* Create new instance of Zo2Template and provide default properties */
+                    $template = new Zo2Template($shortCode->default);
+                    foreach ($tokens as $token) {
+                        $template->set($token, str_replace('{', '', str_replace('}', '', $results[$token][$i])));
+                    }
+                    /* Fetch template to get html */
+                    $replace[] = $template->fetch(ZO2PATH_ROOT . '/libraries/shortcodes/html/' . $shortCode->layout . '.php');
+                }
+            }
+            return str_replace($search, $replace, $text);
         }
 
         /**

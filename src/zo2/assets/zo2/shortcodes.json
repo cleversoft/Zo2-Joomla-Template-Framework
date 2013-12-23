@@ -1,0 +1,172 @@
+[
+    {
+        "pattern": "[accordion]{content}[\/accordion]",
+        "layout": "accordion",
+        "default": {
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[acc_item title={title}]{content}[\/acc_item]",
+        "layout": "acc_item",
+        "default": {
+            "title": "Item title"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[quote align={align} color={color}]{content}[\/quote]",
+        "layout": "quote",
+        "default": {
+            "align": "center",
+            "color": "#999999"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[button type={type} size={size} state={state}]{content}[\/button]",
+        "layout": "button",
+        "default": {
+            "type": "center",
+            "size": "#999999",
+            "state": "enable"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[columns]{content}[\/columns]",
+        "layout": "columns",
+        "default": {
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[column_item col={col}]{content}[\/column_item]",
+        "layout": "column_item",
+        "default": {
+            "col": "4"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[divider]{content}[\/divider]",
+        "layout": "divider",
+        "default": {
+            "scroll_text": "Go to top"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[dropcap type={type} color={color} background={background}]{content}[\/dropcap]",
+        "layout": "dropcap",
+        "default": {
+            "type": "circle",
+            "color": "#ffffff",
+            "background": "#555555"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[gallery title={title} width={width} height={height} columns={columns}]{content}[\/gallery]",
+        "layout": "gallery",
+        "default": {
+            "title": "Gallery title",
+            "width": "auto",
+            "height": "height",
+            "columns": "3"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[gallery_item title={title} src={src}]{content}[\/gallery_item]",
+        "layout": "gallery_item",
+        "default": {
+            "title": "Gallery title"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[googlemaps lat={lat} lng={lng} zoom={zoom} w={w} h={h}]{content}[\/googlemaps]",
+        "layout": "googlemaps",
+        "default": {
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[lightbox src={src} width={width} height={height} lightbox={lightbox} title={title} align={align}][\/lightbox]",
+        "layout": "lightbox",
+        "default": {
+            "title": "Lightbox title",
+            "lightbox": "on",
+            "align": "left"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[message_box title={title} color={color} close={close}]{content}[\/message_box]",
+        "layout": "message_box",
+        "default": {
+            "title": "Message title",
+            "color": "red",
+            "close": "true"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[tabs]{content}[\/tabs]",
+        "layout": "tabs",
+        "default": {
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[tab_item]{content}[\/tab_item]",
+        "layout": "tab_item",
+        "default": {
+            "title": "Tab title"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[testimonial author={author} position={position}]{content}[\/testimonial]",
+        "layout": "testimonial",
+        "default": {
+            "author": "Testimonial author"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[toggle_box]{content}[\/toggle_box]",
+        "layout": "toggle_box",
+        "default": {
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[toggle_item active={active}]{content}[\/toggle_item]",
+        "layout": "toggle_item",
+        "default": {
+            "title": "Toggle title",
+            "active": "true"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[vimeo height={height} width={width}]{content}[\/vimeo]",
+        "layout": "vimeo",
+        "default": {
+            "height": "250",
+            "width": "500"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[youtube height={height} width={width}]{content}[\/youtube]",
+        "layout": "youtube",
+        "default": {
+            "height": "250",
+            "width": "500"
+        },
+        "description": ""
+    }
+]  

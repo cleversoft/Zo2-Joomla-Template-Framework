@@ -22,6 +22,11 @@ if (!class_exists('plgSystemZo2')) {
      */
     class plgSystemZo2 extends JPlugin {
 
+        /**
+         * 
+         * @param type $subject
+         * @param type $config
+         */
         public function __construct(& $subject, $config) {
             parent::__construct($subject, $config);
             $language = JFactory::getLanguage();
@@ -54,8 +59,8 @@ if (!class_exists('plgSystemZo2')) {
             } else {
                 if (Zo2Framework::get('enable_shortcodes', 1) == 1) {
                     /* Do shortcodes process */
-                    $shortcodes = new Zo2Shortcodes();
-                    $body = $shortcodes->process($body);
+                    $shortcodes = Zo2Shortcodes::getInstance();
+                    $body = $shortcodes->execute($body);
                 }
             }
 
