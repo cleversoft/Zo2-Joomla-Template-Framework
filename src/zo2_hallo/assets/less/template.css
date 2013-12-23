@@ -1,5 +1,3 @@
-@import "../vendor/font-awesome/css/font-awesome.min.css";
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 /**
  * Zo2 (http://www.zo2framework.org)
@@ -2181,6 +2179,7 @@ blockquote div.zt-blockquote4 div {
 .zt-box-download {
   background: #e7ebfb;
 }
+/*@import "../vendor/font-awesome/css/font-awesome.min.css";*/
 body {
   line-height: 20px;
   font-size: 12px;
@@ -2819,6 +2818,13 @@ footer .footer_zo2_logo img {
 }
 .bs-example {
   margin: 15px 0;
+}
+#k2Container span.itemEditLink {
+  width: inherit;
+}
+#k2Container span.itemEditLink a {
+  display: block;
+  position: static;
 }
 /* Responsive */
 @media (max-width: 767px) {

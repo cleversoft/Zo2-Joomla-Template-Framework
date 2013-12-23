@@ -180,3 +180,9 @@
 .font-select-active > a div b {
   background-position: -18px 1px;
 }
+
+.fs-searchinput {
+    display: block !important;
+    width: 184px !important;
+    margin: 3px 5px !important;
+}

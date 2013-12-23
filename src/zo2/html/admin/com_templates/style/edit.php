@@ -16,7 +16,7 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 $user = JFactory::getUser();
 $canDo = TemplatesHelper::getActions();
 
-if (Zo2Framework::allowOverrideAdminTemplate()) :
+if (Zo2Framework::isZo2Template()) :
 ?>
 <form id="adminForm" action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit&id='.(int) $this->item->id); ?>" method="post" name="adminForm" id="style-form" class="form-validate form-horizontal">
 	<fieldset id="zo2" class="<?php echo Zo2Framework::isJoomla25() ? 'zo2_j25' : 'zo2_j3'?>">
