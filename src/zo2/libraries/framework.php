@@ -106,56 +106,43 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function loadAssets() {
             $application = JFactory::getApplication();
-            $document = JFactory::getDocument();
-
-            Zo2HelperCompiler::less(ZO2PATH_ASSETS_ZO2_DEVELOPMENT . '/less/admin.less', ZO2PATH_ASSETS_ZO2 . '/css/admin.css');
-            Zo2HelperCompiler::less(ZO2PATH_ASSETS_ZO2_DEVELOPMENT . '/less/adminmegamenu.less', ZO2PATH_ASSETS_ZO2 . '/css/adminmegamenu.css');
-            Zo2HelperCompiler::less(ZO2PATH_ASSETS_ZO2_DEVELOPMENT . '/less/megamenu.less', ZO2PATH_ASSETS_ZO2 . '/css/megamenu.css');
-            Zo2HelperCompiler::less(ZO2PATH_ASSETS_ZO2_DEVELOPMENT . '/less/megamenu-responsive.less', ZO2PATH_ASSETS_ZO2 . '/css/megamenu-responsive.css');
-            Zo2HelperCompiler::less(ZO2PATH_ASSETS_ZO2_DEVELOPMENT . '/less/shortcodes.less', ZO2PATH_ASSETS_ZO2 . '/css/shortcodes.css');
-            Zo2HelperCompiler::less(ZO2PATH_ASSETS_ZO2_DEVELOPMENT . '/less/social.less', ZO2PATH_ASSETS_ZO2 . '/css/social.css');
-
-            /* Woh ! We do less compile here in case needed */
-
-            /**
-             * Load for both of frontend & backend
-             */
-            /* Only for Joomla! 2.5 */
-            if (self::isJoomla25()) {
-                
-            }
+            $assets = Zo2Assets::getInstance();
 
             /* Backend loading */
             if ($application->isAdmin()) {
+                /* Only work in Zo2 Template */
                 if (self::allowOverrideAdminTemplate()) {
-                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js');
                     /* Only for Joomla! 2.5 */
                     if (self::isJoomla25()) {
                         /* jQuery: Only for backend. In frontend we include that into template index.php */
-                        $document->addScript(ZO2RTP_ASSETS_VENDOR . '/jquery/jquery.noConflict.js');
+                        $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
+                        $assets->addScript('vendor/jquery/jquery.noConflict.js');
                         /* For Joomla! 2.5 we need load Bootstrap 2.x */
-                        $document->addScript(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/2.3.2/js/bootstrap.min.js');
-                        $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/2.3.2/css/bootstrap.min.css');
+                        $assets->addScript('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js');
+                        $assets->addStyleSheet('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css');
                     }
+                    /**
+                     * For both Joomla! 2.5 & 3.x
+                     */
                     /* Extra Bootstrap addons */
-                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/font-awesome/css/font-awesome.min.css');
-                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-colorpicker/js/bootstrap-colorpicker.js');
-                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-colorpicker/css/bootstrap-colorpicker.css');
-                    /* Font Select */
-                    $document->addScript(ZO2RTP_ASSETS_VENDOR . '/fontselect/jquery.fontselect.js');
-                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/fontselect/fontselect.css');
+                    $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
+                    $assets->addScript('vendor/bootstrap/addons/bootstrap-colorpicker/js/bootstrap-colorpicker.js');
+                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-colorpicker/css/bootstrap-colorpicker.css');
+                    /* Fonts */
+                    $assets->addScript('vendor/fontselect/jquery.fontselect.js');
+                    $assets->addStyleSheet('vendor/fontselect/fontselect.css');
+                    $assets->addStyleSheet('vendor/fontello/css/fontello.css');
 
-                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/fontello/css/fontello.css');
-                    $document->addStyleSheet(ZO2URL_ROOT . '/addons/shortcodes/css/shortcodes.css');
                     /* Our script */
-                    $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/admin.css');
-                    /* Shortcodes */
-                    $document->addStyleSheet(ZO2RTP_ASSETS_ZO2 . '/css/shortcodes.css');
-                    $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/shortcodes.min.js');
+                    $assets->addStyleSheet('zo2/css/admin.css');
                 }
             } else {
+                if (self::isJoomla25() && self::get('load_jquery')) {
+                    $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
+                    $assets->addScript('vendor/jquery/jquery.noConflict.js');
+                }
                 if (self::get('enable_rtl') == 1)
-                    $document->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+                    $assets->addAsset('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
             }
         }
 
@@ -286,22 +273,22 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function setLayout($layout) {
             /*
-            foreach (self::$_scripts as $s) {
-                $layout->insertJs($s);
-            }
-            foreach (self::$_scriptDeclarations as $sd) {
-                $layout->insertJsDeclaration($sd);
-            }
-            foreach (self::$_styles as $s) {
-                if (strpos($s, '.less') !== false)
-                    $layout->insertLess($s);
-                else
-                    $layout->insertCss($s);
-            }
-            foreach (self::$_styleDeclarations as $sd) {
-                $layout->insertCssDeclaration($sd);
-            }
-            */
+              foreach (self::$_scripts as $s) {
+              $layout->insertJs($s);
+              }
+              foreach (self::$_scriptDeclarations as $sd) {
+              $layout->insertJsDeclaration($sd);
+              }
+              foreach (self::$_styles as $s) {
+              if (strpos($s, '.less') !== false)
+              $layout->insertLess($s);
+              else
+              $layout->insertCss($s);
+              }
+              foreach (self::$_styleDeclarations as $sd) {
+              $layout->insertCssDeclaration($sd);
+              }
+             */
             self::getInstance()->_layout = $layout;
             return self::getInstance();
         }

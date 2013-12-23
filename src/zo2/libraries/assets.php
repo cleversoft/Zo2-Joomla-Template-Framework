@@ -22,18 +22,41 @@ if (!class_exists('Zo2Assets')) {
      */
     class Zo2Assets extends Zo2Path {
 
+        /**
+         * Singleton instance
+         * @var Zo2Assets 
+         */
         public static $instance;
-        private $_less = array();
+
+        /**
+         * Array of added css files
+         * @var array 
+         */
         private $_stylesheets = array();
+
+        /**
+         * Array of added custom stylesheet scripts
+         * @var array 
+         */
         private $_stylesheetDeclarations = array();
+
+        /**
+         * Array of added js files
+         * @var array
+         */
         private $_javascripts = array();
+
+        /**
+         * Array of added custom javascripts
+         * @var array
+         */
         private $_javascriptDeclarations = array();
 
         /**
          * 
          * @return Zo2Assets
          */
-        public function getInstance() {
+        public static function getInstance() {
             if (!isset(self::$instance)) {
                 self::$instance = new self();
             }
@@ -43,37 +66,23 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * Get asset file path or url
+         * Get asset file with relative path
          * @param type $file         
          * @return string
          */
         public function getAssetFile($file) {
-            $paths[] = $this->get('zo2Root') . '/assets/' . $file;
+            /* Template override */
             $paths[] = $this->get('siteTemplate') . '/assets/' . $file;
+            /* Core assets */
+            $paths[] = $this->get('zo2Root') . '/assets/' . $file;
+            /* Find in array which the first exists file */
             foreach ($paths as $path) {
                 $physicalPath = $this->getPath($path);
                 if (JFile::exists($physicalPath)) {
-                    break;
+                    return $path;
                 }
             }
-            if (isset($path)) {
-                return $path;
-            } else {
-                return false;
-            }
-        }
-
-        /**
-         * 
-         * @param type $file
-         * @return \Zo2Assets
-         */
-        public function addLess($file) {
-            $assetFile = $this->getAssetFile($file);
-            if ($assetFile != false) {
-                $this->_less[$assetFile] = $this->getPath($assetFile);
-            }
-            return $this;
+            return false;
         }
 
         /**
@@ -103,7 +112,7 @@ if (!class_exists('Zo2Assets')) {
          * 
          * @return \Zo2Assets
          */
-        public function addScript() {
+        public function addScript($file) {
             $assetFile = $this->getAssetFile($file);
             if ($assetFile != false) {
                 $this->_javascripts[$assetFile] = $this->getPath($assetFile);
@@ -121,63 +130,130 @@ if (!class_exists('Zo2Assets')) {
             return $this;
         }
 
+        /**
+         * Do build development script into production
+         */
         public function buildFrameworkProduction() {
-            $developmentDir = $lessFiles[] = 'admin';
-            $lessFiles[] = 'adminmegamenu';
-            $lessFiles[] = 'megamenu-responsive';
-            $lessFiles[] = 'megamenu';
-            $lessFiles[] = 'shortcodes';
-            $lessFiles[] = 'social';
-            $jsFiles[] = 'adminlayout';
-            $jsFiles[] = 'adminmegamenu';
-            $jsFiles[] = 'adminsocial';
-            $jsFiles[] = 'assets';
-            $jsFiles[] = 'megamenu';
-            $jsFiles[] = 'shortcodes';
-            $jsFiles[] = 'social';
-            $jsFiles[] = 'socialshare';
+            /* This method only need call one time */
+            static $called = false;
+            if ($called === false) {
+                /**
+                 * @todo move these list into config file
+                 */
+                $lessFiles['core'][] = 'adminmegamenu';
+                $lessFiles['core'][] = 'megamenu-responsive';
+                $lessFiles['core'][] = 'megamenu';
+                $lessFiles['core'][] = 'shortcodes';
+                $lessFiles['core'][] = 'social';
+                $jsFiles['core'][] = 'adminlayout';
+                $jsFiles['core'][] = 'adminmegamenu';
+                $jsFiles['core'][] = 'adminsocial';
+                $jsFiles['core'][] = 'assets';
+                $jsFiles['core'][] = 'megamenu';
+                $jsFiles['core'][] = 'shortcodes';
+                $jsFiles['core'][] = 'social';
+                $jsFiles['core'][] = 'socialshare';
 
-            $buildProduction = Zo2Framework::get('build_production', 0);
-            switch ($buildProduction) {
-                case 1: /* Clear cache and rebuild everything */
-                    /* Do build less */
-                    foreach ($lessFiles as $lessFile) {
-                        $lessFilePath = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/less/' . $lessFile . '.less');
-                        $cssFilePath = $this->getPath($this->get('zo2Root') . '/assets/zo2/css/' . $lessFile . '.css');
-                        Zo2HelperCompiler::less($lessFilePath, $cssFilePath);
-                        /**
-                         * @todo css compress
-                         */
-                    }
-                    /* Do build js */
-                    foreach ($jsFiles as $jsFile) {
-                        $jsFilePath = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/js/' . $jsFile . '.js');
-                        $jsFilePathOutput = $this->getPath($this->get('zo2Root') . '/assets/zo2/js/' . $jsFile . '.js');
-                        Zo2HelperCompiler::javascript($jsFilePath, $jsFilePathOutput);
-                    }
-                    break;
-                case 2: /* Smart check, only build for missed or file updated */
-                    /* Do build less */
-                    foreach ($lessFiles as $lessFile) {
-                        $lessFilePath = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/less/' . $lessFile . '.less');
-                        $cssFilePath = $this->getPath($this->get('zo2Root') . '/assets/zo2/css/' . $lessFile . '.css');
-                        if (!is_file($cssFilePath) || filemtime($lessFilePath) > filemtime($cssFilePath)) {
-                            Zo2HelperCompiler::less($lessFilePath, $cssFilePath);
-                        }
+                /* Template */
+                //$lessFiles['template'] = '';
+                //$jsFiles['template'] = '';
+                        
+                $buildProduction = Zo2Framework::get('build_production', 1);
 
-                        /**
-                         * @todo css compress
-                         */
-                    }
-                    /* Do build js */
-                    foreach ($jsFiles as $jsFile) {
-                        $jsFilePath = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/js/' . $jsFile . '.js');
-                        $jsFilePathOutput = $this->getPath($this->get('zo2Root') . '/assets/zo2/js/' . $jsFile . '.js');
-                        if (!is_file($jsFilePathOutput) || filemtime($jsFilePath) > filemtime($jsFilePathOutput)) {
-                            Zo2HelperCompiler::javascript($jsFilePath, $jsFilePathOutput);
+
+                switch ($buildProduction) {
+                    case 1: /* Clear cache and rebuild everything */
+                        /* Do build core less */
+                        foreach ($lessFiles['core'] as $lessFile) {
+                            $input = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/less/' . $lessFile . '.less');
+                            $output = $this->getPath($this->get('zo2Root') . '/assets/zo2/css/' . $lessFile . '.css');
+                            $this->_buildLess($input, $output);
                         }
-                    }
-                    break;
+                        if (isset($lessFiles['template']) && is_array($lessFiles['template'])) {
+                            /* Do build template less */
+                            foreach ($lessFiles['template'] as $lessFile) {
+                                $input = $this->getPath($this->get('siteTemplate') . '/assets/zo2/development/less/' . $lessFile . '.less');
+                                $output = $this->getPath($this->get('siteTemplate') . '/assets/zo2/css/' . $lessFile . '.css');
+                                $this->_buildLess($input, $output);
+                            }
+                        }
+                        /* Do build core js */
+                        foreach ($jsFiles['core'] as $jsFile) {
+                            $input = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/js/' . $jsFile . '.js');
+                            $output = $this->getPath($this->get('zo2Root') . '/assets/zo2/js/' . $jsFile . '.js');
+                            $this->_buildJs($input, $output);
+                            //JFactory::getApplication()->enqueueMessage('Working: ' . $jsFilePath);
+                        }
+                        if (isset($jsFiles['template']) && is_array($jsFiles['template'])) {
+                            /* Do build template js */
+                            foreach ($jsFiles['template'] as $jsFile) {
+                                $input = $this->getPath($this->get('siteTemplate') . '/assets/zo2/development/js/' . $jsFile . '.js');
+                                $output = $this->getPath($this->get('siteTemplate') . '/assets/zo2/js/' . $jsFile . '.js');
+                                $this->_buildJs($input, $output);
+                                //JFactory::getApplication()->enqueueMessage('Working: ' . $jsFilePath);
+                            }
+                        }
+                        break;
+                }
+                $called = true;
+            }
+        }
+
+        private function _buildLess($input, $output) {
+            $cleanProduction = Zo2Framework::get('clean_production', 0);
+            /* Do clean old files */
+            if (JFile::exists($output) && $cleanProduction)
+                JFile::delete($output);
+            if (!is_file($output) || filemtime($input) > filemtime($output)) {
+                if (Zo2HelperCompiler::less($input, $output)) {
+                    //JFactory::getApplication()->enqueueMessage('Success: ' . $cssFilePath);
+                }
+            } else {
+                //JError::raiseNotice(100, 'File exists: ' . $cssFilePath);
+            }
+            /**
+             * @todo css compress
+             */
+        }
+
+        private function _buildJs($input, $output) {
+            $cleanProduction = Zo2Framework::get('clean_production', 0);
+            if (JFile::exists($output) && $cleanProduction)
+                JFile::delete($output);
+            if (!is_file($output) || filemtime($input) > filemtime($output)) {
+                if (Zo2HelperCompiler::javascript($input, $output)) {
+                    //JFactory::getApplication()->enqueueMessage('Success: ' . $jsFilePathOutput);
+                }
+            } else {
+                //JError::raiseNotice(100, 'File exists: ' . $jsFilePathOutput);
+            }
+        }
+
+        public function generateAssets($type) {
+
+            /* For backend we'll replace $body with our adding scripts */
+            if ($type == 'js') {
+                $jsHtml = '';
+                foreach ($this->_javascripts as $javascript => $path) {
+                    $jsHtml .='<script type="text/javascript" async="" src="' . $this->get('siteUrl') . '/' . $javascript . '"></script>';
+                }
+                $jsDeclarationHtml = '<script>';
+                foreach ($this->_javascriptDeclarations as $javascriptDeclaration) {
+                    $jsDeclarationHtml .= $javascriptDeclaration;
+                }
+                $jsDeclarationHtml .= '</script>';
+                return $jsHtml . $jsDeclarationHtml;
+            } else {
+                $cssHtml = '';
+                foreach ($this->_stylesheets as $styleSheets => $path) {
+                    $cssHtml .= '<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $styleSheets . '">';
+                }
+                $cssDeclarationHtml = '<style>';
+                foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration) {
+                    $cssDeclarationHtml .= $stylesheetDeclaration;
+                }
+                $cssDeclarationHtml = '</style>';
+                return $cssHtml . $cssDeclarationHtml;
             }
         }
 

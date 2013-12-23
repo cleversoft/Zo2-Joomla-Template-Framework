@@ -17,6 +17,13 @@ require_once __DIR__ . '/defines.php';
 JLoader::discover('Zo2', ZO2PATH_ROOT . '/libraries');
 JLoader::discover('Zo2Helper', ZO2PATH_ROOT . '/helpers');
 
+/**
+ * Build development into production
+ */
+$assets = Zo2Assets::getInstance();
+$assets->buildFrameworkProduction();
+Zo2Framework::loadAssets();
+
 Zo2Framework::init();
 Zo2Framework::getTemplateLayouts();
 Zo2Framework::getController();

@@ -33,86 +33,37 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/includes/bootstrap.php';
-            Zo2Framework::loadAssets();
         }
 
         /**
          * @uses This event is triggered immediately before the framework has rendered the application.
          */
         public function onBeforeRender() {
-            $app = JFactory::getApplication();
-            $jinput = JFactory::getApplication()->input;
-            $document = JFactory::getDocument();
-
-            $option = $jinput->getWord('option');
-            $view = $jinput->get('view', '');
-            $layout = $jinput->get('layout');
-
-            $disableMootols = Zo2Framework::get('disable_mootools');
-
-            /* Frontend process */
-            if (!$app->isAdmin()) {
-                /* Remove Mootools */
-                if ($disableMootols && ($view != 'form' && $layout != 'edit')) {
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/mootools-core.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/core.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/caption.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/modal.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/mootools.js']);
-                    unset($document->_scripts[JURI::root(true) . '/plugins/system/mtupgrade/mootools.js']);
-
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/mootools-core-uncompressed.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/core-uncompressed.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/caption-uncompressed.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/system/js/tabs-state.js']);
-
-                    unset($document->_scripts[JUri::root(true) . '/media/jui/js/jquery-migrate.min.js']);
-
-                    unset($document->_styleSheets[JUri::root(true) . '/media/system/css/modal.css']);
-
-                    if (isset($document->_script) && isset($document->_script['text/javascript'])) {
-                        $document->_script['text/javascript'] = preg_replace('%window\.addEvent\(\'load\',\s*function\(\)\s*{\s*new\s*JCaption\(\'img.caption\'\);\s*}\);\s*%', '', $document->_script['text/javascript']);
-                        $document->_script['text/javascript'] = preg_replace('%new JCaption\(\'img.caption\'\);%', '', $document->_script['text/javascript']);
-                        if (empty($document->_script['text/javascript']))
-                            unset($document->_script['text/javascript']);
-                    }
-                }
-                // remove default jquery and bootstrap 2
-                if (!Zo2Framework::isJoomla25()) {
-                    JHtml::_('bootstrap.framework', false);
-                    //JHtml::_('jquery.framework', false);
-                    //JHtml::_('behavior.tooltip', false);
-                    unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery-noconflict.js']);
-                    unset($document->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']);
-                }
-            } else {
-                if (!Zo2Framework::isJoomla25() && Zo2Framework::allowOverrideAdminTemplate())
-                    unset($document->_scripts[JURI::root(true) . '/media/jui/js/jquery.min.js']);
-            }
+            
         }
 
+        /**
+         * 
+         */
         public function onAfterRender() {
-
             $app = JFactory::getApplication();
+            $body = JResponse::getBody();
 
             if ($app->isAdmin()) {
-                /**
-                 * @todo We should move this feature into Joomla! standard plugin
-                 */
-                // Add shortcodes button into editor
-                //$this->addShortCodes();
+                
             } else {
-                $body = JResponse::getBody();
                 if (Zo2Framework::get('enable_shortcodes', 1) == 1) {
                     /* Do shortcodes process */
                     $shortcodes = new Zo2Shortcodes();
                     $body = $shortcodes->process($body);
                 }
-
-                /* Apply back to body */
-                JResponse::setBody($body);
             }
+
+            $assets = Zo2Assets::getInstance();
+            $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
+            $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
+            /* Apply back to body */
+            JResponse::setBody($body);
         }
 
         public function onContentBeforeDisplay($context, &$article, &$params, $limitstart = 0) {

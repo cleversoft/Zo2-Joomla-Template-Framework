@@ -9,11 +9,10 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
+defined('_JEXEC') or die('Restricted access');
 
-defined('_JEXEC') or die ('Restricted access');
+class JFormFieldLayout extends JFormField {
 
-class JFormFieldLayout extends JFormField
-{
     protected $type = 'Layout';
 
     /**
@@ -21,12 +20,11 @@ class JFormFieldLayout extends JFormField
      *
      * @return string
      */
-    public function getInput()
-    {
+    public function getInput() {
         $doc = JFactory::getDocument();
 
         $template = $this->form->getValue('template');
-        $theme_path = JPATH_SITE.'/templates/'.$template.'/';
+        $theme_path = JPATH_SITE . '/templates/' . $template . '/';
         $theme_layout_path = $theme_path . 'layouts/';
         $current_layout_path = $theme_layout_path . 'layout.json';
 
@@ -42,11 +40,12 @@ class JFormFieldLayout extends JFormField
 
             // remove cache
             foreach ($caches as $file) {
-                if (file_exists($file)) unlink($file);
+                if (file_exists($file))
+                    unlink($file);
             }
         }
 
-        $pluginPath = JURI::root(true).'/plugins/system/zo2/';
+        $pluginPath = JURI::root(true) . '/plugins/system/zo2/';
         $assetsPath = $pluginPath . 'assets/';
         $cssPath = $assetsPath . 'css/';
         $jsPath = $assetsPath . 'js/';
@@ -54,17 +53,16 @@ class JFormFieldLayout extends JFormField
 
         // load jquery & jqueryui newest version, cause joomla's jquery is plain old
         // Load custom js and css
-        $doc->addScript($vendorPath . 'jqueryui/js/jquery-ui-1.10.3.custom.min.js');
-        $doc->addScript($vendorPath . 'bootbox-3.3.0.min.js');
-        //$doc->addScript($jsPath . 'layoutbuildermodels.js');
-        $doc->addScript(ZO2RTP_ASSETS_ZO2 . '/js/adminlayout.min.js');
-        //$doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap.min.css');
-        //$doc->addStyleSheet($vendorPath . 'bootstrap/css/bootstrap-responsive.min.css');
-        $doc->addStyleSheet($vendorPath . 'jqueryui/css/jquery-ui-1.10.3.custom.min.css');
-        $doc->addStyleSheet(ZO2RTP_ASSETS_VENDOR . '/bootstrap/core/css/bootstrap.gridsystem.css');
-        //$doc->addStyleSheet($cssPath . 'style.css');
-        //$doc->addScript($jsPath . 'admin.js');
-        
+        $assets = Zo2Assets::getInstance();
+        /* jQueryUI */
+        $assets->addScript('vendor/jqueryui/js/jquery-ui-1.10.3.custom.min.js');
+        $assets->addStyleSheet('vendor/jqueryui/css/jquery-ui-1.10.3.custom.min.css');
+
+        $assets->addScript('vendor/bootbox-3.3.0.min.js');
+        $assets->addScript('zo2/js/adminlayout.min.js');
+
+        $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.gridsystem.css');
+
         return $this->generateLayoutBuilder();
     }
 
@@ -74,19 +72,16 @@ class JFormFieldLayout extends JFormField
      *
      * @return string
      */
-    public function getLabel()
-    {
+    public function getLabel() {
         return '';
     }
-
 
     /**
      * Get html for layout builder
      *
      * @return string
      */
-    private function generateLayoutBuilder()
-    {
+    private function generateLayoutBuilder() {
         $templateName = $template = $this->form->getValue('template');
         $positions = Zo2Framework::getAvailablePositions($templateName);
         //$layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
@@ -94,11 +89,12 @@ class JFormFieldLayout extends JFormField
         $layoutPath = $templatePath . '/layouts/layout.json';
         $layoutData = json_decode(file_get_contents($layoutPath), true);
         //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
-        $path = JPATH_SITE.'/plugins/system/zo2/templates/layout.php';
+        $path = JPATH_SITE . '/plugins/system/zo2/templates/layout.php';
 
         // generate list of custom module style
         $customModuleStylePath = $templatePath . '/html/modules.php';
-        if (file_exists($customModuleStylePath)) include_once $customModuleStylePath;
+        if (file_exists($customModuleStylePath))
+            include_once $customModuleStylePath;
         $definedFunctions = get_defined_functions();
         $definedUserFunctions = $definedFunctions['user'];
         $customStyles = array();
@@ -122,15 +118,13 @@ class JFormFieldLayout extends JFormField
      *
      * @param $data
      */
-    public function renderLayout($data)
-    {
-        for($i = 0, $total = count($data); $i < $total; $i++) {
+    public function renderLayout($data) {
+        for ($i = 0, $total = count($data); $i < $total; $i++) {
             $this->renderRow($data[$i]);
         }
     }
 
-    private function renderRow($item)
-    {
+    private function renderRow($item) {
         if (!isset($item['visibility'])) {
             $item['visibility']['xs'] = true;
             $item['visibility']['sm'] = true;
@@ -138,17 +132,17 @@ class JFormFieldLayout extends JFormField
             $item['visibility']['lg'] = true;
         }
         ?>
-        <div class="zo2-row sortable-row" data-zo2-type="row" data-zo2-customClass="<?php echo $item['customClass']?>"
-             data-zo2-id="<?php echo $item['id']?>"
-             data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0?>"
-             data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0?>"
-             data-zo2-visibility-md="<?php echo $item['visibility']['md'] ? 1 : 0?>"
-             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0?>"
-             data-zo2-fullwidth="<?php echo $item['fullwidth'] ? 1 : 0?>"
-        >
+        <div class="zo2-row sortable-row" data-zo2-type="row" data-zo2-customClass="<?php echo $item['customClass'] ?>"
+             data-zo2-id="<?php echo $item['id'] ?>"
+             data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0 ?>"
+             data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0 ?>"
+             data-zo2-visibility-md="<?php echo $item['visibility']['md'] ? 1 : 0 ?>"
+             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0 ?>"
+             data-zo2-fullwidth="<?php echo $item['fullwidth'] ? 1 : 0 ?>"
+             >
             <div class="col-md-12 row-control">
                 <div class="row-control-container">
-                    <div class="row-name"><?php echo $item['name']?></div>
+                    <div class="row-name"><?php echo $item['name'] ?></div>
                     <div class="row-control-buttons">
                         <i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>
                         <i title="Row's settings" class="icon-cogs row-control-icon settings hasTooltip"></i>
@@ -160,7 +154,7 @@ class JFormFieldLayout extends JFormField
 
                 <div class="col-container">
                     <?php
-                    for($i = 0, $total = count($item['children']); $i < $total; $i++) {
+                    for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
                         $this->renderColumn($item['children'][$i]);
                     }
                     ?>
@@ -170,8 +164,7 @@ class JFormFieldLayout extends JFormField
         <?php
     }
 
-    private function renderColumn($item)
-    {
+    private function renderColumn($item) {
         if (!isset($item['visibility'])) {
             $item['visibility']['xs'] = true;
             $item['visibility']['sm'] = true;
@@ -179,17 +172,17 @@ class JFormFieldLayout extends JFormField
             $item['visibility']['lg'] = true;
         }
         ?>
-        <div class="sortable-col col-md-<?php echo $item['span']?> col-md-offset-<?php echo $item['offset']?>" data-zo2-type="span"
-             data-zo2-span="<?php echo $item['span']?>" data-zo2-offset="<?php echo $item['offset']?>"
-             data-zo2-position="<?php echo $item['position']?>" data-zo2-style="<?php echo $item['style']?>"
-             data-zo2-customClass="<?php echo $item['customClass']?>" data-zo2-id="<?php echo $item['id']?>"
-             data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0?>"
-             data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0?>"
-             data-zo2-visibility-md="<?php echo $item['visibility']['md'] ? 1 : 0?>"
-             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0?>"
-        >
+        <div class="sortable-col col-md-<?php echo $item['span'] ?> col-md-offset-<?php echo $item['offset'] ?>" data-zo2-type="span"
+             data-zo2-span="<?php echo $item['span'] ?>" data-zo2-offset="<?php echo $item['offset'] ?>"
+             data-zo2-position="<?php echo $item['position'] ?>" data-zo2-style="<?php echo $item['style'] ?>"
+             data-zo2-customClass="<?php echo $item['customClass'] ?>" data-zo2-id="<?php echo $item['id'] ?>"
+             data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0 ?>"
+             data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0 ?>"
+             data-zo2-visibility-md="<?php echo $item['visibility']['md'] ? 1 : 0 ?>"
+             data-zo2-visibility-lg="<?php echo $item['visibility']['lg'] ? 1 : 0 ?>"
+             >
             <div class="col-wrap">
-                <div class="col-name"><?php echo $item['name']?></div>
+                <div class="col-name"><?php echo $item['name'] ?></div>
                 <div class="col-control-buttons">
                     <i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>
                     <i title="Column's settings" class="icon-cog col-control-icon settings hasTooltip"></i>
@@ -199,7 +192,7 @@ class JFormFieldLayout extends JFormField
 
                 <div class="row-container">
                     <?php
-                    for($i = 0, $total = count($item['children']); $i < $total; $i++) {
+                    for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
                         $this->renderRow($item['children'][$i]);
                     }
                     ?>
@@ -208,4 +201,5 @@ class JFormFieldLayout extends JFormField
         </div>
         <?php
     }
+
 }

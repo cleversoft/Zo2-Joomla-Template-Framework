@@ -34,8 +34,7 @@ if (!class_exists('Zo2Path')) {
             $this->def('siteUrl', rtrim(JUri::root(), '/'));
             $this->def('sitePath', JPATH_ROOT);
             $this->def('zo2Root', 'plugins/system/' . ZO2);
-            $this->def('siteTemplate', 'templates/' . Zo2Framework::getTemplateName());
-            $this->def('adminTemplate', 'administrator/templates/' . Zo2Framework::getTemplateName());
+            $this->def('siteTemplate', 'templates/' . Zo2Framework::getTemplateName());            
         }
 
         /**
@@ -54,28 +53,6 @@ if (!class_exists('Zo2Path')) {
          */
         public function getUrl($filePath) {
             return $this->get('siteUrl') . '/' . $filePath;
-        }
-
-        /**
-         * Get asset file path or url
-         * @param type $file
-         * @param type $type
-         * @return string
-         */
-        public function getAssetFile($file, $type = 'file') {
-            $paths[] = $this->get('zo2Root') . '/assets/' . $file;
-            $paths[] = $this->get('siteTemplate') . '/assets/' . $file;
-            foreach ($paths as $path) {
-                $physicalPath = $this->getPath($path);
-                if (JFile::exists($physicalPath)) {
-                    break;
-                }
-            }
-            if ($type === 'file') {
-                return $this->getPath($path);
-            } else {
-                return $this->getUrl($path);
-            }
         }
 
     }
