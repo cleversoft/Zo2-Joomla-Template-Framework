@@ -30,9 +30,9 @@ if (!class_exists('Zo2Imager')) {
          */
         private function _getProcessor() {
             /* php module */
-            if (call_user_func(array('Zo2ImagerImagick', 'isInstalled'))) {
-                return new Zo2ImagerImagick();
-            }
+            //if (call_user_func(array('Zo2ImagerImagick', 'isInstalled'))) {
+            //return new Zo2ImagerImagick();
+            //}
 //            /* imagemagick tool */
 //            if (call_user_func(array('Zo2ImagerImagemagick', 'isInstalled'))) {
 //                return new Zo2ImagerImageMagick();
