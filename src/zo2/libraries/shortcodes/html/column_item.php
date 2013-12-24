@@ -10,14 +10,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-$content = $this->get('content');
-$shortcodes = Zo2Shortcodes::getInstance();
 ?>
-<div class="highslide-gallery">
-    <h3><?php echo $this->get('title'); ?></h3>
-    <?php if ($content) { ?>
-        <ul>
-            <?php echo $shortcodes->execute($content); ?>
-        </ul>
-    <?php } ?>
+<div class="col-md-<?php echo $this->get('col', 4); ?>">
+    <?php echo $this->get('content'); ?>
 </div>

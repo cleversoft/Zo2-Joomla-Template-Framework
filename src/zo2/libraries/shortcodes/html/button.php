@@ -9,38 +9,11 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-//no direct accees
-defined('_JEXEC') or die ('resticted aceess');
-
-
-Zo2Framework::import2('core.Zo2Shortcode');
-
-class Button extends Zo2Shortcode
-{
-    // set short code tag
-    protected $tagname = 'button';
-
-    /**
-     * Overwrites the parent method
-     * @return string the embed HTML
-     */
-    protected function body()
-    {
-        extract($this->shortcode_atts(array(
-            "type"	=> '',
-            "size" 	=> '',
-            "state" => 'enable',
-        ), $this->attrs));
-
-
-        return '<button class="btn'.
-        (($type != '') ? ' btn-' . $type : '').
-        (($size != '') ? ' btn-' . $size : '') .
-        (($state == 'disabled') ? ' disabled' : '') .
-        '">Primary</button>';
-
-    }
-
-}
-
-
+defined('_JEXEC') or die('Restricted access');
+$type = $this->get('type');
+$size = $this->get('size');
+$state = $this->get('state');
+?>
+<button class="btn <?php (($type != '') ? ' btn-' . $type : '') . (($size != '') ? ' btn-' . $size : '') . (($state == 'disabled') ? ' disabled' : ''); ?>">
+    <?php echo $this->get('content'); ?>
+</button>

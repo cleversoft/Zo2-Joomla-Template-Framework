@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zo2 (http://www.zo2framework.org)
  * A powerful Joomla template framework
@@ -10,14 +11,6 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-$content = $this->get('content');
-$shortcodes = Zo2Shortcodes::getInstance();
+$google = new Zo2ServiceGoogle();
+echo $google->getMap('name' . md5($this->get('content')), $this->get('lat'), $this->get('lng'), $this->get('content'), $this->get('zoom'));
 ?>
-<div class="highslide-gallery">
-    <h3><?php echo $this->get('title'); ?></h3>
-    <?php if ($content) { ?>
-        <ul>
-            <?php echo $shortcodes->execute($content); ?>
-        </ul>
-    <?php } ?>
-</div>
