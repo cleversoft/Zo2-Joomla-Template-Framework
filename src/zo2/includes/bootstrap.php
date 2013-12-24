@@ -29,6 +29,3 @@ Zo2Framework::loadAssets();
 Zo2Framework::init();
 Zo2Framework::getTemplateLayouts();
 Zo2Framework::getController();
-
-$zo2services = new Zo2ServiceButtonTwitter();
-echo $zo2services->getButtonHtml('share');
