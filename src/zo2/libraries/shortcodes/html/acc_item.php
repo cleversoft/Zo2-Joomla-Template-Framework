@@ -10,13 +10,22 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+$_SESSION['accordion'] = !isset($_SESSION['accordion']) ? 1 : $_SESSION['accordion'] + 1;
 ?>
-<li class="zt-divider">
-    <span class="accordion-head-image"></span>
-    <h3 class="accordion-head title-color zt-title">
-        <?php echo $this->get('title'); ?>
-    </h3>
-    <div class="accordion-content">
-        <?php echo $this->get('content'); ?>
+<?php ?>
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<?php echo $_SESSION['accordion']?>">
+                    <?php echo $this->get('title'); ?>
+                </a>
+            </h4>
+        </div>
+        <div id="collapse-<?php echo $_SESSION['accordion']?>" class="panel-collapse collapse <?php echo $_SESSION['accordion']==1?'in':''?>">
+            <div class="panel-body">
+                <?php echo $this->get('content'); ?>
+            </div>
+        </div>
     </div>
-</li>
+</div>

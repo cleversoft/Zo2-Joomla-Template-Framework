@@ -11,8 +11,9 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
+<p><?php echo $this->get('content'); ?></p>
 <div class="divider">
     <div class="scroll-top">
-        <?php echo $this->get('content'); ?>
+        <?php echo $this->get('scroll_text'); ?>
     </div>
 </div>

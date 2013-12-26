@@ -12,9 +12,10 @@
 defined('_JEXEC') or die('Restricted access');
 $content = $this->get('content');
 $shortcodes = Zo2Shortcodes::getInstance();
+$_SESSION['accordion'] = 0;
 ?>
-<ul class='zt-accordion'>
+<div class='zt-accordion' id="accordion">
     <?php if ($content) { ?>
         <?php echo $shortcodes->execute($content); ?>
     <?php } ?>
-</ul>
+</div>
