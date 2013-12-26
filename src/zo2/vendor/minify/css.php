@@ -16,7 +16,7 @@ class CssMinifier {
         $content = str_replace( ', ', ',', $content );
         $content = str_replace( '} ', '}', $content );
         $content = str_replace( ';}', '}', $content );
-        $pattern = '#url\([\'"]?([a-zA-Z/.-]+)[\'"]?\)#';
+        $pattern = '#url\([\'"]?([^\'"]+)[\'"]?\)#';
         $content = preg_replace($pattern, 'url($1)', $content);
 
         return trim( $content );

@@ -15,7 +15,7 @@ defined('_JEXEC') or die ('Restricted access');
 /**
  * Zo2AssetsHelper is a class file, allows user to combine, compress, and manage static assets
  *
- * Class Zo2AssetsHelper
+ * Class Zo2HelperAssets
  */
 class Zo2HelperAssets {
     protected static $_currentCssPath = '';

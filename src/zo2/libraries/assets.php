@@ -286,7 +286,10 @@ if (!class_exists('Zo2Assets')) {
                     $cssFilePath = $this->getPath($cssFile);
                     $cssContent = '';
                     foreach ($this->_stylesheets as $styleSheets => $path) {
-                        $cssContent .= file_get_contents($path) . "\n";
+                        $currentCssContent = file_get_contents($path);
+                        //$currentCssContent = CssMinifier::minify($currentCssContent);
+                        //$currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssFilePath, $path);
+                        $cssContent .= $currentCssContent . "\n";
                     }
                     $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
                     file_put_contents($cssFilePath, $cssContent);
