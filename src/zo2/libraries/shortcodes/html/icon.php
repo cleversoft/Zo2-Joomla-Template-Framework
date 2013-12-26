@@ -12,4 +12,4 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<i class="zo2-icon-<?php echo $params->get('icon');?>"></i>
+<i class="zo2-icon-<?php echo $this->get('icon');?>"></i>

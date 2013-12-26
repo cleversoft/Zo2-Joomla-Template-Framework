@@ -49,7 +49,7 @@
         "description": ""
     },
     {
-        "pattern": "[divider]{content}[\/divider]",
+        "pattern": "[divider scroll_text={scroll_text}]{content}[\/divider]",
         "layout": "divider",
         "default": {
             "scroll_text": "Go to top"
@@ -93,12 +93,27 @@
         "description": ""
     },
     {
-        "pattern": "[lightbox src={src} width={width} height={height} lightbox={lightbox} title={title} align={align}][\/lightbox]",
+        "pattern": "[highlighter lang={lang} linenums={linenums} startnums={startnums}]{content}[\/highlighter]",
+        "layout": "highlighter",
+        "default": {
+            "linenums": "true",
+            "startnums": 0
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[lightbox src={src} width={width} height={height} lightbox={lightbox} title={title}][\/lightbox]",
         "layout": "lightbox",
         "default": {
-            "title": "Lightbox title",
-            "lightbox": "on",
-            "align": "left"
+            "title": "Lightbox title"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[liststyle type={type}]{content}[\/liststyle]",
+        "layout": "liststyle",
+        "default": {
+            "type": "check"
         },
         "description": ""
     },
@@ -109,6 +124,22 @@
             "title": "Message title",
             "color": "red",
             "close": "true"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[social type={type} opacity={opacity}]{content}[\/social]",
+        "layout": "social",
+        "default": {
+            "type": "facebook",
+            "opacity": "dark"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[space height={height}][\/space]",
+        "layout": "space",
+        "default": {
         },
         "description": ""
     },
@@ -146,7 +177,6 @@
         "pattern": "[toggle_item active={active}]{content}[\/toggle_item]",
         "layout": "toggle_item",
         "default": {
-            "title": "Toggle title",
             "active": "true"
         },
         "description": ""
@@ -168,5 +198,49 @@
             "width": "500"
         },
         "description": ""
+    },
+    {
+        "pattern": "[bliptv height={height} width={width}]{content}[\/bliptv]",
+        "layout": "bliptv",
+        "default": {
+            "height": "250",
+            "width": "500"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[dailymotion height={height} width={width}]{content}[\/dailymotion]",
+        "layout": "dailymotion",
+        "default": {
+            "height": "250",
+            "width": "500"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[hulu height={height} width={width}]{content}[\/hulu]",
+        "layout": "hulu",
+        "default": {
+            "height": "250",
+            "width": "500"
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[wufoo height={height} username={username} formhash={formhash}]{content}[\/wufoo]",
+        "layout": "wufoo",
+        "default": {
+        },
+        "description": ""
+    },
+    {
+        "pattern": "[slideshare height={height} width={width}]{content}[\/slideshare]",
+        "layout": "slideshare",
+        "default": {
+            "height": "250",
+            "width": "500"
+        },
+        "description": ""
     }
+
 ]  

@@ -11,6 +11,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<iframe width="<?php echo $param->get('width'); ?>" height="<?php echo $params->get('height'); ?>" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="//www.youtube.com/embed/<?php echo $params->get("id"); ?>" webkitAllowFullScreen mozallowfullscreen allowfullscreen="">
+<iframe width="<?php echo $this->get('width'); ?>" height="<?php echo $this->get('height'); ?>" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://youtube.com/embed/<?php echo $this->get("content"); ?>" webkitAllowFullScreen mozallowfullscreen allowfullscreen="">
 
 </iframe>
