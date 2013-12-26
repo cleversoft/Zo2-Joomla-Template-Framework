@@ -95,8 +95,8 @@ if (!class_exists('Zo2Assets')) {
             if (substr($file, strlen($file) - 5, 5) == '.less') {
                 $newFile = str_replace('.less', '.css', $file);
                 if (strpos($newFile, 'less/') === 0) $newFile = 'css/' . substr($newFile, 5);
-
-                Zo2HelperCompiler::less($this->getAssetFile($file), $this->getAssetFile($newFile));
+                $newFilePath = $this->getPath($this->get('siteTemplate') . '/assets/' . $newFile);
+                Zo2HelperCompiler::less($this->getAssetFile($file), $newFilePath);
                 $assetFile = $this->getAssetFile($newFile);
                 $this->_stylesheets[$assetFile] = $this->getPath($assetFile);
             }
@@ -249,13 +249,28 @@ if (!class_exists('Zo2Assets')) {
             }
         }
 
-        public function generateAssets($type) {
-
+        public function generateAssets($type)
+        {
+            $combineJs = Zo2Framework::get('combine_js');
+            $combineCss = Zo2Framework::get('combine_css');
             /* For backend we'll replace $body with our adding scripts */
             if ($type == 'js') {
                 $jsHtml = '';
-                foreach ($this->_javascripts as $javascript => $path) {
-                    $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrl') . '/' . $javascript . '"></script>';
+                if ($combineJs) {
+                    $jsName = 'cache/script.combined.js';
+                    $jsFile = $this->get('siteTemplate') . '/assets/' . $jsName;
+                    $jsFilePath = $this->getPath($jsFile);
+                    $jsContent = '';
+                    foreach ($this->_javascripts as $javascript => $path) {
+                        $jsContent .= file_get_contents($path) . "\n";
+                    }
+                    file_put_contents($jsFilePath, $jsContent);
+                    $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrl') . '/' . $jsFile . '"></script>';
+                }
+                else {
+                    foreach ($this->_javascripts as $javascript => $path) {
+                        $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrl') . '/' . $javascript . '"></script>';
+                    }
                 }
                 $jsDeclarationHtml = '<script>';
                 foreach ($this->_javascriptDeclarations as $javascriptDeclaration) {
@@ -265,14 +280,28 @@ if (!class_exists('Zo2Assets')) {
                 return $jsHtml . "\n" . $jsDeclarationHtml;
             } else {
                 $cssHtml = '';
-                foreach ($this->_stylesheets as $styleSheets => $path) {
-                    $cssHtml .= '<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $styleSheets . '">';
+                if ($combineCss) {
+                    $cssName = 'cache/style.combined.css';
+                    $cssFile = $this->get('siteTemplate') . '/assets/' . $cssName;
+                    $cssFilePath = $this->getPath($cssFile);
+                    $cssContent = '';
+                    foreach ($this->_stylesheets as $styleSheets => $path) {
+                        $cssContent .= file_get_contents($path) . "\n";
+                    }
+                    $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
+                    file_put_contents($cssFilePath, $cssContent);
+                    $cssHtml .='<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $cssFile . '"></script>';
+                }
+                else {
+                    foreach ($this->_stylesheets as $styleSheets => $path) {
+                        $cssHtml .= '<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $styleSheets . '">';
+                    }
                 }
                 $cssDeclarationHtml = '<style>';
                 foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration) {
                     $cssDeclarationHtml .= $stylesheetDeclaration;
                 }
-                $cssDeclarationHtml = '</style>';
+                $cssDeclarationHtml .= '</style>';
                 return $cssHtml . "\n" . $cssDeclarationHtml;
             }
         }

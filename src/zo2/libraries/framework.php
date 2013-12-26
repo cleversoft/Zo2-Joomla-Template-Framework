@@ -133,8 +133,9 @@ if (!class_exists('Zo2Framework')) {
                     $assets->addStyleSheet('vendor/fontselect/fontselect.css');
                     $assets->addStyleSheet('vendor/fontello/css/fontello.css');
 
-                    /* Our script */
+                    /* Our styles & scripts */
                     $assets->addStyleSheet('zo2/css/admin.css');
+                    $assets->addStyleSheet('zo2/css/adminmegamenu.css');
                 }
             } else {
                 if (self::isJoomla25() && self::get('load_jquery')) {
@@ -538,6 +539,11 @@ if (!class_exists('Zo2Framework')) {
             return false;
         }
 
+        public static function isZo2Template()
+        {
+            $templateName = Zo2Framework::getTemplateName();
+            return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
+        }
     }
 
 }

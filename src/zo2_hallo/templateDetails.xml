@@ -307,17 +307,13 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="combine_statics" type="list" default="0" label="Combine assets" description="Combine the static assets such as JS and CSS">
-                    <option value="0">Disable</option>
-                    <option value="1">Combine</option>
+                <field name="combine_js" type="radio" default="0" label="Combine JS" description="Combine JS files into one file" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
                 </field>
-                <field name="combine_css" type="list" default="0" label="Combine CSS" description="Combine CSS files">
-                    <option value="0">Disable</option>
-                    <option value="1">Combine</option>
-                </field>
-                <field name="combine_js" type="list" default="0" label="Combine JS" description="Combine JS files">
-                    <option value="0">Disable</option>
-                    <option value="1">Combine</option>
+                <field name="combine_css" type="radio" default="0" label="Combine CSS" description="Combine CSS files into one file" class="btn-group">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
                 </field>
                 <field name="component_area" type="radio" default="0" label="Hide Component Area" description="Show component area from front page" class="btn-group">
                     <option value="0">JNO</option>

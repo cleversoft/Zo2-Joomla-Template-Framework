@@ -307,6 +307,22 @@ defined('_JEXEC') or die;
                         <?php echo $this->form->getInput('component_area', 'params'); ?>
                     </div>
                 </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('combine_css', 'params'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('combine_css', 'params'); ?>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('combine_js', 'params'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('combine_js', 'params'); ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

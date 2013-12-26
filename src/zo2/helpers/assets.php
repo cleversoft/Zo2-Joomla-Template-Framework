@@ -17,7 +17,7 @@ defined('_JEXEC') or die ('Restricted access');
  *
  * Class Zo2AssetsHelper
  */
-class Zo2AssetsHelper {
+class Zo2HelperAssets {
     protected static $_currentCssPath = '';
     protected static $_oldCssPath = '';
 

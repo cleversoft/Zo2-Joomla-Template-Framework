@@ -44,8 +44,8 @@ class Zo2Component_footer_copyright extends Zo2Component {
                     jQuery("#gototop").fadeOut();
                 }
             });';
-
-            $zo2->getLayout()->addScriptDeclaration($script);
+            $assets = Zo2Assets::getInstance();
+            $assets->addScriptDeclaration($script);
         }
         $html .= '</footer>';
 

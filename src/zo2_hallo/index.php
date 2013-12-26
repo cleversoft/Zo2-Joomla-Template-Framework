@@ -58,10 +58,5 @@ $body = $layout->generateHtml();
         <?php if ($debug == 1) : ?>
             <jdoc:include type="modules" name="debug" />
         <?php endif; ?>
-        <script type="text/javascript">
-            $('a, .clickable').on('touchend', function() {
-                $(this).mouseout();
-            });
-        </script>
     </body>
 </html>
