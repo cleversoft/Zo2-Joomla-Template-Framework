@@ -1,45 +1,26 @@
 [
     {
-        "path": "/assets/js/jquery.min.js",
-        "type": "js",
-        "position": "header",
-        "base": "template"
+        "path": "js/ekko-lightbox.js",
+        "type": "js"
     },
     {
-        "path": "/assets/js/jquery-noconflict.js",
-        "type": "js",
-        "position": "header",
-        "base": "template"
-    },
-    {
-        "path": "/assets/js/ekko-lightbox.js",
-        "type": "js",
-        "position": "footer",
-        "base": "template"
-    },
-    {
-        "path": "/assets/css/normalize.css",
+        "path": "css/normalize.css",
         "type": "css",
         "options": {
             "rel": "stylesheet"
-        },
-        "position": "header",
-        "base": "template"
+        }
     },
     {
-        "path": "/assets/js/megamenu.js",
+        "path": "js/megamenu.js",
         "type": "js",
         "position": "footer",
         "base": "template"
     },
     {
-        "path": "/assets/less/template.less",
+        "path": "less/template.less",
         "type": "less",
         "options": {
             "rel": "stylesheet"
-        },
-        "position": "header",
-        "base": "template"
+        }
     }
 ]
-

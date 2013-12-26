@@ -36,6 +36,12 @@ if (!class_exists('Zo2HelperCompiler')) {
             return false;
         }
 
+        public static function lessStyle($input)
+        {
+            $less = new lessc();
+            return $less->compile($input);
+        }
+
         /**
          * Compress javascript
          * @param string $inputFile

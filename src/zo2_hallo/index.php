@@ -30,12 +30,6 @@ $layout = Zo2Framework::getInstance()->getLayout();
 // init body
 $body = $layout->generateHtml();
 
-// init header assets
-$header = $layout->insertHeaderAssets();
-
-// init footer assets
-$footer = $layout->insertFooterAssets();
-
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -50,7 +44,6 @@ $footer = $layout->insertFooterAssets();
         <!-- jQuery include -->
         <script src="<?php echo ZO2URL_ASSETS_VENDOR . '/jquery/jquery-1.9.1.min.js'; ?> "></script>
         <script>jQuery.noConflict();</script>
-        <?php echo $header ?>
         <jdoc:include type="head" />
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -65,7 +58,6 @@ $footer = $layout->insertFooterAssets();
         <?php if ($debug == 1) : ?>
             <jdoc:include type="modules" name="debug" />
         <?php endif; ?>
-        <?php echo $footer ?>
         <script type="text/javascript">
             $('a, .clickable').on('touchend', function() {
                 $(this).mouseout();

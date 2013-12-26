@@ -44,7 +44,7 @@ if (!class_exists('plgSystemZo2')) {
          * @uses This event is triggered immediately before the framework has rendered the application.
          */
         public function onBeforeRender() {
-            
+
         }
 
         /**
@@ -65,6 +65,8 @@ if (!class_exists('plgSystemZo2')) {
             }
 
             $assets = Zo2Assets::getInstance();
+            $assets->prepareLayout();
+
             $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
             $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
             /* Apply back to body */

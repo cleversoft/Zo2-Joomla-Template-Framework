@@ -9,5 +9,4 @@
                     .logo_normal { display: none; }
                     .logo_retina { display: block; }
                 }
-
 </style>

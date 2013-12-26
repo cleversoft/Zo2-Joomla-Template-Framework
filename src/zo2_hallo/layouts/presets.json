@@ -20,7 +20,7 @@
     {
         "name": "black",
         "default": true,
-        "css": "/assets/css/presets/black.css",
+        "css": "css/presets/black.css",
         "less": "",
         "thumbnail": "/assets/images/presets/black.jpg",
         "variables": {
@@ -38,7 +38,7 @@
     {
         "name": "blue",
         "default": false,
-        "css": "/assets/css/presets/blue.css",
+        "css": "css/presets/blue.css",
         "less": "",
         "thumbnail": "/assets/images/presets/blue.jpg",
         "variables": {
@@ -56,7 +56,7 @@
     {
         "name": "orange",
         "default": false,
-        "css": "/assets/css/presets/orange.css",
+        "css": "css/presets/orange.css",
         "less": "",
         "thumbnail": "/assets/images/presets/orange.jpg",
         "variables": {
