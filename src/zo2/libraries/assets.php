@@ -92,21 +92,18 @@ if (!class_exists('Zo2Assets')) {
          */
         public function addStyleSheet($file)
         {
-            if (strpos($file, 'http://') !== false) $this->_stylesheets[$file] = $file;
-            else {
-                if (substr($file, strlen($file) - 5, 5) == '.less') {
-                    $newFile = str_replace('.less', '.css', $file);
-                    if (strpos($newFile, 'less/') === 0) $newFile = 'css/' . substr($newFile, 5);
+            if (substr($file, strlen($file) - 5, 5) == '.less') {
+                $newFile = str_replace('.less', '.css', $file);
+                if (strpos($newFile, 'less/') === 0) $newFile = 'css/' . substr($newFile, 5);
 
-                    Zo2HelperCompiler::less($this->getAssetFile($file), $this->getAssetFile($newFile));
-                    $assetFile = $this->getAssetFile($newFile);
+                Zo2HelperCompiler::less($this->getAssetFile($file), $this->getAssetFile($newFile));
+                $assetFile = $this->getAssetFile($newFile);
+                $this->_stylesheets[$assetFile] = $this->getPath($assetFile);
+            }
+            else {
+                $assetFile = $this->getAssetFile($file);
+                if ($assetFile != false) {
                     $this->_stylesheets[$assetFile] = $this->getPath($assetFile);
-                }
-                else {
-                    $assetFile = $this->getAssetFile($file);
-                    if ($assetFile != false) {
-                        $this->_stylesheets[$assetFile] = $this->getPath($assetFile);
-                    }
                 }
             }
             return $this;
@@ -392,7 +389,9 @@ if (!class_exists('Zo2Assets')) {
             }
 
             if (!empty($style)) {
-                $this->addStyleSheet($url);
+                $doc = JFactory::getDocument();
+                $doc->addStyleSheet($url);
+                //$this->addStyleSheet($url);
                 $style = $selector . '{' . $style . '}' . "\n";
                 $this->addStyleSheetDeclaration($style);
             }
