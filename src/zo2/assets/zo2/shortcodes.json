@@ -15,11 +15,10 @@
         "description": ""
     },
     {
-        "pattern": "[quote align={align} color={color}]{content}[\/quote]",
+        "pattern": "[quote align={align} source={source}]{content}[\/quote]",
         "layout": "quote",
         "default": {
-            "align": "center",
-            "color": "#999999"
+            "align": "right"
         },
         "description": ""
     },

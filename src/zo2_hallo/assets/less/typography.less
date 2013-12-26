@@ -249,49 +249,52 @@ pre,
 
 /* BLOCKQUOTE
 // ------------------------------------------------------*/
-blockquote {
-  border: none;
-  font-style: italic;
-  margin: 20px 0;
-  p{
-    font-size: 100%;
-  }
-  small:before{
-    content: "";
-  }
-  div{
-    display:block;
-    &.zt-blockquote1 {
-      background: url(../images/typo/open1.png) no-repeat left bottom;
-      div{
-        background: url(../images/typo/close1.png) no-repeat right top;
-        padding: 0 22px
-      }
+.zt-typo-inside{
+  blockquote {
+    border: none;
+    font-style: italic;
+    margin: 20px 0;
+    p{
+      font-size: 100%;
     }
-    &.zt-blockquote2 {
-      background: url(../images/typo/open1.png) no-repeat left top;
-      div{
-      background: url(../images/typo/close1.png) no-repeat right top;
-      padding: 0 22px
-      }
+    small:before{
+      content: "";
     }
-    &.zt-blockquote3 {
-      background: url(../images/typo/open2.png) no-repeat left bottom;
-      padding-bottom: 1px;
-      div{
-        background: url(../images/typo/close2.png) no-repeat right top;
-        padding: 5px 48px 0
+    div{
+      display:block;
+      &.zt-blockquote1 {
+        background: url(../images/typo/open1.png) no-repeat left bottom;
+        div{
+          background: url(../images/typo/close1.png) no-repeat right top;
+          padding: 0 22px
+        }
       }
-    }
-    &.zt-blockquote4 {
-      background: url(../images/typo/open2.png) no-repeat left top;
-      div {
-        background: url(../images/typo/close2.png) no-repeat right top;
-        padding: 0 48px
+      &.zt-blockquote2 {
+        background: url(../images/typo/open1.png) no-repeat left top;
+        div{
+          background: url(../images/typo/close1.png) no-repeat right top;
+          padding: 0 22px
+        }
+      }
+      &.zt-blockquote3 {
+        background: url(../images/typo/open2.png) no-repeat left bottom;
+        padding-bottom: 1px;
+        div{
+          background: url(../images/typo/close2.png) no-repeat right top;
+          padding: 5px 48px 0
+        }
+      }
+      &.zt-blockquote4 {
+        background: url(../images/typo/open2.png) no-repeat left top;
+        div {
+          background: url(../images/typo/close2.png) no-repeat right top;
+          padding: 0 48px
+        }
       }
     }
   }
 }
+
 
 /* WARNING
 // ------------------------------------------------------*/

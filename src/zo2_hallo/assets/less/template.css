@@ -2083,46 +2083,46 @@ pre,
 }
 /* BLOCKQUOTE
 // ------------------------------------------------------*/
-blockquote {
+.zt-typo-inside blockquote {
   border: none;
   font-style: italic;
   margin: 20px 0;
 }
-blockquote p {
+.zt-typo-inside blockquote p {
   font-size: 100%;
 }
-blockquote small:before {
+.zt-typo-inside blockquote small:before {
   content: "";
 }
-blockquote div {
+.zt-typo-inside blockquote div {
   display: block;
 }
-blockquote div.zt-blockquote1 {
+.zt-typo-inside blockquote div.zt-blockquote1 {
   background: url(../images/typo/open1.png) no-repeat left bottom;
 }
-blockquote div.zt-blockquote1 div {
+.zt-typo-inside blockquote div.zt-blockquote1 div {
   background: url(../images/typo/close1.png) no-repeat right top;
   padding: 0 22px;
 }
-blockquote div.zt-blockquote2 {
+.zt-typo-inside blockquote div.zt-blockquote2 {
   background: url(../images/typo/open1.png) no-repeat left top;
 }
-blockquote div.zt-blockquote2 div {
+.zt-typo-inside blockquote div.zt-blockquote2 div {
   background: url(../images/typo/close1.png) no-repeat right top;
   padding: 0 22px;
 }
-blockquote div.zt-blockquote3 {
+.zt-typo-inside blockquote div.zt-blockquote3 {
   background: url(../images/typo/open2.png) no-repeat left bottom;
   padding-bottom: 1px;
 }
-blockquote div.zt-blockquote3 div {
+.zt-typo-inside blockquote div.zt-blockquote3 div {
   background: url(../images/typo/close2.png) no-repeat right top;
   padding: 5px 48px 0;
 }
-blockquote div.zt-blockquote4 {
+.zt-typo-inside blockquote div.zt-blockquote4 {
   background: url(../images/typo/open2.png) no-repeat left top;
 }
-blockquote div.zt-blockquote4 div {
+.zt-typo-inside blockquote div.zt-blockquote4 div {
   background: url(../images/typo/close2.png) no-repeat right top;
   padding: 0 48px;
 }
