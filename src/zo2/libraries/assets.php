@@ -261,15 +261,17 @@ if (!class_exists('Zo2Assets')) {
                     $jsFile = $this->get('siteTemplate') . '/assets/' . $jsName;
                     $jsFilePath = $this->getPath($jsFile);
                     $jsContent = '';
-                    foreach ($this->_javascripts as $javascript => $path) {
-                        $jsContent .= file_get_contents($path) . "\n";
+                    if (!file_exists($jsFilePath)) {
+                        foreach ($this->_javascripts as $javascript => $path) {
+                            $jsContent .= file_get_contents($path) . "\n";
+                        }
+                        file_put_contents($jsFilePath, $jsContent);
                     }
-                    file_put_contents($jsFilePath, $jsContent);
-                    $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrl') . '/' . $jsFile . '"></script>';
+                    $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrlRelative') . '/' . $jsFile . '"></script>';
                 }
                 else {
                     foreach ($this->_javascripts as $javascript => $path) {
-                        $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrl') . '/' . $javascript . '"></script>';
+                        $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrlRelative') . '/' . $javascript . '"></script>';
                     }
                 }
                 $jsDeclarationHtml = '<script>';
@@ -284,20 +286,23 @@ if (!class_exists('Zo2Assets')) {
                     $cssName = 'cache/style.combined.css';
                     $cssFile = $this->get('siteTemplate') . '/assets/' . $cssName;
                     $cssFilePath = $this->getPath($cssFile);
-                    $cssContent = '';
-                    foreach ($this->_stylesheets as $styleSheets => $path) {
-                        $currentCssContent = file_get_contents($path);
-                        //$currentCssContent = CssMinifier::minify($currentCssContent);
-                        //$currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssFilePath, $path);
-                        $cssContent .= $currentCssContent . "\n";
+                    $cssUri = $this->get('siteUrlRelative') . '/' . $cssFile;
+                    if (!file_exists($cssFilePath)) {
+                        $cssContent = '';
+                        foreach ($this->_stylesheets as $styleSheets => $path) {
+                            $currentCssContent = file_get_contents($path);
+                            $currentCssContent = CssMinifier::minify($currentCssContent);
+                            $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri, '/' . $styleSheets);
+                            $cssContent .= $currentCssContent . "\n";
+                        }
+                        $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
+                        file_put_contents($cssFilePath, $cssContent);
                     }
-                    $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
-                    file_put_contents($cssFilePath, $cssContent);
-                    $cssHtml .='<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $cssFile . '"></script>';
+                    $cssHtml .='<link rel="stylesheet" href="' . $cssUri . '"></script>';
                 }
                 else {
                     foreach ($this->_stylesheets as $styleSheets => $path) {
-                        $cssHtml .= '<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $styleSheets . '">';
+                        $cssHtml .= '<link rel="stylesheet" href="' . $this->get('siteUrlRelative') . '/' . $styleSheets . '">';
                     }
                 }
                 $cssDeclarationHtml = '<style>';
@@ -306,255 +311,6 @@ if (!class_exists('Zo2Assets')) {
                 }
                 $cssDeclarationHtml .= '</style>';
                 return $cssHtml . "\n" . $cssDeclarationHtml;
-            }
-        }
-
-        public function prepareLayout()
-        {
-            $this->prepareBootstrap();
-            $this->preparePresets();
-            $this->prepareCustomFonts();
-            $this->prepareResponsive();
-            $this->prepareStatics();
-        }
-
-        public function prepareCustomFonts()
-        {
-            $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
-                'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
-                'h5_font' => 'h5', 'h6_font' => 'h6'
-            );
-
-            foreach ($selectors as $param => $selector) {
-                $value = Zo2Framework::get($param);
-
-                if (!empty($value)) {
-                    $data = json_decode($value, true);
-                    switch ($data['type']) {
-                        case 'standard':
-                            $this->buildStandardFontStyle($data, $selector);
-                            break;
-                        case 'googlefonts':
-                            $this->buildGoogleFontsStyle($data, $selector);
-                            break;
-                        case 'fontdeck':
-                            $this->buildFontDeckStyle($data, $selector);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-        }
-
-        /**
-         * Generate custom CSS style for Standard Font option
-         *
-         * @param $data
-         * @param $selector
-         */
-        private function buildStandardFontStyle($data, $selector) {
-            $style = '';
-            if (!empty($data['family']))
-                $style .= 'font-family:' . $data['family'] . ';';
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b': $style .= 'font-weight:bold;';
-                        break;
-                    case 'i': $style .= 'font-style:italic;';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            if (!empty($style))
-            {
-                $style = $selector . '{' . $style . '}' . "\n";
-
-                $this->addScriptDeclaration($style);
-            }
-        }
-
-        /**
-         * @param $data
-         * @param $selector
-         */
-        private function buildGoogleFontsStyle($data, $selector) {
-            $api = 'http://fonts.googleapis.com/css?family=';
-            $url = '';
-            $style = '';
-            if (!empty($data['family'])) {
-                $style .= 'font-family:' . $data['family'] . ';';
-                $url = $api . urlencode($data['family']);
-            }
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b':
-                        $style .= 'font-weight:bold;';
-                        $url .= ':700';
-                        break;
-                    case 'i':
-                        $style .= 'font-style:italic;';
-                        $url .= ':400italic';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        $url .= ':700italic';
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            if (!empty($style)) {
-                $doc = JFactory::getDocument();
-                $doc->addStyleSheet($url);
-                //$this->addStyleSheet($url);
-                $style = $selector . '{' . $style . '}' . "\n";
-                $this->addStyleSheetDeclaration($style);
-            }
-        }
-
-        /**
-         * Generate custom CSS style for FontDeck option
-         *
-         * @param $data
-         * @param $selector
-         */
-        private function buildFontDeckStyle($data, $selector) {
-            $fontdeckCode = Zo2Framework::get('fontdeck_code');
-
-            if (!empty($fontdeckCode)) {
-                $this->addScriptDeclaration($fontdeckCode);
-            }
-
-            $style = '';
-            if (!empty($data['family']))
-                $style .= 'font-family:' . $data['family'] . ';';
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b': $style .= 'font-weight:bold;';
-                        break;
-                    case 'i': $style .= 'font-style:italic;';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            if (!empty($style))
-            {
-                $style = $selector . '{' . $style . '}' . "\n";
-                $this->addStyleSheetDeclaration($style);
-            }
-        }
-
-        public function preparePresets()
-        {
-            $preset = Zo2Framework::get('theme');
-            $zo2 = Zo2Framework::getInstance();
-            if (empty($preset)) {
-                $presetPath = $zo2->getCurrentTemplateAbsolutePath() . '/layouts/presets.json';
-                $presets = array();
-                if (file_exists($presetPath)) {
-                    $presets = json_decode(file_get_contents($presetPath), true);
-                }
-                $defaultData = array();
-                for ($i = 0; $i < count($presets); $i++) {
-                    if ($presets[$i]['default'])
-                        $defaultData = $presets[$i];
-                }
-                if (empty($defaultData) && count($presets) > 0)
-                    $presetData = $presets[0];
-                else
-                    $presetData = array(
-                        'name' => $defaultData['name'],
-                        'css' => $defaultData['css'],
-                        'less' => $defaultData['less'],
-                        'background' => $defaultData['variables']['background'],
-                        'header' => $defaultData['variables']['header'],
-                        'header_top' => $defaultData['variables']['header_top'],
-                        'text' => $defaultData['variables']['text'],
-                        'link' => $defaultData['variables']['link'],
-                        'link_hover' => $defaultData['variables']['link_hover'],
-                        'bottom1' => $defaultData['variables']['bottom1'],
-                        'bottom2' => $defaultData['variables']['bottom2'],
-                        'footer' => $defaultData['variables']['footer']
-                    );
-            }
-            if (!empty($preset))
-                $presetData = json_decode($preset, true);
-            $style = '';
-            if (!empty($presetData['background']))
-                $style .= 'body{background-color:' . $presetData['background'] . '}';
-            if (!empty($presetData['header']))
-                $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
-            if (!empty($presetData['header_top']))
-                $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
-            if (!empty($presetData['text']))
-                $style .= 'body{color:' . $presetData['text'] . '}';
-            if (!empty($presetData['link']))
-                $style .= 'a{color:' . $presetData['link'] . '}';
-            if (!empty($presetData['link_hover']))
-                $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
-            if (!empty($presetData['bottom1']))
-                $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
-            if (!empty($presetData['bottom2']))
-                $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
-            if (!empty($presetData['footer']))
-                $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
-
-            if (!empty($presetData['css']))
-                $this->addStyleSheet($presetData['css']);
-
-            $this->addStyleSheetDeclaration($style);
-        }
-
-        public function prepareResponsive()
-        {
-            $responsive = Zo2Framework::get('responsive_layout');
-            if (!$responsive) $this->addStyleSheet('css/non-responsive.css');
-        }
-
-        public function prepareBootstrap()
-        {
-            $this->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
-            $this->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
-            $this->addScript('vendor/bootstrap/core/js/bootstrap.min.js');
-        }
-
-        public function prepareStatics()
-        {
-            $assetsJsonPath = $this->getPath($this->get('siteTemplate') . '/layouts/assets.json');
-            if (file_exists($assetsJsonPath)) {
-                $assetsData = json_decode(file_get_contents($assetsJsonPath), true);
-                foreach($assetsData as $data) {
-                    if ($data['type'] == 'js') $this->addScript($data['path']);
-                    else if ($data['type'] == 'css') $this->addStyleSheet($data['path']);
-                    else if ($data['type'] == 'less') $this->addStyleSheet($data['path']);
-                }
             }
         }
     }

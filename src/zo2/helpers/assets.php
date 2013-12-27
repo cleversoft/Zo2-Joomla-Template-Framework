@@ -83,14 +83,16 @@ class Zo2HelperAssets {
     {
         self::$_currentCssPath = $currentPath;
         self::$_oldCssPath = $oldPath;
-        $pattern = '#url\([\'"]?([0-9a-zA-Z/.-]+)[\'"]?\)#';
+        $pattern = '#url\([\'"]?([^\'"]+)[\'"]?\)#';
         $style = preg_replace_callback($pattern, array('self', 'replaceCssUrl'), $style);
 
         // fix import url
+        /*
         if (strpos($oldPath, '.less') !== false) {
             $importPattern = '#@import [\'"]+([0-9a-zA-Z/.-]+)[\'"]+#';
             $style = preg_replace_callback($importPattern, array('self', 'replaceCssImportUrl'), $style);
         }
+        */
 
         return $style;
     }
@@ -98,11 +100,23 @@ class Zo2HelperAssets {
     public static function replaceCssUrl($matches)
     {
         if (isset($matches[1])) {
-            $absPath = self::getAbsolutePath(self::$_oldCssPath, $matches[1]);
+            if (strpos($matches[1], '://')) return $matches[0];
 
-            $result = self::getRelativePath(self::$_currentCssPath, $absPath);
+            $relUri = dirname(self::getRelativePath(self::$_currentCssPath, self::$_oldCssPath));
+            $relUriParts = explode('/', $relUri);
+            $fileUriParts = explode('/', $matches[1]);
 
-            return 'url(' . $result . ')';
+            foreach($fileUriParts as $part) {
+                if ($part == '..') {
+                    array_pop($relUriParts);
+                    array_shift($fileUriParts);
+                }
+                else break;
+            }
+
+            $fullUri = implode('/', $relUriParts) . '/' . implode('/', $fileUriParts);
+
+            return 'url(' . $fullUri . ')';
         }
         else return $matches[0];
     }
@@ -113,7 +127,6 @@ class Zo2HelperAssets {
             $absPath = self::getAbsolutePath(self::$_oldCssPath, $matches[1]);
 
             $result = self::getRelativePath(self::$_currentCssPath, $absPath);
-            //var_dump(self::$_currentCssPath . ' vs ' . $absPath);die();
 
             return ' "' . $result . '"';
         }
