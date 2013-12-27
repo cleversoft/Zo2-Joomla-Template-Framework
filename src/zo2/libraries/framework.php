@@ -143,7 +143,7 @@ if (!class_exists('Zo2Framework')) {
                     $assets->addScript('vendor/jquery/jquery.noConflict.js');
                 }
                 if (self::get('enable_rtl') == 1)
-                    $assets->addAsset('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
 
                 // load bootstrap
                 $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
