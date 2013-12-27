@@ -5,3 +5,5 @@
 *.iml
 *.ipr
 *.iws
+src/zo2_hallo/layouts/cache/
+src/zo2_hallo/assets/css/
