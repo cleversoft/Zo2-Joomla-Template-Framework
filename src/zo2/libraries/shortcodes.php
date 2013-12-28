@@ -21,7 +21,7 @@ if (!class_exists('Zo2Shortcodes')) {
      * Joomla! shortcodes generate class
      * @author Viet Vu <me@jooservices.com>
      */
-    class Zo2Shortcodes {
+    class Zo2Shortcodes extends JObject {
 
         /**
          * Array of shortcodes object
@@ -120,7 +120,9 @@ if (!class_exists('Zo2Shortcodes')) {
                 /* Process for all instances */
                 for ($i = 0; $i < count($results[0]); $i++) {
                     /* Create new instance of Zo2Template and provide default properties */
-                    $template = new Zo2Template($shortCode->default);
+                    $template = new Zo2Template();
+                    $template->setProperties($this->getProperties());
+                    $template->setProperties($shortCode->default);
                     foreach ($tokens as $token) {
                         $template->set($token, str_replace('{', '', str_replace('}', '', $results[$token][$i])));
                     }

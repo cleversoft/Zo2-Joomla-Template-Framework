@@ -10,12 +10,13 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-$content = $this->get('content');
-$shortcodes = Zo2Shortcodes::getInstance();
-$_SESSION['accordion'] = 0;
 ?>
-<div class="panel-group zt-accordion" id="accordion">
-    <?php if ($content) { ?>
-        <?php echo $shortcodes->execute($content); ?>
-    <?php } ?>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><?php echo $this->get('title'); ?></h3>
+    </div>
+    <div class="panel-body">
+        <?php echo $this->get('content'); ?>
+    </div>
 </div>

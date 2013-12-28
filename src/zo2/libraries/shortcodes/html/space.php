@@ -11,4 +11,4 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<div style="clear:both; height:<?php echo $this->height; ?>px;"></div>
+<div style="clear:both; height:<?php echo $this->get('height'); ?>px;"></div>

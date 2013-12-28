@@ -66,7 +66,7 @@
         "description": ""
     },
     {
-        "pattern": "[gallery title={title} width={width} height={height} columns={columns}]{content}[\/gallery]",
+        "pattern": "[gallery name={name} width={width} height={height}]{content}[\/gallery]",
         "layout": "gallery",
         "default": {
             "title": "Gallery title",
@@ -77,8 +77,8 @@
         "description": ""
     },
     {
-        "pattern": "[gallery_item title={title} src={src}]{content}[\/gallery_item]",
-        "layout": "gallery_item",
+        "pattern": "[gal_item title={title} src={src} active={active}]{content}[\/gal_item]",
+        "layout": "gal_item",
         "default": {
             "title": "Gallery title"
         },
@@ -117,8 +117,8 @@
         "description": ""
     },
     {
-        "pattern": "[message_box title={title} color={color} close={close}]{content}[\/message_box]",
-        "layout": "message_box",
+        "pattern": "[messagebox title={title}]{content}[\/messagebox]",
+        "layout": "messagebox",
         "default": {
             "title": "Message title",
             "color": "red",
