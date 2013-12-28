@@ -101,7 +101,7 @@
         "description": ""
     },
     {
-        "pattern": "[lightbox src={src} width={width} height={height} lightbox={lightbox} title={title}][\/lightbox]",
+        "pattern": "[lightbox src={src} width={width} height={height}][\/lightbox]",
         "layout": "lightbox",
         "default": {
             "title": "Lightbox title"
