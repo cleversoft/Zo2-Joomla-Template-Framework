@@ -257,7 +257,7 @@ if (!class_exists('Zo2ImagerGd')) {
                     header("Content-Type: " . $this->get('imageMIME', 'image/jpeg'));
                 /* Image quality */
                 if ($imageType == 'jpg' || $imageType == 'jpeg') {
-                    $retVal = $callback[$imageType]($this->_resource, $filename, CSIMAGE_QUALITY);
+                    $retVal = $callback[$imageType]($this->_resource, $filename, 100);
                 } else {
                     $retVal = $callback[$imageType]($this->_resource, $filename);
                 }

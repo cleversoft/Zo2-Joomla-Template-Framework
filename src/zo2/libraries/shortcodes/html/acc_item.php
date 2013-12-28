@@ -17,12 +17,12 @@ $_SESSION['accordion'] = !isset($_SESSION['accordion']) ? 1 : $_SESSION['accordi
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<?php echo $_SESSION['accordion']?>">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-<?php echo $_SESSION['accordion'] ?>">
                     <?php echo $this->get('title'); ?>
                 </a>
             </h4>
         </div>
-        <div id="collapse-<?php echo $_SESSION['accordion']?>" class="panel-collapse collapse <?php echo $_SESSION['accordion']==1?'in':''?>">
+        <div id="collapse-<?php echo $_SESSION['accordion'] ?>" class="panel-collapse collapse <?php echo $_SESSION['accordion'] == 1 ? 'in' : '' ?>">
             <div class="panel-body">
                 <?php echo $this->get('content'); ?>
             </div>

@@ -90,11 +90,11 @@ if (!class_exists('Zo2Assets')) {
          * @param type $file
          * @return \Zo2Assets
          */
-        public function addStyleSheet($file)
-        {
+        public function addStyleSheet($file) {
             if (substr($file, strlen($file) - 5, 5) == '.less') {
                 $newFile = str_replace('.less', '.css', $file);
-                if (strpos($newFile, 'less/') === 0) $newFile = 'css/' . substr($newFile, 5);
+                if (strpos($newFile, 'less/') === 0)
+                    $newFile = 'css/' . substr($newFile, 5);
                 $newFilePath = $this->getPath($this->get('siteTemplate') . '/assets/' . $newFile);
                 Zo2HelperCompiler::less($this->getAssetFile($file), $newFilePath);
                 $assetFile = $this->getAssetFile($newFile);
@@ -115,8 +115,7 @@ if (!class_exists('Zo2Assets')) {
          * @param bool $less
          * @return \Zo2Assets
          */
-        public function addStyleSheetDeclaration($style, $less = false)
-        {
+        public function addStyleSheetDeclaration($style, $less = false) {
             if ($less) {
                 $style = Zo2HelperCompiler::lessStyle($style);
             }
@@ -130,7 +129,8 @@ if (!class_exists('Zo2Assets')) {
          * @return \Zo2Assets
          */
         public function addScript($file) {
-            if (strpos($file, 'http://') !== false) $this->_javascripts[$file] = $file;
+            if (strpos($file, 'http://') !== false)
+                $this->_javascripts[$file] = $file;
             else {
                 $assetFile = $this->getAssetFile($file);
                 if ($assetFile != false) {
@@ -177,7 +177,7 @@ if (!class_exists('Zo2Assets')) {
                 /* Template */
                 //$lessFiles['template'] = '';
                 //$jsFiles['template'] = '';
-                        
+
                 $buildProduction = Zo2Framework::get('build_production', 1);
 
 
@@ -249,8 +249,7 @@ if (!class_exists('Zo2Assets')) {
             }
         }
 
-        public function generateAssets($type)
-        {
+        public function generateAssets($type) {
             $combineJs = Zo2Framework::get('combine_js');
             $combineCss = Zo2Framework::get('combine_css');
             /* For backend we'll replace $body with our adding scripts */
@@ -266,8 +265,7 @@ if (!class_exists('Zo2Assets')) {
                     }
                     file_put_contents($jsFilePath, $jsContent);
                     $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrl') . '/' . $jsFile . '"></script>';
-                }
-                else {
+                } else {
                     foreach ($this->_javascripts as $javascript => $path) {
                         $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrl') . '/' . $javascript . '"></script>';
                     }
@@ -294,8 +292,7 @@ if (!class_exists('Zo2Assets')) {
                     $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
                     file_put_contents($cssFilePath, $cssContent);
                     $cssHtml .='<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $cssFile . '"></script>';
-                }
-                else {
+                } else {
                     foreach ($this->_stylesheets as $styleSheets => $path) {
                         $cssHtml .= '<link rel="stylesheet" href="' . $this->get('siteUrl') . '/' . $styleSheets . '">';
                     }
@@ -309,8 +306,7 @@ if (!class_exists('Zo2Assets')) {
             }
         }
 
-        public function prepareLayout()
-        {
+        public function prepareLayout() {
             $this->prepareBootstrap();
             $this->preparePresets();
             $this->prepareCustomFonts();
@@ -318,8 +314,7 @@ if (!class_exists('Zo2Assets')) {
             $this->prepareStatics();
         }
 
-        public function prepareCustomFonts()
-        {
+        public function prepareCustomFonts() {
             $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
                 'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
                 'h5_font' => 'h5', 'h6_font' => 'h6'
@@ -376,8 +371,7 @@ if (!class_exists('Zo2Assets')) {
                 }
             }
 
-            if (!empty($style))
-            {
+            if (!empty($style)) {
                 $style = $selector . '{' . $style . '}' . "\n";
 
                 $this->addScriptDeclaration($style);
@@ -464,15 +458,13 @@ if (!class_exists('Zo2Assets')) {
                 }
             }
 
-            if (!empty($style))
-            {
+            if (!empty($style)) {
                 $style = $selector . '{' . $style . '}' . "\n";
                 $this->addStyleSheetDeclaration($style);
             }
         }
 
-        public function preparePresets()
-        {
+        public function preparePresets() {
             $preset = Zo2Framework::get('theme');
             $zo2 = Zo2Framework::getInstance();
             if (empty($preset)) {
@@ -532,30 +524,33 @@ if (!class_exists('Zo2Assets')) {
             $this->addStyleSheetDeclaration($style);
         }
 
-        public function prepareResponsive()
-        {
+        public function prepareResponsive() {
             $responsive = Zo2Framework::get('responsive_layout');
-            if (!$responsive) $this->addStyleSheet('css/non-responsive.css');
+            if (!$responsive)
+                $this->addStyleSheet('css/non-responsive.css');
         }
 
-        public function prepareBootstrap()
-        {
+        public function prepareBootstrap() {
             $this->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
             $this->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
             $this->addScript('vendor/bootstrap/core/js/bootstrap.min.js');
         }
 
-        public function prepareStatics()
-        {
+        public function prepareStatics() {
             $assetsJsonPath = $this->getPath($this->get('siteTemplate') . '/layouts/assets.json');
             if (file_exists($assetsJsonPath)) {
                 $assetsData = json_decode(file_get_contents($assetsJsonPath), true);
-                foreach($assetsData as $data) {
-                    if ($data['type'] == 'js') $this->addScript($data['path']);
-                    else if ($data['type'] == 'css') $this->addStyleSheet($data['path']);
-                    else if ($data['type'] == 'less') $this->addStyleSheet($data['path']);
+                foreach ($assetsData as $data) {
+                    if ($data['type'] == 'js')
+                        $this->addScript($data['path']);
+                    else if ($data['type'] == 'css')
+                        $this->addStyleSheet($data['path']);
+                    else if ($data['type'] == 'less')
+                        $this->addStyleSheet($data['path']);
                 }
             }
         }
+
     }
+
 }
