@@ -92,7 +92,7 @@
         "description": ""
     },
     {
-        "pattern": "[highlighter lang={lang} linenums={linenums} startnums={startnums}]{content}[\/highlighter]",
+        "pattern": "[highlighter brush={brush}]{content}[\/highlighter]",
         "layout": "highlighter",
         "default": {
             "linenums": "true",
@@ -101,7 +101,7 @@
         "description": ""
     },
     {
-        "pattern": "[lightbox src={src} width={width} height={height}][\/lightbox]",
+        "pattern": "[lightbox src={src} width={width} height={height}]{content}[\/lightbox]",
         "layout": "lightbox",
         "default": {
             "title": "Lightbox title"
