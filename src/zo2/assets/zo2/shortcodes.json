@@ -190,54 +190,9 @@
         "description": ""
     },
     {
-        "pattern": "[youtube height={height} width={width}]{content}[\/youtube]",
-        "layout": "youtube",
+        "pattern": "[twitter username={username} id={id}]{content}[\/twitter]",
+        "layout": "twitter",
         "default": {
-            "height": "250",
-            "width": "500"
-        },
-        "description": ""
-    },
-    {
-        "pattern": "[bliptv height={height} width={width}]{content}[\/bliptv]",
-        "layout": "bliptv",
-        "default": {
-            "height": "250",
-            "width": "500"
-        },
-        "description": ""
-    },
-    {
-        "pattern": "[dailymotion height={height} width={width}]{content}[\/dailymotion]",
-        "layout": "dailymotion",
-        "default": {
-            "height": "250",
-            "width": "500"
-        },
-        "description": ""
-    },
-    {
-        "pattern": "[hulu height={height} width={width}]{content}[\/hulu]",
-        "layout": "hulu",
-        "default": {
-            "height": "250",
-            "width": "500"
-        },
-        "description": ""
-    },
-    {
-        "pattern": "[wufoo height={height} username={username} formhash={formhash}]{content}[\/wufoo]",
-        "layout": "wufoo",
-        "default": {
-        },
-        "description": ""
-    },
-    {
-        "pattern": "[slideshare height={height} width={width}]{content}[\/slideshare]",
-        "layout": "slideshare",
-        "default": {
-            "height": "250",
-            "width": "500"
         },
         "description": ""
     }
