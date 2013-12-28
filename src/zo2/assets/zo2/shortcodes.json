@@ -181,7 +181,7 @@
         "description": ""
     },
     {
-        "pattern": "[vimeo height={height} width={width}]{content}[\/vimeo]",
+        "pattern": "[vimeo width={width} height={height} autoplay={autoplay} id={id}]{content}[\/vimeo]",
         "layout": "vimeo",
         "default": {
             "height": "250",
