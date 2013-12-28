@@ -194,13 +194,15 @@ class JFormFieldSocialorder extends JFormFieldHidden
 
         $html .= '</tbody>
                 </table>
-                <script type="text/javascript">
-                    jQuery("#social_options > tbody").sortable({
+            ';
+
+        $js = 'jQuery("#social_options > tbody").sortable({
                         beforeStop: Zo2Social.updateIndex,
                         stop: Zo2Social.saveConfig
-                    }).disableSelection();
-                </script>
-            ';
+                    }).disableSelection();';
+
+        $assets = Zo2Assets::getInstance();
+        $assets->addScriptDeclaration($js);
 
         return $html . parent::getInput();
     }
