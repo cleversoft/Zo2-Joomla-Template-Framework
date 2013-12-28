@@ -410,7 +410,7 @@ if (!class_exists('Zo2Framework')) {
                 $compiler = new lessc();
                 $style = $compiler->compileFile($absLessPath);
 
-                file_put_contents($absPath, $style);
+                Zo2HelperAssets::forcePutContent($absPath, $style);
             }
             return $relPath;
         }
