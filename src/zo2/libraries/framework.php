@@ -144,7 +144,257 @@ if (!class_exists('Zo2Framework')) {
                 }
                 if (self::get('enable_rtl') == 1)
                     $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+
+                // load bootstrap
+                $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
+                $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
+                $assets->addScript('vendor/bootstrap/core/js/bootstrap.min.js');
+
+                // responsive
+                $responsive = Zo2Framework::get('responsive_layout');
+                if (!$responsive) $assets->addStyleSheet('css/non-responsive.css');
+
+                // presets
+                self::preparePresets();
+
+                // custom fonts
+                self::prepareCustomFonts();
+
+                // template assets
+                self::prepareTemplateAssets();
             }
+        }
+
+        private static function prepareTemplateAssets()
+        {
+            $assets = Zo2Assets::getInstance();
+            $assetsJsonPath = $assets->getPath($assets->get('siteTemplate') . '/layouts/assets.json');
+            if (file_exists($assetsJsonPath)) {
+                $assetsData = json_decode(file_get_contents($assetsJsonPath), true);
+                foreach($assetsData as $data) {
+                    if ($data['type'] == 'js') $assets->addScript($data['path']);
+                    else if ($data['type'] == 'css') $assets->addStyleSheet($data['path']);
+                    else if ($data['type'] == 'less') $assets->addStyleSheet($data['path']);
+                }
+            }
+        }
+
+        private static function prepareCustomFonts()
+        {
+            $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
+                'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
+                'h5_font' => 'h5', 'h6_font' => 'h6'
+            );
+
+            foreach ($selectors as $param => $selector) {
+                $value = Zo2Framework::get($param);
+
+                if (!empty($value)) {
+                    $data = json_decode($value, true);
+                    switch ($data['type']) {
+                        case 'standard':
+                            self::buildStandardFontStyle($data, $selector);
+                            break;
+                        case 'googlefonts':
+                            self::buildGoogleFontsStyle($data, $selector);
+                            break;
+                        case 'fontdeck':
+                            self::buildFontDeckStyle($data, $selector);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
+        /**
+         * Generate custom CSS style for Standard Font option
+         *
+         * @param $data
+         * @param $selector
+         */
+        private function buildStandardFontStyle($data, $selector) {
+            $assets = Zo2Assets::getInstance();
+            $style = '';
+            if (!empty($data['family']))
+                $style .= 'font-family:' . $data['family'] . ';';
+            if (!empty($data['size']) && $data['size'] > 0)
+                $style .= 'font-size:' . $data['size'] . 'px;';
+            if (!empty($data['color']))
+                $style .= 'color:' . $data['color'] . ';';
+            if (!empty($data['style'])) {
+                switch ($data['style']) {
+                    case 'b': $style .= 'font-weight:bold;';
+                        break;
+                    case 'i': $style .= 'font-style:italic;';
+                        break;
+                    case 'bi':
+                    case 'ib':
+                        $style .= 'font-weight:bold;font-style:italic;';
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (!empty($style))
+            {
+                $style = $selector . '{' . $style . '}' . "\n";
+
+                $assets->addScriptDeclaration($style);
+            }
+        }
+
+        /**
+         * @param $data
+         * @param $selector
+         */
+        private function buildGoogleFontsStyle($data, $selector) {
+            $assets = Zo2Assets::getInstance();
+            $api = 'http://fonts.googleapis.com/css?family=';
+            $url = '';
+            $style = '';
+            if (!empty($data['family'])) {
+                $style .= 'font-family:' . $data['family'] . ';';
+                $url = $api . urlencode($data['family']);
+            }
+            if (!empty($data['size']) && $data['size'] > 0)
+                $style .= 'font-size:' . $data['size'] . 'px;';
+            if (!empty($data['color']))
+                $style .= 'color:' . $data['color'] . ';';
+            if (!empty($data['style'])) {
+                switch ($data['style']) {
+                    case 'b':
+                        $style .= 'font-weight:bold;';
+                        $url .= ':700';
+                        break;
+                    case 'i':
+                        $style .= 'font-style:italic;';
+                        $url .= ':400italic';
+                        break;
+                    case 'bi':
+                    case 'ib':
+                        $style .= 'font-weight:bold;font-style:italic;';
+                        $url .= ':700italic';
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (!empty($style)) {
+                $doc = JFactory::getDocument();
+                $doc->addStyleSheet($url);
+                //$this->addStyleSheet($url);
+                $style = $selector . '{' . $style . '}' . "\n";
+                $assets->addStyleSheetDeclaration($style);
+            }
+        }
+
+        /**
+         * Generate custom CSS style for FontDeck option
+         *
+         * @param $data
+         * @param $selector
+         */
+        private static function buildFontDeckStyle($data, $selector) {
+            $fontdeckCode = Zo2Framework::get('fontdeck_code');
+            $assets = Zo2Assets::getInstance();
+
+            if (!empty($fontdeckCode)) {
+                $assets->addScriptDeclaration($fontdeckCode);
+            }
+
+            $style = '';
+            if (!empty($data['family']))
+                $style .= 'font-family:' . $data['family'] . ';';
+            if (!empty($data['size']) && $data['size'] > 0)
+                $style .= 'font-size:' . $data['size'] . 'px;';
+            if (!empty($data['color']))
+                $style .= 'color:' . $data['color'] . ';';
+            if (!empty($data['style'])) {
+                switch ($data['style']) {
+                    case 'b': $style .= 'font-weight:bold;';
+                        break;
+                    case 'i': $style .= 'font-style:italic;';
+                        break;
+                    case 'bi':
+                    case 'ib':
+                        $style .= 'font-weight:bold;font-style:italic;';
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (!empty($style))
+            {
+                $style = $selector . '{' . $style . '}' . "\n";
+                $assets->addStyleSheetDeclaration($style);
+            }
+        }
+
+        private static function preparePresets()
+        {
+            $preset = Zo2Framework::get('theme');
+            $zo2 = Zo2Framework::getInstance();
+            $assets = Zo2Assets::getInstance();
+            if (empty($preset)) {
+                $presetPath = $zo2->getCurrentTemplateAbsolutePath() . '/layouts/presets.json';
+                $presets = array();
+                if (file_exists($presetPath)) {
+                    $presets = json_decode(file_get_contents($presetPath), true);
+                }
+                $defaultData = array();
+                for ($i = 0; $i < count($presets); $i++) {
+                    if ($presets[$i]['default'])
+                        $defaultData = $presets[$i];
+                }
+                if (empty($defaultData) && count($presets) > 0)
+                    $presetData = $presets[0];
+                else
+                    $presetData = array(
+                        'name' => $defaultData['name'],
+                        'css' => $defaultData['css'],
+                        'less' => $defaultData['less'],
+                        'background' => $defaultData['variables']['background'],
+                        'header' => $defaultData['variables']['header'],
+                        'header_top' => $defaultData['variables']['header_top'],
+                        'text' => $defaultData['variables']['text'],
+                        'link' => $defaultData['variables']['link'],
+                        'link_hover' => $defaultData['variables']['link_hover'],
+                        'bottom1' => $defaultData['variables']['bottom1'],
+                        'bottom2' => $defaultData['variables']['bottom2'],
+                        'footer' => $defaultData['variables']['footer']
+                    );
+            }
+            if (!empty($preset))
+                $presetData = json_decode($preset, true);
+            $style = '';
+            if (!empty($presetData['background']))
+                $style .= 'body{background-color:' . $presetData['background'] . '}';
+            if (!empty($presetData['header']))
+                $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
+            if (!empty($presetData['header_top']))
+                $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
+            if (!empty($presetData['text']))
+                $style .= 'body{color:' . $presetData['text'] . '}';
+            if (!empty($presetData['link']))
+                $style .= 'a{color:' . $presetData['link'] . '}';
+            if (!empty($presetData['link_hover']))
+                $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
+            if (!empty($presetData['bottom1']))
+                $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
+            if (!empty($presetData['bottom2']))
+                $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
+            if (!empty($presetData['footer']))
+                $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
+
+            if (!empty($presetData['css']))
+                $assets->addStyleSheet($presetData['css']);
+
+            $assets->addStyleSheetDeclaration($style);
         }
 
         public static function compileLess($lessPath, $templateName = '') {
