@@ -44,8 +44,9 @@ if (!class_exists('Zo2Template')) {
                 $buffer = ob_get_contents();
                 ob_end_clean();
                 return $buffer;
+            } else {
+                return 'File not found: ' . $tmplFilePath;
             }
-            return 'File not found: ' . $tmplFilePath;
         }
 
     }

@@ -44,7 +44,7 @@ if (!class_exists('plgSystemZo2')) {
          * @uses This event is triggered immediately before the framework has rendered the application.
          */
         public function onBeforeRender() {
-
+            
         }
 
         /**
@@ -53,21 +53,20 @@ if (!class_exists('plgSystemZo2')) {
         public function onAfterRender() {
             $app = JFactory::getApplication();
             $body = JResponse::getBody();
+            $shortcodes = Zo2Shortcodes::getInstance();
 
             if ($app->isAdmin()) {
-                
+
+                $body = str_replace('<div id="editor-xtd-buttons" class="btn-toolbar pull-left">', '<div id="editor-xtd-buttons" class="btn-toolbar pull-left">' . $shortcodes->getButton(), $body);
             } else {
                 if (Zo2Framework::get('enable_shortcodes', 1) == 1) {
                     /* Do shortcodes process */
-                    $shortcodes = Zo2Shortcodes::getInstance();
                     $body = $shortcodes->execute($body);
                 }
             }
 
             if (Zo2Framework::isZo2Template()) {
                 $assets = Zo2Assets::getInstance();
-                //if ($app->isSite()) $assets->prepareLayout();
-
                 $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
                 $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
             }
@@ -130,6 +129,38 @@ if (!class_exists('plgSystemZo2')) {
 
         public function onRenderModule($module, $params) {
             
+        }
+
+        public function onDisplay($name) {
+            $html = $this->_render();
+            $jsCode = "
+                function insertCustText(html) {
+                    jInsertEditorText(html, '.$name.');
+                }
+				";
+
+            $doc = JFactory::getDocument();
+            $doc->addScriptDeclaration($jsCode);
+
+            $button = new JObject();
+            $button->modal = true;
+            $button->class = 'btn';
+            $button->text = 'Zo2 Shortcodes';
+            $button->name = 'blank';
+            $button->onclick = 'insertCustText(\'' . $name . '\');return false;';
+            $button->link = rtrim(JUri::root(), '/') . '/index.php?zo2controller=getShortcodes';
+            return $button;
+        }
+
+        private function _render() {
+            $jsonFile = ZO2PATH_ASSETS . '/zo2/shortcodes.json';
+            $buffer = JFile::read($jsonFile);
+            $shortcodes = json_decode($buffer);
+            $html = '';
+            foreach ($shortcodes as $shortcode) {
+                $html .= str_replace("\/", "/", $shortcode->pattern) . '<br />';
+            }
+            return $html;
         }
 
     }

@@ -133,6 +133,12 @@ if (!class_exists('Zo2Shortcodes')) {
             return str_replace($search, $replace, $text);
         }
 
+        public function getButton() {
+            $template = new Zo2Template();
+            $template->set('shortcodes', $this->_data);
+            return $template->fetch(__DIR__ . '/shortcodes/button.php');
+        }
+
         /**
          * 
          * @param type $fullString

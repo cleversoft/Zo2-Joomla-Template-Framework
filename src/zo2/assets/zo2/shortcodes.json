@@ -1,28 +1,35 @@
 [
     {
+        "name": "Accordion",
         "pattern": "[accordion]{content}[\/accordion]",
         "layout": "accordion",
         "default": {
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Accordion item",
         "pattern": "[acc_item title={title}]{content}[\/acc_item]",
         "layout": "acc_item",
         "default": {
             "title": "Item title"
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Quote",
         "pattern": "[quote align={align} source={source}]{content}[\/quote]",
         "layout": "quote",
         "default": {
             "align": "right"
         },
-        "description": ""
+        "description": "",
+        "group": "Typography"
     },
     {
+        "name": "Button",
         "pattern": "[button type={type} size={size} state={state}]{content}[\/button]",
         "layout": "button",
         "default": {
@@ -30,32 +37,40 @@
             "size": "#999999",
             "state": "enable"
         },
-        "description": ""
+        "description": "",
+        "group": "Form"
     },
     {
+        "name": "Columns",
         "pattern": "[columns]{content}[\/columns]",
         "layout": "columns",
         "default": {
         },
-        "description": ""
+        "description": "",
+        "group": "Layout"
     },
     {
+        "name": "Columns item",
         "pattern": "[column_item col={col}]{content}[\/column_item]",
         "layout": "column_item",
         "default": {
             "col": "4"
         },
-        "description": ""
+        "description": "",
+        "group": "Layout"
     },
     {
+        "name": "Divider",
         "pattern": "[divider scroll_text={scroll_text}]{content}[\/divider]",
         "layout": "divider",
         "default": {
             "scroll_text": "Go to top"
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Dropcap",
         "pattern": "[dropcap type={type} color={color} background={background}]{content}[\/dropcap]",
         "layout": "dropcap",
         "default": {
@@ -63,9 +78,11 @@
             "color": "#ffffff",
             "background": "#555555"
         },
-        "description": ""
+        "description": "",
+        "group": "Typography"
     },
     {
+        "name": "Gallery",
         "pattern": "[gallery name={name} width={width} height={height}]{content}[\/gallery]",
         "layout": "gallery",
         "default": {
@@ -74,49 +91,52 @@
             "height": "height",
             "columns": "3"
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Gallery item",
         "pattern": "[gal_item title={title} src={src} active={active}]{content}[\/gal_item]",
         "layout": "gal_item",
         "default": {
             "title": "Gallery title"
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Googlemaps",
         "pattern": "[googlemaps lat={lat} lng={lng} zoom={zoom} w={w} h={h}]{content}[\/googlemaps]",
         "layout": "googlemaps",
         "default": {
         },
-        "description": ""
+        "description": "",
+        "group": "Services"
     },
     {
+        "name": "Highlighter",
         "pattern": "[highlighter brush={brush}]{content}[\/highlighter]",
         "layout": "highlighter",
         "default": {
             "linenums": "true",
             "startnums": 0
         },
-        "description": ""
+        "description": "",
+        "group": "Typography"
+
     },
     {
+        "name": "Lightbox",
         "pattern": "[lightbox src={src} width={width} height={height}]{content}[\/lightbox]",
         "layout": "lightbox",
         "default": {
             "title": "Lightbox title"
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
-        "pattern": "[liststyle type={type}]{content}[\/liststyle]",
-        "layout": "liststyle",
-        "default": {
-            "type": "check"
-        },
-        "description": ""
-    },
-    {
+        "name": "Messagebox",
         "pattern": "[messagebox title={title}]{content}[\/messagebox]",
         "layout": "messagebox",
         "default": {
@@ -124,77 +144,85 @@
             "color": "red",
             "close": "true"
         },
-        "description": ""
+        "description": "",
+        "group": "Typography"
     },
     {
-        "pattern": "[social type={type} opacity={opacity}]{content}[\/social]",
-        "layout": "social",
-        "default": {
-            "type": "facebook",
-            "opacity": "dark"
-        },
-        "description": ""
-    },
-    {
+        "name": "Space",
         "pattern": "[space height={height}][\/space]",
         "layout": "space",
         "default": {
         },
-        "description": ""
+        "description": "",
+        "group": "Layout"
     },
     {
+        "name": "Tabs",
         "pattern": "[tabs]{content}[\/tabs]",
         "layout": "tabs",
         "default": {
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Tab item",
         "pattern": "[tab_item]{content}[\/tab_item]",
         "layout": "tab_item",
         "default": {
             "title": "Tab title"
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Testimonial",
         "pattern": "[testimonial author={author} position={position}]{content}[\/testimonial]",
         "layout": "testimonial",
         "default": {
             "author": "Testimonial author"
         },
-        "description": ""
+        "description": "",
+        "group": "Typography"
     },
     {
+        "name": "Toggle box",
         "pattern": "[toggle_box]{content}[\/toggle_box]",
         "layout": "toggle_box",
         "default": {
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Toggle item",
         "pattern": "[toggle_item active={active}]{content}[\/toggle_item]",
         "layout": "toggle_item",
         "default": {
             "active": "true"
         },
-        "description": ""
+        "description": "",
+        "group": "General"
     },
     {
+        "name": "Vimeo",
         "pattern": "[vimeo width={width} height={height} autoplay={autoplay} id={id}]{content}[\/vimeo]",
         "layout": "vimeo",
         "default": {
             "height": "250",
             "width": "500"
         },
-        "description": ""
+        "description": "",
+        "group": "Media"
     },
     {
+        "name": "Twitter",
         "pattern": "[twitter username={username} id={id}]{content}[\/twitter]",
         "layout": "twitter",
         "default": {
         },
-        "description": ""
+        "description": "",
+        "group": "Social"
     }
 
 ]  
