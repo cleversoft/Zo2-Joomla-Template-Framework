@@ -36,13 +36,6 @@ if (!class_exists('Zo2ServiceButtonAbstract')) {
             }
         }
 
-        public function getButtonHtml($button, $args = array()) {
-            if (method_exists($this, $button)) {
-                $this->loadScript();
-                return call_user_func_array(array($this, $button), $args);
-            }
-        }
-
     }
 
 }

@@ -37,6 +37,14 @@ if (!class_exists('Zo2ServiceButtonTwitter')) {
             return $html;
         }
 
+        public function hashtag($text = 'Tweet') {
+            $html = '<a href="https://twitter.com/share" class="twitter-hashtag-button" ' . $this->toDataAttributes() . '>' . $text . '</a>';
+        }
+
+        public function tweetTo($screenName, $text = 'Tweet') {
+            $html = '<a href="https://twitter.com/intent/tweet?screen_name=' . $screenName . '" class="twitter-mention-button" ' . $this->toDataAttributes() . '>' . $text . '</a>';
+        }
+
     }
 
 }
