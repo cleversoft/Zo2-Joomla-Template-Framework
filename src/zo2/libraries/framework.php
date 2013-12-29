@@ -114,9 +114,11 @@ if (!class_exists('Zo2Framework')) {
                 if (self::allowOverrideAdminTemplate()) {
                     /* Only for Joomla! 2.5 */
                     if (self::isJoomla25()) {
-                        /* jQuery: Only for backend. In frontend we include that into template index.php */
-                        $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
-                        $assets->addScript('vendor/jquery/jquery.noConflict.js');
+                        /* Allow user turn of jQuery if needed */
+                        if (self::get('load_jquery') == 1) {
+                            $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
+                            $assets->addScript('vendor/jquery/jquery.noConflict.js');
+                        }
                         /* For Joomla! 2.5 we need load Bootstrap 2.x */
                         $assets->addScript('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js');
                         $assets->addStyleSheet('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css');
@@ -132,27 +134,29 @@ if (!class_exists('Zo2Framework')) {
                     $assets->addScript('vendor/fontselect/jquery.fontselect.js');
                     $assets->addStyleSheet('vendor/fontselect/fontselect.css');
                     $assets->addStyleSheet('vendor/fontello/css/fontello.css');
-
                     /* Our styles & scripts */
                     $assets->addStyleSheet('zo2/css/admin.css');
                     $assets->addStyleSheet('zo2/css/adminmegamenu.css');
                 }
             } else {
-                if (self::isJoomla25() && self::get('load_jquery')) {
+                /* Allow user turn of jQuery if needed */
+                if (self::isJoomla25() && self::get('load_jquery') == 1) {
                     $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
                     $assets->addScript('vendor/jquery/jquery.noConflict.js');
                 }
                 if (self::get('enable_rtl') == 1)
                     $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
 
-                // load bootstrap
+                /* Load Boostrap */
                 $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
-                $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
                 $assets->addScript('vendor/bootstrap/core/js/bootstrap.min.js');
+                $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
 
-                // responsive
-                $responsive = Zo2Framework::get('responsive_layout');
-                if (!$responsive) $assets->addStyleSheet('css/non-responsive.css');
+                /**
+                 * @todo !
+                 */
+                if (Zo2Framework::get('responsive_layout'))
+                    $assets->addStyleSheet('css/non-responsive.css');
 
                 // presets
                 self::preparePresets();
@@ -165,22 +169,23 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        private static function prepareTemplateAssets()
-        {
+        private static function prepareTemplateAssets() {
             $assets = Zo2Assets::getInstance();
             $assetsJsonPath = $assets->getPath($assets->get('siteTemplate') . '/layouts/assets.json');
             if (file_exists($assetsJsonPath)) {
                 $assetsData = json_decode(file_get_contents($assetsJsonPath), true);
-                foreach($assetsData as $data) {
-                    if ($data['type'] == 'js') $assets->addScript($data['path']);
-                    else if ($data['type'] == 'css') $assets->addStyleSheet($data['path']);
-                    else if ($data['type'] == 'less') $assets->addStyleSheet($data['path']);
+                foreach ($assetsData as $data) {
+                    if ($data['type'] == 'js')
+                        $assets->addScript($data['path']);
+                    else if ($data['type'] == 'css')
+                        $assets->addStyleSheet($data['path']);
+                    else if ($data['type'] == 'less')
+                        $assets->addStyleSheet($data['path']);
                 }
             }
         }
 
-        private static function prepareCustomFonts()
-        {
+        private static function prepareCustomFonts() {
             $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
                 'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
                 'h5_font' => 'h5', 'h6_font' => 'h6'
@@ -238,8 +243,7 @@ if (!class_exists('Zo2Framework')) {
                 }
             }
 
-            if (!empty($style))
-            {
+            if (!empty($style)) {
                 $style = $selector . '{' . $style . '}' . "\n";
 
                 $assets->addScriptDeclaration($style);
@@ -328,15 +332,13 @@ if (!class_exists('Zo2Framework')) {
                 }
             }
 
-            if (!empty($style))
-            {
+            if (!empty($style)) {
                 $style = $selector . '{' . $style . '}' . "\n";
                 $assets->addStyleSheetDeclaration($style);
             }
         }
 
-        private static function preparePresets()
-        {
+        private static function preparePresets() {
             $preset = Zo2Framework::get('theme');
             $zo2 = Zo2Framework::getInstance();
             $assets = Zo2Assets::getInstance();
@@ -667,33 +669,6 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Import all short codes file inside the short codes folder
-         * @return short codes name array
-         */
-        public static function loadShortCodes() {
-
-            $files = JFolder::files(ZO2PATH_ROOT . '/libraries/shortcodes', '.php', false, true);
-            $shortcodes = array();
-            foreach ($files as $path) {
-                $ShortCodeName = substr(basename($path), 0, -4);
-                array_push($shortcodes, $ShortCodeName);
-            }
-            $shortcodes = array_unique($shortcodes);
-
-            foreach ($shortcodes as $shortcode) {
-
-                if (Zo2Framework::import('shortcodes.' . $shortcode)) {
-                    if (JFile::exists(ZO2PATH_ROOT . '/libraries/shortcodes/' . $shortcode . '.php')) {
-                        $class = ucfirst($shortcode);
-                        $shortcode = new $class;
-                        $shortcode->run();
-                    }
-                }
-            }
-            return $shortcodes;
-        }
-
-        /**
          * Get available positions of the current template.
          * Use only from backend.
          *
@@ -789,11 +764,11 @@ if (!class_exists('Zo2Framework')) {
             return false;
         }
 
-        public static function isZo2Template()
-        {
+        public static function isZo2Template() {
             $templateName = Zo2Framework::getTemplateName();
             return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
         }
+
     }
 
 }

@@ -56,7 +56,12 @@ if (!class_exists('plgSystemZo2')) {
             $shortcodes = Zo2Shortcodes::getInstance();
 
             if ($app->isAdmin()) {
-
+                /**
+                 * Shortcodes button hack !!!
+                 */
+                if (Zo2Framework::isJoomla25()) {
+                    $body = str_replace('<div id="editor-xtd-buttons">', '<div id="editor-xtd-buttons"><div class="button2-left">' . $shortcodes->getButton() . '</div>', $body);
+                }
                 $body = str_replace('<div id="editor-xtd-buttons" class="btn-toolbar pull-left">', '<div id="editor-xtd-buttons" class="btn-toolbar pull-left">' . $shortcodes->getButton(), $body);
             } else {
                 if (Zo2Framework::get('enable_shortcodes', 1) == 1) {
@@ -65,11 +70,10 @@ if (!class_exists('plgSystemZo2')) {
                 }
             }
 
-            if (Zo2Framework::isZo2Template()) {
-                $assets = Zo2Assets::getInstance();
-                $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
-                $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
-            }
+            $assets = Zo2Assets::getInstance();
+            $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
+            $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
+
             /* Apply back to body */
             JResponse::setBody($body);
         }
