@@ -252,6 +252,24 @@
         },
         "description": "",
         "group": "General"
+    },
+    {
+        "name": "Pricing",
+        "pattern": "[pricing cols={cols}]{content}[\/pricing]",
+        "layout": "pricing",
+        "default": {
+        },
+        "description": "",
+        "group": "General"
+    },
+    {
+        "name": "Pricing item",
+        "pattern": "[pri_item header={header} price={price} per={per} signup_link={signup_link}]{content}[\/pri_item]",
+        "layout": "pri_item",
+        "default": {
+        },
+        "description": "",
+        "group": "General"
     }
 
 ]  
