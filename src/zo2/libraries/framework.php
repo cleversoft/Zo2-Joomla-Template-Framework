@@ -151,6 +151,8 @@ if (!class_exists('Zo2Framework')) {
                 $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
                 $assets->addScript('vendor/bootstrap/core/js/bootstrap.min.js');
                 $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
+                /* Shortcodes */
+                $assets->addStyleSheet('zo2/css/shortcodes.css');
 
                 /**
                  * @todo !
@@ -180,7 +182,7 @@ if (!class_exists('Zo2Framework')) {
                     else if ($data['type'] == 'css')
                         $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
                     else if ($data['type'] == 'less')
-                        $assets->addStyleSheet('zo2/css/'. $data['path'] . '.css');
+                        $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
                 }
             }
         }
