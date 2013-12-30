@@ -13,7 +13,7 @@ foreach ($shortCodes as $shortCode) {
         $list['General'][] = $shortCode;
 }
 ?>
-<a href="#zo2Modal" role="button" class="btn modal-button modal" data-toggle="modal"><i class="icon-arrow-down"></i>ZO2 ShortCodes</a>
+<a href="#zo2Modal" role="button" class="btn <?php if (Zo2Framework::isJoomla25()) echo 'modal-button modal'; ?>" data-toggle="modal"><i class="icon-arrow-down"></i>ZO2 ShortCodes</a>
 <?php if (Zo2Framework::isJoomla25()) { ?>
     <div class="fakeWrapper hide">
         <div id="zo2Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="zo2ModalLabel" aria-hidden="true">
