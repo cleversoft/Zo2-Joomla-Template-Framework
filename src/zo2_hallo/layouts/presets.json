@@ -4,7 +4,7 @@
         "default": false,
         "css": "",
         "less": "",
-        "thumbnail": "/assets/images/presets/default.jpg",
+        "thumbnail": "/assets/zo2/images/presets/default.jpg",
         "variables": {
             "background": "",
             "header": "",
@@ -22,7 +22,7 @@
         "default": true,
         "css": "css/presets/black.css",
         "less": "presets/black",
-        "thumbnail": "/assets/images/presets/black.jpg",
+        "thumbnail": "/assets/zo2/images/presets/black.jpg",
         "variables": {
             "background": "#dedede",
             "header": "#cfcfcf",
@@ -40,7 +40,7 @@
         "default": false,
         "css": "css/presets/blue.css",
         "less": "presets/blue",
-        "thumbnail": "/assets/images/presets/blue.jpg",
+        "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
             "background": "#3288c7",
             "header": "#95c5e8",
@@ -58,7 +58,7 @@
         "default": false,
         "css": "css/presets/orange.css",
         "less": "presets/orange",
-        "thumbnail": "/assets/images/presets/orange.jpg",
+        "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
             "background": "#ffffff",
             "header": "#ecf0f1",
