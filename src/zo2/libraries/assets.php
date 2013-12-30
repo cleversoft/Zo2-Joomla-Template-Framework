@@ -144,7 +144,7 @@ if (!class_exists('Zo2Assets')) {
             /* This method only need call one time */
             static $called = false;
             $templateName = Zo2Framework::getTemplateName();
-            if ($called === false && !empty($templateName)) {
+            if ($called === false && !empty($templateName) && Zo2Framework::isZo2Template()) {
                 /**
                  * @todo move these list into config file
                  */

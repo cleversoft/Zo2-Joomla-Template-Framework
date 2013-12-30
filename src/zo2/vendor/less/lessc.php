@@ -1832,7 +1832,8 @@ class lessc {
 		$this->importDir = $oldImport;
 
 		if ($outFname !== null) {
-			return file_put_contents($outFname, $out);
+			//return file_put_contents($outFname, $out);
+            return Zo2HelperAssets::forcePutContent($outFname, $out);
 		}
 
 		return $out;
