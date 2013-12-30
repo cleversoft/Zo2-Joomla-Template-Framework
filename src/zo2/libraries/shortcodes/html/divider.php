@@ -17,3 +17,13 @@ defined('_JEXEC') or die('Restricted access');
         <?php echo $this->get('scroll_text'); ?>
     </div>
 </div>
+<script>
+    /* Divider Block */
+    jQuery(document).ready(function() {
+        jQuery("div.scroll-top").click(function() {
+            jQuery("body,html").animate({
+                scrollTop: 0
+            }, 800);
+        });
+    });
+</script>
