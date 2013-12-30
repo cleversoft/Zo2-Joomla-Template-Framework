@@ -264,7 +264,7 @@
     },
     {
         "name": "Pricing item",
-        "pattern": "[pri_item header={header} price={price} per={per}]{content}[\/pri_item]",
+        "pattern": "[pri_item header={header} price={price} per={per} signup_link={signup_link}]{content}[\/pri_item]",
         "layout": "pri_item",
         "default": {
         },
