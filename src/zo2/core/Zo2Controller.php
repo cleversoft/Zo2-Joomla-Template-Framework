@@ -22,7 +22,7 @@ class Zo2Controller
     }
     public static function menu() {
         $task = JFactory::getApplication()->input->get('task', '');
-        Zo2Framework::import2('core.classes.admin.menu');
+        Zo2Framework::import('core.classes.admin.menu');
         if(method_exists('AdminMenu', $task)){
             echo AdminMenu::$task();
             exit;
@@ -84,6 +84,14 @@ class Zo2Controller
         if ($_GET['template']) {
             header('Content-Type: application/json');
             echo Zo2Framework::getTemplateLayoutsName($_GET['template']);
+        }
+    }
+
+    public static function getFonts()
+    {
+        header('Content-Type: application/json');
+        if (isset($_GET['query'])) {
+            echo json_encode(Zo2HelperGoogleFonts::search($_GET['query']));
         }
     }
 }

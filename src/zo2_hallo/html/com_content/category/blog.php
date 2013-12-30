@@ -14,7 +14,7 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 JHtml::_('behavior.caption');
 
 $zo2 = Zo2Framework::getInstance();
-$social = $zo2->zo2Social;
+//$social = $zo2->zo2Social;
 ?>
 <div class="blog<?php echo $this->pageclass_sfx;?>">
 	<?php if ($this->params->get('show_page_heading', 1)) : ?>
@@ -27,7 +27,7 @@ $social = $zo2->zo2Social;
 		<?php echo $this->escape($this->params->get('page_subheading')); ?>
 		<?php if ($this->params->get('show_category_title')) : ?>
 		<span class="subheading-category"><?php echo $this->category->title;?></span>
-		<?php echo $social->renderCurrentPageNormalSocial();?>
+		<?php //echo $social->renderCurrentPageNormalSocial();?>
 		<?php endif; ?>
 	</h2>
 	<?php endif; ?>

@@ -23,7 +23,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
     public function getInput()
     {
         $document = JFactory::getDocument();
-        $document->addScript(ZO2_PLUGIN_URL . '/assets/js/adminsocial.js');
+        $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/adminsocial.min.js');
 
         $layout_button = array();
         $layout_button['facebook'] = array(
@@ -194,13 +194,15 @@ class JFormFieldSocialorder extends JFormFieldHidden
 
         $html .= '</tbody>
                 </table>
-                <script type="text/javascript">
-                    jQuery("#social_options > tbody").sortable({
+            ';
+
+        $js = 'jQuery("#social_options > tbody").sortable({
                         beforeStop: Zo2Social.updateIndex,
                         stop: Zo2Social.saveConfig
-                    }).disableSelection();
-                </script>
-            ';
+                    }).disableSelection();';
+
+        $assets = Zo2Assets::getInstance();
+        $assets->addScriptDeclaration($js);
 
         return $html . parent::getInput();
     }

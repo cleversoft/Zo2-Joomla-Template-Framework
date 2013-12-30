@@ -11,7 +11,7 @@
  */
 
 defined('_JEXEC') or die;
-if (Zo2Framework::allowOverrideAdminTemplate()) {
+if (Zo2Framework::isZo2Template()) {
 ?>
 
 <?php foreach ($this->form->getFieldset('basic') as $field) : ?>

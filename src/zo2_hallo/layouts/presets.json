@@ -4,7 +4,7 @@
         "default": false,
         "css": "",
         "less": "",
-        "thumbnail": "/assets/images/presets/default.jpg",
+        "thumbnail": "/assets/zo2/images/presets/default.jpg",
         "variables": {
             "background": "",
             "header": "",
@@ -20,9 +20,9 @@
     {
         "name": "black",
         "default": true,
-        "css": "/assets/css/presets/black.css",
-        "less": "",
-        "thumbnail": "/assets/images/presets/black.jpg",
+        "css": "css/presets/black.css",
+        "less": "presets/black",
+        "thumbnail": "/assets/zo2/images/presets/black.jpg",
         "variables": {
             "background": "#dedede",
             "header": "#cfcfcf",
@@ -38,9 +38,9 @@
     {
         "name": "blue",
         "default": false,
-        "css": "/assets/css/presets/blue.css",
-        "less": "",
-        "thumbnail": "/assets/images/presets/blue.jpg",
+        "css": "css/presets/blue.css",
+        "less": "presets/blue",
+        "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
             "background": "#3288c7",
             "header": "#95c5e8",
@@ -56,9 +56,9 @@
     {
         "name": "orange",
         "default": false,
-        "css": "/assets/css/presets/orange.css",
-        "less": "",
-        "thumbnail": "/assets/images/presets/orange.jpg",
+        "css": "css/presets/orange.css",
+        "less": "presets/orange",
+        "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
             "background": "#ffffff",
             "header": "#ecf0f1",

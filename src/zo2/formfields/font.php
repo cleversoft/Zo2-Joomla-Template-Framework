@@ -22,14 +22,6 @@ class JFormFieldFont extends JFormField
      */
     public function getInput()
     {
-        $doc = JFactory::getDocument();
-        $pluginPath = JURI::root(true).'/plugins/system/zo2/';
-        $vendorPath = $pluginPath . 'assets/vendor/';
-        $doc->addScript($vendorPath . 'fontselect/jquery.fontselect.js');
-        $doc->addScript($vendorPath . 'bootstrap-colorpicker/js/bootstrap-colorpicker.js');
-        $doc->addStyleSheet($vendorPath . 'fontselect/fontselect.css');
-        $doc->addStyleSheet($vendorPath . 'bootstrap-colorpicker/css/bootstrap-colorpicker.css');
-
         $path = JPATH_SITE.'/plugins/system/zo2/templates/font.php';
         ob_start();
         include($path);

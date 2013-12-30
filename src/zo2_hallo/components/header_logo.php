@@ -43,7 +43,9 @@ class Zo2Component_header_logo extends Zo2Component {
 
             // still having bug with this
             //$zo2->getLayout()->insertCssDeclaration($customStyle);
-            $zo2->getLayout()->insertCssDeclaration($customStyle);
+            //$zo2->getLayout()->addStyleDeclaration($customStyle);
+            $assets = Zo2Assets::getInstance();
+            $assets->addStyleSheetDeclaration($customStyle);
 
             $html = '<header id="header_logo">';
             if ($logo['type'] == 'text') {

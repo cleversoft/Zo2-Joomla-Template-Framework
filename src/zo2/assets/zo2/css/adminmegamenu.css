@@ -1,0 +1,317 @@
+.zo2-megamenu ul[class*="level"] >li >a:hover,
+.zo2-megamenu ul[class*="level"] >li >a:focus,
+.zo2-megamenu ul[class*="level"] >li >a:active {
+  background: #fffbf0 !important;
+  color: #333333 !important;
+  text-shadow: 0 1px 1px #fff !important;
+}
+.zo2-megamenu .nav >li.open >a,
+.zo2-megamenu .open >a {
+  background: #333333 !important;
+  color: #fff !important;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.5) !important;
+}
+.zo2-megamenu .mega-nav li >a,
+.zo2-megamenu .mega-nav li >span {
+  padding: 5px 20px 5px 10px;
+  border: 1px dotted #dddddd;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #999999;
+  transition: all 0.1s ease 0s;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+}
+.zo2-megamenu .nav >li >a,
+.zo2-megamenu .nav >li >span {
+  border: 1px solid #dddddd;
+  padding: 8px 20px;
+  background: #f2f2f2;
+  font-weight: bold;
+  border-radius: 3px;
+  transition: all 0.1s ease 0s;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+}
+.zo2-admin-mm-row .toolbox-actions-group {
+  height: 100px;
+  position: absolute;
+  right: 20px;
+}
+#zo2-admin-mm-tb {
+  float: left;
+  text-shadow: 0 1px 1px #fff;
+}
+#zo2-admin-mm-tb .admin-toolbox {
+  height: 119px;
+  padding: 20px;
+  display: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+#zo2-admin-mm-tb .admin-toolbox h3 {
+  margin-top: 0;
+}
+#zo2-admin-mm-tb .admin-toolbox ul {
+  margin-right: 20px;
+  float: left;
+}
+#zo2-admin-mm-tb .admin-toolbox li > label {
+  font-size: 11px;
+  color: #999999;
+}
+.zo2-megamenu .zo2-module ul li a,
+.zo2-megamenu .zo2-module .nav li a,
+.zo2-megamenu .dropdown-menu .zo2-module li a {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+  background: none;
+  font: inherit;
+  white-space: normal;
+}
+.admin-inline-toolbox h3 {
+  font-size: 18px;
+  line-height: 20px;
+}
+.mega-caption {
+  color: #999;
+  font-size: 11px;
+  margin-top: 2px;
+}
+#navigation_params .zo2-admin-tog-fullscreen {
+  position: absolute;
+  right: 0;
+  top: -50px;
+}
+.zo2-megamenu .zo2-module ul li a:hover,
+.zo2-megamenu .zo2-module .nav li a:hover,
+.zo2-megamenu .dropdown-menu .zo2-module li a:hover,
+.zo2-megamenu .zo2-module ul li a:active,
+.zo2-megamenu .zo2-module .nav li a:active,
+.zo2-megamenu .dropdown-menu .zo2-module li a:active,
+.zo2-megamenu .zo2-module ul li a:focus,
+.zo2-megamenu .zo2-module .nav li a:focus,
+.zo2-megamenu .dropdown-menu .zo2-module li a:focus,
+.zo2-megamenu .zo2-module ul li a:visited,
+.zo2-megamenu .zo2-module .nav li a:visited,
+.zo2-megamenu .dropdown-menu .zo2-module li a:visited {
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+#zo2-admin-megamenu {
+  min-height: 800px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVQIW2OMq7zlw4ADMIIkF7WrbcEmP+gkAarWGgXyq5CNAAAAAElFTkSuQmCC) repeat;
+  margin: 0 -20px;
+}
+#zo2-admin-megamenu .row-fluid [class*="span"] {
+  margin-left: 2.12766%;
+}
+#zo2-admin-megamenu .row-fluid [class*="span"]:first-child {
+  margin-left: 0;
+}
+#zo2-admin-megamenu .admin-inline-toolbox {
+  height: 119px;
+}
+#zo2-admin-megamenu .dropdown-menu a {
+  white-space: normal;
+}
+#zo2-admin-megamenu ul.chzn-results {
+  margin-right: 4px;
+  float: none;
+}
+#zo2-admin-megamenu .dropdown-submenu:hover .dropdown-menu {
+  display: none;
+}
+#zo2-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+.zo2-megamenu [class*="span"].hover .zo2-module:after,
+.zo2-megamenu [class*="span"].selected .zo2-module:after {
+  border-style: solid;
+  border-color: #666666;
+  background: #ffbb00;
+  color: #fff;
+}
+#zo2-admin-mm-intro {
+  float: left;
+  padding: 20px 200px 20px 20px;
+  text-shadow: 0 1px 1px white;
+}
+#zo2-admin-mm-intro h3 {
+  margin-top: 0;
+}
+#zo2-admin-mm-intro p {
+  display: block;
+  color: #999999;
+  max-height: 50px;
+  overflow: hidden;
+}
+.zo2-megamenu .mega-nav li a.hover:after,
+.zo2-megamenu .mega-nav li a.selected:after {
+  border-left-color: #333333;
+}
+.zo2-megamenu .dropdown-menu::before,
+.zo2-megamenu .dropdown-menu::after {
+  display: none !important;
+}
+.zo2-megamenu .zo2-module {
+  pointer-events: none;
+  cursor: default;
+  position: relative;
+  margin: 0;
+  transition: all 0.1s ease 0s;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+}
+.zo2-megamenu .zo2-module .control-group {
+  margin-bottom: 5px;
+}
+.zo2-megamenu .zo2-module .controls {
+  margin-left: 3px;
+}
+.zo2-megamenu .zo2-module .module-ct {
+  overflow: hidden;
+  zoom: 1;
+}
+.zo2-megamenu .zo2-module .module-inner {
+  opacity: .3;
+  font-size: 12px;
+}
+.zo2-megamenu .zo2-module .module-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.zo2-megamenu .nav > li {
+  margin-right: 20px;
+}
+.zo2-megamenu .row-fluid + .row-fluid {
+  margin-top: 0;
+  border-top: 0;
+}
+.zo2-megamenu .row-fluid [class*="span"] {
+  border: 1px dotted #cccccc;
+  border-radius: 3px;
+  transition: all 0.1s ease 0s;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+  background: white;
+}
+.zo2-megamenu .mega-inner {
+  padding: 10px;
+}
+.zo2-megamenu .zo2-module:after {
+  display: block;
+  position: absolute;
+  background: #eeeeee;
+  right: -10px;
+  bottom: -10px;
+  content: "Module";
+  width: 70px;
+  padding: 2px 0;
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999999;
+  border-radius: 3px 0 0 0;
+  border: 1px dotted #dddddd;
+  border-width: 1px 0 0 1px;
+}
+.zo2-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
+  margin-left: 0;
+  margin-right: 11px;
+}
+.zo2-megamenu .dropdown-menu {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 3px;
+  transition: all 0.1s ease 0s;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+  min-width: 200px;
+  background: #f2f2f2;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+  z-index: 99;
+}
+.zo2-megamenu .dropdown-menu .dropdown-menu {
+  margin-top: 0;
+  margin-left: 11px;
+}
+.zo2-megamenu .mega-nav li:last-child {
+  margin-bottom: 0;
+}
+.zo2-megamenu .mega-nav li {
+  margin-bottom: 5px;
+}
+.zo2-megamenu .mega-nav .dropdown-submenu > a::after {
+  margin-right: -10px;
+}
+.zo2-megamenu .span12.mega-col-nav .mega-inner {
+  padding: 10px;
+}
+.zo2-megamenu .selected {
+  background: #fffbf0 !important;
+  color: #333333 !important;
+  border: 1px solid #666666 !important;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+  border-radius: 3px;
+  text-shadow: 0 1px 1px white !important;
+}
+.zo2-megamenu .mega-group-content {
+  border: 1px solid #dddddd;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  transition: all 0.1s ease 0s;
+  -webkit-transition: all 0.1s ease 0s;
+  -moz-transition: all 0.1s ease 0s;
+  border-radius: 3px;
+  background: #f2f2f2;
+}
+.zo2-megamenu .mega-group-content > .row-fluid > [class*="span"] > .mega-inner {
+  padding: 10px;
+}
+#zo2-admin-mm-tb .btn [class^="icon-"],
+#zo2-admin-mm-tb .btn [class*=" icon-"] {
+  margin-right: 0;
+}
+.zo2-megamenu .menu-child .hover,
+.zo2-megamenu ul[class*="level"] >li >a.hover,
+.zo2-megamenu ul[class*="level"] >li >span.hover,
+.zo2-megamenu .row-fluid [class*="span"].hover {
+  background: #fffbf0 !important;
+  color: #333333 !important;
+  border: 1px solid #666666 !important;
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+  border-radius: 3px;
+}
+.zo2-megamenu .mega-nav .mega-group >.mega-group-title,
+.zo2-megamenu .dropdown-menu .mega-nav .mega-group >.mega-group-title {
+  padding: 5px 20px 5px 10px;
+  cursor: pointer;
+}
+#zo2-admin-mm-container {
+  float: left;
+  margin-left: 20px;
+}
+.zo2-megamenu .zo2-module ul li,
+.zo2-megamenu .zo2-module .nav li,
+.zo2-megamenu .dropdown-menu .nav li {
+  list-style: disc;
+  display: list-item;
+  float: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.zo2-megamenu .zo2-module ul,
+.zo2-megamenu .zo2-module .nav,
+.zo2-megamenu .dropdown-menu .nav {
+  margin: 0 0 0 15px;
+}
