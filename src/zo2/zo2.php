@@ -54,6 +54,7 @@ if (!class_exists('plgSystemZo2')) {
             $app = JFactory::getApplication();
             $body = JResponse::getBody();
             $shortcodes = Zo2Shortcodes::getInstance();
+            $jinput = JFactory::getApplication()->input;
 
             if ($app->isAdmin()) {
                 /**
@@ -64,7 +65,8 @@ if (!class_exists('plgSystemZo2')) {
                 }
                 $body = str_replace('<div id="editor-xtd-buttons" class="btn-toolbar pull-left">', '<div id="editor-xtd-buttons" class="btn-toolbar pull-left">' . $shortcodes->getButton(), $body);
             } else {
-                if (Zo2Framework::get('enable_shortcodes', 1) == 1) {
+                /* Make sure shortcodes enabled and we are not in any "edit" tasking ! */
+                if (Zo2Framework::get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {
                     /* Do shortcodes process */
                     $body = $shortcodes->execute($body);
                 }
