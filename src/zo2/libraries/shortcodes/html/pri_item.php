@@ -16,5 +16,5 @@ defined('_JEXEC') or die('resticted aceess');
     <div class="header"><span><?php echo $this->get('header'); ?></span></div>
     <h2><?php echo $this->get('price'); ?><span style="font-size: 14px;">/<?php echo $this->get('per'); ?></span></h2>
     <?php echo $this->get('content'); ?>
-    <a class="button" href="<?php echo $this->get('signup_link'); ?>">Sign Up</a></div>
+    <a class="button" href="<?php echo $this->get('signup_link'); ?>">Sign Up</a>
 </div>
