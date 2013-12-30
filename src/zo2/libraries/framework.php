@@ -176,11 +176,11 @@ if (!class_exists('Zo2Framework')) {
                 $assetsData = json_decode(file_get_contents($assetsJsonPath), true);
                 foreach ($assetsData as $data) {
                     if ($data['type'] == 'js')
-                        $assets->addScript($data['path']);
+                        $assets->addScript('zo2/js/' . $data['path'] . '.js');
                     else if ($data['type'] == 'css')
-                        $assets->addStyleSheet($data['path']);
+                        $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
                     else if ($data['type'] == 'less')
-                        $assets->addStyleSheet($data['path']);
+                        $assets->addStyleSheet('zo2/css/'. $data['path'] . '.css');
                 }
             }
         }

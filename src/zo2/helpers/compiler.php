@@ -12,6 +12,7 @@
  */
 defined('_JEXEC') or die;
 Zo2Framework::import('vendor.less.lessc');
+Zo2Framework::import('vendor.minify.css');
 /**
  * Class exists checking
  */
@@ -69,6 +70,7 @@ if (!class_exists('Zo2HelperCompiler')) {
          */
         public static function styleSheet($inputFile, $outputFile) {
             if (JFile::exists($inputFile) && (!is_file($outputFile) || filemtime($inputFile) > filemtime($outputFile))) {
+                $content = file_get_contents($inputFile);
                 $content = CssMinifier::minify($content);
                 return JFile::write($outputFile, $content);
             }
