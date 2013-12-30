@@ -221,7 +221,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        private function buildStandardFontStyle($data, $selector) {
+        private static function buildStandardFontStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $style = '';
             if (!empty($data['family']))
@@ -256,7 +256,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        private function buildGoogleFontsStyle($data, $selector) {
+        private static function buildGoogleFontsStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $api = 'http://fonts.googleapis.com/css?family=';
             $url = '';
