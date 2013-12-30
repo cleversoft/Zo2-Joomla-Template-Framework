@@ -166,11 +166,31 @@
         "group": "General"
     },
     {
-        "name": "Tab item",
-        "pattern": "[tab_item]{content}[\/tab_item]",
-        "layout": "tab_item",
+        "name": "Tab title",
+        "pattern": "[tab_title name={name}]{content}[\/tab_title]",
+        "layout": "tab_title",
         "default": {
             "title": "Tab title"
+        },
+        "description": "",
+        "group": "General"
+    },
+    {
+        "name": "Tabs content",
+        "pattern": "[tabs_content]{content}[\/tabs_content]",
+        "layout": "tabs_content",
+        "default": {
+            "title": "Tabs content"
+        },
+        "description": "",
+        "group": "General"
+    },
+    {
+        "name": "Tab content",
+        "pattern": "[tab_content name={name}]{content}[\/tab_content]",
+        "layout": "tab_content",
+        "default": {
+            "title": "Tab content"
         },
         "description": "",
         "group": "General"
