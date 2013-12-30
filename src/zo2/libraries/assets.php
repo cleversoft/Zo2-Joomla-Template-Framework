@@ -143,7 +143,8 @@ if (!class_exists('Zo2Assets')) {
         public function buildFrameworkProduction() {
             /* This method only need call one time */
             static $called = false;
-            if ($called === false) {
+            $templateName = Zo2Framework::getTemplateName();
+            if ($called === false && !empty($templateName)) {
                 /**
                  * @todo move these list into config file
                  */
