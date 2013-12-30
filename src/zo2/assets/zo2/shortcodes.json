@@ -243,6 +243,15 @@
         },
         "description": "",
         "group": "Social"
+    },
+    {
+        "name": "Icon",
+        "pattern": "[icon name={name} size={size}]{content}[\/icon]",
+        "layout": "icon",
+        "default": {
+        },
+        "description": "",
+        "group": "General"
     }
 
 ]  

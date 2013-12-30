@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Zo2 (http://www.zo2framework.org)
  * A powerful Joomla template framework
@@ -11,5 +10,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+$name = 'fa fa-' . $this->get('name');
+$size = ( $this->get('size') ) ? 'fa-' . $this->get('size') : '';
 ?>
-<i class="zo2-icon-<?php echo $this->get('icon');?>"></i>
+<i class="zo2-icon-<?php echo $this->get('name'); ?> <?php echo $name; ?><?php echo $size; ?>"></i>
