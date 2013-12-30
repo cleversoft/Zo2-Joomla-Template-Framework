@@ -1,26 +1,18 @@
 [
     {
-        "path": "js/ekko-lightbox.js",
+        "path": "ekko-lightbox",
         "type": "js"
     },
     {
-        "path": "css/normalize.css",
-        "type": "css",
-        "options": {
-            "rel": "stylesheet"
-        }
+        "path": "normalize",
+        "type": "css"
     },
     {
-        "path": "js/megamenu.js",
-        "type": "js",
-        "position": "footer",
-        "base": "template"
+        "path": "megamenu",
+        "type": "js"
     },
     {
-        "path": "less/template.less",
-        "type": "less",
-        "options": {
-            "rel": "stylesheet"
-        }
+        "path": "template",
+        "type": "less"
     }
 ]
