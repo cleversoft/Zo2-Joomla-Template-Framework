@@ -46,13 +46,16 @@ Version 1.2: [zo2_1.2_package.zip](http://download.zootemplate.com/download/52a6
 ## Roadmap
 
 **1.2.1: 30.12 + 06.01.2014**
+
      + socialshare
      + shortcodes update with adding layout
      + bugs fix
      + move googlefont json into assets/vendor/
      + Keep cleanup all formfields to use Zo2Assets intead JDocument
      + remove timthumb.php
+     
 **1.3: 06.01.2024 + 20.01.2014**
+
      + allow extend json config in template
      + refactor for json config file structure / format
           + assets.json     : list of assets files will be load          
@@ -63,16 +66,19 @@ Version 1.2: [zo2_1.2_package.zip](http://download.zootemplate.com/download/52a6
           + remove getPluginPath          
      + force all assets follow structure ( plugin & template )
      + bugs fix
+     
 **1.4:**
+
      + refactor ajax
      + bring shortcodes into standard package
           + complete of twitter styles
           + allow enter without params ( use default )
           + button:
-               provide as form to input value than generate everything
-
+               + provide as form to input value than generate everything
      + bugs fix
+     
 **1.5:**
+
      + backend ajax
 
 ##Bug tracking
