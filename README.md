@@ -28,10 +28,11 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	+ Compress CSS + JS	
 7. LESS compiler
 	+ Integrate LESS compiler
-8. Allowing opt-in/opt-out for "EU Cookie Law"
+
 
 ##Download
 Version 1.0: [zo2_v1.0_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_v1.0_package.zip)
+
 Version 1.2: [zo2_1.2_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_1.2_package.zip)
 
 ##Demo
@@ -42,8 +43,40 @@ Version 1.2: [zo2_1.2_package.zip](http://download.zootemplate.com/download/52a6
 2. Version 1.1.0: released on December 24th, 2013
 3. Version 1.2.0: released on December 30th, 2013
 
+## Roadmap
+
+**1.2.1: 30.12 + 06.01.2014**
+     + socialshare
+     + shortcodes update with adding layout
+     + bugs fix
+     + move googlefont json into assets/vendor/
+     + Keep cleanup all formfields to use Zo2Assets intead JDocument
+     + remove timthumb.php
+**1.3: 06.01.2024 + 20.01.2014**
+     + allow extend json config in template
+     + refactor for json config file structure / format
+          + assets.json     : list of assets files will be load          
+     + improve loadAssets via json config file
+     + improve Zo2Framework
+          + remove compileLess
+          + remove getSystemPluginPath
+          + remove getPluginPath          
+     + force all assets follow structure ( plugin & template )
+     + bugs fix
+**1.4:**
+     + refactor ajax
+     + bring shortcodes into standard package
+          + complete of twitter styles
+          + allow enter without params ( use default )
+          + button:
+               provide as form to input value than generate everything
+
+     + bugs fix
+**1.5:**
+     + backend ajax
 
 ##Bug tracking
+
 Found a bug or have a feature request? Feel free to open an issue via this link:
 [https://github.com/aploss/zo2/issues](https://github.com/aploss/zo2/issues)
 
@@ -51,7 +84,7 @@ Found a bug or have a feature request? Feel free to open an issue via this link:
 http://docs.zo2framework.org
 
 ##Copyright, License & Usage
-Copyright (c) 2008 - 2013 APL Solutions
+Copyright (c) 2008 - 2013 [APL Solutions](http://apl.vn)
 
 ### License
 Zo2Framework is licensed under GNU General Public License (GPL), version 2 or later.
