@@ -45,7 +45,7 @@ Version 1.2: [zo2_1.2_package.zip](http://download.zootemplate.com/download/52a6
 
 ## Roadmap
 
-**1.2.1: 30.12 - 06.01.2014**
+**1.2.1: Dec 30, 2013 - Jan 06, 2014**
 
      + socialshare
      + shortcodes update with adding layout
@@ -54,7 +54,7 @@ Version 1.2: [zo2_1.2_package.zip](http://download.zootemplate.com/download/52a6
      + Keep cleanup all formfields to use Zo2Assets intead JDocument
      + remove timthumb.php
      
-**1.3: 06.01.2024 - 20.01.2014**
+**1.3: Jan 06, 2024 - Jan 20, 2014**
 
      + allow extend json config in template
      + refactor for json config file structure / format
