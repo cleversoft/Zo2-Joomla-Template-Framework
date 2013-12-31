@@ -248,7 +248,7 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($style)) {
                 $style = $selector . '{' . $style . '}' . "\n";
 
-                $assets->addScriptDeclaration($style);
+                $assets->addStyleSheetDeclaration($style);
             }
         }
 
@@ -396,7 +396,7 @@ if (!class_exists('Zo2Framework')) {
                 $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
 
             if (!empty($presetData['css']))
-                $assets->addStyleSheet($presetData['css']);
+                $assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
 
             $assets->addStyleSheetDeclaration($style);
         }
