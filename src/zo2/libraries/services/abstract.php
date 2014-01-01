@@ -34,7 +34,7 @@ if (!class_exists('Zo2ServiceAbstract')) {
         }
 
         public function getConfig($property, $default = null) {
-            return $this->_configs->get($property, $value);
+            return $this->_configs->get($property, $default);
         }
 
         protected function _generateConfigAttributes() {

@@ -61,6 +61,8 @@ if (!class_exists('Zo2Services')) {
                     $html = '<div class="zo2-service-' . $service . ' ' . $button . '">' . $html . '</div>';
                     return $html;
                 }
+            }else {
+                echo 'File not found';
             }
         }
 
