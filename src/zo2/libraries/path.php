@@ -24,18 +24,11 @@ if (!class_exists('Zo2Path')) {
 
         public function __construct($properties = null) {
             parent::__construct($properties);
-            $this->init();
-        }
-
-        /**
-         * Init default properties
-         */
-        public function init() {
             $this->def('siteUrl', rtrim(JUri::root(), '/'));
             $this->def('siteUrlRelative', rtrim(JUri::root(true), '/'));
             $this->def('sitePath', JPATH_ROOT);
             $this->def('zo2Root', 'plugins/system/' . ZO2);
-            $this->def('siteTemplate', 'templates/' . Zo2Framework::getTemplateName());            
+            $this->def('siteTemplate', 'templates/' . Zo2Framework::getTemplateName());
         }
 
         /**

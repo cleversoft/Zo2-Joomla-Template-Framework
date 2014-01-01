@@ -18,7 +18,6 @@ jimport('joomla.filesystem.folder');
 if (!class_exists('Zo2Framework')) {
 
     class Zo2Framework {
-        /* public */
 
         /**
          * @var JDocument
@@ -37,16 +36,15 @@ if (!class_exists('Zo2Framework')) {
          */
         private $_layout = null;
         private static $_currentTemplatePath;
-
-        public function __construct() {
-            
-        }
-
         private static $_scripts = array();
         private static $_scriptDeclarations = array();
         private static $_styles = array();
         private static $_styleDeclarations = array();
         private static $_isAdmin = false;
+
+        public function __construct() {
+            
+        }
 
         /**
          * Init Zo2Framework

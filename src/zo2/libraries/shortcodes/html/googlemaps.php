@@ -11,6 +11,10 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-$google = new Zo2ServiceGoogle();
-echo $google->getMap('name' . md5($this->get('content')), $this->get('lat'), $this->get('lng'), $this->get('content'), $this->get('zoom'));
-?>
+$googleMap = Zo2Services::getInstance('googlemap', array());
+$googleMap->setConfig('center.lat', $this->get('lat'));
+$googleMap->setConfig('center.lng', $this->get('lng'));
+$googleMap->setConfig('width', $this->get('w'));
+$googleMap->setConfig('height', $this->get('h'));
+$googleMap->addMarker($this->get('lat'), $this->get('lng'), $this->get('content'));
+echo $googleMap->getMap(substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5));

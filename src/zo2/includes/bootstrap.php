@@ -18,7 +18,6 @@ require_once __DIR__ . '/defines.php';
 JLoader::discover('Zo2', ZO2PATH_ROOT . '/libraries');
 JLoader::discover('Zo2Helper', ZO2PATH_ROOT . '/helpers');
 JLoader::discover('Zo2Service', ZO2PATH_ROOT . '/libraries/services');
-JLoader::discover('Zo2ServiceButton', ZO2PATH_ROOT . '/libraries/services/buttons');
 JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 
 /* Build development into production */
