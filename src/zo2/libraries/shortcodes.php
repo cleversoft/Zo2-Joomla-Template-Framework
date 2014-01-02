@@ -117,6 +117,7 @@ if (!class_exists('Zo2Shortcodes')) {
                         $tokens[] = $k;
                     }
                 }
+
                 /* Process for all instances */
                 for ($i = 0; $i < count($results[0]); $i++) {
                     /* Create new instance of Zo2Template and provide default properties */
