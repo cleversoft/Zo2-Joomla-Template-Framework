@@ -158,14 +158,15 @@ if (!class_exists('Zo2Framework')) {
                 if (Zo2Framework::get('responsive_layout'))
                     $assets->addStyleSheet('css/non-responsive.css');
 
+                // template assets
+                self::prepareTemplateAssets();
+                
                 // presets
                 self::preparePresets();
 
                 // custom fonts
                 self::prepareCustomFonts();
 
-                // template assets
-                self::prepareTemplateAssets();
             }
         }
 
