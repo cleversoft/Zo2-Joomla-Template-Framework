@@ -99,7 +99,7 @@ class Zo2Layout {
         $cache = 'layout_' . $menuItem->id . '.php';
         $layoutCacheDir = $this->_layourDir . 'cache/';
         $path = $layoutCacheDir . $cache;
-        if (file_exists($path) && !$debug) {
+        if (file_exists($path) && !$debug && (isset($menuItem->id) && !empty($menuItem->id))) {
             $html = file_get_contents($path);
         } else {
             $layoutType = $params->get('layout_type');
