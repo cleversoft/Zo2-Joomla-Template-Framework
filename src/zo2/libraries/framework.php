@@ -143,9 +143,6 @@ if (!class_exists('Zo2Framework')) {
                     $assets->addScript('vendor/jquery/jquery.noConflict.js');
                 }
 
-                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
-                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
-
                 /* Load Boostrap */
                 $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
                 $assets->addScript('vendor/bootstrap/core/js/bootstrap.min.js');
@@ -161,6 +158,9 @@ if (!class_exists('Zo2Framework')) {
 
                 // template assets
                 self::prepareTemplateAssets();
+
+                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
+                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
 
                 // presets
                 self::preparePresets();
