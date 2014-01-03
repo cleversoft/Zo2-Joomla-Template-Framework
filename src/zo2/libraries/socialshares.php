@@ -56,7 +56,7 @@ if (!class_exists('Zo2Socialshares')) {
         }
 
         public function getFloatbar() {
-            return '<div class="zo2-socialshare-floatbar">' .
+            return '<div class="zo2-socialshares-floatbar">' .
                     $this->_twitterButton() .
                     $this->_redditButton() .
                     $this->_facebookLikeButton() .
