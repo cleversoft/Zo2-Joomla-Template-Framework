@@ -1,7 +1,15 @@
 [
     {
+        "name": "Facebook",
+        "default": {
+            "action": "like",
+            "colorscheme": "light"
+        },
+        "description": "",
+        "ordering": "1"
+    },
+    {
         "name": "Twitter",
-        "func": "_twitterButton",
         "text": "Tweet",
         "default": {
             "via": "JOOservices",
@@ -13,25 +21,23 @@
             "size": "small"
         },
         "description": "",
-        "ordering": "1"
-    },
-    {
-        "name": "Reddit",
-        "func": "_redditButton",
-        "default": {
-            "icon": "spreddit7.gif"
-        },
-        "description": "",
         "ordering": "2"
     },
     {
         "name": "Buffer",
-        "func": "_bufferButton",
         "text": "Buffer",
         "default": {
             "icon": "spreddit7.gif"
         },
         "description": "",
         "ordering": "3"
+    },
+    {
+        "name": "LinkedIn",
+        "default": {
+            "count": "none"
+        },
+        "description": "",
+        "ordering": "4"
     }
 ]

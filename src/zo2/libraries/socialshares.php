@@ -32,36 +32,16 @@ if (!class_exists('Zo2Socialshares')) {
             return Zo2Services::button('twitter', 'share', $config->text, $config->default);
         }
 
-        private function _redditButton($config) {
-            $template = new Zo2Template($config->default);
-            $template->set('url', $this->_url);
-            return $template->fetch('plugins/system/zo2/libraries/socialshares/reddit.php');
-        }
-
-        private function _deliciousButton($config) {
-            $template = new Zo2Template($config);
-            $template->set('url', $this->_url);
-            $template->set('company', 'Zo2 Framework');
-            $template->set('title', 'Zo2 Framework');
-            return $template->fetch('plugins/system/zo2/libraries/socialshares/delicious.php');
-        }
-
-        private function _stumbleuponButton($config) {
-            $template = new Zo2Template($config);
-            $template->set('layout', 1);
-            return $template->fetch('plugins/system/zo2/libraries/socialshares/stumbleupon.php');
-        }
-
-        private function _facebookLikeButton($config) {
-            return Zo2Services::button('facebook', 'like', $config);
-        }
-
-        private function _facebookShareButton($config) {
-            return Zo2Services::button('facebook', 'share', $config);
+        private function _facebookButton($config) {
+            return Zo2Services::button('facebook', 'like', $config->default);
         }
 
         private function _bufferButton($config) {
             return Zo2Services::button('buffer', 'buffer', $config->text, $config->default);
+        }
+
+        private function _linkedinButton($config) {
+            return Zo2Services::button('linkedin', 'share', $config->default);
         }
 
         private function _tumblrButton($config) {
@@ -81,7 +61,7 @@ if (!class_exists('Zo2Socialshares')) {
             $html = '';
             $list = $this->getSocials();
             foreach ($list as $social) {
-                $html .= call_user_func_array(array($this, $social->func), array($social));
+                $html .= call_user_func_array(array($this, '_' . strtolower($social->name) . 'Button'), array($social));
             }
             $html = '<div class="zo2-socialshares-floatbar">' . $html . '</div>';
             return $html;
