@@ -40,6 +40,10 @@ if (!class_exists('Zo2ServiceAbstract')) {
         protected function _buildDataAttributes($config) {
             if (is_array($config)) {
                 $config = array_merge($config, $this->_configs->getProperties());
+            } elseif (is_object($config)) {
+                $config = array_merge((array) $config, $this->_configs->getProperties());
+            } else {
+                $config = $this->_configs->getProperties();
             }
             $html = '';
             foreach ($config as $key => $value) {

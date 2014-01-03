@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Twitter",
+        "func": "_twitterButton",
+        "text": "Tweet",
+        "default": {
+            "via": "JOOservices",
+            "text": "Powered by JOOservices",
+            "related": "jooservices",
+            "count": "none",
+            "lang": "en",
+            "hashtag": "",
+            "size": "small"
+        },
+        "description": "",
+        "ordering": "1"
+    },
+    {
+        "name": "Reddit",
+        "func": "_redditButton",
+        "default": {
+            "icon": "spreddit7.gif"
+        },
+        "description": "",
+        "ordering": "2"
+    },
+    {
+        "name": "Buffer",
+        "func": "_bufferButton",
+        "text": "Buffer",
+        "default": {
+            "icon": "spreddit7.gif"
+        },
+        "description": "",
+        "ordering": "3"
+    }
+]

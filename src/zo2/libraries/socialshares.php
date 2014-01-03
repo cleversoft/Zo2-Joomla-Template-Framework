@@ -28,42 +28,63 @@ if (!class_exists('Zo2Socialshares')) {
             $this->_url = JUri::getInstance()->toString();
         }
 
-        private function _twitterButton() {
-            return Zo2Services::button('twitter', 'share');
+        private function _twitterButton($config) {
+            return Zo2Services::button('twitter', 'share', $config->text, $config->default);
         }
 
-        private function _redditButton() {
-            $template = new Zo2Template();
+        private function _redditButton($config) {
+            $template = new Zo2Template($config->default);
             $template->set('url', $this->_url);
-            $template->set('icon', 'spreddit7.gif');
             return $template->fetch('plugins/system/zo2/libraries/socialshares/reddit.php');
         }
 
-        private function _facebookLikeButton() {
-            return Zo2Services::button('facebook', 'like');
+        private function _deliciousButton($config) {
+            $template = new Zo2Template($config);
+            $template->set('url', $this->_url);
+            $template->set('company', 'Zo2 Framework');
+            $template->set('title', 'Zo2 Framework');
+            return $template->fetch('plugins/system/zo2/libraries/socialshares/delicious.php');
         }
 
-        private function _facebookShareButton() {
-            return Zo2Services::button('facebook', 'share');
+        private function _stumbleuponButton($config) {
+            $template = new Zo2Template($config);
+            $template->set('layout', 1);
+            return $template->fetch('plugins/system/zo2/libraries/socialshares/stumbleupon.php');
         }
 
-        private function _bufferButton() {
-            return Zo2Services::button('buffer', 'buffer', 'Buffer');
+        private function _facebookLikeButton($config) {
+            return Zo2Services::button('facebook', 'like', $config);
         }
 
-        private function _tumblrButton() {
-            return Zo2Services::button('tumblr', 'follow');
+        private function _facebookShareButton($config) {
+            return Zo2Services::button('facebook', 'share', $config);
+        }
+
+        private function _bufferButton($config) {
+            return Zo2Services::button('buffer', 'buffer', $config->text, $config->default);
+        }
+
+        private function _tumblrButton($config) {
+            return Zo2Services::button('tumblr', 'follow', $config);
+        }
+
+        public function getSocials() {
+            $file = Zo2Assets::getInstance()->getAssetFile('zo2/socialshares.json');
+            $socialshares = json_decode(JFile::read($file));
+            foreach ($socialshares as $socialshare) {
+                $list[$socialshare->ordering] = $socialshare;
+            }
+            return $list;
         }
 
         public function getFloatbar() {
-            return '<div class="zo2-socialshares-floatbar">' .
-                    $this->_twitterButton() .
-                    $this->_redditButton() .
-                    $this->_facebookLikeButton() .
-                    $this->_facebookShareButton() .
-                    $this->_bufferButton() .
-                    $this->_tumblrButton() .
-                    '</div>';
+            $html = '';
+            $list = $this->getSocials();
+            foreach ($list as $social) {
+                $html .= call_user_func_array(array($this, $social->func), array($social));
+            }
+            $html = '<div class="zo2-socialshares-floatbar">' . $html . '</div>';
+            return $html;
         }
 
     }
