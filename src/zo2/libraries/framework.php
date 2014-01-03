@@ -142,7 +142,8 @@ if (!class_exists('Zo2Framework')) {
                     $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
                     $assets->addScript('vendor/jquery/jquery.noConflict.js');
                 }
-                if (self::get('enable_rtl') == 1)
+
+                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
                     $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
 
                 /* Load Boostrap */
@@ -160,13 +161,12 @@ if (!class_exists('Zo2Framework')) {
 
                 // template assets
                 self::prepareTemplateAssets();
-                
+
                 // presets
                 self::preparePresets();
 
                 // custom fonts
                 self::prepareCustomFonts();
-
             }
         }
 
