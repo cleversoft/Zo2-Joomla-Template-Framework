@@ -161,6 +161,9 @@ if (!class_exists('Zo2Framework')) {
                 // template assets
                 self::prepareTemplateAssets();
 
+                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
+                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+
                 // presets
                 self::preparePresets();
 
