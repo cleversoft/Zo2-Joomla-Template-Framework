@@ -37,10 +37,12 @@ if (!class_exists('Zo2ServiceAbstract')) {
             return $this->_configs->get($property, $default);
         }
 
-        protected function _generateConfigAttributes() {
+        protected function _buildDataAttributes($config) {
+            if (is_array($config)) {
+                $config = array_merge($config, $this->_configs->getProperties());
+            }
             $html = '';
-            $properties = $this->_configs->getProperties();
-            foreach ($properties as $key => $value) {
+            foreach ($config as $key => $value) {
                 $html .= 'data-' . $key . '="' . $value . '" ';
             }
             return trim($html);
