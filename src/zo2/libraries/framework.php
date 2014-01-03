@@ -149,7 +149,9 @@ if (!class_exists('Zo2Framework')) {
                 $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
                 /* Shortcodes */
                 $assets->addStyleSheet('zo2/css/shortcodes.css');
-
+                /* RTL */
+                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
+                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
                 /**
                  * @todo !
                  */
