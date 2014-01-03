@@ -15,11 +15,12 @@ $source = $this->get('src');
 $fileSource = $path->getPath($source);
 if (JFile::exists($fileSource)) {
     $image = new Zo2Imager();
-    $saveFile = $path->getPath('cache/resize_' . md5($source) . '_' . $this->get('width') .'_' . $this->get('height') . '.jpg');
+    $filename = 'resize_' . md5($source) . '_' . $this->get('width') .'_' . $this->get('height') . '.jpg';
+    $saveFile = $path->getPath('cache/'. $filename);
     if (!JFile::exists($saveFile)) {
         $image->load($fileSource)->resize($this->get('width'), $this->get('height'))->saveToFile($saveFile);
     }
-    $src = $path->getUrl('cache/' . md5($source) . '.jpg');
+    $src = $path->getUrl('cache/' . $filename);
 } else {
     $src = $this->get('src');
 }
