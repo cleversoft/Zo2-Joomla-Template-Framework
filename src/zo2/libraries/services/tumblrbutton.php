@@ -26,7 +26,7 @@ if (!class_exists('Zo2ServiceTumblrbutton')) {
          * 
          */
         protected function _init() {
-            Zo2Assets::getInstance()->addScript('http://platform.tumblr.com/v1/share.js');
+            JFactory::getDocument()->addScript('http://platform.tumblr.com/v1/share.js');
             $this->_configs->def('url', JUri::getInstance()->toString());
         }
 

@@ -44,6 +44,14 @@ if (!class_exists('Zo2Socialshares')) {
             return Zo2Services::button('linkedin', 'share', $config->default);
         }
 
+        private function _googleButton($config) {
+            return Zo2Services::button('google', 'plus', $config->default);
+        }
+
+        private function _youtubeButton($config) {
+            return Zo2Services::button('youtube', 'subscribe', $config->default);
+        }
+
         private function _tumblrButton($config) {
             return Zo2Services::button('tumblr', 'follow', $config);
         }

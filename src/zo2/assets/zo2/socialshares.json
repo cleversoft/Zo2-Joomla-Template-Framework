@@ -39,5 +39,22 @@
         },
         "description": "",
         "ordering": "4"
+    },
+    {
+        "name": "Google",
+        "default": {
+            "size": "small",
+            "annotation": "bubble"
+        },
+        "description": "",
+        "ordering": "5"
+    },
+    {
+        "name": "Youtube",
+        "default": {
+            "channel": "GoogleDevelopers"            
+        },
+        "description": "",
+        "ordering": "6"
     }
 ]
