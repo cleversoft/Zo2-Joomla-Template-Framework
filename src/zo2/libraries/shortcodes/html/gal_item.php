@@ -15,7 +15,7 @@ $source = $this->get('src');
 $fileSource = $path->getPath($source);
 if (JFile::exists($fileSource)) {
     $image = new Zo2Imager();
-    $saveFile = $path->getPath('cache/' . md5($source) . '.jpg');
+    $saveFile = $path->getPath('cache/resize_' . md5($source) . '_' . $this->get('width') .'_' . $this->get('height') . '.jpg');
     if (!JFile::exists($saveFile)) {
         $image->load($fileSource)->resize($this->get('width'), $this->get('height'))->saveToFile($saveFile);
     }

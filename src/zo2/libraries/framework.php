@@ -160,7 +160,7 @@ if (!class_exists('Zo2Framework')) {
 
                 // template assets
                 self::prepareTemplateAssets();
-                
+
                 // presets
                 self::preparePresets();
 
