@@ -52,9 +52,17 @@
     {
         "name": "Youtube",
         "default": {
-            "channel": "GoogleDevelopers"            
+            "channel": "GoogleDevelopers"
         },
         "description": "",
         "ordering": "6"
+    },
+    {
+        "name": "Pinterest",
+        "default": {
+            "channelpin-do": "buttonBookmark"            
+        },
+        "description": "",
+        "ordering": "7"
     }
 ]

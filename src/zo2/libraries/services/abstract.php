@@ -46,7 +46,7 @@ if (!class_exists('Zo2ServiceAbstract')) {
                 $config = $this->_configs->getProperties();
             }
             $html = '';
-            foreach ($config as $key => $value) {
+            foreach ($config as $key => $value) {                
                 $html .= 'data-' . $key . '="' . $value . '" ';
             }
             return trim($html);

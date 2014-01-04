@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zo2 (http://www.zo2framework.org)
  * A powerful Joomla template framework
@@ -11,8 +12,8 @@
  */
 defined('_JEXEC') or die;
 
-class JFormFieldSocialorder extends JFormFieldHidden
-{
+class JFormFieldSocialorder extends JFormFieldHidden {
+
     protected $type = 'Socialorder';
 
     /**
@@ -20,86 +21,81 @@ class JFormFieldSocialorder extends JFormFieldHidden
      *
      * @return string
      */
-    public function getInput()
-    {
+    public function getInput() {
         $document = JFactory::getDocument();
         $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/adminsocial.min.js');
 
-        $layout_button = array();
+        /* Twitter */
+        $layout_button['twitter'] = array(
+            'none' => 'None',
+            'horizontal' => 'Horizontal Count',
+            'vertical' => 'Vertical Count'
+        );
+        /* Facebook */
         $layout_button['facebook'] = array(
             'standard' => 'Standard',
             'button_count' => 'Button Count',
             'box_count' => 'Box Count'
         );
-        $layout_button['twitter'] = array(
+        /* Buffer */
+        $layout_button['buffer'] = array(
             'none' => 'None',
-            'horizontal' => 'Horizontal Count',
             'vertical' => 'Vertical Count',
+            'horizontal' => 'Horizontal Count'
+        );
+        $layout_button['linkedin'] = array(
+            'right' => 'Horizontal Count',
+            'top' => 'Vertical Count',
+            'none' => 'No Count'
         );
         $layout_button['google'] = array(
             'none' => 'None',
             'bubble' => 'Horizontal Bubble ',
             'vertical-bubble' => 'Vertical Bubble',
-            'inline' => 'Inline ',
+            'inline' => 'Inline '
         );
-        $layout_button['linkedin'] = array(
-            'right' => 'Horizontal Count',
-            'top' => 'Vertical Count',
-            'none' => 'No Count',
+        $layout_button['youtube'] = array(
+            'default' => 'Default',
+            'full' => 'Full'
         );
-        /*
-        $layout_button['reddit'] = array(
-            'horizontal' => 'Horizontal Count',
-            'vertical' => 'Vertical Count',
-            'none' => 'No Count',
-        );
-        */
         $layout_button['pinterest'] = array(
             'beside' => 'Horizontal Count',
             'above' => 'Vertical Count',
-            'none' => 'No Count',
+            'none' => 'No Count'
         );
-        /*
+
         $layout_button['tumblr'] = array(
-            'share_1' => 'Share 1',
-            'share_2' => 'Share 2',
-            'share_3' => 'Share 3',
-            'share_4' => 'Share 4',
+            '1' => 'Staff on Tumblr',
+            '2' => 'Follow on Tumblr',
+            '3' => 't'
         );
-        */
-        /*
-        $layout_button['delicious'] = array(
-            'logo' => 'default',
-        );
-        */
 
         // default
         $default = array(
             array(
-                'name' => 'facebook',
-                'index' => 1,
-                'website' => 'Facebook',
-                'link' => 'https://www.facebook.com/',
-                'enable' => 1,
-                'button_design' => 'standard'
-            ),
-            array(
                 'name' => 'twitter',
-                'index' => 2,
+                'index' => 1,
                 'website' => 'Twitter',
                 'link' => 'https://twitter.com/',
                 'enable' => 1,
                 'button_design' => 'vertical'
             ),
             array(
-                'name' => 'google',
-                'index' => 3,
-                'website' => 'Google',
-                'link' => 'https://google.com/',
+                'name' => 'facebook',
+                'index' => 2,
+                'website' => 'Facebook',
+                'link' => 'https://www.facebook.com/',
                 'enable' => 1,
-                'button_design' => 'standard_bubble',
+                'button_design' => 'standard'
             ),
-
+            array(
+                'name' => 'buffer',
+                'index' => 3,
+                'website' => 'Buffer',
+                'link' => 'https://twitter.com/',
+                'enable' => 1,
+                'button_design' => 'vertical'
+            ),
             array(
                 'name' => 'linkedin',
                 'index' => 4,
@@ -108,16 +104,14 @@ class JFormFieldSocialorder extends JFormFieldHidden
                 'enable' => 1,
                 'button_design' => 'top'
             ),
-            /*
             array(
-                'name' => 'reddit',
+                'name' => 'google',
                 'index' => 5,
-                'website' => 'Reddit',
-                'link' => 'http://www.reddit.com',
+                'website' => 'Google',
+                'link' => 'https://google.com/',
                 'enable' => 1,
-                'button_design' => 'vertical'
+                'button_design' => 'standard_bubble',
             ),
-            */
             array(
                 'name' => 'pinterest',
                 'index' => 6,
@@ -126,32 +120,25 @@ class JFormFieldSocialorder extends JFormFieldHidden
                 'enable' => 1,
                 'button_design' => 'vertical'
             ),
-            /*
             array(
                 'name' => 'tumblr',
                 'index' => 7,
                 'website' => 'Tumblr',
                 'link' => 'http://www.tumblr.com',
                 'enable' => 1,
-                'button_design' => 'share_2'
-            ),
-            array(
-                'name' => 'delicious',
-                'index' => 8,
-                'website' => 'Delicious',
-                'link' => 'http://www.delicious.com',
-                'enable' => 1,
-                'button_design' => 'logo'
-            ),
-            */
+                'button_design' => '1'
+            )
         );
+
         $rows = json_decode($this->value);
+        
         if (count($rows) == count($default)) {
             $value = $rows;
         } else {
             $value = JArrayHelper::toObject($default);
         }
 
+        /* Table head */
         $html = '<table width="100%" id="social_options" class="table table-striped">
                     <thead>
                         <tr>
@@ -167,8 +154,10 @@ class JFormFieldSocialorder extends JFormFieldHidden
         $count = 0;
 
         foreach ($value as $item) {
+            /* array of button design value */
             $layouts = $layout_button[$item->name];
             $options = array();
+            /* Build option list for button design select */
             foreach ($layouts as $key => $layout) {
                 $options[] = JHtml::_('select.option', $key, JText::_($layout));
             }
@@ -207,8 +196,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
         return $html . parent::getInput();
     }
 
-    function renderEnable($name, $value = 0)
-    {
+    function renderEnable($name, $value = 0) {
 
         $name = 'enable_' . $name;
         $on = ($value) ? 'active btn-success' : '';
@@ -224,8 +212,7 @@ class JFormFieldSocialorder extends JFormFieldHidden
         return $html;
     }
 
-    function renderPosition($name, $active = 'top', $type = 'normal')
-    {
+    function renderPosition($name, $active = 'top', $type = 'normal') {
 
         $array = array();
 
