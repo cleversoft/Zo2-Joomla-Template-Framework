@@ -572,15 +572,10 @@ class Zo2MegaMenu
 
         $endItems[$key1] = 0;
         $firstitem = true;
-        $rowClass = 'row-fluid';
-        $colClass = 'span';
-        if (!$this->isAdmin) {
-            $rowClass = 'row';
-            $colClass = 'col-md-';
-        }
+        $colClass = 'col-md-';
         foreach ($submenu['rows'] as $key => $row) {
             //start row
-            $html .= '<div class="'.$rowClass .'">';
+            //$html .= '<div class="'.$rowClass .'">';
             foreach ($row as $column) {
                 $width = isset($column['width']) ? $column['width'] : '12';
                 $data = "data-width=\"$width\"";
@@ -615,7 +610,7 @@ class Zo2MegaMenu
                 $html .= "</div></div>"; // end column
             }
 
-            $html .= "</div>"; //end row
+            //$html .= "</div>"; //end row
         }
 
         $html .= "</div></div>";
