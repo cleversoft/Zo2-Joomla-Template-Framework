@@ -1746,3 +1746,7 @@ zo2-tabs-content #zo2>section {
   top: 0;
   z-index: 99999;
 }
+
+#column-basic, #column-responsive, #row-basic, #row-responsive{display: none}
+#column-basic.active, #column-responsive.active, #row-basic.active, #row-responsive.active{display: block}
+[class^="icon-"]:before, [class*=" icon-"]:before{font-family: FontAwesome}

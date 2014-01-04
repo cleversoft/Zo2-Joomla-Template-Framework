@@ -191,7 +191,7 @@ class JFormFieldSocialorder extends JFormFieldHidden {
                         stop: Zo2Social.saveConfig
                     }).disableSelection();';
 
-        $assets->addScriptDeclaration($js);
+        //$assets->addScriptDeclaration($js);
 
         return $html . parent::getInput();
     }

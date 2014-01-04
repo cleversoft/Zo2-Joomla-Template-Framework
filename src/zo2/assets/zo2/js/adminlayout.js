@@ -518,6 +518,27 @@ jQuery(document).ready(function($){
         else $normal_display.slideUp();
     });
     */
+
+    // bind clear cache button
+    $('#btnClearCache').on('click', function() {
+        var $this = $(this);
+        var clearCacheUrl = Assets.root + 'index.php?zo2controller=clearCache';
+        var prefix = '';
+        var interval = setInterval(function() {
+            prefix += '.';
+            if (prefix.length >= 4) prefix = '';
+            $this.text('Clearing cache' + prefix);
+        }, 1000);
+        $.get(clearCacheUrl, function() {
+            clearInterval(interval);
+            $this.removeClass('btn-danger').addClass('btn-success').text('Clear cache successfully');
+
+            setTimeout(function(){
+                $this.removeClass('btn-success').addClass('btn-danger').text('Clear layout cache');
+            }, 2000);
+        });
+        return false;
+    });
 });
 
 var generatePresetData = function () {

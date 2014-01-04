@@ -331,6 +331,12 @@ defined('_JEXEC') or die;
                         <?php echo $this->form->getInput('load_jquery', 'params'); ?>
                     </div>
                 </div>
+                <div class="control-group">
+                    <div class="control-label"></div>
+                    <div class="controls">
+                        <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px">Clear layout cache</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

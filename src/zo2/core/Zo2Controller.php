@@ -94,4 +94,14 @@ class Zo2Controller
             echo json_encode(Zo2HelperGoogleFonts::search($_GET['query']));
         }
     }
+
+    public static function clearCache()
+    {
+        $path = new Zo2Path();
+        $dir = $path->getPath($path->get('siteTemplate') . '/layouts/cache');
+        $files = glob($dir . '/*');
+        foreach($files as $file) {
+            if(is_file($file)) unlink($file);
+        }
+    }
 }
