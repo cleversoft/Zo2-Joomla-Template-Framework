@@ -144,9 +144,9 @@ if (!class_exists('plgSystemZo2')) {
                     jInsertEditorText(html, '.$name.');
                 }
 				";
-
-            $doc = JFactory::getDocument();
-            $doc->addScriptDeclaration($jsCode);
+            $assets = Zo2Assets::getInstance();
+            //$doc = JFactory::getDocument();
+            $assets->addScriptDeclaration($jsCode);
 
             $button = new JObject();
             $button->modal = true;

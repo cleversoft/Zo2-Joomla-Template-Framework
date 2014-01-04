@@ -22,6 +22,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
     public function render()
     {
         $zo2 = Zo2Framework::getInstance();
+        $assets = Zo2Assets::getInstance();
         $logo = $zo2->getParams('footer_logo');
         $copyright = $zo2->getParams('footer_copyright');
         $gototop = $zo2->getParams('footer_gototop');
@@ -38,7 +39,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
 
             $script = 'jQuery("#gototop").click(function(){jQuery("body, html").animate({scrollTop: 0}); return false;});';
 
-            $zo2->getLayout()->addScriptDeclaration($script);
+            $assets->addScriptDeclaration($script);
         }
         $html .= '</footer>';
 

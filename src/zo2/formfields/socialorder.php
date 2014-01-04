@@ -22,8 +22,9 @@ class JFormFieldSocialorder extends JFormFieldHidden {
      * @return string
      */
     public function getInput() {
-        $document = JFactory::getDocument();
-        $document->addScript(ZO2RTP_ASSETS_ZO2 . '/js/adminsocial.min.js');
+        $assets = Zo2Assets::getInstance();
+        //$document = JFactory::getDocument();
+        $assets->addScript(ZO2RTP_ASSETS_ZO2 . '/js/adminsocial.min.js');
 
         /* Twitter */
         $layout_button['twitter'] = array(
@@ -190,7 +191,6 @@ class JFormFieldSocialorder extends JFormFieldHidden {
                         stop: Zo2Social.saveConfig
                     }).disableSelection();';
 
-        $assets = Zo2Assets::getInstance();
         $assets->addScriptDeclaration($js);
 
         return $html . parent::getInput();
