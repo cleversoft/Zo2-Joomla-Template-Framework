@@ -35,7 +35,7 @@
         "ordering": "3"
     },
     {
-        "name": "LinkedIn",
+        "name": "Linkedin",
         "default": {
             "count": "none"
         },
@@ -66,5 +66,13 @@
         },
         "description": "",
         "ordering": "7"
+    },
+    {
+        "name": "Tumblr",
+        "default": {
+        },
+        "description": "",
+        "ordering": "8"
     }
+
 ]

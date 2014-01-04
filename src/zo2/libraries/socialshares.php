@@ -57,7 +57,7 @@ if (!class_exists('Zo2Socialshares')) {
         }
 
         private function _tumblrButton($config) {
-            return Zo2Services::button('tumblr', 'follow', $config);
+            return Zo2Services::button('tumblr', 'follow', 3, 'dark');
         }
 
         public function getSocials() {
@@ -87,7 +87,7 @@ if (!class_exists('Zo2Socialshares')) {
                             case 'Buffer':
                                 $default->count = $social->button_design;
                                 break;
-                            case 'Buffer':
+                            case 'Linkedin':
                                 $default->counter = $social->button_design;
                                 break;
                             case 'Google':
@@ -100,12 +100,14 @@ if (!class_exists('Zo2Socialshares')) {
                                 $name = 'pin-config';
                                 $default->$name = $social->button_design;
                                 break;
-                            case 'Pinterest':
+                            case 'Tumblr':
                                 $default->button_type = $social->button_design;
                                 break;
                         }
                         $list[$social->website]->default = $default;
                         $_list[$social->index] = $list[$social->website];
+                    } else {
+                        echo $social->website . '<br />';
                     }
                 }
             }
