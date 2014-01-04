@@ -27,8 +27,7 @@ if (!class_exists('Zo2ServiceFacebookbutton')) {
          */
         protected function _init() {
             $this->_configs->def('href', JUri::getInstance()->toString());
-            $this->_configs->def('appId', '129458053806961');
-            $this->_configs->def('layout', 'standard');
+            $this->_configs->def('appId', '129458053806961');            
             /**
              * @todo language support
              */
