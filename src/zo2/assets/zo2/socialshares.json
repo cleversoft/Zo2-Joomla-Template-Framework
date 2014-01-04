@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Facebook",
+        "default": {
+            "action": "like",
+            "colorscheme": "light"
+        },
+        "description": "",
+        "ordering": "1"
+    },
+    {
+        "name": "Twitter",
+        "text": "Tweet",
+        "default": {
+            "via": "JOOservices",
+            "text": "Powered by JOOservices",
+            "related": "jooservices",
+            "count": "none",
+            "lang": "en",
+            "hashtag": "",
+            "size": "small"
+        },
+        "description": "",
+        "ordering": "2"
+    },
+    {
+        "name": "Buffer",
+        "text": "Buffer",
+        "default": {
+            "icon": "spreddit7.gif"
+        },
+        "description": "",
+        "ordering": "3"
+    },
+    {
+        "name": "LinkedIn",
+        "default": {
+            "count": "none"
+        },
+        "description": "",
+        "ordering": "4"
+    },
+    {
+        "name": "Google",
+        "default": {
+            "size": "small",
+            "annotation": "bubble"
+        },
+        "description": "",
+        "ordering": "5"
+    },
+    {
+        "name": "Youtube",
+        "default": {
+            "channel": "GoogleDevelopers"
+        },
+        "description": "",
+        "ordering": "6"
+    },
+    {
+        "name": "Pinterest",
+        "default": {
+            "channelpin-do": "buttonBookmark"            
+        },
+        "description": "",
+        "ordering": "7"
+    }
+]

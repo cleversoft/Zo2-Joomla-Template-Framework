@@ -54,4 +54,3 @@ if (!class_exists('Zo2ServiceGooglemap')) {
     }
 
 }
-?>

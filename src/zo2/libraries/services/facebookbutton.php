@@ -53,12 +53,12 @@ if (!class_exists('Zo2ServiceFacebookbutton')) {
             return $html;
         }
 
-        public function like() {
-            return $this->_button() . '<div class="fb-like" ' . $this->_generateConfigAttributes() . '></div>';
+        public function like($config = array()) {
+            return $this->_button() . '<div class="fb-like" ' . $this->_buildDataAttributes($config) . '></div>';
         }
 
-        public function share() {
-            return $this->_button() . '<div class="fb-share-button" ' . $this->_generateConfigAttributes() . '></div>';
+        public function share($config = array()) {
+            return $this->_button() . '<div class="fb-share-button" ' . $this->_buildDataAttributes($config) . '></div>';
         }
 
     }

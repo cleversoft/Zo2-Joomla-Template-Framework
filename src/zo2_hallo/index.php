@@ -31,7 +31,7 @@ $body = $layout->generateHtml();
 /**
  * 
  */
-$serviceButtons = new Zo2Services();
+$socialShares = new Zo2Socialshares();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
@@ -53,15 +53,8 @@ $serviceButtons = new Zo2Services();
     <?php echo Zo2Framework::displayOffCanvasMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate()) ?>    
     <section class="wrapper">
         <!-- SocialShare -->
-        <?php if (Zo2Framework::get('socialshare') == 1) { ?>
-            <div id="zo2-socialshare" class="<?php Zo2Framework::get('socialshare_position', 'floatbar'); ?>">
-                <?php
-                if (Zo2Framework::get('socialshare_twitter') == 1)
-                    echo $serviceButtons->getButton('twitter', 'share');
-                if (Zo2Framework::get('socialshare_facebook') == 1)
-                    echo $serviceButtons->getButton('facebook', 'share');
-                ?>
-            </div>
+        <?php if (Zo2Framework::get('socialshare_floatbar', 1) == 1) { ?>
+            <?php echo $socialShares->getFloatbar(); ?>
         <?php } ?>
         <?php echo $body;
         ?>

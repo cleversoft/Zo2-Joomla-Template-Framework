@@ -35,18 +35,18 @@ if (!class_exists('Zo2ServiceTwitterbutton')) {
          * @param type $text
          * @return string
          */
-        public function share($text = 'Tweet') {
-            $html = '<a href="https://twitter.com/share" class="twitter-share-button" ' . $this->_generateConfigAttributes() . '>' . $text . '</a>';
+        public function share($text = 'Tweet', $config = array()) {
+            $html = '<a href="https://twitter.com/share" class="twitter-share-button" ' . $this->_buildDataAttributes($config) . '>' . $text . '</a>';
             return $html;
         }
 
-        public function hashtag($text = 'Tweet') {
-            $html = '<a href="https://twitter.com/share" class="twitter-hashtag-button" ' . $this->_generateConfigAttributes() . '>' . $text . '</a>';
+        public function hashtag($text = 'Tweet', $config = array()) {
+            $html = '<a href="https://twitter.com/share" class="twitter-hashtag-button" ' . $this->_buildDataAttributes($config) . '>' . $text . '</a>';
             return $html;
         }
 
-        public function tweetTo($screenName, $text = 'Tweet') {
-            $html = '<a href="https://twitter.com/intent/tweet?screen_name=' . $screenName . '" class="twitter-mention-button" ' . $this->_generateConfigAttributes() . '>' . $text . '</a>';
+        public function tweetTo($screenName, $text = 'Tweet', $config = array()) {
+            $html = '<a href="https://twitter.com/intent/tweet?screen_name=' . $screenName . '" class="twitter-mention-button" ' . $this->_buildDataAttributes($config) . '>' . $text . '</a>';
             return $html;
         }
 

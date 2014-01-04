@@ -46,22 +46,26 @@ if (!class_exists('Zo2Services')) {
         }
 
         /**
-         * Get button
+         * Get services button
          * @return string
          */
         public static function button() {
             $args = func_get_args();
+            /* First arg used for service name */
             $service = array_shift($args);
+            /* Second arg used for name of button - function name will use to get button */
             $button = array_shift($args);
 
+            /* Get instance of service button class */
             $instance = self::getInstance(ucfirst($service) . 'Button');
             if ($instance) {
                 if (method_exists($instance, $button)) {
                     $html = call_user_func_array(array($instance, $button), $args);
-                    $html = '<div class="zo2-service-' . $service . ' ' . $button . '">' . $html . '</div>';
+                    /* Wrapper HTML */
+                    $html = '<div class="zo2-service-' . $service . ' zo2-button-' . $service . '-' . $button . '">' . $html . '</div>';
                     return $html;
                 }
-            }else {
+            } else {
                 echo 'File not found';
             }
         }
