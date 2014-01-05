@@ -60,7 +60,7 @@ class Zo2MegaMenu
             $itemid = 'item-' . $item->id;
             $config = isset($this->_configs[$itemid]) ? $this->_configs[$itemid] : array();
 
-    
+
             if (isset($config['caption']) && $config['caption']) $config['caption'] = str_replace(array('[lt]','[gt]'), array('<','>'), $config['caption']);
             if ($item->level == 1 && isset($config['caption']) && $config['caption']) {
                 $item->top_level_caption = true;
@@ -572,10 +572,15 @@ class Zo2MegaMenu
 
         $endItems[$key1] = 0;
         $firstitem = true;
-        $colClass = 'col-md-';
+        $rowClass = 'row-fluid';
+        $colClass = 'span';
+        if (!$this->isAdmin) {
+            $rowClass = 'row';
+            $colClass = 'col-md-';
+        }
         foreach ($submenu['rows'] as $key => $row) {
             //start row
-            //$html .= '<div class="'.$rowClass .'">';
+            $html .= '<div class="'.$rowClass .'">';
             foreach ($row as $column) {
                 $width = isset($column['width']) ? $column['width'] : '12';
                 $data = "data-width=\"$width\"";
@@ -610,7 +615,7 @@ class Zo2MegaMenu
                 $html .= "</div></div>"; // end column
             }
 
-            //$html .= "</div>"; //end row
+            $html .= "</div>"; //end row
         }
 
         $html .= "</div></div>";
