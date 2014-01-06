@@ -3,7 +3,9 @@
         "name": "Facebook",
         "default": {
             "action": "like",
-            "colorscheme": "light"
+            "colorscheme": "light",
+            "show-faces": "false",
+            "layout": "box_count"
         },
         "description": "",
         "ordering": "1"
@@ -33,7 +35,7 @@
         "ordering": "3"
     },
     {
-        "name": "LinkedIn",
+        "name": "Linkedin",
         "default": {
             "count": "none"
         },
@@ -43,7 +45,7 @@
     {
         "name": "Google",
         "default": {
-            "size": "small",
+            "size": "tall",
             "annotation": "bubble"
         },
         "description": "",
@@ -60,9 +62,17 @@
     {
         "name": "Pinterest",
         "default": {
-            "channelpin-do": "buttonBookmark"            
+            "channelpin-do": "buttonBookmark"
         },
         "description": "",
         "ordering": "7"
+    },
+    {
+        "name": "Tumblr",
+        "default": {
+        },
+        "description": "",
+        "ordering": "8"
     }
+
 ]

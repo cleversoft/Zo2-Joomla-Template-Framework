@@ -189,7 +189,7 @@ class JFormFieldSocialorder extends JFormFieldHidden {
         $js = 'jQuery("#social_options > tbody").sortable({
                         beforeStop: Zo2Social.updateIndex,
                         stop: Zo2Social.saveConfig
-                    }).disableSelection();';
+                    });';
 
         $assets->addScriptDeclaration($js);
 
