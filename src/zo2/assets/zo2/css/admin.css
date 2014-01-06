@@ -1,7 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 .logo-image.show,
 .logo-text.show {
-  display: block;
+  display: block !important;
 }
 #selectLayoutModal .modal-body {
   overflow-y: visible !important;
