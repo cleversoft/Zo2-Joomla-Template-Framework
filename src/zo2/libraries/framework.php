@@ -199,18 +199,20 @@ if (!class_exists('Zo2Framework')) {
 
                 if (!empty($value)) {
                     $data = json_decode($value, true);
-                    switch ($data['type']) {
-                        case 'standard':
-                            self::buildStandardFontStyle($data, $selector);
-                            break;
-                        case 'googlefonts':
-                            self::buildGoogleFontsStyle($data, $selector);
-                            break;
-                        case 'fontdeck':
-                            self::buildFontDeckStyle($data, $selector);
-                            break;
-                        default:
-                            break;
+                    if (isset($data['type']) && !empty($data['type'])) {
+                        switch ($data['type']) {
+                            case 'standard':
+                                self::buildStandardFontStyle($data, $selector);
+                                break;
+                            case 'googlefonts':
+                                self::buildGoogleFontsStyle($data, $selector);
+                                break;
+                            case 'fontdeck':
+                                self::buildFontDeckStyle($data, $selector);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
