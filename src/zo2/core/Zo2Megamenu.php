@@ -245,7 +245,7 @@ class Zo2MegaMenu
     {
         $this->isAdmin = $isAdmin;
         //
-        $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation"><div class="container">';
+        $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">';
         $prefix .= '<div class="navbar-header">';
 
         /*
@@ -266,7 +266,7 @@ class Zo2MegaMenu
 
         $prefix .= '</div>
                     <div class="navbar-collapse collapse">';
-        $suffix = '</div></div></nav>';
+        $suffix = '</div></nav>';
         $html = '';
         $hover = ' data-hover="' . $this->_params->get('hover_type', 'hover') . '"';
         $animation = $this->_params->get('animation', '');
