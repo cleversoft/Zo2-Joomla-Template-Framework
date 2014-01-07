@@ -70,10 +70,6 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="socialshare_floatbar" type="radio" default="0" label="Enable Socialshares floatbar" description="" class="btn-group">
-                    <option value="1">JYES</option>
-                    <option value="0">JNO</option>
-                </field>
                 <field name="favicon" type="media" default="images/favicon.ico" label="Favicon" />
                 <!--Header Option-->
                 <field name="header_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header logo" />
@@ -290,6 +286,11 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     description="Box style"/>
 
                 <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
+
+                <field name="socialshare_floatbar" type="radio" default="0" label="Enable Socialshares floatbar" description="" class="btn-group">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
                 <field name="fb_action" type="list" default="like" label="Facebook action " description="Facebook action">
                     <option value="like">Like</option>
                     <option value="recommend">Recommend</option>
