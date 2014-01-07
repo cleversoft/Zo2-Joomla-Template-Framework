@@ -42,7 +42,9 @@ class Zo2MegaMenu {
         $this->_activeMenuId = $menu_id;
 
         $menu_tree = $active_menu->tree ? $active_menu->tree : array();
-        $menu_tree[] = $menu->getDefault()->id; /* Menu tree should be include Default home menu & Default home with language menu */
+        if ($menu->getActive() == $defMenu) {
+            $menu_tree[] = $menu->getDefault()->id; /* Menu tree should be include Default home menu & Default home with language menu */
+        }
 
         // Get all child menus for a parent menu
         foreach ($items as &$item) {
