@@ -206,11 +206,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                        label="K2 Comment Label"
                        description="" />
                 <!--Share Social-->
-                <field name="socialshare_floatbar" type="radio" default="0" label="Enable Socialshares floatbar"
-                       description="Display social box in Article" class="btn-group">
-                    <option value="1">JYES</option>
-                    <option value="0">JNO</option>
-                </field>
+
                 <field
                     name="catid"
                     type="includecats"
@@ -227,7 +223,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     <option value="normal">Normal</option>
                     <option value="float">Float</option>
                 </field>
-
+                                
                 <field name="show_in_article" type="radio" default="0" label="Show  in Article"
                        description="Display social box in Article" class="btn-group">
                     <option value="1">JYES</option>
@@ -290,6 +286,11 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     description="Box style"/>
 
                 <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
+
+                <field name="socialshare_floatbar" type="radio" default="0" label="Enable Socialshares floatbar" description="" class="btn-group">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
                 <field name="fb_action" type="list" default="like" label="Facebook action " description="Facebook action">
                     <option value="like">Like</option>
                     <option value="recommend">Recommend</option>
