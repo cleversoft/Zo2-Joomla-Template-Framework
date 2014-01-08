@@ -599,10 +599,13 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function getCurrentPage() {
             $app = JFactory::getApplication();
-            if ($app->getMenu()->getActive()->home)
-                return 'homepage';
-            else
-                return $app->input->getString('view', 'homepage');
+            $menu = $app->getMenu();
+            if (isset($menu)) {
+                $activeMenu = $menu->getActive();
+                if (isset($activeMenu) && $activeMenu->home) return 'homepage';
+            }
+
+            return $app->input->getString('view', 'homepage');
         }
 
         /**
