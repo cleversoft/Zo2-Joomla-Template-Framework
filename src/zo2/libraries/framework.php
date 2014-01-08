@@ -347,8 +347,9 @@ if (!class_exists('Zo2Framework')) {
             $preset = Zo2Framework::get('theme');
             $zo2 = Zo2Framework::getInstance();
             $assets = Zo2Assets::getInstance();
-            if (empty($preset)) {
-                $presetPath = $zo2->getCurrentTemplateAbsolutePath() . '/layouts/presets.json';
+            if (true) {
+                $path = new Zo2Path();
+                $presetPath = $path->getPath($path->get('siteTemplate') . '/layouts/presets.json');
                 $presets = array();
                 if (file_exists($presetPath)) {
                     $presets = json_decode(file_get_contents($presetPath), true);
@@ -362,18 +363,18 @@ if (!class_exists('Zo2Framework')) {
                     $presetData = $presets[0];
                 else
                     $presetData = array(
-                        'name' => $defaultData['name'],
-                        'css' => $defaultData['css'],
-                        'less' => $defaultData['less'],
-                        'background' => $defaultData['variables']['background'],
-                        'header' => $defaultData['variables']['header'],
-                        'header_top' => $defaultData['variables']['header_top'],
-                        'text' => $defaultData['variables']['text'],
-                        'link' => $defaultData['variables']['link'],
-                        'link_hover' => $defaultData['variables']['link_hover'],
-                        'bottom1' => $defaultData['variables']['bottom1'],
-                        'bottom2' => $defaultData['variables']['bottom2'],
-                        'footer' => $defaultData['variables']['footer']
+                        'name' => $defaultData['name'] ? $defaultData['name'] : '',
+                        'css' => $defaultData['css'] ? $defaultData['css'] : '',
+                        'less' => $defaultData['less'] ? $defaultData['less'] : '',
+                        'background' => $defaultData['variables']['background'] ? $defaultData['variables']['background'] : '',
+                        'header' => $defaultData['variables']['header'] ? $defaultData['variables']['header'] : '',
+                        'header_top' => $defaultData['variables']['header_top'] ? $defaultData['variables']['header_top'] : '',
+                        'text' => $defaultData['variables']['text'] ? $defaultData['variables']['text'] : '',
+                        'link' => $defaultData['variables']['link'] ? $defaultData['variables']['link'] : '',
+                        'link_hover' => $defaultData['variables']['link_hover'] ? $defaultData['variables']['link_hover'] : '',
+                        'bottom1' => $defaultData['variables']['bottom1'] ? $defaultData['variables']['bottom1'] : '',
+                        'bottom2' => $defaultData['variables']['bottom2'] ? $defaultData['variables']['bottom2'] : '',
+                        'footer' => $defaultData['variables']['footer'] ? $defaultData['variables']['footer'] : ''
                     );
             }
             if (!empty($preset))

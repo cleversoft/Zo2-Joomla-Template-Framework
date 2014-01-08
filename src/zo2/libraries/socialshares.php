@@ -69,45 +69,47 @@ if (!class_exists('Zo2Socialshares')) {
             }
             /* And now get ordering from saved */
             $socialOrders = json_decode(Zo2Framework::get('social_order'));
-            foreach ($socialOrders as $social) {
-                if ($social->enable == 1) {
-                    if (isset($list[$social->website])) {
-                        /**
-                         * @todo In backend must save with correct thing than we don't need remap at frontend
-                         */
-                        $default = $list[$social->website]->default;
-                        switch ($social->website) {
-                            case 'Twitter':
-                                $default->count = $social->button_design;
-                                break;
-                            case 'Facebook':
-                                $default->layout = $social->button_design;
-                                $default->action = Zo2Framework::get('fb_action');
-                                break;
-                            case 'Buffer':
-                                $default->count = $social->button_design;
-                                break;
-                            case 'Linkedin':
-                                $default->counter = $social->button_design;
-                                break;
-                            case 'Google':
-                                $default->annotation = $social->button_design;
-                                break;
-                            case 'Youtube':
-                                $default->layout = $social->button_design;
-                                break;
-                            case 'Pinterest':
-                                $name = 'pin-config';
-                                $default->$name = $social->button_design;
-                                break;
-                            case 'Tumblr':
-                                $default->button_type = $social->button_design;
-                                break;
+            if ($socialOrders) {
+                foreach ($socialOrders as $social) {
+                    if ($social->enable == 1) {
+                        if (isset($list[$social->website])) {
+                            /**
+                             * @todo In backend must save with correct thing than we don't need remap at frontend
+                             */
+                            $default = $list[$social->website]->default;
+                            switch ($social->website) {
+                                case 'Twitter':
+                                    $default->count = $social->button_design;
+                                    break;
+                                case 'Facebook':
+                                    $default->layout = $social->button_design;
+                                    $default->action = Zo2Framework::get('fb_action');
+                                    break;
+                                case 'Buffer':
+                                    $default->count = $social->button_design;
+                                    break;
+                                case 'Linkedin':
+                                    $default->counter = $social->button_design;
+                                    break;
+                                case 'Google':
+                                    $default->annotation = $social->button_design;
+                                    break;
+                                case 'Youtube':
+                                    $default->layout = $social->button_design;
+                                    break;
+                                case 'Pinterest':
+                                    $name = 'pin-config';
+                                    $default->$name = $social->button_design;
+                                    break;
+                                case 'Tumblr':
+                                    $default->button_type = $social->button_design;
+                                    break;
+                            }
+                            $list[$social->website]->default = $default;
+                            $_list[$social->index] = $list[$social->website];
+                        } else {
+                            echo $social->website . '<br />';
                         }
-                        $list[$social->website]->default = $default;
-                        $_list[$social->index] = $list[$social->website];
-                    } else {
-                        echo $social->website . '<br />';
                     }
                 }
             }
