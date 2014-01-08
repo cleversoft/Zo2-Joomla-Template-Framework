@@ -113,17 +113,20 @@ if (!class_exists('Zo2Socialshares')) {
                     }
                 }
             }
-            return $_list;
+            if (isset($_list))
+                return $_list;
         }
 
         public function getFloatbar() {
             $html = '';
             $list = $this->getSocials();
-            foreach ($list as $social) {
-                $html .= call_user_func_array(array($this, '_' . strtolower($social->name) . 'Button'), array($social));
+            if ($list) {
+                foreach ($list as $social) {
+                    $html .= call_user_func_array(array($this, '_' . strtolower($social->name) . 'Button'), array($social));
+                }
+                $html = '<div class="zo2-socialshares-floatbar">' . $html . '</div>';
+                return $html;
             }
-            $html = '<div class="zo2-socialshares-floatbar">' . $html . '</div>';
-            return $html;
         }
 
         public function getHorizontalBar() {
