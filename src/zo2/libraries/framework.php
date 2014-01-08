@@ -345,9 +345,9 @@ if (!class_exists('Zo2Framework')) {
 
         private static function preparePresets() {
             $preset = Zo2Framework::get('theme');
-            $zo2 = Zo2Framework::getInstance();
+            //$zo2 = Zo2Framework::getInstance();
             $assets = Zo2Assets::getInstance();
-            if (true) {
+            if (empty($preset)) {
                 $path = new Zo2Path();
                 $presetPath = $path->getPath($path->get('siteTemplate') . '/layouts/presets.json');
                 $presets = array();
