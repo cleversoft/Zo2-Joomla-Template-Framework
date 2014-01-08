@@ -96,10 +96,18 @@ class Zo2Layout {
         $html = '';
         $menu = $app->getMenu();
         $menuItem = $menu->getActive();
-        $cache = 'layout_' . $menuItem->id . '.php';
-        $layoutCacheDir = $this->_layourDir . 'cache/';
-        $path = $layoutCacheDir . $cache;
-        if (file_exists($path) && !$debug && (isset($menuItem->id) && !empty($menuItem->id))) {
+        $canCache = false;
+        if (isset($menuItem->id) && !empty($menuItem->id)) {
+            $cache = 'layout_' . $menuItem->id . '.php';
+            $layoutCacheDir = $this->_layourDir . 'cache/';
+            $path = $layoutCacheDir . $cache;
+            $canCache = true;
+        }
+        else {
+            $path = '';
+            $layoutCacheDir = '';
+        }
+        if ($canCache && file_exists($path) && !$debug) {
             $html = file_get_contents($path);
         } else {
             $layoutType = $params->get('layout_type');
@@ -115,9 +123,10 @@ class Zo2Layout {
                     $html .= $this->generateHtmlFromItem($data[$i], $layoutType);
                 }
 
-                if (!is_dir($layoutCacheDir))
-                    mkdir($layoutCacheDir, 0755);
-                file_put_contents($path, $html);
+                if ($canCache) {
+                    if (!is_dir($layoutCacheDir)) mkdir($layoutCacheDir, 0755);
+                    file_put_contents($path, $html);
+                }
             } else
                 return '';
         }
