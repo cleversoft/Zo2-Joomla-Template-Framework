@@ -26,12 +26,22 @@ if (!class_exists('Zo2ServicePinterestbutton')) {
          * 
          */
         protected function _init() {
-            JFactory::getDocument()->addScript('https://assets.pinterest.com/js/pinit.js');
             $this->_configs->def('href', JUri::getInstance()->toString());
         }
 
+        private function _button() {
+            static $init = false;
+            if ($init === false) {
+                $html = '<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>';
+                $init = true;
+            } else {
+                $html = '';
+            }
+            return $html;
+        }
+
         public function pinit($config = array()) {
-            $html = '<a href="//www.pinterest.com/pin/create/button/" ' . $this->_buildDataAttributes($config) . ' ><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>';
+            $html = '<a href="//www.pinterest.com/pin/create/button/" ' . $this->_buildDataAttributes($config) . ' ><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>' . $this->_button();
             return $html;
         }
 
