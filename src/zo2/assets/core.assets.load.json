@@ -1,0 +1,1 @@
+{"js.jquery":{"path":"vendor\/jquery\/jquery-1.9.1.min.js","type":"js","version":"1.9.1","dependencies":[],"loadIn":{"frontend":["2.*"],"backend":["2.*"]}},"js.bootstrap":{"path":"vendor\/bootstrap\/js\/bootstrap.min.js","type":"js","version":"3.0.3","dependencies":[],"loadIn":{"frontend":["2.*"],"backend":["2.*"]}}}

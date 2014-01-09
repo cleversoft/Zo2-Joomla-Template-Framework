@@ -51,6 +51,7 @@ if (!class_exists('Zo2Assets')) {
          * @var array
          */
         private $_javascriptDeclarations = array();
+        private $_assets = array();
 
         /**
          * 
@@ -85,13 +86,19 @@ if (!class_exists('Zo2Assets')) {
             return false;
         }
 
+        public function loadAssetsList($file) {
+            $assetFile = $this->getAssetFile($file);
+            if ($assetFile) {
+                $this->_assets = array_merge_recursive($this->_assets, json_decode(JFile::read($assetFile), true));
+            }
+        }
+
         /**
          * 
          * @param type $file
          * @return \Zo2Assets
          */
-        public function addStyleSheet($file)
-        {
+        public function addStyleSheet($file) {
             $assetFile = $this->getAssetFile($file);
             if ($assetFile != false) {
                 $this->_stylesheets[$assetFile] = $this->getPath($assetFile);
@@ -105,8 +112,7 @@ if (!class_exists('Zo2Assets')) {
          * @param bool $less
          * @return \Zo2Assets
          */
-        public function addStyleSheetDeclaration($style, $less = false)
-        {
+        public function addStyleSheetDeclaration($style, $less = false) {
             if ($less) {
                 $style = Zo2HelperCompiler::lessStyle($style);
             }
@@ -171,18 +177,22 @@ if (!class_exists('Zo2Assets')) {
                 $templatePresets = json_decode(file_get_contents($templatePresetsPath), true);
 
                 foreach ($templateAssets as $asset) {
-                    if ($asset['type'] == 'js') $jsFiles['template'][] = $asset['path'];
-                    else if ($asset['type'] == 'less') $lessFiles['template'][] = $asset['path'];
-                    else if ($asset['type'] == 'css') $cssFiles['template'][] = $asset['path'];
+                    if ($asset['type'] == 'js')
+                        $jsFiles['template'][] = $asset['path'];
+                    else if ($asset['type'] == 'less')
+                        $lessFiles['template'][] = $asset['path'];
+                    else if ($asset['type'] == 'css')
+                        $cssFiles['template'][] = $asset['path'];
                 }
 
                 foreach ($templatePresets as $preset) {
-                    if (isset($preset['less']) && !empty($preset['less'])) $lessFiles['template'][] = $preset['less'];
+                    if (isset($preset['less']) && !empty($preset['less']))
+                        $lessFiles['template'][] = $preset['less'];
                 }
 
                 //$lessFiles['template'] = '';
                 //$jsFiles['template'] = '';
-                        
+
                 $buildProduction = Zo2Framework::get('build_production', 1);
 
 
@@ -283,8 +293,7 @@ if (!class_exists('Zo2Assets')) {
             }
         }
 
-        public function generateAssets($type)
-        {
+        public function generateAssets($type) {
             $combineJs = Zo2Framework::get('combine_js');
             $combineCss = Zo2Framework::get('combine_css');
             /* For backend we'll replace $body with our adding scripts */
@@ -302,8 +311,7 @@ if (!class_exists('Zo2Assets')) {
                         file_put_contents($jsFilePath, $jsContent);
                     }
                     $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrlRelative') . '/' . $jsFile . '"></script>';
-                }
-                else {
+                } else {
                     foreach ($this->_javascripts as $javascript => $path) {
                         $jsHtml .='<script type="text/javascript" src="' . $this->get('siteUrlRelative') . '/' . $javascript . '"></script>';
                     }
@@ -333,8 +341,7 @@ if (!class_exists('Zo2Assets')) {
                         file_put_contents($cssFilePath, $cssContent);
                     }
                     $cssHtml .='<link rel="stylesheet" href="' . $cssUri . '"></script>';
-                }
-                else {
+                } else {
                     foreach ($this->_stylesheets as $styleSheets => $path) {
                         $cssHtml .= '<link rel="stylesheet" href="' . $this->get('siteUrlRelative') . '/' . $styleSheets . '">';
                     }
@@ -347,5 +354,7 @@ if (!class_exists('Zo2Assets')) {
                 return $cssHtml . "\n" . $cssDeclarationHtml;
             }
         }
+
     }
+
 }

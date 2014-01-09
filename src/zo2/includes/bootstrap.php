@@ -23,6 +23,9 @@ JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 /* Build development into production */
 $assets = Zo2Assets::getInstance();
 $assets->buildFrameworkProduction();
+$assets->loadAssetsList('core.assets.load.json');
+$assets->loadAssetsList('template.assets.load.json');
+
 /* Load core assets */
 Zo2Framework::loadAssets();
 
