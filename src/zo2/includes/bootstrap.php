@@ -20,14 +20,22 @@ JLoader::discover('Zo2Helper', ZO2PATH_ROOT . '/helpers');
 JLoader::discover('Zo2Service', ZO2PATH_ROOT . '/libraries/services');
 JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 
-/* Build development into production */
 $assets = Zo2Assets::getInstance();
+/**
+ * @todo call build list first than do build later
+ */
 $assets->buildFrameworkProduction();
-$assets->loadAssetsList('core.assets.load.json');
-$assets->loadAssetsList('template.assets.load.json');
-
 /* Load core assets */
-Zo2Framework::loadAssets();
+$assets->importAssets('core.assets.load.json');
+/* Load template assets */
+$assets->importAssets('template.assets.load.json');
+$assets->loadAssets();
+/**
+ * @todo remove and replace by $assets->importAssets('template.assets.load.json');
+ */
+Zo2Framework::prepareTemplateAssets();
+Zo2Framework::preparePresets();
+Zo2Framework::prepareCustomFonts();
 
 Zo2Framework::init();
 Zo2Framework::getTemplateLayouts();

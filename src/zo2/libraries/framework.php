@@ -99,80 +99,7 @@ if (!class_exists('Zo2Framework')) {
             return self::$_instance;
         }
 
-        /**
-         * Load scripts assets for both frontend & backend
-         */
-        public static function loadAssets() {
-            $application = JFactory::getApplication();
-            $assets = Zo2Assets::getInstance();
-
-            /* Backend loading */
-            if ($application->isAdmin()) {
-                /* Only work in Zo2 Template */
-                if (self::allowOverrideAdminTemplate()) {
-                    /* Only for Joomla! 2.5 */
-                    if (self::isJoomla25()) {
-                        /* Allow user turn of jQuery if needed */
-                        if (self::get('load_jquery') == 1) {
-                            $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
-                            $assets->addScript('vendor/jquery/jquery.noConflict.js');
-                        }
-                        /* For Joomla! 2.5 we need load Bootstrap 2.x */
-                        $assets->addScript('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js');
-                        $assets->addStyleSheet('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css');
-                    }
-                    /**
-                     * For both Joomla! 2.5 & 3.x
-                     */
-                    /* Extra Bootstrap addons */
-                    $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
-                    $assets->addScript('vendor/bootstrap/addons/bootstrap-colorpicker/js/bootstrap-colorpicker.js');
-                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-colorpicker/css/bootstrap-colorpicker.css');
-                    /* Fonts */
-                    $assets->addScript('vendor/fontselect/jquery.fontselect.js');
-                    $assets->addStyleSheet('vendor/fontselect/fontselect.css');
-                    $assets->addStyleSheet('vendor/fontello/css/fontello.css');
-                    /* Our styles & scripts */
-                    $assets->addStyleSheet('zo2/css/admin.css');
-                    $assets->addStyleSheet('zo2/css/adminmegamenu.css');
-                }
-            } else {
-                /* Allow user turn of jQuery if needed */
-                if (self::isJoomla25() && self::get('load_jquery') == 1) {
-                    $assets->addScript('vendor/jquery/jquery-1.9.1.min.js');
-                    $assets->addScript('vendor/jquery/jquery.noConflict.js');
-                }
-
-                /* Load Boostrap */
-                $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.min.css');
-                $assets->addScript('vendor/bootstrap/core/js/bootstrap.min.js');
-                $assets->addStyleSheet('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css');
-                /* Shortcodes */
-                $assets->addStyleSheet('zo2/css/shortcodes.css');
-                /* RTL */
-                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
-                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
-                /**
-                 * @todo !
-                 */
-                if (Zo2Framework::get('responsive_layout'))
-                    $assets->addStyleSheet('css/non-responsive.css');
-
-                // template assets
-                self::prepareTemplateAssets();
-
-                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
-                    $assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
-
-                // presets
-                self::preparePresets();
-
-                // custom fonts
-                self::prepareCustomFonts();
-            }
-        }
-
-        private static function prepareTemplateAssets() {
+        public static function prepareTemplateAssets() {
             $assets = Zo2Assets::getInstance();
             $assetsJsonPath = $assets->getPath($assets->get('siteTemplate') . '/layouts/assets.json');
             if (file_exists($assetsJsonPath)) {
@@ -188,7 +115,7 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        private static function prepareCustomFonts() {
+        public static function prepareCustomFonts() {
             $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
                 'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
                 'h5_font' => 'h5', 'h6_font' => 'h6'
@@ -222,7 +149,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        private static function buildStandardFontStyle($data, $selector) {
+        public static function buildStandardFontStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $style = '';
             if (!empty($data['family']))
@@ -257,7 +184,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        private static function buildGoogleFontsStyle($data, $selector) {
+        public static function buildGoogleFontsStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $api = 'http://fonts.googleapis.com/css?family=';
             $url = '';
@@ -305,7 +232,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        private static function buildFontDeckStyle($data, $selector) {
+        public static function buildFontDeckStyle($data, $selector) {
             $fontdeckCode = Zo2Framework::get('fontdeck_code');
             $assets = Zo2Assets::getInstance();
 
@@ -341,7 +268,7 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        private static function preparePresets() {
+        public static function preparePresets() {
             $preset = Zo2Framework::get('theme');
             $zo2 = Zo2Framework::getInstance();
             $assets = Zo2Assets::getInstance();
@@ -770,6 +697,14 @@ if (!class_exists('Zo2Framework')) {
         public static function isZo2Template() {
             $templateName = Zo2Framework::getTemplateName();
             return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
+        }
+
+        public static function getAsset($name, $data = array()) {
+            static $assets = array();
+            if (empty($assets[$name])) {
+                $assets[$name] = new Zo2Asset($data);
+            }
+            return $assets[$name];
         }
 
     }

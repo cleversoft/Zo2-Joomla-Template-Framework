@@ -86,10 +86,46 @@ if (!class_exists('Zo2Assets')) {
             return false;
         }
 
-        public function loadAssetsList($file) {
+        public function importAssets($file) {
             $assetFile = $this->getAssetFile($file);
             if ($assetFile) {
-                $this->_assets = array_merge_recursive($this->_assets, json_decode(JFile::read($assetFile), true));
+                $this->_assets = array_merge_recursive($this->_assets, json_decode(JFile::read($this->getPath($assetFile)), true));
+            }
+        }
+
+        public function loadAssets() {
+            $application = JFactory::getApplication();
+            /* Dynamic load by backend options */
+            if ($application->isAdmin()) {
+                if (Zo2Framework::allowOverrideAdminTemplate()) {
+                    if (Zo2Framework::isJoomla25()) {
+                        /* Allow user turn of jQuery if needed */
+                        if (self::get('load_jquery') == 1) {
+                            $this->addScript('vendor/jquery/jquery-1.9.1.min.js');
+                            $this->addScript('vendor/jquery/jquery.noConflict.js');
+                        }
+                        /* For Joomla! 2.5 we need load Bootstrap 2.x */
+                        $this->addScript('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js');
+                        $this->addStyleSheet('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css', 'css');
+                    }
+                }
+            } else {
+                /* Allow user turn of jQuery if needed */
+                if (Zo2Framework::isJoomla25() && Zo2Framework::get('load_jquery') == 1) {
+                    $this->addScript('vendor/jquery/jquery-1.9.1.min.js');
+                    $this->addScript('vendor/jquery/jquery.noConflict.js');
+                }
+                /* RTL */
+                if (self::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
+                    $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+                /* Responsive */
+                if (Zo2Framework::get('responsive_layout'))
+                    $this->addStyleSheet('css/non-responsive.css');
+            }
+
+            foreach ($this->_assets as $name => $data) {
+                $asset = Zo2Framework::getAsset($name, $data);
+                $asset->load();
             }
         }
 
