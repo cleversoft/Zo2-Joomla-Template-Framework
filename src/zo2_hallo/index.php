@@ -35,21 +35,21 @@ $socialShares = new Zo2Socialshares();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
-    <head>
-        <?php if ($responsive) { ?>
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <?php } ?>
-        <?php if ($favicon) { ?>
-            <link rel="icon" type="image/x-icon" href="<?php echo $favicon ?>" />
-        <?php } ?>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <?php if ($responsive) { ?>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php } ?>
+    <?php if ($favicon) { ?>
+        <link rel="icon" type="image/x-icon" href="<?php echo $favicon ?>" />
+    <?php } ?>
     <jdoc:include type="head" />
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 </head>
-<body class="<?php echo $layout->getBodyClass() ?>">        
+<body class="<?php echo $layout->getBodyClass() ?> <?php echo $this->direction;?> ">
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
     <?php echo Zo2Framework::displayOffCanvasMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate()) ?>    
     <section class="wrapper">
         <!-- SocialShare -->

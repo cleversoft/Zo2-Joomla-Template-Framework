@@ -35,6 +35,7 @@ Version 1.0: [zo2_v1.0_package.zip](http://download.zootemplate.com/download/52a
 
 Version 1.2: [zo2_1.2_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_1.2_package.zip)
 
+Version 1.2.1: [zo2_1.2.1_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_package_1.2.1.zip)
 ##Demo
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
 

@@ -11,25 +11,23 @@
  * @license     GPL v2
  */
 //no direct accees
-defined('_JEXEC') or die ('resticted aceess');
+defined('_JEXEC') or die('resticted aceess');
 /**
  * Zo2Comments Class
  * @package     zo2
  * @subpackage  Zo2Comments
  */
 JLoader::register('K2HelperUtilities', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'utilities.php');
-JLoader::register('K2HelperRoute', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR. 'route.php');
+JLoader::register('K2HelperRoute', JPATH_SITE . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . 'com_k2' . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'route.php');
 
-class Zo2Comments
-{
-    function __construct($article)
-    {
+class Zo2Comments {
+
+    function __construct($article) {
         $this->http = JHttpFactory::getHttp();
         $this->row = $article;
     }
 
-    function getFacebookCount($url = "")
-    {
+    function getFacebookCount($url = "") {
 
         if (empty($url)) {
             $url = JUri::getInstance()->toString();
@@ -47,8 +45,7 @@ class Zo2Comments
         return 0;
     }
 
-    function getGplusCount($url = '')
-    {
+    function getGplusCount($url = '') {
 
         if (empty($url)) {
             $url = JUri::getInstance()->toString();
@@ -68,11 +65,9 @@ class Zo2Comments
         }
 
         return 0;
-
     }
 
-    function getDisqusCount($url = '')
-    {
+    function getDisqusCount($url = '') {
 
         $params = Zo2Framework::getParams();
 
@@ -87,18 +82,16 @@ class Zo2Comments
             if (!empty($json)) {
                 return $json->response->posts;
             }
-
         }
 
         return 0;
     }
 
-    function getCountItem($itemID, $url, $published = true)
-    {
+    function getCountItem($itemID, $url, $published = true) {
 
-        $itemID = (int)$itemID;
+        $itemID = (int) $itemID;
 
-        $index = $itemID . '_' . (int)$published;
+        $index = $itemID . '_' . (int) $published;
         static $ItemComment = array();
         if (isset($ItemComment[$index])) {
             return $ItemComment[$index];
@@ -118,15 +111,12 @@ class Zo2Comments
             return $ItemComment[$index];
         }
         return 0;
-
     }
 
-    function getItemComments($itemId)
-    {
+    function getItemComments($itemId) {
 
         //$comments = JTable::getInstance('K2Comments', 'Table');
-
-       // $comments->load($itemId);
+        // $comments->load($itemId);
 
         $db = JFactory::getDBO();
         $query = "SELECT * FROM #__k2_comments WHERE itemID=" . $itemId;
@@ -148,15 +138,12 @@ class Zo2Comments
             } else {
                 $comment->userLink = $comment->commentURL;
             }
-
         }
 
         return $comments;
-
     }
 
-    function renderHtml()
-    {
+    function renderHtml() {
         $layout = Zo2Layout::getInstance();
         $assets = Zo2Assets::getInstance();
         $params = Zo2Framework::getParams();
@@ -166,6 +153,7 @@ class Zo2Comments
         $assets->addStyleSheet('addons/comments/css/comments.css');
         $assets->addScriptDeclaration('
                 jQuery(document).ready(function() {
+					var comment_width = 0;
                     comment_width = jQuery(\'#zo2comment-tabs\').innerWidth();
                 });'
         );
@@ -178,7 +166,7 @@ class Zo2Comments
         $html .= '<ul class="nav nav-tabs nav-justified ">';
 
         if (JFactory::getApplication()->input->getCmd('option') == 'com_k2') {
-           unset($tab_order['k2comment']);
+            unset($tab_order['k2comment']);
         }
 
 
@@ -215,7 +203,7 @@ class Zo2Comments
                     $html .= '<div id="fb-comments">Loading Facebook Comments ...</div>';
                     $html .= '<script type="text/javascript">';
                     $html .= 'jQuery(document).ready(function($){
-                                        $(\'#fb-comments\').html(\'<div class="fb-comments" data-width="\'+comment_width+\'" data-href="' . $url . '" data-num-posts="20" data-colorscheme="light" data-mobile="auto"></div>\');
+                                        $(\'#fb-comments\').html(\'<div class="fb-comments" data-href="' . $url . '" data-num-posts="20" data-colorscheme="light" data-mobile="auto"></div>\');
                                       });';
                     $html .= '</script>';
                     $html .= '<script async type="text/javascript" src="//connect.facebook.net/en_US/all.js#xfbml=1">FB.init();</script>';
@@ -225,7 +213,7 @@ class Zo2Comments
 
                     $html .= '<script type="text/javascript">';
                     $html .= 'jQuery(document).ready(function($) {
-                                            $(\'#gplus\').html(\'<div class="g-comments" data-width="\'+comment_width+\'" data-href="' . $url . '" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">Loading Google+ Comments ...</div>\');
+                                            $(\'#gplus\').html(\'<div class="g-comments" data-href="' . $url . '" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">Loading Google+ Comments ...</div>\');
                                     });';
                     $html .= '</script>';
                     $html .= '<script async type="text/javascript" src="//apis.google.com/js/plusone.js?callback=gpcb"></script>';
@@ -374,7 +362,6 @@ class Zo2Comments
                                 $html .= '<p>' . $comment->commentText . '</p>';
 
                                 $html .= '</li>';
-
                             }
 
                             $html .= '</ul>';
@@ -396,8 +383,6 @@ class Zo2Comments
 
 
         return $html;
-
     }
-
 
 }
