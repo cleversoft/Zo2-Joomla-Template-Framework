@@ -126,18 +126,20 @@ if (!class_exists('Zo2Framework')) {
 
                 if (!empty($value)) {
                     $data = json_decode($value, true);
-                    switch ($data['type']) {
-                        case 'standard':
-                            self::buildStandardFontStyle($data, $selector);
-                            break;
-                        case 'googlefonts':
-                            self::buildGoogleFontsStyle($data, $selector);
-                            break;
-                        case 'fontdeck':
-                            self::buildFontDeckStyle($data, $selector);
-                            break;
-                        default:
-                            break;
+                    if (isset($data['type']) && !empty($data['type'])) {
+                        switch ($data['type']) {
+                            case 'standard':
+                                self::buildStandardFontStyle($data, $selector);
+                                break;
+                            case 'googlefonts':
+                                self::buildGoogleFontsStyle($data, $selector);
+                                break;
+                            case 'fontdeck':
+                                self::buildFontDeckStyle($data, $selector);
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
@@ -270,10 +272,11 @@ if (!class_exists('Zo2Framework')) {
 
         public static function preparePresets() {
             $preset = Zo2Framework::get('theme');
-            $zo2 = Zo2Framework::getInstance();
+            //$zo2 = Zo2Framework::getInstance();
             $assets = Zo2Assets::getInstance();
             if (empty($preset)) {
-                $presetPath = $zo2->getCurrentTemplateAbsolutePath() . '/layouts/presets.json';
+                $path = new Zo2Path();
+                $presetPath = $path->getPath($path->get('siteTemplate') . '/layouts/presets.json');
                 $presets = array();
                 if (file_exists($presetPath)) {
                     $presets = json_decode(file_get_contents($presetPath), true);
@@ -287,18 +290,18 @@ if (!class_exists('Zo2Framework')) {
                     $presetData = $presets[0];
                 else
                     $presetData = array(
-                        'name' => $defaultData['name'],
-                        'css' => $defaultData['css'],
-                        'less' => $defaultData['less'],
-                        'background' => $defaultData['variables']['background'],
-                        'header' => $defaultData['variables']['header'],
-                        'header_top' => $defaultData['variables']['header_top'],
-                        'text' => $defaultData['variables']['text'],
-                        'link' => $defaultData['variables']['link'],
-                        'link_hover' => $defaultData['variables']['link_hover'],
-                        'bottom1' => $defaultData['variables']['bottom1'],
-                        'bottom2' => $defaultData['variables']['bottom2'],
-                        'footer' => $defaultData['variables']['footer']
+                        'name' => $defaultData['name'] ? $defaultData['name'] : '',
+                        'css' => $defaultData['css'] ? $defaultData['css'] : '',
+                        'less' => $defaultData['less'] ? $defaultData['less'] : '',
+                        'background' => $defaultData['variables']['background'] ? $defaultData['variables']['background'] : '',
+                        'header' => $defaultData['variables']['header'] ? $defaultData['variables']['header'] : '',
+                        'header_top' => $defaultData['variables']['header_top'] ? $defaultData['variables']['header_top'] : '',
+                        'text' => $defaultData['variables']['text'] ? $defaultData['variables']['text'] : '',
+                        'link' => $defaultData['variables']['link'] ? $defaultData['variables']['link'] : '',
+                        'link_hover' => $defaultData['variables']['link_hover'] ? $defaultData['variables']['link_hover'] : '',
+                        'bottom1' => $defaultData['variables']['bottom1'] ? $defaultData['variables']['bottom1'] : '',
+                        'bottom2' => $defaultData['variables']['bottom2'] ? $defaultData['variables']['bottom2'] : '',
+                        'footer' => $defaultData['variables']['footer'] ? $defaultData['variables']['footer'] : ''
                     );
             }
             if (!empty($preset))
@@ -523,10 +526,13 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function getCurrentPage() {
             $app = JFactory::getApplication();
-            if ($app->getMenu()->getActive()->home)
-                return 'homepage';
-            else
-                return $app->input->getString('view', 'homepage');
+            $menu = $app->getMenu();
+            if (isset($menu)) {
+                $activeMenu = $menu->getActive();
+                if (isset($activeMenu) && $activeMenu->home) return 'homepage';
+            }
+
+            return $app->input->getString('view', 'homepage');
         }
 
         /**
