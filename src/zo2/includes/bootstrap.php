@@ -24,16 +24,18 @@ $assets = Zo2Assets::getInstance();
 /**
  * @todo call build list first than do build later
  */
-$assets->buildFrameworkProduction();
+//$assets->buildFrameworkProduction();
 /* Load core assets */
 $assets->importAssets('core.assets.load.json');
 /* Load template assets */
 $assets->importAssets('template.assets.load.json');
 $assets->loadAssets();
+
 /**
  * @todo remove and replace by $assets->importAssets('template.assets.load.json');
  */
-Zo2Framework::prepareTemplateAssets();
+
+//Zo2Framework::prepareTemplateAssets();
 Zo2Framework::preparePresets();
 Zo2Framework::prepareCustomFonts();
 
