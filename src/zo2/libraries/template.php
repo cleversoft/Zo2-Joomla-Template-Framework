@@ -20,7 +20,7 @@ if (!class_exists('Zo2Template')) {
     /**
      * 
      */
-    class Zo2Template extends Zo2Path {
+    class Zo2Template extends JObject {
 
         public function toDataAttributes() {
             $properties = $this->getProperties();
@@ -37,7 +37,7 @@ if (!class_exists('Zo2Template')) {
          * @return string
          */
         public function fetch($tmplFile) {
-            $tmplFilePath = $this->getPath($tmplFile);
+            $tmplFilePath = Zo2HelperPath::getPath($tmplFile);
             if (JFile::exists($tmplFile)) {
                 ob_start();
                 include $tmplFile;
