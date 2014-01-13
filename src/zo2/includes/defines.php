@@ -41,3 +41,9 @@ define('ZO2URL_ASSETS', ZO2URL_ROOT . '/assets');
 define('ZO2URL_ASSETS_ZO2', ZO2URL_ASSETS . '/zo2');
 define('ZO2URL_ASSETS_ZO2_DEVELOPMENT', ZO2URL_ASSETS_ZO2 . '/development');
 define('ZO2URL_ASSETS_VENDOR', ZO2URL_ASSETS . '/vendor');
+
+/**
+ * Core and Template
+ */
+define('CORE', 'core');
+define('TEMPLATE', 'template');

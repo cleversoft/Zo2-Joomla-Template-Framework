@@ -65,7 +65,7 @@ if (!class_exists('Zo2HelperPath')) {
          * @param type $type
          * @return type
          */
-        public static function getTemplateFilePath($file, $type) {
+        public static function getTemplateFilePath($file, $type = null) {
             if ($type === 'path') {
                 return self::getPath(self::getSiteTemplatePath() . '/' . $file);
             } elseif ($type === 'url') {

@@ -62,6 +62,12 @@ if (!class_exists('Zo2Assets')) {
         private $_assets = array();
 
         /**
+         * Array of build list
+         * @var array
+         */
+        private $_builds = array();
+
+        /**
          * Construct method
          * We do not allow create new instance directly. Must go via getInstance
          */
@@ -134,6 +140,81 @@ if (!class_exists('Zo2Assets')) {
             }
             return false;
         }
+
+        private function getOutputPath($file) {
+            $filePathArr = explode('/', $file['path']);
+            $fileName = $filePathArr[count($filePathArr) - 1];
+            $outputPath = null;
+            switch ($file['type']) {
+                case 'less':
+                    $outputPath = $filePathArr[0].'/css/'.explode('.less', $fileName)[0].'.css';
+                    break;
+                case 'js':
+                    $outputPath = $filePathArr[0].'/js/'.explode('.js', $fileName)[0].'.min.js';
+                    break;
+                case 'css':
+                    $outputPath = $filePathArr[0].'/css/'.$fileName;
+                    break;
+            }
+            if($outputPath != null) {
+                if($file['position'] == CORE){
+                    return Zo2HelperPath::getZo2FilePath('assets/' . $outputPath, null);
+                }
+                elseif($file['position'] == TEMPLATE){
+                    return Zo2HelperPath::getTemplateFilePath('assets/' . $outputPath, null);
+                }
+            }
+        }
+
+        private function getInputPath($file) {
+            if($file['position'] == CORE){
+                return Zo2HelperPath::getZo2FilePath('assets/' . $file['path'], null);
+            }
+            elseif($file['position'] == TEMPLATE){
+                return Zo2HelperPath::getTemplateFilePath('assets/' . $file['path'], null);
+            }
+        }
+
+        /**
+         * Import build list from json file
+         * @param type $file
+         */
+        public function loadBuildList($file) {
+            $assetFile = $this->getAssetFile($file, 'path');
+            if ($assetFile) {
+                $buildArr = json_decode(JFile::read($assetFile), true);
+                if(count($buildArr) > 0)
+                    $this->_builds = array_merge_recursive($this->_builds, $buildArr);
+            }
+
+        }
+
+        public function addBuildList(array $buildList) {
+            $this->_builds = array_merge_recursive($this->_builds, $buildList);
+        }
+
+        public function buildAssets(){
+            if(count($this->_builds) >0 ) {
+                foreach($this->_builds as $file) {
+                    if(JFile::exists($this->getInputPath($file))) {
+                        switch ($file['type']) {
+                            case 'less':
+                                Zo2HelperCompiler::less($this->getInputPath($file), $this->getOutputPath($file));
+                                break;
+                            case 'js':
+                                Zo2HelperCompiler::javascript($this->getInputPath($file), $this->getOutputPath($file));
+                                break;
+                            case 'css':
+                                Zo2HelperCompiler::styleSheet($this->getInputPath($file), $this->getOutputPath($file));
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
 
         /**
          * Import assets from json file
@@ -421,5 +502,4 @@ if (!class_exists('Zo2Assets')) {
         }
 
     }
-
 }
