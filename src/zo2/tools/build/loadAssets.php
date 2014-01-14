@@ -44,7 +44,7 @@ class Zo2Asset {
 $assets['css.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/css/bootstrap.min.css', 'css', '3.0.3');
 $assets['css.bootstrap']->loadInJFrontend('*');
 $assets['js.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.min.js', 'js', '3.0.3');
-$assets['js.bootstrap']->loadInJFrontend('*');
+$assets['js.bootstrap']->loadInJFrontend('2.*');
 /**
  * Bootstrap 2.x will use only for backend
  */
@@ -82,7 +82,9 @@ $assets['css.admin']->loadInJBackend('*');
 /* Shortcodes */
 $assets['css.shortcodes'] = new Zo2Asset('zo2/css/shortcodes.css', 'css', '');
 $assets['css.shortcodes']->loadInJFrontend('*');
-
+/* Our own scripts */
+$assets['scripts'] = new Zo2Asset('zo2/js/scripts.js', 'js', '');
+$assets['scripts']->loadInJFrontend('*');
 file_put_contents(realpath(__DIR__) . '/../../assets/core.assets.load.json', json_encode($assets));
 echo '<pre>';
 print_r(json_decode(json_encode($assets)));

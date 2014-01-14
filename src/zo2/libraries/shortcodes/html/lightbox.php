@@ -26,13 +26,7 @@ if (JFile::exists($fileSource)) {
 } else {
     $thumbnail = $this->get('src');
 }
-$name = 'colorbox-' . md5($source);
 ?>
-<a id="<?php echo $name; ?>"href="<?php echo $source; ?>" class="colorbox">
+<a href="<?php echo $source; ?>" class="colorbox">
     <img src="<?php echo $thumbnail; ?>" />
 </a>
-<script>
-    jQuery(document).ready(function() {
-        jQuery('a#<?php echo $name; ?>').colorbox();
-    })
-</script>
