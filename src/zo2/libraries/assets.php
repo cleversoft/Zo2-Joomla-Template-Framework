@@ -69,7 +69,7 @@ if (!class_exists('Zo2Assets')) {
             $application = JFactory::getApplication();
             /* Dynamic load by backend options */
             if ($application->isAdmin()) {
-                if (Zo2Framework::allowOverrideAdminTemplate()) {
+                if (Zo2Framework::isZo2Template()) {
                     if (Zo2Framework::isJoomla25()) {
                         /* Allow user turn of jQuery if needed */
                         if (self::get('load_jquery') == 1) {

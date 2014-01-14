@@ -35,53 +35,144 @@ if (!class_exists('Zo2Framework')) {
          * @var Zo2Layout
          */
         private $_layout = null;
-        private static $_currentTemplatePath;
         private static $_scripts = array();
         private static $_scriptDeclarations = array();
         private static $_styles = array();
         private static $_styleDeclarations = array();
-        private static $_isAdmin = false;
 
         public function __construct() {
             
         }
 
         /**
-         * Init Zo2Framework
+         * Return current template object
+         * @staticvar null $template
+         * @param type $id
+         * @return type
          */
-        public static function init() {
-            $zo2 = self::getInstance();
-            Zo2Framework::import('core.Zo2Layout');
-            Zo2Framework::import('core.Zo2Component');
-            Zo2Framework::import('core.Zo2AssetsManager');
-
-            $app = JFactory::getApplication();
-            /* temporary fix for Joomla! 3.2 */
-            if (!Zo2Framework::isJoomla25()) {
-                $app->loadLanguage();
+        public static function getTemplate($id = null) {
+            static $template = null;
+            if (empty($template)) {
+                if (self::isSite()) {
+                    $template = JFactory::getApplication()->getTemplate(true);
+                } else {
+                    $template = false;
+                    if ($id === null)
+                        $id = self::getRequest('id');
+                    if ($id) {
+                        $db = JFactory::getDBO();
+                        $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
+                                ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                        $db->setQuery($query);
+                        $template = $db->loadObject();
+                        if ($template) {
+                            $template->params = new JRegistry($template->params);
+                        }
+                    }
+                }
             }
+            return $template;
+        }
 
-            $templateName = $app->getTemplate();
-            $layout = new Zo2Layout($templateName);
-            $zo2->setLayout($layout);
-
-            // JViewLegacy
-            if (!class_exists('JViewLegacy', false))
-                Zo2Framework::import('core.classes.legacy');
-
-            if (!$app->isAdmin()) {
-
-                // JModuleHelper
-                if (!class_exists('JModuleHelper', false))
-                    Zo2Framework::import('core.classes.helper');
-            } else {
-                
+        /**
+         * Get template params' property
+         * @param string $property
+         * @param mixed $default
+         *
+         * @return mixed
+         */
+        public static function get($property, $default = null) {
+            if (self::getTemplate()) {
+                return self::getTemplate()->params->get($property, $default);
             }
+            return $default;
+        }
 
-            // set variable for env
-            Zo2Framework::$_currentTemplatePath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName();
+        /**
+         * Get template name
+         * @return string
+         */
+        public static function getTemplateName() {
+            $template = self::getTemplate();
+            if ($template)
+                return self::getTemplate()->template;
+        }
 
-            self::$_isAdmin = $app->isAdmin();
+        /**
+         * Get template physical path
+         * @return string
+         */
+        public static function getTemplatePath() {
+            return JPATH_THEMES . DIRECTORY_SEPARATOR . self::getTemplateName();
+        }
+
+        /**
+         * Determine if we'r using Zo2 Template
+         * @return boolean
+         */
+        public static function isZo2Template() {
+            $templatePath = self::getTemplatePath();
+            $templateName = self::getTemplateName();
+            if (JFile::exists($templatePath . '/assets/template.json')) {
+                return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
+            }
+            return false;
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
+        public static function getTemplateAssets() {
+            $templatePath = self::getTemplatePath();
+            $templateName = self::getTemplateName();
+            if (JFile::exists($templatePath . '/assets/template.json')) {
+                return json_decode(file_get_contents($templatePath . '/assets/template.json'));
+            }
+            return false;
+        }
+
+        public static function getTemplatePositions() {
+            $path = self::getTemplatePath() . '/templateDetails.xml';
+            $positions = array();
+            if (JFile::exists($path)) {
+                $xml = simplexml_load_file($path);
+                $positions = (array) $xml->positions;
+                if (isset($positions['position']))
+                    $positions = $positions['position'];
+                else
+                    $positions = array();
+            }
+            return $positions;
+        }
+
+        /**
+         * 
+         * @return type
+         */
+        public static function isSite() {
+            return JFactory::getApplication()->isSite();
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
+        public static function isJoomla25() {
+            $jVer = new JVersion();
+            return $jVer->RELEASE == '2.5';
+        }
+
+        /**
+         * Wrapper for JInput get
+         * @param type $name
+         * @param type $default
+         * @param type $filter
+         * @return type
+         */
+        public static function getRequest($name, $default = null, $filter = 'cmd') {
+            $jinput = JFactory::getApplication()->input;
+            return $jinput->get($name, $default, $filter);
         }
 
         /**
@@ -275,8 +366,8 @@ if (!class_exists('Zo2Framework')) {
             //$zo2 = Zo2Framework::getInstance();
             $assets = Zo2Assets::getInstance();
             if (empty($preset)) {
-                $path = new Zo2Path();
-                $presetPath = $path->getPath($path->get('siteTemplate') . '/layouts/presets.json');
+
+                $presetPath = Zo2HelperPath::getTemplateFilePath('layouts/presets.json', 'path');
                 $presets = array();
                 if (file_exists($presetPath)) {
                     $presets = json_decode(file_get_contents($presetPath), true);
@@ -290,18 +381,18 @@ if (!class_exists('Zo2Framework')) {
                     $presetData = $presets[0];
                 else
                     $presetData = array(
-                        'name' => $defaultData['name'] ? $defaultData['name'] : '',
-                        'css' => $defaultData['css'] ? $defaultData['css'] : '',
-                        'less' => $defaultData['less'] ? $defaultData['less'] : '',
-                        'background' => $defaultData['variables']['background'] ? $defaultData['variables']['background'] : '',
-                        'header' => $defaultData['variables']['header'] ? $defaultData['variables']['header'] : '',
-                        'header_top' => $defaultData['variables']['header_top'] ? $defaultData['variables']['header_top'] : '',
-                        'text' => $defaultData['variables']['text'] ? $defaultData['variables']['text'] : '',
-                        'link' => $defaultData['variables']['link'] ? $defaultData['variables']['link'] : '',
-                        'link_hover' => $defaultData['variables']['link_hover'] ? $defaultData['variables']['link_hover'] : '',
-                        'bottom1' => $defaultData['variables']['bottom1'] ? $defaultData['variables']['bottom1'] : '',
-                        'bottom2' => $defaultData['variables']['bottom2'] ? $defaultData['variables']['bottom2'] : '',
-                        'footer' => $defaultData['variables']['footer'] ? $defaultData['variables']['footer'] : ''
+                        'name' => isset($defaultData['name']) ? $defaultData['name'] : '',
+                        'css' => isset($defaultData['css']) ? $defaultData['css'] : '',
+                        'less' => isset($defaultData['less']) ? $defaultData['less'] : '',
+                        'background' => isset($defaultData['variables']['background']) ? $defaultData['variables']['background'] : '',
+                        'header' => isset($defaultData['variables']['header']) ? $defaultData['variables']['header'] : '',
+                        'header_top' => isset($defaultData['variables']['header_top']) ? $defaultData['variables']['header_top'] : '',
+                        'text' => isset($defaultData['variables']['text']) ? $defaultData['variables']['text'] : '',
+                        'link' => isset($defaultData['variables']['link']) ? $defaultData['variables']['link'] : '',
+                        'link_hover' => isset($defaultData['variables']['link_hover']) ? $defaultData['variables']['link_hover'] : '',
+                        'bottom1' => isset($defaultData['variables']['bottom1']) ? $defaultData['variables']['bottom1'] : '',
+                        'bottom2' => isset($defaultData['variables']['bottom2']) ? $defaultData['variables']['bottom2'] : '',
+                        'footer' => isset($defaultData['variables']['footer']) ? $defaultData['variables']['footer'] : ''
                     );
             }
             if (!empty($preset))
@@ -351,67 +442,6 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Get Zo2 Framework plugin path
-         *
-         * @return string
-         */
-        public static function getSystemPluginPath() {
-            return JURI::root(true) . '/plugins/system/zo2';
-        }
-
-        public static function getPluginPath() {
-            return JPATH_SITE . '/plugins/system/zo2';
-        }
-
-        /**
-         * Import file from Zo2Framework plugin directory
-         *
-         * @param string $filepath Dot syntax file path
-         * @param bool $once Require this file only once
-         * @return bool
-         */
-        public static function import($filepath, $once = true) {
-            $filepath = str_replace('.', '/', $filepath);
-            $path = Zo2Framework::getPluginPath() . '/' . $filepath . '.php';
-            if (file_exists($path) && !is_dir($path)) {
-                $once ? require_once $path : require $path;
-                return true;
-            } else
-                return false;
-        }
-
-        /**
-         * Get template name
-         *
-         * Use from backend
-         *
-         * @param int $templateId
-         * @return string
-         */
-        public static function getTemplateName($templateId = 0) {
-            $app = JFactory::getApplication();
-            if ($app->isAdmin()) {
-                $jinput = JFactory::getApplication()->input;
-                if ($templateId == 0 && !isset($_GET['id']))
-                    return '';
-                if ($templateId == 0 && isset($_GET['id']))
-                    $templateId = $jinput->getInt('id');
-
-                //if(!isset($_GET['id'])) return '';
-                $db = JFactory::getDBO();
-                $sql = 'SELECT template
-                    FROM #__template_styles
-                    WHERE id = ' . $templateId;
-                $db->setQuery($sql);
-                return $db->loadResult();
-            }
-            else if ($app->isSite()) {
-                return $app->getTemplate();
-            } else
-                return '';
-        }
-
-        /**
          * Get list of data components of current template. Usable from backend only.
          *
          * @param string $templateName
@@ -427,28 +457,6 @@ if (!class_exists('Zo2Framework')) {
             }
 
             return '';
-        }
-
-        /**
-         * Get template params
-         *
-         * Use from backend
-         *
-         * @param bool $assocArray
-         * @return mixed|string
-         */
-        public static function getTemplateParams($assocArray = true) {
-            $jinput = JFactory::getApplication()->input;
-            $templateId = $jinput->getInt('id');
-
-            if (!isset($_GET['id']))
-                return '';
-            $db = JFactory::getDBO();
-            $sql = 'SELECT params
-                FROM #__template_styles
-                WHERE id = ' . $templateId;
-            $db->setQuery($sql);
-            return json_decode($db->loadResult(), $assocArray);
         }
 
         /**
@@ -529,7 +537,8 @@ if (!class_exists('Zo2Framework')) {
             $menu = $app->getMenu();
             if (isset($menu)) {
                 $activeMenu = $menu->getActive();
-                if (isset($activeMenu) && $activeMenu->home) return 'homepage';
+                if (isset($activeMenu) && $activeMenu->home)
+                    return 'homepage';
             }
 
             return $app->input->getString('view', 'homepage');
@@ -544,7 +553,7 @@ if (!class_exists('Zo2Framework')) {
         public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
             Zo2Framework::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getParams();
+            $params = Zo2Framework::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -556,7 +565,7 @@ if (!class_exists('Zo2Framework')) {
 
         public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false) {
             Zo2Framework::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getParams();
+            $params = Zo2Framework::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -567,34 +576,6 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Get current template object
-         * @return array|string
-         */
-        public static function getTemplate() {
-            $template = JFactory::getApplication()->getTemplate(true);
-            if ($template) {
-                return $template;
-            } else {
-                return array();
-            }
-        }
-
-        /**
-         * Get current template params
-         * @param null $name
-         * @param null $default
-         * @return mixed
-         */
-        public static function getParams($name = null, $default = null) {
-
-            if ($name) {
-                return JFactory::getApplication()->getTemplate(true)->params->get($name, $default);
-            } else {
-                return JFactory::getApplication()->getTemplate(true)->params;
-            }
-        }
-
-        /**
          * Execute an action of the controller
          */
         public static function getController() {
@@ -602,38 +583,6 @@ if (!class_exists('Zo2Framework')) {
                 Zo2Framework::import('core.Zo2Controller');
                 Zo2Controller::exec($zo2controller);
             }
-        }
-
-        /**
-         * Get available positions of the current template.
-         * Use only from backend.
-         *
-         * @param $templateName
-         * @return string[]
-         */
-        public static function getAvailablePositions($templateName) {
-            $path = JPath::clean(JPATH_SITE . '/templates/' . $templateName . '/templateDetails.xml');
-
-            if (file_exists($path) && is_file($path)) {
-                $xml = simplexml_load_file($path);
-                $positions = (array) $xml->positions;
-                if (isset($positions['position']))
-                    $positions = $positions['position'];
-                else
-                    $positions = array();
-                return $positions;
-            } else
-                return array();
-        }
-
-        /**
-         * Get current template absolute local path.
-         * Use only from backend
-         *
-         * @return string
-         */
-        public static function getCurrentTemplateAbsolutePath() {
-            return Zo2Framework::$_currentTemplatePath;
         }
 
         /**
@@ -652,65 +601,31 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        /**
-         * 
-         * @return boolean
-         */
-        public static function isJoomla25() {
-            $jVer = new JVersion();
-            return $jVer->RELEASE == '2.5';
-        }
-
-        public static function allowOverrideAdminTemplate() {
-            $app = JFactory::getApplication();
-
-            if ($app->isAdmin()) {
-                $templateName = Zo2Framework::getTemplateName();
-                if (strpos(strtolower($templateName), 'zo2') !== false)
-                    return true;
-                else
-                    return false;
-            } else
-                return true;
-        }
-
-        /**
-         * Get template param' property
-         * @param string $property
-         * @param mixed $default
-         *
-         * @return mixed
-         */
-        public static function get($property, $default = null) {
-            if (self::getTemplate()) {
-                return self::getTemplate()->params->get($property, $default);
-            }
-            return $default;
-        }
-
-        /**
-         * @param $property
-         * @param $value
-         * @return mixed
-         */
-        public static function set($property, $value) {
-            if (self::getTemplate()) {
-                return self::getTemplate()->params->set($property, $value);
-            }
-            return false;
-        }
-
-        public static function isZo2Template() {
-            $templateName = Zo2Framework::getTemplateName();
-            return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
-        }
-
         public static function getAsset($name, $data = array()) {
             static $assets = array();
             if (empty($assets[$name])) {
                 $assets[$name] = new Zo2Asset($data);
             }
             return $assets[$name];
+        }
+
+        public static function getZo2Path() {
+            return realpath(__DIR__ . '/../');
+        }
+
+        /**
+         * Import file from Zo2Framework plugin directory
+         *
+         * @param string $filepath Dot syntax file path
+         * @param bool $once Require this file only once
+         * @return bool
+         */
+        public static function import($filePath, $once = true) {
+            $path = self::getZo2Path() . DIRECTORY_SEPARATOR . str_replace('.', DIRECTORY_SEPARATOR, $filePath) . '.php';
+            if (JFile::exists($path)) {
+                return $once ? include_once $path : include $path;
+            }
+            return false;
         }
 
     }

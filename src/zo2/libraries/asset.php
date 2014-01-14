@@ -45,11 +45,13 @@ if (!class_exists('Zo2Asset')) {
                     }
                 }
             } else { /* Backend */
-                if (isset($loadInBackend)) {
-                    foreach ($loadInBackend as $version) {
-                        if ($this->_isMatchJVersion($version)) {
-                            $this->_add($this->path, $this->type);
-                            $this->_loadDependencies();
+                if (Zo2Framework::isZo2Template()) {
+                    if (isset($loadInBackend)) {
+                        foreach ($loadInBackend as $version) {
+                            if ($this->_isMatchJVersion($version)) {
+                                $this->_add($this->path, $this->type);
+                                $this->_loadDependencies();
+                            }
                         }
                     }
                 }

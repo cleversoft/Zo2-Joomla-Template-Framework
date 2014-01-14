@@ -16,7 +16,7 @@ class Zo2Layout {
     /* private */
 
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -102,8 +102,7 @@ class Zo2Layout {
             $layoutCacheDir = $this->_layourDir . 'cache/';
             $path = $layoutCacheDir . $cache;
             $canCache = true;
-        }
-        else {
+        } else {
             $path = '';
             $layoutCacheDir = '';
         }
@@ -124,7 +123,8 @@ class Zo2Layout {
                 }
 
                 if ($canCache) {
-                    if (!is_dir($layoutCacheDir)) mkdir($layoutCacheDir, 0755);
+                    if (!is_dir($layoutCacheDir))
+                        mkdir($layoutCacheDir, 0755);
                     file_put_contents($path, $html);
                 }
             } else
@@ -132,7 +132,7 @@ class Zo2Layout {
         }
         if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
             $zo2 = Zo2Framework::getInstance();
-            $megamenu = $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+            $megamenu = $zo2->displayMegaMenu($zo2->get('menutype', 'mainmenu'), $zo2->getTemplate());
             $html = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $html);
         }
         return $html;
@@ -305,13 +305,12 @@ class Zo2Layout {
         return $input;
     }
 
-
     /**
      * Import components
      */
     public function importComponents() {
-        $zo2 = Zo2Framework::getInstance();
-        $pluginComponentsPath = $zo2->getPluginPath() . '/components/*.php';
+
+        $pluginComponentsPath = Zo2Framework::getZo2Path() . '/components/*.php';
         $templateComponentsPath = $this->_templatePath . 'components/*.php';
 
         $pluginComponents = glob($pluginComponentsPath);
@@ -342,7 +341,7 @@ class Zo2Layout {
      * @return bool
      */
     private static function hideComponent() {
-        $params = Zo2Framework::getParams();
+        $params = Zo2Framework::getTemplate()->params;
         $isFrontPage = Zo2Framework::isFrontPage();
         if ((int) $params->get('component_area', 0) && $isFrontPage) {
             return true;
@@ -351,33 +350,28 @@ class Zo2Layout {
         }
     }
 
-    public function addStyleSheet($url, $type = 'text/css')
-    {
+    public function addStyleSheet($url, $type = 'text/css') {
         $this->_style[] = array('path' => $url, 'mime' => $type);
     }
 
-    public function addStyleDeclaration($content, $type = 'text/css')
-    {
+    public function addStyleDeclaration($content, $type = 'text/css') {
         $this->_styleDeclaration[] = array('content' => $content, 'mime' => $type);
     }
 
-    public function addScriptDeclaration($content, $type = 'text/javascript')
-    {
+    public function addScriptDeclaration($content, $type = 'text/javascript') {
         $this->_scriptDeclaration[] = array('content' => $content, 'mime' => $type);
     }
 
-    public function addScript($url, $type = 'text/javascript')
-    {
+    public function addScript($url, $type = 'text/javascript') {
         $this->_script[] = array('path' => $url, 'mime' => $type);
     }
 
-    public static function getInstance()
-    {
+    public static function getInstance() {
         return Zo2Framework::getInstance()->getLayout();
     }
 
-    public function getTemplateUri()
-    {
+    public function getTemplateUri() {
         return $this->_templateUri;
     }
+
 }

@@ -34,11 +34,32 @@ $assets->loadAssets();
 /**
  * @todo remove and replace by $assets->importAssets('template.assets.load.json');
  */
-
 //Zo2Framework::prepareTemplateAssets();
 Zo2Framework::preparePresets();
 Zo2Framework::prepareCustomFonts();
 
-Zo2Framework::init();
+/**
+ * Framework init
+ */
+if (!Zo2Framework::isJoomla25()) {
+    JFactory::getApplication()->loadLanguage();
+}
+Zo2Framework::import('core.Zo2Layout');
+Zo2Framework::import('core.Zo2Component');
+Zo2Framework::import('core.Zo2AssetsManager');
+
+Zo2Framework::setLayout(new Zo2Layout(Zo2Framework::getTemplateName()));
+// JViewLegacy
+if (!class_exists('JViewLegacy', false))
+    Zo2Framework::import('core.classes.legacy');
+
+if (Zo2Framework::isSite()) {
+
+    // JModuleHelper
+    if (!class_exists('JModuleHelper', false))
+        Zo2Framework::import('core.classes.helper');
+} else {
+    
+}
 Zo2Framework::getTemplateLayouts();
 Zo2Framework::getController();

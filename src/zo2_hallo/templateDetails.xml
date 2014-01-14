@@ -218,44 +218,43 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     <option value="">JOPTION_ALL_CATEGORIES</option>
                 </field>
 
-                <field name="display_type" type="list" default="normal" label="Display Type"
-                       description="Choose between normal box and float box">
-                    <option value="normal">Normal</option>
-                    <option value="float">Float</option>
+                <field name="socialshare_floatbar" type="list" default="normal" label="Enable floatbar">                       
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
                 </field>
                                 
                 <field name="show_in_article" type="radio" default="0" label="Show  in Article"
-                       description="Display social box in Article" class="btn-group">
+                   description="Display social box in Article" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
 
                 <field name="show_in_category" type="radio" default="0" label="Show in Category"
-                       description="Display social box in Category" class="btn-group">
+                   description="Display social box in Category" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
             
                 <field name="show_in_featured" type="radio" default="0" label="Show in Featured"
-                       description="Display social box in Featured page" class="btn-group">
+                   description="Display social box in Featured page" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
             
                 <field name="show_social_article_list" type="radio" default="0" label="Show in list of articles"
-                       description="Display static social box in list of articles" class="btn-group">
+                   description="Display static social box in list of articles" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
 
                 <field name="normal_position" type="list" label="Normal type"
-                       description="Normal position" >
+                   description="Normal position" >
                     <option value="top">Top</option>
                     <option value="bottom">Bottom</option>
                 </field>
 
                 <field name="floating_position" type="list" label="Floating type"
-                       description="Float position" >
+                   description="Float position" >
                     <option value="float_left">Left</option>
                     <option value="float_right">Right</option>
                 </field>
@@ -301,12 +300,12 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     <option value="1">Show</option>
                 </field>
                 <field name="menuexin" type="radio" default="0" label="Include/Exclude menus"
-                       description="Include/Exclude menus" class="btn-group">
+                   description="Include/Exclude menus" class="btn-group">
                     <option value="1">Exclude</option>
                     <option value="0">Include</option>
                 </field>
                 <field name="excl_menu" size="10" type="menuitem" label="Menus"
-                       description="Menus" multiple="multiple"/>
+                   description="Menus" multiple="multiple"/>
 
                 <field name="less_compile" type="radio" default="1" label="Compile LESS" class="btn-group">
                     <option value="0">JNO</option>
