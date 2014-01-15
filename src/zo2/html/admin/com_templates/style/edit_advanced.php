@@ -9,14 +9,13 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-
 defined('_JEXEC') or die;
 ?>
 <div class="accordion" id="advanced-accordion">
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-google">
-                <?php echo JText::_('Google')?>
+                <?php echo JText::_('Google') ?>
             </a>
         </div>
         <div id="advanced-google" class="accordion-body collapse in">
@@ -44,7 +43,7 @@ defined('_JEXEC') or die;
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-comments">
-                <?php echo JText::_('Comments')?>
+                <?php echo JText::_('Comments') ?>
             </a>
         </div>
         <div id="advanced-comments" class="accordion-body collapse">
@@ -126,11 +125,12 @@ defined('_JEXEC') or die;
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-social-sharing">
-                <?php echo JText::_('Social Sharing')?>
+                <?php echo JText::_('Social Sharing') ?>
             </a>
         </div>
         <div id="advanced-social-sharing" class="accordion-body collapse">
             <div class="accordion-inner">
+                <!-- Enable / Disable Socialshares -->
                 <div class="control-group">
                     <div class="control-label">
                         <?php echo $this->form->getLabel('socialshare_floatbar', 'params'); ?>
@@ -139,6 +139,47 @@ defined('_JEXEC') or die;
                         <?php echo $this->form->getInput('socialshare_floatbar', 'params'); ?>
                     </div>
                 </div>
+                <div class="control-group display_type_normal">
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('show_in_article', 'params'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('show_in_article', 'params'); ?>
+                    </div>
+                </div>
+                <div class="control-group display_type_normal">
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('show_in_category', 'params'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('show_in_category', 'params'); ?>
+                    </div>
+                </div>
+                <div class="control-group display_type_normal">
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('show_in_featured', 'params'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('show_in_featured', 'params'); ?>
+                    </div>
+                </div>
+                <div class="control-group display_type_normal">
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('show_social_article_list', 'params'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('show_social_article_list', 'params'); ?>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <?php echo $this->form->getLabel('catid', 'params'); ?>
+                    </div>
+                    <div class="controls">
+                        <?php echo $this->form->getInput('catid', 'params'); ?>
+                    </div>
+                </div>
+                <!-- Facebook -->
                 <div class="control-group">
                     <div class="control-label">
                         <?php echo $this->form->getLabel('fb_action', 'params'); ?>
@@ -155,111 +196,6 @@ defined('_JEXEC') or die;
                         <?php echo $this->form->getInput('fb_send', 'params'); ?>
                     </div>
                 </div>
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('catid', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('catid', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group" id="display_type_choose">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('display_type', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('display_type', 'params'); ?>
-                    </div>
-                </div>
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_in_article', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_in_article', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_in_category', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_in_category', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_in_featured', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_in_featured', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_social_article_list', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_social_article_list', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('normal_position', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('normal_position', 'params'); ?>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('floating_position', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('floating_position', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('box_top', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('box_top', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('box_left', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('box_left', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('box_right', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('box_right', 'params'); ?>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('box_style', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('box_style', 'params'); ?>
-                    </div>
-                </div>
 
                 <div class="control-group">
                     <div class="control-label">
@@ -269,7 +205,6 @@ defined('_JEXEC') or die;
                         <?php echo $this->form->getInput('social_order', 'params'); ?>
                     </div>
                 </div>
-
 
                 <div class="control-group">
                     <div class="control-label">
@@ -294,7 +229,7 @@ defined('_JEXEC') or die;
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-advanced">
-                <?php echo JText::_('Advanced Options')?>
+                <?php echo JText::_('Advanced Options') ?>
             </a>
         </div>
         <div id="advanced-advanced" class="accordion-body collapse">
@@ -352,7 +287,7 @@ defined('_JEXEC') or die;
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-dev">
-                <?php echo JText::_('Developer Options')?>
+                <?php echo JText::_('Developer Options') ?>
             </a>
         </div>
         <div id="advanced-dev" class="accordion-body collapse">
