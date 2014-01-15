@@ -38,6 +38,9 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/includes/bootstrap.php';
+            if (!Zo2Framework::isJoomla25()) {
+                JHtml::_('bootstrap.framework');
+            }
         }
 
         /**

@@ -43,8 +43,10 @@ class Zo2Asset {
  */
 $assets['css.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/css/bootstrap.min.css', 'css', '3.0.3');
 $assets['css.bootstrap']->loadInJFrontend('*');
-$assets['js.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.min.js', 'js', '3.0.3');
+$assets['js.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.js', 'js', '3.0.3');
 $assets['js.bootstrap']->loadInJFrontend('2.*');
+//$assets['js.bootstrap']->loadInJFrontend('3.*');
+
 /**
  * Bootstrap 2.x will use only for backend
  */
