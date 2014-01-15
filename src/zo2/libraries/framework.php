@@ -99,7 +99,7 @@ if (!class_exists('Zo2Framework')) {
          * @return string
          */
         public static function getTemplatePath() {
-            return JPATH_THEMES . DIRECTORY_SEPARATOR . self::getTemplateName();
+            return JPATH_ROOT . '/templates/' . self::getTemplateName();
         }
 
         /**
