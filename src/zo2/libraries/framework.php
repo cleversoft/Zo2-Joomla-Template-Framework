@@ -35,10 +35,6 @@ if (!class_exists('Zo2Framework')) {
          * @var Zo2Layout
          */
         private $_layout = null;
-        private static $_scripts = array();
-        private static $_scriptDeclarations = array();
-        private static $_styles = array();
-        private static $_styleDeclarations = array();
 
         public function __construct() {
             
