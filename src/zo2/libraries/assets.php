@@ -77,11 +77,8 @@ if (!class_exists('Zo2Assets')) {
             if ($application->isAdmin()) {
                 if (Zo2Framework::isZo2Template()) {
                     if (Zo2Framework::isJoomla25()) {
-                        /* Allow user turn of jQuery if needed */
-                        if (self::get('load_jquery') == 1) {
-                            $this->addScript('vendor/jquery/jquery-1.9.1.min.js');
-                            $this->addScript('vendor/jquery/jquery.noConflict.js');
-                        }
+                        $this->addScript('vendor/jquery/jquery-1.9.1.min.js');
+                        $this->addScript('vendor/jquery/jquery.noConflict.js');
                         /* For Joomla! 2.5 we need load Bootstrap 2.x */
                         $this->addScript('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js');
                         $this->addStyleSheet('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css', 'css');
@@ -147,10 +144,10 @@ if (!class_exists('Zo2Assets')) {
             $outputPath = null;
             switch ($file['type']) {
                 case 'less':
-                    $outputPath = $filePathArr[0].'/css/'.explode('.less', $fileName)[0].'.css';
+                    $outputPath = $filePathArr[0].'/css/'.str_replace('.less', '.css', $fileName);
                     break;
                 case 'js':
-                    $outputPath = $filePathArr[0].'/js/'.explode('.js', $fileName)[0].'.min.js';
+                    $outputPath = $filePathArr[0].'/js/'.str_replace('.js', '.min.js', $fileName);
                     break;
                 case 'css':
                     $outputPath = $filePathArr[0].'/css/'.$fileName;
