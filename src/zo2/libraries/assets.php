@@ -147,10 +147,10 @@ if (!class_exists('Zo2Assets')) {
             $outputPath = null;
             switch ($file['type']) {
                 case 'less':
-                    $outputPath = $filePathArr[0].'/css/'.explode('.less', $fileName)[0].'.css';
+                    $outputPath = $filePathArr[0].'/css/'.str_replace('.less', '.css', $fileName);
                     break;
                 case 'js':
-                    $outputPath = $filePathArr[0].'/js/'.explode('.js', $fileName)[0].'.min.js';
+                    $outputPath = $filePathArr[0].'/js/'.str_replace('.js', '.min.js', $fileName);
                     break;
                 case 'css':
                     $outputPath = $filePathArr[0].'/css/'.$fileName;
