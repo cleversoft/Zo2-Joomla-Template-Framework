@@ -32,7 +32,7 @@ $params = $this->params;
                 ?>
                 <?php if ($params->get('show_author') && !empty($item->author)) : ?>
                     <div class="createdby">
-                        <i class="icon-user"></i>
+                        <i class="fa fa-user"></i>
                         <?php $author = $item->author; ?>
                         <?php $author = ($item->created_by_alias ? $item->created_by_alias : $author); ?>
                         <?php if (!empty($item->contactid) && $params->get('link_author') == true) : ?>
@@ -74,7 +74,7 @@ $params = $this->params;
                         <?php if ($params->get('show_category')) : ?>
                             <dd>
                                 <div class="category-name">
-                                    <i class="icon-folder-open"></i>
+                                    <i class="fa fa-folder-open"></i>
                                     <?php
                                     $title = $this->escape($item->category_title);
                                     $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '">' . $title . '</a>';
@@ -91,7 +91,7 @@ $params = $this->params;
                         <?php if ($params->get('show_publish_date')) : ?>
                             <dd>
                                 <div class="published">
-                                    <span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?>
+                                    <span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?>
                                 </div>
                             </dd>
                         <?php endif; ?>
@@ -100,14 +100,14 @@ $params = $this->params;
                             <?php if ($params->get('show_modify_date')) : ?>
                                 <dd>
                                     <div class="modified">
-                                        <span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3'))); ?>
+                                        <span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3'))); ?>
                                     </div>
                                 </dd>
                             <?php endif; ?>
                             <?php if ($params->get('show_create_date')) : ?>
                                 <dd>
                                     <div class="create">
-                                        <span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC3'))); ?>
+                                        <span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC3'))); ?>
                                     </div>
                                 </dd>
                             <?php endif; ?>
@@ -115,7 +115,7 @@ $params = $this->params;
                             <?php if ($params->get('show_hits')) : ?>
                                 <dd>
                                     <div class="hits">
-                                        <span class="icon-eye-open"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?>
+                                        <span class="fa fa-eye"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?>
                                     </div>
                                 </dd>
                             <?php endif; ?>
@@ -152,7 +152,7 @@ $params = $this->params;
                             <?php if ($params->get('show_category')) : ?>
                                 <dd>
                                     <div class="category-name">
-                                        <i class="icon-folder-open"></i>
+                                        <i class="fa fa-folder-open"></i>
                                         <?php
                                         $title = $this->escape($item->category_title);
                                         $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '">' . $title . '</a>';
@@ -168,7 +168,7 @@ $params = $this->params;
                             <?php if ($params->get('show_publish_date')) : ?>
                                 <dd>
                                     <div class="published">
-                                        <span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?>
+                                        <span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?>
                                     </div>
                                 </dd>
                             <?php endif; ?>
@@ -176,14 +176,14 @@ $params = $this->params;
 
                         <?php if ($params->get('show_create_date')) : ?>
                             <dd>
-                                <div class="create"><span class="icon-calendar">
+                                <div class="create"><span class="fa fa-calendar">
                                     </span> <?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3'))); ?>
                                 </div>
                             </dd>
                         <?php endif; ?>
                         <?php if ($params->get('show_modify_date')) : ?>
                             <dd>
-                                <div class="modified"><span class="icon-calendar">
+                                <div class="modified"><span class="fa fa-calendar">
                                     </span> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $item->modified, JText::_('DATE_FORMAT_LC3'))); ?>
                                 </div>
                             </dd>
@@ -191,7 +191,7 @@ $params = $this->params;
                         <?php if ($params->get('show_hits')) : ?>
                             <dd>
                                 <div class="hits">
-                                    <span class="icon-eye-open"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?>
+                                    <span class="fa fa-eye"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?>
                                 </div>
                             </dd>
                         <?php endif; ?>

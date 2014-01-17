@@ -71,7 +71,7 @@ JHtml::_('behavior.framework');
 		echo JText::_('COM_CONTENT_READ_MORE');
 		echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
 	endif; ?>
-    <span class="icon-angle-right"></span>
+    <span class="fa fa-angle-right"></span>
 	</a></p>
 
 <?php endif; ?>

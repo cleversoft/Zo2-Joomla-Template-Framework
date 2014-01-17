@@ -50,12 +50,12 @@ if (!$editoroptions)
 		<div class="btn-toolbar">
 			<div class="btn-group">
 				<button type="button" class="btn btn-primary" onclick="Joomla.submitbutton('article.save')">
-					<span class="icon-ok"></span>&#160;<?php echo JText::_('JSAVE') ?>
+					<span class="fa fa-ok"></span>&#160;<?php echo JText::_('JSAVE') ?>
 				</button>
 			</div>
 			<div class="btn-group">
 				<button type="button" class="btn btn-danger" onclick="Joomla.submitbutton('article.cancel')">
-					<span class="icon-remove"></span>&#160;<?php echo JText::_('JCANCEL') ?>
+					<span class="fa fa-remove"></span>&#160;<?php echo JText::_('JCANCEL') ?>
 				</button>
 			</div>
 		</div>

@@ -23,7 +23,7 @@ JHtml::_('behavior.keepalive');
 				<?php if (!$params->get('usetext')) : ?>
 					<div class="input-prepend input-append">
 						<span class="add-on">
-							<span class="icon-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></span>
+							<span class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></span>
 							<label for="modlgn-username" class="element-invisible"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?></label>
 						</span>
 						<input id="modlgn-username" type="text" name="username" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
@@ -39,7 +39,7 @@ JHtml::_('behavior.keepalive');
 				<?php if (!$params->get('usetext')) : ?>
 					<div class="input-prepend input-append">
 						<span class="add-on">
-							<span class="icon-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>">
+							<span class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>">
 							</span>
 								<label for="modlgn-passwd" class="element-invisible"><?php echo JText::_('JGLOBAL_PASSWORD'); ?>
 							</label>
@@ -69,7 +69,7 @@ JHtml::_('behavior.keepalive');
 			<ul class="unstyled">
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
-					<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="icon-arrow-right"></span></a>
+					<?php echo JText::_('MOD_LOGIN_REGISTER'); ?> <span class="fa fa-arrow-right"></span></a>
 				</li>
 				<li>
 					<a href="<?php echo JRoute::_('index.php?option=com_users&view=remind'); ?>">
