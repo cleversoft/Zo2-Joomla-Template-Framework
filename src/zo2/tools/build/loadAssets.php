@@ -39,27 +39,32 @@ class Zo2Asset {
 }
 
 /**
- * jquery
- */
-$assets['jquery'] = new Zo2Asset('vendor/jquery/jquery-1.9.1.min.js', 'js', '');
-$assets['jquery']->loadInJFrontend('2.*');
-$assets['jquery']->addDependencies('noconflict','vendor/jquery/jquery.noConflict.js', 'js');
-/**
  * Bootstrap 3.x will use for frontpage
  */
 $assets['css.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/css/bootstrap.min.css', 'css', '3.0.3');
 $assets['css.bootstrap']->loadInJFrontend('*');
-$assets['js.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.js', 'js', '3.0.3');
-$assets['js.bootstrap']->loadInJFrontend('2.*');
-//$assets['js.bootstrap']->loadInJFrontend('3.*');
+$assets['css.bootstrap']->loadInJBackend('2.*');
+$assets['js.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.min.js', 'js', '3.0.3');
+$assets['js.bootstrap']->loadInJFrontend('3.*');
+
+$assets['js.bootstrap.full'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.full.min.js', 'js', '3.0.3');
+$assets['js.bootstrap.full']->loadInJFrontend('2.*');
+$assets['js.bootstrap.full']->loadInJBackend('2.*');
+
+/* Mega menu */
+$assets['css.megamenu'] = new Zo2Asset('zo2/css/adminmegamenu.css', 'css', '');
+$assets['css.megamenu']->loadInJBackend('*');
+/* Admin menu */
+$assets['css.admin'] = new Zo2Asset('zo2/css/admin.css', 'css', '');
+$assets['css.admin']->loadInJBackend('*');
 
 /**
  * Bootstrap 2.x will use only for backend
  */
-$assets['css.bootstrap2'] = new Zo2Asset('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css', 'css', '2');
-$assets['css.bootstrap2']->loadInJBackend('2.*');
-$assets['js.bootstrap2'] = new Zo2Asset('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js', 'js', '2');
-$assets['js.bootstrap2']->loadInJBackend('2.*');
+//$assets['css.bootstrap2'] = new Zo2Asset('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css', 'css', '2');
+//$assets['css.bootstrap2']->loadInJBackend('2.*');
+//$assets['js.bootstrap2'] = new Zo2Asset('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js', 'js', '2');
+//$assets['js.bootstrap2']->loadInJBackend('2.*');
 /* Font awesome */
 $assets['font.awesome'] = new Zo2Asset('vendor/bootstrap/addons/font-awesome/css/font-awesome.min.css', 'css', '');
 $assets['font.awesome']->loadInJFrontend('*');
@@ -81,12 +86,6 @@ $assets['js.fontselect'] = new Zo2Asset('vendor/fontselect/jquery.fontselect.js'
 $assets['js.fontselect']->loadInJBackend('*');
 $assets['css.fontello'] = new Zo2Asset('vendor/fontello/css/fontello.css', 'css', '');
 $assets['css.fontello']->loadInJBackend('*');
-/* Mega menu */
-$assets['css.megamenu'] = new Zo2Asset('zo2/css/adminmegamenu.css', 'css', '');
-$assets['css.megamenu']->loadInJBackend('*');
-/* Admin menu */
-$assets['css.admin'] = new Zo2Asset('zo2/css/admin.css', 'css', '');
-$assets['css.admin']->loadInJBackend('*');
 /* Shortcodes */
 $assets['css.shortcodes'] = new Zo2Asset('zo2/css/shortcodes.css', 'css', '');
 $assets['css.shortcodes']->loadInJFrontend('*');
