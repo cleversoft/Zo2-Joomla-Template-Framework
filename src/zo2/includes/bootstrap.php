@@ -22,9 +22,9 @@ JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 
 $assets = Zo2Assets::getInstance();
 
-//$assets->loadBuildList('core.assets.build.json');
-//$assets->loadBuildList('template.assets.build.json');
-//$assets->buildAssets();
+$assets->loadBuildList('core.assets.build.json');
+$assets->loadBuildList('template.assets.build.json');
+$assets->buildAssets();
 
 //$assets->buildFrameworkProduction();
 /* Load core assets */
