@@ -39,6 +39,12 @@ class Zo2Asset {
 }
 
 /**
+ * jquery
+ */
+$assets['jquery'] = new Zo2Asset('vendor/jquery/jquery-1.9.1.min.js', 'js', '');
+$assets['jquery']->loadInJFrontend('2.*');
+$assets['jquery']->addDependencies('noconflict','vendor/jquery/jquery.noConflict.js', 'js');
+/**
  * Bootstrap 3.x will use for frontpage
  */
 $assets['css.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/css/bootstrap.min.css', 'css', '3.0.3');
