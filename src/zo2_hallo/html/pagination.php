@@ -28,12 +28,12 @@ function pagination_item_active(&$item) {
     // Check for "Next" item
     if ($item->text == JText::_('JNEXT'))
     {
-        $display = '<i class="icon-long-arrow-right"></i>';
+        $display = '<i class="fa fa-long-arrow-right"></i>';
     }
     // Check for "Prev" item
     if ($item->text == JText::_('JPREV'))
     {
-        $display = '<i class="icon-long-arrow-left"></i>';
+        $display = '<i class="fa fa-long-arrow-left"></i>';
     }
     
 	if ($item->text == JText::_('First')) { $cls = "first";}

@@ -125,26 +125,22 @@ body.form.body-overlayed{
 /*Top Search*/
 #top-search{
   form{
+    &:before{
+      color: #555555;
+      content: "";
+      display: block;
+      font-family: "FontAwesome";
+      font-size: 18px;
+      right: 25px;
+      position: absolute;
+    }
+    position: relative;
     border-left: 1px solid #eeeeee;
     border-right: 1px solid #eeeeee;
     float: right;
     height: 60px;
     padding: 0 25px;
     line-height: 60px;
-    button{
-      background: url("../images/search-icon.png") no-repeat scroll center center rgba(0, 0, 0, 0);
-      border: medium none;
-      .border-radius(0);
-      display: inline-block;
-      height: 60px;
-      padding: 0;
-      text-indent: -999em;
-      width: 17px;
-    }
-	/* IE ignores styles with [attributes], so it will skip the following. */
-	button[class]{
-		background: url("../images/search-icon.png") no-repeat scroll center center transparent;
-	}
   }
   #mod-search-searchword{
     border: none;

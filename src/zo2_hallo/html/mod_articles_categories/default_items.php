@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 foreach ($list as $item) :
 
 ?>
-	<li <?php if ($_SERVER['PHP_SELF'] == JRoute::_(ContentHelperRoute::getCategoryRoute($item->id))) echo ' class="active"';?>><i class="icon-angle-right"></i> <?php $levelup = $item->level - $startLevel - 1; ?>
+	<li <?php if ($_SERVER['PHP_SELF'] == JRoute::_(ContentHelperRoute::getCategoryRoute($item->id))) echo ' class="active"';?>><i class="fa fa-angle-right"></i> <?php $levelup = $item->level - $startLevel - 1; ?>
   <h<?php echo $params->get('item_heading') + $levelup; ?>>
 		<a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($item->id)); ?>">
 		<?php echo $item->title;?></a>

@@ -35,7 +35,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
             $html .= '</a>';
         }
         if ($gototop) {
-            $html .= '<a style="display: inline;" href="#" id="gototop" title="Go to top"><i class="icon-chevron-up"></i></a>';
+            $html .= '<a style="display: inline;" href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>';
 
             $script = 'jQuery("#gototop").click(function(){jQuery("body, html").animate({scrollTop: 0}); return false;});var scrollDiv = document.createElement("div");
             jQuery(window).scroll(function () {
