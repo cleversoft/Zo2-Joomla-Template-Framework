@@ -459,6 +459,40 @@ p.img_caption {
 .blog .icons .btn {
   padding: 0;
 }
+.icon-edit,
+.icon-print,
+.icon-envelope {
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+.icon-edit:before {
+  content: "\f044";
+}
+.icon-print:before {
+  content: "\f02f";
+}
+.icon-envelope:before {
+  content: "\f0e0";
+}
+.blog .icon-calendar,
+.blog .icon-eye-open {
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+.blog .icon-calendar:before {
+  content: "\f073";
+}
+.blog .icon-eye-open:before {
+  content: "\f06e";
+}
 ul,
 ol {
   padding: 0;
