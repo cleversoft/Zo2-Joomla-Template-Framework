@@ -10,7 +10,9 @@
 */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
-
+body{
+  color: inherit!important;
+}
 .logo-image.show, .logo-text.show {
   display:block !important;
 }
@@ -661,6 +663,7 @@
       width: 100%;
     }
   }
+  [class^="icon-"]:before, [class*=" icon-"]:before{font-family: FontAwesome;}
   /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
    readers do not read off random characters that represent icons */
   .icon-glass:before {
@@ -1763,6 +1766,51 @@
   .icon-renren:before {
     content: "\f18b";
   }
+  /*Joomla 2.5*/
+  &.zo2_j25{
+    .modal{
+      background-color: inherit;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      margin-left: inherit;
+      outline: 0 none;
+      position: static;
+      width: inherit;
+    }
+    #general{
+      .btn{
+        &:hover,
+        &:focus{
+          background-position: inherit;
+        }
+      }
+    }
+    #fonts{
+
+    }
+
+    #theme{
+      input[type="text"]{
+        margin: 0;
+      }
+      #zo2_themes {
+        li {
+          .theme_title {
+
+          }
+          .theme_thumbnail {
+            float: left;
+            img{
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
 }
 .clearfix:after {
   clear: both;
@@ -1786,4 +1834,4 @@
 }
 #column-basic, #column-responsive, #row-basic, #row-responsive{display: none}
 #column-basic.active, #column-responsive.active, #row-basic.active, #row-responsive.active{display: block}
-[class^="icon-"]:before, [class*=" icon-"]:before{font-family: FontAwesome}
+
