@@ -39,17 +39,20 @@ class Zo2Asset {
 }
 
 /**
+ * Bootstrap 2.x only load for backend Joomla! 2.5
+ */
+$assets['css.bootstrap2'] = new Zo2Asset('vendor/bootstrap/core/2.3.2/css/bootstrap.min.css', 'css', '2.3.2');
+$assets['css.bootstrap2']->loadInJBackend('2.*');
+$assets['js.bootstrap2'] = new Zo2Asset('vendor/bootstrap/core/2.3.2/js/bootstrap.min.js', 'js', '2.3.2');
+$assets['js.bootstrap2']->loadInJBackend('2.*');
+
+/**
  * Bootstrap 3.x will use for frontpage
  */
 $assets['css.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/css/bootstrap.min.css', 'css', '3.0.3');
 $assets['css.bootstrap']->loadInJFrontend('*');
-$assets['css.bootstrap']->loadInJBackend('2.*');
 $assets['js.bootstrap'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.min.js', 'js', '3.0.3');
 $assets['js.bootstrap']->loadInJFrontend('3.*');
-
-$assets['js.bootstrap.full'] = new Zo2Asset('vendor/bootstrap/core/js/bootstrap.full.min.js', 'js', '3.0.3');
-$assets['js.bootstrap.full']->loadInJFrontend('2.*');
-$assets['js.bootstrap.full']->loadInJBackend('2.*');
 
 /* Mega menu */
 $assets['css.megamenu'] = new Zo2Asset('zo2/css/adminmegamenu.css', 'css', '');

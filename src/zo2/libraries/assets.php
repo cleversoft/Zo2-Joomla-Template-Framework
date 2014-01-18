@@ -80,7 +80,7 @@ if (!class_exists('Zo2Assets')) {
                         /* For Joomla! 2.5 we need add jQuery into head */
                         $document = JFactory::getDocument();
                         $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.9.1.min.js');
-                        $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');                                                                        
+                        $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
                     }
                 }
             } else {
