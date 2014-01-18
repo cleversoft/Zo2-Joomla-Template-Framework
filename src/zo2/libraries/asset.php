@@ -27,25 +27,26 @@ if (!class_exists('Zo2Asset')) {
          * Load asset into assets list
          */
         public function load() {
-            $application = JFactory::getApplication();
-            if (isset($this->loadIn['frontend'])) {
-                $loadInFrontend = $this->loadIn['frontend'];
-            }
-            if (isset($this->loadIn['backend'])) {
-                $loadInBackend = $this->loadIn['backend'];
-            }
-            /* Frontend */
-            if ($application->isSite()) {
-                if (isset($loadInFrontend)) {
-                    foreach ($loadInFrontend as $version) {
-                        if ($this->_isMatchJVersion($version)) {
-                            $this->_add($this->path, $this->type);
-                            $this->_loadDependencies();
+            if (Zo2Framework::isZo2Template()) {
+                $application = JFactory::getApplication();
+                if (isset($this->loadIn['frontend'])) {
+                    $loadInFrontend = $this->loadIn['frontend'];
+                }
+                if (isset($this->loadIn['backend'])) {
+                    $loadInBackend = $this->loadIn['backend'];
+                }
+                /* Frontend */
+                if ($application->isSite()) {                    
+                    if (isset($loadInFrontend)) {
+                        foreach ($loadInFrontend as $version) {                            
+                            if ($this->_isMatchJVersion($version)) {
+                                $this->_add($this->path, $this->type);                                
+                                $this->_loadDependencies();
+                            }
                         }
                     }
-                }
-            } else { /* Backend */
-                if (Zo2Framework::isZo2Template()) {
+                } else { /* Backend */
+
                     if (isset($loadInBackend)) {
                         foreach ($loadInBackend as $version) {
                             if ($this->_isMatchJVersion($version)) {
