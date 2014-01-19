@@ -270,8 +270,7 @@ if (!class_exists('Zo2Assets')) {
                 /* Load in all Joomla! */
                 if (isset($asset->paths)) {
                     foreach ($asset->paths as $path) {
-                        $ext = strtolower(JFile::getExt($path));
-                        echo $path . '<br />';
+                        $ext = strtolower(JFile::getExt($path));                        
                         switch ($ext) {
                             case "css":
                                 $this->addStyleSheet($path);
