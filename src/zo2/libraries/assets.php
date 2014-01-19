@@ -194,24 +194,7 @@ if (!class_exists('Zo2Assets')) {
                 return Zo2HelperPath::getTemplateFilePath('assets/' . $file['path'], null);
             }
         }
-
-        /**
-         * Import build list from json file
-         * @param type $file
-         */
-        public function loadBuildList($file) {
-            $assetFile = $this->getAssetFile($file, 'path');
-            if ($assetFile) {
-                $buildArr = json_decode(JFile::read($assetFile), true);
-                if (count($buildArr) > 0)
-                    $this->_builds = array_merge_recursive($this->_builds, $buildArr);
-            }
-        }
-
-        public function addBuildList(array $buildList) {
-            $this->_builds = array_merge_recursive($this->_builds, $buildList);
-        }
-
+       
         public function buildAssets() {
             if (count($this->_builds) > 0) {
                 foreach ($this->_builds as $file) {
@@ -241,7 +224,7 @@ if (!class_exists('Zo2Assets')) {
                     $this->_loadAsset($asset);
                 }
             } else {
-                foreach ($this->_assets->load->backend as $asset) {
+                foreach ($this->_assets->load->backend as $asset) {                    
                     $this->_loadAsset($asset);
                 }
             }
@@ -250,12 +233,12 @@ if (!class_exists('Zo2Assets')) {
         private function _loadAsset($asset) {
             if (isset($asset->joomla)) {
                 foreach ($asset->joomla as $version) {
-                    if ($this->_isMatchJVersion($version)) {
+                    if ($this->_isMatchJVersion($version)) {                        
                         if (isset($asset->paths)) {
                             foreach ($asset->paths as $path) {
                                 $ext = strtolower(JFile::getExt($path));
                                 switch ($ext) {
-                                    case "ext":
+                                    case "css":
                                         $this->addStyleSheet($path);
                                         break;
                                     case "js":
