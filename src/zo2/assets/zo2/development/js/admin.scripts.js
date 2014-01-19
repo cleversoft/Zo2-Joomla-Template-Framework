@@ -17,11 +17,11 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
+        'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
 var $ = jQuery.noConflict();
 
-$(window).bind('load', function(){
+$(window).bind('load', function() {
 //    var $tabsContainer = $('#myTabTabs');
 //    var $tabContent = $('#myTabContent');
 //    var $tab = $('<li class=""><a href="#layoutbuilder-container" data-toggle="tab">Layout Builder</a></li>');
@@ -48,20 +48,20 @@ $(window).bind('load', function(){
     // fix tooltip
     fixTooltip();
 
-    insertLogo();
+
     addIconToMenu();
     fixToolbarIcon();
     fixPreviewIcon();
 });
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function($) {
     injectFormSubmit();
     //wrapForm();
 
     bindSortable();
 
     // bind event to generate row id
-    $('#txtRowName').on('keyup', function (e){
+    $('#txtRowName').on('keyup', function(e) {
         var $this = $(this);
         $('#txtRowId').val(generateSlug($this.val()));
     });
@@ -73,13 +73,15 @@ jQuery(document).ready(function($){
 
     //loadLayout(templateName, layoutName);
 
-    $('.btn-group-onoff > button').on('click', function(e){
+    $('.btn-group-onoff > button').on('click', function(e) {
         var $this = $(this);
         var $container = $this.closest('.btn-group-onoff');
 
         $container.find('button').removeClass('active btn-success btn-danger');
-        if ($this.hasClass('btn-on')) $this.addClass('active btn-success');
-        else $this.addClass('active btn-danger');
+        if ($this.hasClass('btn-on'))
+            $this.addClass('active btn-success');
+        else
+            $this.addClass('active btn-danger');
 
         return false;
     });
@@ -92,21 +94,21 @@ jQuery(document).ready(function($){
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
         $row.attr('data-zo2-fullwidth', '0');
-        for(var i = 0; i < visibilityAttributes.length; i++) {
+        for (var i = 0; i < visibilityAttributes.length; i++) {
             $row.attr(visibilityAttributes[i], '1');
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control">' +
-            '<div class="row-control-container">' +
-            '<div class="row-name">(unnamed row)</div>' +
-            '<div class="row-control-buttons">' +
-            '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-            '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-            '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
-            '</div></div>' +
-            '<div class="col-container"></div></div>');
+                '<div class="row-control-container">' +
+                '<div class="row-name">(unnamed row)</div>' +
+                '<div class="row-control-buttons">' +
+                '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
+                '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
+                '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
+                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+                '</div></div>' +
+                '<div class="col-container"></div></div>');
         $meta.appendTo($row);
 
         fixTooltip();
@@ -119,7 +121,8 @@ jQuery(document).ready(function($){
         var $spans = $colContainer.find('>[data-zo2-type="span"]');
         var strategyNum = $spans.length;
 
-        if ($spans.length > 5) return false;
+        if ($spans.length > 5)
+            return false;
         else
         {
             var selectedStrategy = strategy[strategyNum];
@@ -128,16 +131,16 @@ jQuery(document).ready(function($){
             $span.attr('data-zo2-position', '');
             $span.attr('data-zo2-offset', 0);
             $span.attr('data-zo2-customClass', '');
-            for(var i = 0; i < visibilityAttributes.length; i++) {
+            for (var i = 0; i < visibilityAttributes.length; i++) {
                 $span.attr(visibilityAttributes[i], '1');
             }
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                '<div class="col-control-buttons">' +
-                '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
-                '</div><div class="row-container"></div></div></div>';
+                    '<div class="col-control-buttons">' +
+                    '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
+                    '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
+                    '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
+                    '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div></div></div>';
             var $meta = jQuery(metaHtml);
             $meta.appendTo($span);
             /*
@@ -161,10 +164,11 @@ jQuery(document).ready(function($){
         }
     });
 
-    $('#droppable-container').on('click', '.row-control-buttons > .delete', function(){
+    $('#droppable-container').on('click', '.row-control-buttons > .delete', function() {
         var $this = $(this);
         bootbox.confirm('Are you sure want to delete this row?', function(result) {
-            if (result) $this.closest('.sortable-row').remove();
+            if (result)
+                $this.closest('.sortable-row').remove();
         });
     });
 
@@ -173,7 +177,8 @@ jQuery(document).ready(function($){
 
         bootbox.confirm('Are you sure want to delete this column?', function(result) {
             var $container = $this.closest('.col-container');
-            if (result) $this.closest('.sortable-col').remove();
+            if (result)
+                $this.closest('.sortable-col').remove();
             rearrangeSpan($container);
         });
     });
@@ -186,16 +191,16 @@ jQuery(document).ready(function($){
         $row.attr('data-zo2-type', 'row');
         $row.attr('data-zo2-customClass', '');
         $row.attr('data-zo2-fullwidth', '0');
-        for(var i = 0; i < visibilityAttributes.length; i++) {
+        for (var i = 0; i < visibilityAttributes.length; i++) {
             $row.attr(visibilityAttributes[i], '1');
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-            '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-            '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-            '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+                '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
+                '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
+                '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
+                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
         $meta.appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
@@ -203,36 +208,47 @@ jQuery(document).ready(function($){
         fixTooltip();
     });
 
-    $('#droppable-container').on('click', '.row-control-buttons > .settings', function(){
+    $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
         var $this = $(this);
         var $row = $this.closest('.sortable-row');
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
         var rowCustomClass = $row.attr('data-zo2-customClass');
         //var rowLayout = $row.attr('data-zo2-layout');
         var rowId = $row.attr('data-zo2-id');
-        if (!rowCustomClass) rowCustomClass = '';
+        if (!rowCustomClass)
+            rowCustomClass = '';
 
         //$('#cbRowPhoneVisibility').attr('checked', $row.attr('data-zo2-visibility-xs') == '1');
         $('#btgRowPhone').find('button').removeClass('active btn-success btn-danger');
-        if ($row.attr('data-zo2-visibility-xs') == '1') $('#btgRowPhone').find('.btn-on').addClass('active btn-success');
-        else $('#btgRowPhone').find('.btn-off').addClass('active btn-danger');
+        if ($row.attr('data-zo2-visibility-xs') == '1')
+            $('#btgRowPhone').find('.btn-on').addClass('active btn-success');
+        else
+            $('#btgRowPhone').find('.btn-off').addClass('active btn-danger');
         //$('#cbRowTabletVisibility').attr('checked', $row.attr('data-zo2-visibility-sm') == '1');
         $('#btgRowTablet').find('button').removeClass('active btn-success btn-danger');
-        if ($row.attr('data-zo2-visibility-sm') == '1') $('#btgRowTablet').find('.btn-on').addClass('active btn-success');
-        else $('#btgRowTablet').find('.btn-off').addClass('active btn-danger');
+        if ($row.attr('data-zo2-visibility-sm') == '1')
+            $('#btgRowTablet').find('.btn-on').addClass('active btn-success');
+        else
+            $('#btgRowTablet').find('.btn-off').addClass('active btn-danger');
         //$('#cbRowDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-md') == '1');
         $('#btgRowDesktop').find('button').removeClass('active btn-success btn-danger');
-        if ($row.attr('data-zo2-visibility-md') == '1') $('#btgRowDesktop').find('.btn-on').addClass('active btn-success');
-        else $('#btgRowDesktop').find('.btn-off').addClass('active btn-danger');
+        if ($row.attr('data-zo2-visibility-md') == '1')
+            $('#btgRowDesktop').find('.btn-on').addClass('active btn-success');
+        else
+            $('#btgRowDesktop').find('.btn-off').addClass('active btn-danger');
         //$('#cbRowLargeDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-lg') == '1');
         $('#btgRowLargeDesktop').find('button').removeClass('active btn-success btn-danger');
-        if ($row.attr('data-zo2-visibility-lg') == '1') $('#btgRowLargeDesktop').find('.btn-on').addClass('active btn-success');
-        else $('#btgRowLargeDesktop').find('.btn-off').addClass('active btn-danger');
+        if ($row.attr('data-zo2-visibility-lg') == '1')
+            $('#btgRowLargeDesktop').find('.btn-on').addClass('active btn-success');
+        else
+            $('#btgRowLargeDesktop').find('.btn-off').addClass('active btn-danger');
 
         //$('#cbRowFullWidth').attr('checked', $row.attr('data-zo2-fullwidth') == '1');
         $('#btgFullWidth').find('button').removeClass('active btn-danger btn-success');
-        if ($row.attr('data-zo2-fullwidth') == '1') $('#btgFullWidth').find('.btn-on').addClass('btn-success active');
-        else $('#btgFullWidth').find('.btn-off').addClass('btn-danger active');
+        if ($row.attr('data-zo2-fullwidth') == '1')
+            $('#btgFullWidth').find('.btn-on').addClass('btn-success active');
+        else
+            $('#btgFullWidth').find('.btn-off').addClass('btn-danger active');
 
         $.data(document.body, 'editingEl', $row);
         $('#txtRowName').val('').val(rowName);
@@ -247,7 +263,7 @@ jQuery(document).ready(function($){
         $modal.modal('show');
     });
 
-    $('#btnSaveRowSettings').on('click', function () {
+    $('#btnSaveRowSettings').on('click', function() {
         var $row = $.data(document.body, 'editingEl');
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
@@ -262,7 +278,7 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    $('#droppable-container').on('click', '.col-control-buttons > .settings', function(){
+    $('#droppable-container').on('click', '.col-control-buttons > .settings', function() {
         var $this = $(this);
         var $col = $this.closest('.sortable-col');
         $.data(document.body, 'editingEl', $col);
@@ -275,20 +291,28 @@ jQuery(document).ready(function($){
 
         //$('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
         $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
-        if ($col.attr('data-zo2-visibility-xs') == '1') $('#btgColPhone').find('.btn-on').addClass('btn-success active');
-        else $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
+        if ($col.attr('data-zo2-visibility-xs') == '1')
+            $('#btgColPhone').find('.btn-on').addClass('btn-success active');
+        else
+            $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
         //$('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
         $('#btgColTablet').find('button').removeClass('active btn-danger btn-success');
-        if ($col.attr('data-zo2-visibility-sm') == '1') $('#btgColTablet').find('.btn-on').addClass('btn-success active');
-        else $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
+        if ($col.attr('data-zo2-visibility-sm') == '1')
+            $('#btgColTablet').find('.btn-on').addClass('btn-success active');
+        else
+            $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
         //$('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
         $('#btgColDesktop').find('button').removeClass('active btn-danger btn-success');
-        if ($col.attr('data-zo2-visibility-md') == '1') $('#btgColDesktop').find('.btn-on').addClass('btn-success active');
-        else $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
+        if ($col.attr('data-zo2-visibility-md') == '1')
+            $('#btgColDesktop').find('.btn-on').addClass('btn-success active');
+        else
+            $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
         //$('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
         $('#btgColLargeDesktop').find('button').removeClass('active btn-danger btn-success');
-        if ($col.attr('data-zo2-visibility-lg') == '1') $('#btgColLargeDesktop').find('.btn-on').addClass('btn-success active');
-        else $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
+        if ($col.attr('data-zo2-visibility-lg') == '1')
+            $('#btgColLargeDesktop').find('.btn-on').addClass('btn-success active');
+        else
+            $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
 
         $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
         $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
@@ -332,7 +356,7 @@ jQuery(document).ready(function($){
         var $tabs = $this.closest('.zo2-tabs');
         var $actives = $tabs.find('.active');
         $actives.removeClass('active');
-        $actives.each(function(){
+        $actives.each(function() {
             var $activeTab = $('#' + $(this).attr('data-toggle'));
             $activeTab.removeClass('active');
         });
@@ -346,20 +370,24 @@ jQuery(document).ready(function($){
         var $parent = $this.parent();
         var $container = $this.closest('.font-container');
         var $preview = $parent.find('.color-preview');
-        if ($this.val().length > 0) $preview.css('background-color', $this.val());
-        else $preview.css('background-color', 'transparent');
+        if ($this.val().length > 0)
+            $preview.css('background-color', $this.val());
+        else
+            $preview.css('background-color', 'transparent');
 
         $container.trigger('font-change');
     });
 
     // init font container: show/hide depends on active
-    $('.cbEnableFont').each(function(){
+    $('.cbEnableFont').each(function() {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         var $optionsContainer = $container.find('>.font_options');
 
-        if ($this.find('.btn-on').hasClass('active')) $optionsContainer.show();
-        else $optionsContainer.hide();
+        if ($this.find('.btn-on').hasClass('active'))
+            $optionsContainer.show();
+        else
+            $optionsContainer.hide();
     });
 
     // bind on/off for font
@@ -368,25 +396,27 @@ jQuery(document).ready(function($){
         var $container = $this.closest('.font-container');
         var $optionsContainer = $container.find('>.font_options');
 
-        if ($container.find('.btn-on').hasClass('active')) $optionsContainer.stop().slideDown();
-        else $optionsContainer.stop().slideUp();
+        if ($container.find('.btn-on').hasClass('active'))
+            $optionsContainer.stop().slideDown();
+        else
+            $optionsContainer.stop().slideUp();
 
         $container.trigger('font-change');
     });
 
-    $('.font-container').on('click', '.btnStandardFonts', function(){
+    $('.font-container').on('click', '.btnStandardFonts', function() {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         $container.find('.font-types').find('button').removeClass('btn-success');
         $this.addClass('btn-success');
         $container.find('.font-options-google').stop().slideUp(300);
         $container.find('.font-options-fontdeck').stop().slideUp(300);
-        $container.find('.font-options-standard').stop().slideDown(400, function(){
+        $container.find('.font-options-standard').stop().slideDown(400, function() {
             $container.trigger('font-change');
         });
     });
 
-    $('.font-container').on('click', '.btnGoogleFonts', function(){
+    $('.font-container').on('click', '.btnGoogleFonts', function() {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         $container.find('.font-types').find('button').removeClass('btn-success');
@@ -398,7 +428,7 @@ jQuery(document).ready(function($){
         });
     });
 
-    $('.font-container').on('click', '.btnFontDeck', function(){
+    $('.font-container').on('click', '.btnFontDeck', function() {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         $container.find('.font-types').find('button').removeClass('btn-success');
@@ -419,7 +449,7 @@ jQuery(document).ready(function($){
     });
 
     var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
-        '.ddlStandardFont';
+            '.ddlStandardFont';
 
     $('.font-container').on('change', changeSelector, function() {
         var $this = $(this);
@@ -431,13 +461,15 @@ jQuery(document).ready(function($){
         var $this = $(this);
         var $parent = $this.parent();
         var $preview = $parent.find('.color-preview');
-        if ($this.val().length > 0) $preview.css('background-color', $this.val());
-        else $preview.css('background-color', 'transparent');
+        if ($this.val().length > 0)
+            $preview.css('background-color', $this.val());
+        else
+            $preview.css('background-color', 'transparent');
 
         generatePresetData();
     });
 
-    $('#zo2_themes').on('click', '> li', function () {
+    $('#zo2_themes').on('click', '> li', function() {
         var $this = $(this);
         var $container = $('#zo2_themes_container');
         var $list = $('#zo2_themes');
@@ -481,7 +513,7 @@ jQuery(document).ready(function($){
         return false;
     });
 
-    $('.logo-type-switcher').on('click', 'button', function (){
+    $('.logo-type-switcher').on('click', 'button', function() {
         var $this = $(this);
         var $container = $this.closest('.field-logo-container');
         var $buttons = $this.closest('.logo-type-switcher').find('button');
@@ -505,13 +537,13 @@ jQuery(document).ready(function($){
     });
 
     /*
-
+     
      var $select = $('#display_type_choose').find('select:first');
      var $normal_display = $('.display_type_normal');
-
+     
      if ($select.val() == 'normal') $normal_display.show();
      else $normal_display.hide();
-
+     
      jQuery('#display_type_choose').find('select:first').change(function() {
      var $this = $(this);
      if ($this.val() == 'normal') $normal_display.slideDown();
@@ -526,14 +558,15 @@ jQuery(document).ready(function($){
         var prefix = '';
         var interval = setInterval(function() {
             prefix += '.';
-            if (prefix.length >= 4) prefix = '';
+            if (prefix.length >= 4)
+                prefix = '';
             $this.text('Clearing cache' + prefix);
         }, 1000);
         $.get(clearCacheUrl, function() {
             clearInterval(interval);
             $this.removeClass('btn-danger').addClass('btn-success').text('Clear cache successfully');
 
-            setTimeout(function(){
+            setTimeout(function() {
                 $this.removeClass('btn-success').addClass('btn-danger').text('Clear layout cache');
             }, 2000);
         });
@@ -541,7 +574,7 @@ jQuery(document).ready(function($){
     });
 });
 
-var generatePresetData = function () {
+var generatePresetData = function() {
     var $ = jQuery;
     var $preset = $('#zo2_themes').find('.active');
     var data = {
@@ -562,7 +595,7 @@ var generatePresetData = function () {
     $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
 };
 
-var refreshLogoPreview = function (ele) {
+var refreshLogoPreview = function(ele) {
     var $ = jQuery;
     var $this = $(ele);
     var $container = $this.closest('.field-logo-container');
@@ -583,7 +616,7 @@ var refreshLogoPreview = function (ele) {
     $previewImg.attr('src', baseUri + '/' + $this.val());
 };
 
-var generateLogoJson = function ($container) {
+var generateLogoJson = function($container) {
     var $buttons = $container.find('.logo-type-switcher').find('button');
     var $input = $container.find('.logoInput');
     var $activeButton = $container.find('.logo-type-switcher').find('button.active');
@@ -597,8 +630,10 @@ var generateLogoJson = function ($container) {
         var logoPath = $container.find('.logo-path').val();
         var width = parseInt($container.find('.logo-width').val());
         var height = parseInt($container.find('.logo-height').val());
-        if (isNaN(width)) width = 0;
-        if (isNaN(height)) height = 0;
+        if (isNaN(width))
+            width = 0;
+        if (isNaN(height))
+            height = 0;
 
         data = {
             type: "image",
@@ -617,7 +652,7 @@ var generateLogoJson = function ($container) {
     $input.val(JSON.stringify(data));
 };
 
-var bindSortable = function () {
+var bindSortable = function() {
     // thêm > vào items
     jQuery('#droppable-container > .zo2-container').sortable({
         items: '>.sortable-row',
@@ -639,7 +674,7 @@ var bindSortable = function () {
     });
 };
 
-var generateFontOptions = function ($container) {
+var generateFontOptions = function($container) {
     var $result = $container.find(' > input:first');
     var $enable = $container.find('.cbEnableFont');
     if (!$enable.find('.btn-on').hasClass('active')) {
@@ -650,8 +685,10 @@ var generateFontOptions = function ($container) {
     var options = {};
 
     var size = parseInt($container.find('.txtFontSize').val());
-    if (isNaN(size)) size = 12;
-    if (size <= 0) size = 12;
+    if (isNaN(size))
+        size = 12;
+    if (size <= 0)
+        size = 12;
 
     if ($container.find('.btnStandardFonts').hasClass('active')) {
         options = {
@@ -687,9 +724,10 @@ var generateFontOptions = function ($container) {
 var generateJson = function() {
     var $rootParent = jQuery('#droppable-container .zo2-container');
     var json = [];
-    $rootParent.find('>[data-zo2-type="row"]').each(function (){
+    $rootParent.find('>[data-zo2-type="row"]').each(function() {
         var itemJson = generateItemJson(jQuery(this));
-        if (itemJson != null) json.push(itemJson);
+        if (itemJson != null)
+            json.push(itemJson);
     });
 
     return JSON.stringify(json);
@@ -752,7 +790,7 @@ var generateItemJson = function($item) {
     return result;
 };
 
-var rearrangeSpan = function ($container){
+var rearrangeSpan = function($container) {
     var $ = jQuery;
     var $spans = $container.find('>[data-zo2-type="span"]');
     if ($spans.length > 0) {
@@ -769,7 +807,7 @@ var rearrangeSpan = function ($container){
         {
             var $lastSpan = $spans.eq($spans.length - 1);
             var totalWidth = 0;
-            for(var i = 0, total = $spans.length - 1; i < total; i++) {
+            for (var i = 0, total = $spans.length - 1; i < total; i++) {
                 var $currentSpan = $spans.eq(i);
                 totalWidth += parseInt($currentSpan.attr('data-zo2-offset')) + parseInt($currentSpan.attr('data-zo2-span'));
             }
@@ -795,20 +833,15 @@ var addIconToMenu = function() {
     $('#myTabTabs').find('a').eq(7).html('<i class="icon-wrench" /> Advanced');
 };
 
-var insertLogo = function () {
-    var $ = jQuery;
-    var $form = $('#adminForm');
-    $form.prepend('<a href="http://zo2framework.org" target="_blank" id="zo2logo" title="Zo2 Framework"></a>');
-};
 
-var fixToolbarIcon = function () {
+var fixToolbarIcon = function() {
     var $ = jQuery;
     $('.icon-apply').replaceWith('<i class="icon-check"></i>');
     $('.icon-save-copy').replaceWith('<i class="icon-copy"></i>');
     $('.icon-cancel').replaceWith('<i class="icon-remove-sign color4"></i>');
 };
 
-var fixPreviewIcon = function () {
+var fixPreviewIcon = function() {
     var $ = jQuery;
     $('.icon-eye').removeClass('icon-eye').addClass('icon-eye-open');
 };
@@ -830,12 +863,12 @@ var injectFormSubmit = function() {
 
 /* Override default submit function */
 Joomla.submitform = function(task, form) {
-    if (typeof(form) === 'undefined' || form === null) {
+    if (typeof (form) === 'undefined' || form === null) {
         form = document.adminForm;
     }
     jQuery('.toolbox-saveConfig').trigger('click'); // dirty hack for megamenu save
 
-    if (typeof(task) !== 'undefined') {
+    if (typeof (task) !== 'undefined') {
         form.task.value = task;
     }
 
@@ -860,9 +893,9 @@ Joomla.submitform = function(task, form) {
 var generateSlug = function(str) {
     str = str.replace(/^\s+|\s+$/g, '');
     var from = "ÁÀẠẢÃĂẮẰẶẲẴÂẤẦẬẨẪáàạảãăắằặẳẵâấầậẩẫóòọỏõÓÒỌỎÕôốồộổỗÔỐỒỘỔỖơớờợởỡƠỚỜỢỞỠéèẹẻẽÉÈẸẺẼêếềệểễÊẾỀỆỂỄúùụủũÚÙỤỦŨưứừựửữƯỨỪỰỬỮíìịỉĩÍÌỊỈĨýỳỵỷỹÝỲỴỶỸĐđÑñÇç·/_,:;";
-    var to   = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaooooooooooooooooooooooooooooooooooeeeeeeeeeeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuiiiiiiiiiiyyyyyyyyyyddnncc------";
+    var to = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaooooooooooooooooooooooooooooooooooeeeeeeeeeeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuiiiiiiiiiiyyyyyyyyyyddnncc------";
 
-    for (var i = 0, l = from.length ; i < l; i++) {
+    for (var i = 0, l = from.length; i < l; i++) {
         str = str.replace(new RegExp(from[i], "g"), to[i]);
     }
     str = str.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\s+/g, '-').toLowerCase();
@@ -870,7 +903,7 @@ var generateSlug = function(str) {
     return str;
 };
 
-var fixTooltip = function () {
+var fixTooltip = function() {
     var $tooltips = jQuery('.hasTooltip');
     $tooltips.tooltip('destroy');
     $tooltips.tooltip({container: "body"});

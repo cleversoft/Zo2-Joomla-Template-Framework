@@ -46,6 +46,11 @@
                 ]
             },
             "scripts": {
+                "paths": [
+                    "zo2\/js\/admin.megamenu.js",
+                    "zo2\/js\/admin.social.js",
+                    "zo2\/js\/admin.scripts.js"
+                ]
             }
         },
         "frontend": {
