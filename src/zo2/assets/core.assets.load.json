@@ -109,6 +109,15 @@
             "backend": ["*"]
         }
     },
+    "css.admin": {
+        "path": "zo2\/css\/admin.styles.css",
+        "type": "css",
+        "version": "",
+        "dependencies": [],
+        "loadIn": {
+            "backend": ["*"]
+        }
+    },
     "css.megamenu": {
         "path": "zo2\/css\/adminmegamenu.css",
         "type": "css",
