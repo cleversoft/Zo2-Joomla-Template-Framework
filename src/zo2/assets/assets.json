@@ -91,8 +91,7 @@
                 "paths": [
                     "zo2\/css\/site.styles.css",
                     "zo2\/css\/site.shortcodes.css",
-                    "zo2\/css\/template.css",
-                    "zo2\/css\/normalize.css"
+                    "zo2\/css\/template.css"                    
                 ]
             },
             "scripts": {

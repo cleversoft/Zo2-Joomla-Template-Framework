@@ -1,4 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+/**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ */
 .clearfix {
   *zoom: 1;
 }
@@ -27,7 +38,7 @@
   box-sizing: border-box;
 }
 .form-horizontal .control-label {
-  text-align: left !important;
+  text-align: left!important;
 }
 .element-invisible {
   display: none;
@@ -64,40 +75,40 @@ input[type="color"],
   padding: 4px 6px;
 }
 input[type="submit"]:hover,
-input[type="submit"]:focus,
 input[type="button"]:hover,
-input[type="button"]:focus,
 textarea:hover,
-textarea:focus,
 input[type="text"]:hover,
-input[type="text"]:focus,
 input[type="password"]:hover,
-input[type="password"]:focus,
 input[type="datetime"]:hover,
-input[type="datetime"]:focus,
 input[type="datetime-local"]:hover,
-input[type="datetime-local"]:focus,
 input[type="date"]:hover,
-input[type="date"]:focus,
 input[type="month"]:hover,
-input[type="month"]:focus,
 input[type="time"]:hover,
-input[type="time"]:focus,
 input[type="week"]:hover,
-input[type="week"]:focus,
 input[type="number"]:hover,
-input[type="number"]:focus,
 input[type="email"]:hover,
-input[type="email"]:focus,
 input[type="url"]:hover,
-input[type="url"]:focus,
 input[type="search"]:hover,
-input[type="search"]:focus,
 input[type="tel"]:hover,
-input[type="tel"]:focus,
 input[type="color"]:hover,
-input[type="color"]:focus,
 .uneditable-input:hover,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
 .uneditable-input:focus {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -115,8 +126,8 @@ legend {
 }
 .dropdown-menu {
   border: 1px solid #e2e2e2;
-  -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
-  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
 }
 .item-page .full-item {
   max-width: 100%;
@@ -227,10 +238,9 @@ ul.list-striped {
 .ie8 .img-intro-none img,
 .ie8 .item-image img,
 .ie8 .img-fulltext-right img,
-.ie8 .img-fulltext-left img
-.ie8 .img-wrapper,
+.ie8 .img-fulltext-left img .ie8 .img-wrapper,
 .ie8 .img_caption img {
-  max-width: auto !important;
+  max-width: auto!important;
   width: 100%;
   border: 0;
   -ms-interpolation-mode: bicubic;
@@ -357,9 +367,9 @@ p.img_caption {
 .readmore:focus {
   background: none repeat scroll 0 0 #7fbe54;
   color: #fff;
-  -webkit-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  -moz-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
+  -webkit-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
 }
 .items-more .nav-tabs {
   border-top: 1px solid #e2e2e2;
@@ -372,12 +382,12 @@ p.img_caption {
 .items-more .nav-tabs.nav-stacked li a:hover {
   background: #f8f8f8;
 }
-.items-leading >div {
+.items-leading > div {
   border-bottom: 1px solid #e7e7e7;
   padding-bottom: 30px;
   margin-bottom: 20px;
 }
-.homepage .items-leading>div {
+.homepage .items-leading > div {
   border: none;
 }
 .page-header {
@@ -460,6 +470,7 @@ p.img_caption {
 .blog .icons .btn {
   padding: 0;
 }
+/*Icons*/
 .icon-edit,
 .icon-print,
 .icon-envelope {
@@ -534,6 +545,7 @@ ol.inline > li {
 ul.menu li {
   display: inline-block;
 }
+/*Alert*/
 .alert {
   padding: 30px 60px;
   margin-bottom: 24px;
@@ -587,41 +599,41 @@ ul.menu li {
   border-radius: 0;
   margin: 10px 0;
 }
-.zo2-pagination ul >li {
+.zo2-pagination ul > li {
   display: inline-block;
   margin: 0 5px;
 }
-.zo2-pagination ul >li:first-child a,
-.zo2-pagination ul >li:last-child a,
-.zo2-pagination ul >li:first-child span,
-.zo2-pagination ul >li:last-child span {
+.zo2-pagination ul > li:first-child a,
+.zo2-pagination ul > li:last-child a,
+.zo2-pagination ul > li:first-child span,
+.zo2-pagination ul > li:last-child span {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
 }
-.zo2-pagination ul >li >a {
+.zo2-pagination ul > li > a {
   color: #898989;
   border: 1px solid #ebebeb;
 }
-.zo2-pagination ul >li >span {
+.zo2-pagination ul > li > span {
   border: 1px solid #ebebeb;
 }
-.zo2-pagination ul >li.active >span {
+.zo2-pagination ul > li.active > span {
   background: #7fbe54;
   border: 1px solid #7fbe54;
   color: #fff;
 }
-.zo2-pagination ul >li.active >span:hover,
-.zo2-pagination ul >li.active >span:active,
-.zo2-pagination ul >li.active >span:focus {
+.zo2-pagination ul > li.active > span:hover,
+.zo2-pagination ul > li.active > span:active,
+.zo2-pagination ul > li.active > span:focus {
   background: #7fbe54;
   border: 1px solid #7fbe54;
   color: #fff;
 }
-.zo2-pagination ul >li.disabled {
+.zo2-pagination ul > li.disabled {
   font-size: 14px;
 }
-.zo2-pagination ul >li.disabled a {
+.zo2-pagination ul > li.disabled a {
   line-height: 21px;
 }
 .pager li a {
@@ -643,9 +655,9 @@ ul.menu li {
 .pager li a:focus {
   background: none repeat scroll 0 0 #7fbe54;
   color: #fff;
-  -webkit-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  -moz-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
+  -webkit-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
 }
 .pagenav {
   float: none;
@@ -855,13 +867,13 @@ ul.menu li {
 .search-module button {
   padding: 5px 10px;
   border: 0;
-  display: block;
   float: none;
   background: 0;
   margin-left: 0px;
   position: absolute;
   top: 3px;
   right: 3px;
+  display: block;
 }
 .search-module button span {
   text-indent: -9999px;
@@ -886,6 +898,7 @@ ul.menu li {
   border: 1px solid #000;
   color: #565656;
 }
+/*frontend style sheet classes*/
 .edit .btn-toolbar {
   margin: 10px 0;
 }
@@ -900,22 +913,22 @@ ul.menu li {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
-.edit .nav li.active >a {
+.edit .nav li.active > a {
   background: #0C7FCF;
   color: #fff;
 }
-.edit .nav li.active >a:hover,
-.edit .nav li.active >a:active,
-.edit .nav li.active >a:focus {
+.edit .nav li.active > a:hover,
+.edit .nav li.active > a:active,
+.edit .nav li.active > a:focus {
   border: none;
   color: #fff;
 }
 .edit #jform_tags_chzn {
-  width: 100px !important;
+  width: 100px!important;
 }
 div#sbox-window.shadow {
-  width: 820px !important;
-  height: 520px !important;
+  width: 820px !important ;
+  height: 520px !important ;
 }
 .well {
   background-color: #f5f5f5;
@@ -1028,6 +1041,31 @@ ul.manager.thumbnails li.imgOutline {
 body.contentpane form table tbody tr td.key {
   text-align: left;
 }
+/**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ *
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org
+ *------------------------------------------------------------------------------
+ */
+.zo2-megamenu {
+  /* Fixed for bootstrap 3.0*/
+}
 .zo2-megamenu .mega-inner {
   padding: 10px;
   *zoom: 1;
@@ -1058,9 +1096,9 @@ body.contentpane form table tbody tr td.key {
 .zo2-megamenu .mega > .mega-dropdown-menu .mega-dropdown-inner {
   border-top: 3px solid #000;
   background-color: #fff;
-  -webkit-box-shadow: 0 0 7px rgba(0,0,0,0.07);
-  -moz-box-shadow: 0 0 7px rgba(0,0,0,0.07);
-  box-shadow: 0 0 7px rgba(0,0,0,0.07);
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.07);
   margin-top: 50px;
 }
 .zo2-megamenu .mega > .mega-dropdown-menu .mega-dropdown-inner .module .module-title {
@@ -1154,7 +1192,7 @@ body.contentpane form table tbody tr td.key {
   white-space: normal;
 }
 .zo2-megamenu .dropdown-menu .mega-nav > li a:before {
-  content: counter(li,square);
+  content: counter(li, square);
   position: absolute;
   left: 0;
   text-align: center;
@@ -1189,11 +1227,11 @@ body.contentpane form table tbody tr td.key {
 }
 .zo2-megamenu .mega-align-center > .dropdown-menu {
   left: 50%;
-  -webkit-transform: translate(-50%,-50%);
-  -moz-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  -o-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .zo2-megamenu .dropdown-submenu.mega-align-left > .dropdown-menu {
   left: 100%;
@@ -1243,7 +1281,7 @@ body.contentpane form table tbody tr td.key {
     filter: alpha(opacity=0);
   }
   .zo2-megamenu.animate .mega.hovering > .mega-dropdown-menu {
-    display: block !important;
+    display: block!important;
   }
   .zo2-megamenu.animate .mega.open > .mega-dropdown-menu,
   .zo2-megamenu.animate .mega.hovering.open > .mega-dropdown-menu {
@@ -1269,19 +1307,19 @@ body.contentpane form table tbody tr td.key {
     transform: scale(1);
   }
   .zo2-megamenu.animate.elastic .level0 > .mega > .mega-dropdown-menu {
-    transform: scale(1,0);
-    -webkit-transform: scale(1,0);
-    -ms-transform: scale(1,0);
-    -o-transform: scale(1,0);
+    transform: scale(1, 0);
+    -webkit-transform: scale(1, 0);
+    -ms-transform: scale(1, 0);
+    -o-transform: scale(1, 0);
   }
   .zo2-megamenu.animate.elastic .mega > .mega-dropdown-menu {
-    transform: scale(0,1);
+    transform: scale(0, 1);
     transform-origin: 10% 0;
-    -webkit-transform: scale(0,1);
+    -webkit-transform: scale(0, 1);
     -webkit-transform-origin: 10% 0;
-    -ms-transform: scale(0,1);
+    -ms-transform: scale(0, 1);
     -ms-transform-origin: 10% 0;
-    -o-transform: scale(0,1);
+    -o-transform: scale(0, 1);
     -o-transform-origin: 10% 0;
   }
   .zo2-megamenu.animate.elastic .mega.open > .mega-dropdown-menu {
@@ -1341,7 +1379,7 @@ body.contentpane form table tbody tr td.key {
     border-top: 1px solid #eee;
   }
   .zo2-megamenu .hidden-collapse,
-  .zo2-megamenu .always-show  .caret,
+  .zo2-megamenu .always-show .caret,
   .zo2-megamenu .sub-hidden-collapse > .nav-child,
   .zo2-megamenu .sub-hidden-collapse .caret,
   .zo2-megamenu .sub-hidden-collapse > a:after,
@@ -1370,6 +1408,10 @@ body.contentpane form table tbody tr td.key {
     padding: 5px 20px;
   }
 }
+/*
+* Off Canvas
+* --------------------------------------------------
+*/
 @media screen and (max-width: 767px) {
   html {
     width: 100%;
@@ -1387,7 +1429,7 @@ body.contentpane form table tbody tr td.key {
     width: 49%;
   }
   .offcanvas .sidebar-close {
-    color: rgba(0,0,0,0.4);
+    color: rgba(0, 0, 0, 0.4);
     display: block;
     float: right;
     font-size: 2em;
@@ -1408,11 +1450,11 @@ body.contentpane form table tbody tr td.key {
     -moz-transition: transform 0.5s ease 0s;
     -o-transition: transform 0.5s ease 0s;
     transition: transform 0.5s ease 0s;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   .wrapper:after {
-    background: none repeat scroll 0 0 rgba(0,0,0,0.2);
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
     content: "";
     height: 0;
     opacity: 0;
@@ -1421,10 +1463,10 @@ body.contentpane form table tbody tr td.key {
     top: 0;
     width: 0;
     -webkit-transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s;
-    -moz-transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s;
-    -ms-transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s;
-    -o-transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s;
-    transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s;
+    -moz-transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s ;
+    -ms-transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s ;
+    -o-transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s ;
+    transition: opacity 0.5s ease 0s, width 0.1s ease 0.5s, height 0.1s ease 0.5s ;
   }
   .wrapper.offcanvas-push {
     position: relative;
@@ -1435,8 +1477,8 @@ body.contentpane form table tbody tr td.key {
     -moz-transition: transform 0.5s ease 0s;
     -o-transition: transform 0.5s ease 0s;
     transition: transform 0.5s ease 0s;
-    -webkit-transform: translate3d(250px,0,0);
-    transform: translate3d(250px,0,0);
+    -webkit-transform: translate3d(250px, 0, 0);
+    transform: translate3d(250px, 0, 0);
     overflow: hidden;
   }
   .wrapper.offcanvas-push:after {
@@ -1469,8 +1511,8 @@ body.contentpane form table tbody tr td.key {
     position: fixed;
     z-index: 9999;
     cursor: pointer;
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   .offcanvas {
     margin: 0;
@@ -1491,8 +1533,8 @@ body.contentpane form table tbody tr td.key {
     width: 250px;
   }
   .offcanvas .sidebar-nav ul li a {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    color: rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.5);
     display: block;
     text-decoration: none;
     padding: 15px;
@@ -1504,9 +1546,9 @@ body.contentpane form table tbody tr td.key {
   .offcanvas .sidebar-nav ul.nav-sub {
     background: none repeat scroll 0 0 #525E66;
   }
-  .offcanvas .sidebar-nav >ul >li.nav-active > a {
+  .offcanvas .sidebar-nav > ul > li.nav-active > a {
     background: none repeat scroll 0 0 #7FBE54;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     color: #FFFFFF;
   }
   .offcanvas.active {
@@ -1529,7 +1571,7 @@ body.contentpane form table tbody tr td.key {
     -o-transition: transform 0.5s;
     transition: transform 0.5s;
   }
-  body> * {
+  body > * {
     left: 0;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
@@ -1550,6 +1592,7 @@ body.contentpane form table tbody tr td.key {
     -o-transform: translateX(250px);
     transform: translateX(250px);
   }
+  /** New: submenu **/
   .nav-parent {
     position: relative;
   }
@@ -1562,6 +1605,7 @@ body.contentpane form table tbody tr td.key {
     height: 8px;
   }
 }
+/*Module*/
 h3.moduletitle {
   background: url("../images/module-title-line.jpg") no-repeat left bottom;
   font-size: 20px;
@@ -1620,8 +1664,8 @@ ul.categories-module li.active a {
 ul.archive-module li {
   padding: 10px 5px;
   display: block;
-  -webkit-box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.07);
-  box-shadow: 0px 1px 0px 0px rgba(0,0,0,0.07);
+  -webkit-box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 1px 0px 0px rgba(0, 0, 0, 0.07);
 }
 ul.archive-module li a {
   display: block;
@@ -1673,6 +1717,22 @@ ul.mostread li a:hover {
   padding: 4px 17px 4px 15px;
   color: #fff;
 }
+/**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ */
+/* --------------------------------------------------
+// TYPOGRAPHY
+// --------------------------*/
+/* COMMONS
+// ------------------------------------------------------*/
 .clearfix {
   clear: both;
 }
@@ -1685,9 +1745,15 @@ ul.mostread li a:hover {
 .zt-typo-boxes-inside {
   padding: 0 10px;
 }
+/* BODY TEXT
+// ------------------------------------------------------*/
+/* Paragraphs
+// ----------*/
 p {
   margin: 1em 0;
 }
+/* HEADINGS
+// ------------------------------------------------------*/
 h1,
 h2,
 h3,
@@ -1750,6 +1816,8 @@ h6 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+/* PRE CODE
+// ------------------------------------------------------*/
 pre,
 .zt-code1,
 .zt-code2,
@@ -1759,7 +1827,7 @@ pre,
   border-radius: 0;
   border: none;
   color: #222;
-  font: normal .92em/32px 'Curier New', monospace !important;
+  font: normal 0.92em/32px 'Curier New', monospace !important;
   margin: 0;
   padding: 20px;
 }
@@ -1786,6 +1854,8 @@ pre,
   top: 0;
   width: 55px;
 }
+/* HIGHLIGHT
+// ------------------------------------------------------*/
 .zt-highlight1,
 .zt-highlight2,
 .zt-highlight3,
@@ -1800,16 +1870,18 @@ pre,
 }
 .zt-highlight2 {
   background: #7fb2ff;
-  color: #fff;
+  color: #ffffff;
 }
 .zt-highlight3 {
   background: #ff7f7f;
-  color: #fff;
+  color: #ffffff;
 }
 .zt-highlight4 {
   background: #ffe400;
   color: #2f2f2f;
 }
+/* UNORDERED LIST
+// ------------------------------------------------------*/
 [class^="zt-icon-"] li,
 [class*=" zt-icon-"] li {
   font-weight: normal;
@@ -1935,6 +2007,8 @@ pre,
 .zt-icon-long-arrow-right li:before {
   content: "\f178";
 }
+/* BLOCKQUOTE
+// ------------------------------------------------------*/
 .zt-typo-inside blockquote {
   border: none;
   font-style: italic;
@@ -1978,6 +2052,8 @@ pre,
   background: url(../images/typo/close2.png) no-repeat right top;
   padding: 0 48px;
 }
+/* WARNING
+// ------------------------------------------------------*/
 .zt-box-info,
 .zt-box-warning,
 .zt-box-stickynote,
@@ -1985,7 +2061,7 @@ pre,
 .zt-box-download {
   color: #353535;
   padding: 15px;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.99);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.99);
 }
 .zt-box-info:before,
 .zt-box-warning:before,
@@ -2028,6 +2104,176 @@ pre,
 }
 .zt-box-download {
   background: #e7ebfb;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+a {
+  background: transparent;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+pre {
+  white-space: pre-wrap;
+}
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 0;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0;
+  padding: 0;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+button,
+input {
+  line-height: normal;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 body {
   line-height: 20px;
@@ -2105,12 +2351,14 @@ body.modal-open {
 body.form.body-overlayed {
   overflow: inherit;
 }
+/**/
 .full-width .col-md-12 {
   padding: 0;
 }
 .full-width .row {
   margin: 0;
 }
+/*Top Menu*/
 #top-menu {
   margin: 18px 0;
 }
@@ -2131,6 +2379,7 @@ body.form.body-overlayed {
 #top-menu .mod-wrapper-menu ul li:last-child a {
   border: none;
 }
+/*Top Search*/
 #top-search form {
   position: relative;
   border-left: 1px solid #eeeeee;
@@ -2158,6 +2407,7 @@ body.form.body-overlayed {
   outline: none;
   padding: 0 0 0 10px;
 }
+/*Zo2 Menu*/
 nav.zo2-menu {
   background: none;
   border: none;
@@ -2168,7 +2418,7 @@ nav.zo2-menu .navbar-nav > li {
   font-size: 133%;
   line-height: 16px;
 }
-nav.zo2-menu .navbar-nav > li >a {
+nav.zo2-menu .navbar-nav > li > a {
   padding: 0 20px;
   color: #323232;
   font-size: 16px;
@@ -2202,8 +2452,9 @@ nav.zo2-menu .navbar-nav ul.mega-nav li a:focus {
 nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   color: #71b344;
 }
+/*Slideshow*/
 .slide-button {
-  background: none repeat scroll 0 0 rgba(0,0,0,0);
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
   border: 1px solid #FFFFFF;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -2221,16 +2472,17 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 .slide-button:hover,
 .slide-button:active,
 .slide-button:focus {
-  background: none repeat scroll 0 0 rgba(255,255,255,0.1);
+  background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
   color: #fff;
-  -webkit-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  -moz-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
+  -webkit-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
 }
 .carousel-control.left,
 .carousel-control.right {
   background: none;
 }
+/*Zo2 Hello*/
 #zo2-hello {
   background-color: #fafafa;
   border-bottom: 1px solid #f0f0f0;
@@ -2246,6 +2498,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 #zo2-hello .btn {
   margin-top: 0;
 }
+/*Features*/
 #zo2-features {
   text-align: center;
 }
@@ -2271,7 +2524,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   height: 110px;
   width: 110px;
   border-radius: 50%;
-  text-shadow: 0 3px 0 rgba(0,0,0,0.1);
+  text-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
   -webkit-transition: background-color 0.25s ease, color 0.25s ease;
   transition: background-color 0.25s ease, color 0.25s ease;
   color: #7fbe54;
@@ -2322,12 +2575,14 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   opacity: 1;
   transform: scale(1);
 }
+/*Header*/
 #zo2-header-top {
   border-bottom: 1px solid #ebebeb;
 }
 #zo2-header {
   padding: 45px 0;
 }
+/*Bottom*/
 #zo2-bottom1 {
   background-color: #2a2a2a;
   color: #ffffff;
@@ -2373,9 +2628,9 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 #zo2-bottom1 .btn:hover,
 #zo2-bottom1 .btn:active,
 #zo2-bottom1 .btn:focus {
-  -webkit-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  -moz-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
+  -webkit-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
 }
 #zo2-bottom1 .no-line h3 {
   margin: 0;
@@ -2399,6 +2654,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 #zo2-bottom2 address i {
   padding-right: 15px;
 }
+/*Social*/
 .social {
   margin-top: 10px;
 }
@@ -2453,6 +2709,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 .social.footer-social a {
   background-color: #393939;
 }
+/*Recent from Blog*/
 #news {
   margin: 50px 0 120px;
 }
@@ -2465,6 +2722,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   color: #2c2c2c;
   font-size: 18px;
 }
+/*Recent Post*/
 .latest-news li {
   padding-bottom: 10px;
   list-style: none;
@@ -2493,6 +2751,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 .gmap-page .embed-container {
   padding-bottom: 0;
 }
+/* Flickr Gallery */
 .module .zt-image-frame {
   background: none;
   padding: 0;
@@ -2508,6 +2767,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 a.cboxElement img {
   margin-bottom: 5px;
 }
+/*Footer*/
 footer {
   display: inline-block;
   padding: 20px 0;
@@ -2528,7 +2788,7 @@ footer .footer_zo2_logo img {
   width: 100%;
 }
 .highslide-gallery ul li {
-  background: none repeat scroll 0 center rgba(0,0,0,0);
+  background: none repeat scroll 0 center rgba(0, 0, 0, 0);
   float: left;
   list-style: none outside none;
   margin: 3px;
@@ -2539,7 +2799,7 @@ footer .footer_zo2_logo img {
   margin: 0;
 }
 #gototop {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -2556,7 +2816,7 @@ footer .footer_zo2_logo img {
   z-index: 100;
 }
 #gototop:hover {
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 #gototop i {
   color: #fff;
@@ -2586,10 +2846,10 @@ footer .footer_zo2_logo img {
   padding: 10px 0;
 }
 .box-color ul.weblinks li a:hover,
-.box-color ul.weblinks li a:active,
-.box-color ul.weblinks li a:focus,
 .box-color ul.menu li a:hover,
+.box-color ul.weblinks li a:active,
 .box-color ul.menu li a:active,
+.box-color ul.weblinks li a:focus,
 .box-color ul.menu li a:focus {
   background: none;
 }
@@ -2598,10 +2858,10 @@ footer .footer_zo2_logo img {
 .box-color ul.weblinks li.active a,
 .box-color ul.menu li.active a {
   margin-left: 10px;
-  -webkit-transition: all linear .3s;
-  -moz-transition: all linear .3s;
-  -o-transition: all linear .3s;
-  transition: all linear .3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+  transition: all linear 0.3s;
 }
 .box-color ul.weblinks li a,
 .box-color ul.menu li a {
@@ -2614,6 +2874,7 @@ footer .footer_zo2_logo img {
 #zo2comment-tabs .embed-container {
   padding-bottom: 0;
 }
+/*Override Bootstrap*/
 .btn-success {
   border: none;
   background-color: #7ebe54;
@@ -2629,9 +2890,9 @@ footer .footer_zo2_logo img {
 .btn-success:hover,
 .btn-success:active,
 .btn-success:focus {
-  -webkit-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  -moz-box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
-  box-shadow: 0 0 0 26px rgba(0,0,0,0.1) inset;
+  -webkit-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;
 }
 .carousel-caption {
   font-weight: 300;
@@ -2656,6 +2917,7 @@ footer .footer_zo2_logo img {
   display: block;
   position: static;
 }
+/* Responsive */
 @media (max-width: 767px) {
   body {
     padding-left: 10px;
@@ -2758,10 +3020,10 @@ footer .footer_zo2_logo img {
 }
 @media (min-width: 768px) and (max-width: 990px) {
   body .zo2-menu {
-    margin-left: 30px !important;
+    margin-left: 30px!important;
   }
-  body .zo2-menu >.container {
-    padding: 0 !important;
+  body .zo2-menu > .container {
+    padding: 0!important;
   }
   body nav.zo2-menu .navbar-nav > li > a {
     font-size: 13px;
@@ -2807,13 +3069,13 @@ footer .footer_zo2_logo img {
     line-height: 30px;
     width: 30px;
   }
-  body .zo2-menu >.container {
-    padding: 0 !important;
+  body .zo2-menu > .container {
+    padding: 0!important;
   }
 }
 @media (min-width: 1151px) and (max-width: 1180px) {
-  .zo2-menu >.container {
-    padding: 0 !important;
+  .zo2-menu > .container {
+    padding: 0!important;
   }
 }
 @media (max-width: 750px) {
@@ -2826,21 +3088,22 @@ footer .footer_zo2_logo img {
 }
 @media (max-width: 480px) {
   .pricing_box {
-    width: 100% !important;
+    width: 100%!important;
   }
 }
+/* IE8 */
 .ie8 body {
   overflow: inherit;
 }
 .zo2-socialshares-floatbar {
-  background: none repeat scroll 0 0 padding-box #FFFFFF;
+  background: none repeat scroll 0 0 padding-box #ffffff;
   border: 1px solid #BBBBBB;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: 1px 0 15px rgba(0,0,0,0.2);
-  -moz-box-shadow: 1px 0 15px rgba(0,0,0,0.2);
-  box-shadow: 1px 0 15px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 1px 0 15px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 0 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 0 15px rgba(0, 0, 0, 0.2);
   font: 10px/16px Arial;
   min-width: 55px;
   padding: 5px;
