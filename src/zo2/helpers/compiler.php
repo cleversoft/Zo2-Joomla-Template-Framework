@@ -20,7 +20,7 @@ Zo2Framework::import('vendor.minify.jsshrink');
 if (!class_exists('Zo2HelperCompiler')) {
 
     /**
-     *
+     *  This Class help compile and compress less and js
      */
     class Zo2HelperCompiler {
 
@@ -69,7 +69,5 @@ if (!class_exists('Zo2HelperCompiler')) {
             }
             return false;
         }
-
     }
-
 }
