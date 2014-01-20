@@ -16,23 +16,19 @@ $shortcodes->set('width', $this->get('width'));
 $shortcodes->set('height', $this->get('height'));
 ?>
 <style>
-    div.itemFullText > div{
+    div.wrap_carousel > div{
         height: <?php echo $this->get('height')?>px !important;
     }
 
-    div.itemFullText > div.carousel_height{
-        height: 20px !important;
-    }
-
-    div.itemFullText #carousel-name{
+    div.wrap_carousel #carousel-name{
         margin-top: 0px !important;
     }
 </style>
-<div id="carousel-<?php echo $this->get('name'); ?>" class="carousel slide" data-ride="carousel">
+<div id="carousel-<?php echo $this->get('name'); ?>" class="carousel slide">
     <!-- Wrapper for slides -->
-    <div class="carousel-inner">                
-        <?php echo $shortcodes->execute($content); ?>                    
-    </div>    
+    <div class="carousel-inner">
+        <?php echo $shortcodes->execute($content); ?>
+    </div>
     <!-- Controls -->
     <a class="left carousel-control" href="#carousel-<?php echo $this->get('name'); ?>" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -44,7 +40,6 @@ $shortcodes->set('height', $this->get('height'));
 <script>
 
     jQuery(document).ready(function() {
-        jQuery('#carousel-<?php echo $this->get("name"); ?>').next().next().addClass('carousel_height');
+        jQuery('#carousel-<?php echo $this->get("name"); ?>').wrap( "<div class='wrap_carousel'></div>" );
     })
 </script>
-
