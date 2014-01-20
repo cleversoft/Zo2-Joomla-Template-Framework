@@ -24,7 +24,7 @@ if (Zo2Framework::isZo2Template()) {
 
     $assets = Zo2Assets::getInstance();
 
-    //$assets->build();
+    $assets->buildAssets();
     $assets->loadAssets();
 
     Zo2Framework::preparePresets();
