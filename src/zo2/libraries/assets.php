@@ -186,11 +186,11 @@ if (!class_exists('Zo2Assets')) {
                         $typePath = 'css';
                     }
                     if($position == CORE){
-                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/'.$type.'/' .$inputName , null);
-                        $outputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/'.$typePath.'/'.$outputName , null);
+                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/'.$type.'/' .$inputName , 'path');
+                        $outputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/'.$typePath.'/'.$outputName , 'path');
                     }elseif ($position == TEMPLATE) {
-                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/'.$type.'/' .$inputName , null);
-                        $outputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/'.$typePath.'/'.$outputName , null);
+                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/'.$type.'/' .$inputName , 'path');
+                        $outputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/'.$typePath.'/'.$outputName , 'path');
                     }
 
                     if ($type == 'less') {

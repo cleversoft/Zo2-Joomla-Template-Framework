@@ -9,9 +9,9 @@
 * @license     GPL v2
 */
 /* Global variables */
-/* @import "variables.less"; */
+@import "variables.less";
 /* Admin menu styles */
-/* @import "admin.megamenu.less"; */
+@import "admin.megamenu.less";
 
 body{
     color: inherit!important;
@@ -511,7 +511,6 @@ body{
         img {
             max-width: 150px;
             max-height: 25px;
-            margin: 0;
         }
     }
     .zo2_themes_row {
@@ -1836,15 +1835,9 @@ body{
     .btn-group{
       font-size: inherit;
       input[type="radio"]{
-        margin-right: 10px;
-        margin-left: 0;
-        float: left;
-      }
-      label{
-        clear: none;
-        display: inline;
-        margin-right: 20px;
-        margin-top: 0;
+        display: block;
+        margin: 0;
+        float: none;
       }
     }
     #general{
@@ -1866,6 +1859,7 @@ body{
         }
       }
       .field-logo-container{
+
         label{
           clear: none;
           margin-right: 10px;
@@ -1875,8 +1869,6 @@ body{
         }
         .btn-group{
           position: static;
-          float: left;
-          margin-right: 10px;
           > .btn{
             float: left;
             margin:0;
@@ -1886,8 +1878,7 @@ body{
           .btn{
             border: none;
             color: #fff;
-            &:hover,
-            &:focus{
+            &:hover{
               background-position: inherit;
             }
           }

@@ -2,8 +2,6 @@
     "build": {
         "core": {
             "less": {
-                "variables.less": "variables.css",
-                "admin.megamenu.less": "admin.megamenu.css",
                 "admin.styles.less": "admin.styles.css",
                 "site.styles.less": "site.styles.css"
             },
@@ -18,13 +16,6 @@
         },
         "template": {
             "less": {
-                "variables.less": "variables.css",
-                "mixins.less": "mixins.css",
-                "joomla.less": "joomla.css",
-                "megamenu.less": "megamenu.css",
-                "module.less": "module.css",
-                "typography.less": "typography.css",
-                "normalize.less": "normalize.css",
                 "template.less": "template.css"
             },
             "js": {
@@ -66,9 +57,8 @@
             },
             "styles": {
                 "paths": [
-                    "zo2\/css\/variables.css",
-                    "zo2\/css\/admin.megamenu.css",
-                    "zo2\/css\/admin.styles.css"
+                    "zo2\/css\/admin.styles.css",
+                    "zo2\/css\/admin.megamenu.css"
                 ]
             },
             "scripts": {
@@ -102,13 +92,6 @@
                 "paths": [
                     "zo2\/css\/site.styles.css",
                     "zo2\/css\/site.shortcodes.css",
-                    "zo2\/css\/variables.css",
-                    "zo2\/css\/mixins.css",
-                    "zo2\/css\/joomla.css",
-                    "zo2\/css\/megamenu.css",
-                    "zo2\/css\/module.css",
-                    "zo2\/css\/typography.css",
-                    "zo2\/css\/normalize.css",
                     "zo2\/css\/template.css"
                 ]
             },
