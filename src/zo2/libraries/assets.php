@@ -180,7 +180,7 @@ if (!class_exists('Zo2Assets')) {
          */
         private function _checkAssetBuildFile($inputFile, $outputFile) {
             if(JFile::exists($inputFile))
-                if(JFile::exists($outputFile) && (filemtime($inputFile) > filemtime($outputFile)) )
+                if(!JFile::exists($outputFile) || (JFile::exists($outputFile) && filemtime($inputFile) > filemtime($outputFile)) )
                     return true;
             return false;
         }
@@ -205,16 +205,14 @@ if (!class_exists('Zo2Assets')) {
                         $outputFile = Zo2HelperPath::getZo2FilePath($outputPath , null);
                     }elseif ($position == TEMPLATE) {
                         $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/'.$type.'/' .$inputName , null);
-                        $outputFile = Zo2HelperPath::getZo2FilePath($outputPath , null);
+                        $outputFile = Zo2HelperPath::getTemplateFilePath($outputPath , null);
                     }
 
                     if ($this->_checkAssetBuildFile($inputFile, $outputFile) && $type == 'less') {
                         Zo2HelperCompiler::less($inputFile, $outputFile);
-                        echo $inputFile.'#'.$outputFile.'<br />';
                     }
                     if ($this->_checkAssetBuildFile($inputFile, $outputFile) && $type == 'js') {
                         Zo2HelperCompiler::javascript($inputFile, $outputFile);
-                        echo $inputFile.'#'.$outputFile.'<br />';
                     }
                 }
             }
