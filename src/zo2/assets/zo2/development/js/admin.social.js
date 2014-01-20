@@ -11,13 +11,12 @@
 
 var Zo2Social = window.Zo2Social || {};
 
-!function ($) {
+!function($) {
 
     $.extend(Zo2Social, {
+        toggleButtons: function() {
 
-        toggleButtons: function () {
-
-            $('.social-onoff > label').click(function () {
+            $('.social-onoff > label').click(function() {
                 var $this = $(this);
                 var $parent = $this.parent();
                 var $input = $parent.find('input[type=radio]');
@@ -35,17 +34,15 @@ var Zo2Social = window.Zo2Social || {};
             });
 
         },
-
-        updateIndex: function (e, ui) {
-            $('td.index', ui.item.parent()).each(function (i) {
+        updateIndex: function(e, ui) {
+            $('td.index', ui.item.parent()).each(function(i) {
                 $(this).html(i + 1);
             })
         },
-
-        saveConfig: function (e, ui) {
+        saveConfig: function(e, ui) {
 
             var $items = [];
-            $(ui.item.parent().children()).each(function (e) {
+            $(ui.item.parent().children()).each(function(e) {
                 var $item = Zo2Social.getRow(this);
                 $items.push($item);
             });
@@ -56,8 +53,7 @@ var Zo2Social = window.Zo2Social || {};
 
             return true;
         },
-
-        getRow: function (e) {
+        getRow: function(e) {
 
             var $item = {};
             // columns
@@ -71,8 +67,7 @@ var Zo2Social = window.Zo2Social || {};
 
             return $item;
         },
-
-        encodeJSON: function ($items) {
+        encodeJSON: function($items) {
 
             if (JSON && JSON.stringify) {
                 $items = JSON.stringify($items);
@@ -82,21 +77,19 @@ var Zo2Social = window.Zo2Social || {};
             }
 
         },
-
-        decodeJSON: function ($json) {
+        decodeJSON: function($json) {
             return  $.parseJSON($json);
         },
-
-        onSubmit: function () {
+        onSubmit: function() {
 
             var form = document.adminForm;
             if (!form) {
                 return false;
             }
-            form.onsubmit = function (e) {
+            form.onsubmit = function(e) {
 
                 var $items = [];
-                $('#social_options > tbody > tr').each(function (e) {
+                $('#social_options > tbody > tr').each(function(e) {
                     var $item = Zo2Social.getRow(this);
                     $items.push($item);
                 });
@@ -109,7 +102,7 @@ var Zo2Social = window.Zo2Social || {};
             };
 
         },
-        loadFields: function () {
+        loadFields: function() {
             $('#jform_params_normal_position').closest('.control-group').hide();
             $('#jform_params_floating_position').closest('.control-group').hide();
             $('#jform_params_box_top').closest('.control-group').hide();
@@ -119,9 +112,9 @@ var Zo2Social = window.Zo2Social || {};
             var $type = $('#jform_params_display_type').val();
             Zo2Social.toggleType($type);
         },
-        init: function () {
+        init: function() {
 
-            $('#jform_params_display_type').on('change', function () {
+            $('#jform_params_display_type').on('change', function() {
                 var $type = $(this).val();
                 Zo2Social.toggleType($type)
             });
@@ -135,7 +128,7 @@ var Zo2Social = window.Zo2Social || {};
             });
 
         },
-        toggleType: function (value) {
+        toggleType: function(value) {
 
             if (value == 'normal') {
                 $('#jform_params_normal_position').closest('.control-group').show();
@@ -155,7 +148,7 @@ var Zo2Social = window.Zo2Social || {};
         }
     });
 
-    $(document).ready(function () {
+    $(document).ready(function() {
         Zo2Social.loadFields();
         Zo2Social.init();
         Zo2Social.onSubmit();

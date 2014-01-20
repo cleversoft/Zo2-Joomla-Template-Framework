@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){if(jQuery().colorbox){jQuery("a.colorbox").colorbox()}jQuery("ul.nav-tabs.shortcode a:first").tab("show")});
