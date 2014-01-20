@@ -44,17 +44,14 @@ $(window).bind('load', function() {
 //    $('#hfTemplateName').appendTo($layoutBuilder);
 //    $('#hfLayoutName').appendTo($layoutBuilder);
 //    $layoutContainer.remove();
-
-    // fix tooltip
-    fixTooltip();
-
-
+   
     addIconToMenu();
     fixToolbarIcon();
     fixPreviewIcon();
 });
 
 jQuery(document).ready(function($) {
+	
     injectFormSubmit();
     //wrapForm();
 
@@ -110,8 +107,7 @@ jQuery(document).ready(function($) {
                 '</div></div>' +
                 '<div class="col-container"></div></div>');
         $meta.appendTo($row);
-
-        fixTooltip();
+        
     });
 
     $('#droppable-container').on('click', '.row-control-buttons > .split', function() {
@@ -159,8 +155,6 @@ jQuery(document).ready(function($) {
 
             bindSortable();
 
-            fixTooltip();
-
         }
     });
 
@@ -204,8 +198,7 @@ jQuery(document).ready(function($) {
         $meta.appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
-
-        fixTooltip();
+        
     });
 
     $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
@@ -901,10 +894,4 @@ var generateSlug = function(str) {
     str = str.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\s+/g, '-').toLowerCase();
     str = str.replace(/(-){2,}/i, '-');
     return str;
-};
-
-var fixTooltip = function() {
-    var $tooltips = jQuery('.hasTooltip');
-    $tooltips.tooltip('destroy');
-    $tooltips.tooltip({container: "body"});
 };
