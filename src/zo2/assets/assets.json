@@ -5,7 +5,7 @@
                 "admin.megamenu.less": "admin.megamenu.css",
                 "admin.styles.less": "admin.styles.css",
                 "megamenu.less": "megamenu.css",
-                "megamenu.responsive.less": "megamenu.responsive.css",
+                "megamenu-responsive.less": "megamenu-responsive.css",
                 "shortcodes.less": "shortcodes.css",
                 "social.less": "social.css",
                 "variables.less": "variables.css"
@@ -19,6 +19,28 @@
                 "shortcodes.js": "shortcodes.js",
                 "social.js": "social.js",
                 "socialshare.js": "socialshare.js"
+            }
+        },
+        "template": {
+            "less": {
+                "error.less": "error.css",
+                "joomla.less": "joomla.css",
+                "megamenu.less": "megamenu.css",
+                "mixins.less": "mixins.css",
+                "module.less": "module.css",
+                "template.less": "template.css",
+                "typography.less": "typography.css",
+                "variables.less": "variables.css",
+                "presets\/black.less": "presets\/black.css",
+                "presets\/blue.less": "presets\/blue.css",
+                "presets\/default.less": "presets\/default.css",
+                "presets\/orange.less": "presets\/orange.css",
+                "presets\/red.less": "presets\/red.css"
+
+            },
+            "js": {
+                "ekko-lightbox.js": "ekko-lightbox.js",
+                "megamenu.js": "megamenu.js"
             }
         }
     },
