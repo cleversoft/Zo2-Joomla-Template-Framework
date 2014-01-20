@@ -32,13 +32,13 @@ if (!class_exists('Zo2HelperCompiler')) {
         public static function less($inputFile, $outputFile) {
             if (JFile::exists($inputFile)) {
                 $less = new lessc();
+                $less->setImportDir(array(dirname($inputFile)));
                 return $less->compileFile($inputFile, $outputFile);
             }
             return false;
         }
 
-        public static function lessStyle($input)
-        {
+        public static function lessStyle($input) {
             $less = new lessc();
             return $less->compile($input);
         }
