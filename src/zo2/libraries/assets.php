@@ -161,28 +161,14 @@ if (!class_exists('Zo2Assets')) {
          * Function build all development assets file into Zo2Assets class
          */
         public function buildAssets() {
-            if (isset($this->_assets->build->core->less))
+            if(isset($this->_assets->build->core->less))
                 $this->_buildAssets($this->_assets->build->core->less, CORE, 'less');
-            if (isset($this->_assets->build->core->js))
+            if(isset($this->_assets->build->core->js))
                 $this->_buildAssets($this->_assets->build->core->js, CORE, 'js');
-            if (isset($this->_assets->build->template->less))
+            if(isset($this->_assets->build->template->less))
                 $this->_buildAssets($this->_assets->build->template->less, TEMPLATE, 'less');
-            if (isset($this->_assets->build->template->js))
+            if(isset($this->_assets->build->template->js))
                 $this->_buildAssets($this->_assets->build->template->js, TEMPLATE, 'js');
-        }
-
-        /**
-         * @param $inputFile
-         * @param $outputFile
-         * @return bool
-         *
-         * Check file exits and modify time before build asset file
-         */
-        private function _checkAssetBuildFile($inputFile, $outputFile) {
-            if (JFile::exists($inputFile))
-                if (!JFile::exists($outputFile) || (JFile::exists($outputFile) && filemtime($inputFile) > filemtime($outputFile)))
-                    return true;
-            return false;
         }
 
         /**
@@ -195,23 +181,21 @@ if (!class_exists('Zo2Assets')) {
         private function _buildAssets($assets, $position, $type) {
             if (count($assets) > 0) {
                 foreach ($assets as $inputName => $outputName) {
-                    if ($type == 'less') {
-                        $outputPath = 'assets/zo2/css/' . $outputName;
-                    } elseif ($type == 'js') {
-                        $outputPath = 'assets/zo2/js/' . $outputName;
+                    $typePath = $type;
+                    if($type == 'less') {
+                        $typePath = 'css';
                     }
-                    if ($position == CORE) {
-                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = Zo2HelperPath::getZo2FilePath($outputPath, 'path');
-                    } elseif ($position == TEMPLATE) {
-                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = Zo2HelperPath::getTemplateFilePath($outputPath, 'path');
+                    if($position == CORE){
+                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/'.$type.'/' .$inputName , null);
+                        $outputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/'.$typePath.'/'.$outputName , null);
+                    }elseif ($position == TEMPLATE) {
+                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/'.$type.'/' .$inputName , null);
+                        $outputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/'.$typePath.'/'.$outputName , null);
                     }
 
-                    if ($this->_checkAssetBuildFile($inputFile, $outputFile) && $type == 'less') {
+                    if ($type == 'less') {
                         Zo2HelperCompiler::less($inputFile, $outputFile);
-                    }
-                    if ($this->_checkAssetBuildFile($inputFile, $outputFile) && $type == 'js') {
+                    }elseif ($type == 'js') {
                         Zo2HelperCompiler::javascript($inputFile, $outputFile);
                     }
                 }
@@ -320,6 +304,158 @@ if (!class_exists('Zo2Assets')) {
             return $this;
         }
 
+        /**
+         * Do build development script into production
+         */
+        public function buildFrameworkProduction() {
+            /* This method only need call one time */
+            static $called = false;
+            $templateName = Zo2Framework::getTemplateName();
+            if ($called === false && !empty($templateName) && Zo2Framework::isZo2Template()) {
+                /**
+                 * @todo move these list into config file
+                 */
+                $lessFiles['core'][] = 'adminmegamenu';
+                $lessFiles['core'][] = 'megamenu-responsive';
+                $lessFiles['core'][] = 'megamenu';
+                $lessFiles['core'][] = 'shortcodes';
+                $lessFiles['core'][] = 'social';
+                $jsFiles['core'][] = 'adminlayout';
+                $jsFiles['core'][] = 'adminmegamenu';
+                $jsFiles['core'][] = 'adminsocial';
+                $jsFiles['core'][] = 'assets';
+                $jsFiles['core'][] = 'megamenu';
+                $jsFiles['core'][] = 'shortcodes';
+                $jsFiles['core'][] = 'social';
+                $jsFiles['core'][] = 'socialshare';
+                $cssFiles['core'] = array();
+                $cssFiles['template'] = array();
+
+                /* Template */
+
+                $templateAssetsPath = Zo2HelperPath::getTemplateFilePath('layouts/assets.json');
+                $templatePresetsPath = Zo2HelperPath::getTemplateFilePath('layouts/presets.json');
+
+                $templateAssets = json_decode(file_get_contents($templateAssetsPath), true);
+                $templatePresets = json_decode(file_get_contents($templatePresetsPath), true);
+
+                foreach ($templateAssets as $asset) {
+                    if ($asset['type'] == 'js')
+                        $jsFiles['template'][] = $asset['path'];
+                    else if ($asset['type'] == 'less')
+                        $lessFiles['template'][] = $asset['path'];
+                    else if ($asset['type'] == 'css')
+                        $cssFiles['template'][] = $asset['path'];
+                }
+
+                foreach ($templatePresets as $preset) {
+                    if (isset($preset['less']) && !empty($preset['less']))
+                        $lessFiles['template'][] = $preset['less'];
+                }
+
+                //$lessFiles['template'] = '';
+                //$jsFiles['template'] = '';
+
+                $buildProduction = Zo2Framework::get('build_production', 1);
+
+
+                switch ($buildProduction) {
+                    case 1: /* Clear cache and rebuild everything */
+                        /* Do build core less */
+                        foreach ($lessFiles['core'] as $lessFile) {
+                            $input = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/less/' . $lessFile . '.less');
+                            $output = $this->getPath($this->get('zo2Root') . '/assets/zo2/css/' . $lessFile . '.css');
+                            $this->_buildLess($input, $output);
+                        }
+                        if (isset($lessFiles['template']) && is_array($lessFiles['template'])) {
+                            /* Do build template less */
+                            foreach ($lessFiles['template'] as $lessFile) {
+                                $input = $this->getPath($this->get('siteTemplate') . '/assets/zo2/development/less/' . $lessFile . '.less');
+                                $output = $this->getPath($this->get('siteTemplate') . '/assets/zo2/css/' . $lessFile . '.css');
+                                $this->_buildLess($input, $output);
+                            }
+                        }
+
+                        /* Do build core css */
+                        foreach ($cssFiles['core'] as $cssFile) {
+                            $input = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/css/' . $cssFile . '.css');
+                            $output = $this->getPath($this->get('zo2Root') . '/assets/zo2/css/' . $cssFile . '.css');
+                            $this->_buildCss($input, $output);
+                        }
+                        if (isset($cssFiles['template']) && is_array($cssFiles['template'])) {
+                            /* Do build template less */
+                            foreach ($cssFiles['template'] as $cssFile) {
+                                $input = $this->getPath($this->get('siteTemplate') . '/assets/zo2/development/css/' . $cssFile . '.css');
+                                $output = $this->getPath($this->get('siteTemplate') . '/assets/zo2/css/' . $cssFile . '.css');
+                                $this->_buildCss($input, $output);
+                            }
+                        }
+
+                        /* Do build core js */
+                        foreach ($jsFiles['core'] as $jsFile) {
+                            $input = $this->getPath($this->get('zo2Root') . '/assets/zo2/development/js/' . $jsFile . '.js');
+                            $output = $this->getPath($this->get('zo2Root') . '/assets/zo2/js/' . $jsFile . '.js');
+                            $this->_buildJs($input, $output);
+                            //JFactory::getApplication()->enqueueMessage('Working: ' . $jsFilePath);
+                        }
+                        if (isset($jsFiles['template']) && is_array($jsFiles['template'])) {
+                            /* Do build template js */
+                            foreach ($jsFiles['template'] as $jsFile) {
+                                $input = $this->getPath($this->get('siteTemplate') . '/assets/zo2/development/js/' . $jsFile . '.js');
+                                $output = $this->getPath($this->get('siteTemplate') . '/assets/zo2/js/' . $jsFile . '.js');
+                                $this->_buildJs($input, $output);
+                                //JFactory::getApplication()->enqueueMessage('Working: ' . $jsFilePath);
+                            }
+                        }
+                        break;
+                }
+                $called = true;
+            }
+        }
+
+        private function _buildLess($input, $output) {
+            $cleanProduction = Zo2Framework::get('clean_production', 1);
+            /* Do clean old files */
+            if (JFile::exists($output) && $cleanProduction)
+                JFile::delete($output);
+            if (!is_file($output) || filemtime($input) > filemtime($output)) {
+                if (Zo2HelperCompiler::less($input, $output)) {
+                    //JFactory::getApplication()->enqueueMessage('Success: ' . $cssFilePath);
+                }
+            } else {
+                //JError::raiseNotice(100, 'File exists: ' . $cssFilePath);
+            }
+            /**
+             * @todo css compress
+             */
+        }
+
+        private function _buildJs($input, $output) {
+            $cleanProduction = Zo2Framework::get('clean_production', 1);
+            if (JFile::exists($output) && $cleanProduction)
+                JFile::delete($output);
+            if (!is_file($output) || filemtime($input) > filemtime($output)) {
+                if (Zo2HelperCompiler::javascript($input, $output)) {
+                    //JFactory::getApplication()->enqueueMessage('Success: ' . $jsFilePathOutput);
+                }
+            } else {
+                //JError::raiseNotice(100, 'File exists: ' . $jsFilePathOutput);
+            }
+        }
+
+        private function _buildCss($input, $output) {
+            $cleanProduction = Zo2Framework::get('clean_production', 1);
+            if (JFile::exists($output) && $cleanProduction)
+                JFile::delete($output);
+            if (!is_file($output) || filemtime($input) > filemtime($output)) {
+                if (Zo2HelperCompiler::styleSheet($input, $output)) {
+                    //JFactory::getApplication()->enqueueMessage('Success: ' . $jsFilePathOutput);
+                }
+            } else {
+                //JError::raiseNotice(100, 'File exists: ' . $jsFilePathOutput);
+            }
+        }
+
         public function generateAssets($type) {
             $combineJs = Zo2Framework::get('combine_js');
             $combineCss = Zo2Framework::get('combine_css');
@@ -382,5 +518,4 @@ if (!class_exists('Zo2Assets')) {
         }
 
     }
-
 }
