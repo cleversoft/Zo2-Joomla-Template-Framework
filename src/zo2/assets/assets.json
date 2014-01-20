@@ -2,10 +2,27 @@
     "build": {
         "core": {
             "less": {
-                "admin.less": "admin.css"
+                "admin.megamenu.less": "admin.megamenu.css",
+                "admin.styles.less": "admin.styles.css",
+                "megamenu.less": "megamenu.css",
+                "megamenu.responsive.less": "megamenu.responsive.css",
+                "shortcodes.less": "shortcodes.css",
+                "social.less": "social.css",
+                "variables.less": "variables.css"
+            },
+            "js": {
+                "admin.megamenu.js": "admin.megamenu.js",
+                "admin.scripts.js": "admin.scripts.js",
+                "admin.social.js": "admin.social.js",
+                "assets.js": "assets.js",
+                "megamenu.js": "megamenu.js",
+                "shortcodes.js": "shortcodes.js",
+                "social.js": "social.js",
+                "socialshare.js": "socialshare.js"
             }
         }
     },
+
     "load": {
         "backend": {
             "bootstrap.2": {
@@ -41,7 +58,8 @@
             },
             "styles": {
                 "paths": [
-                    "zo2\/css\/admin.styles.css"
+                    "zo2\/css\/admin.styles.css",
+                    "zo2\/css\/admin.megamenu.css"
                 ]
             },
             "scripts": {
@@ -76,13 +94,6 @@
                     "zo2\/css\/site.shortcodes.css",
                     "zo2\/css\/template.css",
                     "zo2\/css\/normalize.css"
-                ]
-            },
-            "scripts": {
-                "paths": [
-                    "zo2\/js\/site.megamenu.js",
-                    "vendor\/ekko-lightbox.js",
-                    "zo2\/js\/site.scripts.js"
                 ]
             }
         }

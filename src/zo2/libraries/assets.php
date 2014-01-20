@@ -27,19 +27,19 @@ if (!class_exists('Zo2Assets')) {
 
         /**
          * Singleton instance
-         * @var Zo2Assets 
+         * @var Zo2Assets
          */
         public static $instance;
 
         /**
          * Array of added css files
-         * @var array 
+         * @var array
          */
         private $_stylesheets = array();
 
         /**
          * Array of added custom stylesheet scripts
-         * @var array 
+         * @var array
          */
         private $_stylesheetDeclarations = array();
 
@@ -57,15 +57,9 @@ if (!class_exists('Zo2Assets')) {
 
         /**
          *
-         * @var type 
+         * @var type
          */
         private $_assets = array();
-
-        /**
-         * Array of build list
-         * @var array
-         */
-        private $_builds = array();
 
         /**
          * Construct method
@@ -75,7 +69,7 @@ if (!class_exists('Zo2Assets')) {
             $assetsFile = $this->getAssetFile('assets.json', 'path');
             if ($assetsFile) {
                 $this->_assets = json_decode(file_get_contents($assetsFile));
-            }            
+            }
             $application = JFactory::getApplication();
             /* Dynamic load by backend options */
             if ($application->isAdmin()) {
@@ -103,7 +97,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * 
+         *
          * @return Zo2Assets
          */
         public static function getInstance() {
@@ -116,7 +110,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * 
+         *
          * @param type $version
          * @return boolean
          */
@@ -139,7 +133,7 @@ if (!class_exists('Zo2Assets')) {
 
         /**
          * Get asset file with relative path
-         * @param type $file         
+         * @param type $file
          * @return string
          */
         public function getAssetFile($file, $return = null) {
@@ -163,53 +157,64 @@ if (!class_exists('Zo2Assets')) {
             return false;
         }
 
-        private function getOutputPath($file) {
-            $filePathArr = explode('/', $file['path']);
-            $fileName = $filePathArr[count($filePathArr) - 1];
-            $outputPath = null;
-            switch ($file['type']) {
-                case 'less':
-                    $outputPath = $filePathArr[0] . '/css/' . str_replace('.less', '.css', $fileName);
-                    break;
-                case 'js':
-                    $outputPath = $filePathArr[0] . '/js/' . str_replace('.js', '.min.js', $fileName);
-                    break;
-                case 'css':
-                    $outputPath = $filePathArr[0] . '/css/' . $fileName;
-                    break;
-            }
-            if ($outputPath != null) {
-                if ($file['position'] == CORE) {
-                    return Zo2HelperPath::getZo2FilePath('assets/' . $outputPath, null);
-                } elseif ($file['position'] == TEMPLATE) {
-                    return Zo2HelperPath::getTemplateFilePath('assets/' . $outputPath, null);
-                }
-            }
+        /**
+         * Function build all development assets file into Zo2Assets class
+         */
+        public function buildAssets() {
+            if(isset($this->_assets->build->core->less))
+                $this->_buildAssets($this->_assets->build->core->less, CORE, 'less');
+            if(isset($this->_assets->build->core->js))
+                $this->_buildAssets($this->_assets->build->core->js, CORE, 'js');
+            if(isset($this->_assets->build->template->less))
+                $this->_buildAssets($this->_assets->build->template->less, TEMPLATE, 'less');
+            if(isset($this->_assets->build->template->js))
+                $this->_buildAssets($this->_assets->build->template->js, TEMPLATE, 'js');
         }
 
-        private function getInputPath($file) {
-            if ($file['position'] == CORE) {
-                return Zo2HelperPath::getZo2FilePath('assets/' . $file['path'], null);
-            } elseif ($file['position'] == TEMPLATE) {
-                return Zo2HelperPath::getTemplateFilePath('assets/' . $file['path'], null);
-            }
+        /**
+         * @param $inputFile
+         * @param $outputFile
+         * @return bool
+         *
+         * Check file exits and modify time before build asset file
+         */
+        private function _checkAssetBuildFile($inputFile, $outputFile) {
+            if(JFile::exists($inputFile))
+                if(JFile::exists($outputFile) && (filemtime($inputFile) > filemtime($outputFile)) )
+                    return true;
+            return false;
         }
-       
-        public function buildAssets() {
-            if (count($this->_builds) > 0) {
-                foreach ($this->_builds as $file) {
-                    if (JFile::exists($this->getInputPath($file))) {
-                        switch ($file['type']) {
-                            case 'less':
-                                Zo2HelperCompiler::less($this->getInputPath($file), $this->getOutputPath($file));
-                                break;
-                            case 'js':
-                                Zo2HelperCompiler::javascript($this->getInputPath($file), $this->getOutputPath($file));
-                                break;
-                            case 'css':
-                                Zo2HelperCompiler::styleSheet($this->getInputPath($file), $this->getOutputPath($file));
-                                break;
-                        }
+
+        /**
+         * @param $assets
+         * @param $position
+         * @param $type
+         *
+         * Do build asset file
+         */
+        private function _buildAssets($assets, $position, $type) {
+            if (count($assets) > 0) {
+                foreach ($assets as $inputName => $outputName) {
+                    if($type == 'less') {
+                        $outputPath = 'assets/zo2/css/' .$outputName;
+                    }elseif($type == 'js') {
+                        $outputPath = 'assets/zo2/js/'.$outputName;
+                    }
+                    if($position == CORE){
+                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/'.$type.'/' .$inputName , null);
+                        $outputFile = Zo2HelperPath::getZo2FilePath($outputPath , null);
+                    }elseif ($position == TEMPLATE) {
+                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/'.$type.'/' .$inputName , null);
+                        $outputFile = Zo2HelperPath::getZo2FilePath($outputPath , null);
+                    }
+
+                    if ($this->_checkAssetBuildFile($inputFile, $outputFile) && $type == 'less') {
+                        Zo2HelperCompiler::less($inputFile, $outputFile);
+                        echo $inputFile.'#'.$outputFile.'<br />';
+                    }
+                    if ($this->_checkAssetBuildFile($inputFile, $outputFile) && $type == 'js') {
+                        Zo2HelperCompiler::javascript($inputFile, $outputFile);
+                        echo $inputFile.'#'.$outputFile.'<br />';
                     }
                 }
             }
@@ -224,7 +229,7 @@ if (!class_exists('Zo2Assets')) {
                     $this->_loadAsset($asset);
                 }
             } else {
-                foreach ($this->_assets->load->backend as $asset) {                           
+                foreach ($this->_assets->load->backend as $asset) {
                     $this->_loadAsset($asset);
                 }
             }
@@ -233,7 +238,7 @@ if (!class_exists('Zo2Assets')) {
         private function _loadAsset($asset) {
             if (isset($asset->joomla)) {
                 foreach ($asset->joomla as $version) {
-                    if ($this->_isMatchJVersion($version)) {                        
+                    if ($this->_isMatchJVersion($version)) {
                         if (isset($asset->paths)) {
                             foreach ($asset->paths as $path) {
                                 $ext = strtolower(JFile::getExt($path));
@@ -253,7 +258,7 @@ if (!class_exists('Zo2Assets')) {
                 /* Load in all Joomla! */
                 if (isset($asset->paths)) {
                     foreach ($asset->paths as $path) {
-                        $ext = strtolower(JFile::getExt($path));                        
+                        $ext = strtolower(JFile::getExt($path));
                         switch ($ext) {
                             case "css":
                                 $this->addStyleSheet($path);
@@ -268,7 +273,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * 
+         *
          * @param type $file
          * @return \Zo2Assets
          */
@@ -299,9 +304,8 @@ if (!class_exists('Zo2Assets')) {
          *
          * @return \Zo2Assets
          */
-        public function addScript($file) {            
+        public function addScript($file) {
             $assetFile = $this->getAssetFile($file);
-            
             if ($assetFile != false) {
                 $this->_javascripts[$assetFile] = $assetFile;
             }
@@ -309,7 +313,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * 
+         *
          * @param type $script
          * @return \Zo2Assets
          */
