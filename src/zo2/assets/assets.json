@@ -41,8 +41,7 @@
             },
             "styles": {
                 "paths": [
-                    "zo2\/css\/admin.styles.css",
-                    "zo2\/css\/admin.megamenu.css"
+                    "zo2\/css\/admin.styles.css"                    
                 ]
             },
             "scripts": {

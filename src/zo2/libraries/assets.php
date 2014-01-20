@@ -224,7 +224,7 @@ if (!class_exists('Zo2Assets')) {
                     $this->_loadAsset($asset);
                 }
             } else {
-                foreach ($this->_assets->load->backend as $asset) {                    
+                foreach ($this->_assets->load->backend as $asset) {                           
                     $this->_loadAsset($asset);
                 }
             }
@@ -299,8 +299,9 @@ if (!class_exists('Zo2Assets')) {
          *
          * @return \Zo2Assets
          */
-        public function addScript($file) {
+        public function addScript($file) {            
             $assetFile = $this->getAssetFile($file);
+            
             if ($assetFile != false) {
                 $this->_javascripts[$assetFile] = $assetFile;
             }
