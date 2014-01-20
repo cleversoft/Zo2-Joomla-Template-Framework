@@ -13,6 +13,7 @@
 defined('_JEXEC') or die;
 Zo2Framework::import('vendor.less.lessc');
 Zo2Framework::import('vendor.minify.css');
+Zo2Framework::import('vendor.minify.jsshrink');
 /**
  * Class exists checking
  */
@@ -24,23 +25,18 @@ if (!class_exists('Zo2HelperCompiler')) {
     class Zo2HelperCompiler {
 
         /**
-         * Compile less -> css 
+         * Compile less -> css compress
          * @param str $inputFile
          * @param str $outputFile
          * @return boolean
          */
         public static function less($inputFile, $outputFile) {
-            if (JFile::exists($inputFile)) {
+            if (JFile::exists($inputFile) && (!is_file($outputFile) || filemtime($inputFile) > filemtime($outputFile))) {
                 $less = new lessc();
-                return $less->compileFile($inputFile, $outputFile);
+                $content = CssMinifier::minify($less->compile(JFile::read($inputFile)));
+                return JFile::write($outputFile, $content);
             }
             return false;
-        }
-
-        public static function lessStyle($input)
-        {
-            $less = new lessc();
-            return $less->compile($input);
         }
 
         /**
@@ -52,10 +48,7 @@ if (!class_exists('Zo2HelperCompiler')) {
          */
         public static function javascript($inputFile, $outputFile) {
             if (JFile::exists($inputFile) && (!is_file($outputFile) || filemtime($inputFile) > filemtime($outputFile))) {
-                $content = JFile::read($inputFile);
-                /**
-                 * @todo apply javascript compress method here
-                 */
+                $content = Minifier::minify(JFile::read($inputFile));
                 return JFile::write($outputFile, $content);
             }
             return false;
