@@ -347,6 +347,7 @@ body{
     .nav-tabs {
         & > li {
             margin: 0;
+            padding: 0;
             & > a {
                 border: none!important;
                 font-family: 'Open Sans', Arial, sans-serif;
@@ -390,6 +391,7 @@ body{
     }
     [class^="icon-"]:before,[class*=" icon-"]:before {
         font-family: 'FontAwesome' !important;
+        font-style: normal;
     }
     .zo2-label {
         font-weight: bold;
@@ -1827,6 +1829,112 @@ body{
     }
     #column-basic, #column-responsive, #row-basic, #row-responsive{display: none}
     #column-basic.active, #column-responsive.active, #row-basic.active, #row-responsive.active{display: block}
+
+  /*Joomla 2.5 style*/
+  &.joomla-25{
+    .btn-group{
+      font-size: inherit;
+      input[type="radio"]{
+        display: block;
+        margin: 0;
+        float: none;
+      }
+    }
+    #general{
+      .modal {
+        background-color: inherit;
+        border: inherit;
+        border-radius: inherit;
+        box-shadow: inherit;
+        position: inherit;
+        margin: 0;
+        width: inherit;
+      }
+      .controls{
+        .button2-left{
+          margin-top: 10px;
+        }
+        .media-preview{
+          margin-top: 10px;
+        }
+      }
+      .field-logo-container{
+
+        label{
+          clear: none;
+          margin-right: 10px;
+        }
+        input{
+          margin-top: 0;
+        }
+        .btn-group{
+          position: static;
+          > .btn{
+            float: left;
+            margin:0;
+          }
+        }
+        .logo-image{
+          .btn{
+            border: none;
+            color: #fff;
+            &:hover{
+              background-position: inherit;
+            }
+          }
+        }
+      }
+    }
+    #fonts{
+      .ddlFontStyle{
+        margin-top: 0;
+      }
+      .btn-group > .btn{
+        margin: 0;
+      }
+      .floatdiv > div{
+        line-height: 30px;
+        input{
+          margin-top: 0;
+        }
+      }
+    }
+    #theme{
+      #zo2_themes{
+        .theme_thumbnail{
+          float: left;
+          img{
+            margin: 0;
+          }
+        }
+      }
+      .zo2_themes_form{
+        .control-label{
+          padding-top: 0;
+        }
+        .txtColorPicker{
+          margin: 0;
+        }
+      }
+    }
+    #assignment{
+      #menu-assignment{
+        ul{
+          &.menu-links{
+            width: 100%;
+            .thumbnail{
+              .btn{
+                float: none;
+              }
+            }
+            label{
+              float: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 
