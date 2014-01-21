@@ -16,9 +16,6 @@ $enable = false;
 if (!empty($this->value)) {
     $data = json_decode($this->value, true);
     $enable = true;
-    echo '<pre>';
-    print_r($data);
-    echo '</pre>';
 }
 /**
  * Init default data
