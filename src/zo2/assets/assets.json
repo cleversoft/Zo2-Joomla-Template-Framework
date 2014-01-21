@@ -7,7 +7,7 @@
             },
             "js": {
                 "admin.megamenu.js": "admin.megamenu.js",
-				"admin.assets.js": "admin.assets.js",
+                "admin.assets.js": "admin.assets.js",
                 "admin.scripts.js": "admin.scripts.js",
                 "admin.social.js": "admin.social.js",
                 "site.megamenu.js": "site.megamenu.js",
@@ -46,7 +46,7 @@
             },
             "fontselect": {
                 "paths": [
-                    "vendor\/fontselect\/jquery.fontselect.css",
+                    "vendor\/fontselect\/fontselect.css",
                     "vendor\/fontselect\/jquery.fontselect.js"
                 ]
             },
@@ -64,7 +64,7 @@
             "scripts": {
                 "paths": [
                     "zo2\/js\/admin.megamenu.js",
-					"zo2\/js\/admin.assets.js",
+                    "zo2\/js\/admin.assets.js",
                     "zo2\/js\/admin.social.js",
                     "zo2\/js\/admin.scripts.js"
                 ]
