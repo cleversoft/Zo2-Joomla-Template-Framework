@@ -69,7 +69,7 @@ class Zo2Comments {
 
     function getDisqusCount($url = '') {
 
-        $params = Zo2Framework::getParams();
+        $params = Zo2Framework::getInstance()->getTemplate()->params;
 
         if ($params->get("disqus_shortname")) {
 
@@ -146,7 +146,7 @@ class Zo2Comments {
     function renderHtml() {
         $layout = Zo2Layout::getInstance();
         $assets = Zo2Assets::getInstance();
-        $params = Zo2Framework::getParams();
+        $params = Zo2Framework::getInstance()->getTemplate()->params;;
         $tab_order = explode(',', $params->get('tab_order', 'facebook,gplus,disqus,k2comment'));
         $url = JUri::getInstance()->toString();
         //$document = JFactory::getDocument();
