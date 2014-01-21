@@ -15,15 +15,6 @@ $shortcodes = Zo2Shortcodes::getInstance();
 $shortcodes->set('width', $this->get('width'));
 $shortcodes->set('height', $this->get('height'));
 ?>
-<style>
-    div.wrap_carousel > div{
-        height: <?php echo $this->get('height')?>px !important;
-    }
-
-    div.wrap_carousel #carousel-name{
-        margin-top: 0px !important;
-    }
-</style>
 <div id="carousel-<?php echo $this->get('name'); ?>" class="carousel slide">
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
@@ -40,6 +31,6 @@ $shortcodes->set('height', $this->get('height'));
 <script>
 
     jQuery(document).ready(function() {
-        jQuery('#carousel-<?php echo $this->get("name"); ?>').wrap( "<div class='wrap_carousel'></div>" );
+        jQuery('#carousel-<?php echo $this->get("name"); ?>').carousel();
     })
 </script>
