@@ -27,8 +27,10 @@ if (Zo2Framework::isZo2Template()) {
     $assets->buildAssets();
     $assets->loadAssets();
 
-    Zo2Framework::preparePresets();
-    Zo2Framework::prepareCustomFonts();
+    if (JFactory::getApplication()->isSite()) {
+        Zo2Framework::preparePresets();
+        Zo2Framework::prepareCustomFonts();
+    }
 
     /**
      * Framework init
