@@ -46,7 +46,27 @@ body{
         border:solid 1px #EBECF1;
         background: @color_white;
     }
-
+    .zo2-tabs {
+            position: absolute;
+            top:10px;
+            right:40px;
+            list-style: none;
+            li {
+              float:left;
+              a {
+                display:block;
+                height:15px;
+                padding:10px 15px;
+                font-weight: bold;
+                color: #9b9b9b;
+                text-decoration: none;
+              }
+              a.active {
+                border-bottom:solid 3px #629c42;
+                color:#333333;
+              }
+            }
+          }    
     .logo-image.show, .logo-text.show {
         display:block !important;
     }
@@ -127,6 +147,27 @@ body{
     }
     #layoutbuilder-container {
         min-height: 500px;
+      .zo2-tabs {
+        position: absolute;
+        top:10px;
+        right:40px;
+        list-style: none;
+        li {
+          float:left;
+          a {
+            display:block;
+            height:15px;
+            padding:10px 15px;
+            font-weight: bold;
+            color: #9b9b9b;
+            text-decoration: none;
+          }
+          a.active {
+            border-bottom:solid 3px #629c42;
+            color:#333333;
+          }
+        }
+      }
         ul {
             margin: 0;
         }
