@@ -87,9 +87,6 @@ if (!class_exists('Zo2Assets')) {
                     $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.9.1.min.js');
                     $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
                 }
-                /* RTL */
-                if (Zo2Framework::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
-                    $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
                 /* Responsive */
                 if (Zo2Framework::get('responsive_layout'))
                     $this->addStyleSheet('css/non-responsive.css');
@@ -215,6 +212,10 @@ if (!class_exists('Zo2Assets')) {
                     $this->_loadAsset($asset);
                 }
             }
+            /* RTL */
+            if (Zo2Framework::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
+                $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+
         }
 
         private function _loadAsset($asset) {
