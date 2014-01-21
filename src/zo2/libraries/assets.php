@@ -207,15 +207,14 @@ if (!class_exists('Zo2Assets')) {
                 foreach ($this->_assets->load->frontend as $asset) {
                     $this->_loadAsset($asset);
                 }
+                /* RTL */
+                if (Zo2Framework::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
+                    $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
             } else {
                 foreach ($this->_assets->load->backend as $asset) {
                     $this->_loadAsset($asset);
                 }
             }
-            /* RTL */
-            if (Zo2Framework::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
-                $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
-
         }
 
         private function _loadAsset($asset) {
