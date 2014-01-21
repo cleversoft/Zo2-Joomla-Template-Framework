@@ -124,7 +124,7 @@ if (!class_exists('Zo2Socialshares')) {
                 foreach ($list as $social) {
                     $html .= call_user_func_array(array($this, '_' . strtolower($social->name) . 'Button'), array($social));
                 }
-                $html = '<div class="zo2-socialshares-floatbar">' . $html . '</div>';
+                $html = '<div class="container"> <div class="zo2-socialshares-floatbar">' . $html . '</div> </div>';
                 return $html;
             }
         }
