@@ -12,11 +12,6 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title"><?php echo $this->get('title'); ?></h3>
-    </div>
-    <div class="panel-body">
-        <?php echo $this->get('content'); ?>
-    </div>
+<div class="alert alert-<?php echo $this->get('type'); ?>">
+    <?php echo $this->get('content'); ?>
 </div>

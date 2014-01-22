@@ -137,12 +137,10 @@
     },
     {
         "name": "Messagebox",
-        "pattern": "[messagebox title={title}]{content}[\/messagebox]",
+        "pattern": "[messagebox type={type}]{content}[\/messagebox]",
         "layout": "messagebox",
         "default": {
-            "title": "Message title",
-            "color": "red",
-            "close": "true"
+            "type": "success"
         },
         "description": "",
         "group": "Typography"
