@@ -204,12 +204,14 @@ if (!class_exists('Zo2Assets')) {
          */
         public function loadAssets() {
             if (Zo2Framework::isSite()) {
-                foreach ($this->_assets->load->frontend as $asset) {
+                foreach ($this->_assets->load->frontend as $name => $asset) {
                     $this->_loadAsset($asset);
+                    if($name == 'bootstrap.3'){
+                        /* RTL */
+                        if (Zo2Framework::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
+                            $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
+                    }
                 }
-                /* RTL */
-                if (Zo2Framework::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
-                    $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
             } else {
                 foreach ($this->_assets->load->backend as $asset) {
                     $this->_loadAsset($asset);
