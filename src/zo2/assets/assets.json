@@ -73,8 +73,7 @@
         "frontend": {
             "bootstrap.3": {
                 "paths": [
-                    "vendor\/bootstrap\/core\/css\/bootstrap.min.css",
-                    "vendor\/bootstrap\/core\/js\/bootstrap.min.js"
+                    "vendor\/bootstrap\/core\/css\/bootstrap.min.css"
                 ]
 
             },
