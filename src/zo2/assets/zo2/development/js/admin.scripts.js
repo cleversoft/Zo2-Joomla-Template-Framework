@@ -17,7 +17,7 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-        'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
+    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
 var $ = jQuery.noConflict();
 
@@ -44,14 +44,14 @@ $(window).bind('load', function() {
 //    $('#hfTemplateName').appendTo($layoutBuilder);
 //    $('#hfLayoutName').appendTo($layoutBuilder);
 //    $layoutContainer.remove();
-   
+
     addIconToMenu();
     fixToolbarIcon();
     fixPreviewIcon();
 });
 
 jQuery(document).ready(function($) {
-	
+
     injectFormSubmit();
     //wrapForm();
 
@@ -96,18 +96,18 @@ jQuery(document).ready(function($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control">' +
-                '<div class="row-control-container">' +
-                '<div class="row-name">(unnamed row)</div>' +
-                '<div class="row-control-buttons">' +
-                '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-                '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-                '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
-                '</div></div>' +
-                '<div class="col-container"></div></div>');
+            '<div class="row-control-container">' +
+            '<div class="row-name">(unnamed row)</div>' +
+            '<div class="row-control-buttons">' +
+            '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
+            '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
+            '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
+            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+            '</div></div>' +
+            '<div class="col-container"></div></div>');
         $meta.appendTo($row);
-        
+
     });
 
     $('#droppable-container').on('click', '.row-control-buttons > .split', function() {
@@ -131,12 +131,12 @@ jQuery(document).ready(function($) {
                 $span.attr(visibilityAttributes[i], '1');
             }
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                    '<div class="col-control-buttons">' +
-                    '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                    '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                    '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                    '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
-                    '</div><div class="row-container"></div></div></div>';
+                '<div class="col-control-buttons">' +
+                '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
+                '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
+                '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
+                '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
+                '</div><div class="row-container"></div></div></div>';
             var $meta = jQuery(metaHtml);
             $meta.appendTo($span);
             /*
@@ -190,15 +190,15 @@ jQuery(document).ready(function($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-                '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-                '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-                '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+            '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
+            '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
+            '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
+            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
         $meta.appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
-        
+
     });
 
     $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
@@ -442,7 +442,7 @@ jQuery(document).ready(function($) {
     });
 
     var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
-            '.ddlStandardFont';
+        '.ddlStandardFont';
 
     $('.font-container').on('change', changeSelector, function() {
         var $this = $(this);
@@ -514,29 +514,28 @@ jQuery(document).ready(function($) {
         $this.addClass('active btn-success');
 
         if ($this.hasClass('logo-type-none')) {
-            $container.find('.logo-image').fadeOut(300);
-            $container.find('.logo-text').fadeOut(300);
+            $container.find('.logo-image').removeClass('show').fadeOut(300);
+            $container.find('.logo-text').removeClass('show').fadeOut(300);
         }
         else if ($this.hasClass('logo-type-image')) {
-            $container.find('.logo-image').fadeIn(300);
-            $container.find('.logo-text').fadeOut(300);
+            $container.find('.logo-image').removeClass('show').fadeIn(300);
+            $container.find('.logo-text').removeClass('show').fadeOut(300);
         }
         else if ($this.hasClass('logo-type-text')) {
-
-            $container.find('.logo-image').fadeOut(300);
-            $container.find('.logo-text').fadeIn(300);
+            $container.find('.logo-image').removeClass('show').fadeOut(300);
+            $container.find('.logo-text').removeClass('show').fadeIn(300);
         }
         return false;
     });
 
     /*
-     
+
      var $select = $('#display_type_choose').find('select:first');
      var $normal_display = $('.display_type_normal');
-     
+
      if ($select.val() == 'normal') $normal_display.show();
      else $normal_display.hide();
-     
+
      jQuery('#display_type_choose').find('select:first').change(function() {
      var $this = $(this);
      if ($this.val() == 'normal') $normal_display.slideDown();
