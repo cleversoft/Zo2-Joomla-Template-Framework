@@ -46,9 +46,10 @@
         }
         // for first li tag
         function redirect() {
-            $('.dropdown-toggle').on('click',function(){
+            $('.dropdown-toggle').on('click',function(e){
                 if($(this).parent().hasClass('open') && this.href && this.href != '#'){
                     window.location.href = this.href;
+                    e.preventDefault();
                 }
             });
         }
