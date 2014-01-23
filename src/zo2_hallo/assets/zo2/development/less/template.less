@@ -96,30 +96,37 @@ body.form.body-overlayed{
 }
 /*Top Menu*/
 #top-menu{
-    margin: 18px 0;
-    .mod-wrapper-menu{
-        ul{
-            li{
-                line-height: 15px;
-                a{
-                    background: none;
-                    border-right: 1px solid #ececec;
-                    color: #707070;
-                    padding: 0 15px;
-                    &:hover,
-                        &:focus{
-                        background: none;
-                        color: #000;
-                    }
-                }
-                &:last-child{
-                    a{
-                        border: none;
-                    }
-                }
-            }
+  margin: 18px 0;
+  .mod-wrapper-menu{
+    ul{
+      li{
+        line-height: 15px;
+        a{
+          background: none;
+          border-right: 1px solid #ececec;
+          color: #707070;
+          padding: 0 15px;
+          &:hover,
+          &:focus{
+            background: none;
+            color: #000;
+          }
         }
+        &:last-child{
+          a{
+            border: none;
+          }
+        }
+      }
     }
+  }
+  .mod-languages{
+    li{
+      a{
+        border: none!important;
+      }
+    }
+  }
 }
 
 /*Top Search*/
@@ -403,6 +410,11 @@ nav.zo2-menu{
             padding-right: 15px;
         }
     }
+  .lightbox-modal{
+    img{
+      margin-bottom: 5px;
+    }
+  }
 }
 
 
@@ -882,8 +894,53 @@ footer{
   padding: 5px;
   text-align: center;
   position: fixed;
-  top: 20px;
+  top: 195px;
   margin-left:-100px;
   width: 70px;
   z-index: 999;
+}
+.zo2-socialshares-horizontal{
+  float: left;
+  margin: 10px 0;
+  > div{
+    display: inline-block;
+    float: left;
+    margin: 0 10px;
+  }
+}
+
+/*** Right to left language style ***/
+.rtl{
+  #top-search{
+    form{
+      &:before{
+        left: 25px;
+        right: auto;
+      }
+    }
+  }
+  .zo2-megamenu .dropdown-menu .mega-nav > li a:before {
+    right: 0;
+    left: auto;
+  }
+  h3.moduletitle {
+    background: url("../images/rtl/module-title-line.jpg") no-repeat right bottom;
+  }
+  #zo2-bottom1 h3.moduletitle,
+  #zo2-bottom2 h3.moduletitle {
+    background: url("../images/rtl/module-title-line-dark.jpg") no-repeat right bottom;
+  }
+  .latest-news{
+    .thumb {
+      float: right;
+    }
+    .desc{
+      margin-left: 0;
+      margin-right: 100px;
+    }
+  }
+  .zo2-socialshares-floatbar{
+    margin-left: 0;
+    margin-right: -100px;
+  }
 }
