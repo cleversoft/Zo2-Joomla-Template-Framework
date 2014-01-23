@@ -211,33 +211,25 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>               
-                <field name="show_in_article" type="radio" default="0" label="Show  in Article" description="Display social box in Article" class="btn-group">
+                <field name="socialshare_in_article" type="radio" default="0" label="Show in Article" description="Display social box in Article" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-                
-                <field name="catid" type="includecats" extension="com_content" size="10" default="" label="Include categories" description="Include categories" >
-                    <option value="">JOPTION_ALL_CATEGORIES</option>
-                </field>
-                <field name="show_in_category" type="radio" default="0" label="Show in Category"
-                   description="Display social box in Category" class="btn-group">
+                <field name="socialshare_in_article_list" type="radio" default="0" label="Show in list of articles"
+                   description="Display static social box in list of articles" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
-                </field>
-            
-                <field name="show_in_featured" type="radio" default="0" label="Show in Featured"
+                </field>                
+                <field name="socialshare_in_featured" type="radio" default="0" label="Show in Featured"
                    description="Display social box in Featured page" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
-            
-                <field name="show_social_article_list" type="radio" default="0" label="Show in list of articles"
-                   description="Display static social box in list of articles" class="btn-group">
-                    <option value="1">JYES</option>
-                    <option value="0">JNO</option>
+                <field name="socialshare_filter_categories" type="includecats" extension="com_content" size="10" default="" label="Include categories" description="Include categories" >
+                    <option value="">JOPTION_ALL_CATEGORIES</option>
                 </field>
-
-                <field name="normal_position" type="list" label="Normal type"
+                
+                <field name="socialshare_article_position" type="list" label="In article position"
                    description="Normal position" >
                     <option value="top">Top</option>
                     <option value="bottom">Bottom</option>

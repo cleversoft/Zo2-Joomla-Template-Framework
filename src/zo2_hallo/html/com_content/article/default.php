@@ -18,6 +18,7 @@ $canEdit = $params->get('access-edit');
 $user = JFactory::getUser();
 $info = $params->get('info_block_position', 0);
 JHtml::_('behavior.caption');
+
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx ?>">
     <?php if ($this->params->get('show_page_heading') && $params->get('show_title')) : ?>
@@ -45,9 +46,11 @@ JHtml::_('behavior.caption');
                 <?php endif; ?>
             </h1>
             <?php
-            if (Zo2Framework::get('show_in_article') && Zo2Framework::get('normal_position') == 'top') {
-                $socialShares = new Zo2Socialshares();
-                echo $socialShares->getHorizontalBar();
+            if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories',array()))) {
+                if (Zo2Framework::get('socialshare_article_position') == 'top') {
+                    $socialShares = new Zo2Socialshares();
+                    echo $socialShares->getHorizontalBar();
+                }
             }
             ?>
         </div>
@@ -133,7 +136,7 @@ JHtml::_('behavior.caption');
                 <?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
                     <div class="btn-group pull-right">
                         <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <span class="fa fa-cog"></span> <span class="caret"></span> </a>
-                        <?php // Note the actions class is deprecated. Use dropdown-menu instead. ?>
+                        <?php // Note the actions class is deprecated. Use dropdown-menu instead.  ?>
                         <ul class="dropdown-menu actions">
                             <?php if ($params->get('show_print_icon')) : ?>
                                 <li class="print-icon"> <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?> </li>
@@ -313,9 +316,11 @@ JHtml::_('behavior.caption');
         <?php endif; ?>
     <?php endif; ?>
     <?php
-    if (Zo2Framework::get('show_in_article') && Zo2Framework::get('normal_position') == 'bottom') {
-        $socialShares = new Zo2Socialshares();
-        echo $socialShares->getHorizontalBar();
+    if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories',array()))) {
+        if (Zo2Framework::get('socialshare_article_position') == 'bottom') {
+            $socialShares = new Zo2Socialshares();
+            echo $socialShares->getHorizontalBar();
+        }
     }
     ?>
     <?php

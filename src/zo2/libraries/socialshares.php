@@ -129,13 +129,48 @@ if (!class_exists('Zo2Socialshares')) {
             }
         }
 
+        /**
+         * Only use under item
+         * @return string
+         */
         public function getHorizontalBar() {
-            $html = '';
-            $list = $this->getSocials();
-            foreach ($list as $social) {
-                $html .= call_user_func_array(array($this, '_' . strtolower($social->name) . 'Button'), array($social));
+            /* Config checking */
+            $jinput = JFactory::getApplication()->input;
+            $option = $jinput->get('option');
+            $view = $jinput->get('view');
+
+            $display = false;
+
+            switch ($option) {
+                case 'com_content':
+                    switch ($view) {
+                        case 'archive':
+                            /* of course false */
+                            break;
+                        case 'article':
+                            $display = (bool) Zo2Framework::get('socialshare_in_article');
+                            /* We do not check article in filter categories here. Will do that in template override */
+                            break;
+                        case 'category':
+                            $display = (bool) Zo2Framework::get('socialshare_in_article_list');
+                            break;
+                        case 'featured':
+                            $display = (bool) Zo2Framework::get('socialshare_in_featured');
+                            break;
+                    }
+
+                    break;
             }
-            $html = '<div class="zo2-socialshares-horizontal">' . $html . '</div>';
+
+            $html = '';
+            if ($display) {
+                $list = $this->getSocials();
+                foreach ($list as $social) {
+                    $html .= call_user_func_array(array($this, '_' . strtolower($social->name) . 'Button'), array($social));
+                }
+                $html = '<div class="zo2-socialshares-horizontal">' . $html . '</div>';
+            }
+
             return $html;
         }
 

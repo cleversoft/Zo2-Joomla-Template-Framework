@@ -23,13 +23,7 @@ $params = $this->params;
                     <?php else: ?>
                         <?php echo $this->escape($item->title); ?>
                     <?php endif; ?>
-                </h2>
-                <?php
-                if (Zo2Framework::get('show_in_article') && Zo2Framework::get('normal_position') == 'top') {
-                    $socialShares = new Zo2Socialshares();
-                    echo $socialShares->getHorizontalBar();
-                }
-                ?>
+                </h2>                
                 <?php if ($params->get('show_author') && !empty($item->author)) : ?>
                     <div class="createdby">
                         <i class="fa fa-user"></i>
@@ -197,13 +191,7 @@ $params = $this->params;
                         <?php endif; ?>
                     </dl>
                 </div>
-            <?php endif; ?>
-            <?php
-            if (Zo2Framework::get('show_in_article') && Zo2Framework::get('normal_position') == 'bottom') {
-                $socialShares = new Zo2Socialshares();
-                echo $socialShares->getHorizontalBar();
-            }
-            ?>
+            <?php endif; ?>          
         </div>
     <?php endforeach; ?>
 </div>

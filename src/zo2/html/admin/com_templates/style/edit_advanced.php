@@ -130,98 +130,108 @@ defined('_JEXEC') or die;
         </div>
         <div id="advanced-social-sharing" class="accordion-body collapse">
             <div class="accordion-inner">
-                <!-- Enable / Disable Socialshares -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('socialshare_floatbar', 'params'); ?>
+
+
+                <div class="tab-pane active" id="general">
+                    <!-- Enable / Disable Socialshares -->
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('socialshare_floatbar', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('socialshare_floatbar', 'params'); ?>
+                        </div>
+                    </div>                
+                    <div class="control-group display_type_normal">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('socialshare_in_article', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('socialshare_in_article', 'params'); ?>
+                        </div>
                     </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('socialshare_floatbar', 'params'); ?>
+                    <div class="control-group display_type_normal">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('socialshare_in_article_list', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('socialshare_in_article_list', 'params'); ?>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_in_article', 'params'); ?>
+                    <div class="control-group display_type_normal">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('socialshare_in_category', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('socialshare_in_category', 'params'); ?>
+                        </div>
                     </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_in_article', 'params'); ?>
+                    <div class="control-group display_type_normal">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('socialshare_in_featured', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('socialshare_in_featured', 'params'); ?>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_in_category', 'params'); ?>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('socialshare_article_position', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('socialshare_article_position', 'params'); ?>
+                        </div>
                     </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_in_category', 'params'); ?>
+                    <!-- SocialShares display filter -->                                                
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('socialshare_filter_categories', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('socialshare_filter_categories', 'params'); ?>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_in_featured', 'params'); ?>
+                </div>             
+                <div class="tab-pane" id="socials">
+                    <!-- Facebook -->
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('fb_action', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('fb_action', 'params'); ?>
+                        </div>
                     </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_in_featured', 'params'); ?>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('fb_send', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('fb_send', 'params'); ?>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group display_type_normal">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('show_social_article_list', 'params'); ?>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('social_order', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('social_order', 'params'); ?>
+                        </div>
                     </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('show_social_article_list', 'params'); ?>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('catid', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('catid', 'params'); ?>
-                    </div>
-                </div>
-                <!-- Facebook -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('fb_action', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('fb_action', 'params'); ?>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('fb_send', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('fb_send', 'params'); ?>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <?php echo $this->form->getLabel('button_layout', 'params'); ?>
+                        </div>
+                        <div class="controls">
+                            <?php echo $this->form->getInput('button_layout', 'params'); ?>
+                        </div>
                     </div>
                 </div>
 
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('social_order', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('social_order', 'params'); ?>
-                    </div>
-                </div>
 
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('button_layout', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('button_layout', 'params'); ?>
-                    </div>
-                </div>
-                <div class="control-group">
-                    <div class="control-label">
-                        <?php echo $this->form->getLabel('social_position', 'params'); ?>
-                    </div>
-                    <div class="controls">
-                        <?php echo $this->form->getInput('social_position', 'params'); ?>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
