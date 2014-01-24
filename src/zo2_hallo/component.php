@@ -1,11 +1,4 @@
 <?php
-/**
- * @package Helix Framework
- * @author JoomShaper http://www.joomshaper.com
- * @copyright Copyright (c) 20010 - 2013 JoomShaper
- * @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
-*/
-
 defined('_JEXEC') or die;
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

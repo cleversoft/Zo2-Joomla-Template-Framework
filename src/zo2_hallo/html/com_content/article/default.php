@@ -18,6 +18,7 @@ $canEdit = $params->get('access-edit');
 $user = JFactory::getUser();
 $info = $params->get('info_block_position', 0);
 JHtml::_('behavior.caption');
+
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx ?>">
     <?php if ($this->params->get('show_page_heading') && $params->get('show_title')) : ?>
@@ -45,9 +46,11 @@ JHtml::_('behavior.caption');
                 <?php endif; ?>
             </h1>
             <?php
-            if (Zo2Framework::get('show_in_article') && Zo2Framework::get('normal_position') == 'top') {
-                $socialShares = new Zo2Socialshares();
-                echo $socialShares->getHorizontalBar();
+            if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories',array()))) {
+                if (Zo2Framework::get('socialshare_article_position') == 'top') {
+                    $socialShares = new Zo2Socialshares();
+                    echo $socialShares->getHorizontalBar();
+                }
             }
             ?>
         </div>
@@ -61,7 +64,7 @@ JHtml::_('behavior.caption');
 
                 <?php if ($params->get('show_author') && !empty($this->item->author)) : ?>
                     <dd class="createdby">
-                        <i class="icon-user"></i>
+                        <i class="fa fa-user"></i>
                         <?php $author = $this->item->created_by_alias ? $this->item->created_by_alias : $this->item->author; ?>
                         <?php if (!empty($this->item->contactid) && $params->get('link_author') == true) : ?>
                             <?php
@@ -91,7 +94,7 @@ JHtml::_('behavior.caption');
                 <?php endif; ?>
                 <?php if ($params->get('show_category')) : ?>
                     <dd class="category-name">
-                        <i class="icon-folder-open"></i>
+                        <i class="fa fa-folder-open"></i>
                         <?php
                         $title = $this->escape($this->item->category_title);
                         $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->catslug)) . '">' . $title . '</a>';
@@ -106,25 +109,25 @@ JHtml::_('behavior.caption');
 
                 <?php if ($params->get('show_publish_date')) : ?>
                     <dd class="published">
-                        <span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?>
+                        <span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?>
                     </dd>
                 <?php endif; ?>
 
                 <?php if ($info == 0) : ?>
                     <?php if ($params->get('show_modify_date')) : ?>
                         <dd class="modified">
-                            <span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $this->item->modified, JText::_('DATE_FORMAT_LC3'))); ?>
+                            <span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $this->item->modified, JText::_('DATE_FORMAT_LC3'))); ?>
                         </dd>
                     <?php endif; ?>
                     <?php if ($params->get('show_create_date')) : ?>
                         <dd class="create">
-                            <span class="icon-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHtml::_('date', $this->item->created, JText::_('DATE_FORMAT_LC3'))); ?>
+                            <span class="fa fa-calendar"></span> <?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHtml::_('date', $this->item->created, JText::_('DATE_FORMAT_LC3'))); ?>
                         </dd>
                     <?php endif; ?>
 
                     <?php if ($params->get('show_hits')) : ?>
                         <dd class="hits">
-                            <span class="icon-eye-open"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $this->item->hits); ?>
+                            <span class="fa fa-eye"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $this->item->hits); ?>
                         </dd>
                     <?php endif; ?>
                 <?php endif; ?>
@@ -132,8 +135,8 @@ JHtml::_('behavior.caption');
             <?php if (!$this->print) : ?>
                 <?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
                     <div class="btn-group pull-right">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <span class="icon-cog"></span> <span class="caret"></span> </a>
-                        <?php // Note the actions class is deprecated. Use dropdown-menu instead. ?>
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <span class="fa fa-cog"></span> <span class="caret"></span> </a>
+                        <?php // Note the actions class is deprecated. Use dropdown-menu instead.  ?>
                         <ul class="dropdown-menu actions">
                             <?php if ($params->get('show_print_icon')) : ?>
                                 <li class="print-icon"> <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?> </li>
@@ -202,7 +205,7 @@ JHtml::_('behavior.caption');
                     <?php if ($info == 1) : ?>
                         <?php if ($params->get('show_author') && !empty($this->item->author)) : ?>
                             <dd class="createdby">
-                                <i class="icon-user"></i>
+                                <i class="fa fa-user"></i>
                                 <?php $author = $this->item->created_by_alias ? $this->item->created_by_alias : $this->item->author; ?>
                                 <?php if (!empty($this->item->contactid) && $params->get('link_author') == true) : ?>
                                     <?php
@@ -232,7 +235,7 @@ JHtml::_('behavior.caption');
                         <?php endif; ?>
                         <?php if ($params->get('show_category')) : ?>
                             <dd class="category-name">
-                                <i class="icon-folder-open"></i>
+                                <i class="fa fa-folder-open"></i>
                                 <?php
                                 $title = $this->escape($this->item->category_title);
                                 $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->catslug)) . '">' . $title . '</a>';
@@ -246,7 +249,7 @@ JHtml::_('behavior.caption');
                         <?php endif; ?>
                         <?php if ($params->get('show_publish_date')) : ?>
                             <dd class="published">
-                                <span class="icon-calendar"></span>
+                                <span class="fa fa-calendar"></span>
                                 <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC3'))); ?>
                             </dd>
                         <?php endif; ?>
@@ -254,19 +257,19 @@ JHtml::_('behavior.caption');
 
                     <?php if ($params->get('show_create_date')) : ?>
                         <dd class="create">
-                            <span class="icon-calendar"></span>
+                            <span class="fa fa-calendar"></span>
                             <?php echo JText::sprintf('COM_CONTENT_CREATED_DATE_ON', JHtml::_('date', $this->item->created, JText::_('DATE_FORMAT_LC3'))); ?>
                         </dd>
                     <?php endif; ?>
                     <?php if ($params->get('show_modify_date')) : ?>
                         <dd class="modified">
-                            <span class="icon-calendar"></span>
+                            <span class="fa fa-calendar"></span>
                             <?php echo JText::sprintf('COM_CONTENT_LAST_UPDATED', JHtml::_('date', $this->item->modified, JText::_('DATE_FORMAT_LC3'))); ?>
                         </dd>
                     <?php endif; ?>
                     <?php if ($params->get('show_hits')) : ?>
                         <dd class="hits">
-                            <span class="icon-eye-open"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $this->item->hits); ?>
+                            <span class="fa fa-eye"></span> <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $this->item->hits); ?>
                         </dd>
                     <?php endif; ?>
                 </dl>
@@ -313,9 +316,11 @@ JHtml::_('behavior.caption');
         <?php endif; ?>
     <?php endif; ?>
     <?php
-    if (Zo2Framework::get('show_in_article') && Zo2Framework::get('normal_position') == 'bottom') {
-        $socialShares = new Zo2Socialshares();
-        echo $socialShares->getHorizontalBar();
+    if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories',array()))) {
+        if (Zo2Framework::get('socialshare_article_position') == 'bottom') {
+            $socialShares = new Zo2Socialshares();
+            echo $socialShares->getHorizontalBar();
+        }
     }
     ?>
     <?php

@@ -38,6 +38,9 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/includes/bootstrap.php';
+            if (!Zo2Framework::isJoomla25()) {
+                JHtml::_('bootstrap.framework');
+            }
         }
 
         /**
@@ -98,7 +101,7 @@ if (!class_exists('plgSystemZo2')) {
         }
 
         public function onContentPrepare($context, &$article, &$params, $page = 0) {
-            $config = Zo2Framework::getParams();
+            $config = Zo2Framework::getTemplate()->params;
             // Don't run this plugin when the content is being indexed
             if ($context == 'com_finder.indexer') {
                 return true;

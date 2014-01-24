@@ -10,3 +10,7 @@ src/zo2/assets/zo2/css/shortcodes.css
 src/zo2/assets/zo2/css/social.css
 src/zo2_hallo/layouts/cache/layout_435.php
 src/zo2_hallo/layouts/cache/layout_507.php
+src/zo2/assets/zo2/css/*.css
+src/zo2/assets/zo2/js/*.js
+src/zo2_hallo/assets/zo2/css/*.css
+src/zo2_hallo/assets/zo2/js/*.js

@@ -83,7 +83,7 @@ class JFormFieldLayout extends JFormField {
      */
     private function generateLayoutBuilder() {
         $templateName = $template = $this->form->getValue('template');
-        $positions = Zo2Framework::getAvailablePositions($templateName);
+        $positions = Zo2Framework::getTemplatePositions($templateName);
         //$layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
         $templatePath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName();
         $layoutPath = $templatePath . '/layouts/layout.json';

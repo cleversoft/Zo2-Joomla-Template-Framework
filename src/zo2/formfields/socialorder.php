@@ -87,7 +87,7 @@ class JFormFieldSocialorder extends JFormFieldHidden {
                 'website' => 'Facebook',
                 'link' => 'https://www.facebook.com/',
                 'enable' => 1,
-                'button_design' => 'standard'
+                'button_design' => 'box_count'
             ),
             array(
                 'name' => 'buffer',

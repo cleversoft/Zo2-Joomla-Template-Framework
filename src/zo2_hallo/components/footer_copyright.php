@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zo2 (http://www.zo2framework.org)
  * A powerful Joomla template framework
@@ -9,7 +10,7 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-defined('_JEXEC') or die ('Restricted access');
+defined('_JEXEC') or die('Restricted access');
 
 /**
  * Class Zo2Component_header_logo
@@ -17,14 +18,14 @@ defined('_JEXEC') or die ('Restricted access');
  * This class will prepend the logo, sitename, slogan to the header_logo position
  */
 class Zo2Component_footer_copyright extends Zo2Component {
+
     public $position = Zo2Component::RENDER_AFTER;
 
-    public function render()
-    {
+    public function render() {
         $zo2 = Zo2Framework::getInstance();
-        $logo = $zo2->getParams('footer_logo');
-        $copyright = $zo2->getParams('footer_copyright');
-        $gototop = $zo2->getParams('footer_gototop');
+        $logo = $zo2->get('footer_logo');
+        $copyright = $zo2->get('footer_copyright');
+        $gototop = $zo2->get('footer_gototop');
 
         $html = '<footer>';
         $html .= '<section class="copyright" style="text-align:center">' . $copyright . '</section>';
@@ -34,7 +35,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
             $html .= '</a>';
         }
         if ($gototop) {
-            $html .= '<a style="display: inline;" href="#" id="gototop" title="Go to top"><i class="icon-chevron-up"></i></a>';
+            $html .= '<a style="display: inline;" href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>';
 
             $script = 'jQuery("#gototop").click(function(){jQuery("body, html").animate({scrollTop: 0}); return false;});var scrollDiv = document.createElement("div");
             jQuery(window).scroll(function () {
@@ -51,7 +52,5 @@ class Zo2Component_footer_copyright extends Zo2Component {
 
         return $html;
     }
+
 }
-
-
-

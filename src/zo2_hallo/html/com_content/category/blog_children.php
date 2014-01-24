@@ -36,7 +36,7 @@ if (count($this->children[$this->category->id]) > 0 && $this->maxLevel != 0) : ?
 				<?php echo $this->escape($child->title); ?></a>
 
 				<?php if (count($child->getChildren()) > 0) : ?>
-					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right"><span class="icon-plus"></span></a>
+					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right"><span class="fa fa-plus"></span></a>
 				<?php endif;?>
 			</h3>
 			<?php else : ?>
@@ -49,7 +49,7 @@ if (count($this->children[$this->category->id]) > 0 && $this->maxLevel != 0) : ?
 				<?php endif; ?>
 
 				<?php if (count($child->getChildren()) > 0) : ?>
-					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right"><span class="icon-plus"></span></a>
+					<a href="#category-<?php echo $child->id;?>" data-toggle="collapse" data-toggle="button" class="btn btn-mini pull-right"><span class="fa fa-plus"></span></a>
 				<?php endif;?>
 			<?php endif;?>
 			</h3>

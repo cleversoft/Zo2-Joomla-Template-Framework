@@ -38,7 +38,7 @@ defined('_JEXEC') or die;
 		<div class="contact-address">
 			<div class="media">
 				<div class="pull-left">
-					<i class="icon-home"></i>
+					<i class="fa fa-home"></i>
 				</div>
 				<div class="media-body">
 					<?php if ($this->contact->address && $this->params->get('show_street_address')) : ?>
@@ -81,7 +81,7 @@ defined('_JEXEC') or die;
 	<?php if ($this->contact->email_to && $this->params->get('show_email')) : ?>
 		<div class="media">
 			<div class="pull-left">
-				<i class="icon-envelope"></i>
+				<i class="fa fa-envelope"></i>
 			</div>
 			<div class="media-body contact-emailto">
 				<?php echo $this->contact->email_to; ?>
@@ -92,7 +92,7 @@ defined('_JEXEC') or die;
 	<?php if ($this->contact->telephone && $this->params->get('show_telephone')) : ?>
 		<div class="media">
 			<div class="pull-left">
-				<i class="icon-phone"></i>
+				<i class="fa fa-phone"></i>
 			</div>
 			<div class="media-body contact-telephone">
 				<?php echo nl2br($this->contact->telephone); ?>
@@ -102,7 +102,7 @@ defined('_JEXEC') or die;
 	<?php if ($this->contact->fax && $this->params->get('show_fax')) : ?>
 		<div class="media">
 			<div class="pull-left">
-				<i class="icon-print"></i>
+				<i class="fa fa-print"></i>
 			</div>
 			<div class="media-body contact-fax">
 				<?php echo nl2br($this->contact->fax); ?>
@@ -112,7 +112,7 @@ defined('_JEXEC') or die;
 	<?php if ($this->contact->mobile && $this->params->get('show_mobile')) :?>
 		<div class="media">
 			<div class="pull-left">
-				<i class="icon-mobile-phone"></i>
+				<i class="fa fa-mobile-phone"></i>
 			</div>
 			<div class="media-body contact-mobile">
 				<?php echo nl2br($this->contact->mobile); ?>
@@ -122,7 +122,7 @@ defined('_JEXEC') or die;
 	<?php if ($this->contact->webpage && $this->params->get('show_webpage')) : ?>
 		<div class="media">
 			<div class="pull-left">
-				<i class="icon-globe"></i>
+				<i class="fa fa-globe"></i>
 			</div>
 			<div class="media-body contact-webpage">
 				<a href="<?php echo $this->contact->webpage; ?>" target="_blank">

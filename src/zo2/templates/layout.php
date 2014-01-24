@@ -9,17 +9,17 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-defined('_JEXEC') or die ('Restricted access');
+defined('_JEXEC') or die('Restricted access');
 /* @var $this JFormFieldLayout */
 ?>
 <div id="layoutbuilder-container">
-    <input type="text" value="<?php echo htmlspecialchars($this->value)?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name?>" id="<?php echo $this->id?>" />
-    <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplateName()?>" />
+    <input type="text" value="<?php echo htmlspecialchars($this->value) ?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
+    <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Framework::getTemplateName() ?>" />
     <input type="hidden" id="hdLayoutBuilder" value="0" />
     <input type="hidden" id="hfLayoutName" value="homepage" />
     <div id="droppable-container">
         <div class="zo2-container">
-            <?php $this->renderLayout($layoutData)?>
+            <?php $this->renderLayout($layoutData) ?>
         </div>
     </div>
 
@@ -163,8 +163,8 @@ defined('_JEXEC') or die ('Restricted access');
                                     <option value="component">Component</option>
                                     <option value="message">Message</option>
                                     <option value="mega_menu">Mega Menu</option>
-                                    <?php foreach($positions as $pos) : ?>
-                                    <option value="<?php echo $pos?>"><?php echo $pos?></option>
+                                    <?php foreach ($positions as $pos) : ?>
+                                        <option value="<?php echo $pos ?>"><?php echo $pos ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -213,8 +213,8 @@ defined('_JEXEC') or die ('Restricted access');
                             <div class="controls">
                                 <select id="ddlColStyle">
                                     <option value="none">None</option>
-                                    <?php foreach($customStyles as $cs) : ?>
-                                        <option value="<?php echo $cs?>"><?php echo $cs?></option>
+                                    <?php foreach ($customStyles as $cs) : ?>
+                                        <option value="<?php echo $cs ?>"><?php echo $cs ?></option>
                                     <?php endforeach; ?>
                                     <option value="rounded">rounded</option>
                                     <option value="table">table</option>
@@ -314,5 +314,5 @@ defined('_JEXEC') or die ('Restricted access');
     </div>
 </div>
 
-<input type="hidden" id="jQueryPath" value="<?php echo Zo2Framework::getSystemPluginPath() . '/vendor/jquery/jquery-1.9.1.min.js'?>" />
-<input type="hidden" id="jQueryUIPath" value="<?php echo Zo2Framework::getSystemPluginPath() . '/vendor/jqueryui/js/jquery-ui-1.10.3.custom.min.js'?>" />
+<input type="hidden" id="jQueryPath" value="<?php echo Zo2Framework::getZo2Path() . '/vendor/jquery/jquery-1.9.1.min.js' ?>" />
+<input type="hidden" id="jQueryUIPath" value="<?php echo Zo2Framework::getZo2Path() . '/vendor/jqueryui/js/jquery-ui-1.10.3.custom.min.js' ?>" />
