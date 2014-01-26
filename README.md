@@ -33,7 +33,7 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 ##Download
 
 The latest version 
-(v1.2.1): [zo2_1.2.1_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_package_1.2.1.zip)
+(v1.3.0): [zo2_1.3.0_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_package_v1.3.0.zip)
 
 ##Demo
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
