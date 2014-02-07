@@ -13,7 +13,6 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $user = JFactory::getUser();
-$canDo = TemplatesHelper::getActions();
 JHTML::_('behavior.tooltip');
 ?>
 <div id="zo2framework" class="<?php echo Zo2Framework::isJoomla25() ? 'joomla-25' : 'joomla-3' ?>">
