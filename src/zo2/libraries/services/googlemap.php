@@ -46,9 +46,10 @@ if (!class_exists('Zo2ServiceGooglemap')) {
 
         public function getMap($name) {
             $template = new Zo2Template($this->_configs->getProperties());
+            $template->registerDir(Zo2Framework::getZo2Path().'/libraries/services/js');
             $template->set('name', $name);
             $template->set('markers', $this->_markers);
-            return $template->fetch('plugins/system/zo2/libraries/services/js/googlemap.php');
+            return $template->fetch('googlemap.php');
         }
 
     }

@@ -73,7 +73,8 @@
         "frontend": {
             "bootstrap.3": {
                 "paths": [
-                    "vendor\/bootstrap\/core\/css\/bootstrap.min.css"
+                    "vendor\/bootstrap\/core\/css\/bootstrap.min.css",
+                    "vendor\/bootstrap\/core\/js\/bootstrap.min.js"
                 ]
 
             },
@@ -89,6 +90,7 @@
             },
             "styles": {
                 "paths": [
+                    "vendor\/colorbox\/css\/colorbox.css",
                     "zo2\/css\/site.styles.css",
                     "zo2\/css\/site.shortcodes.css",
                     "zo2\/css\/template.css"
@@ -97,6 +99,7 @@
             "scripts": {
                 "paths": [
                     "vendor\/ekko-lightbox.js",
+                    "vendor\/colorbox\/js\/jquery.colorbox-min.js",
                     "zo2\/js\/site.megamenu.js",
                     "zo2\/js\/site.scripts.js"
                 ]

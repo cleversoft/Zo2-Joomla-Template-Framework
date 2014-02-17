@@ -10,9 +10,9 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-$assets = Zo2Assets::getInstance();
-$assets->addScript('vendor/colorbox/js/jquery.colorbox-min.js');
-$assets->addStyleSheet('vendor/colorbox/css/colorbox.css');
+//$assets = Zo2Assets::getInstance();
+//$assets->addScript('vendor/colorbox/js/jquery.colorbox-min.js');
+//$assets->addStyleSheet('vendor/colorbox/css/colorbox.css');
 $source = $this->get('src');
 $fileSource = Zo2HelperPath::getPath($source);
 if (JFile::exists($fileSource)) {

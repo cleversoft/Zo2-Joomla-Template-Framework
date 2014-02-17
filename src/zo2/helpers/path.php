@@ -43,6 +43,10 @@ if (!class_exists('Zo2HelperPath')) {
             return rtrim(JUri::root(), '/') . '/' . $filePath;
         }
 
+        public static function toUrl($path) {
+            return rtrim(JUri::root(), '/') . '/' . str_replace(JPATH_ROOT, '', $path);
+        }
+
         /**
          * Get relative path of template dir
          * @return type
