@@ -33,7 +33,7 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 ##Download
 
 The latest version 
-(v1.3.0): [zo2_1.3.0_package.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_package_v1.3.0.zip)
+(v1.3.1): [zo2_package_v1.3.1.zip](http://download.zootemplate.com/download/52a6e858f355772e7a0000f5/zo2_package_v1.3.1.zip)
 
 ##Demo
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
@@ -54,7 +54,7 @@ The latest version
      + Keep cleanup all formfields to use Zo2Assets intead JDocument
      + remove timthumb.php
      
-**1.3: Jan 06, 2024 - Jan 20, 2014**
+**1.3.x: Jan 06, 2024 - Feb 4, 2014**
 
      + allow extend json config in template
      + refactor for json config file structure / format
