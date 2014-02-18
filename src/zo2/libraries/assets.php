@@ -158,13 +158,13 @@ if (!class_exists('Zo2Assets')) {
          * Function build all development assets file into Zo2Assets class
          */
         public function buildAssets() {
-            if(isset($this->_assets->build->core->less))
+            if (isset($this->_assets->build->core->less))
                 $this->_buildAssets($this->_assets->build->core->less, CORE, 'less');
-            if(isset($this->_assets->build->core->js))
+            if (isset($this->_assets->build->core->js))
                 $this->_buildAssets($this->_assets->build->core->js, CORE, 'js');
-            if(isset($this->_assets->build->template->less))
+            if (isset($this->_assets->build->template->less))
                 $this->_buildAssets($this->_assets->build->template->less, TEMPLATE, 'less');
-            if(isset($this->_assets->build->template->js))
+            if (isset($this->_assets->build->template->js))
                 $this->_buildAssets($this->_assets->build->template->js, TEMPLATE, 'js');
         }
 
@@ -179,20 +179,20 @@ if (!class_exists('Zo2Assets')) {
             if (count($assets) > 0) {
                 foreach ($assets as $inputName => $outputName) {
                     $typePath = $type;
-                    if($type == 'less') {
+                    if ($type == 'less') {
                         $typePath = 'css';
                     }
-                    if($position == CORE){
-                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/'.$type.'/' .$inputName , 'path');
-                        $outputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/'.$typePath.'/'.$outputName , 'path');
-                    }elseif ($position == TEMPLATE) {
-                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/'.$type.'/' .$inputName , 'path');
-                        $outputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/'.$typePath.'/'.$outputName , 'path');
+                    if ($position == CORE) {
+                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/' . $type . '/' . $inputName, 'path');
+                        $outputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/' . $typePath . '/' . $outputName, 'path');
+                    } elseif ($position == TEMPLATE) {
+                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/' . $type . '/' . $inputName, 'path');
+                        $outputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/' . $typePath . '/' . $outputName, 'path');
                     }
 
                     if ($type == 'less') {
                         Zo2HelperCompiler::less($inputFile, $outputFile);
-                    }elseif ($type == 'js') {
+                    } elseif ($type == 'js') {
                         Zo2HelperCompiler::javascript($inputFile, $outputFile);
                     }
                 }
@@ -206,7 +206,7 @@ if (!class_exists('Zo2Assets')) {
             if (Zo2Framework::isSite()) {
                 foreach ($this->_assets->load->frontend as $name => $asset) {
                     $this->_loadAsset($asset);
-                    if($name == 'bootstrap.3'){
+                    if ($name == 'bootstrap.3') {
                         /* RTL */
                         if (Zo2Framework::get('enable_rtl') == 1 && JFactory::getDocument()->direction == 'rtl')
                             $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
@@ -520,4 +520,5 @@ if (!class_exists('Zo2Assets')) {
         }
 
     }
+
 }
