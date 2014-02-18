@@ -212,6 +212,8 @@ if (!class_exists('Zo2Assets')) {
                             $this->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.css');
                     }
                 }
+                if (Zo2Framework::get('enable_custom_css', 1) == 1)
+                    $this->addStyleSheet('zo2/css/custom.css');
             } else {
                 foreach ($this->_assets->load->backend as $asset) {
                     $this->_loadAsset($asset);
