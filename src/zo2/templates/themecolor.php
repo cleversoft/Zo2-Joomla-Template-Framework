@@ -34,7 +34,8 @@ else {
         'link_hover' => $defaultData['variables']['link_hover'],
         'bottom1' => $defaultData['variables']['bottom1'],
         'bottom2' => $defaultData['variables']['bottom2'],
-        'footer' => $defaultData['variables']['footer']
+        'footer' => $defaultData['variables']['footer'],
+        'extra' => $defaultData['variables']['extra'],
     );
 }
 ?>
@@ -46,7 +47,7 @@ else {
         </div>
         <div class="zo2_themes_form">
             <ul id="zo2_themes">
-<?php foreach ($presets as $p) : ?>
+                <?php foreach ($presets as $p) : ?>
                     <li class="<?php echo $p['name'] == $currentData['name'] ? 'active' : '' ?>"
                         data-zo2-theme="<?php echo $p['name'] ?>" data-zo2-background="<?php echo $p['variables']['background'] ?>"
                         data-zo2-header="<?php echo $p['variables']['header'] ?>"
@@ -64,7 +65,7 @@ else {
                             <img src="<?php echo $templatePath . $p['thumbnail'] ?>">
                         </div>
                     </li>
-<?php endforeach ?>
+                <?php endforeach ?>
             </ul>
         </div>
     </div>
@@ -175,5 +176,55 @@ else {
                 </div>
             </div>
         </div>
+
     </div>
+    <div class="zo2_themes_row clearfix">
+        <div class="zo2_themes_label">
+            Other Preset Settings
+        </div>
+        <div class="zo2_themes_form_container">
+            <?php
+            if(!empty($p['variables']['extra'])) {
+                $extra = json_decode($p['variables']['extra']);
+                if(count($extra) > 0) {
+                    foreach($extra as $element => $color) {
+                        ?>
+                        <div class="zo2_themes_form">
+                            <div class="control-group">
+                                <div class="control-label">
+                                    <label><input value="<?php echo $element;?>" class="zo2_other_preset_element zo2_other_preset"></label>
+                                </div>
+                                <div class="controls">
+                                    <div class="colorpicker-container">
+                                        <input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="<?php echo $color ?>">
+                                        <span id="extra_element_preview" class="color-preview" style="background-color: <?php echo empty($color) ? 'transparent' : $color ?>"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                }
+            }else {
+                ?>
+                <div class="zo2_themes_form">
+                    <div class="control-group">
+                        <div class="control-label">
+                            <label><input placeholder="ID or class of element" value="" class="zo2_other_preset_element zo2_other_preset"></label>
+                        </div>
+                        <div class="controls">
+                            <div class="colorpicker-container">
+                                <input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">
+                                <span id="extra_element_preview" class="color-preview" style="background-color: 'transparent'"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <br />
+        <input type="hidden" id="extra_preset_value" value="">
+        <input type="button" class="btn add_more_preset" value="Add more" />
+    </div>
+
 </div>

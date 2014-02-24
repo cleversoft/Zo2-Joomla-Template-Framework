@@ -462,6 +462,41 @@ jQuery(document).ready(function($) {
         generatePresetData();
     });
 
+    $('.add_more_preset').click(function() {
+        $('.zo2_themes_form_container').append(
+            '<div class="zo2_themes_form">'+
+                '<div class="control-group">'+
+                '<div class="control-label">'+
+                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>'+
+                '</div>'+
+                '<div class="controls">'+
+                '<div class="colorpicker-container">'+
+                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">'+
+                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>'+
+                '</div>'+
+                '</div>'+
+                '</div>'+
+                '</div>'
+        );
+        $('.zo2_themes_form_container .txtColorPicker').colorpicker();
+    });
+
+    $('.zo2_other_preset').keyup( function() {
+
+        var extra = new Array();
+
+        $('.zo2_other_preset_element').each(function() {
+            alert('lol2');
+            var element = $(this).val();
+            var value = $(this).parent().parent().find('.zo2_other_preset_value').val();
+            if(element != '') {
+                extra[element] = value;
+            }
+        });
+
+        $('#extra_preset_value').val(JSON.stringify(extra));
+    });
+
     $('#zo2_themes').on('click', '> li', function() {
         var $this = $(this);
         var $container = $('#zo2_themes_container');
@@ -569,6 +604,16 @@ jQuery(document).ready(function($) {
 var generatePresetData = function() {
     var $ = jQuery;
     var $preset = $('#zo2_themes').find('.active');
+    var extra = new Array();
+    $('.zo2_other_preset_element').each(function() {
+        var element = $(this).val();
+        alert(element);
+        var value = $(this).parent().parent().find('.zo2_other_preset_value').val();
+        alert(value);
+        if(element != '') {
+            extra[element] = value;
+        }
+    });
     var data = {
         name: $preset.attr('data-zo2-theme'),
         css: $preset.attr('data-zo2-css'),
@@ -581,11 +626,13 @@ var generatePresetData = function() {
         link_hover: $('#color_link_hover').val(),
         bottom1: $('#color_bottom1').val(),
         bottom2: $('#color_bottom2').val(),
-        footer: $('#color_footer').val()
+        footer: $('#color_footer').val(),
+        extra: JSON.stringify(extra)
     };
 
     $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
 };
+
 
 var refreshLogoPreview = function(ele) {
     var $ = jQuery;
