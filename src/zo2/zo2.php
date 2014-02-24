@@ -60,13 +60,7 @@ if (!class_exists('plgSystemZo2')) {
             $jinput = JFactory::getApplication()->input;
 
             if ($app->isAdmin()) {
-                /**
-                 * Shortcodes button hack !!!
-                 */
-                if (Zo2Framework::isJoomla25()) {
-                    $body = str_replace('<div id="editor-xtd-buttons">', '<div id="editor-xtd-buttons"><div class="button2-left">' . $shortcodes->getButton() . '</div>', $body);
-                }
-                $body = str_replace('<div id="editor-xtd-buttons" class="btn-toolbar pull-left">', '<div id="editor-xtd-buttons" class="btn-toolbar pull-left">' . $shortcodes->getButton(), $body);
+               
             } else {
                 /* Make sure shortcodes enabled and we are not in any "edit" tasking ! */
                 if (Zo2Framework::get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {
