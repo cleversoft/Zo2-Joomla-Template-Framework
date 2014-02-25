@@ -37,7 +37,7 @@ if (!class_exists('Zo2Framework')) {
         private $_layout = null;
 
         public function __construct() {
-            
+
         }
 
         /**
@@ -58,7 +58,7 @@ if (!class_exists('Zo2Framework')) {
                     if ($id) {
                         $db = JFactory::getDBO();
                         $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
-                                ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                            ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
                         $db->setQuery($query);
                         $template = $db->loadObject();
                         if ($template) {
@@ -116,7 +116,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @return boolean
          */
         public static function getTemplateAssets() {
@@ -143,7 +143,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @return type
          */
         public static function isSite() {
@@ -151,7 +151,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @return boolean
          */
         public static function isJoomla25() {
@@ -412,6 +412,15 @@ if (!class_exists('Zo2Framework')) {
                 $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
             if (!empty($presetData['footer']))
                 $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
+            if (!empty($presetData['extra'])){
+                $extra = json_decode($presetData['extra']);
+                if(count($extra) > 0) {
+                    foreach($extra as $element => $value) {
+                        if(!empty($element))
+                            $style .= $element . '{background-color:' . $value . '}';
+                    }
+                }
+            }
 
             if (!empty($presetData['css']))
                 $assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
@@ -422,7 +431,7 @@ if (!class_exists('Zo2Framework')) {
         public static function compileLess($lessPath, $templateName = '') {
             $filename = md5($lessPath) . '.css';
             $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
-                    DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
+                DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
             $relPath = 'assets/cache/' . $filename;
             if (!file_exists($absPath)) {
                 if (!class_exists('lessc', false))

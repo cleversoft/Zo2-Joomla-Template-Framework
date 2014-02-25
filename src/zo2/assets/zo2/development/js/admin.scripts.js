@@ -478,23 +478,21 @@ jQuery(document).ready(function($) {
                 '</div>'+
                 '</div>'
         );
-        $('.zo2_themes_form_container .txtColorPicker').colorpicker();
-    });
+        $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function() {
+            var $this = $(this);
+            var $parent = $this.parent();
+            var $preview = $parent.find('.color-preview');
+            if ($this.val().length > 0)
+                $preview.css('background-color', $this.val());
+            else
+                $preview.css('background-color', 'transparent');
 
-    $('.zo2_other_preset').keyup( function() {
-
-        var extra = new Array();
-
-        $('.zo2_other_preset_element').each(function() {
-            alert('lol2');
-            var element = $(this).val();
-            var value = $(this).parent().parent().find('.zo2_other_preset_value').val();
-            if(element != '') {
-                extra[element] = value;
-            }
+            generatePresetData();
         });
 
-        $('#extra_preset_value').val(JSON.stringify(extra));
+        $('.zo2_other_preset_element').on('change', function() {
+            generatePresetData();
+        });
     });
 
     $('#zo2_themes').on('click', '> li', function() {
@@ -604,16 +602,17 @@ jQuery(document).ready(function($) {
 var generatePresetData = function() {
     var $ = jQuery;
     var $preset = $('#zo2_themes').find('.active');
-    var extra = new Array();
+    var extra = {};
+
     $('.zo2_other_preset_element').each(function() {
         var element = $(this).val();
-        alert(element);
-        var value = $(this).parent().parent().find('.zo2_other_preset_value').val();
-        alert(value);
+        var value = $(this).parent().parent().parent().find('.zo2_other_preset_value').val();
         if(element != '') {
             extra[element] = value;
         }
     });
+
+
     var data = {
         name: $preset.attr('data-zo2-theme'),
         css: $preset.attr('data-zo2-css'),

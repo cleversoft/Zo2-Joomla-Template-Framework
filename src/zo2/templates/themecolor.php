@@ -184,8 +184,8 @@ else {
         </div>
         <div class="zo2_themes_form_container">
             <?php
-            if(!empty($p['variables']['extra'])) {
-                $extra = json_decode($p['variables']['extra']);
+            if(!empty($currentData['extra'])) {
+                $extra = json_decode($currentData['extra']);
                 if(count($extra) > 0) {
                     foreach($extra as $element => $color) {
                         ?>
