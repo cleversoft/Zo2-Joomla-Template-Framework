@@ -223,8 +223,6 @@ else {
             <?php } ?>
         </div>
         <br />
-        <input type="hidden" id="extra_preset_value" value="">
         <input type="button" class="btn add_more_preset" value="Add more" />
     </div>
-
 </div>
