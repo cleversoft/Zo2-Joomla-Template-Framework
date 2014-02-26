@@ -42,6 +42,9 @@ The latest version
 1. Version 1.0.0: released on December 07th, 2013
 2. Version 1.1.0: released on December 24th, 2013
 3. Version 1.2.0: released on December 30th, 2013
+4. Version 1.2.1: released on Jan 08, 2014
+5. Version 1.3.0: released on Jan 24, 2014
+6. Version 1.3.1: released on Feb 17, 2014
 
 ## Roadmap
 
@@ -54,7 +57,7 @@ The latest version
      + Keep cleanup all formfields to use Zo2Assets intead JDocument
      + remove timthumb.php
      
-**1.3.x: Jan 06, 2024 - Feb 4, 2014**
+**1.3.x: Jan 06, 2024 - Mar 31, 2014**
 
      + allow extend json config in template
      + refactor for json config file structure / format
@@ -65,12 +68,12 @@ The latest version
           + remove getSystemPluginPath
           + remove getPluginPath          
      + force all assets follow structure (plugin & template)
+     + bring shortcodes into standard package
      + bugs fix
      
 **1.4:**
 
      + refactor ajax
-     + bring shortcodes into standard package
           + complete of twitter styles
           + allow enter without params (use default)
           + button:
