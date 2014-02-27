@@ -463,7 +463,7 @@ jQuery(document).ready(function($) {
     });
 
     $('.add_more_preset').click(function() {
-        $('.zo2_themes_form_container').append(
+        $(this).parent().before(
             '<div class="zo2_themes_form">'+
                 '<div class="control-group">'+
                 '<div class="control-label">'+
@@ -473,6 +473,7 @@ jQuery(document).ready(function($) {
                 '<div class="colorpicker-container">'+
                 '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">'+
                 '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>'+
+                '<input type="button" class="btn remove_preset" value="Remove" />'+
                 '</div>'+
                 '</div>'+
                 '</div>'+
@@ -493,6 +494,16 @@ jQuery(document).ready(function($) {
         $('.zo2_other_preset_element').on('change', function() {
             generatePresetData();
         });
+
+        $('.remove_preset').click(function() {
+            $(this).parent().parent().parent().parent().remove();
+            generatePresetData();
+        });
+    });
+
+    $('.remove_preset').click(function() {
+        $(this).parent().parent().parent().parent().remove();
+        generatePresetData();
     });
 
     $('#zo2_themes').on('click', '> li', function() {
@@ -607,7 +618,7 @@ var generatePresetData = function() {
     $('.zo2_other_preset_element').each(function() {
         var element = $(this).val();
         var value = $(this).parent().parent().parent().find('.zo2_other_preset_value').val();
-        if(element != '') {
+        if(element != '' && value != '') {
             extra[element] = value;
         }
     });

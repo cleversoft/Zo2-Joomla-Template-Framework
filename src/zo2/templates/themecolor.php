@@ -198,6 +198,7 @@ else {
                                     <div class="colorpicker-container">
                                         <input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="<?php echo $color ?>">
                                         <span id="extra_element_preview" class="color-preview" style="background-color: <?php echo empty($color) ? 'transparent' : $color ?>"></span>
+                                        <input type="button" class="btn remove_preset" value="Remove" />
                                     </div>
                                 </div>
                             </div>
@@ -205,24 +206,12 @@ else {
                     <?php
                     }
                 }
-            }else {
-                ?>
-                <div class="zo2_themes_form">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <label><input placeholder="ID or class of element" value="" class="zo2_other_preset_element zo2_other_preset"></label>
-                        </div>
-                        <div class="controls">
-                            <div class="colorpicker-container">
-                                <input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">
-                                <span id="extra_element_preview" class="color-preview" style="background-color: 'transparent'"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
+            }
+            ?>
+            <div class="zo2_themes_form">
+                <input type="button" class="btn add_more_preset" value="Add more" />
+            </div>
         </div>
         <br />
-        <input type="button" class="btn add_more_preset" value="Add more" />
     </div>
 </div>
