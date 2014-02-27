@@ -132,7 +132,7 @@ class Zo2Layout {
         }
         if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
             $zo2 = Zo2Framework::getInstance();
-            $megamenu = $zo2->displayMegaMenu($zo2->get('menutype', 'mainmenu'), $zo2->getTemplate());
+            $megamenu = $zo2->displayMegaMenu($zo2->get('menutype', $params->get('menu_type')), $zo2->getTemplate());
             $html = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $html);
         }
         return $html;

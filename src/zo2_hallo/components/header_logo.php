@@ -53,10 +53,10 @@ class Zo2Component_header_logo extends Zo2Component {
                 $html .= htmlspecialchars($logo['text']);
             } else {
                 if ($logo['type'] == 'image' && !empty($logo['path'])) {
-                    $html .= '<a style="width: ' . $logo['width'] . 'px; height: ' . $logo['height'] . 'px;background-image: url(' . JUri::root() . '/' . $logo['path'] . ')" class="logo_normal" href="' . JUri::root() . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
+                    $html .= '<a class="logo_normal" href="' . JUri::root() . '" title="' . (!empty($sitename) ? $sitename : '') . '"><img src="' . JUri::root()  . $logo['path'] . '" style="width: ' . $logo['width'] . 'px; height: ' . $logo['height'] . 'px;" alt="' . (!empty($sitename) ? $sitename : '') . '" /> </a>';
                 }
                 if ($logoRetina['type'] == 'image' && !empty($logoRetina['path'])) {
-                    $html .= '<a style="width: ' . $logoRetina['width'] . 'px; height: ' . $logoRetina['height'] . 'px;background-image: url(' . JUri::root() . '/' . $logoRetina['path'] . ')" class="logo_retina" href="' . JUri::root() . '/' . '" title="' . (!empty($sitename) ? $sitename : '') . '"></a>';
+                    $html .= '<a style="width: ' . $logoRetina['width'] . 'px; height: ' . $logoRetina['height'] . 'px;" class="logo_retina" href="' . JUri::root() . '/' . '" title="' . (!empty($sitename) ? $sitename : '') . '"><img src="' . JUri::root()  . $logoRetina['path'] . '" style="width: ' . $logo['width'] . 'px; height: ' . $logo['height'] . 'px;" alt="' . (!empty($sitename) ? $sitename : '') . '"/></a>';
                 }
             }
             $html .=!empty($slogan) ? '<h2 class="header_slogan">' . $slogan . '</h2>' : '';
