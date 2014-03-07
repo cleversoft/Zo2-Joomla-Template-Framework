@@ -10,6 +10,7 @@
                 "admin.assets.js": "admin.assets.js",
                 "admin.scripts.js": "admin.scripts.js",
                 "admin.social.js": "admin.social.js",
+                "scripts.js": "scripts.js",
                 "site.megamenu.js": "site.megamenu.js",
                 "site.scripts.js": "site.scripts.js"
             }
@@ -100,6 +101,7 @@
                 "paths": [
                     "vendor\/ekko-lightbox.js",
                     "vendor\/colorbox\/js\/jquery.colorbox-min.js",
+                    "zo2\/js\/scripts.js",
                     "zo2\/js\/site.megamenu.js",
                     "zo2\/js\/site.scripts.js"
                 ]
