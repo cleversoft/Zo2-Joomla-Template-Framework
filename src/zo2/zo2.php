@@ -41,6 +41,11 @@ if (!class_exists('plgSystemZo2')) {
             if (!Zo2Framework::isJoomla25()) {
                 JHtml::_('bootstrap.framework');
             }
+            Zo2Ajax::addResponse(array(
+                'func' => 'zo2.core.test',
+                'funcArgs' => 'aa'
+            ));
+            Zo2Ajax::getInstance()->process();
         }
 
         /**
@@ -60,7 +65,7 @@ if (!class_exists('plgSystemZo2')) {
             $jinput = JFactory::getApplication()->input;
 
             if ($app->isAdmin()) {
-               
+                
             } else {
                 /* Make sure shortcodes enabled and we are not in any "edit" tasking ! */
                 if (Zo2Framework::get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {

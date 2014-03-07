@@ -44,7 +44,42 @@ jQuery(document).ready(function() {
                 var ajaxData = zo2.jQuery.extend(zo2.ajax.settings.data, data, formData);
                 /* Update ajax data */
                 ajaxSettings.data = ajaxData;                
-                zo2.jQuery.ajax(ajaxSettings);
+                zo2.jQuery.ajax(ajaxSettings)
+                    .done(function(data) {
+                        var arrayData = jQuery.parseJSON(data);
+                        jQuery.each (arrayData, function (key, value) {                              
+                            if ( value.hasOwnProperty('func') ) {         
+                                if ( value.hasOwnProperty('funcArgs') ) {
+                                    /* @todo Improve allow passing multi args */
+                                    zo2.core.executeByString(value.func,window, value.funcArgs);
+                                } else {
+                                    zo2.core.executeByString(value.func,window);
+                                }
+                                
+                            }    
+                        })                        
+                        
+                    })
+                    .fail(function() {
+                        alert( "error" );
+                    })
+                    .always(function() {
+                        
+                    })
+            }
+        },
+        core: {
+            executeByString: function (functionName, context /*, args */) {                
+                var args = Array.prototype.slice.call(arguments, 2);
+                var namespaces = functionName.split(".");
+                var func = namespaces.pop();
+                for (var i = 0; i < namespaces.length; i++) {
+                    context = context[namespaces[i]];
+                }
+                return context[func].apply(context, args);                                
+            },
+            test: function (arg1, arg2) {
+                console.log (arg1,arg2);
             }
         }
     })

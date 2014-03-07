@@ -60,9 +60,7 @@ if (!class_exists('Zo2Ajax')) {
         public function process() {
             $jinput = JFactory::getApplication()->input;
             /* Is ajax request */
-            if ($jinput->get('zo2Ajax')) {
-                /* Token validating */
-                JSession::checkToken() or die('Invalid Token');
+            if ($jinput->get('zo2Ajax')) {                
                 $func = $jinput->get('func');
                 /* Do process ajax request */
                 if ($func) {
@@ -119,7 +117,8 @@ if (!class_exists('Zo2Ajax')) {
          */
         public function response() {
             header('Content-type: text/html; charset=utf-8');
-            echo json_encode($this->_responses);
+            echo json_encode(self::$_responses);
+            exit();
         }
 
         /**
