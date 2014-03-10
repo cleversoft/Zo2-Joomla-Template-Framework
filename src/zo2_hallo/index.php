@@ -45,13 +45,13 @@ $socialShares = new Zo2Socialshares();
         <?php } ?>
     <jdoc:include type="head" />
 </head>
-<body class="<?php echo $layout->getBodyClass() ?> <?php echo $this->direction; ?> ">
+<body class="<?php echo $layout->getBodyClass() ?> <?php echo $this->direction; ?> <?php echo (($zo2->get('fullContainer') == 1) ? 'boxed' : '');?>">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     <?php echo Zo2Framework::displayOffCanvasMenu($zo2->get('menutype', 'mainmenu'), $zo2->getTemplate()) ?>    
-    <section class="wrapper">
+    <section class="wrapper <?php echo (($zo2->get('fullContainer') == 1) ? 'boxed container' : '');?>">
         <!-- SocialShare -->
         <?php if (Zo2Framework::get('socialshare_floatbar', 1) == 1) { ?>
             <?php echo $socialShares->getFloatbar(); ?>

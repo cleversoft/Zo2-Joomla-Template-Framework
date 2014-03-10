@@ -87,6 +87,20 @@ body.modal-open{
 body.form.body-overlayed{
     overflow:inherit;
 }
+/* BOXED LAYOUT
+   ============================= */
+body.boxed{
+  background: url("../images/pattern1.png") repeat;
+  .wrapper{
+    margin: 0 auto;
+    background-color: @white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    padding: 0;
+    .is-sticky #zo2-header{
+      width: auto;
+    }
+  }
+}
 /**/
 .full-width .col-md-12{
     padding: 0;
