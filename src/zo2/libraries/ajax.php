@@ -109,8 +109,16 @@ if (!class_exists('Zo2Ajax')) {
                     $vars = $data;
                 }
             }
-            self::$_responses[] = $vars;
+            self::$_responses[] = $vars;			
         }
+		
+		public static function addMessage($message,$type) {
+			$data = array (
+				'func' => 'zo2.document.message',
+				'args' => array ('message' => $message, 'type' => $type )
+			);
+			self::addResponse ($data);
+		}
 
         /**
          * Do response json data
