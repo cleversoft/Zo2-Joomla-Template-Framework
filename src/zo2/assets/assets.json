@@ -100,6 +100,7 @@
             "scripts": {
                 "paths": [
                     "vendor\/ekko-lightbox.js",
+                    "vendor\/jquery.sticky.js",
                     "vendor\/colorbox\/js\/jquery.colorbox-min.js",
                     "zo2\/js\/scripts.js",
                     "zo2\/js\/site.megamenu.js",
