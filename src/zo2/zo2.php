@@ -41,10 +41,7 @@ if (!class_exists('plgSystemZo2')) {
             if (!Zo2Framework::isJoomla25()) {
                 JHtml::_('bootstrap.framework');
             }
-            Zo2Ajax::addResponse(array(
-                'func' => 'zo2.core.test',
-                'funcArgs' => 'aa'
-            ));
+           
             Zo2Ajax::getInstance()->process();
         }
 
