@@ -218,7 +218,9 @@ nav.zo2-menu{
     }
 }
 /*Slideshow*/
-.slide-button{
+.carousel-inner{
+  z-index: 0;
+  .slide-button{
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
     border: 1px solid #FFFFFF;
     .border-radius(0);
@@ -229,12 +231,13 @@ nav.zo2-menu{
     text-transform: uppercase;
     .transition(all 0.4s ease 0s);
     &:hover,
-        &:active,
-        &:focus{
-        background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
-        color: #fff;
-        .box-shadow(0 0 0 26px rgba(0, 0, 0, 0.1) inset);
+    &:active,
+    &:focus{
+      background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
+      color: #fff;
+      .box-shadow(0 0 0 26px rgba(0, 0, 0, 0.1) inset);
     }
+  }
 }
 .carousel-control.left,
 .carousel-control.right{
@@ -344,6 +347,16 @@ nav.zo2-menu{
 }
 #zo2-header{
     padding: 45px 0;
+}
+.is-sticky{
+  position: relative;
+  z-index: 1;
+  #zo2-header{
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    max-width: none;
+    width: 100%;
+  }
 }
 
 /*Bottom*/
