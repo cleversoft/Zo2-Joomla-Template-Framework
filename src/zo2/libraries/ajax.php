@@ -26,13 +26,13 @@ if (!class_exists('Zo2Ajax')) {
          * Registered class & func allow to use in ajax
          * @var array 
          */
-        protected static $_registeredClass = array();
+        protected $_registeredClass = array();
 
         /**
          * Responses data
          * @var array
          */
-        protected static $_responses = array();
+        protected $_responses = array();
 
         /**
          * 
@@ -60,31 +60,37 @@ if (!class_exists('Zo2Ajax')) {
         public function process() {
             $jinput = JFactory::getApplication()->input;
             /* Is ajax request */
-            if ($jinput->get('zo2Ajax')) {                
+            if ($jinput->get('zo2Ajax')) {
                 $func = $jinput->get('func');
                 /* Do process ajax request */
                 if ($func) {
-                    $parts = explode(',', $func);
+                    if (strpos($func, '.') !== false)
+                        $parts = explode('.', $func);
+                    else
+                        $parts = explode(',', $func);
+                    $className = 'Zo2' . ucfirst($parts[0]);
                     /* Make sure this class is registered before */
-                    if (isset($this->_registeredClass[$parts[0]])) {
+                    if (isset($this->_registeredClass[$className])) {
                         /* And also this function is registered before */
-                        if (isset($this->_registeredClass[$parts[0]][$parts[1]])) {
+                        if (isset($this->_registeredClass[$className][$parts[1]])) {
                             /**
                              * Do declare class
                              * @todo Should we allow custom path use for class include
                              */
                             /* This class allow singleton */
                             if (method_exists($parts[0], 'getInstance')) {
-                                $class = call_user_func(array($parts[0], 'getInstance'));
+                                $class = call_user_func(array($className, 'getInstance'));
                             } else {
                                 /* Declare new class instance */
-                                $class = new $parts[0];
+                                $class = new $className;
                             }
                             /* Call method to execute */
                             if (method_exists($class, $parts[1])) {
-                                $args = $jinput->get('args');
-                                $response = call_user_func_array(array($class, $parts[1]), json_decode($args, true));
+                                //$args = $jinput->get('args');                                
+                                $response = call_user_func_array(array($class, $parts[1]), array());
                                 self::addResponse($response);
+                            } else {
+                                
                             }
                         }
                     }
@@ -101,7 +107,7 @@ if (!class_exists('Zo2Ajax')) {
          * @todo Should we add some alias methods for some cases of responses ?
          * @param mixed $data
          */
-        public static function addResponse($data) {
+        public function addResponse($data) {
             if (is_object($data)) {
                 $vars = get_object_vars($object);
             } else {
@@ -109,23 +115,24 @@ if (!class_exists('Zo2Ajax')) {
                     $vars = $data;
                 }
             }
-            self::$_responses[] = $vars;			
+            if (isset($vars))
+                $this->_responses[] = $vars;
         }
-		
-		public static function addMessage($message,$type) {
-			$data = array (
-				'func' => 'zo2.document.message',
-				'args' => array ('message' => $message, 'type' => $type )
-			);
-			self::addResponse ($data);
-		}
+
+        public function addMessage($message, $type) {
+            $data = array(
+                'func' => 'zo2.document.message',
+                'args' => array('message' => $message, 'type' => $type)
+            );
+            self::addResponse($data);
+        }
 
         /**
          * Do response json data
          */
         public function response() {
             header('Content-type: text/html; charset=utf-8');
-            echo json_encode(self::$_responses);
+            echo json_encode($this->_responses);
             exit();
         }
 
@@ -134,8 +141,8 @@ if (!class_exists('Zo2Ajax')) {
          * @param type $class
          * @param type $func
          */
-        public static function register($class, $func) {
-            self::$_registeredClass[] = array($class, $func);
+        public function register($class, $func) {
+            $this->_registeredClass[$class][$func] = 1;
         }
 
     }
