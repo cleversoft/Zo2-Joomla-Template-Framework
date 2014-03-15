@@ -93,8 +93,12 @@ jQuery(document).ready(function() {
                         .css({opacity: 0.25})
                         .animate({
                             opacity: 1
-                        }, 2000)
-                        .fadeOut('slow')
+                        }, 2000, function() {
+                            zo2.jQuery('#zo2messages').animate({
+                                opacity: 0
+                            }, 4000)
+                        })
+
 
 
 
