@@ -87,8 +87,17 @@ jQuery(document).ready(function() {
             }
         },
         document: {
-            message: function(args) {                
-                zo2.jQuery('#zo2messages').html('<div class="alert alert-' + args.type + ' alert-dismissable "><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + args.message + '</div>');
+            message: function(args) {
+                zo2.jQuery('#zo2messages')
+                        .html('<div class="alert alert-' + args.type + ' alert-dismissable "><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + args.message + '</div>')
+                        .css({opacity: 0.25})
+                        .animate({
+                            opacity: 1
+                        }, 2000)
+                        .fadeOut('slow')
+
+
+
             }
         }
     })
