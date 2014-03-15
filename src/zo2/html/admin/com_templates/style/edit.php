@@ -15,10 +15,11 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $user = JFactory::getUser();
 JHTML::_('behavior.tooltip');
 ?>
-<div id="zo2framework" class="<?php echo Zo2Framework::isJoomla25() ? 'joomla-25' : 'joomla-3' ?>">
+<div id="zo2messages"></div>
+<div id="zo2framework" class="<?php echo Zo2Framework::isJoomla25() ? 'joomla-25' : 'joomla-3' ?>" >
     <a href="http://zo2framework.org" target="_blank" id="logo" title="Zo2 Framework"></a>
-    <form id="adminForm" action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="style-form" class="form-validate form-horizontal">
-        <fieldset id="zo2" class="">
+    <form id="adminForm" action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="style-form" class="form-validate form-horizontal" data-zo2ajax='{"on":"submit"}'>
+        <fieldset id="zo2fields" class="">
             <!-- tabs header -->
             <ul class="nav nav-tabs main-navigator" id="main-navigator">
                 <!-- Default active tab -->
@@ -81,3 +82,30 @@ JHTML::_('behavior.tooltip');
         <?php echo JHtml::_('form.token'); ?>
     </form>
 </div>
+<script>
+    Joomla.submitbutton = function(task, form) {
+        if (typeof (form) === 'undefined') {
+            form = document.getElementById('adminForm');
+        }
+
+        if (typeof (task) !== 'undefined' && task !== "") {
+            form.task.value = task;
+        }
+        data = {
+            func: task
+        };
+        if (task != 'style.cancel') {
+            zo2.ajax.execute(form, data);
+            return false;
+        } else {
+            // Submit the form.
+            if (typeof form.onsubmit == 'function') {
+                form.onsubmit();
+            }
+            if (typeof form.fireEvent == "function") {
+                form.fireEvent('submit');
+            }
+            form.submit();
+        }
+    }
+</script>

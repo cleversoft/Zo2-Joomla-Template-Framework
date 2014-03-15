@@ -61,3 +61,4 @@ if (Zo2Framework::isZo2Template()) {
     
 }
 
+Zo2Ajax::getInstance()->register('Zo2Style', 'apply');
