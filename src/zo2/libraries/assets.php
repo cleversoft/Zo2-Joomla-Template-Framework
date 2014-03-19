@@ -483,11 +483,11 @@ if (!class_exists('Zo2Assets')) {
                         $jsHtml .='<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $javascript . '"></script>';
                     }
                 }
-                $jsDeclarationHtml = '<script>';
+                $jsDeclarationHtml = '<script>jQuery(document).ready( function () {';
                 foreach ($this->_javascriptDeclarations as $javascriptDeclaration) {
                     $jsDeclarationHtml .= $javascriptDeclaration;
                 }
-                $jsDeclarationHtml .= '</script>';
+                $jsDeclarationHtml .= ' }); </script>';
                 return $jsHtml . "\n" . $jsDeclarationHtml;
             } else {
                 $cssHtml = '';
