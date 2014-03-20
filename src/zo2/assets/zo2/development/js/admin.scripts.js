@@ -951,3 +951,24 @@ var generateSlug = function(str) {
     str = str.replace(/(-){2,}/i, '-');
     return str;
 };
+
+jQuery(document).ready(function() {
+    var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
+
+    if(fullContainer.val() == 0){
+        jQuery('input[name="jform[params][background]"]').parent().parent().parent().hide();
+        jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().hide();
+    }
+
+
+    jQuery('input[name="jform[params][fullContainer]"]').click(function(){
+        var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
+        if(fullContainer.val() == 0){
+            jQuery('input[name="jform[params][background]"]').parent().parent().parent().hide();
+            jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().hide();
+        }else{
+            jQuery('input[name="jform[params][background]"]').parent().parent().parent().show();
+            jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().show();
+        }
+    });
+});

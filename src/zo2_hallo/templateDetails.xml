@@ -72,6 +72,8 @@
                     <option value="0">Full width layout</option>
                     <option value="1">Boxed layout</option>
                 </field>
+                <field name="background" type="media" default="images/background.png" label="Background Image" />
+                <field name="background_color" type="color" default="" label="Background Color" />
                 <field name="site_name" type="text" default="Zo2 Hallo" label="Site name" />
                 <field name="site_slogan" type="text" default="" label="Site slogan" />
                 <field name="enable_rtl" type="radio" default="0" label="Enable RTL" class="btn-group" description="">
@@ -87,8 +89,6 @@
                     <option value="1">JYES</option>
                 </field>
                 <field name="favicon" type="media" default="images/favicon.ico" label="Favicon" />
-                <field name="background" type="media" default="images/background.png" label="Background Image" />
-                <field name="background_color" type="color" default="" label="Background Color" />
                 <!--Header Option-->
                 <field name="header_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header logo" />
                 <field name="header_retina_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header Retina logo" />
