@@ -24,9 +24,12 @@ $favicon = $zo2->get('favicon');
 $this->language = $doc->language;
 $this->direction = $doc->direction;
 if($zo2->get('fullContainer') == 1){
-    $background_image = $zo2->get('background');
+    $background = $zo2->get('background', '');
     $background_color = $zo2->get('background_color');
-    $doc->addStyleDeclaration('');
+    if($background != ''){
+        $doc->addStyleDeclaration('body.boxed {background: url("'.JUri::root(true).'/'.$background.'") '.$background_color.' repeat;}');
+    } else
+        $doc->addStyleDeclaration('body.boxed {background: '.$background_color.' repeat;}');
 }
 
 $layout = Zo2Framework::getInstance()->getLayout();
