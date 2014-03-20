@@ -59,47 +59,51 @@ if (!class_exists('Zo2Ajax')) {
          */
         public function process() {
             $jinput = JFactory::getApplication()->input;
-            /* Is ajax request */
-            if ($jinput->get('zo2Ajax')) {
-                $func = $jinput->get('func');
-                /* Do process ajax request */
-                if ($func) {
-                    if (strpos($func, '.') !== false)
-                        $parts = explode('.', $func);
-                    else
-                        $parts = explode(',', $func);
-                    $className = 'Zo2' . ucfirst($parts[0]);
-                    /* Make sure this class is registered before */
-                    if (isset($this->_registeredClass[$className])) {
-                        /* And also this function is registered before */
-                        if (isset($this->_registeredClass[$className][$parts[1]])) {
-                            /**
-                             * Do declare class
-                             * @todo Should we allow custom path use for class include
-                             */
-                            /* This class allow singleton */
-                            if (method_exists($parts[0], 'getInstance')) {
-                                $class = call_user_func(array($className, 'getInstance'));
-                            } else {
-                                /* Declare new class instance */
-                                $class = new $className;
-                            }
-                            /* Call method to execute */
-                            if (method_exists($class, $parts[1])) {
-                                //$args = $jinput->get('args');                                
-                                $response = call_user_func_array(array($class, $parts[1]), array());
-                                self::addResponse($response);
-                            } else {
-                                
+            $token = $jinput->get('token');
+            $jinput->set($token, 1);
+            if (JSession::checkToken()) {
+                /* Is ajax request */
+                if ($jinput->get('zo2Ajax')) {
+                    $func = $jinput->get('func');
+                    /* Do process ajax request */
+                    if ($func) {
+                        if (strpos($func, '.') !== false)
+                            $parts = explode('.', $func);
+                        else
+                            $parts = explode(',', $func);
+                        $className = 'Zo2' . ucfirst($parts[0]);
+                        /* Make sure this class is registered before */
+                        if (isset($this->_registeredClass[$className])) {
+                            /* And also this function is registered before */
+                            if (isset($this->_registeredClass[$className][$parts[1]])) {
+                                /**
+                                 * Do declare class
+                                 * @todo Should we allow custom path use for class include
+                                 */
+                                /* This class allow singleton */
+                                if (method_exists($parts[0], 'getInstance')) {
+                                    $class = call_user_func(array($className, 'getInstance'));
+                                } else {
+                                    /* Declare new class instance */
+                                    $class = new $className;
+                                }
+                                /* Call method to execute */
+                                if (method_exists($class, $parts[1])) {
+                                    //$args = $jinput->get('args');                                
+                                    $response = call_user_func_array(array($class, $parts[1]), array());
+                                    self::addResponse($response);
+                                } else {
+                                    
+                                }
                             }
                         }
                     }
+                    /**
+                     * Do response by json format
+                     * Javascript will do json_decode and process it
+                     */
+                    $this->response();
                 }
-                /**
-                 * Do response by json format
-                 * Javascript will do json_decode and process it
-                 */
-                $this->response();
             }
         }
 

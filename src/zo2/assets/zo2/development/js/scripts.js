@@ -1,6 +1,9 @@
 jQuery(document).ready(function() {
     if (typeof (zo2) == 'undefined') {
         zo2 = {
+            settings: {
+                token: null
+            },
             jQuery: window.jQuery,
             extend: function(obj) {
                 this.jQuery.extend(this, obj);
@@ -15,7 +18,7 @@ jQuery(document).ready(function() {
                 url: "index.php",
                 type: "POST",
                 data: {
-                    'zo2Ajax': 1
+                    'zo2Ajax': 1                    
                 }
             },
             init: function() {
@@ -46,7 +49,7 @@ jQuery(document).ready(function() {
                 /* Copy default ajax settings */
                 var ajaxSettings = zo2.ajax.settings;
                 /* Merge ajax data */
-                var ajaxData = zo2.jQuery.extend(zo2.ajax.settings.data, data, formData);
+                var ajaxData = zo2.jQuery.extend(zo2.settings, zo2.ajax.settings.data, data, formData);
                 /* Update ajax data */
                 ajaxSettings.data = ajaxData;
                 zo2.jQuery.ajax(ajaxSettings)
@@ -102,6 +105,11 @@ jQuery(document).ready(function() {
 
 
 
+            },
+            effect: {
+                showAndHide: function(element) {
+
+                }
             }
         }
     })

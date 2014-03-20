@@ -57,8 +57,10 @@ if (Zo2Framework::isZo2Template()) {
     }
     Zo2Framework::getTemplateLayouts();
     Zo2Framework::getController();
+
+    $script = 'zo2.settings.token = "' . JFactory::getSession()->getToken() . '";';
+    Zo2Assets::getInstance()->addScriptDeclaration($script);
 } else {
     
 }
-
 Zo2Ajax::getInstance()->register('Zo2Style', 'apply');
