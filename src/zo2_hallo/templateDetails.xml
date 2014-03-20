@@ -87,6 +87,8 @@
                     <option value="1">JYES</option>
                 </field>
                 <field name="favicon" type="media" default="images/favicon.ico" label="Favicon" />
+                <field name="background" type="media" default="images/background.png" label="Background Image" />
+                <field name="background_color" type="color" default="" label="Background Color" />
                 <!--Header Option-->
                 <field name="header_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header logo" />
                 <field name="header_retina_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header Retina logo" />
@@ -106,8 +108,8 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
 
             <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
                 <field
-                    type="layout"
-                    name="layout" />
+                        type="layout"
+                        name="layout" />
             </fieldset>
             <!--Mega Menus-->
             <fieldset name="megamenu" label="Megamenu">
@@ -151,12 +153,12 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 <field name="menu_type" type="menutype" default="mainmenu"
                        label="Menu type"
                        description="Menu type"
-                />
+                        />
 
                 <field name="menu_config" type="megamenu" hide="true"
                        label=""
                        description=""
-                />
+                        />
 
             </fieldset>
 
@@ -200,7 +202,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                        label="Tabs Order"
                        description="Only tabs listed will be showed"
                        desc=""
-                />
+                        />
 
                 <field name="disqus_shortname" type="disqus" default="zootemplates"
                        label="Disqus Shortname"
@@ -221,12 +223,12 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 <field name="k2comment_label" type="text" default="Zo2 Framework"
                        label="K2 Comment Label"
                        description="" />
-                
+
                 <!-- Socials share -->
-                <field name="socialshare_floatbar" type="list" default="normal" label="Enable floatbar">                       
+                <field name="socialshare_floatbar" type="list" default="normal" label="Enable floatbar">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
-                </field>               
+                </field>
                 <field name="socialshare_in_article" type="radio" default="0" label="Show in Article" description="Display social box in Article" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
@@ -235,7 +237,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                        description="Display static social box in list of articles" class="btn-group">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
-                </field>                
+                </field>
                 <field name="socialshare_in_featured" type="radio" default="0" label="Show in Featured"
                        description="Display social box in Featured page" class="btn-group">
                     <option value="1">JYES</option>
@@ -244,7 +246,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 <field name="socialshare_filter_categories" type="includecats" extension="com_content" size="10" default="" label="Include categories" description="Include categories" >
                     <option value="">JOPTION_ALL_CATEGORIES</option>
                 </field>
-                
+
                 <field name="socialshare_article_position" type="list" label="In article position"
                        description="Normal position" >
                     <option value="top">Top</option>
@@ -258,29 +260,29 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 </field>
 
                 <field
-                    name="box_top"
-                    type="text"
-                    default="200"
-                    label="Initial Top Position"
-                    description="Initial Top Position"/>
+                        name="box_top"
+                        type="text"
+                        default="200"
+                        label="Initial Top Position"
+                        description="Initial Top Position"/>
                 <field
-                    name="box_left"
-                    type="text"
-                    default="200"
-                    label="Left Position"
-                    description="Left Position"/>
+                        name="box_left"
+                        type="text"
+                        default="200"
+                        label="Left Position"
+                        description="Left Position"/>
                 <field
-                    name="box_right"
-                    type="text"
-                    default="300"
-                    label="Right Position"
-                    description="Right Position"/>
+                        name="box_right"
+                        type="text"
+                        default="300"
+                        label="Right Position"
+                        description="Right Position"/>
                 <field
-                    name="box_style"
-                    type="text"
-                    default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
-                    label="Box style"
-                    description="Box style"/>
+                        name="box_style"
+                        type="text"
+                        default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
+                        label="Box style"
+                        description="Box style"/>
 
                 <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
 

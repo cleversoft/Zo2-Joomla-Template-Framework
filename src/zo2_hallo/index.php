@@ -21,6 +21,8 @@ $doc = JFactory::getDocument();
 $debug = $zo2->get('debug_visibility');
 $responsive = $zo2->get('responsive_layout');
 $favicon = $zo2->get('favicon');
+$background_image = $zo2->get('background');
+$background_color = $zo2->get('background_color');
 $this->language = $doc->language;
 $this->direction = $doc->direction;
 
