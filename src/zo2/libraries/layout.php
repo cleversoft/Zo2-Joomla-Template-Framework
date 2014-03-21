@@ -240,6 +240,9 @@ class Zo2Layout {
         //$zo2 = Zo2Framework::getInstance();
         $html = '';
         $class = 'col-md-' . $item['span'];
+        if($item['offset'] != 0){
+            $class .= ' col-md-offset-'.$item['offset'];
+        }
         $class .= ' ' . self::generateVisibilityClass($item['visibility']);
         //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
         if (!empty($item['customClass']))
