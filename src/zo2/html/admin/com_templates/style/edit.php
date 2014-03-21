@@ -83,6 +83,7 @@ JHTML::_('behavior.tooltip');
     </form>
 </div>
 <script>
+    /*
     Joomla.submitbutton = function(task, form) {
         if (typeof (form) === 'undefined') {
             form = document.getElementById('adminForm');
@@ -108,4 +109,5 @@ JHTML::_('behavior.tooltip');
             form.submit();
         }
     }
+    */
 </script>
