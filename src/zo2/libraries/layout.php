@@ -185,6 +185,7 @@ class Zo2Layout {
         $doc = JFactory::getDocument();
         $freeSpace = 0;
         $totalTakenSpace = 0;
+        $offsetSpace = 0;
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
             $col = $item['children'][$i];
             $modulesInPosition = $doc->countModules($col['position']);
@@ -200,6 +201,7 @@ class Zo2Layout {
             }
 
             $totalTakenSpace += $item['children'][$i]['span'];
+            $offsetSpace += $item['children'][$i]['offset'];
         }
 
         if ($totalTakenSpace <= 0)
@@ -212,7 +214,7 @@ class Zo2Layout {
         $item['children'] = $tempChildren;
 
         if ($totalTakenSpace < 12) {
-            $remainingSpace = 12 - $totalTakenSpace;
+            $remainingSpace = 12 - $totalTakenSpace - $offsetSpace;
             $totalChildren = count($item['children']);
             $index = $totalChildren - 1;
             if ($index < 0)
