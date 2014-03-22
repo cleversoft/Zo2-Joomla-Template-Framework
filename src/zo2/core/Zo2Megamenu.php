@@ -283,18 +283,20 @@ class Zo2MegaMenu {
         $class = 'class="zo2-megamenu' . ($animation ? ' animate ' . $animation : '') . '"';
         $data = $animation && $duration ? ' data-duration="' . $duration . '"' : '';
 
-        $keys = array_keys($this->_items);
-
-        if (count($this->_items)) {
-            $html .= "<div $class$data$hover>";
-            $html .= $this->getMenu(null, $keys[0]);
-            $html .= "</div>";
-            if ($isAdmin == true) {
-                return $html;
-            } elseif ($isAdmin == false) {
-                return $prefix . $html . $suffix;
+        if (isset($this->_items)) {
+            if (count($this->_items)) {
+                $keys = array_keys($this->_items);
+                $html .= "<div $class$data$hover>";
+                $html .= $this->getMenu(null, $keys[0]);
+                $html .= "</div>";
+                if ($isAdmin == true) {
+                    return $html;
+                } elseif ($isAdmin == false) {
+                    return $prefix . $html . $suffix;
+                }
             }
         }
+
         return '';
     }
 
