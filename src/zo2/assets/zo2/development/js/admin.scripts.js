@@ -910,33 +910,14 @@ var injectFormSubmit = function() {
      */
 };
 
-Joomla.submitbutton = function(task, form) {
-    if (typeof (form) === 'undefined' || form === null) {
-        form = document.adminForm;
-    }
-    jQuery('.toolbox-saveConfig').trigger('click'); // dirty hack for megamenu save
-
-    if (typeof (task) !== 'undefined') {
-        form.task.value = task;
-    }
-
-    // Submit the form.
-    if (typeof form.onsubmit == 'function') {
-        form.onsubmit();
-    }
-    if (typeof form.fireEvent == "function") {
-        form.fireEvent('submit');
-    }
-
+function setZo2SettingInputValue() {
     var $ = jQuery;
     var $input = $('.hfLayoutHtml');
     $('.field-logo-container').each(function() {
         generateLogoJson($(this));
     });
     $input.val(generateJson());
-
-    form.submit();
-};
+}
 
 /* Override default submit function */
 Joomla.submitform = function(task, form) {
@@ -984,19 +965,19 @@ jQuery(document).ready(function() {
     var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
 
     if(fullContainer.val() == 0){
-        jQuery('input[name="jform[params][background]"]').parent().parent().parent().hide();
-        jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().hide();
+        jQuery('#jform_params_background-lbl').parent().parent().hide();
+        jQuery('#jform_params_background_color-lbl').parent().parent().hide();
     }
 
 
     jQuery('input[name="jform[params][fullContainer]"]').click(function(){
         var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
         if(fullContainer.val() == 0){
-            jQuery('input[name="jform[params][background]"]').parent().parent().parent().hide();
-            jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().hide();
+            jQuery('#jform_params_background-lbl').parent().parent().hide();
+            jQuery('#jform_params_background_color-lbl').parent().parent().hide();
         }else{
-            jQuery('input[name="jform[params][background]"]').parent().parent().parent().show();
-            jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().show();
+            jQuery('#jform_params_background-lbl').parent().parent().show();
+            jQuery('#jform_params_background_color-lbl').parent().parent().show();
         }
     });
 });
