@@ -83,7 +83,7 @@ JHTML::_('behavior.tooltip');
     </form>
 </div>
 <script>
-    /*
+
     Joomla.submitbutton = function(task, form) {
         if (typeof (form) === 'undefined') {
             form = document.getElementById('adminForm');
@@ -96,6 +96,9 @@ JHTML::_('behavior.tooltip');
             func: task
         };
         if (task != 'style.cancel') {
+
+            setZo2SettingInputValue();
+
             zo2.ajax.execute(form, data);
             return false;
         } else {
@@ -106,8 +109,11 @@ JHTML::_('behavior.tooltip');
             if (typeof form.fireEvent == "function") {
                 form.fireEvent('submit');
             }
+
+            setZo2SettingInputValue();
+
             form.submit();
         }
     }
-    */
+
 </script>
