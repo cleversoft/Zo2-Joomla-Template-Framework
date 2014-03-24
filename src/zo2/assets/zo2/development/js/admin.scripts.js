@@ -965,19 +965,19 @@ jQuery(document).ready(function() {
     var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
 
     if(fullContainer.val() == 0){
-        jQuery('input[name="jform[params][background]"]').parent().parent().parent().hide();
-        jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().hide();
+        jQuery('#jform_params_background-lbl').parent().parent().hide();
+        jQuery('#jform_params_background_color-lbl').parent().parent().hide();
     }
 
 
     jQuery('input[name="jform[params][fullContainer]"]').click(function(){
         var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
         if(fullContainer.val() == 0){
-            jQuery('input[name="jform[params][background]"]').parent().parent().parent().hide();
-            jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().hide();
+            jQuery('#jform_params_background-lbl').parent().parent().hide();
+            jQuery('#jform_params_background_color-lbl').parent().parent().hide();
         }else{
-            jQuery('input[name="jform[params][background]"]').parent().parent().parent().show();
-            jQuery('input[name="jform[params][background_color]"]').parent().parent().parent().show();
+            jQuery('#jform_params_background-lbl').parent().parent().show();
+            jQuery('#jform_params_background_color-lbl').parent().parent().show();
         }
     });
 });
