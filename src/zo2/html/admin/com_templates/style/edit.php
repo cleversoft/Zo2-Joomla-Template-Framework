@@ -95,10 +95,8 @@ JHTML::_('behavior.tooltip');
         data = {
             func: task
         };
-        if (task != 'style.cancel') {
-
+        if (task != 'style.cancel' && task != 'style.save' ) {
             setZo2SettingInputValue();
-
             zo2.ajax.execute(form, data);
             return false;
         } else {
