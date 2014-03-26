@@ -58,7 +58,7 @@ if (Zo2Framework::isZo2Template()) {
     Zo2Framework::getTemplateLayouts();
     Zo2Framework::getController();
 
-    $script = 'zo2.settings.token = "' . JFactory::getSession()->getToken() . '";';
+    $script = 'zo2.settings.token = "' . JFactory::getSession()->getFormToken() . '";';
     Zo2Assets::getInstance()->addScriptDeclaration($script);
 } else {
     

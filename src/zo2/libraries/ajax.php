@@ -60,8 +60,7 @@ if (!class_exists('Zo2Ajax')) {
         public function process() {
             $jinput = JFactory::getApplication()->input;
             $token = $jinput->get('token');
-            $jinput->set($token, 1);
-            if (JSession::checkToken()) {
+            if (JFactory::getSession()->getFormToken() == $token) {
                 /* Is ajax request */
                 if ($jinput->get('zo2Ajax')) {
                     $func = $jinput->get('func');
