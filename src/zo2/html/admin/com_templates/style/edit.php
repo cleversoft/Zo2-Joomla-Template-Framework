@@ -51,7 +51,7 @@ JHTML::_('behavior.tooltip');
             <!-- /tabs header -->
             <!-- tabs content -->
             <div class="tab-content main-navigator">
-                <div class="tab-pane active" id="overview">
+                <div class="tab-pane active row-fluid" id="overview">
                     <?php echo $this->loadTemplate('overview'); ?>
                 </div>
                 <div class="tab-pane" id="general">
@@ -82,3 +82,36 @@ JHTML::_('behavior.tooltip');
         <?php echo JHtml::_('form.token'); ?>
     </form>
 </div>
+<script>
+
+    Joomla.submitbutton = function(task, form) {
+        if (typeof (form) === 'undefined') {
+            form = document.getElementById('adminForm');
+        }
+
+        if (typeof (task) !== 'undefined' && task !== "") {
+            form.task.value = task;
+        }
+        data = {
+            func: task
+        };
+        if (task != 'style.cancel' && task != 'style.save' ) {
+            setZo2SettingInputValue();
+            zo2.ajax.execute(form, data);
+            return false;
+        } else {
+            // Submit the form.
+            if (typeof form.onsubmit == 'function') {
+                form.onsubmit();
+            }
+            if (typeof form.fireEvent == "function") {
+                form.fireEvent('submit');
+            }
+
+            setZo2SettingInputValue();
+
+            form.submit();
+        }
+    }
+
+</script>
