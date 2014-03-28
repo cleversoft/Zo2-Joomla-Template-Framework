@@ -25,10 +25,8 @@ jQuery(document).ready(function() {
                 jQuery(document).find('*[data-zo2ajax]').each(function() {
                     var rawData = zo2.jQuery(this).data();
                     var onEvent = rawData.zo2ajax.on;
-                    console.log(onEvent);
-                    console.log(this);
                     zo2.jQuery(this).on(onEvent, function(e) {
-                        alert(onEvent);
+
                         e.preventDefault();
                         var requestData = rawData;
                         delete requestData['zo2ajax'];
@@ -69,7 +67,7 @@ jQuery(document).ready(function() {
 
                         })
                         .fail(function() {
-                            alert("error");
+                            e.preventDefault();
                         })
                         .always(function() {
 
