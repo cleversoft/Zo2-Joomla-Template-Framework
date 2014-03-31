@@ -95,10 +95,28 @@ defined('_JEXEC') or die;
         </div>
         <div class="span4">
             <div id="updater" class="alert">
-                <div id="updater-bar">Zo2 v<span>1.3.4</span>
-                </div>
+                <div id="updater-bar">Zo2 v<span><?php echo Zo2Framework::getManifest()->version; ?></span></div>
+                <?php
+                $update = false;
+                switch (Zo2Framework::checkVersion()) {
+                    case -1:
+                        $update = true;
+                        $message = 'Your current is out of date. Newer version is Available.';
+                        break;
+                    case 0:
+                        $message = 'Your current updated.';
+                        break;
+                    case 1:
+                        $message = '';
+                        break;
+                }
+                ?>
                 <div id="updater-desc">
-                    <strong>Version 1.3.5 of the Zo2 Framework is Available</strong>.  Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.</div>
+                    <strong><?php echo $message; ?></strong>.
+                    <?php if ($update) { ?>
+                        Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
+                    </div>
+                <?php } ?>            
             </div>
             <div class="zo2-tip well" style="display: block;">
                 <div class="zo2-tip-bar">
