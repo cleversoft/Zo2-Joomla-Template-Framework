@@ -22,7 +22,7 @@ if (!class_exists('Zo2StyleSwitcher')) {
         public function styleSwitcher() {
             ?>
             <div class="style-switcher" id="style-switcher" style="left: -230px;">
-                <span class="style-switcher-icon glyphicon glyphicon-cog"></span>
+                <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog fa-spin"></span></h4>
                 <input type="hidden" id="ss_position" value="hide" >
                 <div class="switch-container">
                     <h5>Layout options</h5>

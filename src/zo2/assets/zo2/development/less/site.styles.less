@@ -19,32 +19,110 @@
 
 
 .style-switcher {
+  -moz-box-sizing: content-box;
+  background: #738E96;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  display: block;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  left: -230px;
+  line-height: 30px;
+  margin-bottom: 0;
   position: fixed;
+  text-transform: uppercase;
   top: 80px;
-  left: -240px;
-  -webkit-border-radius: 0 0 3px 0;
-  -moz-border-radius: 0 0 3px 0;
-  border-radius: 0 0 3px 0;
+  width: 230px;
   z-index: 9999;
-  width: 240px;
-  background-color: #738e96;
-  -webkit-transform: translate3d(0,0,0);
-  .style-switcher-icon{
-    width: 21px;
-    float: right;
-    font-size: 26px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    cursor: pointer;
+  .switch-container{
+    background-color: #fff;
+    height: auto;
+    width: 230px;
+    padding: 7px 15px;
   }
   ul {
     list-style-type:none;
     margin:0;
     padding:0;
-    img {
-      width: 50px;
-      height: 50px;
+    &.options {
+      border-bottom: 1px solid #ccc;
+      height: auto;
+      margin-bottom: 15px;
+      overflow: hidden;
+      padding: 0 15px 10px;
+      li{
+        display: inline;
+        float: left;
+        margin-bottom: 0;
+        text-align: center;
+      }
+      &.layout-select{
+        width: auto;
+        li{
+          &:first-child{
+            margin-right: 10px;
+          }
+          &.selected{
+            background: #8DC63F;
+          }
+          a{
+            color: #FFFFFF;
+            display: block;
+            padding: 4px;
+            text-decoration: none;
+            img {
+              width: auto;
+              height: 50px;
+            }
+          }
+        }
+      }
+      &.color-select{
+        li{
+          padding: 2px;
+          width: 27px;
+          margin: 4px;
+          &.selected{
+            background: #8DC63F;
+          }
+          a{
+            display: block;
+            height: 27px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  h5{
+    display: inline-block;
+    font-size: 12px;
+  }
+  h4{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 0 3px 3px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    height: auto;
+    line-height: 30px;
+    margin: 0 -40px 15px 0;
+    padding: 7px 10px;
+    position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    width: 270px;
+    display: inline-block;
+  .style-switcher-icon{
+    float: right;
+    font-size: 26px;
+    text-align: right;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
     }
   }
 }
