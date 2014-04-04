@@ -40,6 +40,7 @@ $body = $layout->generateHtml();
  * 
  */
 $socialShares = new Zo2Socialshares();
+$styleSwitcher = new Zo2StyleSwitcher();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
