@@ -10,7 +10,12 @@ jQuery(document).ready(function() {
 
 
     //style switcher
-    jQuery(".style-switcher-icon").sticky({topSpacing:150});
+
+    if(jQuery('body').hasClass('boxed')) {
+        jQuery('#boxed-layout').addClass('selected');
+    }else {
+        jQuery('#fullwidth-layout').addClass('selected');
+    }
 
     jQuery(".style-switcher-icon").click(function() {
         if(jQuery('#ss_position').val() == 'hide') {
@@ -36,10 +41,11 @@ jQuery(document).ready(function() {
         jQuery(this).addClass('selected');
         var color = jQuery('.color-select li.selected a').attr('data-color');
         if(jQuery(this).attr('id') == 'boxed-layout') {
-            //alert(color);
-            jQuery('body').css({"background": "#"+ color + " repeat;"});
+            jQuery('body').addClass('boxed');
+            jQuery('body .wrapper').addClass('boxed').addClass('container');
         } else {
             jQuery('body').removeClass('boxed');
+            jQuery('body .wrapper').removeClass('boxed').removeClass('container');
         }
     });
 

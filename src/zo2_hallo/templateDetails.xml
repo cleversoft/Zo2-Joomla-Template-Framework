@@ -76,6 +76,10 @@
                 <field name="background_color" type="color" default="" label="Background Color" />
                 <field name="site_name" type="text" default="Zo2 Hallo" label="Site name" />
                 <field name="site_slogan" type="text" default="" label="Site slogan" />
+                <field name="enable_style_switcher" type="radio" default="1" label="Enable Style Switcher" class="btn-group" description="">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
                 <field name="enable_rtl" type="radio" default="0" label="Enable RTL" class="btn-group" description="">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>

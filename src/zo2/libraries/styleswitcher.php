@@ -27,11 +27,11 @@ if (!class_exists('Zo2StyleSwitcher')) {
                 <div class="switch-container">
                     <h5>Layout options</h5>
                     <ul class="options layout-select">
-                        <li class="boxed-layout" id="boxed-layout"><a class="boxed" href="#"><img src="http://5polmhwz1w47vy1h4f015h97s.wpengine.netdna-cdn.com/wp-content/themes/dante/includes/sf-styleswitcher/page-bordered.png" alt="Boxed Layout"></a></li>
-                        <li class="fullwidth-layout selected" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="http://5polmhwz1w47vy1h4f015h97s.wpengine.netdna-cdn.com/wp-content/themes/dante/includes/sf-styleswitcher/page-fullwidth.png" alt="Full Width Layout"></a></li>
+                        <li class="boxed-layout" id="boxed-layout"><a class="boxed" href="#"><img src="<?php echo JUri::root()?>/plugins/system/zo2/assets/zo2/images/page-bordered.png" alt="Boxed Layout"></a></li>
+                        <li class="fullwidth-layout" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="<?php echo JUri::root()?>/plugins/system/zo2/assets/zo2/images/page-fullwidth.png" alt="Full Width Layout"></a></li>
                     </ul>
 
-                    <h5>Accent Color Examples</h5>
+                    <h5>Color Examples</h5>
                     <ul class="options color-select">
                         <li class="selected"><a href="#" data-color="00bff3" style="background-color: #00bff3;"></a></li>
                         <li><a href="#" data-color="ff7534" style="background-color: #ff7534;"></a></li>
@@ -40,10 +40,9 @@ if (!class_exists('Zo2StyleSwitcher')) {
                         <li><a href="#" data-color="fe504f" style="background-color: #fe504f;"></a></li>
                         <li><a href="#" data-color="ffd56c" style="background-color: #ffd56c;"></a></li>
                     </ul>
-
                 </div>
             </div>
-         <?php
+        <?php
         }
     }
 }
