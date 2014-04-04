@@ -34,10 +34,10 @@ jQuery(document).ready(function() {
 
     jQuery(".style-switcher-icon").click(function() {
         if(jQuery('#ss_position').val() == 'hide') {
-            jQuery('#style-switcher').css('left' ,'0px');
+            jQuery('#style-switcher').animate({'left': '0px'}, 600);
             jQuery('#ss_position').val('show');
         } else {
-            jQuery('#style-switcher').css('left' ,'-230px');
+            jQuery('#style-switcher').animate({'left': '-230px'}, 600);
             jQuery('#ss_position').val('hide');
         }
     });
@@ -47,7 +47,7 @@ jQuery(document).ready(function() {
         if (!container.is(e.target) // if the target of the click isn't the container...
             && container.has(e.target).length === 0) { // ... nor a descendant of the container
 
-            container.css('left' ,'-230px');
+            container.animate({'left': '-230px'}, 600);
         }
     });
 
@@ -69,4 +69,8 @@ jQuery(document).ready(function() {
         jQuery(this).addClass('selected');
         set_presets(jQuery(this).find('a').attr('data-color'));
     });
+
+
+
+
 });
