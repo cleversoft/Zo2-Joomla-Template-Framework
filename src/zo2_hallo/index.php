@@ -23,7 +23,7 @@ $responsive = $zo2->get('responsive_layout');
 $favicon = $zo2->get('favicon');
 $this->language = $doc->language;
 $this->direction = $doc->direction;
-if($zo2->get('fullContainer') == 1){
+if($zo2->get('fullContainer') == 1 && Zo2Framework::get('enable_style_switcher') != 1){ //if style is boxed and style switcher is disable -> show background custom
     $background = $zo2->get('background', '');
     $background_color = $zo2->get('background_color');
     if($background != ''){

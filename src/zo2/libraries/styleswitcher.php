@@ -33,12 +33,10 @@ if (!class_exists('Zo2StyleSwitcher')) {
 
                     <h5>Color Examples</h5>
                     <ul class="options color-select">
-                        <li class="selected"><a href="#" data-color="00bff3" style="background-color: #00bff3;"></a></li>
-                        <li><a href="#" data-color="ff7534" style="background-color: #ff7534;"></a></li>
-                        <li><a href="#" data-color="7c4d9f" style="background-color: #7c4d9f;"></a></li>
-                        <li><a href="#" data-color="37ba85" style="background-color: #37ba85;"></a></li>
-                        <li><a href="#" data-color="fe504f" style="background-color: #fe504f;"></a></li>
-                        <li><a href="#" data-color="ffd56c" style="background-color: #ffd56c;"></a></li>
+                        <li class=""><a href="#" data-color="0" style="background-color: #ffffff;"></a></li>
+                        <li><a href="#" data-color="1" style="background-color: #000000;"></a></li>
+                        <li><a href="#" data-color="2" style="background-color: #3288c7;"></a></li>
+                        <li><a href="#" data-color="3" style="background-color: #d35400;"></a></li>
                     </ul>
                 </div>
             </div>
