@@ -34,11 +34,17 @@ jQuery(document).ready(function() {
     jQuery('.layout-select li').click(function() {
         jQuery('.layout-select li').removeClass('selected');
         jQuery(this).addClass('selected');
-        color = jQuery('color-select li.selected a').attr('data-color');
+        var color = jQuery('.color-select li.selected a').attr('data-color');
         if(jQuery(this).attr('id') == 'boxed-layout') {
-            jQuery('body').css({"background:": "#"+ color + " repeat;"});
+            //alert(color);
+            jQuery('body').css({"background": "#"+ color + " repeat;"});
         } else {
             jQuery('body').removeClass('boxed');
         }
     });
+
+    jQuery('.color-select li').click(function() {
+        jQuery('.color-select li').removeClass('selected');
+        jQuery(this).addClass('selected');
+    })
 });
