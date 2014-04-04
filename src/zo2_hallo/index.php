@@ -64,6 +64,9 @@ $socialShares = new Zo2Socialshares();
         <?php if (Zo2Framework::get('socialshare_floatbar', 1) == 1) { ?>
             <?php echo $socialShares->getFloatbar(); ?>
         <?php } ?>
+        <?php
+        $styleSwitcher->styleSwitcher();
+        ?>
         <?php echo $body;
         ?>
     </section>    
