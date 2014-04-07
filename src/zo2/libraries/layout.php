@@ -98,7 +98,7 @@ class Zo2Layout {
         $menuItem = $menu->getActive();
         $canCache = false;
         if (isset($menuItem->id) && !empty($menuItem->id)) {
-            $cache = 'layout_' . $menuItem->id . '.php';
+            $cache = $template->id.'_layout_' . $menuItem->id . '.php';
             $layoutCacheDir = $this->_layourDir . 'cache/';
             $path = $layoutCacheDir . $cache;
             $canCache = true;
