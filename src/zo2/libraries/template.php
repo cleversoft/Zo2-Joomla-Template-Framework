@@ -95,9 +95,8 @@ if (!class_exists('Zo2Template')) {
                 $instances[$id]->registerNamespace('html', Zo2Framework::getZo2Path() . '/html');
                 /* Joomla! template */
                 $instances[$id]->registerNamespace('template', JPATH_ROOT . '/templates/' . $instances[$id]->_config->template);
-                return $instances[$id];
             }
-            return false;
+            return $instances[$id];
         }
 
         /**
