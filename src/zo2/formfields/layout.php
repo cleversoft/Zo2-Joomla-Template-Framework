@@ -34,7 +34,8 @@ class JFormFieldLayout extends JFormField {
         $caches[] = $theme_layout_path . 'header.php';
         $caches[] = $theme_layout_path . 'footer.php';
 
-        if (!empty($this->value)) {
+        // don't write new layout setting when exist
+        if (!empty($this->value) && file_get_contents($current_layout_path) == '') {
             // write new layout settings
             file_put_contents($current_layout_path, $this->value);
 
