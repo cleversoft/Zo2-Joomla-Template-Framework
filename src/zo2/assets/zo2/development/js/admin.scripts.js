@@ -931,7 +931,7 @@ Joomla.submitbutton = function(task, form) {
     data = {
         func: task
     };
-    if (task != 'style.cancel' && task != 'style.save' ) {
+    if (task != 'style.cancel' && task != 'style.save' && task != 'style.save2copy' ) {
         setZo2SettingInputValue();
         zo2.ajax.execute(form, data);
         return false;
@@ -949,6 +949,7 @@ Joomla.submitbutton = function(task, form) {
         form.submit();
     }
 }
+
 
 /* Override default submit function */
 Joomla.submitform = function(task, form) {

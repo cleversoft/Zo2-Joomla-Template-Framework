@@ -16,7 +16,7 @@ class Zo2Layout {
     /* private */
 
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -44,14 +44,17 @@ class Zo2Layout {
             $this->_layoutPath = $this->_layourDir . 'layout.json';
             $this->_templateName = $templateName;
             $this->_templateUri = JUri::base(true) . '/templates/' . $templateName;
-
-            // check layout existence, if layout not existed, get default layout, which is homepage.php
-            if (!file_exists($this->_layoutPath)) {
-                //throw new Exception('Layout file cannot be found!');
-                return;
+            $zo2 = Zo2Framework::getInstance();
+            if($zo2->get('layout')){
+                $this->_layoutContent = $zo2->get('layout');
+            }else {
+                // check layout existence, if layout not existed, get default layout, which is homepage.php
+                if (!file_exists($this->_layoutPath)) {
+                    //throw new Exception('Layout file cannot be found!');
+                    return;
+                }
+                $this->_layoutContent = file_get_contents($this->_layoutPath);
             }
-
-            $this->_layoutContent = file_get_contents($this->_layoutPath);
 
             $this->importComponents();
             Zo2Framework::import('core.Zo2AssetsHelper');
@@ -89,6 +92,7 @@ class Zo2Layout {
      */
     public function generateHtml() {
         $app = JFactory::getApplication();
+        $zo2 = Zo2Framework::getInstance();
         $template = $app->getTemplate(true);
         $params = $template->params;
         $debug = $params->get('debug_visibility');
@@ -98,7 +102,7 @@ class Zo2Layout {
         $menuItem = $menu->getActive();
         $canCache = false;
         if (isset($menuItem->id) && !empty($menuItem->id)) {
-            $cache = 'layout_' . $menuItem->id . '.php';
+            $cache = $template->id.'_layout_' . $menuItem->id . '.php';
             $layoutCacheDir = $this->_layourDir . 'cache/';
             $path = $layoutCacheDir . $cache;
             $canCache = true;
@@ -115,8 +119,8 @@ class Zo2Layout {
             else
                 $layoutType = '-fluid';
 
-            if (file_exists($this->_layoutPath)) {
-                $data = json_decode(file_get_contents($this->_layoutPath), true);
+            if($zo2->get('layout')) {
+                $data = json_decode($zo2->get('layout'), true);
 
                 for ($i = 0, $total = count($data); $i < $total; $i++) {
                     $html .= $this->generateHtmlFromItem($data[$i], $layoutType);
@@ -127,8 +131,23 @@ class Zo2Layout {
                         mkdir($layoutCacheDir, 0755);
                     file_put_contents($path, $html);
                 }
-            } else
-                return '';
+            } else {
+                if (file_exists($this->_layoutPath)) {
+                    $data = json_decode(file_get_contents($this->_layoutPath), true);
+
+                    for ($i = 0, $total = count($data); $i < $total; $i++) {
+                        $html .= $this->generateHtmlFromItem($data[$i], $layoutType);
+                    }
+
+                    if ($canCache) {
+                        if (!is_dir($layoutCacheDir))
+                            mkdir($layoutCacheDir, 0755);
+                        file_put_contents($path, $html);
+                    }
+                } else
+                    return '';
+            }
+
         }
         if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
             $zo2 = Zo2Framework::getInstance();

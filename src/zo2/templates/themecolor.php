@@ -35,7 +35,7 @@ else {
         'bottom1' => $defaultData['variables']['bottom1'],
         'bottom2' => $defaultData['variables']['bottom2'],
         'footer' => $defaultData['variables']['footer'],
-        'extra' => $defaultData['variables']['extra'],
+        'extra' => isset($defaultData['variables']['extra']) ? $defaultData['variables']['extra'] : '',
     );
 }
 ?>
