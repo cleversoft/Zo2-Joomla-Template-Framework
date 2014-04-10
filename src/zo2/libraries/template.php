@@ -55,6 +55,10 @@ if (!class_exists('Zo2Template')) {
 
             /* Get specific template id */
             if ($id !== null) {
+                if (isset($instances[$id])) {
+                    return $instances[$id];
+                }
+
                 $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
                         ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
                 $db->setQuery($query);
@@ -91,7 +95,6 @@ if (!class_exists('Zo2Template')) {
                 $instances[$id]->registerNamespace('html', Zo2Framework::getZo2Path() . '/html');
                 /* Joomla! template */
                 $instances[$id]->registerNamespace('template', JPATH_ROOT . '/templates/' . $instances[$id]->_config->template);
-
                 return $instances[$id];
             }
             return false;
@@ -115,7 +118,7 @@ if (!class_exists('Zo2Template')) {
             if (!isset($this->_namespaces[$namespace])) {
                 $this->_namespaces[$namespace] = array();
             }
-            array_unshift($this->_namespaces[$namespace], (array) $path);
+            array_unshift($this->_namespaces[$namespace], $path);
             return $this;
         }
 
@@ -134,9 +137,8 @@ if (!class_exists('Zo2Template')) {
                 /* Make sure this namespace is registered */
                 if (isset($this->_namespaces[$namespace])) {
                     /* Find first exists filePath */
-                    $filePath = $namespace . '/' . $path;
                     foreach ($this->_namespaces[$namespace] as $namespace) {
-
+                        $filePath = $namespace . '/' . $path;
                         if (JFile::exists($filePath)) {
                             return str_replace('/', DIRECTORY_SEPARATOR, $filePath);
                         }
@@ -159,7 +161,6 @@ if (!class_exists('Zo2Template')) {
                 $path = $parts[1];
                 if (isset($this->_namespaces[$namespace])) {
                     foreach ($this->_namespaces[$namespace] as $namespace) {
-
                         $dirPath = $namespace . '/' . $path;
                         if (JFolder::exists($dirPath)) {
                             return str_replace('/', DIRECTORY_SEPARATOR, $dirPath);
@@ -185,9 +186,8 @@ if (!class_exists('Zo2Template')) {
                 /* Make sure this namespace is registered */
                 if (isset($this->_namespaces[$namespace])) {
                     /* Find first exists filePath */
-                    $realPath = $namespace . '/' . $path;
                     foreach ($this->_namespaces[$namespace] as $namespace) {
-
+                        $realPath = $namespace . '/' . $path;
                         if (JFile::exists($realPath)) {
                             return Zo2HelperPath::toUrl($realPath);
                         } elseif (JFolder::exists($realPath)) {
@@ -219,9 +219,8 @@ if (!class_exists('Zo2Template')) {
          * @param type $tpl
          * @return type
          */
-        public function fetch($tpl) {
-
-            $tplFile = $this->getFile($tpl);
+        public function fetch($key) {
+            $tplFile = $this->getFile($key);
             if ($tplFile) {
                 $properties = $this->getProperties();
                 ob_start();
@@ -238,7 +237,7 @@ if (!class_exists('Zo2Template')) {
          * @param type $tpl
          * @return \CsTemplate
          */
-        public function load($tpl) {
+        public function load($key) {
 
             $tplFile = $this->getFile($tpl);
             if (JFile::exists($tplFile)) {

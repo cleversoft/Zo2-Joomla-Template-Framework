@@ -121,15 +121,14 @@ if (!class_exists('Zo2Shortcodes')) {
                 /* Process for all instances */
                 for ($i = 0; $i < count($results[0]); $i++) {
                     /* Create new instance of Zo2Template and provide default properties */
-                    $template = new Zo2Template();
-                    //$template->registerDir(Zo2Framework::getZo2Path() . '/libraries/shortcodes/html');
+                    $template = Zo2Framework::getTemplate();
                     $template->setProperties($this->getProperties());
                     $template->setProperties($shortCode->default);
                     foreach ($tokens as $token) {
                         $template->set($token, str_replace('{', '', str_replace('}', '', $results[$token][$i])));
                     }
                     /* Fetch template to get html */
-                    $replace[] = $template->fetch($shortCode->layout . '.php');
+                    $replace[] = $template->fetch('html://shortcodes/' . $shortCode->layout . '.php');
                 }
             }
             return str_replace($search, $replace, $text);
