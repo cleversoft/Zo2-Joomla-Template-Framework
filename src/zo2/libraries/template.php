@@ -22,48 +22,191 @@ if (!class_exists('Zo2Template')) {
      */
     class Zo2Template extends JObject {
 
-        protected $_dirs = array();
+        /**
+         * Template object
+         * @var stdClass
+         */
+        protected $_config = null;
 
+        /**
+         *
+         * @var array 
+         */
+        protected $_namespaces = array();
+
+        /**
+         * Construction
+         * @param type $properties
+         */
         public function __construct($properties = null) {
             parent::__construct($properties);
+
+            $this->_config = Zo2Framework::getTemplate();
+
             $this->registerDir(Zo2Framework::getZo2Path());
-            $this->registerDir(Zo2Framework::getTemplatePath());
+            $this->registerDir(JPATH_ROOT . '/templates/' . $this->_config->template);
+
             $this->set('jinput', JFactory::getApplication()->input);
         }
 
         /**
          * 
-         * @param string $path
-         * @return boolean
+         * @staticvar Zo2Template $instances
+         * @param type $id
+         * @return boolean|\Zo2Template
          */
-        public function registerDir($path) {
-            if (JFolder::exists($path))
-                return array_unshift($this->_dirs, $path);
+        public static function getInstance($id = null) {
+            static $instances;
+
+            /* Get specific template id */
+            if ($id !== null) {
+                $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
+                        ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                $db->setQuery($query);
+                $template = $db->loadObject();
+                if ($template) {
+                    $template->params = new JRegistry($template->params);
+                }
+            } else {
+                /* Get current template */
+                if (JFactory::getApplication()->isSite()) {
+                    $template = JFactory::getApplication()->getTemplate(true);
+                    $id = $template->id;
+                } else {
+                    /* Get requesting template */
+                    $id = JFactory::getApplication()->input->get('id');
+                    if ($id) {
+                        $db = JFactory::getDBO();
+                        $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
+                                ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                        $db->setQuery($query);
+                        $template = $db->loadObject();
+                        if ($template) {
+                            $template->params = new JRegistry($template->params);
+                        }
+                    }
+                }
+            }
+            if ($id !== null && isset($template)) {
+                $instances[$id] = new Zo2Template();
+                $instances[$id]->_config = $template;
+                return $instances[$id];
+            }
             return false;
         }
 
         /**
          * 
-         * @param type $file
-         * @param type $type
-         * @return boolean
+         * @return stdClass
          */
-        public function getFile($file, $type = null) {
-            foreach ($this->_dirs as $dir) {
-                if (JFile::exists($dir . '/' . $file)) {
-                    if ($type == 'url')
-                        return Zo2HelperPath::toUrl($dir . '/' . $file);
-                    else
-                        return $dir . '/' . $file;
+        public function getConfig() {
+            return $this->_config;
+        }
+
+        /**
+         * Register namespace and path
+         * @param type $namespace
+         * @param type $path
+         * @return \Zo2Template
+         */
+        public function registerNamespace($namespace, $path) {
+            if (!isset($this->_namespaces[$namespace])) {
+                $this->_namespaces[$namespace] = array();
+            }
+            array_unshift($this->_namespaces[$namespace], (array) $path);
+            return $this;
+        }
+
+        /**
+         * Get file path registered by namespace & path
+         * @param type $key
+         * @return string|boolean
+         */
+        public function getFile($key) {
+            /* Extract key to get namespace and path */
+
+            $parts = explode('://', $key);
+            if (is_array($parts) && count($parts) == 2) {
+                $namespace = $parts[0];
+                $path = $parts[1];
+                /* Make sure this namespace is registered */
+                if (isset($this->_namespaces[$namespace])) {
+                    /* Find first exists filePath */
+                    $filePath = $namespace . '/' . $path;
+                    foreach ($this->_namespaces[$namespace] as $namespace) {
+
+                        if (JFile::exists($filePath)) {
+                            return str_replace('/', DIRECTORY_SEPARATOR, $filePath);
+                        }
+                    }
                 }
             }
             return false;
         }
 
-        public function toDataAttributes() {
+        /**
+         * 
+         * @param type $key
+         * @return string|boolean
+         */
+        public function getDir($key) {
+
+            $parts = explode('://', $key);
+            if (is_array($parts) && count($parts) == 2) {
+                $namespace = $parts[0];
+                $path = $parts[1];
+                if (isset($this->_namespaces[$namespace])) {
+                    foreach ($this->_namespaces[$namespace] as $namespace) {
+
+                        $dirPath = $namespace . '/' . $path;
+                        if (JFolder::exists($dirPath)) {
+                            return str_replace('/', DIRECTORY_SEPARATOR, $dirPath);
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        /**
+         * 
+         * @param type $key
+         * @return string|boolean
+         */
+        public function getUrl($key) {
+            /* Extract key to get namespace and path */
+
+            $parts = explode('://', $key);
+            if (is_array($parts) && count($parts) == 2) {
+                $namespace = $parts[0];
+                $path = $parts[1];
+                /* Make sure this namespace is registered */
+                if (isset($this->_namespaces[$namespace])) {
+                    /* Find first exists filePath */
+                    $realPath = $namespace . '/' . $path;
+                    foreach ($this->_namespaces[$namespace] as $namespace) {
+
+                        if (JFile::exists($realPath)) {
+                            return Zo2HelperPath::toUrl($realPath);
+                        } elseif (JFolder::exists($realPath)) {
+                            return Zo2HelperPath::toUrl($realPath);
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        /**
+         * 
+         * @return string
+         */
+        public function toDataAttributes
+        () {
             $properties = $this->getProperties();
             $html = '';
             foreach ($properties as $key => $value) {
+
                 $html .= 'data-' . $key . '="' . $value . '" ';
             }
             return trim($html);
@@ -75,12 +218,13 @@ if (!class_exists('Zo2Template')) {
          * @return type
          */
         public function fetch($tpl) {
+
             $tplFile = $this->getFile($tpl);
             if ($tplFile) {
                 $properties = $this->getProperties();
                 ob_start();
                 extract($properties, EXTR_REFS);
-                include ($tplFile);
+                include($tplFile);
                 $content = ob_get_contents();
                 ob_end_clean();
                 return $content;
@@ -93,23 +237,32 @@ if (!class_exists('Zo2Template')) {
          * @return \CsTemplate
          */
         public function load($tpl) {
+
             $tplFile = $this->getFile($tpl);
             if (JFile::exists($tplFile)) {
                 $properties = $this->getProperties();
                 extract($properties, EXTR_REFS);
-                include ($tplFile);
+                include($tplFile);
             }
             return $this;
         }
 
-        public function addScript($scriptFile) {
-            $document = JFactory::getDocument();
-            $document->addScript($this->getFile($scriptFile, 'url'));
+        public function addScript($key) {
+            $url = $this->getUrl($key);
+            if ($url) {
+                $document = JFactory::getDocument();
+                $document->addScript($url);
+            }
+            return $this;
         }
 
         public function addStyleSheet($scriptFile) {
-            $document = JFactory::getDocument();
-            $document->addStyleSheet($this->getFile($scriptFile, 'url'));
+            $url = $this->getUrl($key);
+            if ($url) {
+                $document = JFactory::getDocument();
+                $document->addStyleSheet($url);
+            }
+            return $this;
         }
 
     }
