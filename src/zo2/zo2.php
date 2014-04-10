@@ -6,7 +6,7 @@
  *
  * @link        http://www.zo2framework.org
  * @link        http://github.com/aploss/zo2
- * @author      ZooTemplate <http://zootemplate.com>
+ * @author      ZooTemplate <http://zootemplate.com99
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
@@ -41,7 +41,6 @@ if (!class_exists('plgSystemZo2')) {
             if (!Zo2Framework::isJoomla25()) {
                 JHtml::_('bootstrap.framework');
             }
-           
             Zo2Ajax::getInstance()->process();
         }
 
@@ -97,7 +96,7 @@ if (!class_exists('plgSystemZo2')) {
         }
 
         public function onContentPrepare($context, &$article, &$params, $page = 0) {
-            $config = Zo2Framework::getTemplate()->params;
+            $config = Zo2Framework::getTemplate()->getConfig()->params;
             // Don't run this plugin when the content is being indexed
             if ($context == 'com_finder.indexer') {
                 return true;

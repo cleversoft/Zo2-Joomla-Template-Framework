@@ -16,7 +16,7 @@ class Zo2Layout {
     /* private */
 
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -45,9 +45,9 @@ class Zo2Layout {
             $this->_templateName = $templateName;
             $this->_templateUri = JUri::base(true) . '/templates/' . $templateName;
             $zo2 = Zo2Framework::getInstance();
-            if($zo2->get('layout')){
+            if ($zo2->get('layout')) {
                 $this->_layoutContent = $zo2->get('layout');
-            }else {
+            } else {
                 // check layout existence, if layout not existed, get default layout, which is homepage.php
                 if (!file_exists($this->_layoutPath)) {
                     //throw new Exception('Layout file cannot be found!');
@@ -102,7 +102,7 @@ class Zo2Layout {
         $menuItem = $menu->getActive();
         $canCache = false;
         if (isset($menuItem->id) && !empty($menuItem->id)) {
-            $cache = $template->id.'_layout_' . $menuItem->id . '.php';
+            $cache = $template->id . '_layout_' . $menuItem->id . '.php';
             $layoutCacheDir = $this->_layourDir . 'cache/';
             $path = $layoutCacheDir . $cache;
             $canCache = true;
@@ -119,7 +119,7 @@ class Zo2Layout {
             else
                 $layoutType = '-fluid';
 
-            if($zo2->get('layout')) {
+            if ($zo2->get('layout')) {
                 $data = json_decode($zo2->get('layout'), true);
 
                 for ($i = 0, $total = count($data); $i < $total; $i++) {
@@ -147,7 +147,6 @@ class Zo2Layout {
                 } else
                     return '';
             }
-
         }
         if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
             $zo2 = Zo2Framework::getInstance();
@@ -261,8 +260,8 @@ class Zo2Layout {
         //$zo2 = Zo2Framework::getInstance();
         $html = '';
         $class = 'col-md-' . $item['span'];
-        if($item['offset'] != 0){
-            $class .= ' col-md-offset-'.$item['offset'];
+        if ($item['offset'] != 0) {
+            $class .= ' col-md-offset-' . $item['offset'];
         }
         $class .= ' ' . self::generateVisibilityClass($item['visibility']);
         //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
@@ -365,7 +364,7 @@ class Zo2Layout {
      * @return bool
      */
     private static function hideComponent() {
-        $params = Zo2Framework::getTemplate()->params;
+        $params = Zo2Framework::getTemplate()->getConfig()->params;
         $isFrontPage = Zo2Framework::isFrontPage();
         if ((int) $params->get('component_area', 0) && $isFrontPage) {
             return true;

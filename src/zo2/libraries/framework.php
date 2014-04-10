@@ -47,27 +47,7 @@ if (!class_exists('Zo2Framework')) {
          * @return type
          */
         public static function getTemplate($id = null) {
-            static $template = null;
-            if (empty($template)) {
-                if (self::isSite()) {
-                    $template = JFactory::getApplication()->getTemplate(true);
-                } else {
-                    $template = false;
-                    if ($id === null)
-                        $id = self::getRequest('id');
-                    if ($id) {
-                        $db = JFactory::getDBO();
-                        $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
-                                ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
-                        $db->setQuery($query);
-                        $template = $db->loadObject();
-                        if ($template) {
-                            $template->params = new JRegistry($template->params);
-                        }
-                    }
-                }
-            }
-            return $template;
+            return Zo2Template::getInstance($id);
         }
 
         /**
@@ -79,7 +59,7 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function get($property, $default = null) {
             if (self::getTemplate()) {
-                return self::getTemplate()->params->get($property, $default);
+                return self::getTemplate()->getConfig()->params->get($property, $default);
             }
             return $default;
         }
@@ -91,7 +71,7 @@ if (!class_exists('Zo2Framework')) {
         public static function getTemplateName() {
             $template = self::getTemplate();
             if ($template)
-                return self::getTemplate()->template;
+                return self::getTemplate()->getConfig()->template;
         }
 
         /**
@@ -558,7 +538,7 @@ if (!class_exists('Zo2Framework')) {
         public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
             Zo2Framework::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getTemplate()->params;
+            $params = Zo2Framework::getTemplate()->getConfig()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -570,7 +550,7 @@ if (!class_exists('Zo2Framework')) {
 
         public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false) {
             Zo2Framework::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getTemplate()->params;
+            $params = Zo2Framework::getTemplate()->getConfig()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {

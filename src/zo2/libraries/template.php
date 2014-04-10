@@ -41,11 +41,6 @@ if (!class_exists('Zo2Template')) {
         public function __construct($properties = null) {
             parent::__construct($properties);
 
-            $this->_config = Zo2Framework::getTemplate();
-
-            $this->registerDir(Zo2Framework::getZo2Path());
-            $this->registerDir(JPATH_ROOT . '/templates/' . $this->_config->template);
-
             $this->set('jinput', JFactory::getApplication()->input);
         }
 
@@ -55,7 +50,7 @@ if (!class_exists('Zo2Template')) {
          * @param type $id
          * @return boolean|\Zo2Template
          */
-        public static function getInstance($id = null) {
+        public static function &getInstance($id = null) {
             static $instances;
 
             /* Get specific template id */
@@ -90,6 +85,13 @@ if (!class_exists('Zo2Template')) {
             if ($id !== null && isset($template)) {
                 $instances[$id] = new Zo2Template();
                 $instances[$id]->_config = $template;
+                /* Zo2 root dir */
+                $instances[$id]->registerNamespace('zo2', Zo2Framework::getZo2Path());
+                /* Zo2 html */
+                $instances[$id]->registerNamespace('html', Zo2Framework::getZo2Path() . '/html');
+                /* Joomla! template */
+                $instances[$id]->registerNamespace('template', JPATH_ROOT . '/templates/' . $instances[$id]->_config->template);
+
                 return $instances[$id];
             }
             return false;
@@ -263,6 +265,10 @@ if (!class_exists('Zo2Template')) {
                 $document->addStyleSheet($url);
             }
             return $this;
+        }
+
+        public function save() {
+            
         }
 
     }
