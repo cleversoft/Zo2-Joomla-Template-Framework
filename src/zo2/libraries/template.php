@@ -93,6 +93,8 @@ if (!class_exists('Zo2Template')) {
                 $instances[$id]->registerNamespace('zo2', Zo2Framework::getZo2Path());
                 /* Zo2 profile dir */
                 $instances[$id]->registerNamespace('profile', Zo2Framework::getZo2Path() . '/profiles');
+                /* Zo2 profile dir */
+                $instances[$id]->registerNamespace('cache', JPATH_ROOT . '/cache');
                 /* Zo2 html */
                 $instances[$id]->registerNamespace('html', Zo2Framework::getZo2Path() . '/html');
                 /* Joomla! template */
@@ -295,6 +297,39 @@ if (!class_exists('Zo2Template')) {
             return false;
         }
 
+        /**
+         * 
+         * @param type $cacheFile
+         * @param type $data
+         * @return \Zo2Template
+         */
+        public function saveCache($cacheFile, $data) {
+            $cacheFilename = md5($this->getConfig()->id . '_' . $cacheFile);
+            $cacheDir = $this->getDir('cache://');
+            if (JFolder::exists($cacheDir)) {
+                JFile::write($cacheDir . '/' . $cacheFilename, $data);
+            }
+            return $this;
+        }
+
+        /**
+         * 
+         * @param type $cacheFile
+         * @return boolean
+         */
+        public function loadCache($cacheFile) {
+            $cacheFilename = md5($this->getConfig()->id . '_' . $cacheFile);
+            $cacheFile = $this->getFile('cache://' . $cacheFilename);
+            if ($cacheFile) {
+                $buffer = JFile::read($cacheFile);
+                return $buffer;
+            }
+            return false;
+        }
+
+        /**
+         * Save template
+         */
         public function save() {
             
         }
