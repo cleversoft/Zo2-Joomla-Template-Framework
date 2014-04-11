@@ -297,11 +297,6 @@ if (!class_exists('Zo2Template')) {
             return false;
         }
 
-        public function getParams() {
-            $template = JFactory::getApplication()->getTemplate(true);
-            return $template->params;
-        }
-
         /**
          * 
          * @param type $cacheFile
