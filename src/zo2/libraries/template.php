@@ -91,6 +91,8 @@ if (!class_exists('Zo2Template')) {
                 $instances[$id]->_config = $template;
                 /* Zo2 root dir */
                 $instances[$id]->registerNamespace('zo2', Zo2Framework::getZo2Path());
+                /* Zo2 profile dir */
+                $instances[$id]->registerNamespace('profile', Zo2Framework::getZo2Path() . '/profiles');
                 /* Zo2 html */
                 $instances[$id]->registerNamespace('html', Zo2Framework::getZo2Path() . '/html');
                 /* Joomla! template */
@@ -128,7 +130,6 @@ if (!class_exists('Zo2Template')) {
          */
         public function getFile($key) {
             /* Extract key to get namespace and path */
-
             $parts = explode('://', $key);
             if (is_array($parts) && count($parts) == 2) {
                 $namespace = $parts[0];
@@ -153,14 +154,17 @@ if (!class_exists('Zo2Template')) {
          * @return string|boolean
          */
         public function getDir($key) {
-
             $parts = explode('://', $key);
-            if (is_array($parts) && count($parts) == 2) {
+            if (is_array($parts) && count($parts) >= 2) {
                 $namespace = $parts[0];
-                $path = $parts[1];
+                if (isset($parts[1]))
+                    $path = $parts[1];
                 if (isset($this->_namespaces[$namespace])) {
                     foreach ($this->_namespaces[$namespace] as $namespace) {
-                        $dirPath = $namespace . '/' . $path;
+                        if (isset($path))
+                            $dirPath = $namespace . '/' . $path;
+                        else
+                            $dirPath = $namespace;
                         if (JFolder::exists($dirPath)) {
                             return str_replace('/', DIRECTORY_SEPARATOR, $dirPath);
                         }
@@ -202,8 +206,7 @@ if (!class_exists('Zo2Template')) {
          * 
          * @return string
          */
-        public function toDataAttributes
-        () {
+        public function toDataAttributes() {
             $properties = $this->getProperties();
             $html = '';
             foreach ($properties as $key => $value) {
@@ -263,6 +266,33 @@ if (!class_exists('Zo2Template')) {
                 $document->addStyleSheet($url);
             }
             return $this;
+        }
+
+        public function saveProfile($profileName = null, $data) {
+            if ($profileName === null) {
+                $profileName = $this->getConfig()->template;
+            }
+            $profileName = md5($this->getConfig()->id . '_' . $profileName);
+            $profileDir = $this->getDir('profile://');
+            if (JFolder::exists($profileDir)) {
+                JFile::write($profileDir . '/' . $profileName, json_encode($data));
+            }
+            return $this;
+        }
+
+        public function loadProfile($profileName = null) {
+            if ($profileName === null) {
+                $profileName = $this->getConfig()->template;
+            }
+            $profileName = md5($this->getConfig()->id . '_' . $profileName);
+            $profileFile = $this->getFile('profile://' . $profileName);
+            if ($profileFile) {
+                $buffer = JFile::read($profileFile);
+                if ($buffer) {
+                    return json_decode($buffer);
+                }
+            }
+            return false;
         }
 
         public function save() {
