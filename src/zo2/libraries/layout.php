@@ -102,16 +102,12 @@ class Zo2Layout {
         $menuItem = $menu->getActive();
         $canCache = false;
         if (isset($menuItem->id) && !empty($menuItem->id)) {
-            $cache = $template->id . '_layout_' . $menuItem->id . '.php';
-            $layoutCacheDir = $this->_layourDir . 'cache/';
-            $path = $layoutCacheDir . $cache;
+            $cacheFile = $template->id . '_layout_' . $menuItem->id . '.php';
             $canCache = true;
-        } else {
-            $path = '';
-            $layoutCacheDir = '';
         }
-        if ($canCache && file_exists($path) && !$debug) {
-            $html = file_get_contents($path);
+
+        if ($canCache && !$debug) {
+            $html = Zo2Template::getInstance()->loadCache($cacheFile);
         } else {
             $layoutType = $params->get('layout_type');
             if ($layoutType == 'fixed')
@@ -127,9 +123,7 @@ class Zo2Layout {
                 }
 
                 if ($canCache) {
-                    if (!is_dir($layoutCacheDir))
-                        mkdir($layoutCacheDir, 0755);
-                    file_put_contents($path, $html);
+                    Zo2Template::getInstance()->saveCache($cacheFile, $html);
                 }
             } else {
                 if (file_exists($this->_layoutPath)) {
@@ -140,9 +134,7 @@ class Zo2Layout {
                     }
 
                     if ($canCache) {
-                        if (!is_dir($layoutCacheDir))
-                            mkdir($layoutCacheDir, 0755);
-                        file_put_contents($path, $html);
+                        Zo2Template::getInstance()->saveCache($cacheFile, $html);
                     }
                 } else
                     return '';

@@ -297,6 +297,11 @@ if (!class_exists('Zo2Template')) {
             return false;
         }
 
+        public function getParams() {
+            $template = JFactory::getApplication()->getTemplate(true);
+            return $template->params;
+        }
+
         /**
          * 
          * @param type $cacheFile
@@ -322,13 +327,6 @@ if (!class_exists('Zo2Template')) {
             $cacheFile = $this->getFile('cache://' . $cacheFilename);
             if ($cacheFile) {
                 $buffer = JFile::read($cacheFile);
-                if (strpos($buffer, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
-                    $template = JFactory::getApplication()->getTemplate(true);
-                    $params = $template->params;
-                    $zo2 = Zo2Framework::getInstance();
-                    $megamenu = $zo2->displayMegaMenu($zo2->get('menutype', $params->get('menu_type')), $zo2->getTemplate());
-                    $buffer = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $buffer);
-                }
                 return $buffer;
             }
             return false;
