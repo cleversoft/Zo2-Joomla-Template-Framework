@@ -16,7 +16,7 @@ class Zo2Layout {
     /* private */
 
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -100,13 +100,14 @@ class Zo2Layout {
         $html = '';
         $menu = $app->getMenu();
         $menuItem = $menu->getActive();
+        $cacheFile = null;
         $canCache = false;
         if (isset($menuItem->id) && !empty($menuItem->id)) {
             $cacheFile = $template->id . '_layout_' . $menuItem->id . '.php';
             $canCache = true;
         }
 
-        if ($canCache && !$debug) {
+        if ($canCache && !$debug && file_exists(Zo2Template::getInstance()->getFile('cache://' . md5($cacheFile)))) {
             $html = Zo2Template::getInstance()->loadCache($cacheFile);
         } else {
             $layoutType = $params->get('layout_type');

@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('Zo2Template')) {
 
     /**
-     * 
+     *
      */
     class Zo2Template extends JObject {
 
@@ -30,7 +30,7 @@ if (!class_exists('Zo2Template')) {
 
         /**
          *
-         * @var array 
+         * @var array
          */
         protected $_namespaces = array();
 
@@ -45,7 +45,7 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @staticvar Zo2Template $instances
          * @param type $id
          * @return boolean|\Zo2Template
@@ -60,7 +60,7 @@ if (!class_exists('Zo2Template')) {
                 }
 
                 $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
-                        ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                    ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
                 $db->setQuery($query);
                 $template = $db->loadObject();
                 if ($template) {
@@ -77,7 +77,7 @@ if (!class_exists('Zo2Template')) {
                     if ($id) {
                         $db = JFactory::getDBO();
                         $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
-                                ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                            ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
                         $db->setQuery($query);
                         $template = $db->loadObject();
                         if ($template) {
@@ -104,7 +104,7 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @return stdClass
          */
         public function getConfig() {
@@ -151,7 +151,7 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @param type $key
          * @return string|boolean
          */
@@ -177,7 +177,7 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @param type $key
          * @return string|boolean
          */
@@ -205,7 +205,7 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @return string
          */
         public function toDataAttributes() {
@@ -219,7 +219,7 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @param type $tpl
          * @return type
          */
@@ -237,7 +237,7 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @param type $tpl
          * @return \CsTemplate
          */
@@ -297,14 +297,19 @@ if (!class_exists('Zo2Template')) {
             return false;
         }
 
+        public function getParams() {
+            $template = JFactory::getApplication()->getTemplate(true);
+            return $template->params;
+        }
+
         /**
-         * 
+         *
          * @param type $cacheFile
          * @param type $data
          * @return \Zo2Template
          */
         public function saveCache($cacheFile, $data) {
-            $cacheFilename = md5($this->getConfig()->id . '_' . $cacheFile);
+            $cacheFilename = md5($cacheFile);
             $cacheDir = $this->getDir('cache://');
             if (JFolder::exists($cacheDir)) {
                 JFile::write($cacheDir . '/' . $cacheFilename, $data);
@@ -313,13 +318,12 @@ if (!class_exists('Zo2Template')) {
         }
 
         /**
-         * 
+         *
          * @param type $cacheFile
          * @return boolean
          */
         public function loadCache($cacheFile) {
-            $cacheFilename = md5($this->getConfig()->id . '_' . $cacheFile);
-            $cacheFile = $this->getFile('cache://' . $cacheFilename);
+            $cacheFile = $this->getFile('cache://' . md5($cacheFile));
             if ($cacheFile) {
                 $buffer = JFile::read($cacheFile);
                 return $buffer;
@@ -331,7 +335,7 @@ if (!class_exists('Zo2Template')) {
          * Save template
          */
         public function save() {
-            
+
         }
 
     }
