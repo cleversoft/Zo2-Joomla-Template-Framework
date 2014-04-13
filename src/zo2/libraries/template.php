@@ -340,6 +340,9 @@ if (!class_exists('Zo2Template')) {
          * @return boolean
          */
         public function loadCache($cacheFile) {
+            /**
+             * @todo Check modified time with current time to force reload cache
+             */
             $cacheFile = $this->getFile('cache://' . md5($cacheFile));
             if ($cacheFile) {
                 $buffer = JFile::read($cacheFile);

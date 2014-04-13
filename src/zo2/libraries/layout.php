@@ -44,20 +44,13 @@ class Zo2Layout {
             $this->_layoutPath = $this->_layourDir . 'layout.json';
             $this->_templateName = $templateName;
             $this->_templateUri = JUri::base(true) . '/templates/' . $templateName;
-            $zo2 = Zo2Framework::getInstance();
-            if ($zo2->get('layout')) {
-                $this->_layoutContent = $zo2->get('layout');
-            } else {
-                // check layout existence, if layout not existed, get default layout, which is homepage.php
-                if (!file_exists($this->_layoutPath)) {
-                    //throw new Exception('Layout file cannot be found!');
-                    return;
-                }
-                $this->_layoutContent = file_get_contents($this->_layoutPath);
-            }
 
+            /**
+             * Load components array by get list files under components directory
+             * @todo Move these thing into template.json
+             */
             $this->importComponents();
-            Zo2Framework::import('core.Zo2AssetsHelper');
+
             Zo2Framework::import('vendor.minify.jsshrink');
             Zo2Framework::import('vendor.minify.css');
         }
@@ -77,17 +70,7 @@ class Zo2Layout {
     }
 
     /**
-     * Get current layout content
-     *
-     * @return string
-     */
-    public function getLayoutContent() {
-        return $this->_layoutContent;
-    }
-
-    /**
      * Generate body html
-     *
      * @return string
      */
     public function render() {
@@ -111,7 +94,7 @@ class Zo2Layout {
         if ($canCache) {
             $html = Zo2Template::getInstance()->loadCache($cacheFile);
         }
-        $canCache = false;
+
         if ($canCache === false || (isset($html) && $html === false)) {
 
             $layoutType = $zo2->get('layout_type');
@@ -125,7 +108,7 @@ class Zo2Layout {
                 $data = json_decode($zo2->get('layout'), true);
 
                 foreach ($data as $item) {
-                    $html .= $this->generateHtmlFromItem($item, $layoutType);
+                    $html .= $this->_buildItem($item, $layoutType);
                 }
 
                 if ($canCache) {
@@ -136,7 +119,7 @@ class Zo2Layout {
                     $data = json_decode(file_get_contents($this->_layoutPath), true);
 
                     for ($i = 0, $total = count($data); $i < $total; $i++) {
-                        $html .= $this->generateHtmlFromItem($data[$i], $layoutType);
+                        $html .= $this->_buildItem($data[$i], $layoutType);
                     }
 
                     if ($canCache) {
@@ -147,6 +130,9 @@ class Zo2Layout {
             }
         }
 
+        /**
+         * @todo Does megamenu under caching or not ?
+         */
         /* Insert megamenu */
         if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
             $zo2 = Zo2Framework::getInstance();
@@ -158,39 +144,28 @@ class Zo2Layout {
 
     /**
      * Generate html for an item such as a row or a column.
-     *
-     * @param $item
-     * @return string
+     * @param type $item
+     * @return type
      */
-    private function generateHtmlFromItem($item) {
+    private function _buildItem($item) {
         $html = '';
         if ($item['type'] == 'row')
-            $html .= $this->generateRow($item);
+            $html .= $this->_generateRow($item);
         else if ($item['type'] == 'col')
-            $html .= $this->generateColumn($item);
+            $html .= $this->_generateColumn($item);
 
         return $html;
     }
 
-    private static function generateVisibilityClass($visibilityData) {
-        $classes = array();
-        $classes[] = $visibilityData['xs'] ? 'visible-xs' : 'hidden-xs';
-        $classes[] = $visibilityData['sm'] ? 'visible-sm' : 'hidden-sm';
-        $classes[] = $visibilityData['md'] ? 'visible-md' : 'hidden-md';
-        $classes[] = $visibilityData['lg'] ? 'visible-lg' : 'hidden-lg';
-        return implode(' ', $classes);
-    }
-
     /**
      * Generate html from a row item
-     *
-     * @param $item
+     * @param type $item
      * @return string
      */
-    private function generateRow($item) {
+    private function _generateRow($item) {
         //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
         $class = $item['fullwidth'] ? '' : 'container';
-        $class .= ' ' . self::generateVisibilityClass($item['visibility']);
+        $class .= ' ' . self::_generateVisibilityClass($item['visibility']);
         $html = '';
         if (!empty($item['id']))
             $html .= '<section id="' . $item['id'] . '" class="' . $item['customClass'] . '">';
@@ -242,7 +217,7 @@ class Zo2Layout {
         }
 
         for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
-            $html .= self::generateHtmlFromItem($item['children'][$i]);
+            $html .= self::_buildItem($item['children'][$i]);
         }
         $html .= '</section>'; // end of row
         $html .= '</section>'; // end of container
@@ -251,19 +226,20 @@ class Zo2Layout {
     }
 
     /**
-     * Generate html from a column item
-     *
+     * Generate html from a column item   
      * @param $item
      * @return string
      */
-    private function generateColumn($item) {
-        //$zo2 = Zo2Framework::getInstance();
+    private function _generateColumn($item) {
+        /**
+         * @todo move to layouts/html and use Zo2Template to fetch
+         */
         $html = '';
         $class = 'col-md-' . $item['span'];
         if ($item['offset'] != 0) {
             $class .= ' col-md-offset-' . $item['offset'];
         }
-        $class .= ' ' . self::generateVisibilityClass($item['visibility']);
+        $class .= ' ' . $this->_generateVisibilityClass($item['visibility']);
         //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
         if (!empty($item['customClass']))
             $class .= ' ' . $item['customClass'];
@@ -308,12 +284,21 @@ class Zo2Layout {
 
         if ($total = count($item['children']) > 0) {
             for ($i = 0; $i < $total; $i++) {
-                $html .= self::generateHtmlFromItem($item['children'][$i]);
+                $html .= self::_buildItem($item['children'][$i]);
             }
         }
 
         $html .= '</section>';
         return $html;
+    }
+
+    private function _generateVisibilityClass($visibilityData) {
+        $classes = array();
+        $classes[] = $visibilityData['xs'] ? 'visible-xs' : 'hidden-xs';
+        $classes[] = $visibilityData['sm'] ? 'visible-sm' : 'hidden-sm';
+        $classes[] = $visibilityData['md'] ? 'visible-md' : 'hidden-md';
+        $classes[] = $visibilityData['lg'] ? 'visible-lg' : 'hidden-lg';
+        return implode(' ', $classes);
     }
 
     /**
