@@ -46,7 +46,7 @@ if (!class_exists('Zo2Framework')) {
          * @param type $id
          * @return type
          */
-        public static function getTemplate($id = null) {
+        public static function getTemplate($id = null) {           
             return Zo2Template::getInstance($id);
         }
 

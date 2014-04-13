@@ -16,7 +16,7 @@ class Zo2Layout {
     /* private */
 
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -90,43 +90,48 @@ class Zo2Layout {
      *
      * @return string
      */
-    public function generateHtml() {
+    public function render() {
         $app = JFactory::getApplication();
-        $zo2 = Zo2Framework::getInstance();
-        $template = $app->getTemplate(true);
-        $params = $template->params;
-        $debug = $params->get('debug_visibility');
-
-        $html = '';
         $menu = $app->getMenu();
         $menuItem = $menu->getActive();
+
+        $zo2 = Zo2Framework::getInstance();
+
+        $html = '';
+
         $cacheFile = null;
-        $canCache = false;
+        $canCache = $zo2->get('debug_visibility', 0) == 0;
+
         if (isset($menuItem->id) && !empty($menuItem->id)) {
-            $cacheFile = $template->id . '_layout_' . $menuItem->id . '.php';
-            $canCache = true;
+            $cacheFile = 'zo2_layout_' . $menuItem->id . '.php';
+        } else {
+            $cacheFile = 'zo2_layout_' . md5(json_encode($menuItem->params));
         }
 
-        if ($canCache && !$debug && file_exists(Zo2Template::getInstance()->getFile('cache://' . md5($cacheFile)))) {
+        if ($canCache) {
             $html = Zo2Template::getInstance()->loadCache($cacheFile);
-        } else {
-            $layoutType = $params->get('layout_type');
+        }
+        $canCache = false;
+        if ($canCache === false || (isset($html) && $html === false)) {
+
+            $layoutType = $zo2->get('layout_type');
+
             if ($layoutType == 'fixed')
-                $layoutType = '';
+                $layoutType = '-fixed';
             else
                 $layoutType = '-fluid';
 
             if ($zo2->get('layout')) {
                 $data = json_decode($zo2->get('layout'), true);
 
-                for ($i = 0, $total = count($data); $i < $total; $i++) {
-                    $html .= $this->generateHtmlFromItem($data[$i], $layoutType);
+                foreach ($data as $item) {
+                    $html .= $this->generateHtmlFromItem($item, $layoutType);
                 }
 
                 if ($canCache) {
                     Zo2Template::getInstance()->saveCache($cacheFile, $html);
                 }
-            } else {
+            } else { /* Load from default */
                 if (file_exists($this->_layoutPath)) {
                     $data = json_decode(file_get_contents($this->_layoutPath), true);
 
@@ -141,9 +146,11 @@ class Zo2Layout {
                     return '';
             }
         }
+
+        /* Insert megamenu */
         if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
             $zo2 = Zo2Framework::getInstance();
-            $megamenu = $zo2->displayMegaMenu($zo2->get('menutype', $params->get('menu_type')), $zo2->getTemplate());
+            $megamenu = $zo2->displayMegaMenu($zo2->get('menutype', $zo2->get('menu_type')), $zo2->getTemplate());
             $html = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $html);
         }
         return $html;

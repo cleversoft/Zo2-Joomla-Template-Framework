@@ -27,11 +27,6 @@ if (Zo2Framework::isZo2Template()) {
     $assets->buildAssets();
     $assets->loadAssets();
 
-    if (JFactory::getApplication()->isSite()) {
-        Zo2Framework::preparePresets();
-        Zo2Framework::prepareCustomFonts();
-    }
-
     /**
      * Framework init
      */
@@ -42,20 +37,23 @@ if (Zo2Framework::isZo2Template()) {
     Zo2Framework::import('core.Zo2Component');
     Zo2Framework::import('core.Zo2AssetsManager');
 
-    Zo2Framework::setLayout(new Zo2Layout(Zo2Framework::getTemplateName()));
-// JViewLegacy
+    /**
+     * @todo remove this core hacking
+     */
     if (!class_exists('JViewLegacy', false))
         Zo2Framework::import('core.classes.legacy');
 
     if (Zo2Framework::isSite()) {
 
-        // JModuleHelper
+        /**
+         * @todo remove this core hacking
+         */
         if (!class_exists('JModuleHelper', false))
             Zo2Framework::import('core.classes.helper');
     } else {
         
     }
-    Zo2Framework::getTemplateLayouts();
+    //
     Zo2Framework::getController();
 
     $script = 'zo2.settings.token = "' . JFactory::getSession()->getFormToken() . '";';
