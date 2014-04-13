@@ -46,7 +46,7 @@ if (!class_exists('Zo2Framework')) {
          * @param type $id
          * @return type
          */
-        public static function getTemplate($id = null) {           
+        public static function getTemplate($id = null) {
             return Zo2Template::getInstance($id);
         }
 
@@ -456,7 +456,13 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public static function getLayout() {
-            return self::getInstance()->_layout;
+            static $instances;
+            $template = self::getTemplate();
+            $templateId = $template->getConfig()->id;
+            if (!isset($instances[$templateId])) {
+                $instances[$templateId] = new Zo2Layout($template->getConfig()->template);
+            }
+            return $instances[$templateId];
         }
 
         /**

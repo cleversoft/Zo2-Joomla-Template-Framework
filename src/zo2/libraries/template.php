@@ -35,12 +35,6 @@ if (!class_exists('Zo2Template')) {
         protected $_namespaces = array();
 
         /**
-         *
-         * @var Zo2Layout 
-         */
-        protected $_layout = null;
-
-        /**
          * Construction
          * @param type $properties
          */
@@ -81,7 +75,7 @@ if (!class_exists('Zo2Template')) {
                     $query .= ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $itemId;
                     $db->setQuery($query);
                     $templateSiteId = $db->loadResult();
-                    if ($templateSiteId && $templateSiteId != 0) {                        
+                    if ($templateSiteId && $templateSiteId != 0) {
                         /* Get request template record */
                         $id = $templateSiteId;
                         $template = self::getTemplate($templateSiteId);
@@ -371,13 +365,6 @@ if (!class_exists('Zo2Template')) {
 
         public function getUtilities() {
             
-        }
-
-        public function getLayout() {
-            if (!isset($this->_layout)) {
-                $this->_layout = new Zo2Layout($this->getConfig()->template);
-            }
-            return $this->_layout;
         }
 
     }
