@@ -451,23 +451,6 @@ if (!class_exists('Zo2Framework')) {
          * @return bool
          */
         public static function setLayout($layout) {
-            /*
-              foreach (self::$_scripts as $s) {
-              $layout->insertJs($s);
-              }
-              foreach (self::$_scriptDeclarations as $sd) {
-              $layout->insertJsDeclaration($sd);
-              }
-              foreach (self::$_styles as $s) {
-              if (strpos($s, '.less') !== false)
-              $layout->insertLess($s);
-              else
-              $layout->insertCss($s);
-              }
-              foreach (self::$_styleDeclarations as $sd) {
-              $layout->insertCssDeclaration($sd);
-              }
-             */
             self::getInstance()->_layout = $layout;
             return self::getInstance();
         }
