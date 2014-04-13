@@ -15,9 +15,8 @@ defined('_JEXEC') or die('Restricted Access');
 require_once __DIR__ . '/includes/bootstrap.php';
 
 $zo2 = $this->zo2->framework;
-$layout = $this->zo2->template->getLayout();
+$layout = $this->zo2->layout;
 
-$debug = $zo2->get('debug_visibility');
 $responsive = $zo2->get('responsive_layout');
 $favicon = $zo2->get('favicon');
 
@@ -30,9 +29,6 @@ if ($zo2->get('fullContainer') == 1 && $zo2->get('enable_style_switcher') != 1) 
     } else
         $doc->addStyleDeclaration('body.boxed {background: ' . $background_color . ' repeat;}');
 }
-
-$socialShares = new Zo2Socialshares();
-$styleSwitcher = new Zo2StyleSwitcher();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->zo2->template->getLanguage(); ?>" dir="<?php echo $this->zo2->template->getDirection(); ?>">
@@ -55,15 +51,19 @@ $styleSwitcher = new Zo2StyleSwitcher();
     <section class="wrapper <?php echo (($zo2->get('fullContainer') == 1) ? 'boxed container' : ''); ?>">
         <!-- SocialShare -->
         <?php if (Zo2Framework::get('socialshare_floatbar', 1) == 1) { ?>
-            <?php echo $socialShares->getFloatbar(); ?>
+            <?php echo $this->zo2->socialShares->getFloatbar(); ?>
         <?php } ?>
         <?php if (Zo2Framework::get('enable_style_switcher', 1) == 1) { ?>
-            <?php $styleSwitcher->styleSwitcher(); ?>
+            <?php $this->zo2->styleSwitcher->styleSwitcher(); ?>
         <?php } ?>
         <?php echo $layout->render(); ?>
     </section>
-    <?php if ($debug == 1) : ?>
-    <jdoc:include type="modules" name="debug" />
-<?php endif; ?>
+    <?php
+    /**
+     * @todo $debug must follow Joomla! config
+     */
+    ?>    
+<jdoc:include type="modules" name="debug" />
+
 </body>
 </html>

@@ -27,5 +27,8 @@ Zo2Framework::prepareCustomFonts();
 $this->zo2 = new JRegistry;
 $this->zo2->framework = Zo2Framework::getInstance();
 $this->zo2->template = $this->zo2->framework->getTemplate();
+$this->zo2->layout = Zo2Framework::getLayout();
+$this->zo2->socialShares = new Zo2Socialshares();
+$this->zo2->styleSwitcher = new Zo2StyleSwitcher();
 
 Zo2Framework::getTemplateLayouts();
