@@ -112,6 +112,8 @@ if (!class_exists('Zo2Template')) {
 
                 /* Joomla! template */
                 $instances[$id]->registerNamespace('template', JPATH_ROOT . '/templates/' . $instances[$id]->_config->template);
+                /* Template html */
+                $instances[$id]->registerNamespace('html', JPATH_ROOT . '/templates/' . $instances[$id]->_config->template . '/html');
                 /* Template assets */
                 $instances[$id]->registerNamespace('assets', JPATH_ROOT . '/templates/' . $instances[$id]->_config->template . '/assets');
             }
@@ -378,7 +380,6 @@ if (!class_exists('Zo2Template')) {
             }
             return null;
         }
-        
 
     }
 
