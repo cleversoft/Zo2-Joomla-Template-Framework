@@ -23,11 +23,8 @@ require_once __DIR__ . '/includes/bootstrap.php';
     <jdoc:include type="head" />
 </head>
 <body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->direction; ?> <?php echo (( $this->zo2->framework->get('fullContainer') == 1) ? 'boxed' : ''); ?>">
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <?php echo Zo2Framework::displayOffCanvasMenu($this->zo2->framework->get('menutype', 'mainmenu'), $this->zo2->framework->getTemplate()) ?>
+    <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>
+    <?php echo Zo2Framework::displayOffCanvasMenu() ?>
     <section class="wrapper <?php echo (($this->zo2->framework->get('fullContainer') == 1) ? 'boxed container' : ''); ?>">
         <!-- SocialShare -->
         <?php if (Zo2Framework::get('socialshare_floatbar', 1) == 1) { ?>
@@ -38,12 +35,6 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <?php } ?>
         <?php echo $this->zo2->layout->render(); ?>
     </section>
-    <?php
-    /**
-     * @todo $debug must follow Joomla! config
-     */
-    ?>    
-<jdoc:include type="modules" name="debug" />
-
+    <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>   
 </body>
 </html>

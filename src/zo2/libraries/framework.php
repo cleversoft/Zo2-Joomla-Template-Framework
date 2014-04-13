@@ -532,7 +532,10 @@ if (!class_exists('Zo2Framework')) {
             return $menu->renderMenu($isAdmin);
         }
 
-        public static function displayOffCanvasMenu($menutype, $template, $isAdmin = false) {
+        public static function displayOffCanvasMenu($menutype = null, $isAdmin = false) {
+            if ($menutype === null) {
+                $menutype = self::get('menutype', 'mainmenu');
+            }
             Zo2Framework::import('core.Zo2Megamenu');
             $params = Zo2Framework::getTemplate()->getConfig()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
