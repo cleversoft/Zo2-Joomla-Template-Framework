@@ -31,3 +31,14 @@ $this->zo2->socialShares = new Zo2Socialshares();
 $this->zo2->styleSwitcher = new Zo2StyleSwitcher();
 
 Zo2Framework::getTemplateLayouts();
+
+
+$doc = JFactory::getDocument();
+if ($this->zo2->framework->get('fullContainer') == 1 && $zo2->get('enable_style_switcher') != 1) { //if style is boxed and style switcher is disable -> show background custom
+    $background = $this->zo2->framework->get('background', '');
+    $background_color = $this->zo2->framework->get('background_color');
+    if ($background != '') {
+        $doc->addStyleDeclaration('body.boxed {background: url("' . JUri::root(true) . '/' . $background . '") ' . $background_color . ' repeat;}');
+    } else
+        $doc->addStyleDeclaration('body.boxed {background: ' . $background_color . ' repeat;}');
+}
