@@ -370,6 +370,16 @@ if (!class_exists('Zo2Template')) {
             
         }
 
+        public function getConfigFile($key, $assoc = false) {
+            $configFile = $this->getFile($key);
+            if ($configFile) {
+                $buffer = JFile::read($configFile);
+                return json_decode($buffer, $assoc);
+            }
+            return null;
+        }
+        
+
     }
 
 }

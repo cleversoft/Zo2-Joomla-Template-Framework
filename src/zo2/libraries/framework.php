@@ -166,52 +166,6 @@ if (!class_exists('Zo2Framework')) {
             return self::$_instance;
         }
 
-        public static function prepareTemplateAssets() {
-            $assets = Zo2Assets::getInstance();
-            $assetsJsonPath = $assets->getPath($assets->get('siteTemplate') . '/layouts/assets.json');
-            if (file_exists($assetsJsonPath)) {
-                $assetsData = json_decode(file_get_contents($assetsJsonPath), true);
-                foreach ($assetsData as $data) {
-                    if ($data['type'] == 'js')
-                        $assets->addScript('zo2/js/' . $data['path'] . '.js');
-                    else if ($data['type'] == 'css')
-                        $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
-                    else if ($data['type'] == 'less')
-                        $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
-                }
-            }
-        }
-
-        public static function prepareCustomFonts() {
-            $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
-                'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
-                'h5_font' => 'h5', 'h6_font' => 'h6'
-            );
-
-            foreach ($selectors as $param => $selector) {
-                $value = Zo2Framework::get($param);
-
-                if (!empty($value)) {
-                    $data = json_decode($value, true);
-                    if (isset($data['type']) && !empty($data['type'])) {
-                        switch ($data['type']) {
-                            case 'standard':
-                                self::buildStandardFontStyle($data, $selector);
-                                break;
-                            case 'googlefonts':
-                                self::buildGoogleFontsStyle($data, $selector);
-                                break;
-                            case 'fontdeck':
-                                self::buildFontDeckStyle($data, $selector);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
-        }
-
         /**
          * Generate custom CSS style for Standard Font option
          *
@@ -337,16 +291,32 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        public static function preparePresets() {
-            $preset = Zo2Framework::get('theme');
-            //$zo2 = Zo2Framework::getInstance();
+        /**
+         * 
+         */
+        public static function loadTemplateAssets() {
+            $template = Zo2Framework::getTemplate();
             $assets = Zo2Assets::getInstance();
-            if (empty($preset)) {
+            /* Load template assets */
+            $templateAssets = $template->getConfigFile('assets://template.assets.json', true);
+            foreach ($templateAssets as $data) {
+                /**
+                 * @todo Improve $assets allow use same method with $type as determine
+                 */
+                if ($data['type'] == 'js')
+                    $assets->addScript('zo2/js/' . $data['path'] . '.js');
+                else if ($data['type'] == 'css')
+                    $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
+                else if ($data['type'] == 'less')
+                    $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
+            }
+            /* Load template preset */
+            $preset = Zo2Framework::get('theme');
 
-                $presetPath = Zo2HelperPath::getTemplateFilePath('layouts/presets.json', 'path');
-                $presets = array();
-                if (file_exists($presetPath)) {
-                    $presets = json_decode(file_get_contents($presetPath), true);
+            if (empty($preset)) {
+                $presets = $template->getConfigFile('assets://template.assets.json', true);
+                if ($preset === null) {
+                    $presets = array();
                 }
                 $defaultData = array();
                 for ($i = 0; $i < count($presets); $i++) {
@@ -406,6 +376,35 @@ if (!class_exists('Zo2Framework')) {
                 $assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
 
             $assets->addStyleSheetDeclaration($style);
+
+            /* Prepare Fonts */
+            $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
+                'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
+                'h5_font' => 'h5', 'h6_font' => 'h6'
+            );
+
+            foreach ($selectors as $param => $selector) {
+                $value = Zo2Framework::get($param);
+
+                if (!empty($value)) {
+                    $data = json_decode($value, true);
+                    if (isset($data['type']) && !empty($data['type'])) {
+                        switch ($data['type']) {
+                            case 'standard':
+                                self::buildStandardFontStyle($data, $selector);
+                                break;
+                            case 'googlefonts':
+                                self::buildGoogleFontsStyle($data, $selector);
+                                break;
+                            case 'fontdeck':
+                                self::buildFontDeckStyle($data, $selector);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
         }
 
         public static function compileLess($lessPath, $templateName = '') {
@@ -455,6 +454,11 @@ if (!class_exists('Zo2Framework')) {
             return self::getInstance();
         }
 
+        /**
+         * Return singleton Zo2Layout instance
+         * @staticvar Zo2Layout $instances
+         * @return \Zo2Layout
+         */
         public static function getLayout() {
             static $instances;
             $template = self::getTemplate();
