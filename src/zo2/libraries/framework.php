@@ -32,15 +32,6 @@ if (!class_exists('Zo2Framework')) {
         private static $_instance;
 
         /**
-         * @var Zo2Layout
-         */
-        private $_layout = null;
-
-        public function __construct() {
-            
-        }
-
-        /**
          * Return current template object
          * @staticvar null $template
          * @param type $id
