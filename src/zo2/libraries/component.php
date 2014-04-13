@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zo2 (http://www.zo2framework.org)
  * A powerful Joomla template framework
@@ -9,8 +10,7 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-defined('_JEXEC') or die ('Restricted access');
-
+defined('_JEXEC') or die('Restricted access');
 
 /**
  * Zo2Component is a class allows user to render HTML at specific module position
@@ -18,23 +18,22 @@ defined('_JEXEC') or die ('Restricted access');
  * Class Zo2Component
  */
 class Zo2Component {
+
     const RENDER_AFTER = 'after';
     const RENDER_BEFORE = 'before';
+
     public $position = self::RENDER_BEFORE;
 
-    public function __construct()
-    {
-
+    public function __construct() {
+        
     }
 
-    protected function beforeRender()
-    {
-
+    protected function beforeRender() {
+        
     }
 
-    protected function afterRender()
-    {
-
+    protected function afterRender() {
+        
     }
 
     /**
@@ -42,8 +41,8 @@ class Zo2Component {
      *
      * @return string
      */
-    public function render()
-    {
+    public function render() {
         return '';
     }
+
 }
