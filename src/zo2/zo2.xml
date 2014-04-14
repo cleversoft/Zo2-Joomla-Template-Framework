@@ -17,17 +17,17 @@
     <files>        
         <folder>addons</folder>
         <folder>assets</folder>
-		<folder>core</folder>
+        <folder>core</folder>
         <folder>formfields</folder>
-		<folder>helpers</folder>
+        <folder>helpers</folder>
         <folder>html</folder>        
-		<folder>includes</folder>        
-		<folder>language</folder>        
-		<folder>libraries</folder>        
+        <folder>includes</folder>        
+        <folder>language</folder>        
+        <folder>libraries</folder>        
         <folder>templates</folder>
         <folder>vendor</folder>
         <filename>googlefonts.json</filename>
-		<filename plugin="zo2">zo2.php</filename>
+        <filename plugin="zo2">zo2.php</filename>
     </files>
     <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
     <updateservers>		
