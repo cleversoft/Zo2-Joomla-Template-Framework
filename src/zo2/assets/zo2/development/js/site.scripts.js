@@ -7,9 +7,13 @@ function set_presets(style_number) {
     jQuery('#zo2-header-top').css({'background-color': presets[style_number].variables.header_top});
     jQuery('body').css({'color': presets[style_number].variables.text});
     jQuery('a').css({'color': presets[style_number].variables.link});
-    jQuery('a').hover(function() {
+
+    jQuery("a").mouseenter(function() {
         jQuery(this).css({'color': presets[style_number].variables.link_hover});
+    }).mouseleave(function() {
+        jQuery(this).css({'color': presets[style_number].variables.link});
     });
+
     jQuery('#zo2-bottom1').css({'background-color': presets[style_number].variables.bottom1});
     jQuery('#zo2-bottom2').css({'background-color': presets[style_number].variables.bottom2});
     jQuery('#zo2-footer').css({'background-color': presets[style_number].variables.footer});
@@ -69,8 +73,5 @@ jQuery(document).ready(function() {
         jQuery(this).addClass('selected');
         set_presets(jQuery(this).find('a').attr('data-color'));
     });
-
-
-
 
 });
