@@ -13,6 +13,11 @@
 defined('_JEXEC') or die('Restricted Access');
 
 require_once __DIR__ . '/includes/bootstrap.php';
+
+/**
+ * @todo Opengraph support
+ * @todo Facebook & Twitter ... data attributes support
+ */
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->zo2->template->getLanguage(); ?>" dir="<?php echo $this->zo2->template->getDirection(); ?>">
@@ -22,7 +27,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <?php echo $this->zo2->template->fetch('html://layouts/head.favicon.php'); ?>
     <jdoc:include type="head" />
 </head>
-<body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->direction; ?> <?php echo (( $this->zo2->framework->get('fullContainer') == 1) ? 'boxed' : ''); ?>">
+<body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo (( $this->zo2->framework->get('fullContainer') == 1) ? 'boxed' : ''); ?>">
     <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>
     <?php echo Zo2Framework::displayOffCanvasMenu() ?>
     <section class="wrapper <?php echo (($this->zo2->framework->get('fullContainer') == 1) ? 'boxed container' : ''); ?>">
