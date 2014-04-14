@@ -34,7 +34,7 @@ Zo2Framework::getTemplateLayouts();
 
 
 $doc = JFactory::getDocument();
-if ($this->zo2->framework->get('fullContainer') == 1 && $zo2->get('enable_style_switcher') != 1) { //if style is boxed and style switcher is disable -> show background custom
+if ($this->zo2->framework->get('fullContainer') == 1 && $this->zo2->framework->get('enable_style_switcher') != 1) { //if style is boxed and style switcher is disable -> show background custom
     $background = $this->zo2->framework->get('background', '');
     $background_color = $this->zo2->framework->get('background_color');
     if ($background != '') {
