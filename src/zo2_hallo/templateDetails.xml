@@ -108,6 +108,8 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
+
+                <field name="cache_interval" type="text" default="3600" label="Cache Interval" />
             </fieldset>
 
             <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
