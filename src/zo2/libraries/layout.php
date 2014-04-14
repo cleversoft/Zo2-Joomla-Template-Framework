@@ -16,7 +16,7 @@ class Zo2Layout {
     /* private */
 
     private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -91,8 +91,15 @@ class Zo2Layout {
             $cacheFile = 'zo2_layout_' . md5(json_encode($menuItem->params));
         }
 
+
+
         if ($canCache) {
-            $html = Zo2Template::getInstance()->loadCache($cacheFile);
+
+            if( (filemtime(Zo2Template::getInstance()->getFile('cache://' . md5($cacheFile))) + $zo2->get('cache_interval' , '3600')) < time() ){
+                $canCache = false;
+            } else {
+                $html = Zo2Template::getInstance()->loadCache($cacheFile);
+            }
         }
 
         if ($canCache === false || (isset($html) && $html === false)) {
@@ -226,7 +233,7 @@ class Zo2Layout {
     }
 
     /**
-     * Generate html from a column item   
+     * Generate html from a column item
      * @param $item
      * @return string
      */
