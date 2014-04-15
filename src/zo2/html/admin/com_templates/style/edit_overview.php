@@ -107,13 +107,13 @@ defined('_JEXEC') or die;
                         $message = 'Your current updated.';
                         break;
                     case 1:
-                        $message = '';
+                        $message = 'You are using alien version !';
                         break;
                 }
                 ?>
-                <div id="updater-desc">
-                    <strong><?php echo $message; ?></strong>.
-                    <?php if ($update) { ?>
+                <strong><?php echo $message; ?></strong>.
+                <?php if ($update) { ?>
+                    <div id="updater-desc">
                         Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
                     </div>
                 <?php } ?>            
