@@ -913,6 +913,7 @@ var injectFormSubmit = function() {
 function setZo2SettingInputValue() {
     var $ = jQuery;
     var $input = $('.hfLayoutHtml');
+    $('.toolbox-saveConfig').trigger('click');
     $('.field-logo-container').each(function() {
         generateLogoJson($(this));
     });
