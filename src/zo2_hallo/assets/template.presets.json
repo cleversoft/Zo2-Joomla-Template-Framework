@@ -4,6 +4,7 @@
         "default": false,
         "css": "",
         "less": "",
+        "color": "#ffffff",
         "thumbnail": "/assets/zo2/images/presets/default.jpg",
         "variables": {
             "background": "",
@@ -23,6 +24,7 @@
         "default": true,
         "css": "presets/black",
         "less": "presets/black",
+        "color": "#000000",
         "thumbnail": "/assets/zo2/images/presets/black.jpg",
         "variables": {
             "background": "#dedede",
@@ -42,6 +44,7 @@
         "default": false,
         "css": "presets/blue",
         "less": "presets/blue",
+        "color": "#3288c7",
         "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
             "background": "#3288c7",
@@ -61,6 +64,7 @@
         "default": false,
         "css": "presets/orange",
         "less": "presets/orange",
+        "color": "#d35400",
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
             "background": "#ffffff",
