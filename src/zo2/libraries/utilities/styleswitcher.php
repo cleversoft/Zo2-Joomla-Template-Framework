@@ -9,15 +9,19 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-
 defined('_JEXEC') or die('Restricted access');
 
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2StyleSwitcher')) {
+if (!class_exists('Zo2UtilityStyleSwitcher')) {
 
-    class Zo2StyleSwitcher {
+    class Zo2UtilityStyleSwitcher extends Zo2UtilityAbstract {
+
+        public function render() {
+            $template = new Zo2Template();
+            return $template->fetch('html://utilities/styleswitcher.php');
+        }
 
         public function styleSwitcher() {
             ?>
@@ -27,8 +31,8 @@ if (!class_exists('Zo2StyleSwitcher')) {
                 <div class="switch-container">
                     <h5>Layout options</h5>
                     <ul class="options layout-select">
-                        <li class="boxed-layout" id="boxed-layout"><a class="boxed" href="#"><img src="<?php echo JUri::root()?>/plugins/system/zo2/assets/zo2/images/page-bordered.png" alt="Boxed Layout"></a></li>
-                        <li class="fullwidth-layout" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="<?php echo JUri::root()?>/plugins/system/zo2/assets/zo2/images/page-fullwidth.png" alt="Full Width Layout"></a></li>
+                        <li class="boxed-layout" id="boxed-layout"><a class="boxed" href="#"><img src="<?php echo JUri::root() ?>/plugins/system/zo2/assets/zo2/images/page-bordered.png" alt="Boxed Layout"></a></li>
+                        <li class="fullwidth-layout" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="<?php echo JUri::root() ?>/plugins/system/zo2/assets/zo2/images/page-fullwidth.png" alt="Full Width Layout"></a></li>
                     </ul>
 
                     <h5>Color Examples</h5>
@@ -40,7 +44,9 @@ if (!class_exists('Zo2StyleSwitcher')) {
                     </ul>
                 </div>
             </div>
-        <?php
+            <?php
         }
+
     }
+
 }
