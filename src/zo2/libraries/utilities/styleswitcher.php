@@ -26,7 +26,7 @@ if (!class_exists('Zo2UtilityStyleSwitcher')) {
          */
         public function render() {
             if (Zo2Framework::get('enable_style_switcher', 1) == 1) {
-                $template = new Zo2Template();
+                $template = Zo2Framework::getTemplate();
                 return $template->fetch('html://utilities/styleswitcher.php');
             }
             return '';
