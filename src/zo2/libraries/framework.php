@@ -615,6 +615,25 @@ if (!class_exists('Zo2Framework')) {
             return 0;
         }
 
+        public function getProfiles() {
+            $templateDir = $this->getTemplatePath() . '/assets/profiles';
+            $profiles = array();
+            if (JFolder::exists($templateDir)) {
+                $files = JFolder::files($templateDir, '.', false, true);
+                if ($files) {
+                    foreach ($files as $file) {
+                        if (JFile::getExt($file) == 'json') {
+                            $profile = new Zo2Profile();
+                            $profile->name = JFile::stripExt(JFile::getName($file));
+                            $profile->config = json_decode(JFile::read($file));
+                            $profiles[] = $profile;
+                        }
+                    }
+                }
+            }
+            return $profiles;
+        }
+
     }
 
 }
