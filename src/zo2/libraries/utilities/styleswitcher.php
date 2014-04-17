@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zo2 (http://www.zo2framework.org)
  * A powerful Joomla template framework
@@ -15,13 +16,22 @@ defined('_JEXEC') or die('Restricted access');
  * Class exists checking
  */
 if (!class_exists('Zo2UtilityStyleSwitcher')) {
+    require_once 'abstract.php';
 
     class Zo2UtilityStyleSwitcher extends Zo2UtilityAbstract {
 
+        /**
+         * 
+         * @return string
+         */
         public function render() {
-            $template = new Zo2Template();
-            return $template->fetch('html://utilities/styleswitcher.php');
+            if (Zo2Framework::get('enable_style_switcher', 1) == 1) {
+                $template = new Zo2Template();
+                return $template->fetch('html://utilities/styleswitcher.php');
+            }
+            return '';
         }
+
     }
 
 }

@@ -14,17 +14,30 @@ defined('_JEXEC') or die('Restricted access');
 
 if (!class_exists('Zo2Utilities')) {
 
-    class Zo2Utilities extends JObject {
+    class Zo2Utilities {
 
-        public static function getUtility($name) {
+        public static function &getInstance() {
+            static $instance;
+            if (!isset($instance)) {
+                $instance = new Zo2Utilities();
+            }
+            return $instance;
+        }
+
+        public function __get($name) {
+            return $this->getUtility($name);
+        }
+
+        public function getUtility($name) {
             static $utilities = array();
             if (!isset($utilities[$name])) {
                 if (JFile::exists(__DIR__ . '/utilities/' . $name . '.php')) {
                     require_once __DIR__ . '/utilities/' . $name . '.php';
                 }
                 $className = 'Zo2Utility' . ucfirst($name);
+
                 if (class_exists($className)) {
-                    $utilities[$name] = new $className();                    
+                    $utilities[$name] = new $className();
                 }
             }
             if (!empty($utilities[$name]))

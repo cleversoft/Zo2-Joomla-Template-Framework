@@ -35,7 +35,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <?php if (Zo2Framework::get('socialshare_floatbar', 1) == 1) { ?>
             <?php echo $this->zo2->socialShares->getFloatbar(); ?>
         <?php } ?>
-
+        <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
         <?php echo $this->zo2->layout->render(); ?>
     </section>
     <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>   
