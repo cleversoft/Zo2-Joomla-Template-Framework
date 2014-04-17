@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 ?>
 <div class="span12 overview-details">
     <div class="row-fluid">
-        <div class="span4">
+        <div class="span3">
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('title'); ?>
@@ -23,7 +23,7 @@ defined('_JEXEC') or die;
                 </div>
             </div>
         </div>
-        <div class="span4">
+        <div class="span3">
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('template'); ?>
@@ -36,10 +36,26 @@ defined('_JEXEC') or die;
         <div class="span3">
             <div class="control-group">
                 <div class="control-label">
-                    <?php echo $this->form->getLabel('home'); ?>
+                    <strong>Select profile</strong>
                 </div>
                 <div class="controls">
-                    <?php echo $this->form->getInput('home'); ?>
+                    <select class="form-control">
+                        <option>profile 1</option>
+                        <option>profile 2</option>
+                        <option>profile 3</option>
+                        <option>profile 4</option>
+                        <option>profile 5</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="control-group">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Profile name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default">Create</button>
+                        </span>
                 </div>
             </div>
         </div>
@@ -116,7 +132,7 @@ defined('_JEXEC') or die;
                     <div id="updater-desc">
                         Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
                     </div>
-                <?php } ?>            
+                <?php } ?>
             </div>
             <div class="zo2-tip well" style="display: block;">
                 <div class="zo2-tip-bar">
