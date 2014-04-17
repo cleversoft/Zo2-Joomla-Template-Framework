@@ -15,7 +15,15 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('Zo2Profile')) {
 
     class Zo2Profile extends JObject {
-        
+
+        public function save() {
+            $zo2 = Zo2Framework::getInstance();
+            $filePath = $zo2->getTemplatePath() . '/assets/profiles/' . $this->name . '.json';
+            $buffer = json_encode($this->config, JSON_PRETTY_PRINT);
+            echo $filePath;
+            return JFile::write($filePath, $buffer);
+        }
+
     }
 
 }
