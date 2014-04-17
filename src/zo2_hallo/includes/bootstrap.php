@@ -28,7 +28,10 @@ $this->zo2->framework = Zo2Framework::getInstance();
 $this->zo2->template = $template;
 $this->zo2->layout = Zo2Framework::getLayout();
 $this->zo2->socialShares = new Zo2Socialshares();
-$this->zo2->styleSwitcher = new Zo2StyleSwitcher();
+
+if (Zo2Framework::get('enable_style_switcher', 1) == 1) {
+    Zo2Utilities::getUtility('styleswitcher');
+}
 
 Zo2Framework::getTemplateLayouts();
 
