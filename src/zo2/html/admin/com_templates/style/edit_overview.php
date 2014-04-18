@@ -50,7 +50,7 @@ defined('_JEXEC') or die;
                     <strong>Select profile</strong>
                 </div>
                 <div class="controls">                    
-                    <select class="form-control" name="jform[profile]">
+                    <select class="form-control" name="jform[params][profile]">
                         <?php
                         $profiles = Zo2Framework::getInstance()->getProfiles();
                         foreach ($profiles as $profile) {

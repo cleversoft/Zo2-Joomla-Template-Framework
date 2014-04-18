@@ -30,11 +30,11 @@ if (!class_exists('Zo2Style')) {
                 $table->params = $params->toString();
                 /* Save to profile file */
                 $profile = new Zo2Profile();
-                $profile->name = (isset($data['profile'])) ? $data['profile'] : 'default';
+                $profile->name = $params->get('profile', 'default');
                 $profile->layout = json_decode($data['params']['layout'], true);
                 $profile->template_name = $table->template;
                 $profile->save();
-                
+
                 if ($table->check()) {
                     if ($table->store()) {
                         $ajax = Zo2Ajax::getInstance();
