@@ -56,7 +56,7 @@ defined('_JEXEC') or die;
         </div>
     </div>
     <div class="row-fluid">
-        <div class="span6">
+        <div class="span4">
             <div class="control-group">
                 <div class="control-label">
                     <strong>Select profile</strong>
@@ -81,7 +81,7 @@ defined('_JEXEC') or die;
                 </div>
             </div>
         </div>
-        <div class="span6">
+        <div class="span4">
             <div class="control-group">
                 <div class="control-label">
                     <strong>Create new profile</strong>
