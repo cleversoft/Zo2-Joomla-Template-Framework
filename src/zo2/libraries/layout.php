@@ -111,7 +111,7 @@ class Zo2Layout {
                 $layoutType = '-fluid';
 
             $profile = new Zo2Profile();
-            $profile->load(Zo2Framework::getTemplatePath() . '/assets/profiles/default.json');
+            $profile->load(Zo2Framework::getTemplatePath() . '/assets/profiles/' . $zo2->get('profile', 'default') . '.json');
             $layout = $profile->layout;
 
             if ($layout) {
