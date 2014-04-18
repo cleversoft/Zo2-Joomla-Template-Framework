@@ -60,7 +60,7 @@ if (!class_exists('Zo2Framework')) {
          * @return string
          */
         public static function getTemplateName() {
-            $template = self::getTemplate();
+            $template = self::getTemplate();           
             if ($template)
                 return self::getTemplate()->getConfig()->template;
         }
@@ -70,7 +70,7 @@ if (!class_exists('Zo2Framework')) {
          * @return string
          */
         public static function getTemplatePath() {
-            return JPATH_ROOT . '/templates/' . self::getTemplateName();
+            return rtrim(JPATH_ROOT . '/templates/' . self::getTemplateName(), DIRECTORY_SEPARATOR);
         }
 
         /**

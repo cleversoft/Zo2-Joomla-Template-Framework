@@ -18,9 +18,9 @@ if (!class_exists('Zo2Profile')) {
 
         public function save() {
             $zo2 = Zo2Framework::getInstance();
-            $filePath = $zo2->getTemplatePath() . '/assets/profiles/' . $this->name . '.json';
+            $templatePath = rtrim(JPATH_ROOT . '/templates/' . $this->get('template_name'), DIRECTORY_SEPARATOR);
+            $filePath = $templatePath . '/assets/profiles/' . $this->name . '.json';
             $buffer = json_encode($this->config, JSON_PRETTY_PRINT);
-            echo $filePath;
             return JFile::write($filePath, $buffer);
         }
 

@@ -28,6 +28,11 @@ if (!class_exists('Zo2Style')) {
                     ))) {
                 $params = new JRegistry($data['params']);
                 $table->params = $params->toString();
+                $profile = new Zo2Profile();
+                $profile->name = (isset($data['profile'])) ? $data['profile'] : 'default';
+                $profile->config = json_decode($data['params']['layout']);
+                $profile->template_name = $table->template;
+                $profile->save();
                 if ($table->check()) {
                     if ($table->store()) {
                         $ajax = Zo2Ajax::getInstance();

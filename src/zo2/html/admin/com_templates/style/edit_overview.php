@@ -36,10 +36,21 @@ defined('_JEXEC') or die;
         <div class="span3">
             <div class="control-group">
                 <div class="control-label">
+                    <?php echo $this->form->getLabel('home'); ?>
+                    <strong>Select profile</strong>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('home'); ?>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="control-group">
+                <div class="control-label">
                     <strong>Select profile</strong>
                 </div>
                 <div class="controls">                    
-                    <select class="form-control">
+                    <select class="form-control" name="jform[profile]">
                         <?php
                         $profiles = Zo2Framework::getInstance()->getProfiles();
                         foreach ($profiles as $profile) {
