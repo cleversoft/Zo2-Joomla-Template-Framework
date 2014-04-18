@@ -60,7 +60,7 @@ if (!class_exists('Zo2Framework')) {
          * @return string
          */
         public static function getTemplateName() {
-            $template = self::getTemplate();           
+            $template = self::getTemplate();
             if ($template)
                 return self::getTemplate()->getConfig()->template;
         }
@@ -624,8 +624,7 @@ if (!class_exists('Zo2Framework')) {
                     foreach ($files as $file) {
                         if (JFile::getExt($file) == 'json') {
                             $profile = new Zo2Profile();
-                            $profile->name = JFile::stripExt(JFile::getName($file));
-                            $profile->config = json_decode(JFile::read($file));
+                            $profile->load($file);
                             $profiles[] = $profile;
                         }
                     }
