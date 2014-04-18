@@ -15,8 +15,9 @@ defined('_JEXEC') or die;
 class Zo2Layout {
     /* private */
 
-    private $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-        $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+    private
+            $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
+            $_staticsPath, $_coreStaticsPath, $_templateUri = '';
     private $_output = '';
     private $_script = array();
     private $_style = array();
@@ -91,11 +92,9 @@ class Zo2Layout {
             $cacheFile = 'zo2_layout_' . md5(json_encode($menuItem->params));
         }
 
-
-
         if ($canCache) {
 
-            if( (filemtime(Zo2Template::getInstance()->getFile('cache://' . md5($cacheFile))) + $zo2->get('cache_interval' , '3600')) < time() ){
+            if ((filemtime(Zo2Template::getInstance()->getFile('cache://' . md5($cacheFile))) + $zo2->get('cache_interval', '3600')) < time()) {
                 $canCache = false;
             } else {
                 $html = Zo2Template::getInstance()->loadCache($cacheFile);
@@ -111,8 +110,12 @@ class Zo2Layout {
             else
                 $layoutType = '-fluid';
 
-            if ($zo2->get('layout')) {
-                $data = json_decode($zo2->get('layout'), true);
+            $profile = new Zo2Profile();
+            $profile->load(Zo2Framework::getTemplatePath() . '/assets/profiles/default.json');
+            $layout = $profile->layout;
+
+            if ($layout) {
+                $data = $layout;
 
                 foreach ($data as $item) {
                     $html .= $this->_buildItem($item, $layoutType);
@@ -379,10 +382,6 @@ class Zo2Layout {
 
     public function addScript($url, $type = 'text/javascript') {
         $this->_script[] = array('path' => $url, 'mime' => $type);
-    }
-
-    public static function getInstance() {
-        return Zo2Framework::getInstance()->getLayout();
     }
 
     public function getTemplateUri() {
