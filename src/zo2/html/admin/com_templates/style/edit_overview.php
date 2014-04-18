@@ -49,14 +49,14 @@ defined('_JEXEC') or die;
                 <div class="control-label">
                     <strong>Select profile</strong>
                 </div>
-                <div class="controls">                    
-                    <select class="form-control" name="jform[profile]">
+                <div class="controls">
+                    <select class="form-control zo2_select_profile" name="jform[profile]">
                         <?php
                         $profiles = Zo2Framework::getInstance()->getProfiles();
                         foreach ($profiles as $profile) {
                             echo '<option value="' . $profile->name . '">' . $profile->name . '</option>';
                         }
-                        ?>                        
+                        ?>
                     </select>
                 </div>
             </div>
@@ -64,7 +64,7 @@ defined('_JEXEC') or die;
         <div class="span3">
             <div class="control-group">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Profile name">
+                    <input type="text" class="form-control zo2_profile_name" placeholder="Profile name">
                     <span class="input-group-btn">
                         <button class="btn btn-default">Create</button>
                     </span>
@@ -162,4 +162,3 @@ defined('_JEXEC') or die;
         </div>
     </div>
 </div>
-

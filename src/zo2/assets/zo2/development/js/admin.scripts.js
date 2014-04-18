@@ -1013,4 +1013,10 @@ jQuery(document).ready(function() {
             jQuery('#jform_params_background_color-lbl').parent().parent().show();
         }
     });
+
+    //gender profile name when profile is changed
+    jQuery('.zo2_profile_name').val(jQuery('.zo2_select_profile').val());
+    jQuery('.zo2_select_profile').change(function() {
+        jQuery('.zo2_profile_name').val(jQuery(this).val());
+    });
 });
