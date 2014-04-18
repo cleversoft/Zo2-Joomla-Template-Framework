@@ -21,7 +21,6 @@ class JFormFieldLayout extends JFormField {
      * @return string
      */
     public function getInput() {
-        $doc = JFactory::getDocument();
 
         $template = $this->form->getValue('template');
         $theme_path = JPATH_SITE . '/templates/' . $template . '/';
@@ -85,15 +84,18 @@ class JFormFieldLayout extends JFormField {
     private function generateLayoutBuilder() {
         $zo2 = Zo2Framework::getInstance();
         $templateName = $template = $this->form->getValue('template');
-        $positions = Zo2Framework::getTemplatePositions($templateName);
+
         //$layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
         $templatePath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName();
         $layoutPath = $templatePath . '/layouts/layout.json';
-        if($zo2->get('layout')){
-            $layoutData = json_decode($zo2->get('layout'), true);
-        } else {
-            $layoutData = json_decode(file_get_contents($layoutPath), true);
-        }
+
+        $profile = new Zo2Profile();
+        $profile->load(Zo2Framework::getTemplatePath() . '/assets/profiles/default.json');
+        $layout = $profile->layout;
+
+
+        $layoutData = $layout;
+
         //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
         $path = JPATH_SITE . '/plugins/system/zo2/templates/layout.php';
 
