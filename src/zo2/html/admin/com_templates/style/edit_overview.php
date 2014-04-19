@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 ?>
 <div class="span12 overview-details">
     <div class="row-fluid">
-        <div class="span3">
+        <div class="span4">
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('title'); ?>
@@ -23,7 +23,7 @@ defined('_JEXEC') or die;
                 </div>
             </div>
         </div>
-        <div class="span3">
+        <div class="span4">
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('template'); ?>
@@ -33,18 +33,30 @@ defined('_JEXEC') or die;
                 </div>
             </div>
         </div>
-        <div class="span3">
+        <div class="span4">
             <div class="control-group">
                 <div class="control-label">
                     <?php echo $this->form->getLabel('home'); ?>
-                    <strong>Select profile</strong>
                 </div>
                 <div class="controls">
                     <?php echo $this->form->getInput('home'); ?>
                 </div>
             </div>
         </div>
-        <div class="span3">
+
+        <div class="span1">
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('client_id'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('client_id'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span4">
             <div class="control-group">
                 <div class="control-label">
                     <strong>Select profile</strong>
@@ -63,27 +75,26 @@ defined('_JEXEC') or die;
                         }
                         ?>
                     </select>
-                </div>
-            </div>
-        </div>
-        <div class="span3">
-            <div class="control-group">
-                <div class="input-group">
-                    <input type="text" class="form-control zo2_profile_name" placeholder="Profile name" name="jform[params][profile]">
                     <span class="input-group-btn">
                         <button class="btn btn-default">Load Profile</button>
                     </span>
                 </div>
             </div>
         </div>
-        <div class="span1">
+        <div class="span4">
             <div class="control-group">
                 <div class="control-label">
-                    <?php echo $this->form->getLabel('client_id'); ?>
+                    <strong>Create new profile</strong>
                 </div>
                 <div class="controls">
-                    <?php echo $this->form->getInput('client_id'); ?>
+                    <div class="input-group">
+                        <input type="text" class="form-control zo2_profile_name" placeholder="Profile name" name="jform[params][profile]">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default">Save</button>
+                    </span>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -140,11 +151,11 @@ defined('_JEXEC') or die;
                         $message = 'Your current updated.';
                         break;
                     case 1:
-                        $message = 'You are using alien version !';
+                        $message = 'You are using alien version!';
                         break;
                 }
                 ?>
-                <strong><?php echo $message; ?></strong>.
+                <strong><?php echo $message; ?></strong>
                 <?php if ($update) { ?>
                     <div id="updater-desc">
                         Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.

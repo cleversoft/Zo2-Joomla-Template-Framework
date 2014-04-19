@@ -28,20 +28,7 @@ if (!class_exists('Zo2Style')) {
                     ))) {
                 $params = new JRegistry($data['params']);
                 $table->params = $params->toString();
-                /* Save to profile file */
-                $profile = new Zo2Profile();
-                $profile->name = $params->get('profile', 'default');
-                $profile->layout = json_decode($data['params']['layout'], true);
-                $profile->template_name = $table->template;
-                $profile->save();
-
-                /* Remove layout params do not save into database */
-                /**
-                 * @todo Improve better way or we do not use [params][layout]
-                 */
-                unset($data['params']['layout']);
-                $table->params = new JRegistry($data['params']);
-                $table->params = $table->params->toString();
+               
                 if ($table->check()) {
                     if ($table->store()) {
                         $ajax = Zo2Ajax::getInstance();
