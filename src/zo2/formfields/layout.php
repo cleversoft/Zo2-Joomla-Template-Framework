@@ -84,8 +84,8 @@ class JFormFieldLayout extends JFormField {
     private function generateLayoutBuilder() {
         $zo2 = Zo2Framework::getInstance();
         $templateName = $template = $this->form->getValue('template');
+        $positions = Zo2Framework::getTemplatePositions();
 
-        //$layout = new Zo2Layout(Zo2Framework::getTemplateName(), 'homepage');
         $templatePath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName();
         $layoutPath = $templatePath . '/layouts/layout.json';
 
@@ -96,7 +96,6 @@ class JFormFieldLayout extends JFormField {
 
         $layoutData = $layout;
 
-        //$path = JPATH_SITE.'/plugins/system/zo2/templates/layoutbuilder.php';
         $path = JPATH_SITE . '/plugins/system/zo2/templates/layout.php';
 
         // generate list of custom module style
