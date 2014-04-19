@@ -44,6 +44,7 @@ if (Zo2Framework::isZo2Template()) {
         Zo2Framework::import('core.classes.legacy');
 
     if (Zo2Framework::isSite()) {
+        $template = Zo2Framework::getTemplate();
 
         /**
          * @todo remove this core hacking
@@ -51,7 +52,30 @@ if (Zo2Framework::isZo2Template()) {
         if (!class_exists('JModuleHelper', false))
             Zo2Framework::import('core.classes.helper');
     } else {
-        
+        /* Hook and replace Joomla! style save */
+        $jinput = JFactory::getApplication()->input;
+        if ($jinput->get('option') == 'com_templates') {
+            if (isset($_REQUEST['jform'])) {
+                JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
+                $data = $_REQUEST['jform'];
+                $table = JTable::getInstance('Style', 'TemplatesTable');
+                if ($table->load(array(
+                            'template' => $data['template'],
+                            'client_id' => $data['client_id'],
+                            'home' => $data['home'],
+                            'title' => $data['title']
+                        ))) {
+                    $params = new JRegistry($data['params']);
+                    $table->params = $params->toString();
+                    if ($table->check()) {
+                        if ($table->store()) {
+                            JFactory::getApplication()->enqueueMessage('Style successfully saved');
+                            JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
+                        }
+                    }
+                }
+            }
+        }
     }
     //
     Zo2Framework::getController();
