@@ -20,25 +20,20 @@ if (!class_exists('Zo2Framework')) {
     class Zo2Framework {
 
         /**
-         * @var JDocument
-         */
-        public $document;
-
-        /* private */
-
-        /**
          * @var Zo2Framework
          */
-        private static $_instance;
+        protected static $_instance;
 
         /**
-         * Return current template object
-         * @staticvar null $template
-         * @param type $id
-         * @return type
+         * Get current Zo2Framework Instance
+         *
+         * @return Zo2Framework
          */
-        public static function getTemplate($id = null) {
-            return Zo2Template::getInstance($id);
+        public static function getInstance() {
+            if (!self::$_instance) {
+                self::$_instance = new self();
+            }
+            return self::$_instance;
         }
 
         /**
@@ -50,7 +45,7 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function get($property, $default = null) {
             if (self::getTemplate()) {
-                return self::getTemplate()->getConfig()->params->get($property, $default);
+                return self::getTemplate()->params->get($property, $default);
             }
             return $default;
         }
@@ -62,7 +57,7 @@ if (!class_exists('Zo2Framework')) {
         public static function getTemplateName() {
             $template = self::getTemplate();
             if ($template)
-                return self::getTemplate()->getConfig()->template;
+                return self::getTemplate()->template;
         }
 
         /**
@@ -99,6 +94,10 @@ if (!class_exists('Zo2Framework')) {
             return false;
         }
 
+        /**
+         * 
+         * @return array
+         */
         public static function getTemplatePositions() {
             $path = self::getTemplatePath() . '/templateDetails.xml';
             $positions = array();
@@ -140,21 +139,6 @@ if (!class_exists('Zo2Framework')) {
         public static function getRequest($name, $default = null, $filter = 'cmd') {
             $jinput = JFactory::getApplication()->input;
             return $jinput->get($name, $default, $filter);
-        }
-
-        /**
-         * Get current Zo2Framework Instance
-         *
-         * @return Zo2Framework
-         */
-        public static function getInstance() {
-            if (!self::$_instance) {
-                self::$_instance = new self();
-                self::$_instance->document = JFactory::getDocument();
-                // attach Zo2Framework to current document
-                self::$_instance->document->zo2 = self::getInstance();
-            }
-            return self::$_instance;
         }
 
         /**
@@ -286,10 +270,11 @@ if (!class_exists('Zo2Framework')) {
          * 
          */
         public static function loadTemplateAssets() {
-            $template = Zo2Framework::getTemplate();
+            $path = Zo2Framework::getPath();
             $assets = Zo2Assets::getInstance();
             /* Load template assets */
-            $templateAssets = $template->getConfigFile('assets://template.assets.json', true);
+            $templateAssets = $path->getConfigFile('assets://template.assets.json', true);
+
             foreach ($templateAssets as $data) {
                 /**
                  * @todo Improve $assets allow use same method with $type as determine
@@ -305,7 +290,7 @@ if (!class_exists('Zo2Framework')) {
             $preset = Zo2Framework::get('theme');
 
             if (empty($preset)) {
-                $presets = $template->getConfigFile('assets://template.assets.json', true);
+                $presets = $path->getConfigFile('assets://template.assets.json', true);
                 if ($preset === null) {
                     $presets = array();
                 }
@@ -453,9 +438,9 @@ if (!class_exists('Zo2Framework')) {
         public static function getLayout() {
             static $instances;
             $template = self::getTemplate();
-            $templateId = $template->getConfig()->id;
+            $templateId = Zo2Framework::getTemplate()->id;
             if (!isset($instances[$templateId])) {
-                $instances[$templateId] = new Zo2Layout($template->getConfig()->template);
+                $instances[$templateId] = new Zo2Layout(Zo2Framework::getTemplate()->template);
             }
             return $instances[$templateId];
         }
@@ -522,7 +507,7 @@ if (!class_exists('Zo2Framework')) {
         public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
             Zo2Framework::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getTemplate()->getConfig()->params;
+            $params = Zo2Framework::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -537,7 +522,7 @@ if (!class_exists('Zo2Framework')) {
                 $menutype = self::get('menutype', 'mainmenu');
             }
             Zo2Framework::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getTemplate()->getConfig()->params;
+            $params = Zo2Framework::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -619,18 +604,90 @@ if (!class_exists('Zo2Framework')) {
             $templateDir = $this->getTemplatePath() . '/assets/profiles';
             $profiles = array();
             if (JFolder::exists($templateDir)) {
-                $files = JFolder::files($templateDir, '.', false, true);
+                $files = JFolder::files($templateDir);
                 if ($files) {
                     foreach ($files as $file) {
                         if (JFile::getExt($file) == 'json') {
                             $profile = new Zo2Profile();
-                            $profile->load($file);
+                            $profile->load(JFile::stripExt($file));
                             $profiles[] = $profile;
                         }
                     }
                 }
             }
             return $profiles;
+        }
+
+        public static function getPath($name = 'zo2') {
+            return Zo2Path::getInstance($name);
+        }
+
+        /**
+         * 
+         * @staticvar array $instances
+         * @param int $id
+         * @return object
+         */
+        public static function getTemplate($id = null) {
+            static $instances;
+            /* Get specific template id */
+            if ($id !== null) {
+                if (isset($instances[$id])) {
+                    return $instances[$id];
+                }
+                $db = JFactory::getDBO();
+                $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
+                        ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                $db->setQuery($query);
+                $template = $db->loadObject();
+                if ($template) {
+                    $template->params = new JRegistry($template->params);
+                }
+                $instances[$id] = $template;
+                return $instances[$id];
+            } else {
+                /* Get current template */
+                if (JFactory::getApplication()->isSite()) {
+                    /**
+                     * Somehow we can't use getActiveMenu here
+                     * @todo Need to improve process
+                     */
+                    $itemId = JFactory::getApplication()->input->get('Itemid');
+                    $db = JFactory::getDbo();
+                    $query = ' SELECT ' . $db->quoteName('template_style_id');
+                    $query .= ' FROM ' . $db->quoteName('#__menu');
+                    $query .= ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $itemId;
+                    $db->setQuery($query);
+                    $templateSiteId = $db->loadResult();
+                    if ($templateSiteId && $templateSiteId != 0) {
+                        /* Get request template record */
+                        $id = $templateSiteId;
+                        $template = self::getTemplate($templateSiteId);
+                    } else {
+                        $template = JFactory::getApplication()->getTemplate(true);
+                        $id = $template->id;
+                    }
+                    $instances[$id] = $template;
+                    return $instances[$id];
+                } else {
+                    /* Get requesting template for backend only */
+                    $id = JFactory::getApplication()->input->get('id');
+                    if ($id) {
+                        return self::getTemplate($id);
+                    }
+                }
+            }
+        }
+
+        public function joomla($name) {
+            $filePath = __DIR__ . '/joomla/' . $name . '.php';
+            if (JFile::exists($filePath)) {
+                require_once $filePath;
+            }
+            $className = 'Zo2J' . ucfirst($name);
+            if (class_exists($className)) {
+                return new $className();
+            }
         }
 
     }
