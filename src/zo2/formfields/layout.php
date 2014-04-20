@@ -23,20 +23,20 @@ class JFormFieldLayout extends JFormField {
     public function getInput() {
 
         $template = $this->form->getValue('template');
-        $theme_path = JPATH_SITE . '/templates/' . $template . '/';
-        $theme_layout_path = $theme_path . 'layouts/';
-        $current_layout_path = $theme_layout_path . 'layout.json';
+        $templateDir = JPATH_SITE . '/templates/' . $template . '/';
+        $layoutsDir = $templateDir . 'layouts/';
+        $layoutFile = $layoutsDir . 'layout.json';
 
-        $layoutCachePattern = $theme_layout_path . 'cache/layout_*.php';
+        $layoutCachePattern = $layoutsDir . 'cache/layout_*.php';
         $caches = glob($layoutCachePattern);
 
-        $caches[] = $theme_layout_path . 'header.php';
-        $caches[] = $theme_layout_path . 'footer.php';
+        $caches[] = $layoutsDir . 'header.php';
+        $caches[] = $layoutsDir . 'footer.php';
 
         // don't write new layout setting when exist
-        if (!empty($this->value) && file_get_contents($current_layout_path) == '') {
+        if (!empty($this->value) && file_get_contents($layoutFile) == '') {
             // write new layout settings
-            file_put_contents($current_layout_path, $this->value);
+            file_put_contents($layoutFile, $this->value);
 
             // remove cache
             foreach ($caches as $file) {
@@ -63,7 +63,7 @@ class JFormFieldLayout extends JFormField {
 
         $assets->addStyleSheet('vendor/bootstrap/core/css/bootstrap.gridsystem.css');
 
-        return $this->generateLayoutBuilder();
+        return $this->_build();
     }
 
     /**
@@ -78,25 +78,25 @@ class JFormFieldLayout extends JFormField {
 
     /**
      * Get html for layout builder
-     *
-     * @return string
+     * @return type
      */
-    private function generateLayoutBuilder() {
+    protected function _build() {
         $zo2 = Zo2Framework::getInstance();
-        $templateName = $template = $this->form->getValue('template');
+        $jinput = JFactory::getApplication()->input;
+        $path = $zo2->getPath();
+
         $positions = Zo2Framework::getTemplatePositions();
 
-        $templatePath = JPATH_SITE . '/templates/' . Zo2Framework::getTemplateName();
-        $layoutPath = $templatePath . '/layouts/layout.json';
+        $templatePath = Zo2Framework::getTemplatePath();
 
         $profile = new Zo2Profile();
-
-        $profile->load(Zo2Framework::getTemplatePath() . '/assets/profiles/' . $zo2->get('profile', 'default') . '.json');
+        $profileName = $jinput->get('profile', $zo2->get('profile', 'default'));
+        $profile->load($profileName);
         $layout = $profile->layout;
 
         $layoutData = $layout;
 
-        $path = JPATH_SITE . '/plugins/system/zo2/templates/layout.php';
+        $layoutFile = $path->getFile('html://layouts/formfield.layout.php');
 
         // generate list of custom module style
         $customModuleStylePath = $templatePath . '/html/modules.php';
@@ -114,7 +114,7 @@ class JFormFieldLayout extends JFormField {
 
         // generate the html for layout builder
         ob_start();
-        include($path);
+        include($layoutFile);
         $html = ob_get_contents();
         ob_end_clean();
         return $html;
