@@ -920,36 +920,6 @@ function setZo2SettingInputValue() {
     $input.val(generateJson());
 }
 
-/* Override default save button */
-Joomla.submitbutton = function(task, form) {
-    if (typeof (form) === 'undefined') {
-        form = document.getElementById('adminForm');
-    }
-
-    if (typeof (task) !== 'undefined' && task !== "") {
-        form.task.value = task;
-    }
-    data = {
-        func: task
-    };
-    if (task != 'style.cancel' && task != 'style.save' && task != 'style.save2copy' ) {
-        setZo2SettingInputValue();
-        zo2.ajax.execute(form, data);
-        return false;
-    } else {
-        // Submit the form.
-        if (typeof form.onsubmit == 'function') {
-            form.onsubmit();
-        }
-        if (typeof form.fireEvent == "function") {
-            form.fireEvent('submit');
-        }
-
-        setZo2SettingInputValue();
-
-        form.submit();
-    }
-}
 
 
 /* Override default submit function */
