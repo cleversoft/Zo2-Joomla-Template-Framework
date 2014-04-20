@@ -17,34 +17,14 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
-
+        'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
+/**
+ * @todo Do not use $ to prevent conflict with Mootools
+ * @type @exp;jQuery@call;noConflict
+ */
 var $ = jQuery.noConflict();
 
 $(window).bind('load', function() {
-//    var $tabsContainer = $('#myTabTabs');
-//    var $tabContent = $('#myTabContent');
-//    var $tab = $('<li class=""><a href="#layoutbuilder-container" data-toggle="tab">Layout Builder</a></li>');
-//    $tab.appendTo($tabsContainer);
-//
-//    //add mega menu tab
-//    var $tabMenu = $('<li class=""><a href="#megamenubuilder-container" data-toggle="tab">MegaMenu Builder</a></li>');
-//    $tabMenu.appendTo($tabsContainer);
-//    var $megamenuInner = $('#zo2-admin-megamenu').closest('.accordion-inner');
-//    var $wrapMenu = $megamenuInner.closest('.accordion-group');
-//    var $megaContainer = $('<div id="megamenubuilder-container" class="tab-pane" />');
-//    $megaContainer.append($megamenuInner);
-//    $megaContainer.appendTo($tabContent);
-//    $wrapMenu.remove();
-//
-//   // add layout builder tab
-//    var $layoutBuilder = $('#layoutbuilder-container');
-//    var $layoutContainer = jQuery('#layoutbuilder-container').closest('.accordion-group');
-//    $layoutBuilder.addClass('tab-pane').appendTo($tabContent);
-//    $('#hfTemplateName').appendTo($layoutBuilder);
-//    $('#hfLayoutName').appendTo($layoutBuilder);
-//    $layoutContainer.remove();
-
     addIconToMenu();
     fixToolbarIcon();
     fixPreviewIcon();
@@ -96,16 +76,16 @@ jQuery(document).ready(function($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control">' +
-            '<div class="row-control-container">' +
-            '<div class="row-name">(unnamed row)</div>' +
-            '<div class="row-control-buttons">' +
-            '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-            '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-            '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
-            '</div></div>' +
-            '<div class="col-container"></div></div>');
+                '<div class="row-control-container">' +
+                '<div class="row-name">(unnamed row)</div>' +
+                '<div class="row-control-buttons">' +
+                '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
+                '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
+                '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
+                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+                '</div></div>' +
+                '<div class="col-container"></div></div>');
         $meta.appendTo($row);
 
     });
@@ -131,12 +111,12 @@ jQuery(document).ready(function($) {
                 $span.attr(visibilityAttributes[i], '1');
             }
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                '<div class="col-control-buttons">' +
-                '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
-                '</div><div class="row-container"></div></div></div>';
+                    '<div class="col-control-buttons">' +
+                    '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
+                    '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
+                    '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
+                    '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div></div></div>';
             var $meta = jQuery(metaHtml);
             $meta.appendTo($span);
             /*
@@ -190,11 +170,11 @@ jQuery(document).ready(function($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-            '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-            '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-            '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+                '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
+                '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
+                '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
+                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
         $meta.appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
@@ -442,7 +422,7 @@ jQuery(document).ready(function($) {
     });
 
     var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
-        '.ddlStandardFont';
+            '.ddlStandardFont';
 
     $('.font-container').on('change', changeSelector, function() {
         var $this = $(this);
@@ -464,21 +444,21 @@ jQuery(document).ready(function($) {
 
     $('.add_more_preset').click(function() {
         $(this).parent().before(
-            '<div class="zo2_themes_form">'+
-                '<div class="control-group">'+
-                '<div class="control-label">'+
-                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>'+
-                '</div>'+
-                '<div class="controls">'+
-                '<div class="colorpicker-container">'+
-                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">'+
-                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>'+
-                '<input type="button" class="btn remove_preset" value="Remove" />'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
+                '<div class="zo2_themes_form">' +
+                '<div class="control-group">' +
+                '<div class="control-label">' +
+                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
+                '</div>' +
+                '<div class="controls">' +
+                '<div class="colorpicker-container">' +
+                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
+                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
+                '<input type="button" class="btn remove_preset" value="Remove" />' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
                 '</div>'
-        );
+                );
         $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function() {
             var $this = $(this);
             var $parent = $this.parent();
@@ -573,13 +553,13 @@ jQuery(document).ready(function($) {
     });
 
     /*
-
+     
      var $select = $('#display_type_choose').find('select:first');
      var $normal_display = $('.display_type_normal');
-
+     
      if ($select.val() == 'normal') $normal_display.show();
      else $normal_display.hide();
-
+     
      jQuery('#display_type_choose').find('select:first').change(function() {
      var $this = $(this);
      if ($this.val() == 'normal') $normal_display.slideDown();
@@ -618,7 +598,7 @@ var generatePresetData = function() {
     $('.zo2_other_preset_element').each(function() {
         var element = $(this).val();
         var value = $(this).parent().parent().parent().find('.zo2_other_preset_value').val();
-        if(element != '' && value != '') {
+        if (element != '' && value != '') {
             extra[element] = value;
         }
     });
@@ -967,18 +947,18 @@ var generateSlug = function(str) {
 jQuery(document).ready(function() {
     var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
 
-    if(fullContainer.val() == 0){
+    if (fullContainer.val() == 0) {
         jQuery('#jform_params_background-lbl').parent().parent().hide();
         jQuery('#jform_params_background_color-lbl').parent().parent().hide();
     }
 
 
-    jQuery('input[name="jform[params][fullContainer]"]').click(function(){
+    jQuery('input[name="jform[params][fullContainer]"]').click(function() {
         var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
-        if(fullContainer.val() == 0){
+        if (fullContainer.val() == 0) {
             jQuery('#jform_params_background-lbl').parent().parent().hide();
             jQuery('#jform_params_background_color-lbl').parent().parent().hide();
-        }else{
+        } else {
             jQuery('#jform_params_background-lbl').parent().parent().show();
             jQuery('#jform_params_background_color-lbl').parent().parent().show();
         }
@@ -989,4 +969,10 @@ jQuery(document).ready(function() {
     jQuery('.zo2_select_profile').change(function() {
         jQuery('.zo2_profile_name').val(jQuery(this).val());
     });
+    
+    jQuery('#zo2-loadprofile').on('click', function () {
+        var url = jQuery(this).data('url');
+        var profile = jQuery('.zo2_select_profile').val();
+        zo2.document.redirect(url + '&profile=' +profile);
+    })
 });

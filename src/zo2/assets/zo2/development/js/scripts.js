@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
                 url: "index.php",
                 type: "POST",
                 data: {
-                    'zo2Ajax': 1                    
+                    'zo2Ajax': 1
                 }
             },
             init: function() {
@@ -99,15 +99,14 @@ jQuery(document).ready(function() {
                                 opacity: 0
                             }, 4000)
                         })
-
-
-
-
             },
             effect: {
                 showAndHide: function(element) {
 
                 }
+            },
+            redirect: function(url) {
+                window.location.href = url;
             }
         }
     })

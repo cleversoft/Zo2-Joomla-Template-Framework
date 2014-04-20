@@ -78,7 +78,7 @@ defined('_JEXEC') or die;
                         ?>
                     </select>
                     <span class="input-group-btn">                        
-                        <button class="btn btn-default">Load Profile</button>
+                        <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Load Profile</button>
                     </span>
                 </div>
             </div>
