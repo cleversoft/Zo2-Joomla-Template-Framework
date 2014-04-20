@@ -94,7 +94,7 @@ class Zo2Layout {
 
         if ($canCache) {
 
-            if ((filemtime(Zo2Template::getInstance()->getFile('cache://' . md5($cacheFile))) + $zo2->get('cache_interval', '3600')) < time()) {
+            if ((filemtime(Zo2Framework::getPath()->getFile('cache://' . md5($cacheFile))) + $zo2->get('cache_interval', '3600')) < time()) {
                 $canCache = false;
             } else {
                 $html = Zo2Template::getInstance()->loadCache($cacheFile);
@@ -111,7 +111,7 @@ class Zo2Layout {
                 $layoutType = '-fluid';
 
             $profile = new Zo2Profile();
-            $profile->load(Zo2Framework::getTemplatePath() . '/assets/profiles/' . $zo2->get('profile', 'default') . '.json');
+            $profile->load($zo2->get('profile', 'default'));
             $layout = $profile->layout;
 
             if ($layout) {
@@ -359,7 +359,7 @@ class Zo2Layout {
      * @return bool
      */
     private static function hideComponent() {
-        $params = Zo2Framework::getTemplate()->getConfig()->params;
+        $params = Zo2Framework::getTemplate()->params;
         $isFrontPage = Zo2Framework::isFrontPage();
         if ((int) $params->get('component_area', 0) && $isFrontPage) {
             return true;

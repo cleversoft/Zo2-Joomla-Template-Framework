@@ -14,6 +14,9 @@ defined('_JEXEC') or die('Restricted access');
 
 if (!class_exists('Zo2Profile')) {
 
+    /**
+     * Zo2 profile object
+     */
     class Zo2Profile extends JObject {
 
         /**
@@ -21,10 +24,14 @@ if (!class_exists('Zo2Profile')) {
          * @param type $file
          * @return boolean
          */
-        public function load($file) {
-            if (JFile::exists($file)) {
-                $this->name = JFile::stripExt(JFile::getName($file));
-                $this->layout = json_decode(JFile::read($file), true);
+        public function load($name) {
+            $profileFile = Zo2Framework::getPath()->getFile('assets://profiles/' . $name . '.json');
+            if ($profileFile == false) {
+                $profileFile = Zo2Framework::getPath()->getFile('assets://profiles/default.json');
+            }
+            if ($profileFile) {
+                $this->name = JFile::stripExt(JFile::getName($profileFile));
+                $this->layout = json_decode(JFile::read($profileFile), true);
                 return true;
             }
             return false;
@@ -35,8 +42,7 @@ if (!class_exists('Zo2Profile')) {
          * @return type
          */
         public function save() {
-            $zo2 = Zo2Framework::getInstance();
-            $templatePath = rtrim(JPATH_ROOT . '/templates/' . $this->get('template_name'), DIRECTORY_SEPARATOR);
+            $templatePath = rtrim(JPATH_ROOT . '/templates/' . $this->template, DIRECTORY_SEPARATOR);
             $filePath = $templatePath . '/assets/profiles/' . $this->name . '.json';
             $buffer = json_encode($this->layout, JSON_PRETTY_PRINT);
             return JFile::write($filePath, $buffer);

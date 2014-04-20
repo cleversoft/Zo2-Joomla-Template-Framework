@@ -10,7 +10,6 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-/* @var $this JFormFieldLayout */
 ?>
 <div id="layoutbuilder-container">
     <input type="text" value="<?php echo htmlspecialchars($this->value) ?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />

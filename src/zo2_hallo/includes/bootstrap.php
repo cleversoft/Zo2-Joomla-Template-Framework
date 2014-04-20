@@ -25,7 +25,7 @@ Zo2Framework::loadTemplateAssets();
 
 $this->zo2 = new JRegistry;
 $this->zo2->framework = Zo2Framework::getInstance();
-$this->zo2->template = $template;
+$this->zo2->template = new Zo2Template();
 $this->zo2->layout = Zo2Framework::getLayout();
 $this->zo2->utilities = Zo2Utilities::getInstance();
 $this->zo2->socialShares = new Zo2Socialshares();
