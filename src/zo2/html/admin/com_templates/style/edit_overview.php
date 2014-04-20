@@ -64,10 +64,12 @@ defined('_JEXEC') or die;
                 <div class="controls">
                     <select class="form-control zo2_select_profile" name="jform[profile-select]">
                         <?php
-                        $profiles = Zo2Framework::getInstance()->getProfiles();
-                        $currentProfile = Zo2Framework::getInstance()->get('profile');
+                        $jinput = JFactory::getApplication()->input;
+                        $zo2 = Zo2Framework::getInstance();
+                        $profileName = $jinput->get('profile', $zo2->get('profile', 'default'));
+                        $profiles = $zo2->getProfiles();
                         foreach ($profiles as $profile) {
-                            if ($profile->name == $currentProfile) {
+                            if ($profile->name == $profileName) {
                                 echo '<option value="' . $profile->name . '" selected>' . $profile->name . '</option>';
                             } else {
                                 echo '<option value="' . $profile->name . '">' . $profile->name . '</option>';
@@ -75,7 +77,7 @@ defined('_JEXEC') or die;
                         }
                         ?>
                     </select>
-                    <span class="input-group-btn">
+                    <span class="input-group-btn">                        
                         <button class="btn btn-default">Load Profile</button>
                     </span>
                 </div>
@@ -90,8 +92,8 @@ defined('_JEXEC') or die;
                     <div class="input-group">
                         <input type="text" class="form-control zo2_profile_name" placeholder="Profile name" name="jform[params][profile]">
                         <span class="input-group-btn">
-                        <button class="btn btn-default">Save</button>
-                    </span>
+                            <button class="btn btn-default">Save</button>
+                        </span>
                     </div>
                 </div>
 
