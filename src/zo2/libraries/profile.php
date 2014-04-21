@@ -44,7 +44,13 @@ if (!class_exists('Zo2Profile')) {
         public function save() {
             $templatePath = rtrim(JPATH_ROOT . '/templates/' . $this->template, DIRECTORY_SEPARATOR);
             $filePath = $templatePath . '/assets/profiles/' . $this->name . '.json';
-            $buffer = json_encode($this->layout, JSON_PRETTY_PRINT);
+
+            if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+                $buffer = json_encode($this->layout, JSON_PRETTY_PRINT);
+            } else {
+                $buffer = json_encode($this->layout);
+            }
+
             return JFile::write($filePath, $buffer);
         }
 
