@@ -134,7 +134,7 @@ if (!class_exists('Zo2UtilitySocialShares')) {
          * Only use under item
          * @return string
          */
-        public function getHorizontalBar() {
+        public function horizontalbar() {
             /* Config checking */
             $jinput = JFactory::getApplication()->input;
             $option = $jinput->get('option');
@@ -178,6 +178,9 @@ if (!class_exists('Zo2UtilitySocialShares')) {
         public function render() {
             $args = func_get_args();
             $style = $args[0];
+            /**
+             * @todo parameter must be prefixed by socialshares_<func>
+             */
             if (Zo2Framework::get('socialshare_' . $style, 1) == 1) {
                 if (method_exists($this, $style)) {
                     return $this->$style();

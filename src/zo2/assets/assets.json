@@ -17,7 +17,12 @@
         },
         "template": {
             "less": {
-                "template.less": "template.css"
+                "template.less": "template.css",
+                "presets\/black.less": "presets\/black.css",
+                "presets\/blue.less": "presets\/blue.css",
+                "presets\/default.less": "presets\/default.css",
+                "presets\/orange.less": "presets\/orange.css",
+                "presets\/red.less": "presets\/red.css"
             },
             "js": {
             }
