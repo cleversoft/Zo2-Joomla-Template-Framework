@@ -99,11 +99,10 @@ $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/backgrou
         jQuery('#zo2-bottom1').css({'background-color': presets[style_number].variables.bottom1});
         jQuery('#zo2-bottom2').css({'background-color': presets[style_number].variables.bottom2});
         jQuery('#zo2-footer').css({'background-color': presets[style_number].variables.footer});
-        if( style_selected === 'selected') {
-            document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastChild());
+        if(jQuery('.color-select li.selected').length > 0) {
+            document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastElementChild);
         }
         document.createStyleSheet('<?php echo JUri::root() ?>templates/zo2_hallo/assets/zo2/css/presets/'+style_name+'.css');
-        var style_selected = 'selected';
     }
 
     jQuery(document).ready(function() {
@@ -152,7 +151,6 @@ $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/backgrou
             jQuery('.color-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var presetjson = '<?php echo json_encode($presets_json);?>';
-
             set_presets(jQuery(this).find('a').attr('data-color'), jQuery(this).find('a').attr('data-layout'), presetjson);
         });
 
