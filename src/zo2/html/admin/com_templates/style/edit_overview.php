@@ -89,6 +89,11 @@ defined('_JEXEC') or die;
                     <strong>Create new profile</strong>
                 </div>               
             </div>
+            <div class="controls">
+                <div class="input-group">
+                    <input type="text" class="form-control zo2_profile_name" placeholder="Profile name" name="jform[params][profile]">                    
+                </div>
+            </div>
         </div>
     </div>
 </div>
