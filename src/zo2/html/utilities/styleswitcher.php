@@ -19,14 +19,52 @@ if (file_exists($presetPath)) {
         <ul class="options color-select">
             <?php
             foreach($presets_json  as $key => $preset ) {
-                echo '<li><a href="#" data-color="'.$key.'" style="background-color: '.$preset->color.';"></a></li>';
+                echo '<li><a href="#" data-color="'.$key.'" data-layout="'.$preset->name.'" style="background-color: '.$preset->color.';"></a></li>';
             }
             ?>
         </ul>
     </div>
 </div>
 <script>
-    function set_presets(style_number, presetjson) {
+    if(typeof document.createStyleSheet === 'undefined') {
+        document.createStyleSheet = (function() {
+            function createStyleSheet(href) {
+                if(typeof href !== 'undefined') {
+                    var element = document.createElement('link');
+                    element.type = 'text/css';
+                    element.rel = 'stylesheet';
+                    element.href = href;
+                }
+                else {
+                    var element = document.createElement('style');
+                    element.type = 'text/css';
+                }
+
+                document.getElementsByTagName('head')[0].appendChild(element);
+                var sheet = document.styleSheets[document.styleSheets.length - 1];
+
+                if(typeof sheet.addRule === 'undefined')
+                    sheet.addRule = addRule;
+
+                if(typeof sheet.removeRule === 'undefined')
+                    sheet.removeRule = sheet.deleteRule;
+
+                return sheet;
+            }
+
+            function addRule(selectorText, cssText, index) {
+                if(typeof index === 'undefined')
+                    index = this.cssRules.length;
+
+                this.insertRule(selectorText + ' {' + cssText + '}', index);
+            }
+
+            return createStyleSheet;
+        })();
+    }
+
+    function set_presets(style_number, style_name, presetjson) {
+
         var presets = JSON.parse(presetjson);
 
         jQuery('body').css({'background-color': presets[style_number].variables.background});
@@ -44,6 +82,11 @@ if (file_exists($presetPath)) {
         jQuery('#zo2-bottom1').css({'background-color': presets[style_number].variables.bottom1});
         jQuery('#zo2-bottom2').css({'background-color': presets[style_number].variables.bottom2});
         jQuery('#zo2-footer').css({'background-color': presets[style_number].variables.footer});
+        if( style_selected === 'selected') {
+            document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastChild());
+        }
+        document.createStyleSheet('<?php echo JUri::root() ?>templates/zo2_hallo/assets/zo2/css/presets/'+style_name+'.css');
+        var style_selected = 'selected';
     }
 
     jQuery(document).ready(function() {
@@ -88,10 +131,12 @@ if (file_exists($presetPath)) {
         });
 
         jQuery('.color-select li').click(function() {
+
             jQuery('.color-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var presetjson = '<?php echo json_encode($presets_json);?>';
-            set_presets(jQuery(this).find('a').attr('data-color'), presetjson);
+
+            set_presets(jQuery(this).find('a').attr('data-color'), jQuery(this).find('a').attr('data-layout'), presetjson);
         });
     });
 </script>
