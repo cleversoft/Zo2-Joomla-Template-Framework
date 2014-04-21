@@ -51,8 +51,14 @@ if (!class_exists('Zo2JTemplate')) {
                                 $profile->name = $params->get('profile', 'default');
                                 $profile->layout = json_decode($params->get('layout'));
                                 $profile->save();
+                                $jinput = JFactory::getApplication()->input;
                                 JFactory::getApplication()->enqueueMessage('Style successfully saved');
-                                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
+
+                                if ($jinput->get('task') == 'style.apply') {
+                                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id, false));
+                                } else {
+                                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
+                                }
                             }
                         }
                     } else {
