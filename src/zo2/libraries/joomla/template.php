@@ -28,10 +28,22 @@ if (!class_exists('Zo2JTemplate')) {
                  * @todo Replace by JInput
                  */
                 if (isset($_REQUEST['jform'])) {
+                    JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
                     JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
+
+                    $lang = JFactory::getLanguage();
+                    $extension = 'com_templates';
+                    $base_dir = JPATH_ADMINISTRATOR;
+                    $language_tag = 'en-GB';
+                    $reload = true;
+                    $lang->load($extension, $base_dir, $language_tag, $reload);
+
                     /* Get table */
                     $table = JTable::getInstance('Style', 'TemplatesTable');
                     $data = $_REQUEST['jform'];
+
+                    $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
+                    $model->save($data);
                     if ($table->load(array(
                                 'template' => $data['template'],
                                 'client_id' => $data['client_id'],
