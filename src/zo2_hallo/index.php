@@ -33,7 +33,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
     <section class="wrapper <?php echo (($this->zo2->framework->get('fullContainer') == 1) ? 'boxed container' : ''); ?>">
         <!-- SocialShare -->
         <?php if (Zo2Framework::get('socialshare_floatbar', 1) == 1) { ?>
-            <?php echo $this->zo2->socialShares->getFloatbar(); ?>
+            <?php echo $this->zo2->utilities->socialshares->render('floatbar'); ?>
         <?php } ?>
         <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
         <?php echo $this->zo2->layout->render(); ?>

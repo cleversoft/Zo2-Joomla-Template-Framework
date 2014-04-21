@@ -28,10 +28,8 @@ $this->zo2->framework = Zo2Framework::getInstance();
 $this->zo2->template = new Zo2Template();
 $this->zo2->layout = Zo2Framework::getLayout();
 $this->zo2->utilities = Zo2Utilities::getInstance();
-$this->zo2->socialShares = new Zo2Socialshares();
 
 Zo2Framework::getTemplateLayouts();
-
 
 $doc = JFactory::getDocument();
 if ($this->zo2->framework->get('fullContainer') == 1 && $this->zo2->framework->get('enable_style_switcher') != 1) { //if style is boxed and style switcher is disable -> show background custom
