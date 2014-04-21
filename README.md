@@ -1,5 +1,5 @@
 #Zo2 Framework
-Zo2 Framework is a Joomla template framework, built from scratch, and heavily support Bootstrap framework and LESS.
+Zo2 Framework is a Joomla template framework, built from scratch, and heavily support Bootstrap framework and LESS. Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.
 
 ##Features
 
