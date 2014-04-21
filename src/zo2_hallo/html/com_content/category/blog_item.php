@@ -14,6 +14,8 @@ $params = $this->item->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 JHtml::_('behavior.framework');
+
+$utilities = Zo2Utilities::getInstance();
 ?>
 <?php if ($this->item->state == 0) : ?>
     <span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
@@ -35,8 +37,7 @@ JHtml::_('behavior.framework');
 <?php
 if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
     if (Zo2Framework::get('socialshare_article_position') == 'top') {
-        $socialShares = new Zo2Socialshares();
-        echo $socialShares->getHorizontalBar();
+        echo $this->zo2->utilities->socialshares->render('horizontalbar');
     }
 }
 ?>
@@ -91,8 +92,7 @@ if ($params->get('show_readmore') && $this->item->readmore) :
 <?php
 if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
     if (Zo2Framework::get('socialshare_article_position') == 'bottom') {
-        $socialShares = new Zo2Socialshares();
-        echo $socialShares->getHorizontalBar();
+        echo $this->zo2->utilities->socialshares->render('horizontalbar');
     }
 }
 ?>
