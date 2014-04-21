@@ -4,6 +4,9 @@ $presetPath = Zo2Framework::getTemplatePath() . '/assets/template.presets.json';
 if (file_exists($presetPath)) {
     $presets_json = json_decode(file_get_contents($presetPath));
 }
+
+$backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
+
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog fa-spin"></span></h4>
@@ -21,6 +24,20 @@ if (file_exists($presetPath)) {
             foreach($presets_json  as $key => $preset ) {
                 echo '<li><a href="#" data-color="'.$key.'" data-layout="'.$preset->name.'" style="background-color: '.$preset->color.';"></a></li>';
             }
+            ?>
+        </ul>
+
+        <h5>Background</h5>
+        <ul class="options background-select">
+            <?php
+            $bgPatterns = glob($backgroundsDir.'/*.*');
+
+            if(count($bgPatterns) > 0) {
+                foreach($bgPatterns as $pattern ) {
+                    echo '<li><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                }
+            }
+
             ?>
         </ul>
     </div>
@@ -137,6 +154,15 @@ if (file_exists($presetPath)) {
             var presetjson = '<?php echo json_encode($presets_json);?>';
 
             set_presets(jQuery(this).find('a').attr('data-color'), jQuery(this).find('a').attr('data-layout'), presetjson);
+        });
+
+        jQuery('.background-select li').click(function() {
+
+            jQuery('.background-select li').removeClass('selected');
+            jQuery(this).addClass('selected');
+            var background = jQuery(this).find('img').attr('src');
+            jQuery('body').css({'background': 'url('+background+')'});
+
         });
     });
 </script>
