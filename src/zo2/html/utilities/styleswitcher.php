@@ -18,7 +18,7 @@ $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/backgrou
             <li class="fullwidth-layout" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="<?php echo JUri::root() ?>/plugins/system/zo2/assets/zo2/images/page-fullwidth.png" alt="Full Width Layout"></a></li>
         </ul>
 
-        <h5>Color Examples</h5>
+        <h5>Primary Color</h5>
         <ul class="options color-select">
             <?php
             foreach($presets_json  as $key => $preset ) {
@@ -27,7 +27,7 @@ $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/backgrou
             ?>
         </ul>
 
-        <h5>Background</h5>
+        <h5>Patterns (Boxed Version)</h5>
         <ul class="options background-select">
             <?php
             $bgPatterns = glob($backgroundsDir.'/*.*');
