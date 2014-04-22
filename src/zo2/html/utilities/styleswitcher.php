@@ -6,6 +6,7 @@ if (file_exists($presetPath)) {
 }
 
 $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
+$presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
 
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
@@ -102,7 +103,7 @@ $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/backgrou
         if(jQuery('.color-select li.selected').length > 0) {
             document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastElementChild);
         }
-        document.createStyleSheet('<?php echo JUri::root() ?>templates/zo2_hallo/assets/zo2/css/presets/'+style_name+'.css');
+        document.createStyleSheet('<?php echo Zo2HelperPath::toUrl($presetDir); ?>'+style_name+'.css');
     }
 
     jQuery(document).ready(function() {
