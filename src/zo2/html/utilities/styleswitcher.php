@@ -27,20 +27,21 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
             }
             ?>
         </ul>
+        <div class="background-select-wrap" style="display: none">
+            <h5>Patterns (Boxed Version)</h5>
+            <ul class="options background-select">
+                <?php
+                $bgPatterns =  glob($backgroundsDir.'/*.*');
 
-        <h5>Patterns (Boxed Version)</h5>
-        <ul class="options background-select">
-            <?php
-            $bgPatterns = glob($backgroundsDir.'/*.*');
-
-            if(count($bgPatterns) > 0) {
-                foreach($bgPatterns as $pattern ) {
-                    echo '<li><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                if(count($bgPatterns) > 0) {
+                    foreach($bgPatterns as $pattern ) {
+                        echo '<li><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                    }
                 }
-            }
 
-            ?>
-        </ul>
+                ?>
+            </ul>
+        </div>
     </div>
 </div>
 <script>
@@ -111,6 +112,7 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
         //style switcher
         if(jQuery('body').hasClass('boxed')) {
             jQuery('#boxed-layout').addClass('selected');
+            jQuery('.background-select-wrap').show();
         }else {
             jQuery('#fullwidth-layout').addClass('selected');
         }
@@ -139,11 +141,13 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
             jQuery(this).addClass('selected');
             var color = jQuery('.color-select li.selected a').attr('data-color');
             if(jQuery(this).attr('id') == 'boxed-layout') {
-                jQuery('body').addClass('boxed');
+                jQuery('body').addClass('boxed').addClass('body-boxed');
                 jQuery('body .wrapper').addClass('boxed').addClass('container');
+                jQuery('.background-select-wrap').fadeIn(500);
             } else {
-                jQuery('body').removeClass('boxed');
+                jQuery('body').removeClass('boxed').removeClass('body-boxed');
                 jQuery('body .wrapper').removeClass('boxed').removeClass('container');
+                jQuery('.background-select-wrap').fadeOut(500);
             }
         });
 
@@ -160,8 +164,7 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
             jQuery('.background-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var background = jQuery(this).find('img').attr('src');
-            jQuery('body').css({'background': 'url('+background+')'});
-
+            jQuery('head').find(':last-child').append('<style> .body-boxed {background-image: url("'+background+'")}  </style>')
         });
     });
 </script>
