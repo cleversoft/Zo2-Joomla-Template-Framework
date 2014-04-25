@@ -8,7 +8,8 @@
             "layout": "box_count"
         },
         "description": "",
-        "ordering": "1"
+        "ordering": "1",
+        "enable": "1"
     },
     {
         "name": "Twitter",
@@ -21,9 +22,10 @@
             "lang": "en",
             "hashtag": "",
             "size": "small"
-        },
+        },        
         "description": "",
-        "ordering": "2"
+        "ordering": "2",
+        "enable": "1"
     },
     {
         "name": "Buffer",
@@ -32,7 +34,8 @@
             "icon": "spreddit7.gif"
         },
         "description": "",
-        "ordering": "3"
+        "ordering": "3",
+        "enable": "0"
     },
     {
         "name": "Linkedin",
@@ -40,7 +43,8 @@
             "count": "none"
         },
         "description": "",
-        "ordering": "4"
+        "ordering": "4",
+        "enable": "0"
     },
     {
         "name": "Google",
@@ -49,7 +53,8 @@
             "annotation": "bubble"
         },
         "description": "",
-        "ordering": "5"
+        "ordering": "5",
+        "enable": "1"
     },
     {
         "name": "Youtube",
@@ -57,7 +62,8 @@
             "channel": "GoogleDevelopers"
         },
         "description": "",
-        "ordering": "6"
+        "ordering": "6",
+        "enable": "0"       
     },
     {
         "name": "Pinterest",
@@ -65,14 +71,16 @@
             "channelpin-do": "buttonBookmark"
         },
         "description": "",
-        "ordering": "7"
+        "ordering": "7",
+        "enable": "0"
     },
     {
         "name": "Tumblr",
         "default": {
         },
         "description": "",
-        "ordering": "8"
+        "ordering": "8",
+        "enable": "0"
     }
 
 ]

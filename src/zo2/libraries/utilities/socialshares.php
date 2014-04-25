@@ -64,9 +64,11 @@ if (!class_exists('Zo2UtilitySocialShares')) {
         public function getSocials() {
             $file = Zo2Assets::getInstance()->getAssetFile('zo2/socialshares.json');
             $socialshares = json_decode(JFile::read($file));
+
             /* sorting by name */
             foreach ($socialshares as $socialshare) {
-                $list[$socialshare->name] = $socialshare;
+                if ($socialshare->enable == 1)
+                    $list[$socialshare->name] = $socialshare;
             }
             /* And now get ordering from saved */
             $socialOrders = json_decode(Zo2Framework::get('social_order'));
