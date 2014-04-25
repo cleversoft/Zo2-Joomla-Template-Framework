@@ -158,6 +158,9 @@ defined('_JEXEC') or die;
                 <?php if ($update) { ?>
                     <div id="updater-desc">
                         Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
+                        <blockquote>
+                            <small><strong>Attention:</strong> Before upgrading please make sure your template is compatible with Zo2 version x.y.z</small>
+                        </blockquote>
                     </div>
                 <?php } ?>
             </div>
