@@ -10,6 +10,8 @@
  * @license     GPL v2
  */
 
+
+
 @import 'variables.less';
 @import 'mixins.less';
 @import 'joomla.less';
@@ -61,7 +63,7 @@ sub {
     bottom: -0.25em;
 }
 a {
-    color: #7fbe54;
+    color: @mainColor;
     text-decoration: none;
     outline: none !important;
     .transition(color 0.15s linear 0s);
@@ -193,22 +195,22 @@ nav.zo2-menu{
         > .open{
             a{
                 background: none;
-                color: #7fbe54;
+                color: @mainColor;
                 &:hover,
                     &:focus{
                     background: none;
-                    color: #7fbe54;
+                    color: @mainColor;
                 }
             }
         }
         .active{
             a{
                 background: none;
-                color: #7fbe54;
+                color: @mainColor;
                 &:hover,
                     &:focus{
                     background: none;
-                    color: #7fbe54;
+                    color: @mainColor;
                 }
             }
         }
@@ -301,7 +303,7 @@ nav.zo2-menu{
                 text-shadow:0 3px 0 rgba(0,0,0,0.1);
                 -webkit-transition:background-color 0.25s ease,color 0.25s ease;
                 transition:background-color 0.25s ease,color 0.25s ease;
-                color:#7fbe54;
+                color:@mainColor;
                 &:before{
                     display:block;
                     content:'';
@@ -317,7 +319,7 @@ nav.zo2-menu{
                     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
                     opacity:0;
                     transform:scale(0.8);
-                    box-shadow:0 0 0 3px #7FBE54;
+                    box-shadow:0 0 0 3px @mainColor;
                 }
                 i{
                     vertical-align:top;
@@ -342,9 +344,9 @@ nav.zo2-menu{
         }
         &:hover{
             .zo2-circle{
-                background-color:#7FBE54;
+                background-color:@mainColor;
                 border: 5px solid transparent;
-                color: #fff;
+                color: #fff !important;
             }
             .zo2-circle:before{
                 filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
@@ -633,7 +635,7 @@ footer{
 
 //Class suffix
 .box-color{
-    background: #7FBE54;
+    background: @mainColor;
     color: #aaa;
     padding: 20px;
 }
@@ -683,7 +685,7 @@ footer{
 /*Override Bootstrap*/
 .btn-success{
     border: none;
-    background-color: #7ebe54;
+    background-color: @mainColor;
     .border-radius(3px);
     .transition(all 0.4s ease 0s);
     padding: 10px 15px;
@@ -750,7 +752,7 @@ footer{
                 &:hover{
                     background: none;
                     .icon-bar{
-                        background-color:#7FBE54;
+                        background-color:@mainColor;
                     }
                 }
             }

@@ -31,7 +31,6 @@
   line-height: 30px;
   margin-bottom: 0;
   position: fixed;
-  text-transform: uppercase;
   top: 80px;
   width: 230px;
   z-index: 9999;
@@ -78,7 +77,7 @@
           }
         }
       }
-      &.color-select{
+      &.color-select, &.background-select{
         li{
           padding: 2px;
           width: 27px;
@@ -88,6 +87,11 @@
             background: #8DC63F;
           }
           a{
+            display: block;
+            height: 27px;
+            width: 100%;
+          }
+          img{
             display: block;
             height: 27px;
             width: 100%;

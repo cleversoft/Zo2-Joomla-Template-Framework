@@ -1,11 +1,11 @@
 [
     {
-        "name": "default",
-        "default": false,
-        "css": "",
-        "less": "",
-        "color": "#ffffff",
-        "thumbnail": "/assets/zo2/images/presets/default.jpg",
+        "name": "green",
+        "default": true,
+        "css": "presets/green",
+        "less": "presets/green",
+        "color": "#7FBE54",
+        "thumbnail": "/assets/zo2/images/presets/green.jpg",
         "variables": {
             "background": "",
             "header": "",
@@ -20,39 +20,19 @@
         }
     },
     {
-        "name": "black",
-        "default": true,
-        "css": "presets/black",
-        "less": "presets/black",
-        "color": "#000000",
-        "thumbnail": "/assets/zo2/images/presets/black.jpg",
-        "variables": {
-            "background": "#dedede",
-            "header": "#cfcfcf",
-            "header_top": "",
-            "link": "#212121",
-            "link_hover": "#5eaf28",
-            "text": "#ffffff",
-            "bottom1": "",
-            "bottom2": "",
-            "footer": "",
-            "extra": ""
-        }
-    },
-    {
         "name": "blue",
         "default": false,
         "css": "presets/blue",
         "less": "presets/blue",
-        "color": "#3288c7",
+        "color": "#0099FF",
         "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
-            "background": "#3288c7",
-            "header": "#95c5e8",
+            "background": "",
+            "header": "",
             "header_top": "",
-            "link": "#184587",
-            "link_hover": "#5eaf28",
-            "text": "#fff",
+            "link": "",
+            "link_hover": "",
+            "text": "",
             "bottom1": "",
             "bottom2": "",
             "footer": "",
@@ -64,20 +44,19 @@
         "default": false,
         "css": "presets/orange",
         "less": "presets/orange",
-        "color": "#d35400",
+        "color": "#D25400",
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
-            "background": "#ffffff",
-            "header": "#ecf0f1",
-            "header_top": "#ecf0f1",
-            "link": "#d35400",
-            "link_hover": "#e67e22",
-            "text": "#4d4d62",
-            "bottom1": "#2c3e50",
-            "bottom2": "#2c3e50",
-            "footer": "#edeff1",
+            "background": "",
+            "header": "",
+            "header_top": "",
+            "link": "",
+            "link_hover": "",
+            "text": "",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": "",
             "extra": ""
         }
     }
-
 ]

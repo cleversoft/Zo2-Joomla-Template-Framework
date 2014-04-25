@@ -4,6 +4,10 @@ $presetPath = Zo2Framework::getTemplatePath() . '/assets/template.presets.json';
 if (file_exists($presetPath)) {
     $presets_json = json_decode(file_get_contents($presetPath));
 }
+
+$backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
+$presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
+
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog fa-spin"></span></h4>
@@ -15,7 +19,7 @@ if (file_exists($presetPath)) {
             <li class="fullwidth-layout" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="<?php echo JUri::root() ?>/plugins/system/zo2/assets/zo2/images/page-fullwidth.png" alt="Full Width Layout"></a></li>
         </ul>
 
-        <h5>Color Examples</h5>
+        <h5>Primary Color</h5>
         <ul class="options color-select">
             <?php
             foreach($presets_json  as $key => $preset ) {
@@ -23,6 +27,21 @@ if (file_exists($presetPath)) {
             }
             ?>
         </ul>
+        <div class="background-select-wrap" style="display: none">
+            <h5>Patterns (Boxed Version)</h5>
+            <ul class="options background-select">
+                <?php
+                $bgPatterns =  glob($backgroundsDir.'/*.*');
+
+                if(count($bgPatterns) > 0) {
+                    foreach($bgPatterns as $pattern ) {
+                        echo '<li><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                    }
+                }
+
+                ?>
+            </ul>
+        </div>
     </div>
 </div>
 <script>
@@ -82,11 +101,10 @@ if (file_exists($presetPath)) {
         jQuery('#zo2-bottom1').css({'background-color': presets[style_number].variables.bottom1});
         jQuery('#zo2-bottom2').css({'background-color': presets[style_number].variables.bottom2});
         jQuery('#zo2-footer').css({'background-color': presets[style_number].variables.footer});
-        if( style_selected === 'selected') {
-            document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastChild());
+        if(jQuery('.color-select li.selected').length > 0) {
+            document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastElementChild);
         }
-        document.createStyleSheet('<?php echo JUri::root() ?>templates/zo2_hallo/assets/zo2/css/presets/'+style_name+'.css');
-        var style_selected = 'selected';
+        document.createStyleSheet('<?php echo Zo2HelperPath::toUrl($presetDir); ?>'+style_name+'.css');
     }
 
     jQuery(document).ready(function() {
@@ -94,6 +112,7 @@ if (file_exists($presetPath)) {
         //style switcher
         if(jQuery('body').hasClass('boxed')) {
             jQuery('#boxed-layout').addClass('selected');
+            jQuery('.background-select-wrap').show();
         }else {
             jQuery('#fullwidth-layout').addClass('selected');
         }
@@ -122,11 +141,13 @@ if (file_exists($presetPath)) {
             jQuery(this).addClass('selected');
             var color = jQuery('.color-select li.selected a').attr('data-color');
             if(jQuery(this).attr('id') == 'boxed-layout') {
-                jQuery('body').addClass('boxed');
+                jQuery('body').addClass('boxed').addClass('body-boxed');
                 jQuery('body .wrapper').addClass('boxed').addClass('container');
+                jQuery('.background-select-wrap').fadeIn(500);
             } else {
-                jQuery('body').removeClass('boxed');
+                jQuery('body').removeClass('boxed').removeClass('body-boxed');
                 jQuery('body .wrapper').removeClass('boxed').removeClass('container');
+                jQuery('.background-select-wrap').fadeOut(500);
             }
         });
 
@@ -135,8 +156,15 @@ if (file_exists($presetPath)) {
             jQuery('.color-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var presetjson = '<?php echo json_encode($presets_json);?>';
-
             set_presets(jQuery(this).find('a').attr('data-color'), jQuery(this).find('a').attr('data-layout'), presetjson);
+        });
+
+        jQuery('.background-select li').click(function() {
+
+            jQuery('.background-select li').removeClass('selected');
+            jQuery(this).addClass('selected');
+            var background = jQuery(this).find('img').attr('src');
+            jQuery('head').find(':last-child').append('<style> .body-boxed {background-image: url("'+background+'")}  </style>')
         });
     });
 </script>

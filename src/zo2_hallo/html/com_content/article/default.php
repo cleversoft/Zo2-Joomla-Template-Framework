@@ -18,7 +18,7 @@ $canEdit = $params->get('access-edit');
 $user = JFactory::getUser();
 $info = $params->get('info_block_position', 0);
 JHtml::_('behavior.caption');
-
+$utilities = Zo2Utilities::getInstance();
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx ?>">
     <?php if ($this->params->get('show_page_heading') && $params->get('show_title')) : ?>
@@ -46,10 +46,9 @@ JHtml::_('behavior.caption');
                 <?php endif; ?>
             </h1>
             <?php
-            if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories',array()))) {
+            if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
                 if (Zo2Framework::get('socialshare_article_position') == 'top') {
-                    $socialShares = new Zo2Socialshares();
-                    echo $socialShares->getHorizontalBar();
+                    echo $this->zo2->utilities->socialshares->render('horizontalbar');
                 }
             }
             ?>
@@ -316,10 +315,9 @@ JHtml::_('behavior.caption');
         <?php endif; ?>
     <?php endif; ?>
     <?php
-    if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories',array()))) {
+    if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
         if (Zo2Framework::get('socialshare_article_position') == 'bottom') {
-            $socialShares = new Zo2Socialshares();
-            echo $socialShares->getHorizontalBar();
+            echo $this->zo2->utilities->socialshares->render('horizontalbar');
         }
     }
     ?>

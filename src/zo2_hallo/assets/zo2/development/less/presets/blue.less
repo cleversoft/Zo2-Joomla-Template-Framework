@@ -1,2 +1,86 @@
-body{background: #3980ff;color:#ffffff}
-a{color:#f0f0f0}
+@mainColor: #0099FF;
+
+a {
+  color: @mainColor;
+}
+/*Zo2 Menu*/
+nav.zo2-menu{
+  .navbar-nav{
+    > .open{
+      a{
+        color: @mainColor;
+        &:hover,
+        &:focus{
+          color: @mainColor;
+        }
+      }
+    }
+    .active{
+      a{
+        color: @mainColor;
+        &:hover,
+        &:focus{
+          color: @mainColor;
+        }
+      }
+    }
+    ul.mega-nav{
+      li{
+        a{
+          &:hover,
+          &:active,
+          &:focus{
+            color: @mainColor;
+          }
+        }
+        &.active{
+          a{
+            color: @mainColor;
+          }
+        }
+      }
+    }
+  }
+}
+/*Features*/
+#zo2-features{
+  .top-features{
+    .zo2-feature{
+      .zo2-circle{
+        color:@mainColor;
+        &:before{
+          box-shadow:0 0 0 3px @mainColor;
+        }
+      }
+    }
+    &:hover{
+      .zo2-circle{
+        background-color:@mainColor;
+      }
+    }
+  }
+}
+//Class suffix
+.box-color{
+  background: @mainColor;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  body{
+    nav.zo2-menu{
+      .navbar-toggle{
+        &:hover{
+          .icon-bar{
+            background-color:@mainColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*Override Bootstrap*/
+.btn-success{
+  background-color: @mainColor;
+}
