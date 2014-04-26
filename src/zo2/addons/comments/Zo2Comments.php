@@ -113,6 +113,7 @@ class Zo2Comments {
         return 0;
     }
 
+    /*
     function getItemComments($itemId) {
 
         //$comments = JTable::getInstance('K2Comments', 'Table');
@@ -142,12 +143,12 @@ class Zo2Comments {
 
         return $comments;
     }
+    */
 
     function renderHtml() {
-        $layout = Zo2Layout::getInstance();
         $assets = Zo2Assets::getInstance();
         $params = Zo2Framework::getInstance()->getTemplate()->params;;
-        $tab_order = explode(',', $params->get('tab_order', 'facebook,gplus,disqus,k2comment'));
+        $tab_order = explode(',', $params->get('tab_order', 'facebook,gplus,disqus'));
         $url = JUri::getInstance()->toString();
         //$document = JFactory::getDocument();
         $assets->addStyleSheet('addons/comments/css/comments.css');
@@ -164,11 +165,6 @@ class Zo2Comments {
 
         $html .= '<h3 name="comments">' . JText::_('ZO2 Comments') . '</h3>';
         $html .= '<ul class="nav nav-tabs nav-justified ">';
-
-        if (JFactory::getApplication()->input->getCmd('option') == 'com_k2') {
-            unset($tab_order['k2comment']);
-        }
-
 
         foreach ($tab_order as $key => $tab) {
             $class = '';
@@ -236,6 +232,7 @@ class Zo2Comments {
                     }
 
                     break;
+                /*
                 case 'k2comment';
 
                     jimport('joomla.application.component.helper');
@@ -372,6 +369,7 @@ class Zo2Comments {
                     }
 
                     break;
+                */
             }
 
             $html .= '</div>';
@@ -380,9 +378,6 @@ class Zo2Comments {
         $html .= '</div>';
 
         $html .= '</div>';
-
-
         return $html;
     }
-
 }

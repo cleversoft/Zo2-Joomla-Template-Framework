@@ -204,7 +204,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                     <option value="0">JNO</option>
                 </field>
 
-                <field name="tab_order" type="taborder" default="facebook,gplus,disqus,k2comment"
+                <field name="tab_order" type="taborder" default="facebook,gplus,disqus"
                        label="Tabs Order"
                        description="Only tabs listed will be showed"
                        desc=""
@@ -225,11 +225,6 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 <field name="disqus_label" type="text" default="Disqus"
                        label="Disqus Label"
                        description="" />
-
-                <field name="k2comment_label" type="text" default="Zo2 Framework"
-                       label="K2 Comment Label"
-                       description="" />
-
                 <!-- Socials share -->
                 <field name="socialshare_floatbar" type="list" default="normal" label="Enable floatbar">
                     <option value="1">JYES</option>

@@ -24,8 +24,8 @@ class JFormFieldTaborder extends JFormFieldText
     {
         $html = '<div style="margin: 5px 0;">
                     <strong>Notes</strong>: Comma Separated List, First listed is the default, If left empty it will use default value below, only tabs listed will be shown. <br />
-                    <strong>Possible Values </strong>: gplus,facebook,disqus,k2comment <br />
-                    <strong>Default Value </strong>: gplus,facebook,k2comment <br />
+                    <strong>Possible Values </strong>: gplus,facebook,disqus <br />
+                    <strong>Default Value </strong>: gplus,facebook <br />
                 </div>';
 
         return parent::getInput() . $html ;
