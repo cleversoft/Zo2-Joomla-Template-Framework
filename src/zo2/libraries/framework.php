@@ -590,14 +590,20 @@ if (!class_exists('Zo2Framework')) {
             return $xml;
         }
 
+        /**
+         * 
+         * @return type
+         */
         public static function checkVersion() {
-            $currentVer = self::getManifest()->version;
             $remoteXML = JFactory::getXML('http://update.zo2framework.org/zo2/extension.xml');
+            $result['compare'] = 0;
+            $result['currentVersion'] = (string) self::getManifest()->version;
+            $result['latestVersion'] = 'Unknown';
             if ($remoteXML) {
-                $remoteVersion = $remoteXML->update[0]->version;
-                return version_compare($currentVer, $remoteVersion);
+                $result['latestVersion'] = (string) $remoteXML->update[0]->version;
+                $result['compare'] = version_compare($result['currentVersion'], $result['latestVersion']);
             }
-            return 0;
+            return $result;
         }
 
         public function getProfiles() {

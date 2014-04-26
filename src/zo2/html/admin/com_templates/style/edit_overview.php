@@ -137,14 +137,15 @@ defined('_JEXEC') or die;
             </ul>
         </div>
         <div class="span4">
-            <div id="updater" class="alert">
+            <div id="updater" class="alert">                
                 <div id="updater-bar">Zo2 v<span><?php echo Zo2Framework::getManifest()->version; ?></span></div>
                 <?php
                 $update = false;
-                switch (Zo2Framework::checkVersion()) {
+                $version = Zo2Framework::checkVersion();               
+                switch ($version['compare']) {
                     case -1:
                         $update = true;
-                        $message = 'Your current is out of date. Newer version is Available.';
+                        $message = 'Your current is out of date. Newer version ' . $version['latestVersion'] . ' is Available.';
                         break;
                     case 0:
                         $message = 'Your current updated.';
@@ -159,7 +160,7 @@ defined('_JEXEC') or die;
                     <div id="updater-desc">
                         Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
                         <blockquote>
-                            <small><strong>Attention:</strong> Before upgrading please make sure your template is compatible with Zo2 version x.y.z</small>
+                            <small><strong>Attention:</strong> Before upgrading please make sure your template is compatible with Zo2 version <?php echo $version['latestVersion']; ?></small>
                         </blockquote>
                     </div>
                 <?php } ?>
