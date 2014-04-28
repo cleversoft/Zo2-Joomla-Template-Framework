@@ -100,15 +100,6 @@ defined('_JEXEC') or die;
                     <?php echo $this->form->getInput('disqus_label', 'params'); ?>
                 </div>
             </div>
-
-            <div class="control-group">
-                <div class="control-label">
-                    <?php echo $this->form->getLabel('disqus_label', 'params'); ?>
-                </div>
-                <div class="controls">
-                    <?php echo $this->form->getInput('disqus_label', 'params'); ?>
-                </div>
-            </div>
         </div>
     </div>
 </div>
