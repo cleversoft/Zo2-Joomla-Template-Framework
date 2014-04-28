@@ -111,7 +111,7 @@ if (!class_exists('Zo2UtilitySocialShares')) {
                             $list[$social->website]->default = $default;
                             $_list[$social->index] = $list[$social->website];
                         } else {
-                            echo $social->website . '<br />';
+                            //echo $social->website . '<br />';
                         }
                     }
                 }
