@@ -100,10 +100,20 @@ defined('_JEXEC') or die;
                     <?php echo $this->form->getInput('disqus_label', 'params'); ?>
                 </div>
             </div>
+
+            <div class="control-group">
+                <div class="control-label">
+                    <?php echo $this->form->getLabel('disqus_label', 'params'); ?>
+                </div>
+                <div class="controls">
+                    <?php echo $this->form->getInput('disqus_label', 'params'); ?>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<!--
 <div class="accordion-group">
     <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-social-sharing">
@@ -115,7 +125,7 @@ defined('_JEXEC') or die;
 
 
             <div class="tab-pane active" id="general">
-                <!-- Enable / Disable Socialshares -->
+                <!-- Enable / Disable Socialshares --
                 <div class="control-group">
                     <div class="control-label">
                         <?php echo $this->form->getLabel('socialshare_floatbar', 'params'); ?>
@@ -164,7 +174,7 @@ defined('_JEXEC') or die;
                         <?php echo $this->form->getInput('socialshare_article_position', 'params'); ?>
                     </div>
                 </div>
-                <!-- SocialShares display filter -->
+                <!-- SocialShares display filter --
                 <div class="control-group">
                     <div class="control-label">
                         <?php echo $this->form->getLabel('socialshare_filter_categories', 'params'); ?>
@@ -175,7 +185,7 @@ defined('_JEXEC') or die;
                 </div>
             </div>
             <div class="tab-pane" id="socials">
-                <!-- Facebook -->
+                <!-- Facebook --
                 <div class="control-group">
                     <div class="control-label">
                         <?php echo $this->form->getLabel('fb_action', 'params'); ?>
@@ -211,12 +221,10 @@ defined('_JEXEC') or die;
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </div>
+-->
 
 <div class="accordion-group">
     <div class="accordion-heading">
