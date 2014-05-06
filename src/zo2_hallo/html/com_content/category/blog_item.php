@@ -34,13 +34,6 @@ $utilities = Zo2Utilities::getInstance();
 <?php endif; ?>
 
 <?php echo JLayoutHelper::render('joomla.content.intro_image', $this->item); ?>
-<?php
-if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
-    if (Zo2Framework::get('socialshare_article_position') == 'top') {
-        echo $this->zo2->utilities->socialshares->render('horizontalbar');
-    }
-}
-?>
 
 <?php if (!$params->get('show_intro')) : ?>
     <?php echo $this->item->event->afterDisplayTitle; ?>
@@ -89,10 +82,3 @@ if ($params->get('show_readmore') && $this->item->readmore) :
 <?php endif; ?>
 
 <?php echo $this->item->event->afterDisplayContent; ?>
-<?php
-if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
-    if (Zo2Framework::get('socialshare_article_position') == 'bottom') {
-        echo $this->zo2->utilities->socialshares->render('horizontalbar');
-    }
-}
-?>

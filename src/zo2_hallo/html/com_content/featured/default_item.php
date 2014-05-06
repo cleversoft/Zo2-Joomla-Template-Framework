@@ -28,13 +28,7 @@ $utilities = Zo2Utilities::getInstance();
                 <?php echo $this->escape($this->item->title); ?>
             <?php endif; ?>
         </h2>
-        <?php
-        if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
-            if (Zo2Framework::get('socialshare_article_position') == 'top') {
-                echo $this->zo2->utilities->socialshares->render('horizontalbar');
-            }
-        }
-        ?>
+        
     <?php endif; ?>
 
     <?php if ($this->item->state == 0) : ?>
@@ -287,10 +281,3 @@ $utilities = Zo2Utilities::getInstance();
 <?php endif; ?>
 
 <?php echo $this->item->event->afterDisplayContent; ?>
-<?php
-if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
-    if (Zo2Framework::get('socialshare_article_position') == 'bottom') {
-        echo $this->zo2->utilities->socialshares->render('horizontalbar');
-    }
-}
-?>

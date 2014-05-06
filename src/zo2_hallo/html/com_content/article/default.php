@@ -44,14 +44,7 @@ $utilities = Zo2Utilities::getInstance();
                         <?php echo $this->escape($this->item->title); ?>
                     <?php endif; ?>
                 <?php endif; ?>
-            </h1>
-            <?php
-            if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
-                if (Zo2Framework::get('socialshare_article_position') == 'top') {
-                    echo $this->zo2->utilities->socialshares->render('horizontalbar');
-                }
-            }
-            ?>
+            </h1>          
         </div>
     <?php endif; ?>
     <?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author'));
