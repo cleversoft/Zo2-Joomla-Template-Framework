@@ -10,7 +10,7 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
 
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
-    <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog fa-spin"></span></h4>
+    <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>
     <input type="hidden" id="ss_position" value="hide" >
     <div class="switch-container">
         <h5>Layout options</h5>
