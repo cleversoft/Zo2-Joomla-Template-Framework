@@ -241,6 +241,7 @@ class Zo2Layout {
      * @return string
      */
     private function _generateColumn($item) {
+        $jItem = new JRegistry($item);       
         /**
          * @todo move to layouts/html and use Zo2Template to fetch
          */
@@ -268,7 +269,7 @@ class Zo2Layout {
                 //$html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
                 $html .= Zo2Layout::MEGAMENU_PLACEHOLDER;
             } else {
-                $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $item['style'] . '" />';
+                $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
                 $componentHtml = '';
                 if (isset($this->_components[$item['position']]) && $componentPath = $this->_components[$item['position']]) {
                     $componentClassName = "Zo2Component_" . $item['position'];
