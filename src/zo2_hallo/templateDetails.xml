@@ -55,6 +55,7 @@
         <filename>template_thumbnail.png</filename>
         <folder>layouts</folder>
         <folder>html</folder>
+        <folder>includes</folder>
         <folder>assets</folder>
         <folder>components</folder>
     </files>
@@ -68,7 +69,7 @@
                        default="0"
                        label="Choose layout"
                        description="Choose your layout, boxed or full width"
-                        >
+                >
                     <option value="0">Full width layout</option>
                     <option value="1">Boxed layout</option>
                 </field>
@@ -114,8 +115,8 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
 
             <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
                 <field
-                        type="layout"
-                        name="layout" />
+                    type="layout"
+                    name="layout" />
             </fieldset>
             <!--Mega Menus-->
             <fieldset name="megamenu" label="Megamenu">
@@ -159,12 +160,12 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 <field name="menu_type" type="menutype" default="mainmenu"
                        label="Menu type"
                        description="Menu type"
-                        />
+                />
 
                 <field name="menu_config" type="megamenu" hide="true"
                        label=""
                        description=""
-                        />
+                />
 
             </fieldset>
 
@@ -208,7 +209,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                        label="Tabs Order"
                        description="Only tabs listed will be showed"
                        desc=""
-                        />
+                />
 
                 <field name="disqus_shortname" type="disqus" default="zootemplates"
                        label="Disqus Shortname"
@@ -261,29 +262,29 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 </field>
 
                 <field
-                        name="box_top"
-                        type="text"
-                        default="200"
-                        label="Initial Top Position"
-                        description="Initial Top Position"/>
+                    name="box_top"
+                    type="text"
+                    default="200"
+                    label="Initial Top Position"
+                    description="Initial Top Position"/>
                 <field
-                        name="box_left"
-                        type="text"
-                        default="200"
-                        label="Left Position"
-                        description="Left Position"/>
+                    name="box_left"
+                    type="text"
+                    default="200"
+                    label="Left Position"
+                    description="Left Position"/>
                 <field
-                        name="box_right"
-                        type="text"
-                        default="300"
-                        label="Right Position"
-                        description="Right Position"/>
+                    name="box_right"
+                    type="text"
+                    default="300"
+                    label="Right Position"
+                    description="Right Position"/>
                 <field
-                        name="box_style"
-                        type="text"
-                        default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
-                        label="Box style"
-                        description="Box style"/>
+                    name="box_style"
+                    type="text"
+                    default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
+                    label="Box style"
+                    description="Box style"/>
 
                 <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
 
