@@ -18,6 +18,7 @@ $canEdit = $params->get('access-edit');
 $user = JFactory::getUser();
 $info = $params->get('info_block_position', 0);
 JHtml::_('behavior.caption');
+/* Zo2 */
 $utilities = Zo2Utilities::getInstance();
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx ?>">
@@ -307,16 +308,11 @@ $utilities = Zo2Utilities::getInstance();
             </p>
         <?php endif; ?>
     <?php endif; ?>
-    <?php
-    if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
-        if (Zo2Framework::get('socialshare_article_position') == 'bottom') {
-            echo $this->zo2->utilities->socialshares->render('horizontalbar');
-        }
-    }
-    ?>
+
     <?php
     if (!empty($this->item->pagination) && $this->item->pagination && $this->item->paginationposition && $this->item->paginationrelative) :
         echo $this->item->pagination;
         ?>
     <?php endif; ?>
-    <?php echo $this->item->event->afterDisplayContent; ?> </div>
+    <?php echo $this->item->event->afterDisplayContent; ?> 
+</div>

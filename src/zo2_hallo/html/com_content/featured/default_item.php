@@ -28,7 +28,7 @@ $utilities = Zo2Utilities::getInstance();
                 <?php echo $this->escape($this->item->title); ?>
             <?php endif; ?>
         </h2>
-        
+
     <?php endif; ?>
 
     <?php if ($this->item->state == 0) : ?>

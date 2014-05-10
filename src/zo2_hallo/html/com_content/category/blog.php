@@ -13,20 +13,20 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 JHtml::_('behavior.caption');
 ?>
 <div class="blog<?php echo $this->pageclass_sfx; ?>">
-<?php if ($this->params->get('show_page_heading', 1)) : ?>
+    <?php if ($this->params->get('show_page_heading', 1)) : ?>
         <div class="page-header">
             <h1> <?php echo $this->escape($this->params->get('page_heading')); ?> </h1>
         </div>
-<?php endif; ?>
+    <?php endif; ?>
     <?php if ($this->params->get('show_category_title', 1) or $this->params->get('page_subheading')) : ?>
         <h2>
-        <?php echo $this->escape($this->params->get('page_subheading')); ?>
+            <?php echo $this->escape($this->params->get('page_subheading')); ?>
             <?php if ($this->params->get('show_category_title')) : ?>
                 <span class="subheading-category"><?php echo $this->category->title; ?></span>
                 <?php //echo $social->renderCurrentPageNormalSocial();?>
             <?php endif; ?>
         </h2>
-        <?php endif; ?>
+    <?php endif; ?>
 
     <?php if ($this->params->get('show_tags', 1) && !empty($this->category->tags->itemTags)) : ?>
         <?php $this->category->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
@@ -35,30 +35,30 @@ JHtml::_('behavior.caption');
 
     <?php if ($this->params->get('show_description', 1) || $this->params->def('show_description_image', 1)) : ?>
         <div class="category-desc clearfix">
-        <?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
+            <?php if ($this->params->get('show_description_image') && $this->category->getParams()->get('image')) : ?>
                 <img src="<?php echo $this->category->getParams()->get('image'); ?>"/>
             <?php endif; ?>
             <?php if ($this->params->get('show_description') && $this->category->description) : ?>
                 <?php echo JHtml::_('content.prepare', $this->category->description, '', 'com_content.category'); ?>
             <?php endif; ?>
         </div>
-        <?php endif; ?>
+    <?php endif; ?>
     <?php $leadingcount = 0; ?>
     <?php if (!empty($this->lead_items)) : ?>
         <div class="items-leading clearfix">
-        <?php foreach ($this->lead_items as &$item) : ?>
+            <?php foreach ($this->lead_items as &$item) : ?>
                 <div class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
-                <?php
-                $this->item = &$item;
-                echo $this->loadTemplate('item');
-                ?>
-                </div>
                     <?php
-                    $leadingcount++;
+                    $this->item = &$item;
+                    echo $this->loadTemplate('item');
                     ?>
+                </div>
+                <?php
+                $leadingcount++;
+                ?>
             <?php endforeach; ?>
         </div><!-- end items-leading -->
-        <?php endif; ?>
+    <?php endif; ?>
     <?php
     $introcount = (count($this->intro_items));
     $counter = 0;
@@ -83,7 +83,7 @@ JHtml::_('behavior.caption');
                     </div><!-- end item -->
                     <?php $counter++; ?>
                 </div><!-- end span -->
-                <?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>
+                <?php if (($rowcount == $this->columns) or ( $counter == $introcount)) : ?>
                 </div><!-- end row -->
             <?php endif; ?>
         <?php endforeach; ?>
@@ -100,7 +100,7 @@ JHtml::_('behavior.caption');
                 <h3> <?php echo JTEXT::_('JGLOBAL_SUBCATEGORIES'); ?> </h3>
             <?php endif; ?>
             <?php echo $this->loadTemplate('children'); ?> </div>
-        <?php endif; ?>
+    <?php endif; ?>
     <?php if (($this->params->def('show_pagination', 1) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
         <div class="zo2-pagination">
             <?php echo $this->pagination->getPagesLinks(); ?>
