@@ -12,7 +12,7 @@
 //no direct accees
 defined('_JEXEC') or die('resticted aceess');
 ?>
-<a class="twitter-timeline" href="https://twitter.com/<?php echo $this->get('username'); ?>" data-widget-id="<?php echo $this->get('id'); ?>">Tweets by @<?php echo $this->get('username'); ?></a>;
+<a class="twitter-timeline" href="https://twitter.com/<?php echo $this->get('username'); ?>" data-widget-id="<?php echo $this->get('id'); ?>">Tweets by @<?php echo $this->get('username'); ?></a>
 <script>!function(d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
         if (!d.getElementById(id)) {
