@@ -435,12 +435,15 @@ if (!class_exists('Zo2Framework')) {
          * @staticvar Zo2Layout $instances
          * @return \Zo2Layout
          */
-        public static function getLayout() {
+        public static function getLayout($templateName = null) {
             static $instances;
             $template = self::getTemplate();
             $templateId = Zo2Framework::getTemplate()->id;
             if (!isset($instances[$templateId])) {
-                $instances[$templateId] = new Zo2Layout(Zo2Framework::getTemplate()->template);
+                $instances[$templateId] = new Zo2Layout();
+                if ($templateName === null)
+                    Zo2Framework::getTemplate()->template;
+                $instances[$templateId]->init($templateName);
             }
             return $instances[$templateId];
         }
