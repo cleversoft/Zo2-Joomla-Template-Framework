@@ -17,9 +17,7 @@ if (!class_exists('Zo2Layout')) {
     class Zo2Layout extends JObject {
         /* private */
 
-        private
-                $_layoutName, $_templatePath, $_layourDir, $_compiledLayoutPath, $_layoutContent, $_layoutPath, $_templateName,
-                $_staticsPath, $_coreStaticsPath, $_templateUri = '';
+        private $_compiledLayoutPath, $_layoutContent, $_staticsPath, $_coreStaticsPath;
         private $_output = '';
         private $_script = array();
         private $_style = array();
@@ -40,17 +38,27 @@ if (!class_exists('Zo2Layout')) {
             }
         }
 
-        public function init($templateName = '') {
+        /**
+         * Init datas
+         * @param type $templateName
+         */
+        public function init($templateName) {
             $app = JFactory::getApplication();
 
             if ($app->isSite()) {
 
-                // assign values to private variables
-                $this->_templatePath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR;
-                $this->_layourDir = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR;
-                $this->_layoutPath = $this->_layourDir . 'layout.json';
-                $this->_templateName = $templateName;
-                $this->_templateUri = JUri::base(true) . '/templates/' . $templateName;
+
+                /**
+                 * @since 1.3.8
+                 */
+                $this->set('templateName', $templateName);
+                /**
+                 * @todo Should not ending with DS
+                 */
+                $this->set('templatePath', JPATH_SITE . '/templates/' . $this->get('templateName') . '/');
+                $this->set('layoutDir', $this->get('templatePath') . 'layouts/');
+                $this->set('layoutPath', $this->get('layoutDir') . 'layout.json');
+                $this->set('templateUri', JUri::base(true) . '/templates/' . $this->get('templateName'));
 
                 /**
                  * Load components array by get list files under components directory
@@ -69,7 +77,7 @@ if (!class_exists('Zo2Layout')) {
          * @return string
          */
         public function getLayoutJson() {
-            $path = $this->_templatePath . 'layouts' . DIRECTORY_SEPARATOR . $this->_layoutName . '.json';
+            $path = $this->get('templatePath') . 'layouts' . DIRECTORY_SEPARATOR . $this->_layoutName . '.json';
             if (file_exists($path)) {
                 return file_get_contents($path);
             } else
@@ -131,8 +139,8 @@ if (!class_exists('Zo2Layout')) {
                         Zo2Template::getInstance()->saveCache($cacheFile, $html);
                     }
                 } else { /* Load from default */
-                    if (file_exists($this->_layoutPath)) {
-                        $data = json_decode(file_get_contents($this->_layoutPath), true);
+                    if (file_exists($this->get('layoutPath'))) {
+                        $data = json_decode(file_get_contents($this->get('layoutPath')), true);
 
                         for ($i = 0, $total = count($data); $i < $total; $i++) {
                             $html .= $this->_buildItem($data[$i], $layoutType);
@@ -336,7 +344,7 @@ if (!class_exists('Zo2Layout')) {
         public function importComponents() {
 
             $pluginComponentsPath = Zo2Framework::getZo2Path() . '/components/*.php';
-            $templateComponentsPath = $this->_templatePath . 'components/*.php';
+            $templateComponentsPath = $this->get('templatePath') . 'components/*.php';
 
             $pluginComponents = glob($pluginComponentsPath);
             $templateComponents = glob($templateComponentsPath);
@@ -389,10 +397,6 @@ if (!class_exists('Zo2Layout')) {
 
         public function addScript($url, $type = 'text/javascript') {
             $this->_script[] = array('path' => $url, 'mime' => $type);
-        }
-
-        public function getTemplateUri() {
-            return $this->_templateUri;
         }
 
     }
