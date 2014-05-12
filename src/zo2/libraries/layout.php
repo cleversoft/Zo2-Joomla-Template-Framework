@@ -100,10 +100,12 @@ if (!class_exists('Zo2Layout')) {
             $cacheFile = null;
             $canCache = $zo2->get('debug_visibility', 0) == 0;
 
-            if (isset($menuItem->id) && !empty($menuItem->id)) {
-                $cacheFile = 'zo2_layout_' . $menuItem->id . '.php';
-            } else {
-                $cacheFile = 'zo2_layout_' . md5(json_encode($menuItem->params));
+            if($menuItem) {
+                if (isset($menuItem->id) && !empty($menuItem->id)) {
+                    $cacheFile = 'zo2_layout_' . $menuItem->id . '.php';
+                } else {
+                    $cacheFile = 'zo2_layout_' . md5(json_encode($menuItem->params));
+                }
             }
 
             if ($canCache) {
