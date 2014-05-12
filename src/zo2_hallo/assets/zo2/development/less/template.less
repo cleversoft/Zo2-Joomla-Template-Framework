@@ -10,8 +10,6 @@
  * @license     GPL v2
  */
 
-
-
 @import 'variables.less';
 @import 'mixins.less';
 @import 'joomla.less';
@@ -63,7 +61,7 @@ sub {
     bottom: -0.25em;
 }
 a {
-    color: @mainColor;
+    color: #7fbe54;
     text-decoration: none;
     outline: none !important;
     .transition(color 0.15s linear 0s);
@@ -195,22 +193,22 @@ nav.zo2-menu{
         > .open{
             a{
                 background: none;
-                color: @mainColor;
+                color: #7fbe54;
                 &:hover,
                     &:focus{
                     background: none;
-                    color: @mainColor;
+                    color: #7fbe54;
                 }
             }
         }
         .active{
             a{
                 background: none;
-                color: @mainColor;
+                color: #7fbe54;
                 &:hover,
                     &:focus{
                     background: none;
-                    color: @mainColor;
+                    color: #7fbe54;
                 }
             }
         }
@@ -303,7 +301,7 @@ nav.zo2-menu{
                 text-shadow:0 3px 0 rgba(0,0,0,0.1);
                 -webkit-transition:background-color 0.25s ease,color 0.25s ease;
                 transition:background-color 0.25s ease,color 0.25s ease;
-                color:@mainColor;
+                color:#7fbe54;
                 &:before{
                     display:block;
                     content:'';
@@ -319,7 +317,7 @@ nav.zo2-menu{
                     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
                     opacity:0;
                     transform:scale(0.8);
-                    box-shadow:0 0 0 3px @mainColor;
+                    box-shadow:0 0 0 3px #7FBE54;
                 }
                 i{
                     vertical-align:top;
@@ -344,9 +342,9 @@ nav.zo2-menu{
         }
         &:hover{
             .zo2-circle{
-                background-color:@mainColor;
+                background-color:#7FBE54;
                 border: 5px solid transparent;
-                color: #fff !important;
+                color: #fff;
             }
             .zo2-circle:before{
                 filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
@@ -635,7 +633,7 @@ footer{
 
 //Class suffix
 .box-color{
-    background: @mainColor;
+    background: #7FBE54;
     color: #aaa;
     padding: 20px;
 }
@@ -685,7 +683,7 @@ footer{
 /*Override Bootstrap*/
 .btn-success{
     border: none;
-    background-color: @mainColor;
+    background-color: #7ebe54;
     .border-radius(3px);
     .transition(all 0.4s ease 0s);
     padding: 10px 15px;
@@ -722,11 +720,18 @@ footer{
         }
     }
 }
+.style-switcher{
+    z-index: 999;
+}
+code{
+    white-space: inherit;
+}
+.style-switcher ul.options.layout-select li a img {
+    width: 56px;
+}
 /* Responsive */
 @media (max-width: 767px) {
     body{
-        padding-left: 10px;
-        padding-right: 10px;
         .mobile-logo{
             float: right;
         }
@@ -752,7 +757,7 @@ footer{
                 &:hover{
                     background: none;
                     .icon-bar{
-                        background-color:@mainColor;
+                        background-color:#7FBE54;
                     }
                 }
             }
@@ -937,7 +942,40 @@ footer{
     margin: 0 10px;
   }
 }
-
+.pagination{
+    display: block;
+    text-align: center;
+    .pagination-list{
+        clear: both;
+    }
+    li{
+        display: inline-block;
+        margin: 0 3px;
+        span, a{
+            min-width: 30px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #f3f3f3;
+            color: #3f3f3f;
+            display: inline-block;
+            vertical-align: top;
+            padding: 0;
+            border: 0!important;
+        }
+        &:hover{
+            a{
+                background-color: #7fbe54;
+                color: #fff;
+            }
+        }
+        &.active{
+            span{
+                background-color: #7fbe54;
+                color: #fff;
+            }
+        }
+    }
+}
 /*** Right to left language style ***/
 .rtl{
   #top-search{
@@ -972,4 +1010,35 @@ footer{
     margin-left: 0;
     margin-right: -100px;
   }
+  .form-horizontal .control-label{
+    text-align: right!important;
+  }
+  .pull-left{
+    float: right!important;
+  }
+  .pull-right{
+    float: left!important;
+  }
+  .media>.pull-left{
+    margin: 0 0 0 10px;
+  }
+  [class^="zt-icon-"] li:before, [class*=" zt-icon-"] li:before{
+    margin: 0 0 0 5px;
+  }
+  .zt-box-info:before, .zt-box-warning:before, .zt-box-stickynote:before, .zt-box-upload:before, .zt-box-download:before{
+    margin: 0 0 0 10px;
+  }
+  .box-color ul.weblinks li:hover a, .box-color ul.menu li:hover a, .box-color ul.weblinks li.active a, .box-color ul.menu li.active a{
+    margin: 0 10px 0 0;
+  }
+  .nav-parent > .nav-oc-toggle{
+    right: auto;
+    left: 5px;
+  }
+  .offcanvas .sidebar-close{
+    right: auto;
+    left: 0;
+    float: left;
+  }
+  #zo2-bottom2 address i{padding: 0 0 0 15px;}
 }
