@@ -19,6 +19,20 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 @import "normalize.less";
 
+/*retina_logo*/
+#header_logo{
+      .logo_retina { display: none; }
+      .logo_normal {display:block; }
+      @media screen and (min-resolution: 2dppx) {
+      .logo_normal { display: none; }
+      .logo_retina { display: block; }
+    }
+      @media screen and (-webkit-min-device-pixel-ratio: 2){
+      .logo_normal { display: none; }
+      .logo_retina { display: block; }
+    }
+}
+
 body {line-height: 20px;font-size: 12px; font-family: 'Open Sans', sans-serif; color: #4e4d4d; background-color:#fff; overflow-x: hidden;}
 article,
 aside,
