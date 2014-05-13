@@ -56,6 +56,7 @@ nav.zo2-menu{
     &:hover{
       .zo2-circle{
         background-color:@mainColor;
+        color: #fff;
       }
     }
   }
@@ -83,4 +84,23 @@ nav.zo2-menu{
 /*Override Bootstrap*/
 .btn-success{
   background-color: @mainColor;
+  color: #fff!important;
+}
+.zo2-pagination ul >li.active >span,.pagination li:hover a{
+  background: @mainColor;
+}
+.item-page .article_content{
+  border-top: 3px solid @mainColor;
+}
+.item-page .article_content .article_icon{
+  background: @mainColor;
+}
+.dropdown-toggle:hover, .dropdown-toggle:active, .dropdown-toggle:focus{
+  color: @mainColor;
+}
+.item-page .article_content h1.singleItemTitle{
+  color: @mainColor;
+}
+.pager li a:hover, .pager li a:active, .pager li a:focus{
+  background: @mainColor;
 }

@@ -14,71 +14,61 @@ $params = $this->item->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 JHtml::_('behavior.framework');
-
-$utilities = Zo2Utilities::getInstance();
 ?>
 <?php if ($this->item->state == 0) : ?>
     <span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
 <?php endif; ?>
-
-<?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
-
-<?php echo JLayoutHelper::render('joomla.content.icons', array('params' => $params, 'item' => $this->item, 'print' => false)); ?>
-
-<?php // Todo Not that elegant would be nice to group the params ?>
-<?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') );
-?>
-
-<?php if ($useDefList) : ?>
-    <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
-<?php endif; ?>
-
 <?php echo JLayoutHelper::render('joomla.content.intro_image', $this->item); ?>
-
-<?php if (!$params->get('show_intro')) : ?>
-    <?php echo $this->item->event->afterDisplayTitle; ?>
-<?php endif; ?>
-<?php echo $this->item->event->beforeDisplayContent; ?> <?php echo $this->item->introtext; ?>
-
-<?php if ($useDefList) : ?>
-    <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
-<?php endif; ?>
-
-<?php
-if ($params->get('show_readmore') && $this->item->readmore) :
-    if ($params->get('access-view')) :
-        $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
-    else :
-        $menu = JFactory::getApplication()->getMenu();
-        $active = $menu->getActive();
-        $itemId = $active->id;
-        $link1 = JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
-        $returnURL = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
-        $link = new JUri($link1);
-        $link->setVar('return', base64_encode($returnURL));
-    endif;
+<div class="article_content">
+    <span class="article_icon"><i class="fa fa-picture-o"></i>
+    </span>
+    <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
+    <?php
+    if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
+        if (Zo2Framework::get('socialshare_article_position') == 'top') {
+            $socialShares = new Zo2Socialshares();
+            echo $socialShares->getHorizontalBar();
+        }
+    }
     ?>
+    <div class="introtext">
+        <?php if (!$params->get('show_intro')) : ?>
+            <?php echo $this->item->event->afterDisplayTitle; ?>
+        <?php endif; ?>
+        <?php echo $this->item->event->beforeDisplayContent; ?> <?php echo substr($this->item->introtext, 0, 320).'...' ; ?>
+        <?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') );?>
+        <?php if ($useDefList) : ?>
+            <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
+        <?php endif; ?>
+    </div>
 
-    <p><a class="btn readmore" href="<?php echo $link; ?>">
-
-            <?php
-            if (!$params->get('access-view')) :
-                echo JText::_('COM_CONTENT_REGISTER_TO_READ_MORE');
-            elseif ($readmore = $this->item->alternative_readmore) :
-                echo $readmore;
-                if ($params->get('show_readmore_title', 0) != 0) :
-                    echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
-                endif;
-            elseif ($params->get('show_readmore_title', 0) == 0) :
-                echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE');
+    <div class="article_bottom">
+        <?php if ($useDefList) : ?>
+            <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
+        <?php endif; ?>
+        <?php
+        if ($params->get('show_readmore') && $this->item->readmore) :
+            if ($params->get('access-view')) :
+                $link = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
             else :
-                echo JText::_('COM_CONTENT_READ_MORE');
-                echo JHtml::_('string.truncate', ($this->item->title), $params->get('readmore_limit'));
+                $menu = JFactory::getApplication()->getMenu();
+                $active = $menu->getActive();
+                $itemId = $active->id;
+                $link1 = JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId);
+                $returnURL = JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid));
+                $link = new JUri($link1);
+                $link->setVar('return', base64_encode($returnURL));
             endif;
             ?>
-            <span class="fa fa-angle-right"></span>
-        </a></p>
 
-<?php endif; ?>
+            <a class="itemReadmore" href="<?php echo $link; ?>">
+                <?php
+                echo JText::sprintf('COM_CONTENT_READ_MORE_TITLE');
+                ?>
+            </a>
+
+        <?php endif; ?>
+    </div>
+</div>
 
 <?php echo $this->item->event->afterDisplayContent; ?>

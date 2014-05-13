@@ -442,7 +442,7 @@ if (!class_exists('Zo2Framework')) {
             if (!isset($instances[$templateId])) {
                 $instances[$templateId] = new Zo2Layout();
                 if ($templateName === null)
-                    Zo2Framework::getTemplate()->template;
+                    $templateName = Zo2Framework::getTemplate()->template;
                 $instances[$templateId]->init($templateName);
             }
             return $instances[$templateId];
