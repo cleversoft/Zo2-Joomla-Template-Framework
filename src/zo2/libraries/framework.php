@@ -598,7 +598,7 @@ if (!class_exists('Zo2Framework')) {
          * @return type
          */
         public static function checkVersion() {
-            $remoteXML = JFactory::getXML('http://update.zo2framework.org/zo2/extension.xml');
+            $remoteXML = simplexml_load_file('http://update.zo2framework.org/zo2/extension.xml');
             $result['compare'] = 0;
             $result['currentVersion'] = (string) self::getManifest()->version;
             $result['latestVersion'] = 'Unknown';
