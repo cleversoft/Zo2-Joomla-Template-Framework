@@ -171,6 +171,10 @@ class JFormFieldLayout extends JFormField {
         <?php
     }
 
+    /**
+     * 
+     * @param type $item
+     */
     private function renderColumn($item) {
         if (!isset($item['visibility'])) {
             $item['visibility']['xs'] = true;
@@ -181,7 +185,7 @@ class JFormFieldLayout extends JFormField {
         ?>
         <div class="sortable-col col-md-<?php echo $item['span'] ?> col-md-offset-<?php echo $item['offset'] ?>" data-zo2-type="span"
              data-zo2-span="<?php echo $item['span'] ?>" data-zo2-offset="<?php echo $item['offset'] ?>"
-             data-zo2-position="<?php echo $item['position'] ?>" data-zo2-style="<?php echo $item['style'] ?>"
+             data-zo2-position="<?php echo $item['position'] ?>" data-zo2-style="<?php echo (isset($item['style'])) ? $item['style'] : ''; ?>"
              data-zo2-customClass="<?php echo $item['customClass'] ?>" data-zo2-id="<?php echo $item['id'] ?>"
              data-zo2-visibility-xs="<?php echo $item['visibility']['xs'] ? 1 : 0 ?>"
              data-zo2-visibility-sm="<?php echo $item['visibility']['sm'] ? 1 : 0 ?>"
