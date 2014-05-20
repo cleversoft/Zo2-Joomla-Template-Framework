@@ -164,8 +164,7 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
             jQuery('.background-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var background = jQuery(this).find('img').attr('src');
-            jQuery('head').find(':last-child').append(' body.boxed {background-image: url("'+background+'")}')
-
+            jQuery('head').append('<style> body.boxed {background-image: url("'+background+'")}</style>');
         });
     });
 </script>
