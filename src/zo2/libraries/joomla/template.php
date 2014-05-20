@@ -20,6 +20,9 @@ if (!class_exists('Zo2JTemplate')) {
             $this->save();
         }
 
+        /**
+         * 
+         */
         public function save() {
             /* Hook and replace Joomla! style save */
             $jinput = JFactory::getApplication()->input;
@@ -40,10 +43,13 @@ if (!class_exists('Zo2JTemplate')) {
 
                     /* Get table */
                     $table = JTable::getInstance('Style', 'TemplatesTable');
-                    $data = $_REQUEST['jform'];
+                    /* Do never use $_REQUEST */
+                    $data = $jinput->post->get('jform', array(), 'array');
 
+                    /* Save template with data */
                     $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
                     $model->save($data);
+                    
                     if ($table->load(array(
                                 'template' => $data['template'],
                                 'client_id' => $data['client_id'],
@@ -63,13 +69,14 @@ if (!class_exists('Zo2JTemplate')) {
                                 $profile->name = $params->get('profile', 'default');
                                 $profile->layout = json_decode($params->get('layout'));
                                 $profile->save();
-                                $jinput = JFactory::getApplication()->input;
-                                JFactory::getApplication()->enqueueMessage('Style successfully saved');
+                               
+                                $application = JFactory::getApplication();
+                                $application->enqueueMessage('Style successfully saved');
 
                                 if ($jinput->get('task') == 'style.apply') {
-                                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id, false));
+                                    $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id, false));
                                 } else {
-                                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
+                                    $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
                                 }
                             }
                         }
