@@ -33,7 +33,7 @@ JHTML::_('behavior.tooltip');
                     <a href="#fonts" data-toggle="tab"><i class="icon-font"></i> Fonts</a>
                 </li>
                 <li>
-                    <a href="#theme" data-toggle="tab"><i class="icon-pencil"></i> Preset Styles</a>
+                    <a href="#theme" data-toggle="tab"><i class="icon-pencil"></i> Layout Profiles</a>
                 </li>
                 <li>
                     <a href="#layoutbuiler" data-toggle="tab"><i class="icon-th"></i> Layout Builder</a>
