@@ -213,5 +213,28 @@ else {
             </div>
         </div>
         <br />
+        <div class="zo2_themes_row clearfix">
+            <div class="zo2_themes_label">
+                Pattern Background
+            </div>
+            <div class="zo2_themes_form">
+                <ul class="options background-select">
+                    <?php
+                    $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
+                    $bgPatterns =  glob($backgroundsDir.'/*.*');
+                    if(count($bgPatterns) > 0) {
+                        $selected = '';
+                        foreach($bgPatterns as $pattern ) {
+                            if(isset($defaultData['variables']['bg_pattern']) && ($pattern == $defaultData['variables']['bg_pattern']) )
+                                $selected = 'selected';
+                            echo '<li class="'.$selected.'"><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                        }
+                    }
+
+                    ?>
+                </ul>
+            </div>
+        </div>
+        <br />
     </div>
 </div>

@@ -95,7 +95,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @return array
          */
         public static function getTemplatePositions() {
@@ -267,7 +267,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          */
         public static function loadTemplateAssets() {
             $path = Zo2Framework::getPath();
@@ -347,6 +347,9 @@ if (!class_exists('Zo2Framework')) {
                     }
                 }
             }
+            if (!empty($presetData['bg_pattern'])) {
+                $style .= 'body.boxed {background-image: url("'.$presetData['bg_pattern'].'")}';
+            }
 
             if (!empty($presetData['css']))
                 $assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
@@ -386,7 +389,7 @@ if (!class_exists('Zo2Framework')) {
         public static function compileLess($lessPath, $templateName = '') {
             $filename = md5($lessPath) . '.css';
             $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
-                    DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
+                DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
             $relPath = 'assets/cache/' . $filename;
             if (!file_exists($absPath)) {
                 if (!class_exists('lessc', false))
@@ -594,7 +597,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @return type
          */
         public static function checkVersion() {
@@ -632,7 +635,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @staticvar array $instances
          * @param int $id
          * @return object
@@ -646,7 +649,7 @@ if (!class_exists('Zo2Framework')) {
                 }
                 $db = JFactory::getDBO();
                 $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
-                        ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
+                    ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
                 $db->setQuery($query);
                 $template = $db->loadObject();
                 if ($template) {
