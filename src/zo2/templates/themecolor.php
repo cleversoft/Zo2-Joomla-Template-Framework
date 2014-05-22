@@ -36,6 +36,7 @@ else {
         'bottom2' => $defaultData['variables']['bottom2'],
         'footer' => $defaultData['variables']['footer'],
         'extra' => isset($defaultData['variables']['extra']) ? $defaultData['variables']['extra'] : '',
+        'bg_pattern' => isset($defaultData['variables']['bg_pattern']) ? $defaultData['variables']['bg_pattern'] : '',
     );
 }
 ?>
@@ -223,11 +224,12 @@ else {
                     $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
                     $bgPatterns =  glob($backgroundsDir.'/*.*');
                     if(count($bgPatterns) > 0) {
-                        $selected = '';
                         foreach($bgPatterns as $pattern ) {
-                            if(isset($defaultData['variables']['bg_pattern']) && ($pattern == $defaultData['variables']['bg_pattern']) )
+                            $selected = '';
+                            $pattern_src = Zo2HelperPath::toUrl($pattern);
+                            if( ($pattern_src == $currentData['bg_pattern']) )
                                 $selected = 'selected';
-                            echo '<li class="'.$selected.'"><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                            echo '<li class="'.$selected.'"><img src="'.$pattern_src.'" /></li>';
                         }
                     }
 
