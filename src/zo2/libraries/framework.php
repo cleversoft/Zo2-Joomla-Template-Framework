@@ -525,7 +525,7 @@ if (!class_exists('Zo2Framework')) {
 
         public static function displayOffCanvasMenu($menutype = null, $isAdmin = false) {
             if ($menutype === null) {
-                $menutype = self::get('menutype', 'mainmenu');
+                $menutype = self::get('menu_type', 'mainmenu');
             }
             Zo2Framework::import('core.Zo2Megamenu');
             $params = Zo2Framework::getTemplate()->params;
