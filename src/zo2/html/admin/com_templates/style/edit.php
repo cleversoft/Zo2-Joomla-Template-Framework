@@ -27,6 +27,9 @@ JHTML::_('behavior.tooltip');
                     <a href="#overview" data-toggle="tab"><i class="icon-info"></i> Overview</a>
                 </li>
                 <li>
+                    <a href="#profiles" data-toggle="tab"><i class="icon-pencil"></i> Profiles</a>
+                </li>
+                <li>
                     <a href="#general" data-toggle="tab"><i class="icon-cog"></i> General</a>
                 </li>
                 <li>
@@ -53,6 +56,9 @@ JHTML::_('behavior.tooltip');
             <div class="tab-content main-navigator">
                 <div class="tab-pane active row-fluid" id="overview">
                     <?php echo $this->loadTemplate('overview'); ?>
+                </div>
+                <div class="tab-pane" id="profiles">
+                    <?php echo $this->loadTemplate('profiles'); ?>
                 </div>
                 <div class="tab-pane" id="general">
                     <?php echo $this->loadTemplate('general'); ?>
