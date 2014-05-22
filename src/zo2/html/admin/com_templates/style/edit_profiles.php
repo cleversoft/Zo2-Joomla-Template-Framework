@@ -1,9 +1,9 @@
 
 <div class="row-fluid">
-    <div class="span4">
+    <div class="span6">
         <div class="control-group">
             <div class="control-label">
-                <strong>Select profile</strong>
+                Select profile
             </div>
             <div class="controls">
                 <select class="form-control zo2_select_profile" name="jform[profile-select]">
@@ -27,10 +27,10 @@
             </div>
         </div>
     </div>
-    <div class="span4">
+    <div class="span6">
         <div class="control-group">
             <div class="control-label">
-                <strong>Create new profile</strong>
+                Create new profile
             </div>
             <div class="controls">
                 <div class="input-group">

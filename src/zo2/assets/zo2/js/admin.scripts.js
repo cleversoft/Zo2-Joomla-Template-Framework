@@ -18,33 +18,13 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
     'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
-
+/**
+ * @todo Do not use $ to prevent conflict with Mootools
+ * @type @exp;jQuery@call;noConflict
+ */
 var $ = jQuery.noConflict();
 
 $(window).bind('load', function() {
-//    var $tabsContainer = $('#myTabTabs');
-//    var $tabContent = $('#myTabContent');
-//    var $tab = $('<li class=""><a href="#layoutbuilder-container" data-toggle="tab">Layout Builder</a></li>');
-//    $tab.appendTo($tabsContainer);
-//
-//    //add mega menu tab
-//    var $tabMenu = $('<li class=""><a href="#megamenubuilder-container" data-toggle="tab">MegaMenu Builder</a></li>');
-//    $tabMenu.appendTo($tabsContainer);
-//    var $megamenuInner = $('#zo2-admin-megamenu').closest('.accordion-inner');
-//    var $wrapMenu = $megamenuInner.closest('.accordion-group');
-//    var $megaContainer = $('<div id="megamenubuilder-container" class="tab-pane" />');
-//    $megaContainer.append($megamenuInner);
-//    $megaContainer.appendTo($tabContent);
-//    $wrapMenu.remove();
-//
-//   // add layout builder tab
-//    var $layoutBuilder = $('#layoutbuilder-container');
-//    var $layoutContainer = jQuery('#layoutbuilder-container').closest('.accordion-group');
-//    $layoutBuilder.addClass('tab-pane').appendTo($tabContent);
-//    $('#hfTemplateName').appendTo($layoutBuilder);
-//    $('#hfLayoutName').appendTo($layoutBuilder);
-//    $layoutContainer.remove();
-
     addIconToMenu();
     fixToolbarIcon();
     fixPreviewIcon();
@@ -464,19 +444,19 @@ jQuery(document).ready(function($) {
 
     $('.add_more_preset').click(function() {
         $(this).parent().before(
-            '<div class="zo2_themes_form">'+
-                '<div class="control-group">'+
-                '<div class="control-label">'+
-                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>'+
-                '</div>'+
-                '<div class="controls">'+
-                '<div class="colorpicker-container">'+
-                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">'+
-                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>'+
-                '<input type="button" class="btn remove_preset" value="Remove" />'+
-                '</div>'+
-                '</div>'+
-                '</div>'+
+            '<div class="zo2_themes_form">' +
+                '<div class="control-group">' +
+                '<div class="control-label">' +
+                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
+                '</div>' +
+                '<div class="controls">' +
+                '<div class="colorpicker-container">' +
+                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
+                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
+                '<input type="button" class="btn remove_preset" value="Remove" />' +
+                '</div>' +
+                '</div>' +
+                '</div>' +
                 '</div>'
         );
         $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function() {
@@ -608,6 +588,13 @@ jQuery(document).ready(function($) {
         });
         return false;
     });
+
+    jQuery('.background-select li').click(function() {
+        jQuery(".background-select li").removeClass('selected');
+        jQuery(this).addClass('selected');
+
+        generatePresetData();
+    });
 });
 
 var generatePresetData = function() {
@@ -618,7 +605,7 @@ var generatePresetData = function() {
     $('.zo2_other_preset_element').each(function() {
         var element = $(this).val();
         var value = $(this).parent().parent().parent().find('.zo2_other_preset_value').val();
-        if(element != '' && value != '') {
+        if (element != '' && value != '') {
             extra[element] = value;
         }
     });
@@ -637,7 +624,8 @@ var generatePresetData = function() {
         bottom1: $('#color_bottom1').val(),
         bottom2: $('#color_bottom2').val(),
         footer: $('#color_footer').val(),
-        extra: JSON.stringify(extra)
+        extra: JSON.stringify(extra),
+        bg_pattern: $('.background-select li.selected img').attr('src')
     };
 
     $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
@@ -967,18 +955,18 @@ var generateSlug = function(str) {
 jQuery(document).ready(function() {
     var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
 
-    if(fullContainer.val() == 0){
+    if (fullContainer.val() == 0) {
         jQuery('#jform_params_background-lbl').parent().parent().hide();
         jQuery('#jform_params_background_color-lbl').parent().parent().hide();
     }
 
 
-    jQuery('input[name="jform[params][fullContainer]"]').click(function(){
+    jQuery('input[name="jform[params][fullContainer]"]').click(function() {
         var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
-        if(fullContainer.val() == 0){
+        if (fullContainer.val() == 0) {
             jQuery('#jform_params_background-lbl').parent().parent().hide();
             jQuery('#jform_params_background_color-lbl').parent().parent().hide();
-        }else{
+        } else {
             jQuery('#jform_params_background-lbl').parent().parent().show();
             jQuery('#jform_params_background_color-lbl').parent().parent().show();
         }
@@ -989,4 +977,10 @@ jQuery(document).ready(function() {
     jQuery('.zo2_select_profile').change(function() {
         jQuery('.zo2_profile_name').val(jQuery(this).val());
     });
+
+    jQuery('#zo2-loadprofile').on('click', function () {
+        var url = jQuery(this).data('url');
+        var profile = jQuery('.zo2_select_profile').val();
+        zo2.document.redirect(url + '&profile=' +profile);
+    })
 });

@@ -36,15 +36,14 @@ else {
         'bottom2' => $defaultData['variables']['bottom2'],
         'footer' => $defaultData['variables']['footer'],
         'extra' => isset($defaultData['variables']['extra']) ? $defaultData['variables']['extra'] : '',
-        'bg_pattern' => isset($defaultData['variables']['bg_pattern']) ? $defaultData['variables']['bg_pattern'] : '',
     );
 }
 ?>
 <div id="zo2_themes_container">
     <input type="hidden" value="<?php echo htmlspecialchars($this->value) ?>" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
-    <div class="zo2_themes_row clearfix">
+    <div class="zo2_themes_row clearfix">        
         <div class="zo2_themes_label">
-            Select Preset Styles
+            Select which preset style the layout should load.
         </div>
         <div class="zo2_themes_form">
             <ul id="zo2_themes">
@@ -224,13 +223,11 @@ else {
                     $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
                     $bgPatterns =  glob($backgroundsDir.'/*.*');
                     if(count($bgPatterns) > 0) {
+                        $selected = '';
                         foreach($bgPatterns as $pattern ) {
-                            $selected = '';
-                            $pattern_src = Zo2HelperPath::toUrl($pattern);
-                            if(isset($currentData['bg_pattern']) && $pattern_src == $currentData['bg_pattern'] ) {
+                            if(isset($defaultData['variables']['bg_pattern']) && ($pattern == $defaultData['variables']['bg_pattern']) )
                                 $selected = 'selected';
-                            }
-                            echo '<li class="'.$selected.'"><img src="'.$pattern_src.'" /></li>';
+                            echo '<li class="'.$selected.'"><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
                         }
                     }
 
