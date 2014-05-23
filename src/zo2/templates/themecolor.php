@@ -227,7 +227,7 @@ else {
                         foreach($bgPatterns as $pattern ) {
                             $selected = '';
                             $pattern_src = Zo2HelperPath::toUrl($pattern);
-                            if( ($pattern_src == $currentData['bg_pattern']) )
+                            if( isset($currentData['bg_pattern']) && ($pattern_src == $currentData['bg_pattern']) )
                                 $selected = 'selected';
                             echo '<li class="'.$selected.'"><img src="'.$pattern_src.'" /></li>';
                         }
