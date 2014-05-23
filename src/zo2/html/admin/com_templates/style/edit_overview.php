@@ -60,16 +60,16 @@ defined('_JEXEC') or die;
 <div class="template-preview">
     <div class="row-fluid">
         <div class="span4">
-            <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
             <div class="template-description">
-                <h3 class="title-profile">Zo2 Hallo</h3>
+                <h3 class="title-profile dark-bg">Zo2 Hallo</h3>
+                <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
                 <p>The Zo2 Hallo is a clean modern responsive design that is a great place to start when building your custom Zo2 powered template.</p>
-                <h3 class="title-profile">What is the Zo2 Framework?</h3>
+                <h3 class="title-profile dark-bg">What is the Zo2 Framework?</h3>
                 <p>Zo2 Framework is a free, open-source, highly extensible, search-engine optimized Joomla Templates Framework featuring responsive web design, bootstrap framework, Font Awesome Icons, styling for popular extensions, and a whole community behind it. Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.</p>
             </div>
         </div>
         <div class="span4">
-            <h3 class="title-profile">Key Features</h3>
+            <h3 class="title-profile dark-bg">Key Features</h3>
             <ul>
                 <li>100% Responsive & Retina Ready</li>
                 <li>Drag & Drop Layout Builder</li>
@@ -83,7 +83,7 @@ defined('_JEXEC') or die;
                 <li>Social Sharing Integration</li>
                 <li>Cross-Browser Support</li>
             </ul>
-            <h3 class="title-profile">
+            <h3 class="title-profile dark-bg">
                 Credit Links
             </h3>
             <ul>
@@ -123,9 +123,9 @@ defined('_JEXEC') or die;
                     </div>
                 <?php } ?>
             </div>
-            <div class="zo2-tip well" style="display: block;">
+            <div class="zo2-tip well dark-bg" style="display: block;">
                 <div class="zo2-tip-bar">
-                    <h3 class="title-profile">Getting More Help</h3>
+                    <h3 class="title-dark">Getting More Help</h3>
                 </div>
                 <p>Zo2 comes with an extremely advanced admin panel allowing users to quickly and easy customize the template.  If you would like to find out more about these settings and the Zo2 Framework in general please checkout these links:</p>
                 <ul>

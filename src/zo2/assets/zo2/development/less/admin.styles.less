@@ -36,6 +36,20 @@ body{
     margin: 0 auto 30px;
     width: 310px;
   }
+  .dark-bg{
+    background-color: #434A54 !important;
+    border: medium none;
+    color: #FFFFFF;
+    border-radius: 0;
+    a{ color: #fff; }
+  }
+  #updater.alert{
+    background-color: #8CC152;
+    border: medium none;
+    border-radius: 0;
+    color: #FFFFFF;
+    text-shadow: none;
+  }
   /* Tabs */
   .main-navigator.nav.nav-tabs{
     background: #313940;
@@ -143,8 +157,20 @@ body{
     padding:15px;
     position: relative;
   }
+  .title-dark{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 0;
+    padding-bottom: 12px;
+    text-transform: uppercase;
+  }
 
   #overview{
+    ul{
+      margin-left: 10px;
+      li{ list-style: circle inside }
+    }
     #jform_title{
       max-width: 210px;
     }
