@@ -49,36 +49,70 @@ JHTML::_('behavior.tooltip');
             <div class="tab-content main-navigator">
                     <a href="http://zo2framework.org" target="_blank" id="logo" title="Zo2 Framework"></a>
                     <div class="tab-pane active" id="overview">
-                        <?php echo $this->loadTemplate('overview'); ?>
+                        <div class="profiles-pane">
+                            <h3 class="title-profile">Overview</h3>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('overview'); ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="general">
-                        <?php echo $this->loadTemplate('general'); ?>
+                        <div class="profiles-pane">
+                            <h3 class="title-profile">General</h3>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('general'); ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="fonts">
-                        <?php echo $this->loadTemplate('fonts'); ?>
+                        <div class="profiles-pane">
+                            <h3 class="title-profile">Fonts</h3>
+                            <?php echo $this->loadTemplate('fonts'); ?>
+                        </div>
                     </div>
                     <div class="tab-pane" id="theme">
                         <div class="profiles-pane">
                             <h3 class="title-profile">Layouts Profiles</h3>
-                            <?php echo $this->loadTemplate('profiles'); ?>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('profiles'); ?>
+                            </div>
                         </div>
                         <div class="profiles-pane">
                             <h3 class="title-profile">Layout Builder</h3>
-                            <?php echo $this->loadTemplate('layoutbuilder'); ?>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('layoutbuilder'); ?>
+                            </div>
                         </div>
                         <div class="profiles-pane">
                             <h3 class="title-profile">Style</h3>
-                            <?php echo $this->loadTemplate('themecolors'); ?>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('themecolors'); ?>
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="megamenu">
-                        <?php echo $this->loadTemplate('megamenu'); ?>
+                        <div class="profiles-pane">
+                            <h3 class="title-profile">Mega Menus</h3>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('megamenu'); ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="assignment">
-                        <?php echo $this->loadTemplate('assignment'); ?>
+                        <div class="profiles-pane">
+                            <h3 class="title-profile">Assignment</h3>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('assignment'); ?>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="advanced">
-                        <?php echo $this->loadTemplate('advanced'); ?>
+                        <div class="profiles-pane">
+                            <h3 class="title-profile">Advanced</h3>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('advanced'); ?>
+                            </div>
+                        </div>
                     </div>
             </div>
             <!-- /tabs content -->

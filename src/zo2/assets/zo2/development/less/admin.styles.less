@@ -53,9 +53,18 @@ body{
   .tab-pane{ min-height: 402px }
 
   .profiles-pane{
-    border-bottom: 1px solid #EBECF1;
+    border: 1px solid #3BAFDA;
+    border-radius: 3px;
     margin-bottom: 30px;
     padding-bottom: 15px;
+    h3.title-profile{
+      background-color: #3BAFDA;
+      color: #fff;
+      padding-left: 10px;
+    }
+    .profiles-pane-inner{
+      padding: 15px;
+    }
   }
 
   /* Tabs content */
@@ -130,7 +139,7 @@ body{
     }
   }
 
-  #overview, #general, #details, #options, #theme, #profiles, #layoutbuiler {
+  .tab-pane {
     padding:15px;
     position: relative;
   }
@@ -384,7 +393,7 @@ body{
     padding-left:10px;
     display:none;
   }
-  .zo2-tabs-content &>div.active, zo2-tabs-content &>section.active {
+  .zo2-tabs-content &>div.active, .zo2-tabs-content &>section.active {
     display: block;
   }
   .col-control-icon {
@@ -501,7 +510,7 @@ body{
   #layoutbuilder-container .row-tools a.icon-remove,#layoutbuilder-container .col-control-buttons i.icon-remove {
     color: #e52626;
   }
-  .zo2-tabs-content &>div, zo2-tabs-content &>section {
+  .zo2-tabs-content &>div, .zo2-tabs-content &>section {
     display:none;
   }
   #layoutbuilder-droppable {
