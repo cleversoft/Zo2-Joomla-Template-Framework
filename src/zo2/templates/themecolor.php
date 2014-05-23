@@ -10,7 +10,7 @@
  * @license     GPL v2
  */
 $templatePath = JUri::root(true) . '/templates/' . $zo2->getTemplateName();
-echo 'test auto deploy second';
+
 if (!isset($presets))
     $presets = array();
 if (!empty($this->value))
