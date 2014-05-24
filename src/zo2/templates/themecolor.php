@@ -44,7 +44,7 @@ else {
 ?>
 <div id="zo2_themes_container">
     <input type="hidden" value="<?php echo htmlspecialchars($this->value) ?>" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
-    <div class="zo2_themes_row clearfix">        
+    <div class="zo2_themes_row clearfix">
         <div class="zo2_themes_label">
             Select which preset style the layout should load.
         </div>
@@ -234,7 +234,6 @@ else {
                             echo '<li class="'.$selected.'"><img src="'.$pattern_src.'" /></li>';
                         }
                     }
-
                     ?>
                 </ul>
             </div>
