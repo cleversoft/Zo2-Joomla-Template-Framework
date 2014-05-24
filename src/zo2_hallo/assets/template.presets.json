@@ -7,9 +7,9 @@
         "color": "#7FBE54",
         "thumbnail": "/assets/zo2/images/presets/green.jpg",
         "variables": {
-            "background": "#7FBE54",
-            "header": "#7FBE54",
-            "header_top": "#7FBE54",
+            "background": "",
+            "header": "",
+            "header_top": "",
             "link": "",
             "link_hover": "#7FBE54",
             "text": "",
