@@ -590,9 +590,12 @@ jQuery(document).ready(function($) {
     });
 
     jQuery('.background-select li').click(function() {
-        jQuery(".background-select li").removeClass('selected');
-        jQuery(this).addClass('selected');
-
+        if(jQuery(this).hasClass('selected')) {
+            jQuery(this).removeClass('selected');
+        } else {
+            jQuery(".background-select li").removeClass('selected');
+            jQuery(this).addClass('selected');
+        }
         generatePresetData();
     });
 });

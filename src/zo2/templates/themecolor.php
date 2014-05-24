@@ -23,19 +23,20 @@ else {
     }
     if (empty($defaultData) && count($presets) > 0)
         $defaultData = $presets[0];
+
     $currentData = array(
         'name' => $defaultData['name'],
         'css' => $defaultData['css'],
         'less' => $defaultData['less'],
-        'background' => $defaultData['variables']['background'],
-        'header' => $defaultData['variables']['header'],
-        'header_top' => $defaultData['variables']['header_top'],
-        'text' => $defaultData['variables']['text'],
-        'link' => $defaultData['variables']['link'],
-        'link_hover' => $defaultData['variables']['link_hover'],
-        'bottom1' => $defaultData['variables']['bottom1'],
-        'bottom2' => $defaultData['variables']['bottom2'],
-        'footer' => $defaultData['variables']['footer'],
+        'background' => isset($defaultData['variables']['background']) ? $defaultData['variables']['background'] : '',
+        'header' => isset($defaultData['variables']['header']) ? $defaultData['variables']['header'] : '',
+        'header_top' => isset($defaultData['variables']['header_top']) ? $defaultData['variables']['header_top'] : '',
+        'text' => isset($defaultData['variables']['text']) ? $defaultData['variables']['text'] : '',
+        'link' => isset($defaultData['variables']['link']) ? $defaultData['variables']['link'] : '',
+        'link_hover' => isset($defaultData['variables']['link_hover']) ? $defaultData['variables']['link_hover'] : '',
+        'bottom1' => isset($defaultData['variables']['bottom1']) ? $defaultData['variables']['bottom1'] : '',
+        'bottom2' => isset($defaultData['variables']['bottom2']) ? $defaultData['variables']['bottom2'] : '',
+        'footer' => isset($defaultData['variables']['footer']) ? $defaultData['variables']['footer'] : '',
         'extra' => isset($defaultData['variables']['extra']) ? $defaultData['variables']['extra'] : '',
         'bg_pattern' => isset($defaultData['variables']['bg_pattern']) ? $defaultData['variables']['bg_pattern'] : '',
     );
@@ -186,7 +187,7 @@ else {
         </div>
         <div class="zo2_themes_form_container">
             <?php
-            if(!empty($currentData['extra'])) {
+            if(isset($currentData['extra']) && !empty($currentData['extra'])) {
                 $extra = json_decode($currentData['extra']);
                 if(count($extra) > 0) {
                     foreach($extra as $element => $color) {

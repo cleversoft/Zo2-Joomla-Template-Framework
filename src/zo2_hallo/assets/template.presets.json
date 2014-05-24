@@ -7,16 +7,17 @@
         "color": "#7FBE54",
         "thumbnail": "/assets/zo2/images/presets/green.jpg",
         "variables": {
-            "background": "",
-            "header": "",
-            "header_top": "",
+            "background": "#7FBE54",
+            "header": "#7FBE54",
+            "header_top": "#7FBE54",
             "link": "",
-            "link_hover": "",
+            "link_hover": "#7FBE54",
             "text": "",
             "bottom1": "",
             "bottom2": "",
             "footer": "",
-            "extra": ""
+            "extra": "",
+            "bg_pattern":""
         }
     },
     {
@@ -27,12 +28,12 @@
         "color": "#0099FF",
         "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
-            "background": "",
-            "header": "",
+            "background": "#3288c7",
+            "header": "#95c5e8",
             "header_top": "",
-            "link": "",
-            "link_hover": "",
-            "text": "",
+            "link": "#184587",
+            "link_hover": "#5eaf28",
+            "text": "#fff",
             "bottom1": "",
             "bottom2": "",
             "footer": "",
@@ -47,15 +48,15 @@
         "color": "#D25400",
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
-            "background": "",
-            "header": "",
-            "header_top": "",
-            "link": "",
-            "link_hover": "",
-            "text": "",
-            "bottom1": "",
-            "bottom2": "",
-            "footer": "",
+            "background": "#ffffff",
+            "header": "#ecf0f1",
+            "header_top": "#ecf0f1",
+            "link": "#d35400",
+            "link_hover": "#e67e22",
+            "text": "#4d4d62",
+            "bottom1": "#2c3e50",
+            "bottom2": "#2c3e50",
+            "footer": "#edeff1",
             "extra": ""
         }
     }
