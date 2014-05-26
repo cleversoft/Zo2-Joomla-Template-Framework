@@ -973,7 +973,6 @@ jQuery(document).ready(function() {
 
     jQuery('#zo2_background_image').change(function() {
         generatePresetData();
-        alert(jQuery('#zo2_themes_container').find('input:first').val());
     });
 
     //gender profile name when profile is changed
