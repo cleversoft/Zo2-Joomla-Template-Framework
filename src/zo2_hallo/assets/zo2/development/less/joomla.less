@@ -41,7 +41,7 @@ input[type="color"],
 }
 
 //button style
-.registration .btn,.login .btn{
+.registration .form-actions .btn, .login .well .btn{
   background-color: #f3f3f3;
   color: #3f3f3f;
   -webkit-border-radius: 4px;
@@ -1050,7 +1050,6 @@ body.contentpane form table tbody tr td.key {
     border-top: 3px solid #7fbe54;
     background: #fff;
     padding: 30px;
-    z-index: 1040;
     box-shadow: 0 3px 4px 2px rgba(171,171,171,0.2);
     -ms-box-shadow: 0 3px 4px 2px rgba(171,171,171,0.2);
     -moz-box-shadow: 0 3px 4px 2px rgba(171,171,171,0.2);
@@ -1153,5 +1152,12 @@ div.tags {
 .blog-featured{
   #zo2-features{
     clear: both;
+  }
+}
+.edit.item-page{
+  .tab-pane{
+    label,.input-append input[type="text"]{
+      display: inline-block!important;
+    }
   }
 }
