@@ -268,14 +268,14 @@ if(!isset($currentData['bg_image'])) $currentData['bg_image'] = '';
                     $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
                     $bgPatterns =  glob($backgroundsDir.'/*.*');
                     if(count($bgPatterns) > 0) {
-                        $selected = '';
                         foreach($bgPatterns as $pattern ) {
-                            if(isset($defaultData['variables']['bg_pattern']) && ($pattern == $defaultData['variables']['bg_pattern']) )
+                            $selected = '';
+                            $pattern_src = Zo2HelperPath::toUrl($pattern);
+                            if( isset($currentData['bg_pattern']) && ($pattern_src == $currentData['bg_pattern']) )
                                 $selected = 'selected';
-                            echo '<li class="'.$selected.'"><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                            echo '<li class="'.$selected.'"><img src="'.$pattern_src.'" /></li>';
                         }
                     }
-
                     ?>
                 </ul>
             </div>
