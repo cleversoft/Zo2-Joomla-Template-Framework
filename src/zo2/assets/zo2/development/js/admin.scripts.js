@@ -618,6 +618,7 @@ var generatePresetData = function() {
         name: $preset.attr('data-zo2-theme'),
         css: $preset.attr('data-zo2-css'),
         less: $preset.attr('data-zo2-less'),
+        boxed: jQuery('#zo2_boxed_style').val(),
         background: $('#color_background').val(),
         header: $('#color_header').val(),
         header_top: $('#color_header_top').val(),
@@ -628,6 +629,7 @@ var generatePresetData = function() {
         bottom2: $('#color_bottom2').val(),
         footer: $('#color_footer').val(),
         extra: JSON.stringify(extra),
+        bg_image: $('#zo2_background_image').val(),
         bg_pattern: $('.background-select li.selected img').attr('src')
     };
 
@@ -956,23 +958,22 @@ var generateSlug = function(str) {
 };
 
 jQuery(document).ready(function() {
-    var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
-
-    if (fullContainer.val() == 0) {
-        jQuery('#jform_params_background-lbl').parent().parent().hide();
-        jQuery('#jform_params_background_color-lbl').parent().parent().hide();
-    }
-
-
-    jQuery('input[name="jform[params][fullContainer]"]').click(function() {
-        var fullContainer = jQuery('input[name="jform[params][fullContainer]"]:checked');
-        if (fullContainer.val() == 0) {
-            jQuery('#jform_params_background-lbl').parent().parent().hide();
-            jQuery('#jform_params_background_color-lbl').parent().parent().hide();
+    jQuery('.layout_style_choose').click(function() {
+        jQuery('.layout_style_choose').removeClass('btn-success');
+        jQuery(this).addClass('btn-success');
+        if(jQuery(this).hasClass('boxed')) {
+            jQuery('input[name="zo2_boxed_style"]').val('1');
+            jQuery('.zo2_background_and_pattern').fadeIn(500);
         } else {
-            jQuery('#jform_params_background-lbl').parent().parent().show();
-            jQuery('#jform_params_background_color-lbl').parent().parent().show();
+            jQuery('input[name="zo2_boxed_style"]').val('0');
+            jQuery('.zo2_background_and_pattern').fadeOut(500);
         }
+        generatePresetData();
+    });
+
+    jQuery('#zo2_background_image').change(function() {
+        generatePresetData();
+        alert(jQuery('#zo2_themes_container').find('input:first').val());
     });
 
     //gender profile name when profile is changed

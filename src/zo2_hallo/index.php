@@ -21,23 +21,23 @@ require_once __DIR__ . '/includes/bootstrap.php';
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->zo2->template->getLanguage(); ?>" dir="<?php echo $this->zo2->template->getDirection(); ?>">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <?php echo $this->zo2->template->fetch('html://layouts/head.response.php'); ?>
-        <?php echo $this->zo2->template->fetch('html://layouts/head.favicon.php'); ?>
-        <![if gte IE 9]>
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-        <![endif]>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <?php echo $this->zo2->template->fetch('html://layouts/head.response.php'); ?>
+    <?php echo $this->zo2->template->fetch('html://layouts/head.favicon.php'); ?>
+    <![if gte IE 9]>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <![endif]>
     <jdoc:include type="head" />
 </head>
-<body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo (( $this->zo2->framework->get('fullContainer') == 1) ? 'boxed' : ''); ?>">
-    <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>
-    <?php echo Zo2Framework::displayOffCanvasMenu() ?>
-    <section class="wrapper <?php echo (($this->zo2->framework->get('fullContainer') == 1) ? 'boxed container' : ''); ?>">        
-        <?php //echo $this->zo2->utilities->socialshares->render('floatbar'); ?>
-        <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
-        <?php echo $this->zo2->layout->render(); ?>
-    </section>
-    <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>   
+<body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
+<?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>
+<?php echo Zo2Framework::displayOffCanvasMenu() ?>
+<section class="wrapper <?php echo $this->zo2->framework->isBoxed() ? 'boxed container' : ''; ?>">
+    <?php //echo $this->zo2->utilities->socialshares->render('floatbar'); ?>
+    <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
+    <?php echo $this->zo2->layout->render(); ?>
+</section>
+<?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>
 </body>
 </html>

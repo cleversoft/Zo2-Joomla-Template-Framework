@@ -5,6 +5,7 @@
         "css": "presets/green",
         "less": "presets/green",
         "color": "#7FBE54",
+        "boxed": "1",
         "thumbnail": "/assets/zo2/images/presets/green.jpg",
         "variables": {
             "background": "",
@@ -17,6 +18,7 @@
             "bottom2": "",
             "footer": "",
             "extra": "",
+            "bg_image": "",
             "bg_pattern":""
         }
     },
@@ -26,6 +28,7 @@
         "css": "presets/blue",
         "less": "presets/blue",
         "color": "#0099FF",
+        "boxed": "0",
         "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
             "background": "#3288c7",
@@ -37,7 +40,9 @@
             "bottom1": "",
             "bottom2": "",
             "footer": "",
-            "extra": ""
+            "extra": "",
+            "bg_image": "",
+            "bg_pattern":""
         }
     },
     {
@@ -46,6 +51,7 @@
         "css": "presets/orange",
         "less": "presets/orange",
         "color": "#D25400",
+        "boxed": "0",
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
             "background": "#ffffff",
@@ -57,7 +63,9 @@
             "bottom1": "#2c3e50",
             "bottom2": "#2c3e50",
             "footer": "#edeff1",
-            "extra": ""
+            "extra": "",
+            "bg_image": "",
+            "bg_pattern":""
         }
     }
 ]

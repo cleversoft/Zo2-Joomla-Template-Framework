@@ -306,6 +306,7 @@ if (!class_exists('Zo2Framework')) {
                         'name' => isset($defaultData['name']) ? $defaultData['name'] : '',
                         'css' => isset($defaultData['css']) ? $defaultData['css'] : '',
                         'less' => isset($defaultData['less']) ? $defaultData['less'] : '',
+                        'boxed' => isset($defaultData['boxed']) ? $defaultData['boxed'] : 0,
                         'background' => isset($defaultData['variables']['background']) ? $defaultData['variables']['background'] : '',
                         'header' => isset($defaultData['variables']['header']) ? $defaultData['variables']['header'] : '',
                         'header_top' => isset($defaultData['variables']['header_top']) ? $defaultData['variables']['header_top'] : '',
@@ -314,7 +315,10 @@ if (!class_exists('Zo2Framework')) {
                         'link_hover' => isset($defaultData['variables']['link_hover']) ? $defaultData['variables']['link_hover'] : '',
                         'bottom1' => isset($defaultData['variables']['bottom1']) ? $defaultData['variables']['bottom1'] : '',
                         'bottom2' => isset($defaultData['variables']['bottom2']) ? $defaultData['variables']['bottom2'] : '',
-                        'footer' => isset($defaultData['variables']['footer']) ? $defaultData['variables']['footer'] : ''
+                        'footer' => isset($defaultData['variables']['footer']) ? $defaultData['variables']['footer'] : '',
+                        'extra' => isset($defaultData['variables']['extra']) ? $defaultData['variables']['extra'] : '',
+                        'bg_image' => isset($defaultData['variables']['bg_image']) ? $defaultData['variables']['bg_image'] : '',
+                        'bg_pattern' => isset($defaultData['variables']['bg_pattern']) ? $defaultData['variables']['bg_pattern'] : '',
                     );
             }
             if (!empty($preset))
@@ -347,7 +351,10 @@ if (!class_exists('Zo2Framework')) {
                     }
                 }
             }
-            if (!empty($presetData['bg_pattern'])) {
+
+            if (!empty($presetData['bg_image'])) {
+                $style .= 'body.boxed {background-image: url("'.JUri::root().$presetData['bg_image'].'")}';
+            } elseif (!empty($presetData['bg_pattern'])) {
                 $style .= 'body.boxed {background-image: url("'.$presetData['bg_pattern'].'")}';
             }
 
@@ -384,6 +391,16 @@ if (!class_exists('Zo2Framework')) {
                     }
                 }
             }
+        }
+
+        public static function isBoxed() {
+            $preset = Zo2Framework::get('theme');
+            if(!empty($preset)) {
+                $presetData = json_decode($preset, true);
+                if(isset($presetData['boxed']) && $presetData['boxed'] == 1 )
+                    return true;
+            }
+            return false;
         }
 
         public static function compileLess($lessPath, $templateName = '') {
