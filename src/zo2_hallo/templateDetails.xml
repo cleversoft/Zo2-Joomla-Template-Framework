@@ -7,7 +7,7 @@
     <authorUrl>http://github.com/aploss/</authorUrl>
     <copyright>Copyright (c) 2008 - 2014 APL Solutions</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>1.3.8</version>
+    <version>1.3.9</version>
     <description></description>
 
     <languages>
@@ -90,10 +90,10 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="favicon" type="media" default="images/favicon.ico" label="Favicon" />
+                <field name="favicon" type="media" default="templates/zo2_hallo/assets/zo2/images/favicon.ico" label="Favicon" />
                 <!--Header Option-->
-                <field name="header_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header logo" />
-                <field name="header_retina_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:38}" label="Header Retina logo" />
+                <field name="header_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;templates/zo2_hallo/assets/zo2/images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:40}" label="Header logo" />
+                <field name="header_retina_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;templates/zo2_hallo/assets/zo2/images/logo_retina.png&quot;,&quot;width&quot;:212,&quot;height&quot;:40}" label="Header Retina logo" />
                 <!--Footer Option-->
                 <field name="footer_copyright" type="textarea" default="Copyright © 2008 - 2014
 &lt;a href=&quot;http://www.zootemplate.com/&quot; title=&quot;joomla templates&quot;&gt;Joomla Templates&lt;/a&gt;
