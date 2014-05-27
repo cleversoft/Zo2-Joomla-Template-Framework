@@ -78,6 +78,10 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
+                <field name="enable_sticky_menu" type="radio" default="1" label="Enable Sticky Menu" class="btn-group" description="">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
                 <field name="favicon" type="media" default="templates/zo2_hallo/assets/zo2/images/favicon.ico" label="Favicon" />
                 <!--Header Option-->
                 <field name="header_logo" type="logo" default="{&quot;type&quot;:&quot;image&quot;,&quot;path&quot;:&quot;templates/zo2_hallo/assets/zo2/images/logo.png&quot;,&quot;width&quot;:212,&quot;height&quot;:40}" label="Header logo" />

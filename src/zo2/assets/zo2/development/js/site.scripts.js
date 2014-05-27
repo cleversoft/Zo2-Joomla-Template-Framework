@@ -6,8 +6,6 @@ jQuery(document).ready(function() {
     /* Default active tab for shortcode tabs*/
     jQuery('ul.nav-tabs.shortcode a:first').tab('show'); // Select first tab
 
-    jQuery("#zo2-header").sticky({topSpacing:0});
-
     jQuery('.zo2-megamenu .navbar-nav a').click(function(){
         var element = jQuery(this).attr('href');
         //var elements = href.split('#');

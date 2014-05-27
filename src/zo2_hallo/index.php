@@ -40,4 +40,16 @@ require_once __DIR__ . '/includes/bootstrap.php';
 </section>
 <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>
 </body>
+<script>
+    jQuery(document).ready(function() {
+        <?php
+            $doc = JFactory::getDocument();
+            if(Zo2Framework::get('enable_sticky_menu', 1) == 1) {
+                ?>
+        jQuery(".zo2-sticky").sticky({topSpacing:0});
+        <?php
+    }
+?>
+    });
+</script>
 </html>
