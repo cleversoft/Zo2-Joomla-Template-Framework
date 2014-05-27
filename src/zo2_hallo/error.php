@@ -39,6 +39,9 @@ $templateName = $this->template;
 </head>
 <body class="zo2-error">
 <div>
+    <div class="img">
+        <img src="<?php echo $this->baseurl . '/templates/zo2_hallo/assets/zo2/images/404_page.png'?>"/>
+    </div>
     <div id="outline">
         <div id="errorboxoutline">
             <h1 id="errorboxheader"><?php echo $this->error->getCode(); ?> - <?php echo $this->error->getMessage(); ?></h1>
@@ -52,21 +55,9 @@ $templateName = $this->template;
                     <li><?php echo JText::_('JERROR_LAYOUT_REQUESTED_RESOURCE_WAS_NOT_FOUND'); ?></li>
                     <li><?php echo JText::_('JERROR_LAYOUT_ERROR_HAS_OCCURRED_WHILE_PROCESSING_YOUR_REQUEST'); ?></li>
                 </ol>
-                <h3><?php echo JText::_('JERROR_LAYOUT_PLEASE_TRY_ONE_OF_THE_FOLLOWING_PAGES'); ?></h3>
+                <a class="btn btn-success" href="<?php echo $this->baseurl; ?>/index.php" title="<?php echo JText::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'); ?>">Go To Home</a>
 
-
-                <a class="btn btn-success" href="<?php echo $this->baseurl; ?>/index.php" title="<?php echo JText::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'); ?>"><?php echo JText::_('JERROR_LAYOUT_HOME_PAGE'); ?></a>
-
-
-                <h4><?php echo JText::_('JERROR_LAYOUT_PLEASE_CONTACT_THE_SYSTEM_ADMINISTRATOR'); ?>.</h4>
-                <div id="techinfo">
-                    <p><?php echo $this->error->getMessage(); ?></p>
-                    <p>
-                        <?php if ($this->debug) :
-                            echo $this->renderBacktrace();
-                        endif; ?>
-                    </p>
-                </div>
+                
             </div>
         </div>
     </div>
