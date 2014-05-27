@@ -8,6 +8,11 @@ if (file_exists($presetPath)) {
 $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
 $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
 
+$presets = Zo2Framework::get('theme');
+
+if(!empty($presets)) {
+    $presetData = json_decode($presets, true);
+}
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>
@@ -23,7 +28,11 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
         <ul class="options color-select">
             <?php
             foreach($presets_json  as $key => $preset ) {
-                echo '<li><a href="#" data-color="'.$key.'" data-layout="'.$preset->name.'" style="background-color: '.$preset->color.';"></a></li>';
+                $selected = '';
+                if(isset( $presetData['name'] ) && $presetData['name'] == $preset->name)
+                    $selected = 'selected';
+
+                echo '<li class="'.$selected.'"><a href="#" data-color="'.$key.'" data-layout="'.$preset->name.'" style="background-color: '.$preset->color.';"></a></li>';
             }
             ?>
         </ul>
@@ -35,7 +44,12 @@ $presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
 
                 if(count($bgPatterns) > 0) {
                     foreach($bgPatterns as $pattern ) {
-                        echo '<li><img src="'.Zo2HelperPath::toUrl($pattern).'" /></li>';
+                        $selected = '';
+                        $pattern_src = Zo2HelperPath::toUrl($pattern);
+                        if( isset($presetData['bg_pattern']) && ($pattern_src == $presetData['bg_pattern']) )
+                            $selected = 'selected';
+
+                        echo '<li class="'.$selected.'"><img src="'.$pattern_src.'" /></li>';
                     }
                 }
 
