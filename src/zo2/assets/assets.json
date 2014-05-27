@@ -17,7 +17,8 @@
         },
         "template": {
             "less": {
-                "template.less": "template.css",                
+                "template.less": "template.css",    
+                "error.less": "error.css",                
                 "presets\/green.less": "presets\/green.css",
                 "presets\/blue.less": "presets\/blue.css",                
                 "presets\/orange.less": "presets\/orange.css"                
