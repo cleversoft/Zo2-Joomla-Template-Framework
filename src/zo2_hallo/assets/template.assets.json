@@ -14,5 +14,9 @@
     {
         "path": "template",
         "type": "less"
+    },
+    {
+        "path": "error",
+        "type": "less"
     }
 ]
