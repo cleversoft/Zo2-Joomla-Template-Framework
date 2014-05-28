@@ -1,0 +1,45 @@
+a {
+  color: #D25400;
+}
+nav.zo2-menu .navbar-nav > .open a {
+  color: #D25400;
+}
+nav.zo2-menu .navbar-nav > .open a:hover,
+nav.zo2-menu .navbar-nav > .open a:focus {
+  color: #D25400;
+}
+nav.zo2-menu .navbar-nav .active a {
+  color: #D25400;
+}
+nav.zo2-menu .navbar-nav .active a:hover,
+nav.zo2-menu .navbar-nav .active a:focus {
+  color: #D25400;
+}
+nav.zo2-menu .navbar-nav ul.mega-nav li a:hover,
+nav.zo2-menu .navbar-nav ul.mega-nav li a:active,
+nav.zo2-menu .navbar-nav ul.mega-nav li a:focus {
+  color: #D25400;
+}
+nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
+  color: #D25400;
+}
+#zo2-features .top-features .zo2-feature .zo2-circle {
+  color: #D25400;
+}
+#zo2-features .top-features .zo2-feature .zo2-circle:before {
+  box-shadow: 0 0 0 3px #D25400;
+}
+#zo2-features .top-features:hover .zo2-circle {
+  background-color: #D25400;
+}
+.box-color {
+  background: #D25400;
+}
+@media (max-width: 767px) {
+  body nav.zo2-menu .navbar-toggle:hover .icon-bar {
+    background-color: #D25400;
+  }
+}
+.btn-success {
+  background-color: #D25400;
+}

@@ -1,0 +1,342 @@
+/**
+ * Zo2 (http://www.zo2framework.org)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zo2framework.org
+ * @link        http://github.com/aploss/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @license     GPL v2
+ */
+@import 'mixins';
+/* --------------------------------------------------
+// TYPOGRAPHY
+// --------------------------*/
+
+
+/* COMMONS
+// ------------------------------------------------------*/
+.clearfix{ clear: both;}
+.zt-typo-boxes{ border-bottom:1px solid #e2e3e5; margin: 0; padding:20px 0; width: 100%; }
+.zt-typo-boxes-inside{ padding: 0 10px; }
+
+/* BODY TEXT
+// ------------------------------------------------------*/
+
+/* Paragraphs
+// ----------*/
+p {
+  margin: 1em 0;
+}
+
+/* HEADINGS
+// ------------------------------------------------------*/
+
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+}
+h1 {font-size: 350%;}
+h2 {font-size: 275%;}
+h3 {font-size: 240%;}
+h4 {font-size: 200%;}
+h5 {font-size: 175%;}
+h6 {font-size: 150%;}
+h1 small,h2 small,h3 small,h4 small,h5 small,h6 small,.h1 small,.h2 small,.h3 small,.h4 small,.h5 small,.h6 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+h1,h2,h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+h4,h5,h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* PRE CODE
+// ------------------------------------------------------*/
+pre,
+.zt-code1,
+.zt-code2,
+.zt-code3 {
+  .border-radius(0);
+  border: none;
+  color:#222;
+  font: normal .92em/32px 'Curier New', monospace!important;
+  margin: 0;
+  padding: 20px;
+}
+pre,
+.zt-code1 {background: #d3d9f5; }
+.zt-code2{ background: #d6edd5; }
+
+.zt-code3 {
+  border: 1px solid #eee;
+  background-color: #fefefe;
+  color: #363636;
+  padding-left: 82px!important
+}
+.zt-code3 h4 {
+  background: none repeat scroll 0 0 #A8B4EF;
+  color: #FFFFFF;
+  margin: 0 0 0 -64px !important;
+  padding: 3px 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  width: 55px;
+}
+
+/* HIGHLIGHT
+// ------------------------------------------------------*/
+.zt-highlight1,
+.zt-highlight2,
+.zt-highlight3,
+.zt-highlight4 {
+  cursor: default;
+  padding: 1px 5px;
+  text-shadow: none
+}
+.zt-highlight1 {
+  background: #e5e5e5;
+  color:#2f2f2f;
+}
+.zt-highlight2{
+  background: #7fb2ff;
+  color: #fff
+}
+.zt-highlight3{
+  background: #ff7f7f;
+  color: #fff
+}
+.zt-highlight4 {
+  background: #ffe400;
+  color: #2f2f2f
+}
+
+/* UNORDERED LIST
+// ------------------------------------------------------*/
+[class^="zt-icon-"] li,
+[class*=" zt-icon-"] li{
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  *margin-right: .3em;
+  list-style: none;
+}
+[class^="zt-icon-"] li:before,
+[class*=" zt-icon-"] li:before {
+  text-decoration: inherit;
+  display: inline-block;
+  font-family: FontAwesome;
+  speak: none;
+  margin-right: 5px;
+}
+
+.zt-icon-angle-left li:before {
+  content: "\f104";
+}
+.zt-icon-angle-right li:before {
+  content: "\f105";
+}
+.zt-icon-angle-up li:before {
+  content: "\f106";
+}
+.zt-icon-angle-down li:before {
+  content: "\f107";
+}
+.zt-icon-arrow-left li:before {
+  content: "\f060";
+}
+.zt-icon-arrow-right li:before {
+  content: "\f061";
+}
+.zt-icon-arrow-up li:before {
+  content: "\f062";
+}
+.zt-icon-arrow-down li:before {
+  content: "\f063";
+}
+.zt-icon-caret-down li:before {
+  content: "\f0d7";
+}
+.zt-icon-caret-up li:before {
+  content: "\f0d8";
+}
+.zt-icon-caret-left li:before {
+  content: "\f0d9";
+}
+.zt-icon-caret-right li:before {
+  content: "\f0da";
+}
+.zt-icon-chevron-up li:before {
+  content: "\f077";
+}
+.zt-icon-chevron-down li:before {
+  content: "\f078";
+}
+.zt-icon-chevron-left li:before {
+  content: "\f053";
+}
+.zt-icon-chevron-right li:before {
+  content: "\f054";
+}
+.zt-icon-chevron-sign-left li:before {
+  content: "\f137";
+}
+.zt-icon-chevron-sign-right li:before {
+  content: "\f138";
+}
+.zt-icon-chevron-sign-up li:before {
+  content: "\f139";
+}
+.zt-icon-chevron-sign-down li:before {
+  content: "\f13a";
+}
+.zt-icon-circle-arrow-left li:before {
+  content: "\f0a8";
+}
+.zt-icon-circle-arrow-right li:before {
+  content: "\f0a9";
+}
+.zt-icon-circle-arrow-up li:before {
+  content: "\f0aa";
+}
+.zt-icon-circle-arrow-down li:before {
+  content: "\f0ab";
+}
+.zt-icon-double-angle-left li:before {
+  content: "\f100";
+}
+.zt-icon-double-angle-right li:before {
+  content: "\f101";
+}
+.zt-icon-double-angle-up li:before {
+  content: "\f102";
+}
+.zt-icon-double-angle-down li:before {
+  content: "\f103";
+}
+.zt-icon-hand-right li:before {
+  content: "\f0a4";
+}
+.zt-icon-hand-left li:before {
+  content: "\f0a5";
+}
+.zt-icon-hand-up li:before {
+  content: "\f0a6";
+}
+.zt-icon-hand-down li:before {
+  content: "\f0a7";
+}
+.zt-icon-long-arrow-down li:before {
+  content: "\f175";
+}
+.zt-icon-long-arrow-up li:before {
+  content: "\f176";
+}
+.zt-icon-long-arrow-left li:before {
+  content: "\f177";
+}
+.zt-icon-long-arrow-right li:before {
+  content: "\f178";
+}
+
+/* BLOCKQUOTE
+// ------------------------------------------------------*/
+.zt-typo-inside{
+  blockquote {
+    border: none;
+    font-style: italic;
+    margin: 20px 0;
+    p{
+      font-size: 100%;
+    }
+    small:before{
+      content: "";
+    }
+    div{
+      display:block;
+      &.zt-blockquote1 {
+        background: url(../images/typo/open1.png) no-repeat left bottom;
+        div{
+          background: url(../images/typo/close1.png) no-repeat right top;
+          padding: 0 22px
+        }
+      }
+      &.zt-blockquote2 {
+        background: url(../images/typo/open1.png) no-repeat left top;
+        div{
+          background: url(../images/typo/close1.png) no-repeat right top;
+          padding: 0 22px
+        }
+      }
+      &.zt-blockquote3 {
+        background: url(../images/typo/open2.png) no-repeat left bottom;
+        padding-bottom: 1px;
+        div{
+          background: url(../images/typo/close2.png) no-repeat right top;
+          padding: 5px 48px 0
+        }
+      }
+      &.zt-blockquote4 {
+        background: url(../images/typo/open2.png) no-repeat left top;
+        div {
+          background: url(../images/typo/close2.png) no-repeat right top;
+          padding: 0 48px
+        }
+      }
+    }
+  }
+}
+
+
+/* WARNING
+// ------------------------------------------------------*/
+
+.zt-box-info,
+.zt-box-warning,
+.zt-box-stickynote,
+.zt-box-upload,
+.zt-box-download{
+  color: #353535;
+  padding: 15px;
+  text-shadow: 0 1px 0 rgba(255,255,255,.99);
+}
+.zt-box-info:before,
+.zt-box-warning:before,
+.zt-box-stickynote:before,
+.zt-box-upload:before,
+.zt-box-download:before{
+  text-decoration: inherit;
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 150%;
+  speak: none;
+  margin-right: 10px;
+}
+.zt-box-info:before {
+  content: "\f129";
+}
+.zt-box-warning:before {
+  content: "\f071";
+}
+.zt-box-stickynote:before {
+  content: "\f0eb";
+}
+.zt-box-upload:before {
+  content: "\f093";
+}
+.zt-box-download:before {
+  content: "\f019";
+}
+.zt-box-info {background: #e5f4f9;}
+.zt-box-warning {background: #f8e7e5; }
+.zt-box-stickynote {background: #f6f2e1; }
+.zt-box-upload {background: #e4f7d3; }
+.zt-box-download {background: #e7ebfb; }

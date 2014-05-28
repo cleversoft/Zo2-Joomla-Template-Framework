@@ -1,0 +1,22 @@
+[
+    {
+        "path": "ekko-lightbox",
+        "type": "js"
+    },
+    {
+        "path": "normalize",
+        "type": "css"
+    },
+    {
+        "path": "megamenu",
+        "type": "js"
+    },
+    {
+        "path": "template",
+        "type": "less"
+    },
+    {
+        "path": "error",
+        "type": "less"
+    }
+]

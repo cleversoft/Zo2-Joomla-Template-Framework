@@ -1,0 +1,125 @@
+@import 'mixins';
+/*Module*/
+h3.moduletitle{
+  background: url("../images/module-title-line.jpg") no-repeat left bottom;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: normal;
+  margin: 0 0 20px;
+  padding-bottom: 25px;
+  color: #2d3d51;
+}
+#zo2-bottom1 h3.moduletitle,
+#zo2-bottom2 h3.moduletitle{
+  background: url("../images/module-title-line-dark.jpg") no-repeat left bottom;
+  color: #fff;
+  font-size: 22px;
+}
+.no-line h3.moduletitle{
+  background: none;
+}
+//Breadcrumb
+.breadcrumb{
+  .border-radius(0px);
+}
+//Category
+ul.categories-module{
+  li  {
+    border-bottom: 1px solid #eaeaea;
+    color: #333;
+    padding: 10px 5px;
+    display: block;
+    line-height: 40px;
+    i{
+      float: left;
+      padding-right: 10px;
+    }
+    h2,h3,h4,h5,h6{
+      margin: 0;
+      text-transform: none;
+    }
+    a{
+      color: #4f4f4f;
+      display: block;
+      font-size: 13px;
+    }
+    &:hover,
+    &.active{
+      color: #7fbe54;
+      a{
+        color: #7fbe54;
+      }
+    }
+  }
+}
+//Archive module
+ul.archive-module{
+  li  {
+    padding: 10px 5px;
+    display: block;
+    -webkit-box-shadow:  0px 1px 0px 0px rgba(0,0,0,0.07);
+    box-shadow:  0px 1px 0px 0px rgba(0,0,0,0.07);
+    a {
+      display: block;
+    }
+    &:hover,
+    &.active{
+      color: #333;
+      background: #f8f8f8;
+      a {
+        color: #333;
+        background: #f8f8f8;
+      }
+    }
+  }
+}
+//Popular tags
+.tagspopular{
+  ul{
+    li {
+      float: left;
+      display: inline-block;
+      padding-right: 6px;
+      margin: 3px 0;
+      a {
+        display: block;
+        padding: 4px 15px;
+        background-color: #f2f2f2;
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        color: #666;
+        font-size: 11px;
+        &:hover{
+          background-color: #333333;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+//Most read
+ul.mostread{
+  li {
+    float: left;
+    display: inline-block;
+    padding-right: 6px;
+    margin: 3px 0;
+    a {
+      display: block;
+      padding: 4px 15px;
+      border: 1px solid #e8e8e8;
+      color: #666;
+      font-size: 11px;
+      &:hover {
+        background-color: #333333;
+        padding: 4px 17px 4px 15px;
+        color: #fff;
+      }
+    }
+  }
+}
+
+
+
+
+
