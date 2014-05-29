@@ -1993,10 +1993,16 @@ body{
   &.joomla-25{
     .btn-group{
       font-size: inherit;
+      position: static;
       input[type="radio"]{
         display: block;
         margin: 0;
         float: none;
+      }
+      > .btn{
+        float: left;
+        margin:0;
+        clear: inherit;
       }
     }
     #general{
@@ -2035,14 +2041,6 @@ body{
               background-position: inherit;
             }
           }
-        }
-      }
-      .btn-group{
-        position: static;
-        > .btn{
-          float: left;
-          margin:0;
-          clear: inherit;
         }
       }
     }

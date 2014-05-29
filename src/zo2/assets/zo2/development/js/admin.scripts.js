@@ -665,7 +665,7 @@ var generatePresetData = function() {
         footer: $('#color_footer').val(),
         extra: JSON.stringify(extra),
         bg_image: $('#zo2_background_image').val(),
-        bg_pattern: $('.background-select li.selected img').attr('src')
+        bg_pattern: $('.background-select li.selected img').attr('rel')
     };
 
     $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
