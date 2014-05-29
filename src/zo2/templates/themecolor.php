@@ -271,9 +271,9 @@ if(!isset($currentData['bg_image'])) $currentData['bg_image'] = '';
                         foreach($bgPatterns as $pattern ) {
                             $selected = '';
                             $pattern_src = Zo2HelperPath::toUrl($pattern);
-                            if( isset($currentData['bg_pattern']) && ($pattern_src == $currentData['bg_pattern']) )
+                            if( isset($currentData['bg_pattern']) && ($pattern == $currentData['bg_pattern']) )
                                 $selected = 'selected';
-                            echo '<li class="'.$selected.'"><img src="'.$pattern_src.'" /></li>';
+                            echo '<li class="'.$selected.'"><img rel="'.$pattern.'" src="'.$pattern_src.'" /></li>';
                         }
                     }
                     ?>
