@@ -100,7 +100,7 @@ if (!class_exists('Zo2Layout')) {
             $cacheFile = null;
             $canCache = $zo2->get('debug_visibility', 0) == 0;
 
-            if($menuItem) {
+            if ($menuItem) {
                 if (isset($menuItem->id) && !empty($menuItem->id)) {
                     $cacheFile = 'zo2_layout_' . $menuItem->id . '.php';
                 } else {
@@ -189,66 +189,71 @@ if (!class_exists('Zo2Layout')) {
          * @return string
          */
         private function _generateRow($item) {
-            //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
-            $class = $item['fullwidth'] ? '' : 'container';
-            $class .= ' ' . self::_generateVisibilityClass($item['visibility']);
-            $html = '';
-            if (!empty($item['id']))
-                $html .= '<section id="' . $item['id'] . '" class="' . $item['customClass'] . '">';
-            else
-                $html .= '<section class="' . $item['customClass'] . '">';
-            $html .= '<section class="' . $class . '">'; // start of container
-            $html .= '<section class="row">'; // start of row
-            // count column and remove empty module here
-            $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
-            $doc = JFactory::getDocument();
-            $freeSpace = 0;
-            $totalTakenSpace = 0;
-            $offsetSpace = 0;
-            for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
-                $col = $item['children'][$i];
-                $modulesInPosition = $doc->countModules($col['position']);
-                if (in_array($col['position'], $exceptPos))
-                    $modulesInPosition = max($modulesInPosition, 1);
-                if ($modulesInPosition == 0) {
-                    $freeSpace += $col['span'];
-                    unset($item['children'][$i]);
-                    continue;
-                } else if ($modulesInPosition > 0 && $freeSpace > 0) {
-                    $item['children'][$i]['span'] += $freeSpace;
-                    $freeSpace = 0;
+            if (
+                    (strtolower($item['name']) == 'component' && !$this->hideComponent()) || (strtolower($item['name']) != 'component')
+            ) {
+
+                //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
+                $class = $item['fullwidth'] ? '' : 'container';
+                $class .= ' ' . self::_generateVisibilityClass($item['visibility']);
+                $html = '';
+                if (!empty($item['id']))
+                    $html .= '<section id="' . $item['id'] . '" class="' . $item['customClass'] . '">';
+                else
+                    $html .= '<section class="' . $item['customClass'] . '">';
+                $html .= '<section class="' . $class . '">'; // start of container
+                $html .= '<section class="row">'; // start of row
+                // count column and remove empty module here
+                $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+                $doc = JFactory::getDocument();
+                $freeSpace = 0;
+                $totalTakenSpace = 0;
+                $offsetSpace = 0;
+                for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
+                    $col = $item['children'][$i];
+                    $modulesInPosition = $doc->countModules($col['position']);
+                    if (in_array($col['position'], $exceptPos))
+                        $modulesInPosition = max($modulesInPosition, 1);
+                    if ($modulesInPosition == 0) {
+                        $freeSpace += $col['span'];
+                        unset($item['children'][$i]);
+                        continue;
+                    } else if ($modulesInPosition > 0 && $freeSpace > 0) {
+                        $item['children'][$i]['span'] += $freeSpace;
+                        $freeSpace = 0;
+                    }
+
+                    $totalTakenSpace += $item['children'][$i]['span'];
+                    $offsetSpace += $item['children'][$i]['offset'];
                 }
 
-                $totalTakenSpace += $item['children'][$i]['span'];
-                $offsetSpace += $item['children'][$i]['offset'];
-            }
+                if ($totalTakenSpace <= 0)
+                    return !empty($item['name']) ? '<!-- empty row: ' . $item['name'] . ' -->' : '';
 
-            if ($totalTakenSpace <= 0)
-                return !empty($item['name']) ? '<!-- empty row: ' . $item['name'] . ' -->' : '';
+                $tempChildren = array();
+                foreach ($item['children'] as $c) {
+                    $tempChildren[] = $c;
+                }
+                $item['children'] = $tempChildren;
 
-            $tempChildren = array();
-            foreach ($item['children'] as $c) {
-                $tempChildren[] = $c;
-            }
-            $item['children'] = $tempChildren;
+                if ($totalTakenSpace < 12) {
+                    $remainingSpace = 12 - $totalTakenSpace - $offsetSpace;
+                    $totalChildren = count($item['children']);
+                    $index = $totalChildren - 1;
+                    if ($index < 0)
+                        $index = 0;
+                    if (isset($item['children'][$index]))
+                        $item['children'][$index]['span'] += $remainingSpace;
+                }
 
-            if ($totalTakenSpace < 12) {
-                $remainingSpace = 12 - $totalTakenSpace - $offsetSpace;
-                $totalChildren = count($item['children']);
-                $index = $totalChildren - 1;
-                if ($index < 0)
-                    $index = 0;
-                if (isset($item['children'][$index]))
-                    $item['children'][$index]['span'] += $remainingSpace;
+                for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
+                    $html .= self::_buildItem($item['children'][$i]);
+                }
+                $html .= '</section>'; // end of row
+                $html .= '</section>'; // end of container
+                $html .= '</section>'; // end of wrapper
+                return $html;
             }
-
-            for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
-                $html .= self::_buildItem($item['children'][$i]);
-            }
-            $html .= '</section>'; // end of row
-            $html .= '</section>'; // end of container
-            $html .= '</section>'; // end of wrapper
-            return $html;
         }
 
         /**
@@ -258,65 +263,71 @@ if (!class_exists('Zo2Layout')) {
          */
         private function _generateColumn($item) {
             $jItem = new JRegistry($item);
-            /**
-             * @todo move to layouts/html and use Zo2Template to fetch
-             */
-            $html = '';
-            $class = 'col-md-' . $item['span'];
-            if ($item['offset'] != 0) {
-                $class .= ' col-md-offset-' . $item['offset'];
-            }
-            $class .= ' ' . $this->_generateVisibilityClass($item['visibility']);
-            //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
-            if (!empty($item['customClass']))
-                $class .= ' ' . $item['customClass'];
-            if (!empty($item['id']))
-                $html .= '<section id="' . $item['id'] . '" class="' . $class . '">';
-            else
-                $html .= '<section class="' . $class . '">';
+            if (
+                    ($item['position'] == 'component') && (!$this->hideComponent() ) ||
+                    ($item['position'] != 'component')
+            ) {
 
-            if (!empty($item['position'])) {
+                /**
+                 * @todo move to layouts/html and use Zo2Template to fetch
+                 */
+                $html = '';
+                $class = 'col-md-' . $item['span'];
+                if ($item['offset'] != 0) {
+                    $class .= ' col-md-offset-' . $item['offset'];
+                }
+                $class .= ' ' . $this->_generateVisibilityClass($item['visibility']);
+                //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
+                if (!empty($item['customClass']))
+                    $class .= ' ' . $item['customClass'];
+                if (!empty($item['id']))
+                    $html .= '<section id="' . $item['id'] . '" class="' . $class . '">';
+                else
+                    $html .= '<section class="' . $class . '">';
 
-                if (($item['position'] == 'component') && (!$this->hideComponent()))
-                    $html .= '<jdoc:include type="component" />';
-                else if (($item['position'] == 'message') && (!$this->hideComponent()))
-                    $html .= '<jdoc:include type="message" />';
-                else if ($item['position'] == 'mega_menu') {
-                    //$html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
-                    $html .= Zo2Layout::MEGAMENU_PLACEHOLDER;
-                } else {
-                    $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
-                    $componentHtml = '';
-                    if (isset($this->_components[$item['position']]) && $componentPath = $this->_components[$item['position']]) {
-                        $componentClassName = "Zo2Component_" . $item['position'];
-                        if (file_exists($componentPath))
-                            require_once $componentPath;
-                        if (class_exists($componentClassName)) {
-                            $component = new $componentClassName();
-                            if ($component instanceof Zo2Component) {
-                                $componentHtml = $component->render();
+                if (!empty($item['position'])) {
 
-                                if ($component->position == Zo2Component::RENDER_BEFORE)
-                                    $html .= $componentHtml . "\n" . $moduleJdoc;
-                                else if ($component->position == Zo2Component::RENDER_AFTER)
-                                    $html .= $moduleJdoc . "\n" . $componentHtml;
+                    if (($item['position'] == 'component') && (!$this->hideComponent()))
+                        $html .= '<jdoc:include type="component" />';
+                    else if (($item['position'] == 'message') && (!$this->hideComponent()))
+                        $html .= '<jdoc:include type="message" />';
+                    else if ($item['position'] == 'mega_menu') {
+                        //$html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), $zo2->getTemplate());
+                        $html .= Zo2Layout::MEGAMENU_PLACEHOLDER;
+                    } else {
+                        $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
+                        $componentHtml = '';
+                        if (isset($this->_components[$item['position']]) && $componentPath = $this->_components[$item['position']]) {
+                            $componentClassName = "Zo2Component_" . $item['position'];
+                            if (file_exists($componentPath))
+                                require_once $componentPath;
+                            if (class_exists($componentClassName)) {
+                                $component = new $componentClassName();
+                                if ($component instanceof Zo2Component) {
+                                    $componentHtml = $component->render();
+
+                                    if ($component->position == Zo2Component::RENDER_BEFORE)
+                                        $html .= $componentHtml . "\n" . $moduleJdoc;
+                                    else if ($component->position == Zo2Component::RENDER_AFTER)
+                                        $html .= $moduleJdoc . "\n" . $componentHtml;
+                                }
                             }
                         }
+
+                        if (empty($componentHtml))
+                            $html .= $moduleJdoc;
                     }
-
-                    if (empty($componentHtml))
-                        $html .= $moduleJdoc;
                 }
-            }
 
-            if ($total = count($item['children']) > 0) {
-                for ($i = 0; $i < $total; $i++) {
-                    $html .= self::_buildItem($item['children'][$i]);
+                if ($total = count($item['children']) > 0) {
+                    for ($i = 0; $i < $total; $i++) {
+                        $html .= self::_buildItem($item['children'][$i]);
+                    }
                 }
-            }
 
-            $html .= '</section>';
-            return $html;
+                $html .= '</section>';
+                return $html;
+            }
         }
 
         private function _generateVisibilityClass($visibilityData) {
