@@ -6,7 +6,7 @@ if (file_exists($presetPath)) {
 }
 
 $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns';
-$presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets';
+$presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
 
 $presets = Zo2Framework::get('theme');
 
