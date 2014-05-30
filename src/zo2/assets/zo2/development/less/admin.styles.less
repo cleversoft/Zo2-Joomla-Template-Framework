@@ -1992,6 +1992,13 @@ body{
 
   /*Joomla 2.5 style*/
   &.joomla-25{
+    #theme .zo2_themes_row .zo2_themes_form .background-select li {
+      padding: 0;
+      img{
+        float: none;
+        margin: 0;
+      }
+    }
     .zo2_background_and_pattern{
       .input-prepend{
         #zo2_background_image{
@@ -2019,12 +2026,33 @@ body{
         float: left;
         margin:0;
         clear: inherit;
+        &.first{
+          border-radius: 4px 0 0 4px;
+          -moz-border-radius: 4px 0 0 4px;
+          -webkit-border-radius: 4px 0 0 4px;
+          -o-border-radius: 4px 0 0 4px;
+        }
       }
-      .btn:first-child{
+      .layout_style_choose{
         border-radius: 4px 0 0 4px;
         -moz-border-radius: 4px 0 0 4px;
         -webkit-border-radius: 4px 0 0 4px;
         -o-border-radius: 4px 0 0 4px;
+        &:last-child{
+          border-radius: 0 4px 4px 0;
+          -moz-border-radius: 0 4px 4px 0;
+          -webkit-border-radius: 0 4px 4px 0;
+          -o-border-radius: 0 4px 4px 0;
+        }
+      }
+    }
+    .logo-image{
+      input, label{
+        float:none;
+      }
+      .logo-preview img{
+        float: none;
+        margin: 0;
       }
     }
     #general{

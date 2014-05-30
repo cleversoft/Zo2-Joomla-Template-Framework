@@ -37,6 +37,7 @@ jQuery(document).ready(function($) {
     $('.radio.btn-group input[type="radio"]').hide();
 
     $('.radio.btn-group label').addClass('btn');
+    $('.radio.btn-group input[value="0"]').next().addClass('first');
 
     $('.btn-group label:not(.active)').click(function()
     {
