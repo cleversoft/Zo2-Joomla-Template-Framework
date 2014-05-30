@@ -44,7 +44,7 @@ if (!class_exists('Zo2HelperPath')) {
         }
 
         public static function toUrl($path) {
-            return rtrim(JUri::root(), '/') . '/' . str_replace(JPATH_ROOT, '', $path);
+            return rtrim(JUri::root(), '/') . str_replace(JPATH_ROOT, '', $path);
         }
 
         /**
