@@ -22,6 +22,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
 <!DOCTYPE html>
 <html lang="<?php echo $this->zo2->template->getLanguage(); ?>" dir="<?php echo $this->zo2->template->getDirection(); ?>">
 <head>
+    <?php unset($this->_scripts[JURI::root(true).'/media/jui/js/bootstrap.min.js']); ?>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php echo $this->zo2->template->fetch('html://layouts/head.response.php'); ?>
     <?php echo $this->zo2->template->fetch('html://layouts/head.favicon.php'); ?>
