@@ -94,6 +94,7 @@ body{
     -webkit-box-sizing:border-box;
     -ms-box-sizing:border-box;
   }
+
   .zo2-tabs {
     position: absolute;
     top:10px;
@@ -1991,6 +1992,21 @@ body{
 
   /*Joomla 2.5 style*/
   &.joomla-25{
+    .zo2_background_and_pattern{
+      .input-prepend{
+        #zo2_background_image{
+          margin: 0 5px;
+        }
+        a.modal{
+          position: static;
+          position: static;
+          box-shadow: none;
+          -moz-box-shadow: none;
+          -webkit-box-shadow: none;
+          width: auto;
+        }
+      }
+    }
     .btn-group{
       font-size: inherit;
       position: static;
@@ -2003,6 +2019,12 @@ body{
         float: left;
         margin:0;
         clear: inherit;
+      }
+      .btn:first-child{
+        border-radius: 4px 0 0 4px;
+        -moz-border-radius: 4px 0 0 4px;
+        -webkit-border-radius: 4px 0 0 4px;
+        -o-border-radius: 4px 0 0 4px;
       }
     }
     #general{
