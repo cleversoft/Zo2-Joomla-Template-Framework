@@ -32,7 +32,7 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 
 ##Download
 
-The latest version (v1.3.8): [Zo2 Framework](http://www.zo2framework.org/index.php/download)
+The latest version (v1.3.9): [Zo2 Framework](http://www.zo2framework.org/index.php/download)
 
 ##Demo
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
@@ -48,7 +48,10 @@ The latest version (v1.3.8): [Zo2 Framework](http://www.zo2framework.org/index.p
 8. Version 1.3.3: released on Mar 11, 2014
 9. Version 1.3.4: released on Mar 24, 2014
 10. Version 1.3.5: released on Apr 14, 2014
-
+11. Version 1.3.6: released on Apr 22, 2014
+12. Version 1.3.7: released on Apr 28, 2014
+13. Version 1.3.8: released on May 12, 2014
+14. Version 1.3.9: released on May 31, 2014
 ## Roadmap
 
 **1.2.1: Dec 30, 2013 - Jan 06, 2014**
