@@ -361,16 +361,16 @@ if (!class_exists('Zo2Layout')) {
 
             $pluginComponents = glob($pluginComponentsPath);
             $templateComponents = glob($templateComponentsPath);
-
-            foreach ($pluginComponents as $comp) {
-                $compName = JFILE::stripExt(basename($comp));
-                $this->_components[$compName] = $comp;
-            }
-
-            foreach ($templateComponents as $comp) {
-                $compName = JFILE::stripExt(basename($comp));
-                $this->_components[$compName] = $comp;
-            }
+            if($pluginComponents)
+                foreach ($pluginComponents as $comp) {
+                    $compName = JFILE::stripExt(basename($comp));
+                    $this->_components[$compName] = $comp;
+                }
+            if($templateComponents)
+                foreach ($templateComponents as $comp) {
+                    $compName = JFILE::stripExt(basename($comp));
+                    $this->_components[$compName] = $comp;
+                }
         }
 
         public function getBodyClass($customClass = '') {

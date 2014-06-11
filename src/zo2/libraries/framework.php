@@ -480,9 +480,10 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($templateName)) {
                 $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.php';
                 $layoutFiles = glob($templatePath);
-                return array_map('basename', $layoutFiles, array('.php'));
-            } else
-                return array();
+                if(is_array($layoutFiles))
+                    return array_map('basename', $layoutFiles, array('.php'));
+            }
+            return array();
         }
 
         public static function getTemplateLayoutsName($templateName) {
