@@ -712,7 +712,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public function joomla($name) {
-            $filePath = __DIR__ . '/joomla/' . $name . '.php';
+            $filePath = ZO2PATH_ROOT . '/libraries/joomla/' . $name . '.php';
             if (JFile::exists($filePath)) {
                 require_once $filePath;
             }

@@ -26,7 +26,6 @@
         <folder>libraries</folder>        
         <folder>templates</folder>
         <folder>vendor</folder>
-        <filename>googlefonts.json</filename>
         <filename plugin="zo2">zo2.php</filename>
     </files>
     <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
