@@ -17,6 +17,7 @@ $menuTypes = MenusHelper::getMenuLinks();
 $user = JFactory::getUser();
 $profileAssign = $zo2->get('profile');
 ?>
+<p>Store your modifications in a layout profile and assign it to different pages. The default layout will be used on pages without an assigned layout</p>
 <div class="row-fluid">
     <div class="span6">
         <div class="control-group">
@@ -42,6 +43,8 @@ $profileAssign = $zo2->get('profile');
                 </select>
                 <span class="input-group-btn">
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Load Profile</button>
+                    <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
+                    <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Remove</button>
                 </span>
             </div>
         </div>
