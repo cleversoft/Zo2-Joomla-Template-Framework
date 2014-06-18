@@ -5,21 +5,18 @@
         "css": "presets/green",
         "less": "presets/green",
         "color": "#7FBE54",
-        "boxed": "1",
         "thumbnail": "/assets/zo2/images/presets/green.jpg",
         "variables": {
             "background": "",
             "header": "",
             "header_top": "",
             "link": "",
-            "link_hover": "#7FBE54",
+            "link_hover": "",
             "text": "",
             "bottom1": "",
             "bottom2": "",
             "footer": "",
-            "extra": "",
-            "bg_image": "",
-            "bg_pattern":""
+            "extra": ""
         }
     },
     {
@@ -28,21 +25,18 @@
         "css": "presets/blue",
         "less": "presets/blue",
         "color": "#0099FF",
-        "boxed": "0",
         "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
-            "background": "#3288c7",
-            "header": "#95c5e8",
+            "background": "",
+            "header": "",
             "header_top": "",
-            "link": "#184587",
-            "link_hover": "#5eaf28",
-            "text": "#fff",
+            "link": "",
+            "link_hover": "",
+            "text": "",
             "bottom1": "",
             "bottom2": "",
             "footer": "",
-            "extra": "",
-            "bg_image": "",
-            "bg_pattern":""
+            "extra": ""
         }
     },
     {
@@ -51,21 +45,18 @@
         "css": "presets/orange",
         "less": "presets/orange",
         "color": "#D25400",
-        "boxed": "0",
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
-            "background": "#ffffff",
-            "header": "#ecf0f1",
-            "header_top": "#ecf0f1",
-            "link": "#d35400",
-            "link_hover": "#e67e22",
-            "text": "#4d4d62",
-            "bottom1": "#2c3e50",
-            "bottom2": "#2c3e50",
-            "footer": "#edeff1",
-            "extra": "",
-            "bg_image": "",
-            "bg_pattern":""
+            "background": "",
+            "header": "",
+            "header_top": "",
+            "link": "",
+            "link_hover": "",
+            "text": "",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": "",
+            "extra": ""
         }
     }
 ]

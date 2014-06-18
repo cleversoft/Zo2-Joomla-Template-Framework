@@ -13,6 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 require_once __DIR__ . '/defines.php';
+require_once __DIR__ . '/framework.php';
 
 /* Joomla! autoloading register */
 JLoader::discover('Zo2', ZO2PATH_ROOT . '/libraries');
@@ -24,8 +25,6 @@ if (Zo2Framework::isZo2Template()) {
 
     $assets = Zo2Assets::getInstance();
 
-    $assets->buildAssets();
-    $assets->loadAssets();
 
     /**
      * Framework init
@@ -33,9 +32,6 @@ if (Zo2Framework::isZo2Template()) {
     if (!Zo2Framework::isJoomla25()) {
         JFactory::getApplication()->loadLanguage();
     }
-    Zo2Framework::import('core.Zo2Layout');
-    Zo2Framework::import('core.Zo2Component');
-    Zo2Framework::import('core.Zo2AssetsManager');
 
     /**
      * @todo remove this core hacking

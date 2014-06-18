@@ -47,7 +47,6 @@ if (!class_exists('Zo2Layout')) {
 
             if ($app->isSite()) {
 
-
                 /**
                  * @since 1.3.8
                  */
@@ -126,8 +125,20 @@ if (!class_exists('Zo2Layout')) {
                 else
                     $layoutType = '-fluid';
 
+                $itemId = JFactory::getApplication()->input->get('Itemid');
                 $profile = new Zo2Profile();
-                $profile->load($zo2->get('profile', 'default'));
+                $profileName = $zo2->get('profile', 'default');
+                if (is_object($profileName)) {
+                    if (isset($profileName->$itemId)) {
+                        $profileName = $profileName->$itemId;
+                    } else {
+                        $profileName = 'default';
+                    }
+                } else {
+                    
+                }
+
+                $profile->load($profileName);
                 $layout = $profile->layout;
 
                 if ($layout) {
@@ -356,21 +367,21 @@ if (!class_exists('Zo2Layout')) {
          */
         public function importComponents() {
 
-            $pluginComponentsPath = Zo2Framework::getZo2Path() . '/components/*.php';
+            $pluginComponentsPath = ZO2PATH_ROOT . '/components/*.php';
             $templateComponentsPath = $this->get('templatePath') . 'components/*.php';
 
             $pluginComponents = glob($pluginComponentsPath);
             $templateComponents = glob($templateComponentsPath);
-            if($pluginComponents)
-                foreach ($pluginComponents as $comp) {
-                    $compName = JFILE::stripExt(basename($comp));
-                    $this->_components[$compName] = $comp;
-                }
-            if($templateComponents)
-                foreach ($templateComponents as $comp) {
-                    $compName = JFILE::stripExt(basename($comp));
-                    $this->_components[$compName] = $comp;
-                }
+
+            foreach ($pluginComponents as $comp) {
+                $compName = JFILE::stripExt(basename($comp));
+                $this->_components[$compName] = $comp;
+            }
+
+            foreach ($templateComponents as $comp) {
+                $compName = JFILE::stripExt(basename($comp));
+                $this->_components[$compName] = $comp;
+            }
         }
 
         public function getBodyClass($customClass = '') {

@@ -90,7 +90,7 @@ class JFormFieldLayout extends JFormField {
         $templatePath = Zo2Framework::getTemplatePath();
 
         $profile = new Zo2Profile();
-        $profileName = $jinput->get('profile', $zo2->get('profile', 'default'));
+        $profileName = $jinput->get('profile', 'default');
         $profile->load($profileName);
         $layout = $profile->layout;
 

@@ -21,10 +21,9 @@ if (!class_exists('Zo2JTemplate')) {
         }
 
         /**
-         * 
+         * Hook and replace Joomla! style save
          */
         public function save() {
-            /* Hook and replace Joomla! style save */
             $jinput = JFactory::getApplication()->input;
             if ($jinput->get('option') == 'com_templates') {
                 /**
@@ -34,6 +33,7 @@ if (!class_exists('Zo2JTemplate')) {
                     JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
                     JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
 
+                    /* Load language */
                     $lang = JFactory::getLanguage();
                     $extension = 'com_templates';
                     $base_dir = JPATH_ADMINISTRATOR;
@@ -49,13 +49,22 @@ if (!class_exists('Zo2JTemplate')) {
                     /* Save template with data */
                     $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
                     $model->save($data);
-                    
+
                     if ($table->load(array(
                                 'template' => $data['template'],
                                 'client_id' => $data['client_id'],
                                 'home' => $data['home'],
                                 'title' => $data['title']
                             ))) {
+                        $profileName = $data['profile-select'];
+                        /* Update profile assign list */
+                        $list = array();
+                        if (isset($data['profile-menu'])) {
+                            foreach ($data['profile-menu'] as $menuId) {
+                                $list[$menuId] = $profileName;
+                            }
+                        }
+                        $data['params']['profile'] = $list;
                         $params = new JRegistry($data['params']);
                         $table->params = $params->toString();
                         if ($table->check()) {
@@ -66,10 +75,11 @@ if (!class_exists('Zo2JTemplate')) {
                                  */
                                 $profile = new Zo2Profile();
                                 $profile->template = $data['template'];
-                                $profile->name = $params->get('profile', 'default');
+                                $profile->name = $profileName;
                                 $profile->layout = json_decode($params->get('layout'));
+
                                 $profile->save();
-                               
+
                                 $application = JFactory::getApplication();
                                 $application->enqueueMessage('Style successfully saved');
 

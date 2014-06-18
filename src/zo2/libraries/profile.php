@@ -19,6 +19,8 @@ if (!class_exists('Zo2Profile')) {
      */
     class Zo2Profile extends JObject {
 
+        private $_profile = null;
+
         /**
          * 
          * @param type $file
@@ -30,8 +32,9 @@ if (!class_exists('Zo2Profile')) {
                 $profileFile = Zo2Framework::getPath()->getFile('assets://profiles/default.json');
             }
             if ($profileFile) {
+                $this->_profile = json_decode(JFile::read($profileFile), true);
                 $this->name = JFile::stripExt(JFile::getName($profileFile));
-                $this->layout = json_decode(JFile::read($profileFile), true);
+                $this->layout = $this->_profile['layout'];
                 return true;
             }
             return false;
@@ -42,13 +45,14 @@ if (!class_exists('Zo2Profile')) {
          * @return type
          */
         public function save() {
+
             $templatePath = rtrim(JPATH_ROOT . '/templates/' . $this->template, DIRECTORY_SEPARATOR);
             $filePath = $templatePath . '/assets/profiles/' . $this->name . '.json';
 
             if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                $buffer = json_encode($this->layout, JSON_PRETTY_PRINT);
+                $buffer = json_encode($this->getProperties(), JSON_PRETTY_PRINT);
             } else {
-                $buffer = json_encode($this->layout);
+                $buffer = json_encode($this->getProperties());
             }
 
             return JFile::write($filePath, $buffer);
