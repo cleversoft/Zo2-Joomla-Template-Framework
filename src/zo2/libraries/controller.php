@@ -24,7 +24,7 @@ class Zo2Controller {
 
     public static function menu() {
         $task = JFactory::getApplication()->input->get('task', '');
-        Zo2Framework::import('core.classes.admin.menu');
+        Zo2Factory::import('core.classes.admin.menu');
         if (method_exists('AdminMenu', $task)) {
             echo AdminMenu::$task();
             exit;

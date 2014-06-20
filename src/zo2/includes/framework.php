@@ -413,7 +413,7 @@ if (!class_exists('Zo2Framework')) {
             $relPath = 'assets/cache/' . $filename;
             if (!file_exists($absPath)) {
                 if (!class_exists('lessc', false))
-                    Zo2Framework::import('vendor.less.lessc');
+                    Zo2Factory::import('vendor.less.lessc');
                 $absLessPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . $lessPath;
 
                 $compiler = new lessc();
@@ -532,7 +532,7 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
-            Zo2Framework::import('core.Zo2Megamenu');
+            Zo2Factory::import('core.Zo2Megamenu');
             $params = Zo2Framework::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
@@ -547,7 +547,7 @@ if (!class_exists('Zo2Framework')) {
             if ($menutype === null) {
                 $menutype = self::get('menu_type', 'mainmenu');
             }
-            Zo2Framework::import('core.Zo2Megamenu');
+            Zo2Factory::import('core.Zo2Megamenu');
             $params = Zo2Framework::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
@@ -563,7 +563,7 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function getController() {
             if ($zo2controller = JFactory::getApplication()->input->getCmd('zo2controller')) {
-                Zo2Framework::import('core.Zo2Controller');
+                Zo2Factory::import('core.Zo2Controller');
                 Zo2Controller::exec($zo2controller);
             }
         }
@@ -594,21 +594,6 @@ if (!class_exists('Zo2Framework')) {
 
         public static function getZo2Path() {
             return realpath(__DIR__ . '/../');
-        }
-
-        /**
-         * Import file from Zo2Framework plugin directory
-         *
-         * @param string $filepath Dot syntax file path
-         * @param bool $once Require this file only once
-         * @return bool
-         */
-        public static function import($filePath, $once = true) {
-            $path = self::getZo2Path() . DIRECTORY_SEPARATOR . str_replace('.', DIRECTORY_SEPARATOR, $filePath) . '.php';
-            if (JFile::exists($path)) {
-                return $once ? include_once $path : include $path;
-            }
-            return false;
         }
 
         public function getManifest() {

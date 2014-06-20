@@ -11,8 +11,8 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die;
-Zo2Framework::import('vendor.less.lessc');
-Zo2Framework::import('vendor.minify.css');
+Zo2Factory::import('vendor.less.lessc');
+Zo2Factory::import('vendor.minify.css');
 /**
  * Class exists checking
  */

@@ -16,7 +16,7 @@ class AdminMenu {
 
     public static function display() {
 
-        Zo2Framework::import('core.Zo2Megamenu');
+        Zo2Factory::import('core.Zo2Megamenu');
         $input = JFactory::getApplication()->input;
         $menutype = $input->get('menutype', 'mainmenu');
         $template = Zo2Framework::getTemplate()->template;

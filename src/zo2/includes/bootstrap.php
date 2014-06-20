@@ -38,7 +38,7 @@ if (Zo2Framework::isZo2Template()) {
      * @todo remove this core hacking
      */
     if (!class_exists('JViewLegacy', false))
-        Zo2Framework::import('core.classes.legacy');
+        Zo2Factory::import('core.classes.legacy');
 
     if (Zo2Framework::isSite()) {
         $template = Zo2Framework::getTemplate();
@@ -47,7 +47,7 @@ if (Zo2Framework::isZo2Template()) {
          * @todo remove this core hacking
          */
         if (!class_exists('JModuleHelper', false))
-            Zo2Framework::import('core.classes.helper');
+            Zo2Factory::import('core.classes.helper');
     } else {
         $zo2 = Zo2Framework::getInstance();
         $zo2->joomla('template')->process();

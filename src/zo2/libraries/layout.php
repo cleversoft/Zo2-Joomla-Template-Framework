@@ -65,8 +65,8 @@ if (!class_exists('Zo2Layout')) {
                  */
                 $this->importComponents();
 
-                Zo2Framework::import('vendor.minify.jsshrink');
-                Zo2Framework::import('vendor.minify.css');
+                Zo2Factory::import('vendor.minify.jsshrink');
+                Zo2Factory::import('vendor.minify.css');
             }
         }
 
