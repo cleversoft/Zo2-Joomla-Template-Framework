@@ -617,10 +617,10 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         *
-         * @return type
+         * Check Zo2 version is up to date
+         * @return int
          */
-        public static function checkVersion() {
+        public function checkVersion() {
             $remoteXML = simplexml_load_file('http://update.zo2framework.org/zo2/extension.xml');
             $result['compare'] = 0;
             $result['currentVersion'] = (string) self::getManifest()->version;

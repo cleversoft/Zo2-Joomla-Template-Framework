@@ -99,7 +99,8 @@ defined('_JEXEC') or die;
                 <div id="updater-bar">Zo2 v<span><?php echo Zo2Framework::getManifest()->version; ?></span></div>
                 <?php
                 $update = false;
-                $version = Zo2Framework::checkVersion();               
+                $framework = Zo2Factory::getFramework();
+                $version = $framework->checkVersion();
                 switch ($version['compare']) {
                     case -1:
                         $update = true;
