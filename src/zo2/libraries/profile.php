@@ -27,6 +27,7 @@ if (!class_exists('Zo2Profile')) {
          * @return boolean
          */
         public function load($name) {
+            
             $profileFile = Zo2Framework::getPath()->getFile('assets://profiles/' . $name . '.json');
             if ($profileFile == false) {
                 $profileFile = Zo2Framework::getPath()->getFile('assets://profiles/default.json');

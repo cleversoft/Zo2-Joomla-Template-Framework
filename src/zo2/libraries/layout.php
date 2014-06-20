@@ -128,6 +128,7 @@ if (!class_exists('Zo2Layout')) {
                 $itemId = JFactory::getApplication()->input->get('Itemid');
                 $profile = new Zo2Profile();
                 $profileName = $zo2->get('profile', 'default');
+
                 if (is_object($profileName)) {
                     if (isset($profileName->$itemId)) {
                         $profileName = $profileName->$itemId;
@@ -135,7 +136,9 @@ if (!class_exists('Zo2Layout')) {
                         $profileName = 'default';
                     }
                 } else {
-                    
+                    if (is_array($profileName)) {
+                        $profileName = 'default';
+                    }
                 }
 
                 $profile->load($profileName);
