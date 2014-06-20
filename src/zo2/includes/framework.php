@@ -611,7 +611,7 @@ if (!class_exists('Zo2Framework')) {
             return false;
         }
 
-        public static function getManifest() {
+        public function getManifest() {
             $xml = JFactory::getXML(ZO2PATH_ROOT . '/zo2.xml');
             return $xml;
         }
@@ -623,7 +623,7 @@ if (!class_exists('Zo2Framework')) {
         public function checkVersion() {
             $remoteXML = simplexml_load_file('http://update.zo2framework.org/zo2/extension.xml');
             $result['compare'] = 0;
-            $result['currentVersion'] = (string) self::getManifest()->version;
+            $result['currentVersion'] = (string) $this->getManifest()->version;
             $result['latestVersion'] = 'Unknown';
             if ($remoteXML) {
                 $result['latestVersion'] = (string) $remoteXML->update[0]->version;

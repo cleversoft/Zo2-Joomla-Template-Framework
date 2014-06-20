@@ -95,11 +95,14 @@ defined('_JEXEC') or die;
             </ul>
         </div>
         <div class="span4">
-            <div id="updater" class="alert">                
-                <div id="updater-bar">Zo2 v<span><?php echo Zo2Framework::getManifest()->version; ?></span></div>
+            <div id="updater" class="alert">
                 <?php
-                $update = false;
-                $framework = Zo2Factory::getFramework();
+                    /* Get framework from factory */
+                    $framework = Zo2Factory::getFramework();
+                ?>
+                <div id="updater-bar">Zo2 v<span><?php echo $framework->getManifest()->version; ?></span></div>
+                <?php
+                $update = false;                
                 $version = $framework->checkVersion();
                 switch ($version['compare']) {
                     case -1:
