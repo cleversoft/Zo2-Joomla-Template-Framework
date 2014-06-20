@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 
 require_once __DIR__ . '/defines.php';
 require_once __DIR__ . '/framework.php';
+require_once __DIR__ . '/factory.php';
 
 /* Joomla! autoloading register */
 JLoader::discover('Zo2', ZO2PATH_ROOT . '/libraries');
