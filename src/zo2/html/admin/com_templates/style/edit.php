@@ -90,7 +90,7 @@ JHTML::_('behavior.tooltip');
                             </div>
                         </div>
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Assignment</h3>
+                            <h3 class="title-profile">Assignment: Assign this layout profile to menu items.</h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('assignment_profiles'); ?>
                             </div>
