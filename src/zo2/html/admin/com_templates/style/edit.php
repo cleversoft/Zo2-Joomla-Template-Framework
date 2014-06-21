@@ -38,6 +38,9 @@ JHTML::_('behavior.tooltip');
                     <a href="#megamenu" data-toggle="tab"><i class="fa fa-navicon fa-lg"></i> Mega Menus</a>
                 </li>
                 <li>
+                    <a href="#assignment" data-toggle="tab"><i class="icon-edit-sign fa-lg"></i> Assignment</a>
+                </li>
+                <li>
                     <a href="#advanced" data-toggle="tab"><i class="icon-wrench fa-lg"></i> Advanced</a>
                 </li>
             </ul>
@@ -89,7 +92,7 @@ JHTML::_('behavior.tooltip');
                         <div class="profiles-pane">
                             <h3 class="title-profile">Assignment</h3>
                             <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('assignment'); ?>
+                                <?php echo $this->loadTemplate('assignment_profiles'); ?>
                             </div>
                         </div>
                     </div>
@@ -101,7 +104,14 @@ JHTML::_('behavior.tooltip');
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="tab-pane" id="assignment">
+                        <div class="profiles-pane">
+                            <h3 class="title-profile">Assignment</h3>
+                            <div class="profiles-pane-inner">
+                                <?php echo $this->loadTemplate('assignment'); ?>
+                            </div>
+                        </div>
+                    </div>
                     <div class="tab-pane" id="advanced">
                         <div class="profiles-pane">
                             <h3 class="title-profile">Advanced</h3>

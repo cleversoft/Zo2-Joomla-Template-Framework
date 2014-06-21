@@ -43,53 +43,12 @@ $profileAssign = $zo2->get('profile');
                 </select>
                 <span class="input-group-btn">
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Load Profile</button>
+                    <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Add</button>
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Remove</button>
                 </span>
             </div>
         </div>
-        <!-- Menu assignment -->
-        <div id="profile-menu-assignment">
-            <ul class="menu-links thumbnails">
-                <?php foreach ($menuTypes as &$type) : ?>
-                    <li class="span3">
-                        <div class="thumbnail">
-                            <button class="btn" type="button" class="jform-rightbtn" onclick="
-                                        $$('#profile-menu-assignment .<?php echo $type->menutype; ?>').each(function(el) {
-                                            el.checked = !el.checked;
-                                        });">
-                                <i class="icon-check"></i> <?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>
-                            </button>
-                            <h5><?php echo $type->title ? $type->title : $type->menutype; ?></h5>
-
-                            <?php foreach ($type->links as $link) : ?>
-                                <?php $value = $link->value; ?>                             
-                                <label class="checkbox small" for="link<?php echo (int) $link->value; ?>" >
-                                    <input type="checkbox" name="jform[profile-menu][]" 
-                                           value="<?php echo (int) $link->value; ?>" 
-                                           id="link<?php echo (int) $link->value; ?>"
-                                           <?php if (isset($profileAssign->$value) && $profileAssign->$value == $profileName): ?> checked="checked"<?php endif; ?>
-                                           <?php if ($link->checked_out && $link->checked_out != $user->id): ?> disabled="disabled"<?php else: ?> class="chk-menulink <?php echo $type->menutype; ?>"<?php endif; ?> />
-                                           <?php echo $link->text; ?>
-                                </label>
-                            <?php endforeach; ?>
-                        </div>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
-    <div class="span6">
-        <div class="control-group">
-            <div class="control-label">
-                Create new profile
-            </div>
-            <div class="controls">
-                <div class="input-group">
-                    <input type="text" class="form-control zo2_profile_name" placeholder="Profile name" name="jform[params][profile]">
-                </div>
-            </div>
-        </div>
-
+        
     </div>
 </div>
