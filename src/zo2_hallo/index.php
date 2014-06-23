@@ -26,9 +26,9 @@ require_once __DIR__ . '/includes/bootstrap.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <?php echo $this->zo2->template->fetch('html://layouts/head.response.php'); ?>
     <?php echo $this->zo2->template->fetch('html://layouts/head.favicon.php'); ?>
-    <![if gte IE 9]>
+    <!--[if !IE 8]> -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <![endif]>
+    <!-- <![endif]-->
     <jdoc:include type="head" />
 </head>
 <body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
