@@ -31,10 +31,10 @@ if (!class_exists('Zo2Path')) {
         /**
          * 
          * @staticvar Zo2Template $instances
-         * @param type $name
+         * @param type $name default is common
          * @return \Zo2Template
          */
-        public static function &getInstance($name) {
+        public static function &getInstance($name = 'common') {
             static $instances;
             if (!isset($instances[$name])) {
                 $instances[$name] = new Zo2Path();
@@ -138,6 +138,36 @@ if (!class_exists('Zo2Path')) {
             return false;
         }
 
+        /**
+         * Get physical path ( folder or file )
+         * @param type $key
+         * @param type $showError
+         * @return boolean|string
+         */
+        public function getPath($key, $showError = false) {
+            /* Extract key to get namespace and path */
+            $parts = explode('://', $key);
+            if (is_array($parts) && count($parts) == 2) {
+                $namespace = $parts[0];
+                $path = $parts[1];
+                /* Make sure this namespace is registered */
+                if (isset($this->_namespaces[$namespace])) {
+                    /* Find first exists filePath */
+                    foreach ($this->_namespaces[$namespace] as $namespace) {
+                        $physicalPath = $namespace . '/' . $path;
+                        if (JFile::exists($physicalPath)) {
+                            return str_replace('/', DIRECTORY_SEPARATOR, $physicalPath);
+                        } elseif (JFolder::exists($physicalPath)) {
+                            return str_replace('/', DIRECTORY_SEPARATOR, $physicalPath);
+                        }
+                    }
+                }
+            }
+            if ($showError)
+                JFactory::getApplication()->enqueueMessage('Path not found: ' . $key, 'error');
+            return false;
+        }
+        
         /**
          *
          * @param type $key

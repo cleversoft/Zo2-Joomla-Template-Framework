@@ -28,9 +28,9 @@ if (!class_exists('Zo2Profile')) {
          */
         public function load($name) {
             
-            $profileFile = Zo2Framework::getPath()->getFile('assets://profiles/' . $name . '.json');
+            $profileFile = Zo2Factory::getPath('assets://profiles/' . $name . '.json');
             if ($profileFile == false) {
-                $profileFile = Zo2Framework::getPath()->getFile('assets://profiles/default.json');
+                $profileFile = Zo2Factory::getPath('assets://profiles/default.json');
             }
             if ($profileFile) {
                 $this->_profile = json_decode(JFile::read($profileFile), true);

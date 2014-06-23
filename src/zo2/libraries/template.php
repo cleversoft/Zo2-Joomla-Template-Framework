@@ -42,7 +42,7 @@ if (!class_exists('Zo2Template')) {
             parent::__construct($properties);
             $this->set('zo2', Zo2Framework::getInstance());
             $this->set('jinput', JFactory::getApplication()->input);
-            $this->path = $this->zo2->getPath();
+            $this->path = Zo2Path::getInstance();
         }
 
         /**
