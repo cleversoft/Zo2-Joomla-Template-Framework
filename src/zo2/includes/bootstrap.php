@@ -53,7 +53,7 @@ if (Zo2Framework::isZo2Template()) {
         $zo2->joomla('template')->process();
     }
     //
-    Zo2Framework::getController();
+    Zo2Factory::execController();
 
     $script = 'zo2.settings.token = "' . JFactory::getSession()->getFormToken() . '";';
     Zo2Assets::getInstance()->addScriptDeclaration($script);

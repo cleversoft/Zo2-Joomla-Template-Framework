@@ -559,16 +559,6 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Execute an action of the controller
-         */
-        public static function getController() {
-            if ($zo2controller = JFactory::getApplication()->input->getCmd('zo2controller')) {
-                Zo2Factory::import('core.Zo2Controller');
-                Zo2Controller::exec($zo2controller);
-            }
-        }
-
-        /**
          * @return bool
          */
         public function isFrontPage() {
