@@ -571,7 +571,7 @@ if (!class_exists('Zo2Framework')) {
         /**
          * @return bool
          */
-        public static function isFrontPage() {
+        public function isFrontPage() {
 
             $app = JFactory::getApplication();
             $menu = $app->getMenu();

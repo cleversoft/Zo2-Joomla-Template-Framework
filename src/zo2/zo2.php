@@ -96,6 +96,7 @@ if (!class_exists('plgSystemZo2')) {
         }
 
         public function onContentPrepare($context, &$article, &$params, $page = 0) {
+            $framework = Zo2Factory::getFramework();
             $config = Zo2Framework::getTemplate()->params;
             // Don't run this plugin when the content is being indexed
             if ($context == 'com_finder.indexer') {
@@ -118,7 +119,7 @@ if (!class_exists('plgSystemZo2')) {
                     $article->text = $gplus . $article->text;
                 }
                 /* Comments System */
-                if ($config->get('enable_comments', 0) && !Zo2Framework::isFrontPage()) {
+                if ($config->get('enable_comments', 0) && !$framework->isFrontPage()) {
                     if (JFactory::getApplication()->input->getCmd('option') != 'com_k2') {
                         $view = JFactory::getApplication()->input->get('view');
                         if ($view == 'article') {

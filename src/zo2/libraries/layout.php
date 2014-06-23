@@ -401,9 +401,9 @@ if (!class_exists('Zo2Layout')) {
          * @return bool
          */
         private static function hideComponent() {
+            $framework = Zo2Factory::getFramework();
             $params = Zo2Framework::getTemplate()->params;
-            $isFrontPage = Zo2Framework::isFrontPage();
-            if ((int) $params->get('component_area', 0) && $isFrontPage) {
+            if ((int) $params->get('component_area', 0) && $framework->isFrontPage()) {
                 return true;
             } else {
                 return false;
