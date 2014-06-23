@@ -133,18 +133,6 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Wrapper for JInput get
-         * @param type $name
-         * @param type $default
-         * @param type $filter
-         * @return type
-         */
-        public static function getRequest($name, $default = null, $filter = 'cmd') {
-            $jinput = JFactory::getApplication()->input;
-            return $jinput->get($name, $default, $filter);
-        }
-
-        /**
          * Generate custom CSS style for Standard Font option
          *
          * @param $data
