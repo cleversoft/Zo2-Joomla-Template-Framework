@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted Access');
 if (!class_exists('Zo2Framework'))
     die('Zo2Framework not found');
 
-$template = Zo2Framework::getTemplate();
+$template = Zo2Factory::getTemplate();
 
 Zo2Framework::loadTemplateAssets();
 

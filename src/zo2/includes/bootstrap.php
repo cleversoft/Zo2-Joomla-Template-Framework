@@ -41,7 +41,7 @@ if (Zo2Framework::isZo2Template()) {
         Zo2Factory::import('core.classes.legacy');
 
     if (Zo2Framework::isSite()) {
-        $template = Zo2Framework::getTemplate();
+        $template = Zo2Factory::getTemplate();
 
         /**
          * @todo remove this core hacking

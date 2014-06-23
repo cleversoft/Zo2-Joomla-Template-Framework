@@ -47,8 +47,8 @@ if (!class_exists('Zo2Framework')) {
          * @return mixed
          */
         public static function get($property, $default = null) {
-            if (self::getTemplate()) {
-                return self::getTemplate()->params->get($property, $default);
+            if (Zo2Factory::getTemplate()) {
+                return Zo2Factory::getTemplate()->params->get($property, $default);
             }
             return $default;
         }
@@ -58,9 +58,9 @@ if (!class_exists('Zo2Framework')) {
          * @return string
          */
         public static function getTemplateName() {
-            $template = self::getTemplate();
+            $template = Zo2Factory::getTemplate();
             if ($template)
-                return self::getTemplate()->template;
+                return Zo2Factory::getTemplate()->template;
         }
 
         /**
@@ -460,12 +460,12 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function getLayout($templateName = null) {
             static $instances;
-            $template = self::getTemplate();
-            $templateId = Zo2Framework::getTemplate()->id;
+            $template = Zo2Factory::getTemplate();
+            $templateId = Zo2Factory::getTemplate()->id;
             if (!isset($instances[$templateId])) {
                 $instances[$templateId] = new Zo2Layout();
                 if ($templateName === null)
-                    $templateName = Zo2Framework::getTemplate()->template;
+                    $templateName = Zo2Factory::getTemplate()->template;
                 $instances[$templateId]->init($templateName);
             }
             return $instances[$templateId];
@@ -533,7 +533,7 @@ if (!class_exists('Zo2Framework')) {
         public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
             Zo2Factory::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getTemplate()->params;
+            $params = Zo2Factory::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -548,7 +548,7 @@ if (!class_exists('Zo2Framework')) {
                 $menutype = self::get('menu_type', 'mainmenu');
             }
             Zo2Factory::import('core.Zo2Megamenu');
-            $params = Zo2Framework::getTemplate()->params;
+            $params = Zo2Factory::getTemplate()->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -623,63 +623,6 @@ if (!class_exists('Zo2Framework')) {
 
         public static function getPath($name = 'zo2') {
             return Zo2Path::getInstance($name);
-        }
-
-        /**
-         *
-         * @staticvar array $instances
-         * @param int $id
-         * @return object
-         */
-        public static function getTemplate($id = null) {
-            static $instances;
-            /* Get specific template id */
-            if ($id !== null) {
-                if (isset($instances[$id])) {
-                    return $instances[$id];
-                }
-                $db = JFactory::getDBO();
-                $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles') .
-                        ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $id;
-                $db->setQuery($query);
-                $template = $db->loadObject();
-                if ($template) {
-                    $template->params = new JRegistry($template->params);
-                }
-                $instances[$id] = $template;
-                return $instances[$id];
-            } else {
-                /* Get current template */
-                if (JFactory::getApplication()->isSite()) {
-                    /**
-                     * Somehow we can't use getActiveMenu here
-                     * @todo Need to improve process
-                     */
-                    $itemId = JFactory::getApplication()->input->get('Itemid');
-                    $db = JFactory::getDbo();
-                    $query = ' SELECT ' . $db->quoteName('template_style_id');
-                    $query .= ' FROM ' . $db->quoteName('#__menu');
-                    $query .= ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $itemId;
-                    $db->setQuery($query);
-                    $templateSiteId = $db->loadResult();
-                    if ($templateSiteId && $templateSiteId != 0) {
-                        /* Get request template record */
-                        $id = $templateSiteId;
-                        $template = self::getTemplate($templateSiteId);
-                    } else {
-                        $template = JFactory::getApplication()->getTemplate(true);
-                        $id = $template->id;
-                    }
-                    $instances[$id] = $template;
-                    return $instances[$id];
-                } else {
-                    /* Get requesting template for backend only */
-                    $id = JFactory::getApplication()->input->get('id');
-                    if ($id) {
-                        return self::getTemplate($id);
-                    }
-                }
-            }
         }
 
         public function joomla($name) {

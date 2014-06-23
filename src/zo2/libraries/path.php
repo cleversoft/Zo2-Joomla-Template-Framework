@@ -63,7 +63,7 @@ if (!class_exists('Zo2Path')) {
             /**
              * Joomla! template
              */
-            $template = Zo2Framework::getTemplate();
+            $template = Zo2Factory::getTemplate();
             $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $template->template . '/assets');
         }
 
