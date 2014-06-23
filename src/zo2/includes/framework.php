@@ -592,10 +592,6 @@ if (!class_exists('Zo2Framework')) {
             return $assets[$name];
         }
 
-        public static function getZo2Path() {
-            return realpath(__DIR__ . '/../');
-        }
-
         public function getManifest() {
             $xml = JFactory::getXML(ZO2PATH_ROOT . '/zo2.xml');
             return $xml;

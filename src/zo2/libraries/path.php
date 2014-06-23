@@ -44,17 +44,15 @@ if (!class_exists('Zo2Path')) {
         }
 
         protected function _init() {
-            $zo2Path = Zo2Framework::getZo2Path();
-
             /**
              * Zo2 paths
              */
             /* Zo2 root dir */
-            $this->registerNamespace('zo2', $zo2Path);
+            $this->registerNamespace('zo2', ZO2PATH_ROOT);
             /* Zo2 html */
-            $this->registerNamespace('html', $zo2Path . '/html');
+            $this->registerNamespace('html', ZO2PATH_ROOT . '/html');
             /* Zo2 assets */
-            $this->registerNamespace('assets', $zo2Path . '/assets');
+            $this->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
 
             /**
              * Joomla! paths

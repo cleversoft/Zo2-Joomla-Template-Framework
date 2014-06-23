@@ -313,5 +313,5 @@ defined('_JEXEC') or die('Restricted access');
     </div>
 </div>
 
-<input type="hidden" id="jQueryPath" value="<?php echo Zo2Framework::getZo2Path() . '/vendor/jquery/jquery-1.9.1.min.js' ?>" />
-<input type="hidden" id="jQueryUIPath" value="<?php echo Zo2Framework::getZo2Path() . '/vendor/jqueryui/js/jquery-ui-1.10.3.custom.min.js' ?>" />
+<input type="hidden" id="jQueryPath" value="<?php echo ZO2PATH_ROOT . '/vendor/jquery/jquery-1.9.1.min.js' ?>" />
+<input type="hidden" id="jQueryUIPath" value="<?php echo ZO2PATH_ROOT . '/vendor/jqueryui/js/jquery-ui-1.10.3.custom.min.js' ?>" />
