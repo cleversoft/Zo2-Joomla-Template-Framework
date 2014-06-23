@@ -261,7 +261,7 @@ if (!class_exists('Zo2Framework')) {
          *
          */
         public static function loadTemplateAssets() {
-            $path = Zo2Framework::getPath();
+            $path = Zo2Path::getInstance();
             $assets = Zo2Assets::getInstance();
             /* Load template assets */
             $templateAssets = $path->getConfigFile('assets://template.assets.json', true);
@@ -607,10 +607,6 @@ if (!class_exists('Zo2Framework')) {
                 }
             }
             return $profiles;
-        }
-
-        public static function getPath($name = 'zo2') {
-            return Zo2Path::getInstance($name);
         }
 
         public function joomla($name) {

@@ -109,7 +109,7 @@ if (!class_exists('Zo2Layout')) {
 
             if ($canCache) {
 
-                if ((filemtime(Zo2Framework::getPath()->getFile('cache://' . md5($cacheFile))) + $zo2->get('cache_interval', '3600')) < time()) {
+                if ((filemtime(Zo2Factory::getPath('cache://' . md5($cacheFile))) + $zo2->get('cache_interval', '3600')) < time()) {
                     $canCache = false;
                 } else {
                     $html = Zo2Template::getInstance()->loadCache($cacheFile);

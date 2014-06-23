@@ -83,7 +83,7 @@ class JFormFieldLayout extends JFormField {
     protected function _build() {
         $zo2 = Zo2Framework::getInstance();
         $jinput = JFactory::getApplication()->input;
-        $path = $zo2->getPath();
+        $path = Zo2Path::getInstance();
 
         $positions = Zo2Framework::getTemplatePositions();
 
