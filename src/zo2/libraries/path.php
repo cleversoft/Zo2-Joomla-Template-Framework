@@ -47,24 +47,26 @@ if (!class_exists('Zo2Path')) {
             /**
              * Zo2 paths
              */
+            
             /* Zo2 root dir */
             $this->registerNamespace('zo2', ZO2PATH_ROOT);
             /* Zo2 html */
             $this->registerNamespace('html', ZO2PATH_ROOT . '/html');
             /* Zo2 assets */
             $this->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
-
             /**
              * Joomla! paths
              */
             /* Zo2 profile dir */
             $this->registerNamespace('cache', JPATH_ROOT . '/cache');
-
+            
+            $templateName = Zo2Factory::getTemplateName();
             /**
-             * Joomla! template
-             */
-            $template = Zo2Factory::getTemplate();
-            $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $template->template . '/assets');
+             * Zo2 template
+             */            
+            $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName. '/assets');
+            /* Current */
+            $this->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
         }
 
         /**
@@ -175,7 +177,6 @@ if (!class_exists('Zo2Path')) {
          */
         public function getUrl($key) {
             /* Extract key to get namespace and path */
-
             $parts = explode('://', $key);
             if (is_array($parts) && count($parts) == 2) {
                 $namespace = $parts[0];
@@ -186,14 +187,42 @@ if (!class_exists('Zo2Path')) {
                     foreach ($this->_namespaces[$namespace] as $namespace) {
                         $realPath = $namespace . '/' . $path;
                         if (JFile::exists($realPath)) {
-                            return Zo2HelperPath::toUrl($realPath);
+                            return $this->toUrl($realPath);
                         } elseif (JFolder::exists($realPath)) {
-                            return Zo2HelperPath::toUrl($realPath);
+                            return $this->toUrl($realPath);
                         }
                     }
                 }
             }
             return false;
+        }
+        
+        /**
+         * A simple wrapped to convert physicalPath and URL
+         * We need this to remove further conflict
+         * @param string $physicalPath
+         * @param string $pathType
+         * @return string
+         */
+        public function pathConvert($physicalPath, $pathType = null){
+            //Offset path
+            if($pathType === null){
+                return str_replace(JPATH_ROOT . '/', '', $physicalPath);
+            }elseif($pathType === 'url'){
+                return $this->toUrl($physicalPath);
+            }else{
+                return $physicalPath;
+            }
+        }
+
+
+        /**
+         * Convert physical path to URL
+         * @param string $path
+         * @return string
+         */
+        public function toUrl($path) {
+            return rtrim(JUri::root(), '/') . str_replace(JPATH_ROOT, '', $path);
         }
 
         public function getConfigFile($key, $assoc = false) {

@@ -133,28 +133,17 @@ if (!class_exists('Zo2Assets')) {
 
         /**
          * Get asset file with relative path
-         * @param type $file
-         * @return string
+         * @param string $file File location
+         * @param null|string $pathType Path type offset(default is null)/path/url
+         * @return boolean|string
          */
-        public function getAssetFile($file, $return = null) {
-            /* Template override */
-            $paths[] = Zo2HelperPath::getTemplateFilePath('assets/' . $file, null);
-            /* Core assets */
-            $paths[] = Zo2HelperPath::getZo2FilePath('assets/' . $file, null);
-            /* Find in array which the first exists file */
-            foreach ($paths as $path) {
-                $physicalPath = Zo2HelperPath::getPath($path);
-                if (JFile::exists($physicalPath)) {
-                    if (is_null($return)) {
-                        return $path;
-                    } elseif ($return == 'url') {
-                        return Zo2HelperPath::getUrl($path);
-                    } elseif ($return == 'path') {
-                        return Zo2HelperPath::getPath($path);
-                    }
-                }
-            }
-            return false;
+        public function getAssetFile($file, $pathType = null) {
+            $tempAssets = Zo2Factory::getPath('templates://assets/'. $file, null);
+            
+            if($tempAssets === false)
+                $tempAssets = Zo2Factory::getPath('zo2://assets/'. $file, null);
+            
+            return ($tempAssets === false)?false:Zo2Path::getInstance()->pathConvert($tempAssets, $pathType);
         }
 
         /**

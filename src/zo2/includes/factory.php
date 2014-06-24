@@ -99,7 +99,17 @@ if (!class_exists('Zo2Factory')) {
                 }
             }
         }
-
+        
+        /**
+         * Get template name
+         * @return string
+         */
+        public static function getTemplateName() {
+            $template = self::getTemplate();
+            if ($template)
+                return $template->template;
+        }
+        
         /**
          * Get current template params
          * @param type $name
