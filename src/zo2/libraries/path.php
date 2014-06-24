@@ -198,7 +198,7 @@ if (!class_exists('Zo2Path')) {
         }
         
         /**
-         * A simple wrapped to convert physicalPath and URL
+         * A simple wrapped to convert physicalPath to offset/url/path
          * We need this to remove further conflict
          * @param string $physicalPath
          * @param string $pathType
@@ -214,7 +214,16 @@ if (!class_exists('Zo2Path')) {
                 return $physicalPath;
             }
         }
-
+        
+        /**
+         * A simple wrapped to convert key to offset/url/path
+         * @param string $key
+         * @param string $pathType
+         * @return string
+         */
+        public function keyConvert($key, $pathType = null){
+            return $this->pathConvert($this->getPath($key), $pathType);
+        }
 
         /**
          * Convert physical path to URL

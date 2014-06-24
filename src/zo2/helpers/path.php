@@ -69,22 +69,6 @@ if (!class_exists('Zo2HelperPath')) {
          * @param type $type
          * @return type
          */
-        public static function getTemplateFilePath($file, $type = null) {
-            if ($type === 'path') {
-                return self::getPath(self::getSiteTemplatePath() . '/' . $file);
-            } elseif ($type === 'url') {
-                return self::getUrl(self::getSiteTemplatePath() . '/' . $file);
-            } elseif ($type === null) {
-                return self::getSiteTemplatePath() . '/' . $file;
-            }
-        }
-
-        /**
-         * 
-         * @param type $file
-         * @param type $type
-         * @return type
-         */
         public static function getZo2FilePath($file, $type = 'path') {
             if ($type == 'path') {
                 return self::getPath(self::getZo2RootPath() . '/' . $file);

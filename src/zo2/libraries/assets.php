@@ -172,6 +172,7 @@ if (!class_exists('Zo2Assets')) {
          * Do build asset file
          */
         private function _buildAssets($assets, $position, $type) {
+            $zPath = Zo2Path::getInstance();
             if (count($assets) > 0) {
                 foreach ($assets as $inputName => $outputName) {
                     $typePath = $type;
@@ -179,13 +180,13 @@ if (!class_exists('Zo2Assets')) {
                         $typePath = 'css';
                     }
                     if ($position == CORE) {
-                        $inputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = Zo2HelperPath::getZo2FilePath('assets/zo2/' . $typePath . '/' . $outputName, 'path');
+                        $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');                    
+                        $outputFile = $zPath->keyConvert('zo2://assets/zo2/' . $typePath . '/' . $outputName, 'path');                    
                     } elseif ($position == TEMPLATE) {
-                        $inputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = Zo2HelperPath::getTemplateFilePath('assets/zo2/' . $typePath . '/' . $outputName, 'path');
+                        $inputFile = $zPath->keyConvert('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
+                        $outputFile = $zPath->keyConvert('templates://assets/zo2/' . $typePath . '/' . $outputName, 'path');
                     }
-
+                    
                     if ($type == 'less') {
                         Zo2HelperCompiler::less($inputFile, $outputFile);
                     } elseif ($type == 'js') {
@@ -249,6 +250,7 @@ if (!class_exists('Zo2Assets')) {
          * Do build development script into production
          */
         public function buildFrameworkProduction() {
+            $zPath = Zo2Path::getInstance();
             /* This method only need call one time */
             static $called = false;
             $templateName = Zo2Framework::getTemplateName();
@@ -273,9 +275,8 @@ if (!class_exists('Zo2Assets')) {
                 $cssFiles['template'] = array();
 
                 /* Template */
-
-                $templateAssetsPath = Zo2HelperPath::getTemplateFilePath('layouts/assets.json');
-                $templatePresetsPath = Zo2HelperPath::getTemplateFilePath('layouts/presets.json');
+                $templateAssetsPath = $zPath->keyConvert('templates://layouts/assets.json');
+                $templatePresetsPath = $zPath->keyConvert('templates://layouts/presets.json');
 
                 $templateAssets = json_decode(file_get_contents($templateAssetsPath), true);
                 $templatePresets = json_decode(file_get_contents($templatePresetsPath), true);
@@ -398,6 +399,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         public function generateAssets($type) {
+            $zPath = Zo2Path::getInstance();
             $combineJs = Zo2Framework::get('combine_js');
             $combineCss = Zo2Framework::get('combine_css');
             /* Generate javascript */
@@ -406,7 +408,7 @@ if (!class_exists('Zo2Assets')) {
                 /* Do compress */
                 if ($combineJs) {
                     $jsName = 'cache/script.combined.js';
-                    $jsFilePath = Zo2HelperPath::getTemplateFilePath('assets/' . $jsName);
+                    $jsFilePath = $zPath->keyConvert('templates://assets/' . $jsName);
                     $jsContent = '';
                     if (!file_exists($jsFilePath)) {
                         foreach ($this->_javascripts as $javascript => $path) {
@@ -430,7 +432,7 @@ if (!class_exists('Zo2Assets')) {
                 $cssHtml = '';
                 if ($combineCss) {
                     $cssName = 'cache/style.combined.css';
-                    $cssFilePath = Zo2HelperPath::getTemplateFilePath('assets/' . $cssName);
+                    $cssFilePath = $zPath->keyConvert('templates://assets/' . $cssName);
                     $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssFile;
                     if (!file_exists($cssFilePath)) {
                         $cssContent = '';
