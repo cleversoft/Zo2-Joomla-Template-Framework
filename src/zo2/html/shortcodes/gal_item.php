@@ -19,7 +19,7 @@ if (JFile::exists($fileSource)) {
     if (!JFile::exists($saveFile)) {
         $image->load($fileSource)->resize($this->get('width'), $this->get('height'))->saveToFile($saveFile);
     }
-    $src = Zo2HelperPath::getUrl('cache/' . $filename);
+    $src = Zo2Factory::getUrl('cache://' . $filename);
 } else {
     $src = $this->get('src');
 }

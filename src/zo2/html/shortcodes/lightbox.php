@@ -22,7 +22,7 @@ if (JFile::exists($fileSource)) {
     if (!JFile::exists($saveFile)) {
         $image->load($fileSource)->resize($this->get('width'), $this->get('height'))->saveToFile($saveFile);
     }
-    $thumbnail = Zo2HelperPath::getUrl('cache/' . $filename);
+    $thumbnail = Zo2Factory::getUrl('cache://' . $filename);
 } else {
     $thumbnail = $this->get('src');
 }
