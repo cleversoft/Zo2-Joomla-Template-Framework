@@ -346,7 +346,7 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($presetData['bg_image'])) {
                 $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
             } elseif (!empty($presetData['bg_pattern'])) {
-                $style .= 'body.boxed {background-image: url("' . Zo2HelperPath::toUrl($presetData['bg_pattern']) . '")}';
+                $style .= 'body.boxed {background-image: url("' . $path->toUrl($presetData['bg_pattern']) . '")}';
             }
 
             if (!empty($presetData['css']))

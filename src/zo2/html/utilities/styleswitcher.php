@@ -41,11 +41,12 @@ if(!empty($presets)) {
             <ul class="options background-select">
                 <?php
                 $bgPatterns =  glob($backgroundsDir.'/*.*');
+                $zPath = Zo2Path::getInstance();
 
                 if(count($bgPatterns) > 0) {
                     foreach($bgPatterns as $pattern ) {
                         $selected = '';
-                        $pattern_src = Zo2HelperPath::toUrl($pattern);
+                        $pattern_src = $zPath->toUrl($pattern);
                         if( isset($presetData['bg_pattern']) && ($pattern_src == $presetData['bg_pattern']) )
                             $selected = 'selected';
 
@@ -118,7 +119,7 @@ if(!empty($presets)) {
         if(jQuery('.color-select li.selected').length > 0) {
             document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastElementChild);
         }
-        document.createStyleSheet('<?php echo Zo2HelperPath::toUrl($presetDir); ?>'+style_name+'.css');
+        document.createStyleSheet('<?php echo $zPath->toUrl($presetDir); ?>'+style_name+'.css');
     }
 
     jQuery(document).ready(function() {

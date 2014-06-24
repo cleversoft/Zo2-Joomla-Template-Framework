@@ -43,17 +43,6 @@ if (!class_exists('Zo2HelperPath')) {
             return rtrim(JUri::root(), '/') . '/' . $filePath;
         }
 
-        public static function toUrl($path) {
-            return rtrim(JUri::root(), '/') . str_replace(JPATH_ROOT, '', $path);
-        }
-
-        /**
-         * Get relative path of Zo2 Framework dir
-         * @return type
-         */
-        public static function getZo2RootPath() {
-            return 'plugins/system/' . ZO2;
-        }
 
     }
 
