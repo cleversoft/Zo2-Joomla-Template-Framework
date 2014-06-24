@@ -63,22 +63,6 @@ if (!class_exists('Zo2HelperPath')) {
             return 'plugins/system/' . ZO2;
         }
 
-        /**
-         * 
-         * @param type $file
-         * @param type $type
-         * @return type
-         */
-        public static function getZo2FilePath($file, $type = 'path') {
-            if ($type == 'path') {
-                return self::getPath(self::getZo2RootPath() . '/' . $file);
-            } elseif ($type == 'url') {
-                return self::getUrl(self::getZo2RootPath() . '/' . $file);
-            } elseif ($type === null) {
-                return self::getZo2RootPath() . '/' . $file;
-            }
-        }
-
     }
 
 }
