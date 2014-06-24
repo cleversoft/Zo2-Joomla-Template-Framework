@@ -253,7 +253,7 @@ if (!class_exists('Zo2Assets')) {
             $zPath = Zo2Path::getInstance();
             /* This method only need call one time */
             static $called = false;
-            $templateName = Zo2Framework::getTemplateName();
+            $templateName = Zo2Factory::getTemplateName();
             if ($called === false && !empty($templateName) && Zo2Framework::isZo2Template()) {
                 /**
                  * @todo move these list into config file

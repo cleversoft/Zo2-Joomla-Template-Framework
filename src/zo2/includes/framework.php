@@ -54,21 +54,11 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Get template name
-         * @return string
-         */
-        public static function getTemplateName() {
-            $template = Zo2Factory::getTemplate();
-            if ($template)
-                return Zo2Factory::getTemplate()->template;
-        }
-
-        /**
          * Get template physical path
          * @return string
          */
         public static function getTemplatePath() {
-            return rtrim(JPATH_ROOT . '/templates/' . self::getTemplateName(), DIRECTORY_SEPARATOR);
+            return Zo2Factory::getPath('templates://');
         }
 
         /**
@@ -77,7 +67,7 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function isZo2Template() {
             $templatePath = self::getTemplatePath();
-            $templateName = self::getTemplateName();
+            $templateName = Zo2Factory::getTemplateName();
             if (JFile::exists($templatePath . '/assets/template.json')) {
                 return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
             }
@@ -90,7 +80,7 @@ if (!class_exists('Zo2Framework')) {
          */
         public static function getTemplateAssets() {
             $templatePath = self::getTemplatePath();
-            $templateName = self::getTemplateName();
+            $templateName = Zo2Factory::getTemplateName();
             if (JFile::exists($templatePath . '/assets/template.json')) {
                 return json_decode(file_get_contents($templatePath . '/assets/template.json'));
             }
@@ -466,7 +456,7 @@ if (!class_exists('Zo2Framework')) {
          * @return array
          */
         public static function getTemplateLayouts($templateId = 0) {
-            $templateName = self::getTemplateName($templateId);
+            $templateName = Zo2Factory::getTemplateName($templateId);
 
             if (!empty($templateName)) {
                 $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.php';

@@ -9,7 +9,7 @@
  * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
  * @license     GPL v2
  */
-$templatePath = JUri::root(true) . '/templates/' . $zo2->getTemplateName();
+$templatePath = Zo2Factory::getPath('templates://');
 if (!isset($presets))
     $presets = array();
 if (!empty($this->value))
