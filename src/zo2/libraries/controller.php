@@ -95,8 +95,9 @@ class Zo2Controller {
     }
 
     public static function clearCache() {
-        $layoutDir = Zo2HelperPath::getPath(Zo2HelperPath::getSiteTemplatePath() . '/layouts/cache');
-        $rootCacheDir = Zo2HelperPath::getSiteTemplatePath() . '/cache';
+        $zPath = Zo2Path::getInstance();
+        $layoutDir = $zPath->getPath('templates://layouts/cache');
+        $rootCacheDir =  $zPath->keyConvert('cache://');
         $files = glob($layoutDir . '/*');
         $cacheFiles = glob($rootCacheDir . '/*');
         foreach ($files as $file) {

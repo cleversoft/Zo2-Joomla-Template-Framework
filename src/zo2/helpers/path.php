@@ -48,14 +48,6 @@ if (!class_exists('Zo2HelperPath')) {
         }
 
         /**
-         * Get relative path of template dir
-         * @return type
-         */
-        public static function getSiteTemplatePath() {
-            return 'templates/' . Zo2Framework::getTemplateName();
-        }
-
-        /**
          * Get relative path of Zo2 Framework dir
          * @return type
          */
