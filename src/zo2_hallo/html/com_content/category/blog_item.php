@@ -14,6 +14,8 @@ $params = $this->item->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 JHtml::_('behavior.framework');
+/* Get Zo2Framework */
+$framework = Zo2Factory::getFramework();
 ?>
 <?php if ($this->item->state == 0) : ?>
     <span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
@@ -24,8 +26,8 @@ JHtml::_('behavior.framework');
     </span>
     <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
     <?php
-    if (in_array($this->item->catid, Zo2Framework::get('socialshare_filter_categories', array()))) {
-        if (Zo2Framework::get('socialshare_article_position') == 'top') {
+    if (in_array($this->item->catid, $framework->get('socialshare_filter_categories', array()))) {
+        if ($framework->get('socialshare_article_position') == 'top') {
             $socialShares = new Zo2Socialshares();
             echo $socialShares->getHorizontalBar();
         }

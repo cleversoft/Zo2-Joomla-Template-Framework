@@ -21,12 +21,12 @@ class Zo2Component_header_logo extends Zo2Component {
 
     public function render()
     {
-        $zo2 = Zo2Framework::getInstance();
+        $framework = Zo2Factory::getFramework();
 
-        $logo = $zo2->getParams('header_logo');
-        $logoRetina = $zo2->getParams('header_retina_logo');
-        $sitename = $zo2->getParams('site_name');
-        $slogan = $zo2->getParams('site_slogan');
+        $logo = $framework->getParams('header_logo');
+        $logoRetina = $framework->getParams('header_retina_logo');
+        $sitename = $framework->getParams('site_name');
+        $slogan = $framework->getParams('site_slogan');
 
         if (!empty($logo) && !empty($logoRetina)) {
             $logo = json_decode($logo, true);
@@ -42,8 +42,8 @@ class Zo2Component_header_logo extends Zo2Component {
                 }';
 
             // still having bug with this
-            //$zo2->getLayout()->insertCssDeclaration($customStyle);
-            $zo2->getLayout()->addStyleDeclaration($customStyle);
+            //$framework->getLayout()->insertCssDeclaration($customStyle);
+            $framework->getLayout()->addStyleDeclaration($customStyle);
 
             $html = '<header id="header_logo">';
             if ($logo['type'] == 'text') {

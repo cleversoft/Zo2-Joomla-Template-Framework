@@ -7,8 +7,10 @@ if (file_exists($presetPath)) {
 
 $backgroundsDir =  Zo2Factory::getPath('templates://assets/zo2/images/background-patterns');
 $presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
+/* Get Zo2Framework */
+$framework = Zo2Factory::getFramework();
 
-$presets = Zo2Framework::get('theme');
+$presets = $framework->get('theme');
 
 if(!empty($presets)) {
     $presetData = json_decode($presets, true);

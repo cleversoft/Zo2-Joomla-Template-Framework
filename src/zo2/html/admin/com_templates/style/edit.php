@@ -16,7 +16,7 @@ $user = JFactory::getUser();
 JHTML::_('behavior.tooltip');
 ?>
 <div id="zo2messages"></div>
-<div id="zo2framework" class="<?php echo Zo2Framework::isJoomla25() ? 'joomla-25' : 'joomla-3' ?>" >
+<div id="zo2framework" class="<?php echo Zo2Factory::isJoomla25() ? 'joomla-25' : 'joomla-3' ?>" >
     <form id="adminForm" action="<?php echo JRoute::_('index.php?option=com_templates&layout=edit&id=' . (int) $this->item->id); ?>" method="post" name="adminForm" id="style-form" class="form-validate form-horizontal" data-zo2ajax='{"on":"submit"}'>
         <fieldset id="zo2fields" class="">
             <!-- tabs header -->

@@ -92,12 +92,12 @@ if (!class_exists('Zo2Layout')) {
             $menu = $app->getMenu();
             $menuItem = $menu->getActive();
 
-            $zo2 = Zo2Framework::getInstance();
+            $framework = Zo2Factory::getFramework();
 
             $html = '';
 
             $cacheFile = null;
-            $canCache = $zo2->get('debug_visibility', 0) == 0;
+            $canCache = $framework->get('debug_visibility', 0) == 0;
 
             if ($menuItem) {
                 if (isset($menuItem->id) && !empty($menuItem->id)) {
@@ -109,7 +109,7 @@ if (!class_exists('Zo2Layout')) {
 
             if ($canCache) {
 
-                if ((filemtime(Zo2Factory::getPath('cache://' . md5($cacheFile))) + $zo2->get('cache_interval', '3600')) < time()) {
+                if ((filemtime(Zo2Factory::getPath('cache://' . md5($cacheFile))) + $framework->get('cache_interval', '3600')) < time()) {
                     $canCache = false;
                 } else {
                     $html = Zo2Template::getInstance()->loadCache($cacheFile);
@@ -118,7 +118,7 @@ if (!class_exists('Zo2Layout')) {
 
             if ($canCache === false || (isset($html) && $html === false)) {
 
-                $layoutType = $zo2->get('layout_type');
+                $layoutType = $framework->get('layout_type');
 
                 if ($layoutType == 'fixed')
                     $layoutType = '-fixed';
@@ -127,7 +127,7 @@ if (!class_exists('Zo2Layout')) {
 
                 $itemId = JFactory::getApplication()->input->get('Itemid');
                 $profile = new Zo2Profile();
-                $profileName = $zo2->get('profile', 'default');
+                $profileName = $framework->get('profile', 'default');
 
                 if (is_object($profileName)) {
                     if (isset($profileName->$itemId)) {
@@ -175,8 +175,8 @@ if (!class_exists('Zo2Layout')) {
              */
             /* Insert megamenu */
             if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
-                $zo2 = Zo2Framework::getInstance();
-                $megamenu = $zo2->displayMegaMenu($zo2->get('menutype', $zo2->get('menu_type')), Zo2Factory::getTemplate());
+                $framework = Zo2Factory::getFramework();
+                $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
                 $html = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $html);
             }
             return $html;
@@ -306,7 +306,7 @@ if (!class_exists('Zo2Layout')) {
                     else if (($item['position'] == 'message') && (!$this->hideComponent()))
                         $html .= '<jdoc:include type="message" />';
                     else if ($item['position'] == 'mega_menu') {
-                        //$html .= $zo2->displayMegaMenu($zo2->getParams('menutype', 'mainmenu'), Zo2Factory::getTemplate());
+                        //$html .= $framework->displayMegaMenu($framework->getParams('menutype', 'mainmenu'), Zo2Factory::getTemplate());
                         $html .= Zo2Layout::MEGAMENU_PLACEHOLDER;
                     } else {
                         $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
@@ -391,7 +391,7 @@ if (!class_exists('Zo2Layout')) {
             //$jinput = JFactory::getApplication()->input;
             $classes = array();
             //$classes[] = $jinput->get('view');
-            $classes[] = Zo2Framework::getCurrentPage();
+            $classes[] = Zo2Factory::getCurrentPage();
 
             return trim(implode(' ', $classes) . ' ' . $customClass);
         }

@@ -66,8 +66,9 @@ if (!class_exists('Zo2Assets')) {
          * We do not allow create new instance directly. Must go via getInstance
          */
         protected function __construct() {
+            $framework = Zo2Factory::getFramework();
             /* Get specific core assets */
-            if (Zo2Framework::isJoomla25()) {
+            if (Zo2Factory::isJoomla25()) {
                 $assetsFile = 'assets.joomla25.json';
             } else {
                 $assetsFile = 'assets.default.json';
@@ -76,13 +77,13 @@ if (!class_exists('Zo2Assets')) {
             if ($assetsFile) {
                 $this->_assets = json_decode(file_get_contents($assetsFile));
             }
-            if (Zo2Framework::isSite()) {
+            if (Zo2Factory::isSite()) {
                 /* Load core assets */
                 $this->load($this->_assets->frontend);
                 /* Responsive */
-                if (Zo2Framework::get('responsive_layout'))
+                if ($framework->get('responsive_layout'))
                     $this->addStyleSheet('zo2/css/non-responsive.css');
-                if (Zo2Framework::get('enable_custom_css', 1) == 1)
+                if ($framework->get('enable_custom_css', 1) == 1)
                     $this->addStyleSheet('zo2/css/custom.css');
                 /* Template side */
                 $assetsFile = $this->getAssetFile('template.json', 'path');
@@ -93,7 +94,7 @@ if (!class_exists('Zo2Assets')) {
                     }
                 }
             } else {
-                if (Zo2Framework::isZo2Template()) {
+                if (Zo2Factory::isZo2Template()) {
                     /* Load core assets */
                     $this->load($this->_assets->backend);
                     $this->buildAssets();
@@ -139,9 +140,9 @@ if (!class_exists('Zo2Assets')) {
          */
         public function getAssetFile($file, $pathType = null) {
             $tempAssets = Zo2Factory::getPath('templates://assets/'. $file, null);
-            
             if($tempAssets === false)
                 $tempAssets = Zo2Factory::getPath('zo2://assets/'. $file, null);
+
             
             return ($tempAssets === false)?false:Zo2Path::getInstance()->pathConvert($tempAssets, $pathType);
         }
@@ -254,7 +255,7 @@ if (!class_exists('Zo2Assets')) {
             /* This method only need call one time */
             static $called = false;
             $templateName = Zo2Factory::getTemplateName();
-            if ($called === false && !empty($templateName) && Zo2Framework::isZo2Template()) {
+            if ($called === false && !empty($templateName) && Zo2Factory::isZo2Template()) {
                 /**
                  * @todo move these list into config file
                  */
@@ -298,7 +299,7 @@ if (!class_exists('Zo2Assets')) {
                 //$lessFiles['template'] = '';
                 //$jsFiles['template'] = '';
 
-                $buildProduction = Zo2Framework::get('build_production', 1);
+                $buildProduction = Zo2Factory::getFramework()->get('build_production', 1);
 
 
                 switch ($buildProduction) {
@@ -356,7 +357,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         private function _buildLess($input, $output) {
-            $cleanProduction = Zo2Framework::get('clean_production', 1);
+            $cleanProduction = Zo2Factory::getFramework()->get('clean_production', 1);
             /* Do clean old files */
             if (JFile::exists($output) && $cleanProduction)
                 JFile::delete($output);
@@ -373,7 +374,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         private function _buildJs($input, $output) {
-            $cleanProduction = Zo2Framework::get('clean_production', 1);
+            $cleanProduction = Zo2Factory::getFramework()->get('clean_production', 1);
             if (JFile::exists($output) && $cleanProduction)
                 JFile::delete($output);
             if (!is_file($output) || filemtime($input) > filemtime($output)) {
@@ -386,7 +387,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         private function _buildCss($input, $output) {
-            $cleanProduction = Zo2Framework::get('clean_production', 1);
+            $cleanProduction = Zo2Factory::getFramework()->get('clean_production', 1);
             if (JFile::exists($output) && $cleanProduction)
                 JFile::delete($output);
             if (!is_file($output) || filemtime($input) > filemtime($output)) {
@@ -400,8 +401,8 @@ if (!class_exists('Zo2Assets')) {
 
         public function generateAssets($type) {
             $zPath = Zo2Path::getInstance();
-            $combineJs = Zo2Framework::get('combine_js');
-            $combineCss = Zo2Framework::get('combine_css');
+            $combineJs = Zo2Factory::getFramework()->get('combine_js');
+            $combineCss = Zo2Factory::getFramework()->get('combine_css');
             /* Generate javascript */
             if ($type == 'js') {
                 $jsHtml = '';

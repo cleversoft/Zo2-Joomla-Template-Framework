@@ -21,12 +21,14 @@ if (!class_exists('Zo2Framework'))
 
 $template = Zo2Factory::getTemplate();
 
-Zo2Framework::loadTemplateAssets();
+$framework = Zo2Factory::getFramework();
+
+$framework->loadTemplateAssets();
 
 $this->zo2 = new JRegistry;
-$this->zo2->framework = Zo2Framework::getInstance();
+$this->zo2->framework = $framework->getInstance();
 $this->zo2->template = new Zo2Template();
-$this->zo2->layout = Zo2Framework::getLayout();
+$this->zo2->layout = $framework->getLayout();
 $this->zo2->utilities = Zo2Utilities::getInstance();
 
-Zo2Framework::getTemplateLayouts();
+$framework->getTemplateLayouts();

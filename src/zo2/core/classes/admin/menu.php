@@ -20,7 +20,7 @@ class AdminMenu {
         $input = JFactory::getApplication()->input;
         $menutype = $input->get('menutype', 'mainmenu');
         $template = Zo2Factory::getTemplate()->template;
-        return Zo2Framework::displayMegaMenu($menutype, $template, true);
+        return Zo2Factory::getFramework()->displayMegaMenu($menutype, $template, true);
     }
 
     public static function save() {

@@ -22,7 +22,7 @@ JLoader::discover('Zo2Helper', ZO2PATH_ROOT . '/helpers');
 JLoader::discover('Zo2Service', ZO2PATH_ROOT . '/libraries/services');
 JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 
-if (Zo2Framework::isZo2Template()) {
+if (Zo2Factory::isZo2Template()) {
 
     $assets = Zo2Assets::getInstance();
 
@@ -30,7 +30,7 @@ if (Zo2Framework::isZo2Template()) {
     /**
      * Framework init
      */
-    if (!Zo2Framework::isJoomla25()) {
+    if (!Zo2Factory::isJoomla25()) {
         JFactory::getApplication()->loadLanguage();
     }
 
@@ -40,7 +40,7 @@ if (Zo2Framework::isZo2Template()) {
     if (!class_exists('JViewLegacy', false))
         Zo2Factory::import('core.classes.legacy');
 
-    if (Zo2Framework::isSite()) {
+    if (Zo2Factory::isSite()) {
         $template = Zo2Factory::getTemplate();
 
         /**
@@ -49,8 +49,8 @@ if (Zo2Framework::isZo2Template()) {
         if (!class_exists('JModuleHelper', false))
             Zo2Factory::import('core.classes.helper');
     } else {
-        $zo2 = Zo2Framework::getInstance();
-        $zo2->joomla('template')->process();
+        $framework = Zo2Factory::getFramework();
+        $framework->joomla('template')->process();
     }
     //
     Zo2Factory::execController();

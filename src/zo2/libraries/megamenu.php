@@ -62,7 +62,7 @@ class Zo2MegaMenu {
 
         foreach ($items as &$item) {
             $itemid = 'item-' . $item->id;
-            if (!Zo2Framework::isJoomla25()) {
+            if (!Zo2Factory::isJoomla25()) {
                 if (!isset($this->_configs[$itemid])) {
                     $asso = JLanguageAssociations::getAssociations('', '#__menu', 'com_menus.item', $item->id, 'id', '', '');
                     reset($asso);

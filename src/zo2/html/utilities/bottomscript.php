@@ -10,9 +10,10 @@
  * @license     GPL v2
  */
 
-
+/* Get Zo2Framework */
+$framework = Zo2Factory::getFramework();
 //Script for Sticky menu
-if(Zo2Framework::get('enable_sticky_menu', 1) == 1) {
+if($framework->get('enable_sticky_menu', 1) == 1) {
     ?>
         jQuery(document).ready(function() {
             jQuery(".zo2-sticky").sticky({topSpacing:0});
@@ -21,7 +22,7 @@ if(Zo2Framework::get('enable_sticky_menu', 1) == 1) {
 }
 
 //Google analytics code
-$ga_code = Zo2Framework::get('ga_code', null);
+$ga_code = $framework->get('ga_code', null);
 if(!empty($ga_code)) {
     echo $ga_code;
 }

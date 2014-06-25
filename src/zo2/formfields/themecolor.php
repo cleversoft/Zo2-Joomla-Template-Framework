@@ -22,7 +22,6 @@ class JFormFieldThemeColor extends JFormField {
      * @return string
      */
     public function getInput() {
-        $zo2 = Zo2Framework::getInstance();
         $presetPath = Zo2Factory::getPath('templates://assets/template.presets.json');
         $presets = array();
         if (file_exists($presetPath)) {

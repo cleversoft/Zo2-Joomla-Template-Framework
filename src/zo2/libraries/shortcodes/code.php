@@ -54,10 +54,6 @@ class Code extends Zo2Shortcode
         if (!$bool) {
 
             // Script
-            //Zo2Framework::addJsScript($url . "scripts/shCore.js");
-            //Zo2Framework::addJsScript($url . "scripts/shAutoloader.js");
-            //Zo2Framework::addCssStylesheet($url . "styles/shCore.css");
-            //Zo2Framework::addCssStylesheet($url . "styles/shThemeDefault.css");
             $layout = Zo2Layout::getInstance();
             $layout->addScript($url . "scripts/shCore.js");
             $layout->addScript($url . "scripts/shAutoloader.js");

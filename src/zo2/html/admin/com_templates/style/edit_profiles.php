@@ -10,12 +10,13 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die;
-$zo2 = Zo2Framework::getInstance();
+/* Get Zo2Framework */
+$framework = Zo2Factory::getFramework();
 // Initiasile related data.
 require_once JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php';
 $menuTypes = MenusHelper::getMenuLinks();
 $user = JFactory::getUser();
-$profileAssign = $zo2->get('profile');
+$profileAssign = $framework->get('profile');
 ?>
 <p>Store your modifications in a layout profile and assign it to different pages. The default layout will be used on pages without an assigned layout</p>
 <div class="row-fluid">
@@ -30,7 +31,7 @@ $profileAssign = $zo2->get('profile');
                     $jinput = JFactory::getApplication()->input;
 
                     $profileName = $jinput->get('profile', 'default');
-                    $profiles = $zo2->getProfiles();
+                    $profiles = $framework->getProfiles();
 
                     foreach ($profiles as $profile) {
                         if ($profile->name == $profileName) {

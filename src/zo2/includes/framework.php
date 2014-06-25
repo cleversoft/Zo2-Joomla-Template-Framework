@@ -46,7 +46,7 @@ if (!class_exists('Zo2Framework')) {
          *
          * @return mixed
          */
-        public static function get($property, $default = null) {
+        public function get($property, $default = null) {
             if (Zo2Factory::getTemplate()) {
                 return Zo2Factory::getTemplate()->params->get($property, $default);
             }
@@ -54,23 +54,10 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Determine if we'r using Zo2 Template
-         * @return boolean
-         */
-        public static function isZo2Template() {
-            $templatePath = Zo2Factory::getPath('templates://');
-            $templateName = Zo2Factory::getTemplateName();
-            if (JFile::exists($templatePath . '/assets/template.json')) {
-                return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
-            }
-            return false;
-        }
-
-        /**
          *
          * @return boolean
          */
-        public static function getTemplateAssets() {
+        public function getTemplateAssets() {
             $templatePath = Zo2Factory::getPath('templates://');
             $templateName = Zo2Factory::getTemplateName();
             if (JFile::exists($templatePath . '/assets/template.json')) {
@@ -83,7 +70,7 @@ if (!class_exists('Zo2Framework')) {
          *
          * @return array
          */
-        public static function getTemplatePositions() {
+        public function getTemplatePositions() {
             $path = Zo2Factory::getPath('templates://templateDetails.xml');
             $positions = array();
             if (JFile::exists($path)) {
@@ -98,29 +85,12 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         *
-         * @return type
-         */
-        public static function isSite() {
-            return JFactory::getApplication()->isSite();
-        }
-
-        /**
-         *
-         * @return boolean
-         */
-        public static function isJoomla25() {
-            $jVer = new JVersion();
-            return $jVer->RELEASE == '2.5';
-        }
-
-        /**
          * Generate custom CSS style for Standard Font option
          *
          * @param $data
          * @param $selector
          */
-        public static function buildStandardFontStyle($data, $selector) {
+        public function buildStandardFontStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $style = '';
             if (!empty($data['family']))
@@ -155,7 +125,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        public static function buildGoogleFontsStyle($data, $selector) {
+        public function buildGoogleFontsStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $api = 'http://fonts.googleapis.com/css?family=';
             $url = '';
@@ -203,8 +173,8 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        public static function buildFontDeckStyle($data, $selector) {
-            $fontdeckCode = Zo2Framework::get('fontdeck_code');
+        public function buildFontDeckStyle($data, $selector) {
+            $fontdeckCode = $this->get('fontdeck_code');
             $assets = Zo2Assets::getInstance();
 
             if (!empty($fontdeckCode)) {
@@ -242,7 +212,7 @@ if (!class_exists('Zo2Framework')) {
         /**
          *
          */
-        public static function loadTemplateAssets() {
+        public function loadTemplateAssets() {
             $path = Zo2Path::getInstance();
             $assets = Zo2Assets::getInstance();
             /* Load template assets */
@@ -260,7 +230,7 @@ if (!class_exists('Zo2Framework')) {
                     $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
             }
             /* Load template preset */
-            $preset = Zo2Framework::get('theme');
+            $preset = $this->get('theme');
 
             if (empty($preset)) {
                 $presets = $path->getConfigFile('assets://template.assets.json', true);
@@ -343,7 +313,7 @@ if (!class_exists('Zo2Framework')) {
             );
 
             foreach ($selectors as $param => $selector) {
-                $value = Zo2Framework::get($param);
+                $value = $this->get($param);
 
                 if (!empty($value)) {
                     $data = json_decode($value, true);
@@ -366,8 +336,8 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        public static function isBoxed() {
-            $preset = Zo2Framework::get('theme');
+        public function isBoxed() {
+            $preset = $this->get('theme');
             if (!empty($preset)) {
                 $presetData = json_decode($preset, true);
                 if (isset($presetData['boxed']) && $presetData['boxed'] == 1)
@@ -376,7 +346,7 @@ if (!class_exists('Zo2Framework')) {
             return false;
         }
 
-        public static function compileLess($lessPath, $templateName = '') {
+        public function compileLess($lessPath, $templateName = '') {
             $filename = md5($lessPath) . '.css';
             $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
                     DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
@@ -400,7 +370,7 @@ if (!class_exists('Zo2Framework')) {
          * @param string $templateName
          * @return string
          */
-        public static function getComponents($templateName) {
+        public function getComponents($templateName) {
             if (!empty($templateName)) {
                 $path = JPATH_SITE . '/templates/' . $templateName . '/data/components.json';
                 if (file_exists($path)) {
@@ -418,7 +388,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $layout Zo2Layout
          * @return bool
          */
-        public static function setLayout($layout) {
+        public function setLayout($layout) {
             self::getInstance()->_layout = $layout;
             return self::getInstance();
         }
@@ -428,7 +398,7 @@ if (!class_exists('Zo2Framework')) {
          * @staticvar Zo2Layout $instances
          * @return \Zo2Layout
          */
-        public static function getLayout($templateName = null) {
+        public function getLayout($templateName = null) {
             static $instances;
             $template = Zo2Factory::getTemplate();
             $templateId = Zo2Factory::getTemplate()->id;
@@ -447,7 +417,7 @@ if (!class_exists('Zo2Framework')) {
          * @param int $templateId If pass null, or 0, templateId will get from $_GET['id']
          * @return array
          */
-        public static function getTemplateLayouts($templateId = 0) {
+        public function getTemplateLayouts($templateId = 0) {
             $templateName = Zo2Factory::getTemplateName($templateId);
 
             if (!empty($templateName)) {
@@ -458,7 +428,7 @@ if (!class_exists('Zo2Framework')) {
                 return array();
         }
 
-        public static function getTemplateLayoutsName($templateName) {
+        public function getTemplateLayoutsName($templateName) {
             if (!empty($templateName)) {
                 $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.json';
                 $layoutFiles = glob($templatePath);
@@ -482,7 +452,7 @@ if (!class_exists('Zo2Framework')) {
          *
          * @return string
          */
-        public static function getCurrentPage() {
+        public function getCurrentPage() {
             $app = JFactory::getApplication();
             $menu = $app->getMenu();
             if (isset($menu)) {
@@ -500,7 +470,7 @@ if (!class_exists('Zo2Framework')) {
          * @param bool $isAdmin
          * @return string
          */
-        public static function displayMegaMenu($menutype, $template, $isAdmin = false) {
+        public function displayMegaMenu($menutype, $template, $isAdmin = false) {
 
             Zo2Factory::import('core.Zo2Megamenu');
             $params = Zo2Factory::getTemplate()->params;
@@ -513,7 +483,7 @@ if (!class_exists('Zo2Framework')) {
             return $menu->renderMenu($isAdmin);
         }
 
-        public static function displayOffCanvasMenu($menutype = null, $isAdmin = false) {
+        public function displayOffCanvasMenu($menutype = null, $isAdmin = false) {
             if ($menutype === null) {
                 $menutype = self::get('menu_type', 'mainmenu');
             }
@@ -544,7 +514,7 @@ if (!class_exists('Zo2Framework')) {
             }
         }
 
-        public static function getAsset($name, $data = array()) {
+        public function getAsset($name, $data = array()) {
             static $assets = array();
             if (empty($assets[$name])) {
                 $assets[$name] = new Zo2Asset($data);

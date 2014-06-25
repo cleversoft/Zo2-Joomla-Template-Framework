@@ -38,7 +38,7 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/includes/bootstrap.php';
-            if (!Zo2Framework::isJoomla25()) {
+            if (!Zo2Factory::isJoomla25()) {
                 JHtml::_('bootstrap.framework');
             }
             Zo2Ajax::getInstance()->process();
@@ -59,12 +59,13 @@ if (!class_exists('plgSystemZo2')) {
             $body = JResponse::getBody();
             $shortcodes = Zo2Shortcodes::getInstance();
             $jinput = JFactory::getApplication()->input;
+            $framework = Zo2Factory::getFramework();
 
             if ($app->isAdmin()) {
                 
             } else {
                 /* Make sure shortcodes enabled and we are not in any "edit" tasking ! */
-                if (Zo2Framework::get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {
+                if ($framework->get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {
                     /* Do shortcodes process */
                     $body = $shortcodes->execute($body);
                 }
@@ -90,7 +91,7 @@ if (!class_exists('plgSystemZo2')) {
                     /**
                      * @todo We'll recode SocialShare in 1.2
                      */
-                    //Zo2Framework::getInstance()->zo2Social->renderSocial($article, '.zo2-social-wrap');
+                    //Zo2Factory::getFramework()->zo2Social->renderSocial($article, '.zo2-social-wrap');
                 }
             }
         }

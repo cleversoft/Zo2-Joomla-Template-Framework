@@ -18,6 +18,9 @@ require_once __DIR__ . '/includes/bootstrap.php';
  * @todo Opengraph support
  * @todo Facebook & Twitter ... data attributes support
  */
+
+/* Get Zo2Framework */
+$framework = Zo2Factory::getFramework();
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->zo2->template->getLanguage(); ?>" dir="<?php echo $this->zo2->template->getDirection(); ?>">
@@ -33,7 +36,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
 </head>
 <body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
 <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>
-<?php echo Zo2Framework::displayOffCanvasMenu() ?>
+<?php echo $framework->displayOffCanvasMenu() ?>
 <section class="wrapper <?php echo $this->zo2->framework->isBoxed() ? 'boxed container' : ''; ?>">
     <?php //echo $this->zo2->utilities->socialshares->render('floatbar'); ?>
     <?php echo $this->zo2->utilities->styleswitcher->render(); ?>

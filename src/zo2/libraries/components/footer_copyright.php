@@ -21,11 +21,11 @@ class Zo2Component_footer_copyright extends Zo2Component {
 
     public function render()
     {
-        $zo2 = Zo2Framework::getInstance();
+        $framework = Zo2Factory::getFramework();
         $assets = Zo2Assets::getInstance();
-        $logo = $zo2->getParams('footer_logo');
-        $copyright = $zo2->getParams('footer_copyright');
-        $gototop = $zo2->getParams('footer_gototop');
+        $logo = $framework->getParams('footer_logo');
+        $copyright = $framework->getParams('footer_copyright');
+        $gototop = $framework->getParams('footer_gototop');
 
         $html = '<footer>';
         $html .= '<section class="copyright" style="text-align:center">' . $copyright . '</section>';
