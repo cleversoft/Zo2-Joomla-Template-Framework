@@ -266,7 +266,7 @@ if(!isset($currentData['bg_image'])) $currentData['bg_image'] = '';
                 <ul class="options background-select">
                     <?php
                     $zPath = Zo2Path::getInstance();
-                    $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns/';
+                    $backgroundsDir = Zo2Factory::getPath("templates://assets/zo2/images/background-patterns/");
                     $bgPatterns =  glob($backgroundsDir.'/*.*');
                     if(count($bgPatterns) > 0) {
                         foreach($bgPatterns as $pattern ) {

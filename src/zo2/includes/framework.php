@@ -54,19 +54,11 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Get template physical path
-         * @return string
-         */
-        public static function getTemplatePath() {
-            return Zo2Factory::getPath('templates://');
-        }
-
-        /**
          * Determine if we'r using Zo2 Template
          * @return boolean
          */
         public static function isZo2Template() {
-            $templatePath = self::getTemplatePath();
+            $templatePath = Zo2Factory::getPath('templates://');
             $templateName = Zo2Factory::getTemplateName();
             if (JFile::exists($templatePath . '/assets/template.json')) {
                 return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
@@ -79,7 +71,7 @@ if (!class_exists('Zo2Framework')) {
          * @return boolean
          */
         public static function getTemplateAssets() {
-            $templatePath = self::getTemplatePath();
+            $templatePath = Zo2Factory::getPath('templates://');
             $templateName = Zo2Factory::getTemplateName();
             if (JFile::exists($templatePath . '/assets/template.json')) {
                 return json_decode(file_get_contents($templatePath . '/assets/template.json'));
@@ -92,7 +84,7 @@ if (!class_exists('Zo2Framework')) {
          * @return array
          */
         public static function getTemplatePositions() {
-            $path = self::getTemplatePath() . '/templateDetails.xml';
+            $path = Zo2Factory::getPath('templates://templateDetails.xml');
             $positions = array();
             if (JFile::exists($path)) {
                 $xml = simplexml_load_file($path);
@@ -582,7 +574,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public function getProfiles() {
-            $templateDir = $this->getTemplatePath() . '/assets/profiles';
+            $templateDir = Zo2Factory::getPath('templates://assets/profiles');
             $profiles = array();
             if (JFolder::exists($templateDir)) {
                 $files = JFolder::files($templateDir);

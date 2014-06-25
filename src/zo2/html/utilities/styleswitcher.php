@@ -1,12 +1,12 @@
 <?php
 $presets_json = '';
-$presetPath = Zo2Framework::getTemplatePath() . '/assets/template.presets.json';
+$presetPath = Zo2Factory::getPath('templates://assets/template.presets.json');
 if (file_exists($presetPath)) {
     $presets_json = json_decode(file_get_contents($presetPath));
 }
 
-$backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns';
-$presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
+$backgroundsDir =  Zo2Factory::getPath('templates://assets/zo2/images/background-patterns');
+$presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
 
 $presets = Zo2Framework::get('theme');
 
