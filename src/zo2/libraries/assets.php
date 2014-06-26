@@ -183,13 +183,8 @@ if (!class_exists('Zo2Assets')) {
                         $typePath = 'css';
                     }
                     if ($position == CORE) {
-<<<<<<< HEAD
                         $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');                    
                         $outputFile = $zPath->keyConvert('zo2://assets/zo2/','path') . $typePath . '/' . $outputName;                    
-=======
-                        $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = $zPath->keyConvert('zo2://assets/zo2/' . $typePath . '/' . $outputName, 'path');
->>>>>>> 2ea5bf42b2e5500ae3e9297a083be890318b3edc
                     } elseif ($position == TEMPLATE) {
                         $inputFile = $zPath->keyConvert('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
                         $outputFile = $zPath->keyConvert('templates://assets/zo2/','path') .  $typePath . '/' . $outputName;
