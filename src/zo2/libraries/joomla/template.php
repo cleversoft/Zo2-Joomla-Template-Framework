@@ -17,6 +17,9 @@ if (!class_exists('Zo2JTemplate')) {
     class Zo2JTemplate {
 
         public function process() {
+            $jinput = JFactory::getApplication()->input;
+            /* Dont save if task is cancel */
+            if($jinput->get('task') == 'style.cancel')return;
             $this->save();
         }
 
