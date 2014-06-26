@@ -18,8 +18,7 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('Zo2Assets')) {
 
     /**
-     * @uses
-     * This class use for managed ALL asset stuffs
+     * @uses This class used for managed ALL asset stuffs
      * @rule
      * All asset stuffs must be save under <core>|<template>/assets directory
      */
@@ -57,12 +56,12 @@ if (!class_exists('Zo2Assets')) {
 
         /**
          *
-         * @var type
+         * @var object
          */
         private $_assets = array();
 
         /**
-         * Construct method
+         * Constructor method
          * We do not allow create new instance directly. Must go via getInstance
          */
         protected function __construct() {
@@ -77,12 +76,14 @@ if (!class_exists('Zo2Assets')) {
             if ($assetsFile) {
                 $this->_assets = json_decode(file_get_contents($assetsFile));
             }
+            /* Site loading */
             if (Zo2Factory::isSite()) {
                 /* Load core assets */
                 $this->load($this->_assets->frontend);
                 /* Responsive */
                 if ($framework->get('responsive_layout'))
                     $this->addStyleSheet('zo2/css/non-responsive.css');
+                /* Custom css */
                 if ($framework->get('enable_custom_css', 1) == 1)
                     $this->addStyleSheet('zo2/css/custom.css');
                 /* Template side */
@@ -94,6 +95,7 @@ if (!class_exists('Zo2Assets')) {
                     }
                 }
             } else {
+                /* Backend loading */
                 if (Zo2Factory::isZo2Template()) {
                     /* Load core assets */
                     $this->load($this->_assets->backend);
@@ -103,8 +105,8 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         *
-         * @return Zo2Assets
+         * 
+         * @return \Zo2Assets
          */
         public static function getInstance() {
             if (!isset(self::$instance)) {
@@ -116,7 +118,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * 
+         * Load assets
          * @param type $assets
          */
         public function load($assets) {
@@ -139,12 +141,12 @@ if (!class_exists('Zo2Assets')) {
          * @return boolean|string
          */
         public function getAssetFile($file, $pathType = null) {
-            $tempAssets = Zo2Factory::getPath('templates://assets/'. $file, null);
-            if($tempAssets === false)
-                $tempAssets = Zo2Factory::getPath('zo2://assets/'. $file, null);
+            $tempAssets = Zo2Factory::getPath('templates://assets/' . $file, null);
+            if ($tempAssets === false)
+                $tempAssets = Zo2Factory::getPath('zo2://assets/' . $file, null);
 
-            
-            return ($tempAssets === false)?false:Zo2Path::getInstance()->pathConvert($tempAssets, $pathType);
+
+            return ($tempAssets === false) ? false : Zo2Path::getInstance()->pathConvert($tempAssets, $pathType);
         }
 
         /**
@@ -181,17 +183,18 @@ if (!class_exists('Zo2Assets')) {
                         $typePath = 'css';
                     }
                     if ($position == CORE) {
-                        $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');                    
-                        $outputFile = $zPath->keyConvert('zo2://assets/zo2/' . $typePath . '/' . $outputName, 'path');                    
+                        $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');
+                        $outputFile = $zPath->keyConvert('zo2://assets/zo2/' . $typePath . '/' . $outputName, 'path');
                     } elseif ($position == TEMPLATE) {
                         $inputFile = $zPath->keyConvert('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
                         $outputFile = $zPath->keyConvert('templates://assets/zo2/' . $typePath . '/' . $outputName, 'path');
                     }
-                    
-                    if ($type == 'less') {
-                        Zo2HelperCompiler::less($inputFile, $outputFile);
-                    } elseif ($type == 'js') {
-                        Zo2HelperCompiler::javascript($inputFile, $outputFile);
+                    if ($inputFile) {
+                        if ($type == 'less') {
+                            Zo2HelperCompiler::less($inputFile, $outputFile);
+                        } elseif ($type == 'js') {
+                            Zo2HelperCompiler::javascript($inputFile, $outputFile);
+                        }
                     }
                 }
             }
@@ -399,6 +402,11 @@ if (!class_exists('Zo2Assets')) {
             }
         }
 
+        /**
+         * 
+         * @param type $type
+         * @return string
+         */
         public function generateAssets($type) {
             $zPath = Zo2Path::getInstance();
             /* Get Zo2Framework */

@@ -18,7 +18,7 @@ define('JURL_ROOT', rtrim(JUri::root(), '/'));
 /**
  * Paths
  */
-define('ZO2PATH_ROOT', realpath(__DIR__ . '/../'));
+define('ZO2PATH_ROOT', JPATH_ROOT . '/plugins/system/zo2');
 define('ZO2PATH_ASSETS', ZO2PATH_ROOT . '/assets');
 define('ZO2PATH_CACHE', JPATH_ROOT . '/cache/zo2');
 

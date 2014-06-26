@@ -23,14 +23,12 @@ JLoader::discover('Zo2Service', ZO2PATH_ROOT . '/libraries/services');
 JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 
 if (Zo2Factory::isZo2Template()) {
-
+    
+    $framework = Zo2Factory::getFramework();
     $assets = Zo2Assets::getInstance();
-
-
-    /**
-     * Framework init
-     */
-    if (!Zo2Factory::isJoomla25()) {
+    if (Zo2Factory::isJoomla25()) {
+        
+    } else {
         JFactory::getApplication()->loadLanguage();
     }
 
@@ -41,18 +39,16 @@ if (Zo2Factory::isZo2Template()) {
         Zo2Factory::import('core.classes.legacy');
 
     if (Zo2Factory::isSite()) {
-        $template = Zo2Factory::getTemplate();
-
         /**
          * @todo remove this core hacking
          */
         if (!class_exists('JModuleHelper', false))
             Zo2Factory::import('core.classes.helper');
     } else {
-        $framework = Zo2Factory::getFramework();
+
         $framework->joomla('template')->process();
     }
-    //
+
     Zo2Factory::execController();
 
     $script = 'zo2.settings.token = "' . JFactory::getSession()->getFormToken() . '";';
