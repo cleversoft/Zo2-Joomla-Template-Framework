@@ -183,11 +183,11 @@ if (!class_exists('Zo2Assets')) {
                         $typePath = 'css';
                     }
                     if ($position == CORE) {
-                        $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');                    
-                        $outputFile = $zPath->keyConvert('zo2://assets/zo2/','path') . $typePath . '/' . $outputName;                    
+                        $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');
+                        $outputFile = $zPath->keyConvert('zo2://assets/zo2/', 'path') . $typePath . '/' . $outputName;
                     } elseif ($position == TEMPLATE) {
                         $inputFile = $zPath->keyConvert('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = $zPath->keyConvert('templates://assets/zo2/','path') .  $typePath . '/' . $outputName;
+                        $outputFile = $zPath->keyConvert('templates://assets/zo2/', 'path') . $typePath . '/' . $outputName;
                     }
                     if ($inputFile) {
                         if ($type == 'less') {
@@ -430,7 +430,7 @@ if (!class_exists('Zo2Assets')) {
                     $jsHtml .='<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $jsFile . '"></script>';
                 } else {
                     foreach ($this->_javascripts as $javascript => $path) {
-                        $jsHtml .='<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $javascript . '"></script>';
+                        $jsHtml .='<script type="text/javascript" src="' . $zPath->toUrl($javascript) . '"></script>';
                     }
                 }
                 $jsDeclarationHtml = '<script>jQuery(document).ready( function () {';
@@ -459,7 +459,7 @@ if (!class_exists('Zo2Assets')) {
                     $cssHtml .='<link rel="stylesheet" href="' . $cssUri . '"></script>';
                 } else {
                     foreach ($this->_stylesheets as $styleSheets => $path) {
-                        $cssHtml .= '<link rel="stylesheet" href="' . rtrim(JUri::root(true), '/') . '/' . $styleSheets . '">';
+                        $cssHtml .= '<link rel="stylesheet" href="' . $zPath->toUrl($styleSheets) . '">';
                     }
                 }
                 $cssDeclarationHtml = '<style>';

@@ -229,7 +229,7 @@ if (!class_exists('Zo2Path')) {
          * @return string
          */
         public function toUrl($path) {
-            return rtrim(JUri::root(), '/') . str_replace(JPATH_ROOT, '', $path);
+            return str_replace('\\', '/', rtrim(JUri::root(), '/') . str_replace(JPATH_ROOT, '', $path));
         }
 
         public function getConfigFile($key, $assoc = false) {

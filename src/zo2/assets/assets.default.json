@@ -19,7 +19,6 @@
     },
     "backend": {
         "css": [
-            "vendor\/bootstrap\/2.3.2\/css\/bootstrap.min.css",
             "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/css\/bootstrap-colorpicker.css",
             "vendor\/fontselect\/fontselect.css",
@@ -28,7 +27,6 @@
             "zo2\/css\/admin.megamenu.css"
         ],
         "js": [
-            "vendor\/bootstrap\/core\/2.3.2\/js\/bootstrap.min.js",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
             "vendor\/fontselect\/jquery.fontselect.js",
             "zo2\/js\/admin.megamenu.js",
