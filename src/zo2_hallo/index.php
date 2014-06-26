@@ -34,7 +34,7 @@ $framework = Zo2Factory::getFramework();
     <!-- <![endif]-->
     <jdoc:include type="head" />
 </head>
-<body class="<?php echo $this->zo2->layout->getBodyClass() ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
+<body class="<?php echo $this->zo2->layout->getBodyClass(); ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
 <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>
 <?php echo $framework->displayOffCanvasMenu() ?>
 <section class="wrapper <?php echo $this->zo2->framework->isBoxed() ? 'boxed container' : ''; ?>">
@@ -44,7 +44,7 @@ $framework = Zo2Factory::getFramework();
 </section>
 <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>
 <script>
-    <?php echo $this->zo2->utilities->bottomscript->render() ?>
+    <?php echo $this->zo2->utilities->bottomscript->render(); ?>
 </script>
 </body>
 </html>
