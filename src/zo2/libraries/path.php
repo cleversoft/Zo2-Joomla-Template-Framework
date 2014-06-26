@@ -47,7 +47,6 @@ if (!class_exists('Zo2Path')) {
             /**
              * Zo2 paths
              */
-            
             /* Zo2 root dir */
             $this->registerNamespace('zo2', ZO2PATH_ROOT);
             /* Zo2 html */
@@ -59,12 +58,12 @@ if (!class_exists('Zo2Path')) {
              */
             /* Zo2 profile dir */
             $this->registerNamespace('cache', JPATH_ROOT . '/cache');
-            
+
             $templateName = Zo2Factory::getTemplateName();
             /**
              * Zo2 template
-             */            
-            $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName. '/assets');
+             */
+            $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
             /* Current */
             $this->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
         }
@@ -133,8 +132,7 @@ if (!class_exists('Zo2Path')) {
                     }
                 }
             }
-            if (
-                    $showError)
+            if ($showError)
                 JFactory::getApplication()->enqueueMessage('Directory not found: ' . $key, 'error');
 
             return false;
@@ -169,7 +167,7 @@ if (!class_exists('Zo2Path')) {
                 JFactory::getApplication()->enqueueMessage('Path not found: ' . $key, 'error');
             return false;
         }
-        
+
         /**
          *
          * @param type $key
@@ -196,7 +194,7 @@ if (!class_exists('Zo2Path')) {
             }
             return false;
         }
-        
+
         /**
          * A simple wrapped to convert physicalPath to offset/url/path
          * We need this to remove further conflict
@@ -204,24 +202,24 @@ if (!class_exists('Zo2Path')) {
          * @param string $pathType
          * @return string
          */
-        public function pathConvert($physicalPath, $pathType = null){
+        public function pathConvert($physicalPath, $pathType = null) {
             //Offset path
-            if($pathType === null){
+            if ($pathType === null) {
                 return str_replace(JPATH_ROOT . '/', '', $physicalPath);
-            }elseif($pathType === 'url'){
+            } elseif ($pathType === 'url') {
                 return $this->toUrl($physicalPath);
-            }else{
+            } else {
                 return $physicalPath;
             }
         }
-        
+
         /**
          * A simple wrapped to convert key to offset/url/path
          * @param string $key
          * @param string $pathType
          * @return string
          */
-        public function keyConvert($key, $pathType = null){
+        public function keyConvert($key, $pathType = null) {
             return $this->pathConvert($this->getPath($key), $pathType);
         }
 
