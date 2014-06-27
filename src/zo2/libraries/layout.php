@@ -43,9 +43,7 @@ if (!class_exists('Zo2Layout')) {
          * @param type $templateName
          */
         public function init($templateName) {
-            $app = JFactory::getApplication();
-
-            if ($app->isSite()) {
+            if (Zo2Factory::isSite()) {
 
                 /**
                  * @since 1.3.8
@@ -91,12 +89,9 @@ if (!class_exists('Zo2Layout')) {
             $app = JFactory::getApplication();
             $menu = $app->getMenu();
             $menuItem = $menu->getActive();
-
+            /* Get Zo2Framework */
             $framework = Zo2Factory::getFramework();
-
             $html = '';
-
-            $cacheFile = null;
             $canCache = $framework->get('debug_visibility', 0) == 0;
 
             if ($menuItem) {
@@ -108,7 +103,6 @@ if (!class_exists('Zo2Layout')) {
             }
 
             if ($canCache) {
-
                 if ((filemtime(Zo2Factory::getPath('cache://' . md5($cacheFile))) + $framework->get('cache_interval', '3600')) < time()) {
                     $canCache = false;
                 } else {
