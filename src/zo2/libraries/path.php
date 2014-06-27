@@ -229,6 +229,8 @@ if (!class_exists('Zo2Path')) {
          * @return string
          */
         public function toUrl($path) {
+            /* Fix / is missing in url */
+            $path = (substr($path, 0, 1) == '/') ? $path : '/' . $path;
             return str_replace('\\', '/', rtrim(JUri::root(), '/') . str_replace(JPATH_ROOT, '', $path));
         }
 
