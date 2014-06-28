@@ -46,8 +46,11 @@ $profileAssign = $framework->get('profile');
                 <span class="input-group-btn">
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Load Profile</button>
                     <button class="btn btn-default" id="zo2-addProfile" >Add</button>
-                    <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
-                    <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Remove</button>
+                    <!-- Do not allow to rename & remove when we only have 1 profile -->
+                    <?php if (count($profiles) > 1) { ?>
+                        <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
+                        <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Remove</button>
+                    <?php } ?>
                 </span>
 
                 <div class="zo2-form-newProfile" id="zo2-form-newProfile" style="display: none;">
