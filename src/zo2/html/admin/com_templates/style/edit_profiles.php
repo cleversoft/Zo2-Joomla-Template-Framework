@@ -42,14 +42,15 @@ $profileAssign = $framework->get('profile');
                     }
                     ?>
                 </select>
+                <input type="text" id="zo2_profile_name" name="profile-name" style="display:none" />
                 <span class="input-group-btn">
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Load Profile</button>
-                    <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Add</button>
+                    <button class="btn btn-default" id="zo2-addProfile" >Add</button>
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
                     <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Remove</button>
                 </span>
             </div>
         </div>
-        
+
     </div>
 </div>
