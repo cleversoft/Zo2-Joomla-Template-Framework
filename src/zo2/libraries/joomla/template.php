@@ -94,7 +94,7 @@ if (!class_exists('Zo2JTemplate')) {
                                 $application->enqueueMessage('Style successfully saved');
 
                                 if ($jinput->get('task') == 'style.apply') {
-                                    $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id, false));
+                                    $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
                                 } else {
                                     $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
                                 }
