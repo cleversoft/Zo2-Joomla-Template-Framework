@@ -1024,6 +1024,12 @@ jQuery(document).ready(function() {
     });
 
     jQuery('#zo2-addProfile').on('click', function() {
-        jQuery('#zo2_profile_name').toggle();
+        jQuery('#zo2-form-newProfile').toggle();
+    })
+    jQuery('#zo2-save-profile').on('click', function() {
+        Joomla.submitbutton('style.apply');
+    })
+    jQuery('#zo2-cancel-profile').on('click', function() {
+        jQuery('#zo2-form-newProfile').hide();
     })
 });
