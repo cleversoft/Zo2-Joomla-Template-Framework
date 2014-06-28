@@ -51,7 +51,7 @@ if (!class_exists('Zo2HelperCompiler')) {
          * @return boolean
          */
         public static function javascript($inputFile, $outputFile) {
-            if (JFile::exists($inputFile) && (!is_file($outputFile) || filemtime($inputFile) > filemtime($outputFile))) {
+            if (JFile::exists($inputFile)) {
                 $content = JFile::read($inputFile);
                 /**
                  * @todo apply javascript compress method here
