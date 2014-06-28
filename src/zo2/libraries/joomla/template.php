@@ -28,6 +28,10 @@ if (!class_exists('Zo2JTemplate')) {
          * Hook and replace Joomla! style save
          */
         public function save() {
+            /* Do build process when template update */
+            $assets = Zo2Assets::getInstance();
+            $assets->buildAssets();
+
             $jinput = JFactory::getApplication()->input;
             if ($jinput->get('option') == 'com_templates') {
                 /**

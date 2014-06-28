@@ -99,7 +99,6 @@ if (!class_exists('Zo2Assets')) {
                 if (Zo2Factory::isZo2Template()) {
                     /* Load core assets */
                     $this->load($this->_assets->backend);
-                    $this->buildAssets();
                 }
             }
         }
