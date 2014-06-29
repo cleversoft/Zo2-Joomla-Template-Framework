@@ -1032,4 +1032,10 @@ jQuery(document).ready(function() {
     jQuery('#zo2-cancel-profile').on('click', function() {
         jQuery('#zo2-form-newProfile').hide();
     })
+
+    jQuery('#zo2-removeProfile').on('click', function() {
+        var url = jQuery(this).data('url');
+        var profile = jQuery('.zo2_select_profile').val();
+        zo2.document.redirect(url + '&profile=' + profile);
+    });
 });

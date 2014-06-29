@@ -18,10 +18,28 @@ if (!class_exists('Zo2JTemplate')) {
 
         public function process() {
             $jinput = JFactory::getApplication()->input;
-            /* Dont save if task is cancel */
-            if ($jinput->get('task') == 'style.cancel')
-                return;
-            $this->save();
+            switch ($jinput->get('task')) {
+                case 'style.save':
+                    $this->save();
+                    break;
+                case 'style.apply':
+                    $this->save();
+                    break;
+                case 'remove':
+                    $this->remove();
+                    break;
+            }
+        }
+
+        public function remove() {
+            $jinput = JFactory::getApplication()->input;
+            JFactory::getApplication()->enqueueMessage($jinput->get('zo2'));
+            $profile = $jinput->get('profile');
+            $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $profile . '.json');
+            if (JFile::exists($profileFile)) {
+                JFile::delete($profileFile);
+                $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
+            }
         }
 
         /**
@@ -33,11 +51,13 @@ if (!class_exists('Zo2JTemplate')) {
             $assets->buildAssets();
 
             $jinput = JFactory::getApplication()->input;
+
             if ($jinput->get('option') == 'com_templates') {
                 /**
                  * @todo Replace by JInput
                  */
                 if (isset($_REQUEST['jform'])) {
+
                     JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
                     JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
 
