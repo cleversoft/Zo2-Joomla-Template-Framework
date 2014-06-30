@@ -38,7 +38,7 @@ if (!class_exists('Zo2JTemplate')) {
             $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $profile . '.json');
             if (JFile::exists($profileFile)) {
                 JFile::delete($profileFile);
-                $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
+                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
             }
         }
 
