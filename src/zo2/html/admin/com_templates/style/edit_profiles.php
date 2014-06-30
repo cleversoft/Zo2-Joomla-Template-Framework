@@ -48,17 +48,26 @@ $profileAssign = $framework->get('profile');
                     <button class="btn btn-default" id="zo2-addProfile" >Add</button>
                     <!-- Do not allow to rename & remove when we only have 1 profile -->
                     <?php if (count($profiles) > 1) { ?>
-                        <button class="btn btn-default" id="zo2-loadprofile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
+                        <button class="btn btn-default" id="zo2-renameProfile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
                         <button class="btn btn-default" id="zo2-removeProfile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id') . '&task=remove'); ?>">Remove</button>
                     <?php } ?>
                 </span>
-
+                <!-- Add new profile -->
                 <div class="zo2-form-newProfile" id="zo2-form-newProfile" style="display: none;">
                     <p>Please enter layout profile name</p>
                     <input type="text" id="zo2_profile_name" name="profile-name" />
                     <span class="input-group-btn">
                         <button class="btn btn-default" id="zo2-save-profile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Save</button>
                         <button class="btn btn-default" id="zo2-cancel-profile">Cancel</button>
+                    </span>
+                </div>
+                <!-- Rename profile -->
+                <div class="zo2-form-newProfile" id="zo2-form-renameProfile" style="display: none;">
+                    <p>Please enter layout profile name</p>
+                    <input type="text" id="zo2_new_profile_name" name="new-profile-name" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" id="zo2-rename-profile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id') . '&task=rename'); ?>">Save</button>
+                        <button class="btn btn-default" id="zo2-cancel-rename-profile">Cancel</button>
                     </span>
                 </div>
             </div>

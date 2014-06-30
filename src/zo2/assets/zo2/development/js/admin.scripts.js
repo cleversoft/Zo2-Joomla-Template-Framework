@@ -1026,16 +1026,38 @@ jQuery(document).ready(function() {
     jQuery('#zo2-addProfile').on('click', function() {
         jQuery('#zo2-form-newProfile').toggle();
     })
+
     jQuery('#zo2-save-profile').on('click', function() {
         Joomla.submitbutton('style.apply');
     })
+
     jQuery('#zo2-cancel-profile').on('click', function() {
-        jQuery('#zo2-form-newProfile').hide();
+        jQuery('#zo2-form-newProfile').hide();        
+    })
+    jQuery('#zo2-cancel-rename-profile').on('click', function() {
+        jQuery('#zo2-form-renameProfile').hide();
     })
 
     jQuery('#zo2-removeProfile').on('click', function() {
         var url = jQuery(this).data('url');
         var profile = jQuery('.zo2_select_profile').val();
         zo2.document.redirect(url + '&profile=' + profile);
+    });
+
+    /**
+     * Show rename profile form
+     */
+    jQuery('#zo2-renameProfile').on('click', function() {
+        jQuery('#zo2-form-renameProfile').toggle();
+    })
+
+    /**
+     * Submit rename profile
+     */
+    jQuery('#zo2-rename-profile').on('click', function() {
+        var url = jQuery(this).data('url');
+        var profile = jQuery('.zo2_select_profile').val();
+        var newProfile = jQuery('#zo2-form-renameProfile #zo2_new_profile_name').val();
+        zo2.document.redirect(url + '&profile=' + profile + '&newName=' + newProfile);
     });
 });
