@@ -44,11 +44,13 @@ if (!class_exists('Zo2JTemplate')) {
             }
             $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $oldProfileName . '.json');
             $newProfile = Zo2Factory::getPath('templates://assets/profiles') . '/' . $newProfileName . '.json';
-            if (JFile::exists($profileFile)) {
-                JFile::move($profileFile, $newProfile);
-                //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $newProfileName, false));
-            } else {
-                //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
+            if ($oldProfileName != $newProfileName) {
+                if (JFile::exists($profileFile)) {
+                    JFile::move($profileFile, $newProfile);
+                    //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $newProfileName, false));
+                } else {
+                    //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
+                }
             }
         }
 
