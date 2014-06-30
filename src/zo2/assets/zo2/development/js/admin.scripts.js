@@ -1032,7 +1032,7 @@ jQuery(document).ready(function() {
     })
 
     jQuery('#zo2-cancel-profile').on('click', function() {
-        jQuery('#zo2-form-newProfile').hide();        
+        jQuery('#zo2-form-newProfile').hide();
     })
     jQuery('#zo2-cancel-rename-profile').on('click', function() {
         jQuery('#zo2-form-renameProfile').hide();
@@ -1058,6 +1058,6 @@ jQuery(document).ready(function() {
         var url = jQuery(this).data('url');
         var profile = jQuery('.zo2_select_profile').val();
         var newProfile = jQuery('#zo2-form-renameProfile #zo2_new_profile_name').val();
-        zo2.document.redirect(url + '&profile=' + profile + '&newName=' + newProfile);
+        zo2.document.redirect(url + '&task=rename&profile=' + profile + '&newName=' + newProfile);
     });
 });

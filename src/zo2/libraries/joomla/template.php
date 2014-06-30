@@ -38,17 +38,17 @@ if (!class_exists('Zo2JTemplate')) {
             /* Do never use $_REQUEST */
             $oldProfileName = JFactory::getApplication()->input->get('profile');
             $newProfileName = JFactory::getApplication()->input->get('newName');
-            JFactory::getApplication()->enqueueMessage($oldProfileName);
-            JFactory::getApplication()->enqueueMessage($newProfileName);
+
             if (trim($newProfileName) == '') {
                 $newProfileName = $oldProfileName;
             }
             $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $oldProfileName . '.json');
             $newProfile = Zo2Factory::getPath('templates://assets/profiles') . '/' . $newProfileName . '.json';
-            JFactory::getApplication()->enqueueMessage($profileFile);
             if (JFile::exists($profileFile)) {
                 JFile::move($profileFile, $newProfile);
-                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $newProfileName, false));
+                //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $newProfileName, false));
+            } else {
+                //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
             }
         }
 
@@ -59,7 +59,7 @@ if (!class_exists('Zo2JTemplate')) {
             $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $profile . '.json');
             if (JFile::exists($profileFile)) {
                 JFile::delete($profileFile);
-                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
+                //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
             }
         }
 

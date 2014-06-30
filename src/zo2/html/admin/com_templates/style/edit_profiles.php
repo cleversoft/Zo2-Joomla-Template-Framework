@@ -66,10 +66,11 @@ $profileAssign = $framework->get('profile');
                     <p>Please enter layout profile name</p>
                     <input type="text" id="zo2_new_profile_name" name="new-profile-name" />
                     <span class="input-group-btn">
-                        <button class="btn btn-default" id="zo2-rename-profile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id') . '&task=rename'); ?>">Save</button>
+                        <button class="btn btn-default" id="zo2-rename-profile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Save</button>
                         <button class="btn btn-default" id="zo2-cancel-rename-profile">Cancel</button>
                     </span>
                 </div>
+                <input type="hidden" name="profile-id" value="<?php echo JFactory::getApplication()->input->get('id'); ?>"/>
             </div>
         </div>
 
