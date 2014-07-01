@@ -36,8 +36,8 @@ if (!class_exists('Zo2Profile')) {
                 $this->_profile = json_decode(JFile::read($profileFile), true);
                 $this->name = JFile::stripExt(JFile::getName($profileFile));
                 $this->layout = $this->_profile['layout'];
-                if (isset($this->_profile['preset']))
-                    $this->preset = $this->_profile['preset'];
+                if (isset($this->_profile['theme']))
+                    $this->theme = $this->_profile['theme'];
                 return true;
             }
             return false;

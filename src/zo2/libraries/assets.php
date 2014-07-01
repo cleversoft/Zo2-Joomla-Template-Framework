@@ -222,7 +222,7 @@ if (!class_exists('Zo2Assets')) {
             if ($less) {
                 $style = Zo2HelperCompiler::lessStyle($style);
             }
-            $this->_stylesheetDeclarations[] = $style;
+            $this->_stylesheetDeclarations[] = $style;            
             return $this;
         }
 

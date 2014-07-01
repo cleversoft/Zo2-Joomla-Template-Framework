@@ -230,7 +230,24 @@ if (!class_exists('Zo2Framework')) {
                     $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
             }
             /* Load template preset */
-            $preset = $this->get('theme');
+            $itemId = JFactory::getApplication()->input->get('Itemid');
+            $profile = new Zo2Profile();
+            $profileName = Zo2Factory::getFramework()->get('profile', 'default');
+
+            if (is_object($profileName)) {
+                if (isset($profileName->$itemId)) {
+                    $profileName = $profileName->$itemId;
+                } else {
+                    $profileName = 'default';
+                }
+            } else {
+                if (is_array($profileName)) {
+                    $profileName = 'default';
+                }
+            }
+
+            $profile->load($profileName);
+            $preset = $profile->theme;
 
             if (empty($preset)) {
                 $presets = $path->getConfigFile('assets://template.assets.json', true);
@@ -263,9 +280,10 @@ if (!class_exists('Zo2Framework')) {
                         'bg_image' => isset($defaultData['variables']['bg_image']) ? $defaultData['variables']['bg_image'] : '',
                         'bg_pattern' => isset($defaultData['variables']['bg_pattern']) ? $defaultData['variables']['bg_pattern'] : '',
                     );
+            } else {
+                $presetData = $preset;
             }
-            if (!empty($preset))
-                $presetData = json_decode($preset, true);
+
             $style = '';
             if (!empty($presetData['background']))
                 $style .= 'body{background-color:' . $presetData['background'] . '}';
