@@ -52,7 +52,7 @@ $profiles = $framework->getProfiles();
                     <!-- Add -->
                     <button class="btn btn-default" id="zo2-addProfile" >Add</button>
                     <!-- Do not allow to rename & remove when we only have 1 profile -->
-                    <?php if (count($profiles) > 1) { ?>
+                    <?php if (count($profiles) > 1 && $profileName != 'default') { ?>
                         <button class="btn btn-default" id="zo2-renameProfile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">Rename</button>
                         <button class="btn btn-default" id="zo2-removeProfile" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id') . '&task=remove'); ?>">Remove</button>
                     <?php } ?>
