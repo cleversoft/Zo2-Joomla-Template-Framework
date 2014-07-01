@@ -242,7 +242,7 @@ if (!class_exists('Zo2Framework')) {
                     $profileName = 'default';
                 }
             }
-            echo $profileName;
+            
             /**
              * @todo make sure profile name is exists
              */

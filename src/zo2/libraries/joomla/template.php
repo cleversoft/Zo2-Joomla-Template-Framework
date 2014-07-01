@@ -91,7 +91,7 @@ if (!class_exists('Zo2JTemplate')) {
             $lang->load($extension, $base_dir, $language_tag, $reload);
             /* Do build process when template update */
             $assets = Zo2Assets::getInstance();
-            //$assets->buildAssets();
+            $assets->buildAssets();
 
             JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
             JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
@@ -106,7 +106,7 @@ if (!class_exists('Zo2JTemplate')) {
                 $formData = $this->_jinput->post->get('jform', array(), 'array');
                 /* Save template with data */
                 $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
-                //$model->save($formData);
+                $model->save($formData);
 
                 /* Request profileName */
                 $profileName = $this->_jinput->get('profile-name', $formData['profile-select']);
