@@ -235,54 +235,25 @@ if (!class_exists('Zo2Framework')) {
             $assignedProfiles = Zo2Factory::getFramework()->get('profile', 'default');
             $profileName = 'default';
             if (is_object($assignedProfiles)) {
-                foreach ($assignedProfiles as $key => $menuIds) {
-                    if (in_array($itemId, $menuIds)) {
-                        $profileName = $key;
-                        break;
-                    }
-                }
+                if (isset($assignedProfiles->$itemId))
+                    $profileName = $assignedProfiles->$itemId;
             } else {
                 if (is_array($profileName)) {
                     $profileName = 'default';
                 }
             }
+            echo $profileName;
             /**
              * @todo make sure profile name is exists
              */
             $profile->load($profileName);
-            $preset = $profile->theme;
+            if (isset($profile->theme))
+                $preset = $profile->theme;
+            else
+                $preset = array();
 
             if (empty($preset)) {
-                $presets = $path->getConfigFile('assets://template.assets.json', true);
-                if ($preset === null) {
-                    $presets = array();
-                }
-                $defaultData = array();
-                for ($i = 0; $i < count($presets); $i++) {
-                    if ($presets[$i]['default'])
-                        $defaultData = $presets[$i];
-                }
-                if (empty($defaultData) && count($presets) > 0)
-                    $presetData = $presets[0];
-                else
-                    $presetData = array(
-                        'name' => isset($defaultData['name']) ? $defaultData['name'] : '',
-                        'css' => isset($defaultData['css']) ? $defaultData['css'] : '',
-                        'less' => isset($defaultData['less']) ? $defaultData['less'] : '',
-                        'boxed' => isset($defaultData['boxed']) ? $defaultData['boxed'] : 0,
-                        'background' => isset($defaultData['variables']['background']) ? $defaultData['variables']['background'] : '',
-                        'header' => isset($defaultData['variables']['header']) ? $defaultData['variables']['header'] : '',
-                        'header_top' => isset($defaultData['variables']['header_top']) ? $defaultData['variables']['header_top'] : '',
-                        'text' => isset($defaultData['variables']['text']) ? $defaultData['variables']['text'] : '',
-                        'link' => isset($defaultData['variables']['link']) ? $defaultData['variables']['link'] : '',
-                        'link_hover' => isset($defaultData['variables']['link_hover']) ? $defaultData['variables']['link_hover'] : '',
-                        'bottom1' => isset($defaultData['variables']['bottom1']) ? $defaultData['variables']['bottom1'] : '',
-                        'bottom2' => isset($defaultData['variables']['bottom2']) ? $defaultData['variables']['bottom2'] : '',
-                        'footer' => isset($defaultData['variables']['footer']) ? $defaultData['variables']['footer'] : '',
-                        'extra' => isset($defaultData['variables']['extra']) ? $defaultData['variables']['extra'] : '',
-                        'bg_image' => isset($defaultData['variables']['bg_image']) ? $defaultData['variables']['bg_image'] : '',
-                        'bg_pattern' => isset($defaultData['variables']['bg_pattern']) ? $defaultData['variables']['bg_pattern'] : '',
-                    );
+                
             } else {
                 $presetData = $preset;
             }

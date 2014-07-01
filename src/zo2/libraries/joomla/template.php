@@ -91,38 +91,44 @@ if (!class_exists('Zo2JTemplate')) {
             $lang->load($extension, $base_dir, $language_tag, $reload);
             /* Do build process when template update */
             $assets = Zo2Assets::getInstance();
-            $assets->buildAssets();
+            //$assets->buildAssets();
 
             JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
             JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
 
             /* Get table */
             $table = JTable::getInstance('Style', 'TemplatesTable');
-            /* Do never use $_REQUEST */
-            $formData = $this->_jinput->post->get('jform', array(), 'array');
-            /* Save template with data */
-            $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
-            $model->save($formData);
 
             /* Load table record */
-            if ($table->load(array(
-                        'template' => $formData['template'],
-                        'client_id' => $formData['client_id'],
-                        'home' => $formData['home'],
-                        'title' => $formData['title']
-                    ))) {
+            if ($table->load($this->_jinput->get('id'))) {
+                $table->params = new JRegistry($table->params);
+                /* Do never use $_REQUEST */
+                $formData = $this->_jinput->post->get('jform', array(), 'array');
+                /* Save template with data */
+                $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
+                //$model->save($formData);
+
                 /* Request profileName */
                 $profileName = $this->_jinput->get('profile-name', $formData['profile-select']);
                 if ($profileName == '')
                     $profileName = $formData['profile-select'];
 
                 /* Update profile assign list */
-                $list = array();
+                $list = $table->params->get('profile', array());
+
+                if (is_object($list)) {
+                    foreach ($list as $key => $value) {
+                        $tList[$key] = $value;
+                    }
+                    $list = $tList;
+                }
+
                 if (isset($formData['profile-menu'])) {
                     foreach ($formData['profile-menu'] as $menuId) {
-                        $list[$profileName][] = $menuId;
+                        $list[$menuId] = $profileName;
                     }
                 }
+             
                 /* Store assigned menu and profile name for each one */
                 $formData['params']['profile'] = $list;
                 $params = new JRegistry($formData['params']);

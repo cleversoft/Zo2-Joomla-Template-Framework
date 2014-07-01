@@ -475,11 +475,11 @@
         }
     ],
     "theme": {
-        "name": "orange",
-        "css": "presets\/orange",
-        "less": "presets\/orange",
+        "name": "green",
+        "css": "presets\/green",
+        "less": "presets\/green",
         "boxed": "0",
-        "background": "",
+        "background": "#a63c3c",
         "header": "",
         "header_top": "",
         "text": "",

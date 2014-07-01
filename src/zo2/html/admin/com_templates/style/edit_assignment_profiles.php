@@ -17,11 +17,6 @@ $menuTypes = MenusHelper::getMenuLinks();
 $framework = Zo2Factory::getFramework();
 $profileAssign = $framework->get('profile');
 $currentProfile = JFactory::getApplication()->input->get('profile', 'default');
-if (isset($profileAssign->$currentProfile)) {
-    $assigned = $profileAssign->$currentProfile;
-} else {
-    $assigned = array();
-}
 ?>
 
 <!-- Menu assignment -->
@@ -44,10 +39,9 @@ if (isset($profileAssign->$currentProfile)) {
                             <input type="checkbox" name="jform[profile-menu][]" 
                                    value="<?php echo (int) $link->value; ?>" 
                                    id="link<?php echo (int) $link->value; ?>"
-                                   <?php if (in_array($link->value, $assigned)): ?> checked="checked"<?php endif; ?>
+                                   <?php if (isset($profileAssign->$value) && $profileAssign->$value == $currentProfile): ?> checked="checked"<?php endif; ?>
                                    <?php if ($link->checked_out && $link->checked_out != $user->id): ?> disabled="disabled"<?php else: ?> class="chk-menulink <?php echo $type->menutype; ?>"<?php endif; ?> />
                             <?php echo $link->text; ?>
-
                         </label>
                     <?php endforeach; ?>
                 </div>
