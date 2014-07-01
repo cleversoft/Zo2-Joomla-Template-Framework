@@ -1011,53 +1011,53 @@ jQuery(document).ready(function() {
         generatePresetData();
     });
 
-    //gender profile name when profile is changed
-    jQuery('.zo2_profile_name').val(jQuery('.zo2_select_profile').val());
-    jQuery('.zo2_select_profile').change(function() {
-        jQuery('.zo2_profile_name').val(jQuery(this).val());
-    });
+    /**
+     * Profile process
+     */
 
-    jQuery('#zo2-loadprofile').on('click', function() {
+    /* Load profile */
+    jQuery('#zo2-loadProfile').on('click', function() {
         var url = jQuery(this).data('url');
-        var profile = jQuery('.zo2_select_profile').val();
-        zo2.document.redirect(url + '&profile=' + profile);
+        /* Get selected profile */
+        var selectedProfile = jQuery('.zo2-select-profile').val();
+        if (selectedProfile != '') {
+            zo2.document.redirect(url + '&profile=' + selectedProfile);
+        } else {
+            alert('Please select profile');
+        }
     });
-
+    /* Toggle add profile form */
     jQuery('#zo2-addProfile').on('click', function() {
-        jQuery('#zo2-form-newProfile').toggle();
-    })
-
+        jQuery('#zo2-form-addProfile').toggle();
+    });
+    /* Submit save */
     jQuery('#zo2-save-profile').on('click', function() {
         Joomla.submitbutton('style.apply');
-    })
-
+    });
+    /* Cancel add profile form */
     jQuery('#zo2-cancel-profile').on('click', function() {
-        jQuery('#zo2-form-newProfile').hide();
-    })
+        jQuery('#zo2-form-addProfile').hide();
+    });
+    /* Toogle rename profile form */
+    jQuery('#zo2-renameProfile').on('click', function() {
+        jQuery('#zo2-form-renameProfile').toggle();
+    });
+    /* Cancel rename profile form */
     jQuery('#zo2-cancel-rename-profile').on('click', function() {
         jQuery('#zo2-form-renameProfile').hide();
-    })
-
+    });
+    /* Submit rename */
+    jQuery('#zo2-rename-profile').on('click', function() {
+        var url = jQuery(this).data('url');
+        var oldprofile = jQuery('.zo2-select-profile').val();
+        var newProfile = jQuery('#zo2-form-renameProfile #zo2-new-profile-name').val();
+        zo2.document.redirect(url + '&task=rename&profile=' + oldprofile + '&newName=' + newProfile);
+    });
+    /* Submit remove */
     jQuery('#zo2-removeProfile').on('click', function() {
         var url = jQuery(this).data('url');
-        var profile = jQuery('.zo2_select_profile').val();
+        var profile = jQuery('.zo2-select-profile').val();
         zo2.document.redirect(url + '&profile=' + profile);
     });
 
-    /**
-     * Show rename profile form
-     */
-    jQuery('#zo2-renameProfile').on('click', function() {
-        jQuery('#zo2-form-renameProfile').toggle();
-    })
-
-    /**
-     * Submit rename profile
-     */
-    jQuery('#zo2-rename-profile').on('click', function() {
-        var url = jQuery(this).data('url');
-        var profile = jQuery('.zo2_select_profile').val();
-        var newProfile = jQuery('#zo2-form-renameProfile #zo2_new_profile_name').val();
-        zo2.document.redirect(url + '&task=rename&profile=' + profile + '&newName=' + newProfile);
-    });
 });

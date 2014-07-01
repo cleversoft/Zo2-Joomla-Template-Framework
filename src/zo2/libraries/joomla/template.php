@@ -16,28 +16,39 @@ if (!class_exists('Zo2JTemplate')) {
 
     class Zo2JTemplate {
 
+        private $_jinput;
+
+        public function __construct() {
+            $this->_jinput = JFactory::getApplication()->input;
+        }
+
         public function process() {
-            $jinput = JFactory::getApplication()->input;
-            switch ($jinput->get('task')) {
-                case 'style.save':
-                    $this->save();
-                    break;
-                case 'style.apply':
-                    $this->save();
-                    break;
-                case 'remove':
-                    $this->remove();
-                    break;
-                case 'rename':
-                    $this->rename();
-                    break;
+            if ($this->_jinput->get('option') == 'com_templates') {
+                switch ($this->_jinput->get('task')) {
+                    case 'style.save':
+                        $this->save();
+                        break;
+                    case 'style.apply':
+                        $this->save();
+                        break;
+                    case 'remove':
+                        $this->remove();
+                        break;
+                    case 'rename':
+                        $this->rename();
+                        break;
+                }
             }
         }
 
+        /**
+         * Profile rename
+         */
         public function rename() {
             /* Do never use $_REQUEST */
-            $oldProfileName = JFactory::getApplication()->input->get('profile');
-            $newProfileName = JFactory::getApplication()->input->get('newName');
+            $oldProfileName = $this->_jinput->get('profile');
+            $newProfileName = $this->_jinput->get('newName');
+            $templateId = $this->_jinput->get('id');
 
             if (trim($newProfileName) == '') {
                 $newProfileName = $oldProfileName;
@@ -47,21 +58,23 @@ if (!class_exists('Zo2JTemplate')) {
             if ($oldProfileName != $newProfileName) {
                 if (JFile::exists($profileFile)) {
                     JFile::move($profileFile, $newProfile);
-                    //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $newProfileName, false));
+                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=' . $newProfileName, false));
                 } else {
-                    //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
+                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=default', false));
                 }
             }
         }
 
+        /**
+         * Profile remove
+         */
         public function remove() {
-            $jinput = JFactory::getApplication()->input;
-            JFactory::getApplication()->enqueueMessage($jinput->get('zo2'));
-            $profile = $jinput->get('profile');
+            $profile = $this->_jinput->get('profile');
             $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $profile . '.json');
+            $templateId = $this->_jinput->get('id');
             if (JFile::exists($profileFile)) {
                 JFile::delete($profileFile);
-                //JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=default', false));
+                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=default', false));
             }
         }
 
@@ -69,89 +82,78 @@ if (!class_exists('Zo2JTemplate')) {
          * Hook and replace Joomla! style save
          */
         public function save() {
+            /* Load language */
+            $lang = JFactory::getLanguage();
+            $extension = 'com_templates';
+            $base_dir = JPATH_ADMINISTRATOR;
+            $language_tag = 'en-GB';
+            $reload = true;
+            $lang->load($extension, $base_dir, $language_tag, $reload);
             /* Do build process when template update */
             $assets = Zo2Assets::getInstance();
             $assets->buildAssets();
 
-            $jinput = JFactory::getApplication()->input;
+            JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
+            JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
 
-            if ($jinput->get('option') == 'com_templates') {
-                /**
-                 * @todo Replace by JInput
-                 */
-                if (isset($_REQUEST['jform'])) {
+            /* Get table */
+            $table = JTable::getInstance('Style', 'TemplatesTable');
+            /* Do never use $_REQUEST */
+            $formData = $this->_jinput->post->get('jform', array(), 'array');
+            /* Save template with data */
+            $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
+            $model->save($formData);
 
-                    JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
-                    JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
+            /* Load table record */
+            if ($table->load(array(
+                        'template' => $formData['template'],
+                        'client_id' => $formData['client_id'],
+                        'home' => $formData['home'],
+                        'title' => $formData['title']
+                    ))) {
+                /* Request profileName */
+                $profileName = $this->_jinput->get('profile-name', $formData['profile-select']);
+                if ($profileName == '')
+                    $profileName = $formData['profile-select'];
 
-                    /* Load language */
-                    $lang = JFactory::getLanguage();
-                    $extension = 'com_templates';
-                    $base_dir = JPATH_ADMINISTRATOR;
-                    $language_tag = 'en-GB';
-                    $reload = true;
-                    $lang->load($extension, $base_dir, $language_tag, $reload);
-
-                    /* Get table */
-                    $table = JTable::getInstance('Style', 'TemplatesTable');
-                    /* Do never use $_REQUEST */
-                    $data = $jinput->post->get('jform', array(), 'array');
-
-                    /* Save template with data */
-                    $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
-                    $model->save($data);
-
-                    if ($table->load(array(
-                                'template' => $data['template'],
-                                'client_id' => $data['client_id'],
-                                'home' => $data['home'],
-                                'title' => $data['title']
-                            ))) {
-                        $profileName = $jinput->get('profile-name', $data['profile-select']);
-                        if ($profileName == '')
-                            $profileName = $data['profile-select'];
-                        /* Update profile assign list */
-                        $list = array();
-                        if (isset($data['profile-menu'])) {
-                            foreach ($data['profile-menu'] as $menuId) {
-                                $list[$menuId] = $profileName;
-                            }
-                        }
-                        $data['params']['profile'] = $list;
-                        $params = new JRegistry($data['params']);
-                        $table->params = $params->toString();
-                        if ($table->check()) {
-                            if ($table->store()) {
-
-                                /**
-                                 * Save profile
-                                 */
-                                $profile = new Zo2Profile();
-                                $profile->template = $data['template'];
-                                $profile->name = $profileName;
-                                $profile->layout = json_decode($params->get('layout'));
-
-                                $profile->save();
-
-                                $application = JFactory::getApplication();
-                                $application->enqueueMessage('Style successfully saved');
-
-                                if ($jinput->get('task') == 'style.apply') {
-                                    $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
-                                } else {
-                                    $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
-                                }
-                            }
-                        }
-                    } else {
-                        JFactory::getApplication()->enqueueMessage('Style save error');
+                /* Update profile assign list */
+                $list = array();
+                if (isset($formData['profile-menu'])) {
+                    foreach ($formData['profile-menu'] as $menuId) {
+                        $list[$menuId] = $profileName;
                     }
                 }
-            }
-        }
+                /* Store assigned menu and profile name for each one */
+                $formData['params']['profile'] = $list;
+                $params = new JRegistry($formData['params']);
+                $table->params = $params->toString();
+                /* Save back into database */
+                if ($table->check()) {
+                    if ($table->store()) {
 
-        public function apply() {
-            
+                        /**
+                         * Save profile
+                         */
+                        $profile = new Zo2Profile();
+                        $profile->template = $formData['template'];
+                        $profile->name = $profileName;
+                        $profile->layout = json_decode($params->get('layout'));
+
+                        $profile->save();
+
+                        $application = JFactory::getApplication();
+                        $application->enqueueMessage('Style successfully saved');
+
+                        if ($this->_jinput->get('task') == 'style.apply') {
+                            $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
+                        } else {
+                            $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
+                        }
+                    }
+                }
+            } else {
+                JFactory::getApplication()->enqueueMessage('Style save error');
+            }
         }
 
     }
