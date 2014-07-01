@@ -27,7 +27,7 @@ if (!class_exists('Zo2Profile')) {
          * @return boolean
          */
         public function load($name) {
-            
+
             $profileFile = Zo2Factory::getPath('assets://profiles/' . $name . '.json');
             if ($profileFile == false) {
                 $profileFile = Zo2Factory::getPath('assets://profiles/default.json');
@@ -36,6 +36,8 @@ if (!class_exists('Zo2Profile')) {
                 $this->_profile = json_decode(JFile::read($profileFile), true);
                 $this->name = JFile::stripExt(JFile::getName($profileFile));
                 $this->layout = $this->_profile['layout'];
+                if (isset($this->_profile['preset']))
+                    $this->preset = $this->_profile['preset'];
                 return true;
             }
             return false;

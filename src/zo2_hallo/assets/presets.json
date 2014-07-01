@@ -1,0 +1,62 @@
+[
+    {
+        "name": "green",
+        "default": true,
+        "css": "presets/green",
+        "less": "presets/green",
+        "color": "#7FBE54",
+        "thumbnail": "/assets/zo2/images/presets/green.jpg",
+        "variables": {
+            "background": "",
+            "header": "",
+            "header_top": "",
+            "link": "",
+            "link_hover": "",
+            "text": "",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": "",
+            "extra": ""
+        }
+    },
+    {
+        "name": "blue",
+        "default": false,
+        "css": "presets/blue",
+        "less": "presets/blue",
+        "color": "#0099FF",
+        "thumbnail": "/assets/zo2/images/presets/blue.jpg",
+        "variables": {
+            "background": "",
+            "header": "",
+            "header_top": "",
+            "link": "",
+            "link_hover": "",
+            "text": "",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": "",
+            "extra": ""
+        }
+    },
+    {
+        "name": "orange",
+        "default": false,
+        "css": "presets/orange",
+        "less": "presets/orange",
+        "color": "#D25400",
+        "thumbnail": "/assets/zo2/images/presets/orange.jpg",
+        "variables": {
+            "background": "",
+            "header": "",
+            "header_top": "",
+            "link": "",
+            "link_hover": "",
+            "text": "",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": "",
+            "extra": ""
+        }
+    }
+]

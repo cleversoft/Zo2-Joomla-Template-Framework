@@ -138,6 +138,7 @@ if (!class_exists('Zo2JTemplate')) {
                         $profile->template = $formData['template'];
                         $profile->name = $profileName;
                         $profile->layout = json_decode($params->get('layout'));
+                        $profile->preset = json_decode($params->get('theme'));
 
                         $profile->save();
 
