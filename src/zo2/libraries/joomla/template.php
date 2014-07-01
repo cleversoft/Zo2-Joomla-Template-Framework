@@ -120,7 +120,7 @@ if (!class_exists('Zo2JTemplate')) {
                 $list = array();
                 if (isset($formData['profile-menu'])) {
                     foreach ($formData['profile-menu'] as $menuId) {
-                        $list[$menuId] = $profileName;
+                        $list[$profileName][] = $menuId;
                     }
                 }
                 /* Store assigned menu and profile name for each one */

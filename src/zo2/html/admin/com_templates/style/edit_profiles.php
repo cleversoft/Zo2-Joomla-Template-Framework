@@ -17,7 +17,6 @@ $jinput = JFactory::getApplication()->input;
 require_once JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php';
 $menuTypes = MenusHelper::getMenuLinks();
 $user = JFactory::getUser();
-$profileAssign = $framework->get('profile');
 $profileName = $jinput->get('profile', 'default'); /* Request profile */
 $profiles = $framework->getProfiles();
 ?>
