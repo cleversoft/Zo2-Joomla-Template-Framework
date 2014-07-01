@@ -232,20 +232,23 @@ if (!class_exists('Zo2Framework')) {
             /* Load template preset */
             $itemId = JFactory::getApplication()->input->get('Itemid');
             $profile = new Zo2Profile();
-            $profileName = Zo2Factory::getFramework()->get('profile', 'default');
-
-            if (is_object($profileName)) {
-                if (isset($profileName->$itemId)) {
-                    $profileName = $profileName->$itemId;
-                } else {
-                    $profileName = 'default';
+            $assignedProfiles = Zo2Factory::getFramework()->get('profile', 'default');
+            $profileName = 'default';
+            if (is_object($assignedProfiles)) {
+                foreach ($assignedProfiles as $key => $menuIds) {
+                    if (in_array($itemId, $menuIds)) {
+                        $profileName = $key;
+                        break;
+                    }
                 }
             } else {
                 if (is_array($profileName)) {
                     $profileName = 'default';
                 }
             }
-
+            /**
+             * @todo make sure profile name is exists
+             */
             $profile->load($profileName);
             $preset = $profile->theme;
 
