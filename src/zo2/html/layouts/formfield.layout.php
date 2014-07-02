@@ -152,7 +152,7 @@ defined('_JEXEC') or die('Restricted access');
         <div class="modal-body">
             <div class="form-horizontal">
                 <div class="zo2-tabs-content">
-                    <div class="active" id="column-basic">
+                    <div class="active" id="column-basic">                       
                         <!-- begin -->
                         <div class="control-group">
                             <label class="control-label" for="dlColType">Position</label>
@@ -312,6 +312,3 @@ defined('_JEXEC') or die('Restricted access');
         </div>
     </div>
 </div>
-
-<input type="hidden" id="jQueryPath" value="<?php echo ZO2PATH_ROOT . '/vendor/jquery/jquery-1.9.1.min.js' ?>" />
-<input type="hidden" id="jQueryUIPath" value="<?php echo ZO2PATH_ROOT . '/vendor/jqueryui/js/jquery-ui-1.10.3.custom.min.js' ?>" />
