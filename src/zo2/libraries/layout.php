@@ -119,23 +119,7 @@ if (!class_exists('Zo2Layout')) {
                 else
                     $layoutType = '-fluid';
 
-                $itemId = JFactory::getApplication()->input->get('Itemid');
-                $profile = new Zo2Profile();
-                $profileName = $framework->get('profile', 'default');
-
-                if (is_object($profileName)) {
-                    if (isset($profileName->$itemId)) {
-                        $profileName = $profileName->$itemId;
-                    } else {
-                        $profileName = 'default';
-                    }
-                } else {
-                    if (is_array($profileName)) {
-                        $profileName = 'default';
-                    }
-                }
-
-                $profile->load($profileName);
+                $profile = Zo2Factory::getProfile();
                 $layout = $profile->layout;
 
                 if ($layout) {
