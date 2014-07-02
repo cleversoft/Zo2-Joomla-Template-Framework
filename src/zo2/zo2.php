@@ -55,28 +55,30 @@ if (!class_exists('plgSystemZo2')) {
          * 
          */
         public function onAfterRender() {
-            $app = JFactory::getApplication();
-            $body = JResponse::getBody();
-            $shortcodes = Zo2Shortcodes::getInstance();
-            $jinput = JFactory::getApplication()->input;
-            $framework = Zo2Factory::getFramework();
+            if (Zo2Factory::isZo2Template()) {
+                $app = JFactory::getApplication();
+                $body = JResponse::getBody();
+                $shortcodes = Zo2Shortcodes::getInstance();
+                $jinput = JFactory::getApplication()->input;
+                $framework = Zo2Factory::getFramework();
 
-            if ($app->isAdmin()) {
-                
-            } else {
-                /* Make sure shortcodes enabled and we are not in any "edit" tasking ! */
-                if ($framework->get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {
-                    /* Do shortcodes process */
-                    $body = $shortcodes->execute($body);
+                if ($app->isAdmin()) {
+                    
+                } else {
+                    /* Make sure shortcodes enabled and we are not in any "edit" tasking ! */
+                    if ($framework->get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {
+                        /* Do shortcodes process */
+                        $body = $shortcodes->execute($body);
+                    }
                 }
+
+                $assets = Zo2Assets::getInstance();
+                $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
+                $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
+
+                /* Apply back to body */
+                JResponse::setBody($body);
             }
-
-            $assets = Zo2Assets::getInstance();
-            $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
-            $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
-
-            /* Apply back to body */
-            JResponse::setBody($body);
         }
 
         public function onContentBeforeDisplay($context, &$article, &$params, $limitstart = 0) {

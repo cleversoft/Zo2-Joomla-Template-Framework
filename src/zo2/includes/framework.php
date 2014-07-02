@@ -25,18 +25,28 @@ if (!class_exists('Zo2Framework')) {
         /**
          * @var Zo2Framework
          */
-        protected static $_instance;
+        protected static $_instances;
+
+        /**
+         *
+         * @var object 
+         */
+        public $template = null;
+
+        protected function __construct($template) {
+            $this->template = $template;
+        }
 
         /**
          * Get current Zo2Framework Instance
-         *
+         * @param type $template
          * @return Zo2Framework
          */
-        public static function getInstance() {
-            if (!self::$_instance) {
-                self::$_instance = new self();
+        public static function getInstance($template) {
+            if (!self::$_instances[$template->template]) {
+                self::$_instances[$template->template] = new Zo2Framework($template);
             }
-            return self::$_instance;
+            return self::$_instances[$template->template];
         }
 
         /**
@@ -242,7 +252,7 @@ if (!class_exists('Zo2Framework')) {
                     $profileName = 'default';
                 }
             }
-            
+
             /**
              * @todo make sure profile name is exists
              */

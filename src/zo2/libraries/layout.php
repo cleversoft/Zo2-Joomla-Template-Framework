@@ -17,7 +17,10 @@ if (!class_exists('Zo2Layout')) {
     class Zo2Layout extends JObject {
         /* private */
 
-        private $_compiledLayoutPath, $_layoutContent, $_staticsPath, $_coreStaticsPath;
+        private $_compiledLayoutPath,
+                $_layoutContent,
+                $_staticsPath,
+                $_coreStaticsPath;
         private $_output = '';
         private $_script = array();
         private $_style = array();

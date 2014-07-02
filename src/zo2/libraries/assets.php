@@ -409,7 +409,7 @@ if (!class_exists('Zo2Assets')) {
         public function generateAssets($type) {
             $zPath = Zo2Path::getInstance();
             /* Get Zo2Framework */
-            $framework = Zo2Framework::getInstance();
+            $framework = Zo2Factory::getFramework();
             $combineJs = $framework->get('combine_js');
             $combineCss = $framework->get('combine_css');
             /* Generate javascript */
