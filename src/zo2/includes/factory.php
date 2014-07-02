@@ -99,7 +99,7 @@ if (!class_exists('Zo2Factory')) {
                 }
             }
         }
-        
+
         /**
          * Get template name
          * @return string
@@ -109,7 +109,7 @@ if (!class_exists('Zo2Factory')) {
             if ($template)
                 return $template->template;
         }
-        
+
         /**
          * Get current template params
          * @param type $name
@@ -230,6 +230,46 @@ if (!class_exists('Zo2Factory')) {
                 return $once ? include_once $path : include $path;
             }
             return false;
+        }
+
+        /**
+         * Get instance of Zo2Profile by name
+         * @staticvar array $profiles
+         * @param type $profile
+         * @return \Zo2Profile
+         */
+        public static function getProfile($profile = null) {
+            static $profiles = array();
+            $profileName = 'default';
+            if ($profile === null) {
+                /* Get request profile */
+                $itemId = JFactory::getApplication()->input->get('Itemid');
+                /* Get profiles list */
+                $list = self::getFramework()->get('profile', 'default');
+                if (is_object($list)) {
+                    if (isset($list->$itemId)) {
+                        $profileName = $list->$itemId;
+                    } else {
+                        $profileName = 'default';
+                    }
+                } else {
+                    if (is_array($profiles)) {
+                        $profileName = 'default';
+                    }
+                }
+            } else {
+                if (is_string($profile)) {
+                    $profileName = $profile;
+                } elseif ($profile instanceof Zo2Profile) {
+                    $profileName = $profile->name;
+                }
+            }
+            if (!isset($profiles[$profileName])) {
+                $profile = new Zo2Profile();
+                $profile->load($profileName);
+                $profiles[$profileName] = $profile;
+            }
+            return $profiles[$profileName];
         }
 
     }
