@@ -22,8 +22,7 @@ if (!class_exists('Zo2Framework'))
 $template = Zo2Factory::getTemplate();
 
 $framework = Zo2Factory::getFramework();
-
-$framework->loadTemplateAssets();
+$framework->init();
 
 $this->zo2 = new JRegistry;
 $this->zo2->framework = $framework;

@@ -23,9 +23,9 @@ JLoader::discover('Zo2Service', ZO2PATH_ROOT . '/libraries/services');
 JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 
 if (Zo2Factory::isZo2Template()) {
-    
+
     $framework = Zo2Factory::getFramework();
-    $assets = Zo2Assets::getInstance();
+    $framework->init();
     if (Zo2Factory::isJoomla25()) {
         
     } else {

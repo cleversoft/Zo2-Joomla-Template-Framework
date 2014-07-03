@@ -20,6 +20,9 @@ jimport('joomla.filesystem.folder');
  */
 if (!class_exists('Zo2Framework')) {
 
+    /**
+     * Zo2 Framework object class
+     */
     class Zo2Framework {
 
         /**
@@ -28,18 +31,28 @@ if (!class_exists('Zo2Framework')) {
         protected static $_instances;
 
         /**
-         *
+         * Joomla! template object
          * @var object 
          */
         public $template = null;
 
+        /**
+         *
+         * @var Zo2Assets 
+         */
+        public $assets = null;
+
+        /**
+         * Constructor
+         * @param type $template
+         */
         protected function __construct($template) {
             $this->template = $template;
         }
 
         /**
          * Get current Zo2Framework Instance
-         * @param type $template
+         * @param object $template
          * @return Zo2Framework
          */
         public static function getInstance($template) {
@@ -50,6 +63,49 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
+         * Framework init
+         */
+        public function init() {
+            $this->assets = Zo2Assets::getInstance();
+            $this->profile = Zo2Factory::getProfile();
+            /* Get specific core assets */
+            if (Zo2Factory::isJoomla25()) {
+                $assetsFile = 'assets.joomla25.json';
+            } else {
+                $assetsFile = 'assets.default.json';
+            }
+            $assetsFile = Zo2Factory::getPath('zo2://assets/' . $assetsFile);
+            if ($assetsFile) {
+                $assets = json_decode(file_get_contents($assetsFile));
+                /* Site loading */
+                if (Zo2Factory::isSite()) {
+                    /* Load core assets */
+                    $this->assets->load($assets->frontend);
+                    /* Responsive */
+                    if ($this->get('responsive_layout'))
+                        $this->assets->addStyleSheet('zo2/css/non-responsive.css');
+                    /* Custom css */
+                    if ($this->get('enable_custom_css', 1) == 1)
+                        $this->assets->addStyleSheet('zo2/css/custom.css');
+                    /* Template side */
+                    $templateAssets = $this->getAssets();
+                    if ($templateAssets) {
+                        $this->assets->load($templateAssets->assets);
+                    }
+                    $this->_loadProfile();
+                } else {
+                    /* Backend loading */
+                    if (Zo2Factory::isZo2Template()) {
+                        /* Load core assets */
+                        $this->assets->load($assets->backend);
+                    }
+                }
+            } else {
+                JFactory::getApplication()->enqueueMessage('Zo2 assets file not found');
+            }
+        }
+
+        /**
          * Get template params' property
          * @param string $property
          * @param mixed $default
@@ -57,23 +113,26 @@ if (!class_exists('Zo2Framework')) {
          * @return mixed
          */
         public function get($property, $default = null) {
-            if (Zo2Factory::getTemplate()) {
-                return Zo2Factory::getTemplate()->params->get($property, $default);
-            }
-            return $default;
+            return $this->template->params->get($property, $default);
+        }
+
+        public function getPath($key) {
+            return Zo2Factory::getPath('templates://' . $key);
+        }
+
+        public function getUrl($key) {
+            return Zo2Factory::getUrl('templates://' . $key);
         }
 
         /**
-         *
+         * Get template assets object
          * @return boolean
          */
-        public function getTemplateAssets() {
-            $templatePath = Zo2Factory::getPath('templates://');
-            $templateName = Zo2Factory::getTemplateName();
-            if (JFile::exists($templatePath . '/assets/template.json')) {
-                return json_decode(file_get_contents($templatePath . '/assets/template.json'));
+        public function getAssets() {
+            $assetsFile = $this->getPath('assets/template.json');
+            if ($assetsFile) {
+                return json_decode(file_get_contents($assetsFile));
             }
-            return false;
         }
 
         /**
@@ -81,9 +140,9 @@ if (!class_exists('Zo2Framework')) {
          * @return array
          */
         public function getTemplatePositions() {
-            $path = Zo2Factory::getPath('templates://templateDetails.xml');
+            $path = $this->getPath('templateDetails.xml');
             $positions = array();
-            if (JFile::exists($path)) {
+            if ($path) {
                 $xml = simplexml_load_file($path);
                 $positions = (array) $xml->positions;
                 if (isset($positions['position']))
@@ -100,7 +159,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        public function buildStandardFontStyle($data, $selector) {
+        protected function _buildStandardFontStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $style = '';
             if (!empty($data['family']))
@@ -135,7 +194,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        public function buildGoogleFontsStyle($data, $selector) {
+        protected function _buildGoogleFontsStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
             $api = 'http://fonts.googleapis.com/css?family=';
             $url = '';
@@ -183,7 +242,7 @@ if (!class_exists('Zo2Framework')) {
          * @param $data
          * @param $selector
          */
-        public function buildFontDeckStyle($data, $selector) {
+        protected function _buildFontDeckStyle($data, $selector) {
             $fontdeckCode = $this->get('fontdeck_code');
             $assets = Zo2Assets::getInstance();
 
@@ -220,45 +279,12 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         *
+         *  
          */
-        public function loadTemplateAssets() {
-            $path = Zo2Path::getInstance();
-            $assets = Zo2Assets::getInstance();
-            /* Load template assets */
-            $templateAssets = $path->getConfigFile('assets://template.assets.json', true);
+        protected function _loadProfile() {
 
-            foreach ($templateAssets as $data) {
-                /**
-                 * @todo Improve $assets allow use same method with $type as determine
-                 */
-                if ($data['type'] == 'js')
-                    $assets->addScript('zo2/js/' . $data['path'] . '.js');
-                else if ($data['type'] == 'css')
-                    $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
-                else if ($data['type'] == 'less')
-                    $assets->addStyleSheet('zo2/css/' . $data['path'] . '.css');
-            }
-            /* Load template preset */
-            $itemId = JFactory::getApplication()->input->get('Itemid');
-            $profile = new Zo2Profile();
-            $assignedProfiles = Zo2Factory::getFramework()->get('profile', 'default');
-            $profileName = 'default';
-            if (is_object($assignedProfiles)) {
-                if (isset($assignedProfiles->$itemId))
-                    $profileName = $assignedProfiles->$itemId;
-            } else {
-                if (is_array($profileName)) {
-                    $profileName = 'default';
-                }
-            }
-
-            /**
-             * @todo make sure profile name is exists
-             */
-            $profile->load($profileName);
-            if (isset($profile->theme))
-                $preset = $profile->theme;
+            if (isset($this->profile->theme))
+                $preset = $this->profile->theme;
             else
                 $preset = array();
 
@@ -304,9 +330,9 @@ if (!class_exists('Zo2Framework')) {
             }
 
             if (!empty($presetData['css']))
-                $assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
+                $this->assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
 
-            $assets->addStyleSheetDeclaration($style);
+            $this->assets->addStyleSheetDeclaration($style);
 
             /* Prepare Fonts */
             $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
@@ -322,13 +348,13 @@ if (!class_exists('Zo2Framework')) {
                     if (isset($data['type']) && !empty($data['type'])) {
                         switch ($data['type']) {
                             case 'standard':
-                                self::buildStandardFontStyle($data, $selector);
+                                $this->_buildStandardFontStyle($data, $selector);
                                 break;
                             case 'googlefonts':
-                                self::buildGoogleFontsStyle($data, $selector);
+                                $this->_buildGoogleFontsStyle($data, $selector);
                                 break;
                             case 'fontdeck':
-                                self::buildFontDeckStyle($data, $selector);
+                                $this->_buildFontDeckStyle($data, $selector);
                                 break;
                             default:
                                 break;
@@ -545,6 +571,10 @@ if (!class_exists('Zo2Framework')) {
             return $result;
         }
 
+        /**
+         * Get array of profiles
+         * @return \Zo2Profile
+         */
         public function getProfiles() {
             $templateDir = Zo2Factory::getPath('templates://assets/profiles');
             $profiles = array();
@@ -571,6 +601,15 @@ if (!class_exists('Zo2Framework')) {
             $className = 'Zo2J' . ucfirst($name);
             if (class_exists($className)) {
                 return new $className();
+            }
+        }
+
+        public function __get($name) {
+            $properties = get_object_vars($this);
+            if (isset($properties[$name])) {
+                return $properties;
+            } else {
+                
             }
         }
 

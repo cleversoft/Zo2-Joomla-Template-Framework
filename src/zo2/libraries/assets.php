@@ -65,42 +65,7 @@ if (!class_exists('Zo2Assets')) {
          * We do not allow create new instance directly. Must go via getInstance
          */
         protected function __construct() {
-            $framework = Zo2Factory::getFramework();
-            /* Get specific core assets */
-            if (Zo2Factory::isJoomla25()) {
-                $assetsFile = 'assets.joomla25.json';
-            } else {
-                $assetsFile = 'assets.default.json';
-            }
-            $assetsFile = $this->getAssetFile($assetsFile, 'path');
-            if ($assetsFile) {
-                $this->_assets = json_decode(file_get_contents($assetsFile));
-            }
-            /* Site loading */
-            if (Zo2Factory::isSite()) {
-                /* Load core assets */
-                $this->load($this->_assets->frontend);
-                /* Responsive */
-                if ($framework->get('responsive_layout'))
-                    $this->addStyleSheet('zo2/css/non-responsive.css');
-                /* Custom css */
-                if ($framework->get('enable_custom_css', 1) == 1)
-                    $this->addStyleSheet('zo2/css/custom.css');
-                /* Template side */
-                $assetsFile = $this->getAssetFile('template.json', 'path');
-                if ($assetsFile) {
-                    $assets = json_decode(file_get_contents($assetsFile));
-                    if (isset($assets->assets)) {
-                        $this->load($assets->assets);
-                    }
-                }
-            } else {
-                /* Backend loading */
-                if (Zo2Factory::isZo2Template()) {
-                    /* Load core assets */
-                    $this->load($this->_assets->backend);
-                }
-            }
+            
         }
 
         /**
@@ -222,7 +187,7 @@ if (!class_exists('Zo2Assets')) {
             if ($less) {
                 $style = Zo2HelperCompiler::lessStyle($style);
             }
-            $this->_stylesheetDeclarations[] = $style;            
+            $this->_stylesheetDeclarations[] = $style;
             return $this;
         }
 
