@@ -493,15 +493,36 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
+         * 
+         * @param string $menutype
+         * @return string
+         */
+        public function getMenuType($menuType = null) {
+            if ($menuType === null) {
+                $menuType = $this->get('menu_type', 'mainmenu');
+            }
+            return $menuType;
+        }
+        
+        /**
+         * 
+         * @param string $menutype
+         * @return array
+         */
+        public function getMenuItems($menuType = null) {
+            $menuType = $this->getMenuType($menuType);
+            $menu = JFactory::getApplication()->getMenu();
+            return $menu->getItems('menutype', $menuType);
+        }
+
+        /**
          * @param $menutype
          * @param $template
          * @param bool $isAdmin
          * @return string
          */
         public function displayMegaMenu($menutype, $template, $isAdmin = false) {
-
-            Zo2Factory::import('core.Zo2Megamenu');
-            $params = Zo2Factory::getTemplate()->params;
+            $params = $this->template->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
@@ -515,8 +536,7 @@ if (!class_exists('Zo2Framework')) {
             if ($menutype === null) {
                 $menutype = self::get('menu_type', 'mainmenu');
             }
-            Zo2Factory::import('core.Zo2Megamenu');
-            $params = Zo2Factory::getTemplate()->params;
+            $params = $this->template->params;
             $configs = json_decode($params->get('menu_config', ''), true);
             $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             if (JFactory::getApplication()->isAdmin()) {
