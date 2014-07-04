@@ -34,7 +34,7 @@ if (!class_exists('Zo2Path')) {
          * @param type $name default is common
          * @return \Zo2Template
          */
-        public static function &getInstance($name = 'common') {
+        public static function &getInstance($name = 'zo2') {
             static $instances;
             if (!isset($instances[$name])) {
                 $instances[$name] = new Zo2Path();
