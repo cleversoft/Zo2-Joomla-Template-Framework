@@ -117,11 +117,7 @@ if (!class_exists('Zo2Factory')) {
          * @return type
          */
         public static function get($name, $default = null) {
-            $template = self::getTemplate();
-            if ($template) {
-                $template->params->get($name, $default);
-            }
-            return $default;
+            return self::getFramework()->get($name, $default);
         }
 
         /**

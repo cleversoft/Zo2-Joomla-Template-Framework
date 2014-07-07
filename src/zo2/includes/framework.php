@@ -503,7 +503,7 @@ if (!class_exists('Zo2Framework')) {
             }
             return $menuType;
         }
-        
+
         /**
          * 
          * @param string $menutype
@@ -528,7 +528,7 @@ if (!class_exists('Zo2Framework')) {
             if (JFactory::getApplication()->isAdmin()) {
                 $mmconfig['edit'] = true;
             }
-            $menu = new Zo2MegaMenu($menutype, $mmconfig, $params);
+            $menu = new Zo2MegaMenu($menutype, $mmconfig);
             return $menu->renderMenu($isAdmin);
         }
 
@@ -542,7 +542,7 @@ if (!class_exists('Zo2Framework')) {
             if (JFactory::getApplication()->isAdmin()) {
                 $mmconfig['edit'] = true;
             }
-            $menu = new Zo2MegaMenu($menutype, $mmconfig, $params);
+            $menu = new Zo2MegaMenu($menutype, $mmconfig);
             return $menu->renderOffCanvasMenu($isAdmin);
         }
 
