@@ -339,7 +339,7 @@ jQuery(document).ready(function($) {
 
     $('#btnSaveColSettings').on('click', function() {
         var $col = $.data(document.body, 'editingEl');
-        $col.attr('data-zo2-jtype', $('#dlColJType').val());
+        $col.attr('data-zo2-jdoc', $('#dlColJDoc').val());
         $col.attr('data-zo2-span', $('#dlColWidth').val());
         $col.attr('data-zo2-offset', $('#ddlColOffset').val());
         $col.attr('data-zo2-style', $('#ddlColStyle').val());
@@ -851,7 +851,7 @@ var generateItemJson = function($item) {
         });
     } else if ($item.attr('data-zo2-type') == 'span') { /* Column */
         result = {
-            jtype: $item.attr('data-zo2-jtype'),
+            jdoc: $item.attr('data-zo2-jdoc'),
             type: "col",
             name: $item.find('> .col-wrap > .col-name').text(),
             position: $item.attr('data-zo2-position'),

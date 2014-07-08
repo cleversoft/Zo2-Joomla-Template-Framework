@@ -170,11 +170,13 @@ defined('_JEXEC') or die('Restricted access');
                     <div class="active" id="column-basic">      
                         <!-- begin -->
                         <div class="control-group">
-                            <label class="control-label" for="dlColJType">Block type</label>
+                            <label class="control-label" for="dlColJDoc">JDoc</label>
                             <div class="controls">
-                                <select id="dlColJType">                                    
+                                <!-- http://docs.joomla.org/Jdoc_statements -->
+                                <select id="dlColJDoc">                                    
                                     <option value="component">Component</option>
                                     <option value="module">Module</option>                                    
+                                    <option value="messsge">Message</option>     
                                 </select>
                             </div>
                         </div>
