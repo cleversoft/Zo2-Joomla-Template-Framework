@@ -18,7 +18,7 @@
 
         <div class="row-container">
             <?php foreach ($column['children'] as $row) { ?>
-                <?php require_once 'formfield.layout.row.php'; ?>
+                <?php require 'formfield.layout.row.php'; ?>
             <?php } ?>              
         </div>
     </div>
