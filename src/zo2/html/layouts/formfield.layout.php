@@ -170,9 +170,9 @@ defined('_JEXEC') or die('Restricted access');
                     <div class="active" id="column-basic">      
                         <!-- begin -->
                         <div class="control-group">
-                            <label class="control-label" for="dlColBlockType">Block type</label>
+                            <label class="control-label" for="dlColJType">Block type</label>
                             <div class="controls">
-                                <select id="dlColBlockType">                                    
+                                <select id="dlColJType">                                    
                                     <option value="component">Component</option>
                                     <option value="module">Module</option>                                    
                                 </select>

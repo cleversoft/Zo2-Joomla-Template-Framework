@@ -339,6 +339,7 @@ jQuery(document).ready(function($) {
 
     $('#btnSaveColSettings').on('click', function() {
         var $col = $.data(document.body, 'editingEl');
+        $col.attr('data-zo2-jtype', $('#dlColJType').val());
         $col.attr('data-zo2-span', $('#dlColWidth').val());
         $col.attr('data-zo2-offset', $('#ddlColOffset').val());
         $col.attr('data-zo2-style', $('#ddlColStyle').val());
@@ -799,9 +800,14 @@ var generateFontOptions = function($container) {
     $result.val(JSON.stringify(options));
 };
 
+/**
+ * 
+ * @returns {String}
+ */
 var generateJson = function() {
     var $rootParent = jQuery('#droppable-container .zo2-container');
     var json = [];
+    /* Loop all rows */
     $rootParent.find('>[data-zo2-type="row"]').each(function() {
         var itemJson = generateItemJson(jQuery(this));
         if (itemJson != null)
@@ -811,9 +817,15 @@ var generateJson = function() {
     return JSON.stringify(json);
 };
 
+/**
+ * 
+ * @param {type} $item
+ * @returns {generateItemJson.result}
+ */
 var generateItemJson = function($item) {
     var result = null;
     var $childrenContainer = null;
+    /* Row */
     if ($item.attr('data-zo2-type') == 'row') {
         result = {
             type: "row",
@@ -837,9 +849,9 @@ var generateItemJson = function($item) {
             var childItem = generateItemJson(jQuery(this));
             result.children.push(childItem);
         });
-    }
-    else if ($item.attr('data-zo2-type') == 'span') {
+    } else if ($item.attr('data-zo2-type') == 'span') { /* Column */
         result = {
+            jtype: $item.attr('data-zo2-jtype'),
             type: "col",
             name: $item.find('> .col-wrap > .col-name').text(),
             position: $item.attr('data-zo2-position'),
@@ -938,18 +950,6 @@ var injectFormSubmit = function() {
      };
      */
 };
-
-function setZo2SettingInputValue() {
-    var $ = jQuery;
-    var $input = $('.hfLayoutHtml');
-    $('.toolbox-saveConfig').trigger('click');
-    $('.field-logo-container').each(function() {
-        generateLogoJson($(this));
-    });
-    $input.val(generateJson());
-}
-
-
 
 /* Override default submit function */
 Joomla.submitform = function(task, form) {

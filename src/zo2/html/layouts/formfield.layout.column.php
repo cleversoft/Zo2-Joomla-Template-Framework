@@ -1,4 +1,5 @@
-<div class="sortable-col col-md-<?php echo $column['span'] ?> col-md-offset-<?php echo $column['offset'] ?>" data-zo2-type="span"
+<div class="sortable-col col-md-<?php echo $column['span'] ?> col-md-offset-<?php echo $column['offset'] ?>" 
+     data-zo2-type="span"
      data-zo2-span="<?php echo $column['span'] ?>" data-zo2-offset="<?php echo $column['offset'] ?>"
      data-zo2-position="<?php echo $column['position'] ?>" data-zo2-style="<?php echo (isset($column['style'])) ? $column['style'] : ''; ?>"
      data-zo2-customClass="<?php echo $column['customClass'] ?>" data-zo2-id="<?php echo $column['id'] ?>"

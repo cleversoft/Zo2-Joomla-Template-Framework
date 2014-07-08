@@ -1,4 +1,6 @@
-<div class="zo2-row sortable-row" data-zo2-type="row" data-zo2-customClass="<?php echo $row['customClass'] ?>"
+<div class="zo2-row sortable-row" 
+     data-zo2-type="row" 
+     data-zo2-customClass="<?php echo $row['customClass'] ?>"
      data-zo2-id="<?php echo $row['id'] ?>"
      data-zo2-visibility-xs="<?php echo $row['visibility']['xs'] ? 1 : 0 ?>"
      data-zo2-visibility-sm="<?php echo $row['visibility']['sm'] ? 1 : 0 ?>"
