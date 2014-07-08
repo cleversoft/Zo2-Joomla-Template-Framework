@@ -12,28 +12,40 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <div id="layoutbuilder-container">
-    <input type="text" value="<?php echo htmlspecialchars($this->value) ?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
-    <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Factory::getTemplateName() ?>" />
-    <input type="hidden" id="hdLayoutBuilder" value="0" />
-    <input type="hidden" id="hfLayoutName" value="homepage" />
+    <!-- Hidden fields -->
+    <fieldset>
+        <!-- Input field to store generate layout data -->
+        <input type="text" value="<?php echo htmlspecialchars($this->value) ?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
+        <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Factory::getTemplateName() ?>" />
+        <input type="hidden" id="hdLayoutBuilder" value="0" />
+        <input type="hidden" id="hfLayoutName" value="homepage" />
+    </fieldset>
+
+    <!-- Main layout -->
     <div id="droppable-container">
         <div class="zo2-container">
             <?php $this->renderLayout($layoutData) ?>
         </div>
     </div>
 
+    <!-- Modal: Row settings -->
     <div id="rowSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <!-- Modal header -->
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3>Row settings</h3>
+            <!-- Tab titles -->
             <ul class="zo2-tabs">
                 <li><a class="active" href="#row-basic" data-toggle="tab">Basic</a></li>
                 <li><a href="#row-responsive" data-toggle="tab">Responsive</a></li>
             </ul>
         </div>
+        <!-- Modal body -->
         <div class="modal-body">
             <div class="form-horizontal">
+                <!-- Tab contents -->
                 <div class="zo2-tabs-content">
+                    <!-- Basic -->
                     <div class="active" id="row-basic">
                         <div class="control-group">
                             <label class="control-label" for="txtRowName">Name</label>
@@ -63,6 +75,7 @@ defined('_JEXEC') or die('Restricted access');
                             </div>
                         </div>
                     </div>
+                    <!-- Responsive -->
                     <div id="row-responsive">
                         <div class="control-group">
                             <!--
@@ -134,12 +147,14 @@ defined('_JEXEC') or die('Restricted access');
                 </div>
             </div>
         </div>
+        <!-- Model footer -->
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             <button class="btn btn-primary" id="btnSaveRowSettings">Save changes</button>
         </div>
     </div>
 
+    <!-- Model: Column settings -->
     <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -152,7 +167,17 @@ defined('_JEXEC') or die('Restricted access');
         <div class="modal-body">
             <div class="form-horizontal">
                 <div class="zo2-tabs-content">
-                    <div class="active" id="column-basic">                       
+                    <div class="active" id="column-basic">      
+                        <!-- begin -->
+                        <div class="control-group">
+                            <label class="control-label" for="dlColBlockType">Block type</label>
+                            <div class="controls">
+                                <select id="dlColBlockType">                                    
+                                    <option value="component">Component</option>
+                                    <option value="module">Module</option>                                    
+                                </select>
+                            </div>
+                        </div>
                         <!-- begin -->
                         <div class="control-group">
                             <label class="control-label" for="dlColType">Position</label>
