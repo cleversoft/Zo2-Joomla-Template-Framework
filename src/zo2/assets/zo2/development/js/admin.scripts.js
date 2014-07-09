@@ -829,7 +829,6 @@ var generateItemJson = function($item) {
     if ($item.attr('data-zo2-type') == 'row') {
         result = {
             type: "row",
-            //layout: $item.attr('data-zo2-layout'),
             name: $item.find('> .row-control > .row-control-container > .row-name').text(),
             customClass: $item.attr('data-zo2-customClass'),
             id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
@@ -849,7 +848,9 @@ var generateItemJson = function($item) {
             var childItem = generateItemJson(jQuery(this));
             result.children.push(childItem);
         });
-    } else if ($item.attr('data-zo2-type') == 'span') { /* Column */
+    }
+    /* Column */
+    else if ($item.attr('data-zo2-type') == 'span') {
         result = {
             jdoc: $item.attr('data-zo2-jdoc'),
             type: "col",
