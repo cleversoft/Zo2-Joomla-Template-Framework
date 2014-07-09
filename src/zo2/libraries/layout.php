@@ -187,7 +187,6 @@ if (!class_exists('Zo2Layout')) {
             if (
                     (strtolower($item['name']) == 'component' && !$this->hideComponent()) || (strtolower($item['name']) != 'component')
             ) {
-
                 //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
                 $class = $item['fullwidth'] ? '' : 'container';
                 $class .= ' ' . self::_generateVisibilityClass($item['visibility']);
@@ -252,16 +251,37 @@ if (!class_exists('Zo2Layout')) {
         }
 
         /**
+         * Check is allowed to show this jdoc
+         * @param JRegistry $item
+         * @return boolean
+         */
+        private function _showJDoc($item) {
+            switch ($item->get('jdoc', 'modules')) {
+                case 'component':
+                    return !$this->hideComponent();
+                    break;
+                case 'message':
+                    return true;
+                default:
+                    jimport('joomla.application.module.helper');
+                    $modules = JModuleHelper::getModules($item->get('positions'));
+                    if (count($modules) > 0) {
+                        return true;
+                    }
+                    return false;
+            }
+        }
+
+        /**
          * Generate html from a column item
          * @param $item
          * @return string
          */
         private function _generateColumn($item) {
             $jItem = new JRegistry($item);
-            if (
-                    ($item['position'] == 'component') && (!$this->hideComponent() ) ||
-                    ($item['position'] != 'component')
-            ) {
+
+            /* Check is allowed to show this jdoc */
+            if ($this->_showJDoc($jItem)) {
 
                 /**
                  * @todo move to layouts/html and use Zo2Template to fetch
