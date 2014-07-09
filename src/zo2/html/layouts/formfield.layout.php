@@ -173,9 +173,9 @@ defined('_JEXEC') or die('Restricted access');
                             <label class="control-label" for="dlColJDoc">JDoc</label>
                             <div class="controls">
                                 <!-- http://docs.joomla.org/Jdoc_statements -->
-                                <select id="dlColJDoc">                                    
+                                <select id="dlColJDoc">                                            
                                     <option value="component">Component</option>
-                                    <option value="module">Module</option>                                    
+                                    <option value="modules">Modules</option>                                    
                                     <option value="messsge">Message</option>     
                                 </select>
                             </div>
