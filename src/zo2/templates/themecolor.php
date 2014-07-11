@@ -262,12 +262,13 @@ if (!isset($preset_data['bg_image']))
             <div class="zo2_themes_form">
                 <ul class="options background-select">
                     <?php
-                    $backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns';
+                    $zPath = Zo2Path::getInstance();
+                    $backgroundsDir = Zo2Factory::getPath("templates://assets/zo2/images/background-patterns");
                     $bgPatterns =  glob($backgroundsDir.'/*.*');
                     if(count($bgPatterns) > 0) {
                         foreach($bgPatterns as $pattern ) {
                             $selected = '';
-                            $pattern_src = Zo2HelperPath::toUrl($pattern);
+                            $pattern_src = $zPath->toUrl($pattern);
                             $pattern_path = str_replace(JPATH_ROOT . '/', '', $pattern);
                             if( isset($preset_data['bg_pattern']) && ($pattern_path == $preset_data['bg_pattern']) )
                                 $selected = 'selected';
@@ -275,7 +276,7 @@ if (!isset($preset_data['bg_image']))
                         }
                     }
                     ?>
-                    ?>
+
                 </ul>
             </div>
         </div>
