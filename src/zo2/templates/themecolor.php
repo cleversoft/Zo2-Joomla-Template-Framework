@@ -14,26 +14,28 @@ $templatePath = Zo2Factory::getUrl('templates://');
 $profile = Zo2Factory::getProfile();
 
 if($profile->theme){
+
     $preset_theme = $profile->theme;
     $preset_data = array(
         'name' => isset($preset_theme['name']) ? $preset_theme['name'] : '',
         'css' => isset($preset_theme['css']) ? $preset_theme['css'] : '',
         'less' => isset($preset_theme['less']) ? $preset_theme['less'] : '',
         'boxed' => isset($preset_theme['boxed']) ? $preset_theme['boxed'] : 0,
-        'background' => isset($preset_theme['variables']['background']) ? $preset_theme['variables']['background'] : '',
-        'header' => isset($preset_theme['variables']['header']) ? $preset_theme['variables']['header'] : '',
-        'header_top' => isset($preset_theme['variables']['header_top']) ? $preset_theme['variables']['header_top'] : '',
-        'text' => isset($preset_theme['variables']['text']) ? $preset_theme['variables']['text'] : '',
-        'link' => isset($preset_theme['variables']['link']) ? $preset_theme['variables']['link'] : '',
-        'link_hover' => isset($preset_theme['variables']['link_hover']) ? $preset_theme['variables']['link_hover'] : '',
-        'bottom1' => isset($preset_theme['variables']['bottom1']) ? $preset_theme['variables']['extra'] : '',
-        'bottom2' => isset($preset_theme['variables']['bottom2']) ? $preset_theme['variables']['bottom2'] : '',
-        'footer' => isset($preset_theme['variables']['footer']) ? $preset_theme['variables']['footer'] : '',
-        'extra' => isset($preset_theme['variables']['extra']) ? $preset_theme['variables']['extra'] : '',
-        'bg_image' => isset($preset_theme['variables']['bg_image']) ? $preset_theme['variables']['bg_image'] : '',
-        'bg_pattern' => isset($preset_theme['variables']['bg_pattern']) ? $preset_theme['variables']['bg_pattern'] : '',
+        'background' => isset($preset_theme['background']) ? $preset_theme['background'] : '',
+        'header' => isset($preset_theme['header']) ? $preset_theme['header'] : '',
+        'header_top' => isset($preset_theme['header_top']) ? $preset_theme['header_top'] : '',
+        'text' => isset($preset_theme['text']) ? $preset_theme['text'] : '',
+        'link' => isset($preset_theme['link']) ? $preset_theme['link'] : '',
+        'link_hover' => isset($preset_theme['link_hover']) ? $preset_theme['link_hover'] : '',
+        'bottom1' => isset($preset_theme['bottom1']) ? $preset_theme['bottom1'] : '',
+        'bottom2' => isset($preset_theme['bottom2']) ? $preset_theme['bottom2'] : '',
+        'footer' => isset($preset_theme['footer']) ? $preset_theme['footer'] : '',
+        'extra' => isset($preset_theme['extra']) ? $preset_theme['extra'] : '',
+        'bg_image' => isset($preset_theme['bg_image']) ? $preset_theme['bg_image'] : '',
+        'bg_pattern' => isset($preset_theme['bg_pattern']) ? $preset_theme['bg_pattern'] : '',
     );
 }
+
 if (!isset($preset_data['name']))
     $preset_data['name'] = 'custom';
 if (!isset($preset_data['boxed']))
@@ -51,15 +53,15 @@ if (!isset($preset_data['bg_image']))
         <ul id="zo2_themes">
             <?php foreach ($presets as $p) : ?>
                 <li class="<?php echo $p['name'] == $preset_data['name'] ? 'active' : '' ?>"
-                    data-zo2-theme="<?php echo $p['name'] ?>" data-zo2-background="<?php echo $p['variables']['background'] ?>"
-                    data-zo2-header="<?php echo $p['variables']['header'] ?>"
-                    data-zo2-header-top="<?php echo $p['variables']['header_top'] ?>"
-                    data-zo2-link="<?php echo $p['variables']['link'] ?>"
-                    data-zo2-link-hover="<?php echo $p['variables']['link_hover'] ?>"
-                    data-zo2-text="<?php echo $p['variables']['text'] ?>"
-                    data-zo2-bottom1="<?php echo $p['variables']['bottom1'] ?>"
-                    data-zo2-bottom2="<?php echo $p['variables']['bottom2'] ?>"
-                    data-zo2-footer="<?php echo $p['variables']['footer'] ?>"
+                    data-zo2-theme="<?php echo $p['name'] ?>" data-zo2-background="<?php echo $p['background'] ?>"
+                    data-zo2-header="<?php echo $p['header'] ?>"
+                    data-zo2-header-top="<?php echo $p['header_top'] ?>"
+                    data-zo2-link="<?php echo $p['link'] ?>"
+                    data-zo2-link-hover="<?php echo $p['link_hover'] ?>"
+                    data-zo2-text="<?php echo $p['text'] ?>"
+                    data-zo2-bottom1="<?php echo $p['bottom1'] ?>"
+                    data-zo2-bottom2="<?php echo $p['bottom2'] ?>"
+                    data-zo2-footer="<?php echo $p['footer'] ?>"
                     data-zo2-css="<?php echo $p['css'] ?>" data-zo2-less="<?php echo $p['less'] ?>"
                     >
                     <div class="theme_title"><?php echo ucfirst($p['name']) ?></div>
