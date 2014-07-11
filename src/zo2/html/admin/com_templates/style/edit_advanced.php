@@ -268,7 +268,7 @@ defined('_JEXEC') or die;
             <div class="control-group">
                 <div class="control-label"></div>
                 <div class="controls">
-                    <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px">Clear layout cache</button>
+                    <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px"><?php echo(JText::_('ZO2_ADMIN_EDITADVANCED_CLEAR_CACHE')); ?></button>
                 </div>
             </div>
         </div>

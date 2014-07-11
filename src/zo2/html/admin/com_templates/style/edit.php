@@ -23,34 +23,34 @@ JHTML::_('behavior.tooltip');
             <ul class="nav nav-tabs main-navigator" id="main-navigator">
                 <!-- Default active tab -->
                 <li class="active">
-                    <a href="#overview" data-toggle="tab"><i class="icon-info fa-lg"></i> Overview</a>
+                    <a href="#overview" data-toggle="tab"><i class="icon-info fa-lg"></i> <?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_OVERVIEW')); ?></a>
                 </li>
                 <li>
-                    <a href="#general" data-toggle="tab"><i class="icon-cog fa-lg"></i> General</a>
+                    <a href="#general" data-toggle="tab"><i class="icon-cog fa-lg"></i> <?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_GENERAL')); ?></a>
                 </li>
                 <li>
-                    <a href="#fonts" data-toggle="tab"><i class="icon-font fa-lg"></i> Fonts</a>
+                    <a href="#fonts" data-toggle="tab"><i class="icon-font fa-lg"></i> <?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_FONTS')); ?></a>
                 </li>
                 <li>
-                    <a href="#theme" data-toggle="tab"><i class="icon-columns fa-lg"></i> Layout Profiles</a>
+                    <a href="#theme" data-toggle="tab"><i class="icon-columns fa-lg"></i> <?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_LAYOUT_PROFILES')); ?></a>
                 </li>
                 <li>
-                    <a href="#megamenu" data-toggle="tab"><i class="fa fa-navicon fa-lg"></i> Mega Menus</a>
+                    <a href="#megamenu" data-toggle="tab"><i class="fa fa-navicon fa-lg"></i> <?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_MEGA_MENUS')); ?></a>
                 </li>
                 <li>
-                    <a href="#assignment" data-toggle="tab"><i class="icon-edit-sign fa-lg"></i> Assignment</a>
+                    <a href="#assignment" data-toggle="tab"><i class="icon-edit-sign fa-lg"></i> <?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_ASSIGNMENT')); ?></a>
                 </li>
                 <li>
-                    <a href="#advanced" data-toggle="tab"><i class="icon-wrench fa-lg"></i> Advanced</a>
+                    <a href="#advanced" data-toggle="tab"><i class="icon-wrench fa-lg"></i> <?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_ADVANCED')); ?></a>
                 </li>
             </ul>
             <!-- /tabs header -->
             <!-- tabs content -->
             <div class="tab-content main-navigator">
-                    <a href="http://zo2framework.org" target="_blank" id="logo" title="Zo2 Framework"></a>
+                <a href="http://zo2framework.org" target="_blank" id="logo" title="<?php echo(JText::_('ZO2_ADMIN_COMMON_ZO2FRAMEWORK')); ?>"></a>
                     <div class="tab-pane active" id="overview">
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Overview</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_OVERVIEW')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('overview'); ?>
                             </div>
@@ -58,7 +58,7 @@ JHTML::_('behavior.tooltip');
                     </div>
                     <div class="tab-pane" id="general">
                         <div class="profiles-pane">
-                            <h3 class="title-profile">General</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_GENERAL')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('general'); ?>
                             </div>
@@ -66,31 +66,31 @@ JHTML::_('behavior.tooltip');
                     </div>
                     <div class="tab-pane" id="fonts">
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Fonts</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_FONTS')); ?></h3>
                             <?php echo $this->loadTemplate('fonts'); ?>
                         </div>
                     </div>
                     <div class="tab-pane" id="theme">
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Layouts Profiles</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_LAYOUT_PROFILES')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('profiles'); ?>
                             </div>
                         </div>
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Layout Builder</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_LAYOUT_BUILDER')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('layoutbuilder'); ?>
                             </div>
                         </div>
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Style</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_STYLE')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('themecolors'); ?>
                             </div>
                         </div>
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Assignment: Assign this layout profile to menu items.</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_ASSIGN_LAYOUT')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('assignment_profiles'); ?>
                             </div>
@@ -98,7 +98,7 @@ JHTML::_('behavior.tooltip');
                     </div>
                     <div class="tab-pane" id="megamenu">
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Mega Menus</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_MEGA_MENUS')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('megamenu'); ?>
                             </div>
@@ -106,7 +106,7 @@ JHTML::_('behavior.tooltip');
                     </div>
                     <div class="tab-pane" id="assignment">
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Assignment</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_ASSIGNMENT')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('assignment'); ?>
                             </div>
@@ -114,7 +114,7 @@ JHTML::_('behavior.tooltip');
                     </div>
                     <div class="tab-pane" id="advanced">
                         <div class="profiles-pane">
-                            <h3 class="title-profile">Advanced</h3>
+                            <h3 class="title-profile"><?php echo(JText::_('ZO2_ADMIN_STYLEEDIT_ADVANCED')); ?></h3>
                             <div class="profiles-pane-inner">
                                 <?php echo $this->loadTemplate('advanced'); ?>
                             </div>

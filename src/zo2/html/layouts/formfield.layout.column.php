@@ -16,10 +16,10 @@
     <div class="col-wrap">
         <div class="col-name"><?php echo $column->get('name'); ?></div>
         <div class="col-control-buttons">
-            <i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>
-            <i title="Column's settings" class="icon-cog col-control-icon settings hasTooltip"></i>
-            <i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>
-            <i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>
+            <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUTCOL_DRAG'); ?>" class="col-control-icon dragger icon-move hasTooltip"></i>
+            <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUTCOL_SETTINGS'); ?>" class="icon-cog col-control-icon settings hasTooltip"></i>
+            <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUTCOL_APPEND'); ?>" class="col-control-icon add-row icon-align-justify hasTooltip"></i>
+            <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUTCOL_REMOVE'); ?>" class="icon-remove col-control-icon delete hasTooltip"></i>
         </div>
 
         <div class="row-container">

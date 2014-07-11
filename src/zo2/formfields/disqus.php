@@ -23,7 +23,7 @@ class JFormFieldDisqus extends JFormFieldText
     public function getInput()
     {
         $html = '<div style="margin: 5px 0;">
-                    <strong>Notes </strong>: Required if showing the Disqus Tab
+                    <strong>' . JText::_('ZO2_FORMFIELD_DQ_NOTES') . '</strong>: ' . JText::_('ZO2_FORMFIELD_DQ_SHOW_TAB') . '
                 </div>';
 
         return parent::getInput() . $html ;

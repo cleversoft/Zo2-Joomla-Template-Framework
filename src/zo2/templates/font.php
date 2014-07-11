@@ -51,32 +51,32 @@ $fontStyles = array(
     <h3><?php echo $this->getLabel() ?></h3>
     <div class="control-group">
         <div class="control-label">
-            <div class="font-label">Enable</div>
+            <div class="font-label"><?php echo JText::_('ZO2_ADMIN_COMMON_ENABLE'); ?></div>
         </div>
         <div class="controls btn-group btn-group-onoff cbEnableFont">
-            <button class="btn btn-on <?php echo $enable ? 'active btn-success' : '' ?>">On</button>
-            <button class="btn btn-off <?php echo!$enable ? 'active btn-danger' : '' ?>">Off</button>
+            <button class="btn btn-on <?php echo $enable ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+            <button class="btn btn-off <?php echo!$enable ? 'active btn-danger' : '' ?>"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
         </div>
     </div>
     <div class="font_options" <?php echo $data ? 'style="display:block"' : 'style="display:none"' ?>>
         <div class="control-group">
             <div class="control-label">
-                <div class="font-label">Font type</div>
-                <div class="font-desc">Choose the type of font you want to use for <?php echo strtolower($this->getLabel()) ?></div>
+                <div class="font-label"><?php echo('ZO2_TEMPLATE_FONT_TYPE'); ?></div>
+                <div class="font-desc"><?php echo JText::printf('ZO2_TEMPLATE_FONT_TYPE_DESC', strtolower($this->getLabel())); ?></div>
             </div>
             <div class="controls">
                 <div class="btn-group font-types" data-toggle="buttons-radio">
-                    <button type="button" class="btn btnStandardFonts <?php echo $data['type'] == 'standard' ? 'active btn-success' : '' ?>">Standard Fonts</button>
-                    <button type="button" class="btn btnGoogleFonts <?php echo $data['type'] == 'googlefonts' ? 'active btn-success' : '' ?>">Google Fonts</button>
-                    <button type="button" class="btn btnFontDeck <?php echo $data['type'] == 'fontdeck' ? 'active btn-success' : '' ?>">FontDeck</button>
+                    <button type="button" class="btn btnStandardFonts <?php echo $data['type'] == 'standard' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD'); ?></button>
+                    <button type="button" class="btn btnGoogleFonts <?php echo $data['type'] == 'googlefonts' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE'); ?></button>
+                    <button type="button" class="btn btnFontDeck <?php echo $data['type'] == 'fontdeck' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK'); ?></button>
                 </div>
             </div>
         </div>
 
         <div class="font-options-standard control-group" <?php echo $data['type'] == 'standard' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
-                <div class="font-label">Standard Font</div>
-                <div class="font-desc">Choose the font face that is used for <?php echo strtolower($this->getLabel()) ?></div>
+                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD'); ?></div>
+                <div class="font-desc"><?php echo JText::printf('ZO2_TEMPLATE_FONT_STANDARD_DESC', strtolower($this->getLabel())); ?></div>
             </div>
             <div class="controls">
                 <select class="ddlStandardFont show">
@@ -89,8 +89,8 @@ $fontStyles = array(
 
         <div class="font-options-google hide control-group" <?php echo $data['type'] == 'googlefonts' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
-                <div class="font-label">Google Font</div>
-                <div class="font-desc">Choose the type of font you want to use for <?php echo strtolower($this->getLabel()) ?></div>
+                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE'); ?></div>
+                <div class="font-desc"><?php echo JText::printf('ZO2_TEMPLATE_FONT_GOOGLE_DESC', strtolower($this->getLabel())); ?></div>
             </div>
             <div class="controls">
                 <input type="text" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
@@ -99,8 +99,8 @@ $fontStyles = array(
 
         <div class="font-options-fontdeck hide control-group" <?php echo $data['type'] == 'fontdeck' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
-                <div class="font-label">FontDeck Name</div>
-                <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
+                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK'); ?></div>
+                <div class="font-desc"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK_DESC'); ?></div>
             </div>
             <div class="controls">
                 <textarea class="txtFontDeckCss"><?php echo $data['type'] == 'fontdeck' ? $data['family'] : '' ?></textarea>
@@ -109,8 +109,8 @@ $fontStyles = array(
 
         <div class="control-group">
             <div class="control-label">
-                <div class="font-label">Font options</div>
-                <div class="font-desc">Specify the <?php echo strtolower($this->getLabel()) ?> font properties</div>
+                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_OPTIONS'); ?></div>
+                <div class="font-desc"><?php echo JText::printf('ZO2_TEMPLATE_FONT_OPTIONS_DESC', strtolower($this->getLabel())); ?></div>
             </div>
             <div class="controls floatdiv clearfix">
                 <div><input type="text" class="txtFontSize" value="<?php echo $data['size'] ?>" /> px</div>

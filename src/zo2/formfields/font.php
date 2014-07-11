@@ -34,13 +34,13 @@ class JFormFieldFont extends JFormField
     {
         switch($this->fieldname)
         {
-            case 'body_font': return 'Body';
-            case 'h1_font': return 'Headline H1';
-            case 'h2_font': return 'Headline H2';
-            case 'h3_font': return 'Headline H3';
-            case 'h4_font': return 'Headline H4';
-            case 'h5_font': return 'Headline H5';
-            case 'h6_font': return 'Headline H6';
+            case 'body_font': return JText::_('ZO2_FORMFIELD_FONT_BODY');
+            case 'h1_font': return JText::_('ZO2_FORMFIELD_FONT_H1');
+            case 'h2_font': return JText::_('ZO2_FORMFIELD_FONT_H2');
+            case 'h3_font': return JText::_('ZO2_FORMFIELD_FONT_H3');
+            case 'h4_font': return JText::_('ZO2_FORMFIELD_FONT_H4');
+            case 'h5_font': return JText::_('ZO2_FORMFIELD_FONT_H5');
+            case 'h6_font': return JText::_('ZO2_FORMFIELD_FONT_H6');
             default: return '';
         }
     }

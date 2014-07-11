@@ -66,7 +66,7 @@ if (!class_exists('Zo2Services')) {
                     return $html;
                 }
             } else {
-                echo 'File not found';
+                echo JText::_('ZO2_MESSAGE_FILE_NFOUND');
             }
         }
 
