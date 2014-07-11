@@ -7,7 +7,7 @@
         "color": "#7FBE54",
         "thumbnail": "/assets/zo2/images/presets/green.jpg",
         "variables": {
-            "background": "",
+            "background": "#7FBE54",
             "header": "",
             "header_top": "",
             "link": "",
@@ -27,7 +27,7 @@
         "color": "#0099FF",
         "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
-            "background": "",
+            "background": "#0099FF",
             "header": "",
             "header_top": "",
             "link": "",
@@ -47,7 +47,7 @@
         "color": "#D25400",
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
-            "background": "",
+            "background": "#D25400",
             "header": "",
             "header_top": "",
             "link": "",
