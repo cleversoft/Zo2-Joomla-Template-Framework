@@ -261,21 +261,15 @@ if (!class_exists('Zo2MegaMenu')) {
         }
 
         /**
-         * render menu
+         * 
+         * @param type $isAdmin
+         * @return string
          */
         function renderMenu($isAdmin = false) {
             //
             $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">';
             $prefix .= '<div class="navbar-header">';
 
-            /*
-              $prefix .= '<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">ZO2</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              </button>';
-             */
 
             $prefix .= '<button type="button" class="navbar-toggle off-canvas-trigger" data-toggle="offcanvas">
                           <span class="sr-only">ZO2</span>
