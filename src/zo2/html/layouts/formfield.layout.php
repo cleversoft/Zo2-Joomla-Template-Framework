@@ -182,7 +182,11 @@ $addons = $framework->getRegisteredAddons();
                                         <option value="modules">Modules</option>                                    
                                         <option value="messsge">Message</option>
                                     </optgroup>
-
+                                    <!-- These are extended for 3rd parties -->
+                                    <optgroup label="Menu">
+                                        <option value="canvasmenu">Canvas</option>
+                                        <option value="megamenu">Mega</option>
+                                    </optgroup>
                                     <!-- These are extended for 3rd parties -->
                                     <optgroup label="3rd parties">
                                         <?php foreach ($addons as $key => $value) : ?>
