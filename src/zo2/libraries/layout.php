@@ -162,9 +162,7 @@ if (!class_exists('Zo2Layout')) {
              */
             /* Insert megamenu */
             if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
-                $framework = Zo2Factory::getFramework();
-                $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
-                $html = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $html);
+                
             }
             return $html;
         }
@@ -337,11 +335,18 @@ if (!class_exists('Zo2Layout')) {
                                 $html .= '<jdoc:include type="component" />';
                             else if (($item['position'] == 'message'))
                                 $html .= '<jdoc:include type="message" />';
-                            else if ($item['position'] == 'mega_menu') {
-                                $html .= Zo2Layout::MEGAMENU_PLACEHOLDER;
-                            } else {
+                            else {
                                 $html = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
                             }
+                            break;
+                        case 'megamenu':
+                            $framework = Zo2Factory::getFramework();
+                            $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
+                            $html .= $megamenu;
+                            break;
+                        case 'canvasmenu':
+                            $framework = Zo2Factory::getFramework();
+                            $html .= $framework->displayOffCanvasMenu();
                             break;
                         default:
                             /**
