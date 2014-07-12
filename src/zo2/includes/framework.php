@@ -575,6 +575,11 @@ if (!class_exists('Zo2Framework')) {
             return $xml;
         }
 
+        public function getTemplateManifest() {
+            $xml = JFactory::getXML(Zo2Factory::getPath('templates://templateDetails.xml'));
+            return $xml;
+        }
+
         /**
          * Check Zo2 version is up to date
          * @return int

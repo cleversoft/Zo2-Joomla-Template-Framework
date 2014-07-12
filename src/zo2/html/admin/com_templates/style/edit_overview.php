@@ -10,6 +10,9 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die;
+
+$framework = Zo2Factory::getFramework();
+$templateManifest = $framework->getTemplateManifest();
 ?>
 <div class="overview-details">
     <div class="row-fluid">
@@ -61,11 +64,8 @@ defined('_JEXEC') or die;
     <div class="row-fluid">
         <div class="span4">
             <div class="template-description">
-                <h3 class="title-profile dark-bg">Zo2 Hallo</h3>
-                <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
-                <p>The Zo2 Hallo is a clean modern responsive design that is a great place to start when building your custom Zo2 powered template.</p>
-                <h3 class="title-profile dark-bg">What is the Zo2 Framework?</h3>
-                <p>Zo2 Framework is a free, open-source, highly extensible, search-engine optimized Joomla Templates Framework featuring responsive web design, bootstrap framework, Font Awesome Icons, styling for popular extensions, and a whole community behind it. Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.</p>
+                <h3 class="title-profile dark-bg"><?php echo $templateManifest->name . ' ' . $templateManifest->version; ?></h3>
+                <?php echo $templateManifest->description; ?>
             </div>
         </div>
         <div class="span4">
@@ -97,12 +97,12 @@ defined('_JEXEC') or die;
         <div class="span4">
             <div id="updater" class="alert">
                 <?php
-                    /* Get framework from factory */
-                    $framework = Zo2Factory::getFramework();
+                /* Get framework from factory */
+                $framework = Zo2Factory::getFramework();
                 ?>
                 <div id="updater-bar">Zo2 v<span><?php echo $framework->getManifest()->version; ?></span></div>
                 <?php
-                $update = false;                
+                $update = false;
                 $version = $framework->checkVersion();
                 switch ($version['compare']) {
                     case -1:
