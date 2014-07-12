@@ -297,7 +297,7 @@ if (!class_exists('Zo2Assets')) {
                         $cssContent = '';
                         foreach ($this->_stylesheets as $styleSheets => $path) {
                             $currentCssContent = file_get_contents($path);
-                            $currentCssContent = CssMinifier::minify($currentCssContent);
+                            //$currentCssContent = CssMinifier::minify($currentCssContent);
                             $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri, '/' . $styleSheets);
                             $cssContent .= $currentCssContent . "\n";
                         }
