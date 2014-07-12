@@ -105,7 +105,7 @@ if (!class_exists('Zo2Path')) {
                 }
             }
             if ($showError)
-                JFactory::getApplication()->enqueueMessage(JText::printf('ZO2_MESSAGE_FILE_NOT_FOUND', $key), 'error');
+                JFactory::getApplication()->enqueueMessage('File not found: ' . $key, 'error');
             return false;
         }
 
@@ -133,7 +133,7 @@ if (!class_exists('Zo2Path')) {
                 }
             }
             if ($showError)
-                JFactory::getApplication()->enqueueMessage(JText::printf('ZO2_MESSAGE_DIR_NOT_FOUND', $key), 'error');
+                JFactory::getApplication()->enqueueMessage('Directory not found: ' . $key, 'error');
 
             return false;
         }
@@ -164,7 +164,7 @@ if (!class_exists('Zo2Path')) {
                 }
             }
             if ($showError)
-                JFactory::getApplication()->enqueueMessage(JText::printf('ZO2_MESSAGE_PATH_NOT_FOUND', $key), 'error');
+                JFactory::getApplication()->enqueueMessage('Path not found: ' . $key, 'error');
             return false;
         }
 

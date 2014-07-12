@@ -28,46 +28,46 @@ class JFormFieldSocialorder extends JFormFieldHidden {
 
         /* Twitter */
         $layout_button['twitter'] = array(
-            'none' => JText::_('ZO2_FORMFIELD_SOCIALORDER_NONE'),
-            'horizontal' => JText::_('ZO2_FORMFIELD_SOCIALORDER_HORIZONTAL'),
-            'vertical' => JText::_('ZO2_FORMFIELD_SOCIALORDER_VERTICAL')
+            'none' => 'None',
+            'horizontal' => 'Horizontal Count',
+            'vertical' => 'Vertical Count'
         );
         /* Facebook */
         $layout_button['facebook'] = array(
-            'standard' => JText::_('ZO2_FORMFIELD_SOCIALORDER_STANDARD'),
-            'button_count' => JText::_('ZO2_FORMFIELD_SOCIALORDER_BUTTON'),
-            'box_count' => JText::_('ZO2_FORMFIELD_SOCIALORDER_BOX')
+            'standard' => 'Standard',
+            'button_count' => 'Button Count',
+            'box_count' => 'Box Count'
         );
         /* Buffer */
         $layout_button['buffer'] = array(
-            'none' => JText::_('ZO2_FORMFIELD_SOCIALORDER_NONE'),
-            'vertical' => JText::_('ZO2_FORMFIELD_SOCIALORDER_HORIZONTAL'),
-            'horizontal' => JText::_('ZO2_FORMFIELD_SOCIALORDER_VERTICAL')
+            'none' => 'None',
+            'vertical' => 'Vertical Count',
+            'horizontal' => 'Horizontal Count'
         );
         $layout_button['linkedin'] = array(
-            'right' => JText::_('ZO2_FORMFIELD_SOCIALORDER_HORIZONTAL'),
-            'top' => JText::_('ZO2_FORMFIELD_SOCIALORDER_VERTICAL'),
-            'none' => JText::_('ZO2_FORMFIELD_SOCIALORDER_NOCOUNT')
+            'right' => 'Horizontal Count',
+            'top' => 'Vertical Count',
+            'none' => 'No Count'
         );
         $layout_button['google'] = array(
-            'none' => JText::_('ZO2_FORMFIELD_SOCIALORDER_NONE'),
-            'bubble' => JText::_('ZO2_FORMFIELD_SOCIALORDER_HORIZONTAL_BUBBLE'),
-            'vertical-bubble' => JText::_('ZO2_FORMFIELD_SOCIALORDER_VERTICAL_BUBBLE'),
-            'inline' => JText::_('ZO2_FORMFIELD_SOCIALORDER_INLINE')
+            'none' => 'None',
+            'bubble' => 'Horizontal Bubble ',
+            'vertical-bubble' => 'Vertical Bubble',
+            'inline' => 'Inline '
         );
         $layout_button['youtube'] = array(
-            'default' => JText::_('ZO2_FORMFIELD_SOCIALORDER_DEFAULT'),
-            'full' => JText::_('ZO2_FORMFIELD_SOCIALORDER_FULL')
+            'default' => 'Default',
+            'full' => 'Full'
         );
         $layout_button['pinterest'] = array(
-            'beside' => JText::_('ZO2_FORMFIELD_SOCIALORDER_HORIZONTAL'),
-            'above' => JText::_('ZO2_FORMFIELD_SOCIALORDER_VERTICAL'),
-            'none' => JText::_('ZO2_FORMFIELD_SOCIALORDER_NOCOUNT')
+            'beside' => 'Horizontal Count',
+            'above' => 'Vertical Count',
+            'none' => 'No Count'
         );
 
         $layout_button['tumblr'] = array(
-            '1' => JText::_('ZO2_FORMFIELD_SOCIALORDER_TUMBLR_STAFF'),
-            '2' => JText::_('ZO2_FORMFIELD_SOCIALORDER_TUMBLR_FOLLOW'),
+            '1' => 'Staff on Tumblr',
+            '2' => 'Follow on Tumblr',
             '3' => 't'
         );
 
@@ -145,9 +145,9 @@ class JFormFieldSocialorder extends JFormFieldHidden {
                         <tr>
                             <th width="1%" class="index sequence nowrap center"></th>
                             <th width="1%" class="index sequence nowrap center">#</th>
-                            <th width="40%" class="nowrap">' . JText::_('ZO2_FORMFIELD_SOCIALORDER_WEBSITE') . '</th>
-                            <th width="10%" class="nowrap center isactive">' . JText::_('ZO2_FORMFIELD_SOCIALORDER_ENABLE') . '</th>
-                            <th width="20%" class="">' . JText::_('ZO2_FORMFIELD_SOCIALORDER_BUTTONDESIGN') . '</th>
+                            <th width="40%" class="nowrap">Website</th>
+                            <th width="10%" class="nowrap center isactive">Enable</th>
+                            <th width="20%" class="">Button Design</th>
                         </tr>
                     </thead>
                     <tbody>';
@@ -163,7 +163,7 @@ class JFormFieldSocialorder extends JFormFieldHidden {
                 $options[] = JHtml::_('select.option', $key, JText::_($layout));
             }
             $html .= '<tr class="row' . $count . '">
-                                    <td class="nowrap center" name="' . $item->name . '"><i class="icon-move hasTooltip" data-original-title="' . JText::_('ZO2_FORMFIELD_SOCIALORDER_DRAGDROP_TITLE') . '"></i></td>
+                                    <td class="nowrap center" name="' . $item->name . '"><i class="icon-move hasTooltip" data-original-title="Drag and drop to change position of button"></i></td>
                                     <td class="index sequence order nowrap center">' . $item->index . '</td>
                                     <td class="left">
                                         <a href="' . $item->link . '" title="twitter">' . $item->website . '</a>
@@ -204,8 +204,8 @@ class JFormFieldSocialorder extends JFormFieldHidden {
         $html = '
             <fieldset name="fs_' . $name . '" class="radio btn-group social-onoff ' . ((!$value) ? 'toggle-off' : '') . '">
                 <input name="' . $name . '" id="' . $name . '" type="radio" value="' . $value . '">
-                <label for="' . $name . '" class="btn on ' . $on . '">' . JText::_('ZO2_FORMFIELD_SOCIALORDER_YES') . '</label>
-                <label for="' . $name . '" class="btn off ' . $off . '">' . JText::_('ZO2_FORMFIELD_SOCIALORDER_NO') . '</label>
+                <label for="' . $name . '" class="btn on ' . $on . '">Yes</label>
+                <label for="' . $name . '" class="btn off ' . $off . '">No</label>
             </fieldset>
         ';
 

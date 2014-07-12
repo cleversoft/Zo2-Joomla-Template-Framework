@@ -13,11 +13,11 @@
         <div class="row-control-container">
             <div class="row-name"><?php echo $row->get('name'); ?></div>
             <div class="row-control-buttons">
-                <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_DRAGROW'); ?>" class="icon-move row-control-icon dragger hasTooltip"></i>
-                <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_ROW_SETTINGS'); ?>" class="icon-cogs row-control-icon settings hasTooltip"></i>
-                <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_DUPLICATEROW'); ?>" class="row-control-icon duplicate icon-align-justify hasTooltip"></i>
-                <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPLIT'); ?>" class="row-control-icon split icon-columns hasTooltip"></i>
-                <i title="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_REMOVEROW'); ?>" class="row-control-icon delete icon-remove hasTooltip"></i>
+                <i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>
+                <i title="Row's settings" class="icon-cogs row-control-icon settings hasTooltip"></i>
+                <i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip"></i>
+                <i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>
+                <i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>
             </div>
         </div>
 

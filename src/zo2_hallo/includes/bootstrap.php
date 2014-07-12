@@ -17,7 +17,7 @@ defined('_JEXEC') or die('Restricted Access');
  * This file will use to init / register current template with ZO2 framework
  */
 if (!class_exists('Zo2Framework'))
-    die(JText::_('ZO2_NAVIGATION_MM_HIDE_COLLAPSE_DESC'));
+    die('Zo2Framework not found');
 
 $template = Zo2Factory::getTemplate();
 

@@ -149,7 +149,7 @@ if (!class_exists('Zo2JTemplate')) {
                         $profile->save();
 
                         $application = JFactory::getApplication();
-                        $application->enqueueMessage(JText::_('ZO2_MESSAGE_STYLE_SAVED_SUCESSFUL'));
+                        $application->enqueueMessage('Style successfully saved');
 
                         if ($this->_jinput->get('task') == 'style.apply') {
                             $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
@@ -159,7 +159,7 @@ if (!class_exists('Zo2JTemplate')) {
                     }
                 }
             } else {
-                JFactory::getApplication()->enqueueMessage(JText::_('ZO2_MESSAGE_STYLE_SAVE_ERROR'));
+                JFactory::getApplication()->enqueueMessage('Style save error');
             }
         }
 

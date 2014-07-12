@@ -30,7 +30,7 @@ class Zo2Component_footer_copyright extends Zo2Component {
         $html = '<footer>';
         $html .= '<section class="copyright" style="text-align:center">' . $copyright . '</section>';
         if ($logo == 1) {
-            $html .= '<a title="' . JText::_('ZO2_COMMON_POWERED_BY') . '" class="footer_zo2_logo" href="http://zo2framework.org" style="display:block;">';
+            $html .= '<a title="Powered by Zo2Framework" class="footer_zo2_logo" href="http://zo2framework.org" style="display:block;">';
             $html .= '<img src="' . JUri::root(true) . '/plugins/system/zo2/assets/images/zo2logo.png" />';
             $html .= '</a>';
         }

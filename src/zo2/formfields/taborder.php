@@ -23,9 +23,9 @@ class JFormFieldTaborder extends JFormFieldText
     public function getInput()
     {
         $html = '<div style="margin: 5px 0;">
-                    <strong>' . JText::_('ZO2_FORMFIELD_TABORDER_NOTE') . ' </strong>: ' . JText::_('ZO2_FORMFIELD_TABORDER_NOTE_DETAIL') . '<br />
-                    <strong>' . JText::_('ZO2_FORMFIELD_TABORDER_POSSIBLE_VALUE') . ' </strong>: ' . JText::_('ZO2_FORMFIELD_TABORDER_NETWORKSOCIAL_LIST_ALL') . ' <br />
-                    <strong>' . JText::_('ZO2_FORMFIELD_TABORDER_DEFAULT_VALUE') . ' </strong>: ' . JText::_('ZO2_FORMFIELD_TABORDER_NETWORKSOCIAL_LIST_DEFAULT') . ' <br />
+                    <strong>Notes</strong>: Comma Separated List, First listed is the default, If left empty it will use default value below, only tabs listed will be shown. <br />
+                    <strong>Possible Values </strong>: gplus,facebook,disqus <br />
+                    <strong>Default Value </strong>: gplus,facebook <br />
                 </div>';
 
         return parent::getInput() . $html ;

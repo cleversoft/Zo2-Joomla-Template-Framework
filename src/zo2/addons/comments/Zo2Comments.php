@@ -163,7 +163,7 @@ class Zo2Comments {
 
         $html .= '<div id="zo2comment-tabs">';
 
-        $html .= '<h3 name="comments">' . JText::_('ZO2_COMMENT_ZO2_COMMENTS') . '</h3>';
+        $html .= '<h3 name="comments">' . JText::_('ZO2 Comments') . '</h3>';
         $html .= '<ul class="nav nav-tabs nav-justified ">';
 
         foreach ($tab_order as $key => $tab) {
@@ -196,7 +196,7 @@ class Zo2Comments {
 
                 case 'facebook':
                     $html .= '<div id="fb-root"></div>';
-                    $html .= '<div id="fb-comments">' . JText::_('ZO2_COMMENT_FB_LOADING_COMMENTS') .  '</div>';
+                    $html .= '<div id="fb-comments">Loading Facebook Comments ...</div>';
                     $html .= '<script type="text/javascript">';
                     $html .= 'jQuery(document).ready(function($){
                                         $(\'#fb-comments\').html(\'<div class="fb-comments" data-href="' . $url . '" data-num-posts="20" data-colorscheme="light" data-mobile="auto"></div>\');
@@ -209,7 +209,7 @@ class Zo2Comments {
 
                     $html .= '<script type="text/javascript">';
                     $html .= 'jQuery(document).ready(function($) {
-                                            $(\'#gplus\').html(\'<div class="g-comments" data-href="' . $url . '" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">' . JText::_('ZO2_COMMENT_GP_LOADING_COMMENTS') . '</div>\');
+                                            $(\'#gplus\').html(\'<div class="g-comments" data-href="' . $url . '" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD">Loading Google+ Comments ...</div>\');
                                     });';
                     $html .= '</script>';
                     $html .= '<script async type="text/javascript" src="//apis.google.com/js/plusone.js?callback=gpcb"></script>';
@@ -218,7 +218,7 @@ class Zo2Comments {
                 case 'disqus';
                     if ($params->get('disqus_shortname')) {
 
-                        $html .= '<div class="embed-container " id="disqus_thread">' . JText::_('ZO2_COMMENT_DQ_LOADING_COMMENTS') . '</div>';
+                        $html .= '<div class="embed-container " id="disqus_thread">Loading Disqus Comments ...</div>';
                         $html .= '<script type="text/javascript">';
                         $html .= 'var disqus_shortname = "' . $params->get("disqus_shortname") . '";';
                         $html .= '(function(d) {
@@ -228,7 +228,7 @@ class Zo2Comments {
                                         })(document);';
                         $html .= '</script>';
                     } else {
-                        $html .= '<h2>' . JText::_('ZO2_COMMENT_DQ_NAME_REQUIREMENT') . '</h2>';
+                        $html .= '<h2>You must enter  your Disqus "shortname"</h2>';
                     }
 
                     break;

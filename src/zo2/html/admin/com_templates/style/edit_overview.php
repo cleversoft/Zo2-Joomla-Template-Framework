@@ -61,27 +61,37 @@ defined('_JEXEC') or die;
     <div class="row-fluid">
         <div class="span4">
             <div class="template-description">
-                <h3 class="title-profile dark-bg"><?php echo(JText::_('ZO2_ADMIN_COMMON_ZO2HALLO')); ?></h3>
+                <h3 class="title-profile dark-bg">Zo2 Hallo</h3>
                 <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
-                <p><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_ABOUT_ZO2HALLO')); ?></p>
-                <h3 class="title-profile dark-bg"><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_WHATIS_ZO2FRAMEWORK')); ?></h3>
-                <p><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_ABOUT_ZO2FRAMEWORK')); ?></p>
+                <p>The Zo2 Hallo is a clean modern responsive design that is a great place to start when building your custom Zo2 powered template.</p>
+                <h3 class="title-profile dark-bg">What is the Zo2 Framework?</h3>
+                <p>Zo2 Framework is a free, open-source, highly extensible, search-engine optimized Joomla Templates Framework featuring responsive web design, bootstrap framework, Font Awesome Icons, styling for popular extensions, and a whole community behind it. Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.</p>
             </div>
         </div>
         <div class="span4">
-            <h3 class="title-profile dark-bg"><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_KEY_FEATURES')); ?></h3>
+            <h3 class="title-profile dark-bg">Key Features</h3>
             <ul>
-                <?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_FEATURE_LIST')); ?>
+                <li>100% Responsive & Retina Ready</li>
+                <li>Drag & Drop Layout Builder</li>
+                <li>Mega & Off Canvas Menus</li>
+                <li>LESS Support</li>
+                <li>Tons of Short code</li>
+                <li>CSS3 animations</li>
+                <li>HTML5</li>
+                <li>Powerful Admin Panel</li>
+                <li>Search Engine Optimized</li>
+                <li>Social Sharing Integration</li>
+                <li>Cross-Browser Support</li>
             </ul>
             <h3 class="title-profile dark-bg">
-                <?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_CREDITS')); ?>
+                Credit Links
             </h3>
             <ul>
                 <li>
-                    <a title="Bootstrap" href="http://getbootstrap.com/"><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_BOOTSTRAP')); ?></a> <?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_BOOTSTRAP_DESCRIPTION')); ?>
+                    <a title="Bootstrap" href="http://getbootstrap.com/">Bootstrap</a> is a front-end framework of Twitter, Inc.
                 </li>
-                <li><a title="FontAwesome" href="http://fontawesome.io/"><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_FONTAWESOME')); ?></a> <?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_FONTAWESOME_DESCRIPTION')); ?></li>
-                <li><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_ZO2HALLO_DESIGN_BY')); ?> <a href="http://www.zootemplate.com" title="zootemplate">Zootemplate.com</a></li>
+                <li><a title="FontAwesome" href="http://fontawesome.io/">FontAwesome</a> font licensed under SIL OFL 1.1.</li>
+                <li>Zo2 Hallo designed by <a href="http://www.zootemplate.com" title="zootemplate">Zootemplate.com</a></li>
             </ul>
         </div>
         <div class="span4">
@@ -97,37 +107,37 @@ defined('_JEXEC') or die;
                 switch ($version['compare']) {
                     case -1:
                         $update = true;
-                        $message = JText::printf('ZO2_ADMIN_EDITOVERVIEW_AVAILBLE_VERSION', $version['latestVersion']);
+                        $message = 'Your current is out of date. Newer version ' . $version['latestVersion'] . ' is Available.';
                         break;
                     case 0:
-                        $message = JText::_('ZO2_ADMIN_EDITOVERVIEW_UP_TO_DATE');
+                        $message = 'Your current updated.';
                         break;
                     case 1:
-                        $message = JText::_('ZO2_ADMIN_EDITOVERVIEW_ALIEN_VER');
+                        $message = 'You are using alien version!';
                         break;
                 }
                 ?>
                 <strong><?php echo $message; ?></strong>
                 <?php if ($update) { ?>
                     <div id="updater-desc">
-                        <?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_PLEASE')); ?> <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> <?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_DOWNLOAD')); ?></a> <?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_LATEST')); ?>
+                        Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
                         <blockquote>
-                            <small><strong><?php echo(JText::_('ZO2_ADMIN_EDITOVERVIEW_ATTENTION')); ?> :</strong> <?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_COMPATIBLE') . ' ' . $version['latestVersion']; ?></small>
+                            <small><strong>Attention:</strong> Before upgrading please make sure your template is compatible with Zo2 version <?php echo $version['latestVersion']; ?></small>
                         </blockquote>
                     </div>
                 <?php } ?>
             </div>
             <div class="zo2-tip well dark-bg" style="display: block;">
                 <div class="zo2-tip-bar">
-                    <h3 class="title-dark"><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_MORE_HELP'); ?></h3>
+                    <h3 class="title-dark">Getting More Help</h3>
                 </div>
-                <p><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_MORE_HELP_LINK'); ?></p>
+                <p>Zo2 comes with an extremely advanced admin panel allowing users to quickly and easy customize the template.  If you would like to find out more about these settings and the Zo2 Framework in general please checkout these links:</p>
                 <ul>
-                    <li><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_OFFICAL_WEBSITE'); ?>: <a target="_blank" href="http://zo2framework.org" title="<?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_OFFICAL_WEBSITE'); ?>">http://zo2framework.org</a></li>
-                    <li><a target="_blank" href="http://zo2framework.org/index.php/license-usage" title="<?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_LICENSE_USAGE'); ?>"><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_LICENSE_USAGE'); ?></a></li>
-                    <li><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_DOCUMENT'); ?>: <a target="_blank" href="http://docs.zo2framework.org/" title="<?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_DOCUMENT'); ?>">http://docs.zo2framework.org/</a></li>
-                    <li><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_GITHUB'); ?>: <a target="_blank" href="https://github.com/aploss/zo2" title="<?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_GITHUB'); ?>">https://github.com/aploss/zo2</a></li>
-                    <li><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_DEMO'); ?>: <a target="_blank" href="http://demo.zo2framework.org/" title="<?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_DEMO'); ?>">http://demo.zo2framework.org/</a></li>
+                    <li>Official website: <a target="_blank" href="http://zo2framework.org" title="Zo2 Template Framework">http://zo2framework.org</a></li>
+                    <li><a target="_blank" href="http://zo2framework.org/index.php/license-usage" title="License &amp; Usage">License &amp; Usage</a></li>
+                    <li>Documents <a target="_blank" href="http://docs.zo2framework.org/" title="Zo2 Documents">http://docs.zo2framework.org/</a></li>
+                    <li>Fork Zo2 on Github: <a target="_blank" href="https://github.com/aploss/zo2" title="Fork Zo2 on Github">https://github.com/aploss/zo2</a></li>
+                    <li>Demo Zo2 Hallo &ndash; a Blank Template: <a target="_blank" href="http://demo.zo2framework.org/" title="Demo Zo2 Blank Template">http://demo.zo2framework.org/</a></li>
                 </ul>
             </div>
         </div>

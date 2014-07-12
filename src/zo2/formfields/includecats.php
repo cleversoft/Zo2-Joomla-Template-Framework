@@ -30,8 +30,8 @@ class JFormFieldIncludecats extends JFormField
         <div class="include_categories">
             <div class="form-inline">
                 <span class="small">
-                    <input type="button" class="btn" id="checkAll" value="<?php echo JText::_('ZO2_FORMFIELD_INCLUDDECATS_SELECTALL'); ?>" /> -
-                    <input type="button" class="btn" id="uncheckAll" value="<?php echo JText::_('ZO2_FORMFIELD_INCLUDDECATS_SELECTALL'); ?>" />
+                    <input type="button" class="btn" id="checkAll" value="<?php echo JText::_('Select All'); ?>" /> -
+                    <input type="button" class="btn" id="uncheckAll" value="<?php echo JText::_('Clear Selection'); ?>" />
                 </span>
             </div>
 

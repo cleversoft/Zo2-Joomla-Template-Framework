@@ -102,7 +102,7 @@ if (!class_exists('plgSystemZo2')) {
                         }
 
                         $gplus = '<a href="' . $config->get('google_profile_url', '') . '/?rel=' . $rel . '"';
-                        $gplus .= ' title="' . JText::_('ZO2_PLG_GOOGLE_PLUS') . ' ' . $author_name . '" plugin="'. JText::_('ZO2_PLG_GOOGLE_PLUS_AUTH') .'">' . $author_name . '</a>';
+                        $gplus .= ' title="Google Plus Profile for ' . $author_name . '" plugin="Google Plus Authorship">' . $author_name . '</a>';
                         $article->text = $gplus . $article->text;
                     }
                     /* Comments System */
