@@ -10,6 +10,9 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
+$framework = Zo2Factory::getFramework();
+$addons = $framework->getRegisteredAddons();
 ?>
 <div id="layoutbuilder-container">
     <!-- Hidden fields -->
@@ -173,10 +176,19 @@ defined('_JEXEC') or die('Restricted access');
                             <label class="control-label" for="dlColJDoc">JDoc</label>
                             <div class="controls">
                                 <!-- http://docs.joomla.org/Jdoc_statements -->
-                                <select id="dlColJDoc">                                            
-                                    <option value="component">Component</option>
-                                    <option value="modules">Modules</option>                                    
-                                    <option value="messsge">Message</option>     
+                                <select id="dlColJDoc">
+                                    <optgroup label="Joomla! Document">
+                                        <option value="component">Component</option>
+                                        <option value="modules">Modules</option>                                    
+                                        <option value="messsge">Message</option>
+                                    </optgroup>
+
+                                    <!-- These are extended for 3rd parties -->
+                                    <optgroup label="3rd parties">
+                                        <?php foreach ($addons as $key => $value) : ?>
+                                            <option value="addon-<?php echo $key; ?>"><?php echo $key; ?></option>
+                                        <?php endforeach; ?>
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>
