@@ -38,7 +38,9 @@ $framework = Zo2Factory::getFramework();
 <?php endif; ?>
 
 <div class="article_content">
+<?php if (isset($images->image_fulltext) && !empty($images->image_fulltext)) : ?>
 <span class="article_icon"><i class="fa fa-thumb-tack"></i></span>
+<?php endif; ?>
 <?php if ($this->params->get('show_page_heading') && $params->get('show_title')) : ?>
     <div class="page-header">
         <h2> <?php echo $this->escape($this->params->get('page_heading')); ?> </h2>
