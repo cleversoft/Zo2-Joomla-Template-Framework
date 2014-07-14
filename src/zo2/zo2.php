@@ -38,19 +38,8 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/includes/bootstrap.php';
-            if (!Zo2Factory::isJoomla25()) {
-                JHtml::_('bootstrap.framework');
-            }
-            Zo2Ajax::getInstance()->process();
         }
-
-        /**
-         * @uses This event is triggered immediately before the framework has rendered the application.
-         */
-        public function onBeforeRender() {
-            
-        }
-
+  
         /**
          * 
          */

@@ -26,9 +26,11 @@ if (Zo2Factory::isZo2Template()) {
 
     $framework = Zo2Factory::getFramework();
     $framework->init();
+    
     if (Zo2Factory::isJoomla25()) {
         
     } else {
+        JHtml::_('bootstrap.framework');
         JFactory::getApplication()->loadLanguage();
     }
 
@@ -57,3 +59,4 @@ if (Zo2Factory::isZo2Template()) {
     
 }
 Zo2Ajax::getInstance()->register('Zo2Style', 'apply');
+Zo2Ajax::getInstance()->process();
