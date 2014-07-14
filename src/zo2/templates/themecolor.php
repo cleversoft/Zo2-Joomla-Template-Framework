@@ -53,15 +53,15 @@ if (!isset($preset_data['bg_image']))
         <ul id="zo2_themes">
             <?php foreach ($presets as $p) : ?>
                 <li class="<?php echo $p['name'] == $preset_data['name'] ? 'active' : '' ?>"
-                    data-zo2-theme="<?php echo $p['name'] ?>" data-zo2-background="<?php echo $p['background'] ?>"
-                    data-zo2-header="<?php echo $p['header'] ?>"
-                    data-zo2-header-top="<?php echo $p['header_top'] ?>"
-                    data-zo2-link="<?php echo $p['link'] ?>"
-                    data-zo2-link-hover="<?php echo $p['link_hover'] ?>"
-                    data-zo2-text="<?php echo $p['text'] ?>"
-                    data-zo2-bottom1="<?php echo $p['bottom1'] ?>"
-                    data-zo2-bottom2="<?php echo $p['bottom2'] ?>"
-                    data-zo2-footer="<?php echo $p['footer'] ?>"
+                    data-zo2-theme="<?php echo $p['name'] ?>" data-zo2-background="<?php echo $p['variables']['background'] ?>"
+                    data-zo2-header="<?php echo $p['variables']['header'] ?>"
+                    data-zo2-header-top="<?php echo $p['variables']['header_top'] ?>"
+                    data-zo2-link="<?php echo $p['variables']['link'] ?>"
+                    data-zo2-link-hover="<?php echo $p['variables']['link_hover'] ?>"
+                    data-zo2-text="<?php echo $p['variables']['text'] ?>"
+                    data-zo2-bottom1="<?php echo $p['variables']['bottom1'] ?>"
+                    data-zo2-bottom2="<?php echo $p['variables']['bottom2'] ?>"
+                    data-zo2-footer="<?php echo $p['variables']['footer'] ?>"
                     data-zo2-css="<?php echo $p['css'] ?>" data-zo2-less="<?php echo $p['less'] ?>"
                     >
                     <div class="theme_title"><?php echo ucfirst($p['name']) ?></div>
