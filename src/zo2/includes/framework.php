@@ -41,6 +41,7 @@ if (!class_exists('Zo2Framework')) {
          * @var Zo2Assets 
          */
         public $assets = null;
+        protected $_addons = array();
 
         /**
          * Constructor
@@ -326,7 +327,7 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($presetData['bg_image'])) {
                 $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
             } elseif (!empty($presetData['bg_pattern'])) {
-                $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_pattern']. '")}';
+                $style .= 'body.boxed {background-image: url("' . $path->toUrl($presetData['bg_pattern']) . '")}';
             }
 
             if (!empty($presetData['css']))
@@ -575,6 +576,11 @@ if (!class_exists('Zo2Framework')) {
             return $xml;
         }
 
+        public function getTemplateManifest() {
+            $xml = JFactory::getXML(Zo2Factory::getPath('templates://templateDetails.xml'));
+            return $xml;
+        }
+
         /**
          * Check Zo2 version is up to date
          * @return int
@@ -631,6 +637,21 @@ if (!class_exists('Zo2Framework')) {
             } else {
                 
             }
+        }
+
+        /**
+         * Register addons that will render
+         * @param type $name
+         * @param type $callback
+         * @return \Zo2Framework
+         */
+        public function registerAddon($name, $callback) {
+            $this->_addons[$name] = $callback;
+            return $this;
+        }
+
+        public function getRegisteredAddons() {
+            return $this->_addons;
         }
 
     }

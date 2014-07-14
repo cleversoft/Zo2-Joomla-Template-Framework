@@ -12,8 +12,14 @@
  */
 defined('_JEXEC') or die;
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2Layout')) {
 
+    /**
+     * Zo2 Layoutbuilder class
+     */
     class Zo2Layout extends JObject {
         /* private */
 
@@ -156,9 +162,7 @@ if (!class_exists('Zo2Layout')) {
              */
             /* Insert megamenu */
             if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
-                $framework = Zo2Factory::getFramework();
-                $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
-                $html = str_replace(Zo2Layout::MEGAMENU_PLACEHOLDER, $megamenu, $html);
+                
             }
             return $html;
         }
@@ -256,18 +260,28 @@ if (!class_exists('Zo2Layout')) {
          * @return boolean
          */
         private function _showJDoc($item) {
-            switch ($item->get('jdoc', 'modules')) {
+            $jdoc = $item->get('jdoc', 'modules');
+            switch ($jdoc) {
                 case 'component':
                     return !$this->hideComponent();
                     break;
                 case 'message':
                     return true;
                 default:
-                    jimport('joomla.application.module.helper');
-                    $modules = JModuleHelper::getModules($item->get('positions'));
-                    if (count($modules) > 0) {
-                        return true;
+                    if (strpos('addon-', $jdoc, 0) === false) {
+                        jimport('joomla.application.module.helper');
+                        $modules = JModuleHelper::getModules($item->get('positions'));
+                        if (count($modules) > 0) {
+                            return true;
+                        }
+                    } else {
+                        $jdoc = str_replace('addon-', '', $jdoc);
+                        $addons = Zo2Factory::getFramework()->getRegisteredAddons();
+                        if (isset($addons[$jdoc])) {
+                            return true;
+                        }
                     }
+
                     return false;
             }
         }
@@ -282,7 +296,7 @@ if (!class_exists('Zo2Layout')) {
 
             /* Check is allowed to show this jdoc */
             if ($this->_showJDoc($jItem)) {
-
+                $jdoc = $jItem->get('jdoc', 'modules');
                 /**
                  * @todo move to layouts/html and use Zo2Template to fetch
                  */
@@ -300,40 +314,59 @@ if (!class_exists('Zo2Layout')) {
                 else
                     $html .= '<section class="' . $class . '">';
 
+                /**
+                 * @todo Must base on jdoc instead position
+                 */
                 if (!empty($item['position'])) {
 
-                    if (($item['position'] == 'component') && (!$this->hideComponent()))
-                        $html .= '<jdoc:include type="component" />';
-                    else if (($item['position'] == 'message') && (!$this->hideComponent()))
-                        $html .= '<jdoc:include type="message" />';
-                    else if ($item['position'] == 'mega_menu') {
-                        //$html .= $framework->displayMegaMenu($framework->getParams('menutype', 'mainmenu'), Zo2Factory::getTemplate());
-                        $html .= Zo2Layout::MEGAMENU_PLACEHOLDER;
-                    } else {
-                        $moduleJdoc = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
-                        $componentHtml = '';
-                        if (isset($this->_components[$item['position']]) && $componentPath = $this->_components[$item['position']]) {
-                            $componentClassName = "Zo2Component_" . $item['position'];
-                            if (file_exists($componentPath))
-                                require_once $componentPath;
-                            if (class_exists($componentClassName)) {
-                                $component = new $componentClassName();
-                                if ($component instanceof Zo2Component) {
-                                    $componentHtml = $component->render();
-
-                                    if ($component->position == Zo2Component::RENDER_BEFORE)
-                                        $html .= $componentHtml . "\n" . $moduleJdoc;
-                                    else if ($component->position == Zo2Component::RENDER_AFTER)
-                                        $html .= $moduleJdoc . "\n" . $componentHtml;
-                                }
+                    switch ($jdoc) {
+                        case 'component':
+                            $html .= '<jdoc:include type="component" />';
+                            break;
+                        case 'message':
+                            $html .= '<jdoc:include type="message" />';
+                            break;
+                        case 'modules':
+                            /**
+                             * old code
+                             * @todo position only used to define where is element render not what kind of element
+                             */
+                            if (($item['position'] == 'component'))
+                                $html .= '<jdoc:include type="component" />';
+                            else if (($item['position'] == 'message'))
+                                $html .= '<jdoc:include type="message" />';
+                            else {
+                                $html = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
                             }
-                        }
-
-                        if (empty($componentHtml))
-                            $html .= $moduleJdoc;
+                            break;
+                        case 'megamenu':
+                            $framework = Zo2Factory::getFramework();
+                            $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
+                            $html .= $megamenu;
+                            break;
+                        case 'canvasmenu':
+                            $framework = Zo2Factory::getFramework();
+                            $html .= $framework->displayOffCanvasMenu();
+                            break;
+                        default:
+                            /**
+                             * 3rd addons
+                             */
+                            if (strpos($jdoc, 'addon-') !== false) {
+                                $jdoc = str_replace('addon-', '', $jdoc);
+                                $addons = Zo2Factory::getFramework()->getRegisteredAddons();
+                                if (isset($addons[$jdoc])) {
+                                    /**
+                                     * Prevent evil code
+                                     */
+                                    $html .= call_user_func($addons[$jdoc]);
+                                }
+                            } else {
+                                
+                            }
                     }
                 }
-
+                /* Sub items */
                 if ($total = count($item['children']) > 0) {
                     for ($i = 0; $i < $total; $i++) {
                         $html .= self::_buildItem($item['children'][$i]);

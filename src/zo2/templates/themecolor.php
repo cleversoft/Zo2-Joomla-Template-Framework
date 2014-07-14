@@ -47,7 +47,7 @@ if (!isset($preset_data['bg_image']))
 <input type="hidden" value="<?php echo htmlspecialchars($this->value) ?>" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
 <div class="zo2_themes_row clearfix">
     <div class="zo2_themes_label">
-        Select which preset style the layout should load.
+        <?php echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT'); ?>
     </div>
     <div class="zo2_themes_form">
         <ul id="zo2_themes">
@@ -80,7 +80,7 @@ if (!isset($preset_data['bg_image']))
     <div class="zo2_themes_form">
         <div class="control-group">
             <div class="control-label">
-                <label for="color_background">Background</label>
+                <label for="color_background"><?php echo JText::_('ZO2_TEMPLATE_THEME_BACKGROUND'); ?></label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -91,7 +91,7 @@ if (!isset($preset_data['bg_image']))
         </div>
         <div class="control-group">
             <div class="control-label">
-                <label for="color_header">Header</label>
+                <label for="color_header"><?php echo JText::_('ZO2_TEMPLATE_THEME_HEADER'); ?></label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -103,7 +103,7 @@ if (!isset($preset_data['bg_image']))
 
         <div class="control-group">
             <div class="control-label">
-                <label for="color_link_hover">Header top</label>
+                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_HEADER_TOP'); ?></label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -114,7 +114,7 @@ if (!isset($preset_data['bg_image']))
         </div>
         <div class="control-group">
             <div class="control-label">
-                <label for="color_text">Text</label>
+                <label for="color_text"><?php echo JText::_('ZO2_TEMPLATE_THEME_TEXT'); ?></label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -125,7 +125,7 @@ if (!isset($preset_data['bg_image']))
         </div>
         <div class="control-group">
             <div class="control-label">
-                <label for="color_link">Link</label>
+                <label for="color_link"><?php echo JText::_('ZO2_TEMPLATE_THEME_LINK'); ?></label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -136,7 +136,7 @@ if (!isset($preset_data['bg_image']))
         </div>
         <div class="control-group">
             <div class="control-label">
-                <label for="color_link_hover">Link hover</label>
+                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_LINK_HOVER'); ?></label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -147,7 +147,7 @@ if (!isset($preset_data['bg_image']))
         </div>
         <div class="control-group">
             <div class="control-label">
-                <label for="color_link_hover">Bottom 1</label>
+                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_BOTTOM'); ?> 1</label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -158,7 +158,7 @@ if (!isset($preset_data['bg_image']))
         </div>
         <div class="control-group">
             <div class="control-label">
-                <label for="color_link_hover">Bottom 2</label>
+                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_BOTTOM'); ?> 2</label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -170,7 +170,7 @@ if (!isset($preset_data['bg_image']))
 
         <div class="control-group">
             <div class="control-label">
-                <label for="color_footer">Footer</label>
+                <label for="color_footer"><?php echo JText::_('ZO2_TEMPLATE_THEME_FOOTER'); ?></label>
             </div>
             <div class="controls">
                 <div class="colorpicker-container">
@@ -184,7 +184,7 @@ if (!isset($preset_data['bg_image']))
 </div>
 <div class="zo2_themes_row clearfix">
     <div class="zo2_themes_label">
-        Other Preset Settings
+        <?php echo JText::_('ZO2_TEMPLATE_THEME_OTHER_SETTINGS'); ?>
     </div>
     <div class="zo2_themes_form_container preset-setting">
         <?php
@@ -202,7 +202,7 @@ if (!isset($preset_data['bg_image']))
                                 <div class="colorpicker-container">
                                     <input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="<?php echo $color ?>">
                                     <span id="extra_element_preview" class="color-preview" style="background-color: <?php echo empty($color) ? 'transparent' : $color ?>"></span>
-                                    <input type="button" class="btn remove_preset" value="Remove" />
+                                    <input type="button" class="btn remove_preset" value="<?php echo JText::_('ZO2_ADMIN_EDITPROFILE_REMOVE'); ?>" />
                                 </div>
                             </div>
                         </div>
@@ -213,7 +213,7 @@ if (!isset($preset_data['bg_image']))
         }
         ?>
         <div class="zo2_themes_form">
-            <input type="button" class="btn add_more_preset" value="Add more" />
+            <input type="button" class="btn add_more_preset" value="<?php echo JText::_('ZO2_ADMIN_EDITPROFILE_ADDMORE'); ?>" />
         </div>
     </div>
 
@@ -222,11 +222,11 @@ if (!isset($preset_data['bg_image']))
     <div class="zo2_themes_row clearfix">
 
         <div class="zo2_themes_label">
-            Layout Style and Background
+            <?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_BACKGROUND'); ?>
         </div>
         <div class="control-group">
             <div class="control-label">
-                <label class="hasTooltip">Choose layout</label>
+                <label class="hasTooltip"><?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_CHOOSE_LAYOUT'); ?></label>
             </div>
             <div class="controls">
                 <fieldset class="radio btn-group">
@@ -239,7 +239,7 @@ if (!isset($preset_data['bg_image']))
         <div class="zo2_background_and_pattern" <?php if ($preset_data['boxed'] == 0) echo 'style="display:none"'; ?>>
             <div class="control-group">
                 <div class="control-label">
-                    <label class="">Background Image</label>
+                    <label class=""><?php echo JText::_('ZO2_TEMPLATE_THEME_BACKGROUND_IMAGE'); ?></label>
                 </div>
                 <div class="controls">
                     <div class="input-prepend input-append">
@@ -248,7 +248,7 @@ if (!isset($preset_data['bg_image']))
                         </div>
                         <input type="text" name="zo2_background_image" id="zo2_background_image" value="<?php echo $preset_data['bg_image']; ?>" readonly="readonly" class="input-small">
                         <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=zo2_background_image&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
-                            Select
+                            <?php echo JText::_('ZO2_TEMPLATE_THEME_SELECT'); ?>
                         </a>
                         <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', 'zo2_background_image');
                                     return false;" data-original-title="Clear">
@@ -259,7 +259,7 @@ if (!isset($preset_data['bg_image']))
             </div>
             <hr />
             <div class="zo2_themes_label">
-                Pattern Background
+                <?php echo JText::_('ZO2_TEMPLATE_THEME_PATTERN_BACKGROUND'); ?>
             </div>
             <div class="zo2_themes_form">
                 <ul class="options background-select">
