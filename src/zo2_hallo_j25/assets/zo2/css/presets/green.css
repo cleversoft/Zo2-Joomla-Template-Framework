@@ -31,6 +31,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 #zo2-features .top-features:hover .zo2-circle {
   background-color: #7fbe54;
+  color: #fff;
 }
 .box-color {
   background: #7fbe54;
@@ -42,4 +43,28 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 .btn-success {
   background-color: #7fbe54;
+  color: #fff !important;
+}
+.zo2-pagination ul >li.active >span,
+.pagination li:hover a {
+  background: #7fbe54;
+}
+.item-page .article_content {
+  border-top: 3px solid #7fbe54;
+}
+.item-page .article_content .article_icon {
+  background: #7fbe54;
+}
+.dropdown-toggle:hover,
+.dropdown-toggle:active,
+.dropdown-toggle:focus {
+  color: #7fbe54;
+}
+.item-page .article_content h1.singleItemTitle {
+  color: #7fbe54;
+}
+.pager li a:hover,
+.pager li a:active,
+.pager li a:focus {
+  background: #7fbe54;
 }

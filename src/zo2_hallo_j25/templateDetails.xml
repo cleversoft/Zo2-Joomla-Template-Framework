@@ -8,7 +8,15 @@
     <copyright>Copyright (c) 2008 - 2014 APL Solutions</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <version>1.3.9</version>
-    <description></description>
+    <description>
+        <![CDATA[<html>
+      <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
+                <p>The Zo2 Hallo is a clean modern responsive design that is a great place to start when building your custom Zo2 powered template.</p>
+                <h3 class="title-profile dark-bg">What is the Zo2 Framework?</h3>
+                <p>Zo2 Framework is a free, open-source, highly extensible, search-engine optimized Joomla Templates Framework featuring responsive web design, bootstrap framework, Font Awesome Icons, styling for popular extensions, and a whole community behind it. Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.</p>
+        </html>
+     ]]>
+    </description>
 
     <languages>
         <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_blank_template.ini</language>
@@ -104,8 +112,8 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
 
             <fieldset name="layout" addfieldpath="/plugins/system/zo2/formfields">
                 <field
-                        type="layout"
-                        name="layout" />
+                    type="layout"
+                    name="layout" />
             </fieldset>
             <!--Mega Menus-->
             <fieldset name="megamenu" label="Megamenu">
@@ -149,12 +157,12 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 <field name="menu_type" type="menutype" default="mainmenu"
                        label="Menu type"
                        description="Menu type"
-                        />
+                />
 
                 <field name="menu_config" type="megamenu" hide="true"
                        label=""
                        description=""
-                        />
+                />
 
             </fieldset>
 
@@ -198,7 +206,7 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                        label="Tabs Order"
                        description="Only tabs listed will be showed"
                        desc=""
-                        />
+                />
 
                 <field name="disqus_shortname" type="disqus" default="zootemplates"
                        label="Disqus Shortname"
@@ -251,29 +259,29 @@ by ZooTemplate.Com. All rights reserved." label="Copyright" filter="raw" />
                 </field>
 
                 <field
-                        name="box_top"
-                        type="text"
-                        default="200"
-                        label="Initial Top Position"
-                        description="Initial Top Position"/>
+                    name="box_top"
+                    type="text"
+                    default="200"
+                    label="Initial Top Position"
+                    description="Initial Top Position"/>
                 <field
-                        name="box_left"
-                        type="text"
-                        default="200"
-                        label="Left Position"
-                        description="Left Position"/>
+                    name="box_left"
+                    type="text"
+                    default="200"
+                    label="Left Position"
+                    description="Left Position"/>
                 <field
-                        name="box_right"
-                        type="text"
-                        default="300"
-                        label="Right Position"
-                        description="Right Position"/>
+                    name="box_right"
+                    type="text"
+                    default="300"
+                    label="Right Position"
+                    description="Right Position"/>
                 <field
-                        name="box_style"
-                        type="text"
-                        default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
-                        label="Box style"
-                        description="Box style"/>
+                    name="box_style"
+                    type="text"
+                    default="text-align: center; border: 1px solid #A09999; padding: 7px; float: left;"
+                    label="Box style"
+                    description="Box style"/>
 
                 <field name="social_order" type="socialorder" label="Ordering buttons" description="Drag and drop to change position of button"/>
 

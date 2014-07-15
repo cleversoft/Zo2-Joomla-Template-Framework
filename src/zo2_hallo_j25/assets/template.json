@@ -1,3 +1,9 @@
 {
-    "name": "SoulEvil"
+    "name": "Hallo",
+    "assets": {
+        "css": [
+        ],
+        "js": [
+        ]
+    }
 }
