@@ -174,11 +174,11 @@ if (!class_exists('Zo2Layout')) {
          */
         private function _buildItem($item) {
             $html = '';
-            if ($item['type'] == 'row')
+            if ($item['type'] == 'row') {
                 $html .= $this->_generateRow($item);
-            else if ($item['type'] == 'col')
+            } else if ($item['type'] == 'col') {
                 $html .= $this->_generateColumn($item);
-
+            }
             return $html;
         }
 
@@ -262,26 +262,33 @@ if (!class_exists('Zo2Layout')) {
         private function _showJDoc($item) {
             $jdoc = $item->get('jdoc', 'modules');
             switch ($jdoc) {
+                /* Component type */
                 case 'component':
                     return !$this->hideComponent();
                     break;
+                /* Message type always render because it's a part of Joomla! system */
                 case 'message':
                     return true;
+                    break;
+                /* Megamenu always render */
+                case 'megamenu':
+                    return true;
+                    break;
                 default:
+                    /* Modules position */
                     if (strpos('addon-', $jdoc, 0) === false) {
                         jimport('joomla.application.module.helper');
-                        $modules = JModuleHelper::getModules($item->get('positions'));
+                        $modules = JModuleHelper::getModules($item->get('position'));
                         if (count($modules) > 0) {
                             return true;
                         }
-                    } else {
+                    } else { /* 3rd party */
                         $jdoc = str_replace('addon-', '', $jdoc);
                         $addons = Zo2Factory::getFramework()->getRegisteredAddons();
                         if (isset($addons[$jdoc])) {
                             return true;
                         }
                     }
-
                     return false;
             }
         }
