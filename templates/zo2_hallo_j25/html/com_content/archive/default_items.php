@@ -1,38 +1,41 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	com_content
+ * @subpackage	Templates.beez5
  * @copyright	Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
+$app = JFactory::getApplication();
+$templateparams = $app->getTemplate(true)->params;
 
+if (!$templateparams->get('html5', 0))
+{
+	require JPATH_BASE.'/components/com_content/views/archive/tmpl/default_items.php';
+	//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
+} else {
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 $params = &$this->params;
-if (Zo2Framework::get('show_in_article') ) {
-    $socialShares = new Zo2Socialshares();
-    $social = $socialShares->getHorizontalBar();
-}
 ?>
-
 <ul id="archive-items">
 <?php foreach ($this->items as $i => $item) : ?>
 	<li class="row<?php echo $i % 2; ?>">
 
 		<h2>
 		<?php if ($params->get('link_titles')): ?>
-			<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->language)); ?>">
+			<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid, $item->language)); ?>">
 				<?php echo $this->escape($item->title); ?></a>
 		<?php else: ?>
 				<?php echo $this->escape($item->title); ?>
 		<?php endif; ?>
 		</h2>
 
+
 <?php if (($params->get('show_author')) or ($params->get('show_parent_category')) or ($params->get('show_category')) or ($params->get('show_create_date')) or ($params->get('show_modify_date')) or ($params->get('show_publish_date'))  or ($params->get('show_hits'))) : ?>
-<dl class="article-info">
-<dt class="article-info-term"><?php echo JText::_('COM_CONTENT_ARTICLE_INFO'); ?></dt>
+ <dl class="article-info">
+ <dt class="article-info-term"><?php echo JText::_('COM_CONTENT_ARTICLE_INFO'); ?></dt>
 <?php endif; ?>
 <?php if ($params->get('show_parent_category')) : ?>
 		<dd class="parent-category-name">
@@ -69,13 +72,11 @@ if (Zo2Framework::get('show_in_article') ) {
 <?php endif; ?>
 <?php if ($params->get('show_publish_date')) : ?>
 		<dd class="published">
-            <span class="fa fa-calendar"></span>
-		    <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC2'))); ?>
+		<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC2'))); ?>
 		</dd>
 <?php endif; ?>
 <?php if ($params->get('show_author') && !empty($item->author )) : ?>
 	<dd class="createdby">
-        <i class="fa fa-user"></i>
 		<?php $author =  $item->author; ?>
 		<?php $author = ($item->created_by_alias ? $item->created_by_alias : $author);?>
 
@@ -90,32 +91,24 @@ if (Zo2Framework::get('show_in_article') ) {
 <?php endif; ?>
 <?php if ($params->get('show_hits')) : ?>
 		<dd class="hits">
-            <span class="fa fa-eye"></span>
-		    <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?>
+		<?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $item->hits); ?>
 		</dd>
 <?php endif; ?>
 <?php if (($params->get('show_author')) or ($params->get('show_category')) or ($params->get('show_create_date')) or ($params->get('show_modify_date')) or ($params->get('show_publish_date'))  or ($params->get('show_hits'))) :?>
-	</dl>
+	 </dl>
 <?php endif; ?>
 
-<?php if ($params->get('show_intro')) :?>
-	<div class="intro">
-		<?php echo JHtml::_('string.truncate', $item->introtext, $params->get('introtext_limit')); ?>
-	</div>
-<?php endif; ?>
+<?php  if ($params->get('show_intro')) :?>
+		<div class="intro">
+			<?php echo JHtml::_('string.truncate', $item->introtext, $params->get('introtext_limit')); ?>
+		</div>
+
+		<?php endif; ?>
 	</li>
 <?php endforeach; ?>
 </ul>
-<?php
-if (Zo2Framework::get('show_in_article') ) {
-    echo $social;
-}
-?>
-<?php if (($this->params->def('show_pagination', 1) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->get('pages.total') > 1)) : ?>
-    <div class="zo2-pagination">
-        <?php echo $this->pagination->getPagesLinks(); ?>
-        <?php  if ($this->params->def('show_pagination_results', 1)) : ?>
-            <p class="counter"> <?php echo $this->pagination->getPagesCounter(); ?> </p>
-        <?php endif; ?>
-    </div>
-<?php  endif; ?>
+<div id="pagination">
+	<span><?php echo $this->pagination->getPagesLinks(); ?></span>
+	<span><?php echo $this->pagination->getPagesCounter(); ?></span>
+</div>
+<?php } ?>

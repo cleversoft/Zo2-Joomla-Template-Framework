@@ -1,40 +1,42 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	com_content
- * @copyright	Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @subpackage	Templates.beez5
+ * @copyright	Copyright (C) 2005 - 2009 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
+$app = JFactory::getApplication();
+$templateparams =$app->getTemplate(true)->params;
 
+if ($templateparams->get('html5')!=1)
+{
+	require JPATH_BASE.'/components/com_content/views/featured/tmpl/default.php';
+	//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
+} else {
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 // If the page class is defined, add to class as suffix.
 // It will be a separate class if the user starts it with a space
-if (Zo2Framework::get('show_in_featured') ) {
-    $socialShares = new Zo2Socialshares();
-    $social = $socialShares->getHorizontalBar();
-}
 ?>
-<div class="blog-featured<?php echo $this->pageclass_sfx;?>">
+<section class="blog-featured<?php echo $this->pageclass_sfx;?>">
 <?php if ( $this->params->get('show_page_heading')!=0) : ?>
 	<h1>
 	<?php echo $this->escape($this->params->get('page_heading')); ?>
 	</h1>
 <?php endif; ?>
-
 <?php $leadingcount=0 ; ?>
 <?php if (!empty($this->lead_items)) : ?>
 <div class="items-leading">
 	<?php foreach ($this->lead_items as &$item) : ?>
-		<div class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
+		<article class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
 			<?php
 				$this->item = &$item;
 				echo $this->loadTemplate('item');
 			?>
-		</div>
+		</article>
 		<?php
 			$leadingcount++;
 		?>
@@ -57,12 +59,12 @@ if (Zo2Framework::get('show_in_featured') ) {
 
 			<div class="items-row cols-<?php echo (int) $this->columns;?> <?php echo 'row-'.$row ; ?>">
 		<?php endif; ?>
-		<div class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished"' : null; ?>">
+		<article class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished"' : null; ?>">
 			<?php
 					$this->item = &$item;
 					echo $this->loadTemplate('item');
 			?>
-		</div>
+		</article>
 		<?php $counter++; ?>
 			<?php if (($rowcount == $this->columns) or ($counter ==$introcount)): ?>
 				<span class="row-separator"></span>
@@ -89,10 +91,6 @@ if (Zo2Framework::get('show_in_featured') ) {
 				<?php echo $this->pagination->getPagesLinks(); ?>
 	</div>
 <?php endif; ?>
+</section>
 
-</div>
-<?php
-if (Zo2Framework::get('show_in_featured') ) {
-    echo $social;
-}
-?>
+<?php } ?>

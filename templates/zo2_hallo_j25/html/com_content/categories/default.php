@@ -1,14 +1,20 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	com_content
+ * @subpackage	Templates.beez5
  * @copyright	Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
-
+$app = JFactory::getApplication();
+$templateparams =$app->getTemplate(true)->params;
+if ($templateparams->get('html5')!=1)
+{
+	require JPATH_BASE.'/components/com_content/views/categories/tmpl/default.php';
+	//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
+} else {
 JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 
 ?>
@@ -30,8 +36,9 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers');
 				</div>
 			<?php  endif; ?>
 		<?php  endif; ?>
-	<?php endif; ?>
+<?php endif; ?>
 <?php
 echo $this->loadTemplate('items');
 ?>
 </div>
+<?php } ?>
