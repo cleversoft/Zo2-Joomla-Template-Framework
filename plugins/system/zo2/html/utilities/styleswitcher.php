@@ -1,16 +1,14 @@
 <?php
-$presets_json = '';
-$presetPath = Zo2Factory::getPath('templates://assets/template.presets.json');
+$presetPath = Zo2Factory::getPath('templates://assets/presets.json');
 if (file_exists($presetPath)) {
-    $presets_json = json_decode(file_get_contents($presetPath));
+    $presets_defined = json_decode(file_get_contents($presetPath));
 }
 
 $backgroundsDir =  Zo2Factory::getPath('templates://assets/zo2/images/background-patterns');
 $presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
-/* Get Zo2Framework */
-$framework = Zo2Factory::getFramework();
 
-$presets = $framework->get('theme');
+$profile = Zo2Factory::getProfile();
+$presets = $profile->theme;
 
 if(!empty($presets)) {
     $presetData = json_decode($presets, true);
@@ -29,13 +27,14 @@ if(!empty($presets)) {
         <h5>Primary Color</h5>
         <ul class="options color-select">
             <?php
-            foreach($presets_json  as $key => $preset ) {
-                $selected = '';
-                if(isset( $presetData['name'] ) && $presetData['name'] == $preset->name)
-                    $selected = 'selected';
+            if($presets_defined)
+                foreach($presets_defined  as $key => $preset ) {
+                    $selected = '';
+                    if(isset( $presetData['name'] ) && $presetData['name'] == $preset->name)
+                        $selected = 'selected';
 
-                echo '<li class="'.$selected.'"><a href="#" data-color="'.$key.'" data-layout="'.$preset->name.'" style="background-color: '.$preset->color.';"></a></li>';
-            }
+                    echo '<li class="'.$selected.'"><a href="#" data-color="'.$key.'" data-layout="'.$preset->name.'" style="background-color: '.$preset->color.';"></a></li>';
+                }
             ?>
         </ul>
         <div class="background-select-wrap" style="display: none">
@@ -172,7 +171,7 @@ if(!empty($presets)) {
 
             jQuery('.color-select li').removeClass('selected');
             jQuery(this).addClass('selected');
-            var presetjson = '<?php echo json_encode($presets_json);?>';
+            var presetjson = '<?php echo json_encode($presets_defined);?>';
             set_presets(jQuery(this).find('a').attr('data-color'), jQuery(this).find('a').attr('data-layout'), presetjson);
         });
 
