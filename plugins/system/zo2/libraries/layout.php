@@ -275,7 +275,7 @@ if (!class_exists('Zo2Layout')) {
                     return true;
                     break;
                 default:
-                     /* Modules position */
+                    /* Modules position */
                     if (strpos('addon-', $jdoc, 0) === false) {
                         jimport('joomla.application.module.helper');
                         $modules = JModuleHelper::getModules($item->get('positions'));
@@ -289,7 +289,7 @@ if (!class_exists('Zo2Layout')) {
                             return true;
                         }
                     }
-
+                    /* For now temporary force return true because all config still messup */
                     return true;
             }
         }
@@ -321,7 +321,7 @@ if (!class_exists('Zo2Layout')) {
                     $html .= '<section id="' . $item['id'] . '" class="' . $class . '">';
                 else
                     $html .= '<section class="' . $class . '">';
-
+                
                 switch ($jdoc) {
                     case 'component':
                         $html .= '<jdoc:include type="component" />';
@@ -348,6 +348,14 @@ if (!class_exists('Zo2Layout')) {
                         switch ($item['position']) {
                             case 'footer_copyright':
                                 $html .= $template->fetch('zo2://html/layouts/copyright.php');
+                                break;
+                            case 'header_logo':
+                                require_once ZO2PATH_ROOT . '/libraries/components/header_logo.php';
+                                /**
+                                 * @todo move to correct html layout instead dump class here
+                                 */
+                                $headerLogo = new Zo2Component_header_logo();
+                                $html .= $headerLogo->render();
                                 break;
                         }
                         break;
