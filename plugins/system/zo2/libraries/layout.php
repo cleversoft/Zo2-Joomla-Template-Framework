@@ -174,11 +174,11 @@ if (!class_exists('Zo2Layout')) {
          */
         private function _buildItem($item) {
             $html = '';
-            if ($item['type'] == 'row') {
+            if ($item['type'] == 'row')
                 $html .= $this->_generateRow($item);
-            } else if ($item['type'] == 'col') {
+            else if ($item['type'] == 'col')
                 $html .= $this->_generateColumn($item);
-            }
+
             return $html;
         }
 
@@ -275,10 +275,10 @@ if (!class_exists('Zo2Layout')) {
                     return true;
                     break;
                 default:
-                    /* Modules position */
+                     /* Modules position */
                     if (strpos('addon-', $jdoc, 0) === false) {
                         jimport('joomla.application.module.helper');
-                        $modules = JModuleHelper::getModules($item->get('position'));
+                        $modules = JModuleHelper::getModules($item->get('positions'));
                         if (count($modules) > 0) {
                             return true;
                         }
@@ -289,7 +289,8 @@ if (!class_exists('Zo2Layout')) {
                             return true;
                         }
                     }
-                    return false;
+
+                    return true;
             }
         }
 
@@ -321,58 +322,62 @@ if (!class_exists('Zo2Layout')) {
                 else
                     $html .= '<section class="' . $class . '">';
 
-                /**
-                 * @todo Must base on jdoc instead position
-                 */
-                if (!empty($item['position'])) {
-
-                    switch ($jdoc) {
-                        case 'component':
+                switch ($jdoc) {
+                    case 'component':
+                        $html .= '<jdoc:include type="component" />';
+                        break;
+                    case 'message':
+                        $html .= '<jdoc:include type="message" />';
+                        break;
+                    case 'modules':
+                        /**
+                         * old code
+                         * @todo position only used to define where is element render not what kind of element
+                         */
+                        if (($item['position'] == 'component'))
                             $html .= '<jdoc:include type="component" />';
-                            break;
-                        case 'message':
+                        else if (($item['position'] == 'message'))
                             $html .= '<jdoc:include type="message" />';
-                            break;
-                        case 'modules':
-                            /**
-                             * old code
-                             * @todo position only used to define where is element render not what kind of element
-                             */
-                            if (($item['position'] == 'component'))
-                                $html .= '<jdoc:include type="component" />';
-                            else if (($item['position'] == 'message'))
-                                $html .= '<jdoc:include type="message" />';
-                            else {
-                                $html = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
+                        else {
+                            $html = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
+                        }
+                        /**
+                         * @todo need move to correct jdoc
+                         */
+                        $template = new Zo2Template();
+                        switch ($item['position']) {
+                            case 'footer_copyright':
+                                $html .= $template->fetch('zo2://html/layouts/copyright.php');
+                                break;
+                        }
+                        break;
+                    case 'megamenu':
+                        $framework = Zo2Factory::getFramework();
+                        $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
+                        $html .= $megamenu;
+                        break;
+                    case 'canvasmenu':
+                        $framework = Zo2Factory::getFramework();
+                        $html .= $framework->displayOffCanvasMenu();
+                        break;
+                    default:
+                        /**
+                         * 3rd addons
+                         */
+                        if (strpos($jdoc, 'addon-') !== false) {
+                            $jdoc = str_replace('addon-', '', $jdoc);
+                            $addons = Zo2Factory::getFramework()->getRegisteredAddons();
+                            if (isset($addons[$jdoc])) {
+                                /**
+                                 * Prevent evil code
+                                 */
+                                $html .= call_user_func($addons[$jdoc]);
                             }
-                            break;
-                        case 'megamenu':
-                            $framework = Zo2Factory::getFramework();
-                            $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
-                            $html .= $megamenu;
-                            break;
-                        case 'canvasmenu':
-                            $framework = Zo2Factory::getFramework();
-                            $html .= $framework->displayOffCanvasMenu();
-                            break;
-                        default:
-                            /**
-                             * 3rd addons
-                             */
-                            if (strpos($jdoc, 'addon-') !== false) {
-                                $jdoc = str_replace('addon-', '', $jdoc);
-                                $addons = Zo2Factory::getFramework()->getRegisteredAddons();
-                                if (isset($addons[$jdoc])) {
-                                    /**
-                                     * Prevent evil code
-                                     */
-                                    $html .= call_user_func($addons[$jdoc]);
-                                }
-                            } else {
-                                
-                            }
-                    }
+                        } else {
+                            
+                        }
                 }
+
                 /* Sub items */
                 if ($total = count($item['children']) > 0) {
                     for ($i = 0; $i < $total; $i++) {
