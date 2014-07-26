@@ -327,7 +327,7 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($presetData['bg_image'])) {
                 $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
             } elseif (!empty($presetData['bg_pattern'])) {
-                $style .= 'body.boxed {background-image: url("' . $path->toUrl($presetData['bg_pattern']) . '")}';
+                $style .= 'body.boxed {background-image: url("' . JUri::root() .$presetData['bg_pattern'] . '")}';
             }
 
             if (!empty($presetData['css']))
@@ -524,12 +524,12 @@ if (!class_exists('Zo2Framework')) {
          */
         public function displayMegaMenu($menutype, $template, $isAdmin = false) {
             $params = $this->template->params;
-            $configs = json_decode($params->get('menu_config', ''), true);
-            $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
-            if (JFactory::getApplication()->isAdmin()) {
-                $mmconfig['edit'] = true;
-            }
-            $menu = new Zo2MegaMenu($menutype, $mmconfig);
+            //$configs = json_decode($params->get('menu_config', ''), true);
+            //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
+            //if (JFactory::getApplication()->isAdmin()) {
+                //$mmconfig['edit'] = true;
+            //}
+            $menu = new Zo2MegaMenu($menutype);
             return $menu->renderMenu($isAdmin);
         }
 
@@ -538,12 +538,12 @@ if (!class_exists('Zo2Framework')) {
                 $menutype = self::get('menu_type', 'mainmenu');
             }
             $params = $this->template->params;
-            $configs = json_decode($params->get('menu_config', ''), true);
-            $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
-            if (JFactory::getApplication()->isAdmin()) {
-                $mmconfig['edit'] = true;
-            }
-            $menu = new Zo2MegaMenu($menutype, $mmconfig);
+            //$configs = json_decode($params->get('menu_config', ''), true);
+            //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
+            //if (JFactory::getApplication()->isAdmin()) {
+                //$mmconfig['edit'] = true;
+            //}
+            $menu = new Zo2MegaMenu($menutype);
             return $menu->renderOffCanvasMenu($isAdmin);
         }
 
