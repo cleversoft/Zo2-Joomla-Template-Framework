@@ -20,6 +20,7 @@ if (!class_exists('Zo2Profile')) {
     class Zo2Profile extends JObject {
 
         private $_profile = null;
+        public $theme = array();
 
         /**
          * 
@@ -38,6 +39,7 @@ if (!class_exists('Zo2Profile')) {
                 $this->layout = $this->_profile['layout'];
                 if (isset($this->_profile['theme']))
                     $this->theme = $this->_profile['theme'];
+
                 return true;
             }
             return false;
