@@ -23,10 +23,10 @@ class Zo2Component_header_logo extends Zo2Component {
     {
         $framework = Zo2Factory::getFramework();
 
-        $logo = $framework->getParams('header_logo');
-        $logoRetina = $framework->getParams('header_retina_logo');
-        $sitename = $framework->getParams('site_name');
-        $slogan = $framework->getParams('site_slogan');
+        $logo = $framework->get('header_logo');
+        $logoRetina = $framework->get('header_retina_logo');
+        $sitename = $framework->get('site_name');
+        $slogan = $framework->get('site_slogan');
 
         if (!empty($logo) && !empty($logoRetina)) {
             $logo = json_decode($logo, true);
