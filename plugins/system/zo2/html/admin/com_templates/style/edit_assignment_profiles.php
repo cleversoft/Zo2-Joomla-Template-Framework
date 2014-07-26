@@ -40,7 +40,7 @@ $currentProfile = JFactory::getApplication()->input->get('profile', 'default');
                                    value="<?php echo (int) $link->value; ?>" 
                                    id="link<?php echo (int) $link->value; ?>"
                                    <?php if (isset($profileAssign->$value) && $profileAssign->$value == $currentProfile): ?> checked="checked"<?php endif; ?>
-                                   <?php if ($link->checked_out && $link->checked_out != $user->id): ?> disabled="disabled"<?php else: ?> class="chk-menulink <?php echo $type->menutype; ?>"<?php endif; ?> />
+                                   class="chk-menulink <?php echo $type->menutype; ?>" />
                             <?php echo $link->text; ?>
                         </label>
                     <?php endforeach; ?>
