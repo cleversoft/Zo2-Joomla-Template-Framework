@@ -1,5 +1,4 @@
 <?php
-$presets_defined = '';
 $presetPath = Zo2Factory::getPath('templates://assets/presets.json');
 if (file_exists($presetPath)) {
     $presets_defined = json_decode(file_get_contents($presetPath));
@@ -9,11 +8,8 @@ $backgroundsDir = Zo2Factory::getPath('templates://assets/zo2/images/background-
 $presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
 
 $profile = Zo2Factory::getProfile();
-$presets = $profile->theme;
+$presetData = $profile->theme;
 
-if (!empty($presets)) {
-    $presetData = json_decode($presets, true);
-}
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>

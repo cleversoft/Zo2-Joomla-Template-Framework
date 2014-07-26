@@ -283,55 +283,48 @@ if (!class_exists('Zo2Framework')) {
          *  
          */
         protected function _loadProfile() {
-
-            if (isset($this->profile->theme))
-                $preset = $this->profile->theme;
-            else
-                $preset = array();
-
-            if (empty($preset)) {
-                
-            } else {
-                $presetData = $preset;
-            }
-
             $style = '';
-            if (!empty($presetData['background']))
-                $style .= 'body{background-color:' . $presetData['background'] . '}';
-            if (!empty($presetData['header']))
-                $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
-            if (!empty($presetData['header_top']))
-                $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
-            if (!empty($presetData['text']))
-                $style .= 'body{color:' . $presetData['text'] . '}';
-            if (!empty($presetData['link']))
-                $style .= 'a{color:' . $presetData['link'] . '}';
-            if (!empty($presetData['link_hover']))
-                $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
-            if (!empty($presetData['bottom1']))
-                $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
-            if (!empty($presetData['bottom2']))
-                $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
-            if (!empty($presetData['footer']))
-                $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
-            if (!empty($presetData['extra'])) {
-                $extra = json_decode($presetData['extra']);
-                if (count($extra) > 0) {
-                    foreach ($extra as $element => $value) {
-                        if (!empty($element))
-                            $style .= $element . '{background-color:' . $value . '}';
+            if (isset($this->profile->theme)) {
+                $presetData = $this->profile->theme;
+
+
+                if (!empty($presetData['background']))
+                    $style .= 'body{background-color:' . $presetData['background'] . '}';
+                if (!empty($presetData['header']))
+                    $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
+                if (!empty($presetData['header_top']))
+                    $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
+                if (!empty($presetData['text']))
+                    $style .= 'body{color:' . $presetData['text'] . '}';
+                if (!empty($presetData['link']))
+                    $style .= 'a{color:' . $presetData['link'] . '}';
+                if (!empty($presetData['link_hover']))
+                    $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
+                if (!empty($presetData['bottom1']))
+                    $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
+                if (!empty($presetData['bottom2']))
+                    $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
+                if (!empty($presetData['footer']))
+                    $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
+                if (!empty($presetData['extra'])) {
+                    $extra = json_decode($presetData['extra']);
+                    if (count($extra) > 0) {
+                        foreach ($extra as $element => $value) {
+                            if (!empty($element))
+                                $style .= $element . '{background-color:' . $value . '}';
+                        }
                     }
                 }
-            }
 
-            if (!empty($presetData['bg_image'])) {
-                $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
-            } elseif (!empty($presetData['bg_pattern'])) {
-                $style .= 'body.boxed {background-image: url("' . JUri::root() .$presetData['bg_pattern'] . '")}';
-            }
+                if (!empty($presetData['bg_image'])) {
+                    $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
+                } elseif (!empty($presetData['bg_pattern'])) {
+                    $style .= 'body.boxed {background-image: url("' . JUri::root() .$presetData['bg_pattern'] . '")}';
+                }
 
-            if (!empty($presetData['css']))
-                $this->assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
+                if (!empty($presetData['css']))
+                    $this->assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
+            }
 
             $this->assets->addStyleSheetDeclaration($style);
 
