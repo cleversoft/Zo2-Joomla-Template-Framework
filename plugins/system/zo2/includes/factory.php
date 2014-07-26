@@ -238,19 +238,24 @@ if (!class_exists('Zo2Factory')) {
             static $profiles = array();
             $profileName = 'default';
             if ($profile === null) {
-                /* Get request profile */
-                $itemId = JFactory::getApplication()->input->get('Itemid');
-                /* Get profiles list */
-                $list = self::getFramework()->get('profile', 'default');
-                if (is_object($list)) {
-                    if (isset($list->$itemId)) {
-                        $profileName = $list->$itemId;
-                    } else {
-                        $profileName = 'default';
-                    }
+                $requestProfile = JFactory::getApplication()->input->get('profile');
+                if ($requestProfile) {
+                    $profileName = $requestProfile;
                 } else {
-                    if (is_array($profiles)) {
-                        $profileName = 'default';
+                    /* Get request profile */
+                    $itemId = JFactory::getApplication()->input->get('Itemid');
+                    /* Get profiles list */
+                    $list = self::getFramework()->get('profile', 'default');
+                    if (is_object($list)) {
+                        if (isset($list->$itemId)) {
+                            $profileName = $list->$itemId;
+                        } else {
+                            $profileName = 'default';
+                        }
+                    } else {
+                        if (is_array($profiles)) {
+                            $profileName = 'default';
+                        }
                     }
                 }
             } else {
