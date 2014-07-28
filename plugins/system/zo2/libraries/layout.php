@@ -173,7 +173,7 @@ if (!class_exists('Zo2Layout')) {
                 $maxSpace = 12;
                 $usedSpace = 0;
                 $offsetSpace = 0;
-
+                $prevSpace = 0;
                 $children = array();
                 $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
 
@@ -192,9 +192,12 @@ if (!class_exists('Zo2Layout')) {
                     /* If there is no modules in this position */
                     if ($modulesInPosition == 0) {
                         /* Do nothing */
+                        $prevSpace = $child->span;
                     } else {
+                        $child->span +=$prevSpace;
                         $usedSpace += $child->span; /* Increase used space */
                         $children[] = $child; /* Save this child to render later */
+                        $prevSpace = 0;
                     }
                     $offsetSpace += $child->offset;
                 }
