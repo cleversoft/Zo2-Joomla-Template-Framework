@@ -98,6 +98,7 @@
                     "span": 3,
                     "offset": 0,
                     "customClass": "col-sm-3 col-xs-10 mobile-logo",
+                    "style": "",
                     "id": "",
                     "visibility": {
                         "xs": true,
@@ -110,7 +111,7 @@
                     ]
                 },
                 {
-                    "jdoc": "modules",
+                    "jdoc": "megamenu",
                     "type": "col",
                     "name": "mega_menu",
                     "position": "mega_menu",
@@ -532,16 +533,17 @@
         "css": "presets\/green",
         "less": "presets\/green",
         "boxed": "0",
-        "background": "#a63c3c",
+        "background": "#ffffff",
         "header": "",
         "header_top": "",
         "text": "",
-        "link": "",
-        "link_hover": "",
-        "bottom1": "",
-        "bottom2": "",
+        "link": "#7FBE54",
+        "link_hover": "#449d44",
+        "bottom1": "#416941",
+        "bottom2": "#416941",
         "footer": "",
         "extra": "{}",
-        "bg_image": ""
+        "bg_image": "",
+        "bg_pattern": "templates\/zo2_hallo\/assets\/zo2\/images\/background-patterns\/congruent_pentagon.png"
     }
 }

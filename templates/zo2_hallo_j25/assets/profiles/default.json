@@ -16,6 +16,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "top-menu",
                     "position": "top-menu",
@@ -30,9 +31,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "search",
                     "position": "search",
@@ -47,9 +51,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "top-social",
                     "position": "top-social",
@@ -64,7 +71,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -82,6 +91,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "header_logo",
                     "position": "header_logo",
@@ -96,9 +106,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
+                    "jdoc": "megamenu",
                     "type": "col",
                     "name": "mega_menu",
                     "position": "mega_menu",
@@ -113,7 +126,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -131,6 +146,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "slide",
                     "position": "slide",
@@ -145,7 +161,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -163,6 +181,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "feature",
                     "position": "feature",
@@ -177,7 +196,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -195,6 +216,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "breadcrumb",
                     "position": "breadcrumb",
@@ -209,7 +231,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -227,6 +251,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "message",
                     "position": "message",
@@ -241,7 +266,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -259,6 +286,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "left",
                     "position": "left",
@@ -273,9 +301,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "component",
                     "position": "component",
@@ -290,9 +321,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "right",
                     "position": "right",
@@ -307,7 +341,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -325,6 +361,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "news",
                     "position": "news",
@@ -339,7 +376,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -357,6 +396,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "bottom1",
                     "position": "bottom1",
@@ -371,7 +411,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -389,6 +431,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "bottom2",
                     "position": "bottom2",
@@ -403,9 +446,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "bottom3",
                     "position": "bottom3",
@@ -420,9 +466,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "bottom4",
                     "position": "bottom4",
@@ -437,7 +486,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -455,6 +506,7 @@
             },
             "children": [
                 {
+                    "jdoc": "modules",
                     "type": "col",
                     "name": "footer_copyright",
                     "position": "footer_copyright",
@@ -469,7 +521,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         }
@@ -479,16 +533,17 @@
         "css": "presets\/green",
         "less": "presets\/green",
         "boxed": "0",
-        "background": "#a63c3c",
+        "background": "#ffffff",
         "header": "",
         "header_top": "",
         "text": "",
-        "link": "",
-        "link_hover": "",
-        "bottom1": "",
-        "bottom2": "",
+        "link": "#7FBE54",
+        "link_hover": "#449d44",
+        "bottom1": "#416941",
+        "bottom2": "#416941",
         "footer": "",
         "extra": "{}",
-        "bg_image": ""
+        "bg_image": "",
+        "bg_pattern": "templates\/zo2_hallo\/assets\/zo2\/images\/background-patterns\/congruent_pentagon.png"
     }
 }
