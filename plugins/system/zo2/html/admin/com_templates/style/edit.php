@@ -38,7 +38,7 @@ JHTML::_('behavior.tooltip');
                     <a href="#megamenu" data-toggle="tab"><i class="fa fa-navicon fa-lg"></i> Mega Menus</a>
                 </li>
                 <li>
-                    <a href="#assignment" data-toggle="tab"><i class="icon-edit-sign fa-lg"></i> Assignment</a>
+                    <a href="#assignment" data-toggle="tab"><i class="icon-edit-sign fa-lg"></i>Template Assignment</a>
                 </li>
                 <li>
                     <a href="#advanced" data-toggle="tab"><i class="icon-wrench fa-lg"></i> Advanced</a>
@@ -47,79 +47,79 @@ JHTML::_('behavior.tooltip');
             <!-- /tabs header -->
             <!-- tabs content -->
             <div class="tab-content main-navigator">
-                    <a href="http://zo2framework.org" target="_blank" id="logo" title="Zo2 Framework"></a>
-                    <div class="tab-pane active" id="overview">
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Overview</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('overview'); ?>
-                            </div>
+                <a href="http://zo2framework.org" target="_blank" id="logo" title="Zo2 Framework"></a>
+                <div class="tab-pane active" id="overview">
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Overview</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('overview'); ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="general">
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">General</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('general'); ?>
-                            </div>
+                </div>
+                <div class="tab-pane" id="general">
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">General</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('general'); ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="fonts">
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Fonts</h3>
-                            <?php echo $this->loadTemplate('fonts'); ?>
+                </div>
+                <div class="tab-pane" id="fonts">
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Fonts</h3>
+                        <?php echo $this->loadTemplate('fonts'); ?>
+                    </div>
+                </div>
+                <div class="tab-pane" id="theme">
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Layouts Profiles</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('profiles'); ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="theme">
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Layouts Profiles</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('profiles'); ?>
-                            </div>
-                        </div>
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Layout Builder</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('layoutbuilder'); ?>
-                            </div>
-                        </div>
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Style</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('themecolors'); ?>
-                            </div>
-                        </div>
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Assignment: Assign this layout profile to menu items.</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('assignment_profiles'); ?>
-                            </div>
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Layout Builder</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('layoutbuilder'); ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="megamenu">
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Mega Menus</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('megamenu'); ?>
-                            </div>
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Style</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('themecolors'); ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="assignment">
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Assignment</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('assignment'); ?>
-                            </div>
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Profile Assignment: Assign this layout profile to menu items.</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('assignment_profiles'); ?>
                         </div>
                     </div>
-                    <div class="tab-pane" id="advanced">
-                        <div class="profiles-pane">
-                            <h3 class="title-profile">Advanced</h3>
-                            <div class="profiles-pane-inner">
-                                <?php echo $this->loadTemplate('advanced'); ?>
-                            </div>
+                </div>
+                <div class="tab-pane" id="megamenu">
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Mega Menus</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('megamenu'); ?>
                         </div>
                     </div>
+                </div>
+                <div class="tab-pane" id="assignment">
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Assignment</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('assignment'); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="advanced">
+                    <div class="profiles-pane">
+                        <h3 class="title-profile">Advanced</h3>
+                        <div class="profiles-pane-inner">
+                            <?php echo $this->loadTemplate('advanced'); ?>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /tabs content -->
         </fieldset>
