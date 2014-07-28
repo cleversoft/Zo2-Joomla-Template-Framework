@@ -45,6 +45,7 @@ if (!class_exists('Zo2JTemplate')) {
          * Profile rename
          */
         public function rename() {
+
             /* Do never use $_REQUEST */
             $oldProfileName = $this->_jinput->get('profile');
             $newProfileName = $this->_jinput->get('newName');
@@ -54,7 +55,8 @@ if (!class_exists('Zo2JTemplate')) {
                 $newProfileName = $oldProfileName;
             }
             $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $oldProfileName . '.json');
-            $newProfile = Zo2Factory::getPath('templates://assets/profiles') . '/' . $newProfileName . '.json';
+            $newProfile = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/profiles/' . $newProfileName . '.json';
+
             if ($oldProfileName != $newProfileName) {
                 if (JFile::exists($profileFile)) {
                     JFile::move($profileFile, $newProfile);
@@ -128,7 +130,7 @@ if (!class_exists('Zo2JTemplate')) {
                         $list[$menuId] = $profileName;
                     }
                 }
-             
+
                 /* Store assigned menu and profile name for each one */
                 $formData['params']['profile'] = $list;
                 $params = new JRegistry($formData['params']);

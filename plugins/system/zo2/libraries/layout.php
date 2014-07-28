@@ -70,7 +70,9 @@ if (!class_exists('Zo2Layout')) {
                 }
                 $html = implode("", $this->_buffer);
             }
-
+            if (Zo2Factory::get('compress_html')) {
+                $html = $this->_compressHtml($html);
+            }
             /**
              * @todo We can put HTML compress & optimize here before return
              * We can add extra html here to ( like: copyright )

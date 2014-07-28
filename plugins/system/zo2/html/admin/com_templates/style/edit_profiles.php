@@ -32,11 +32,11 @@ $profiles = $framework->getProfiles();
                 <!-- Select profile -->
                 <select class="form-control zo2-select-profile" name="jform[profile-select]">
                     <?php
-                    foreach ($profiles as $profile) {
-                        if ($profile->name == $profileName) {
-                            echo '<option value="' . $profile->name . '" selected>' . $profile->name . '</option>';
+                    foreach ($profiles as $key => $profile) {
+                        if ($key == $profileName) {
+                            echo '<option value="' . $key . '" selected>' . $key . '</option>';
                         } else {
-                            echo '<option value="' . $profile->name . '">' . $profile->name . '</option>';
+                            echo '<option value="' . $key . '">' . $key . '</option>';
                         }
                     }
                     ?>
