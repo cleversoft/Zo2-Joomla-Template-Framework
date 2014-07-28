@@ -35,7 +35,7 @@ if (!class_exists('Zo2Layout')) {
         public function render() {
             $html = '';
 
-            $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 0;
+            $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 1;
             $cacheLoaded = false;
             $cacheFile = $this->_getCacheFile();
 
@@ -231,6 +231,8 @@ if (!class_exists('Zo2Layout')) {
          */
         private function _checkShowColumn($item) {
             $jdoc = $item->get('jdoc', 'modules');
+            if (trim($jdoc) == '')
+                $jdoc = 'modules';
             switch ($jdoc) {
                 /* Component type */
                 case 'component':
@@ -280,7 +282,8 @@ if (!class_exists('Zo2Layout')) {
             /* Check is allowed to show this jdoc */
             if ($this->_checkShowColumn($item)) {
                 $jdoc = $item->get('jdoc', 'modules');
-
+                if (trim($jdoc) == '')
+                    $jdoc = 'modules';
                 $html = '';
                 $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
                 $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
@@ -324,7 +327,7 @@ if (!class_exists('Zo2Layout')) {
                         $template = new Zo2Template();
                         switch ($item->get('position')) {
                             case 'footer_copyright':
-                                $html .= $template->fetch('zo2://html/layouts/copyright.php');
+                                $html .= $template->fetch('html://layouts/copyright.php');
                                 break;
                             case 'header_logo':
                                 require_once ZO2PATH_ROOT . '/libraries/components/header_logo.php';

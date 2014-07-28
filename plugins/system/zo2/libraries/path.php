@@ -66,6 +66,8 @@ if (!class_exists('Zo2Path')) {
             $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
             /* Current */
             $this->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
+            /* Override Zo2 html directory */
+            $this->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
         }
 
         /**
