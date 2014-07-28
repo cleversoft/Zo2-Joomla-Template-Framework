@@ -606,7 +606,7 @@ if (!class_exists('Zo2Framework')) {
                         if (JFile::getExt($file) == 'json') {
                             $profile = new Zo2Profile();
                             $profile->load(JFile::stripExt($file));
-                            $profiles[] = $profile;
+                            $profiles[JFile::stripExt($file)] = $profile;
                         }
                     }
                 }
