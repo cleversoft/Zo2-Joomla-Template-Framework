@@ -32,13 +32,13 @@ if (!class_exists('Zo2Framework')) {
 
         /**
          * Joomla! template object
-         * @var object 
+         * @var object
          */
         public $template = null;
 
         /**
          *
-         * @var Zo2Assets 
+         * @var Zo2Assets
          */
         public $assets = null;
 
@@ -294,12 +294,12 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         *  
+         *
          */
         protected function _loadProfile() {
             $style = '';
-            if (isset($this->profile->theme)) {
-                $presetData = $this->profile->theme;
+            if ($this->profile->theme) {
+                $presetData = get_object_vars($this->profile->theme);
 
                 if (!empty($presetData['background']))
                     $style .= 'body{background-color:' . $presetData['background'] . '}';
@@ -384,7 +384,7 @@ if (!class_exists('Zo2Framework')) {
         public function compileLess($lessPath, $templateName = '') {
             $filename = md5($lessPath) . '.css';
             $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
-                    DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
+                DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
             $relPath = 'assets/cache/' . $filename;
             if (!file_exists($absPath)) {
                 if (!class_exists('lessc', false))
@@ -489,7 +489,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @param string $menutype
          * @return string
          */
@@ -501,7 +501,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * 
+         *
          * @param string $menutype
          * @return array
          */
@@ -630,7 +630,7 @@ if (!class_exists('Zo2Framework')) {
             if (isset($properties[$name])) {
                 return $properties;
             } else {
-                
+
             }
         }
 
