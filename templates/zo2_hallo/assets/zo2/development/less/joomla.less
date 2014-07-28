@@ -135,12 +135,12 @@ ul.list-striped{
 .ie8 .img-fulltext-left img
 .ie8 .img-wrapper,
 .ie8 .img_caption img{
- max-width: auto!important;
- width: 100%;
- border: 0;
- -ms-interpolation-mode: bicubic;
- vertical-align: middle;
- display: inline-block;
+  max-width: auto!important;
+  width: 100%;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 .item-page .img-wrapper {
@@ -538,9 +538,9 @@ ul.menu li{
     }
   }
 }.pagenav {
-  float: none;
-  clear: both;
-}
+   float: none;
+   clear: both;
+ }
 //Login
 .login-form{
   input[type="text"], input[type="password"] {
@@ -549,7 +549,7 @@ ul.menu li{
     box-shadow: none;
     color: #888888;
     height: 30px;
-	line-height:30px;
+    line-height:30px;
     max-width: 100% !important;
     padding: 0 12px;
   }
@@ -729,6 +729,24 @@ ul.menu li{
         padding-bottom: 12px;
       }
 
+    }
+  }
+}
+.search{
+  #searchForm{
+    .inputbox{
+      width: 210px;
+      margin: 0 10px 0 0;
+    }
+    fieldset{
+      label,input{
+        float: left;
+        margin: 3px 5px 0 0;
+        padding: 3px;
+      }
+      input{
+        position: static;
+      }
     }
   }
 }
@@ -994,13 +1012,16 @@ body.contentpane form table tbody tr td.key {
       -o-border-radius: 50%;
       -ms-border-radius: 50%;
     }
-    h2{
+    h3{
       font-size: 200%;
       font-weight: bold;
       text-align: center;
       margin: 10px 0 20px;
       a{
         color: #525252;
+        &:hover{
+          text-decoration: underline;
+        }
       }
     }
     .introtext{
@@ -1097,7 +1118,7 @@ body.contentpane form table tbody tr td.key {
   }
 }
 div.tags {
-    span {
+  span {
     display: inline-block;
     a.label-info {
       font-weight: normal;
