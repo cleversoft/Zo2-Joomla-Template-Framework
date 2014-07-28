@@ -98,6 +98,12 @@ if (!class_exists('Zo2Assets')) {
             }
         }
 
+        public function loadTheme($assetsFile) {
+            if (JFile::exists($assetsFile)) {
+                $assets = json_decode(file_get_contents($assetsFile));
+            }
+        }
+
         /**
          * Get asset file with relative path
          * @param string $key File location    
@@ -141,12 +147,13 @@ if (!class_exists('Zo2Assets')) {
                     }
                     if ($position == CORE) {
                         $inputFile = $zPath->keyConvert('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = $zPath->keyConvert('zo2://assets/zo2/', 'path') . $typePath . '/' . $outputName;
+                        $outputFile = ZO2PATH_ASSETS . '/zo2/' . $typePath . '/' . $outputName;
                     } elseif ($position == TEMPLATE) {
                         $inputFile = $zPath->keyConvert('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                        $outputFile = $zPath->keyConvert('templates://assets/zo2/', 'path') . $typePath . '/' . $outputName;
+                        $outputFile = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/zo2/' . $typePath . '/' . $outputName;
                     }
                     if ($inputFile) {
+                        echo $outputFile . '<br />';
                         if ($type == 'less') {
                             Zo2HelperCompiler::less($inputFile, $outputFile);
                         } elseif ($type == 'js') {
