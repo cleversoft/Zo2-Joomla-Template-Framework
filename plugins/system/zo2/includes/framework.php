@@ -41,6 +41,13 @@ if (!class_exists('Zo2Framework')) {
          * @var Zo2Assets 
          */
         public $assets = null;
+
+        /**
+         *
+         * @var Zo2Profile
+         */
+        public $profile = null;
+        public $layout = null;
         protected $_addons = array();
 
         /**
@@ -52,11 +59,13 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Get current Zo2Framework Instance
-         * @param object $template
+         * Get instance of Zo2 Framework with specific template
+         * @param object|null $template
          * @return Zo2Framework
          */
-        public static function getInstance($template) {
+        public static function getInstance($template = null) {
+            if ($template === null)
+                $template = Zo2Factory::getTemplate();
             if (!self::$_instances[$template->template]) {
                 self::$_instances[$template->template] = new Zo2Framework($template);
             }
@@ -67,14 +76,19 @@ if (!class_exists('Zo2Framework')) {
          * Framework init
          */
         public function init() {
+            $jinput = JFactory::getApplication()->input;
+            /* Init framework variables */
             $this->assets = Zo2Assets::getInstance();
-            $this->profile = Zo2Factory::getProfile();
+            $this->profile = Zo2Factory::getProfile($jinput->getWord('profile'));
+            $this->layout = new Zo2Layout($this->profile->layout);
+
             /* Get specific core assets */
             if (Zo2Factory::isJoomla25()) {
                 $assetsFile = 'assets.joomla25.json';
             } else {
                 $assetsFile = 'assets.default.json';
             }
+            /* Load Zo2' assets */
             $assetsFile = Zo2Factory::getPath('zo2://assets/' . $assetsFile);
             if ($assetsFile) {
                 $assets = json_decode(file_get_contents($assetsFile));
@@ -287,7 +301,6 @@ if (!class_exists('Zo2Framework')) {
             if (isset($this->profile->theme)) {
                 $presetData = $this->profile->theme;
 
-
                 if (!empty($presetData['background']))
                     $style .= 'body{background-color:' . $presetData['background'] . '}';
                 if (!empty($presetData['header']))
@@ -319,7 +332,7 @@ if (!class_exists('Zo2Framework')) {
                 if (!empty($presetData['bg_image'])) {
                     $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
                 } elseif (!empty($presetData['bg_pattern'])) {
-                    $style .= 'body.boxed {background-image: url("' . JUri::root() .$presetData['bg_pattern'] . '")}';
+                    $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_pattern'] . '")}';
                 }
 
                 if (!empty($presetData['css']))
@@ -402,17 +415,6 @@ if (!class_exists('Zo2Framework')) {
             }
 
             return '';
-        }
-
-        /**
-         * Set layout for output
-         *
-         * @param $layout Zo2Layout
-         * @return bool
-         */
-        public function setLayout($layout) {
-            self::getInstance()->_layout = $layout;
-            return self::getInstance();
         }
 
         /**
@@ -520,7 +522,7 @@ if (!class_exists('Zo2Framework')) {
             //$configs = json_decode($params->get('menu_config', ''), true);
             //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             //if (JFactory::getApplication()->isAdmin()) {
-                //$mmconfig['edit'] = true;
+            //$mmconfig['edit'] = true;
             //}
             $menu = new Zo2MegaMenu($menutype);
             return $menu->renderMenu($isAdmin);
@@ -534,7 +536,7 @@ if (!class_exists('Zo2Framework')) {
             //$configs = json_decode($params->get('menu_config', ''), true);
             //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             //if (JFactory::getApplication()->isAdmin()) {
-                //$mmconfig['edit'] = true;
+            //$mmconfig['edit'] = true;
             //}
             $menu = new Zo2MegaMenu($menutype);
             return $menu->renderOffCanvasMenu($isAdmin);

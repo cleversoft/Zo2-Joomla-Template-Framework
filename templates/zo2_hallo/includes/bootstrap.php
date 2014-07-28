@@ -27,7 +27,7 @@ $framework->init();
 $this->zo2 = new JRegistry;
 $this->zo2->framework = $framework;
 $this->zo2->template = new Zo2Template();
-$this->zo2->layout = $framework->getLayout();
+$this->zo2->layout = $framework->layout;
 $this->zo2->utilities = Zo2Utilities::getInstance();
 
 $framework->getTemplateLayouts();

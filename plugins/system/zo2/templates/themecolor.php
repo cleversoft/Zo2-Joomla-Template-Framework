@@ -10,12 +10,8 @@
  * @license     GPL v2
  */
 $templatePath = Zo2Factory::getUrl('templates://');
-
 $profile = Zo2Factory::getProfile();
-
-
-
-$preset_theme = $profile->theme;
+$preset_theme = $profile->getTheme()->getProperties();
 /**
  * @todo Must use JRegistry
  */

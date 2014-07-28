@@ -8,8 +8,7 @@ $backgroundsDir = Zo2Factory::getPath('templates://assets/zo2/images/background-
 $presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
 
 $profile = Zo2Factory::getProfile();
-$presetData = $profile->theme;
-
+$theme = $profile->getTheme();
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>
@@ -27,7 +26,7 @@ $presetData = $profile->theme;
             if (is_array($presets_defined)) {
                 foreach ($presets_defined as $key => $preset) {
                     $selected = '';
-                    if (isset($presetData['name']) && $presetData['name'] == $preset->name)
+                    if ($theme->get('name') == $preset->name)
                         $selected = 'selected';
 
                     echo '<li class="' . $selected . '"><a href="#" data-color="' . $key . '" data-layout="' . $preset->name . '" style="background-color: ' . $preset->color . ';"></a></li>';
@@ -46,7 +45,7 @@ $presetData = $profile->theme;
                     foreach ($bgPatterns as $pattern) {
                         $selected = '';
                         $pattern_src = $zPath->toUrl($pattern);
-                        if (isset($presetData['bg_pattern']) && ($pattern_src == $presetData['bg_pattern']))
+                        if ($pattern_src == $theme->get('bg_pattern'))
                             $selected = 'selected';
 
                         echo '<li class="' . $selected . '"><img alt="Pattern background image" src="' . $pattern_src . '" /></li>';
@@ -143,7 +142,7 @@ $presetData = $profile->theme;
         jQuery(document).mouseup(function(e) {
             var container = jQuery("#style-switcher");
             if (!container.is(e.target) // if the target of the click isn't the container...
-                && container.has(e.target).length === 0) { // ... nor a descendant of the container
+                    && container.has(e.target).length === 0) { // ... nor a descendant of the container
 
                 container.animate({'left': '-230px'}, 600);
             }

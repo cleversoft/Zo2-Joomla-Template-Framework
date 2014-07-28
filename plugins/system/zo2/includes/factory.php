@@ -239,10 +239,11 @@ if (!class_exists('Zo2Factory')) {
             $profileName = 'default';
             if ($profile === null) {
                 $requestProfile = JFactory::getApplication()->input->get('profile');
+                /* Get requested profile via url parameter */
                 if ($requestProfile) {
                     $profileName = $requestProfile;
                 } else {
-                    /* Get request profile */
+                    /* Get request profile base on assigned menu */
                     $itemId = JFactory::getApplication()->input->get('Itemid');
                     /* Get profiles list */
                     $list = self::getFramework()->get('profile', 'default');

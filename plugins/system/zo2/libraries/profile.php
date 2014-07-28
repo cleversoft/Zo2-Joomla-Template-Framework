@@ -17,10 +17,15 @@ if (!class_exists('Zo2Profile')) {
     /**
      * Zo2 profile object
      */
-    class Zo2Profile extends JObject {
+    class Zo2Profile extends JRegistry {
 
-        private $_profile = null;
-        public $theme = array();
+        public function __get($name) {
+            return $this->get($name);
+        }
+
+        public function __set($name, $value) {
+            return $this->set($name, $value);
+        }
 
         /**
          * 
@@ -28,21 +33,21 @@ if (!class_exists('Zo2Profile')) {
          * @return boolean
          */
         public function load($name) {
-
+            /* Load from profiles directory of assets namespace */
             $profileFile = Zo2Factory::getPath('assets://profiles/' . $name . '.json');
+            /* If asked file is not exists than load default */
             if ($profileFile == false) {
                 $profileFile = Zo2Factory::getPath('assets://profiles/default.json');
             }
             if ($profileFile) {
-                $this->_profile = json_decode(JFile::read($profileFile), true);
-                $this->name = JFile::stripExt(JFile::getName($profileFile));
-                $this->layout = $this->_profile['layout'];
-                if (isset($this->_profile['theme']))
-                    $this->theme = $this->_profile['theme'];
-
+                $this->loadFile($profileFile);
                 return true;
             }
             return false;
+        }
+
+        public function getTheme() {
+            return new JObject($this->get('theme'));
         }
 
         /**
@@ -50,14 +55,14 @@ if (!class_exists('Zo2Profile')) {
          * @return type
          */
         public function save() {
-
+            /* Save to template assets/profiles */
             $templatePath = rtrim(JPATH_ROOT . '/templates/' . $this->template, DIRECTORY_SEPARATOR);
             $filePath = $templatePath . '/assets/profiles/' . $this->name . '.json';
 
             if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                $buffer = json_encode($this->getProperties(), JSON_PRETTY_PRINT);
+                $buffer = json_encode($this->toArray(), JSON_PRETTY_PRINT);
             } else {
-                $buffer = json_encode($this->getProperties());
+                $buffer = json_encode($this->toArray());
             }
 
             return JFile::write($filePath, $buffer);
