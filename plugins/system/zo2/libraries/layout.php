@@ -21,150 +21,88 @@ if (!class_exists('Zo2Layout')) {
      * Zo2 Layoutbuilder class
      */
     class Zo2Layout extends JObject {
-        /* private */
-
-        private $_compiledLayoutPath,
-                $_layoutContent,
-                $_staticsPath,
-                $_coreStaticsPath;
-        private $_output = '';
-        private $_script = array();
-        private $_style = array();
-        private $_styleDeclaration = array();
-        private $_scriptDeclaration = array();
-        private $_components = array();
-
-        const MEGAMENU_PLACEHOLDER = '<!-- zo2_megamenu_placeholder -->';
 
         /**
-         * 
-         * @param type $properties
+         * Array HTML of layout elements
+         * @var array
          */
-        public function __construct($properties = array()) {
-            parent::__construct($properties);
-            if (isset($properties['templateName'])) {
-                $this->init($properties['templateName']);
-            }
-        }
-
-        /**
-         * Init datas
-         * @param type $templateName
-         */
-        public function init($templateName) {
-            if (Zo2Factory::isSite()) {
-
-                /**
-                 * @since 1.3.8
-                 */
-                $this->set('templateName', $templateName);
-                /**
-                 * @todo Should not ending with DS
-                 */
-                $this->set('templatePath', JPATH_SITE . '/templates/' . $this->get('templateName') . '/');
-                $this->set('layoutDir', $this->get('templatePath') . 'layouts/');
-                $this->set('layoutPath', $this->get('layoutDir') . 'layout.json');
-                $this->set('templateUri', JUri::base(true) . '/templates/' . $this->get('templateName'));
-
-                /**
-                 * Load components array by get list files under components directory
-                 * @todo Move these thing into template.json
-                 */
-                $this->importComponents();
-
-                Zo2Factory::import('vendor.minify.jsshrink');
-                Zo2Factory::import('vendor.minify.css');
-            }
-        }
-
-        /**
-         * Read layout data from json
-         *
-         * @return string
-         */
-        public function getLayoutJson() {
-            $path = $this->get('templatePath') . 'layouts' . DIRECTORY_SEPARATOR . $this->_layoutName . '.json';
-            if (file_exists($path)) {
-                return file_get_contents($path);
-            } else
-                return '';
-        }
+        private $_buffer = array();
 
         /**
          * Generate body html
          * @return string
          */
         public function render() {
-            $app = JFactory::getApplication();
-            $menu = $app->getMenu();
-            $menuItem = $menu->getActive();
-            /* Get Zo2Framework */
-            $framework = Zo2Factory::getFramework();
             $html = '';
-            $canCache = $framework->get('debug_visibility', 0) == 0;
 
-            if ($menuItem) {
-                if (isset($menuItem->id) && !empty($menuItem->id)) {
-                    $cacheFile = 'zo2_layout_' . $menuItem->id . '.php';
-                } else {
-                    $cacheFile = 'zo2_layout_' . md5(json_encode($menuItem->params));
-                }
-            }
+            $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 0;
+            $cacheLoaded = false;
+            $cacheFile = $this->_getCacheFile();
 
+            /**
+             * If canCache than we check cache file to process
+             */
             if ($canCache) {
-                if ((filemtime(Zo2Factory::getPath('cache://' . md5($cacheFile))) + $framework->get('cache_interval', '3600')) < time()) {
-                    $canCache = false;
-                } else {
-                    $html = Zo2Template::getInstance()->loadCache($cacheFile);
+                /* Cache file exists than we need check expired */
+                if ($cacheFile) {
+                    if (JFile::exists($cacheFile)) {
+                        /* Cache file exists and still not expired */
+                        if ((filemtime($cacheFile) + Zo2Factory::get('cache_interval', '3600')) < time()) {
+                            /* Load HTML from cache */
+                            $html = file_get_contents($cacheFile);
+                            $cacheLoaded = true;
+                        } else {
+                            /* Cache file is expired than flag $cacheLoaded false to inform do cache in next process */
+                            $cacheLoaded = false;
+                        }
+                    } else {
+                        $cacheLoaded = false;
+                    }
                 }
             }
 
-            if ($canCache === false || (isset($html) && $html === false)) {
-
-                $layoutType = $framework->get('layout_type');
-
-                if ($layoutType == 'fixed')
-                    $layoutType = '-fixed';
-                else
-                    $layoutType = '-fluid';
-
-                $profile = Zo2Factory::getProfile();
-                $layout = $profile->layout;
-
-                if ($layout) {
-                    $data = $layout;
-
-                    foreach ($data as $item) {
-                        $html .= $this->_buildItem($item, $layoutType);
-                    }
-
-                    if ($canCache) {
-                        Zo2Template::getInstance()->saveCache($cacheFile, $html);
-                    }
-                } else { /* Load from default */
-                    if (file_exists($this->get('layoutPath'))) {
-                        $data = json_decode(file_get_contents($this->get('layoutPath')), true);
-
-                        for ($i = 0, $total = count($data); $i < $total; $i++) {
-                            $html .= $this->_buildItem($data[$i], $layoutType);
-                        }
-
-                        if ($canCache) {
-                            Zo2Template::getInstance()->saveCache($cacheFile, $html);
-                        }
-                    } else
-                        return '';
+            /* Process layout build when no cache loaded */
+            if ($cacheLoaded == false) {
+                /* Build layout from properties */
+                $properties = $this->getProperties();
+                foreach ($properties as $property) {
+                    $this->_buffer[] = $this->_buildItem($property);
                 }
+                $html = implode("", $this->_buffer);
             }
 
             /**
-             * @todo Does megamenu under caching or not ?
+             * @todo We can put HTML compress & optimize here before return
+             * We can add extra html here to ( like: copyright )
              */
-            /* Insert megamenu */
-            if (strpos($html, Zo2Layout::MEGAMENU_PLACEHOLDER) !== false) {
-                
+            /* Do cache if allowed */
+            if ($canCache === true && $cacheLoaded === false) {
+                if ($cacheFile) {
+                    JFile::write($cacheFile, $html);
+                }
             }
             return $html;
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
+        protected function _getCacheFile() {
+            $user = JFactory::getUser();
+            $app = JFactory::getApplication();
+            $menu = $app->getMenu();
+            $menuItem = $menu->getActive();
+
+            if ($menuItem) {
+                /**
+                 * @uses Cache id must match with each menu + user groups and guest status
+                 */
+                $id = md5(serialize($menuItem) . '_' . serialize($user->groups) . '_' . (int) $user->guest);
+                $cacheFile = 'zo2_cache_' . $id . '.php';
+                return ZO2PATH_CACHE . '/' . $cacheFile;
+            }
+            return false;
         }
 
         /**
@@ -173,13 +111,30 @@ if (!class_exists('Zo2Layout')) {
          * @return type
          */
         private function _buildItem($item) {
-            $html = '';
-            if ($item['type'] == 'row')
-                $html .= $this->_generateRow($item);
-            else if ($item['type'] == 'col')
-                $html .= $this->_generateColumn($item);
+            $item = new Zo2LayoutItem($item);
+            switch ($item->get('type')) {
+                case 'row':
+                    return $this->_generateRow($item);
+                case 'col':
+                    return $this->_generateColumn($item);
+                default:
+                    break;
+            }
+        }
 
-            return $html;
+        /**
+         * 
+         * @param type $item
+         * @return boolean
+         */
+        private function _checkShowRow($item) {
+            /**
+             * @todo We only check base on jdoc & modules position
+             */
+            if ($item->get('name') == 'component' || $item->get('jdoc') == 'component') {
+                return !$this->hideComponent();
+            }
+            return true;
         }
 
         /**
@@ -188,68 +143,81 @@ if (!class_exists('Zo2Layout')) {
          * @return string
          */
         private function _generateRow($item) {
-            if (
-                    (strtolower($item['name']) == 'component' && !$this->hideComponent()) || (strtolower($item['name']) != 'component')
-            ) {
-                //$class = $layoutType == 'fluid' ? 'container' : 'container-fixed';
-                $class = $item['fullwidth'] ? '' : 'container';
-                $class .= ' ' . self::_generateVisibilityClass($item['visibility']);
+            /* Basic check to verify this row can render */
+            if ($this->_checkShowRow($item)) {
+
                 $html = '';
-                if (!empty($item['id']))
-                    $html .= '<section id="' . $item['id'] . '" class="' . $item['customClass'] . '">';
+                $html .= '<!-- build row: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
+
+                /* START ROW WRAPPER */
+                $customClass = $item->getCustomClass();
+                if (trim((string) $item->get('id')) != '')
+                    $html .= '<section id="' . trim($item->get('id')) . '" class="zo2-row-wrapper ' . $customClass . '">';
                 else
-                    $html .= '<section class="' . $item['customClass'] . '">';
-                $html .= '<section class="' . $class . '">'; // start of container
-                $html .= '<section class="row">'; // start of row
-                // count column and remove empty module here
-                $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
-                $doc = JFactory::getDocument();
-                $freeSpace = 0;
-                $totalTakenSpace = 0;
+                    $html .= '<section class="zo2-row-wrapper ' . $customClass . '">';
+
+                /* START CONTAINER */
+                $containerClass = $item->get('fullwidth') ? '' : 'container';
+                $containerClass .= ' ' . $item->getVisibilityClass();
+                if (trim($containerClass) != '') {
+                    $html .= '<section class="' . trim($containerClass) . '">';
+                } else {
+                    $html .= '<section>';
+                }
+
+                /* START ROW  */
+                $html .= '<section class="row">';
+
+                $maxSpace = 12;
+                $usedSpace = 0;
                 $offsetSpace = 0;
-                for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
-                    $col = $item['children'][$i];
-                    $modulesInPosition = $doc->countModules($col['position']);
-                    if (in_array($col['position'], $exceptPos))
+
+                $children = array();
+                $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+
+                /* Process span value for children */
+                foreach ($item->get('children') as $child) {
+                    /* Count number of available modules in this position */
+                    $modulesInPosition = count(JModuleHelper::getModules($child->position));
+                    /**
+                     * This child position is excepted
+                     * @todo We should not allow these kind of exceptions !
+                     */
+                    if (in_array($child->position, $exceptPos)) {
+                        /* Because this exception than at least 1 module will be there */
                         $modulesInPosition = max($modulesInPosition, 1);
-                    if ($modulesInPosition == 0) {
-                        $freeSpace += $col['span'];
-                        unset($item['children'][$i]);
-                        continue;
-                    } else if ($modulesInPosition > 0 && $freeSpace > 0) {
-                        $item['children'][$i]['span'] += $freeSpace;
-                        $freeSpace = 0;
                     }
-
-                    $totalTakenSpace += $item['children'][$i]['span'];
-                    $offsetSpace += $item['children'][$i]['offset'];
+                    /* If there is no modules in this position */
+                    if ($modulesInPosition == 0) {
+                        /* Do nothing */
+                    } else {
+                        $usedSpace += $child->span; /* Increase used space */
+                        $children[] = $child; /* Save this child to render later */
+                    }
+                    $offsetSpace += $child->offset;
                 }
 
-                if ($totalTakenSpace <= 0)
-                    return !empty($item['name']) ? '<!-- empty row: ' . $item['name'] . ' -->' : '';
+                if ($usedSpace <= 0)
+                    return '<!--empty row: ' . trim($item->get('name', 'unknown')) . ' -->';
 
-                $tempChildren = array();
-                foreach ($item['children'] as $c) {
-                    $tempChildren[] = $c;
-                }
-                $item['children'] = $tempChildren;
-
-                if ($totalTakenSpace < 12) {
-                    $remainingSpace = 12 - $totalTakenSpace - $offsetSpace;
-                    $totalChildren = count($item['children']);
-                    $index = $totalChildren - 1;
-                    if ($index < 0)
-                        $index = 0;
-                    if (isset($item['children'][$index]))
-                        $item['children'][$index]['span'] += $remainingSpace;
+                /* Increase span for last element */
+                if ($usedSpace <= $maxSpace) {
+                    $remainingSpace = $maxSpace - $usedSpace - $offsetSpace;
+                    /* Point to last element */
+                    end($children);
+                    $key = key($children);
+                    $children[$key]->span += $remainingSpace; /* Plus with remaining space */
                 }
 
-                for ($i = 0, $total = count($item['children']); $i < $total; $i++) {
-                    $html .= self::_buildItem($item['children'][$i]);
+                foreach ($children as $child) {
+                    $html .= $this->_buildItem($child);
                 }
-                $html .= '</section>'; // end of row
-                $html .= '</section>'; // end of container
-                $html .= '</section>'; // end of wrapper
+                /* END ROW */
+                $html .= '</section>';
+                /* END CONTAINER */
+                $html .= '</section>';
+                /* END WRAPPER */
+                $html .= '</section>';
                 return $html;
             }
         }
@@ -259,14 +227,14 @@ if (!class_exists('Zo2Layout')) {
          * @param JRegistry $item
          * @return boolean
          */
-        private function _showJDoc($item) {
+        private function _checkShowColumn($item) {
             $jdoc = $item->get('jdoc', 'modules');
             switch ($jdoc) {
                 /* Component type */
                 case 'component':
                     return !$this->hideComponent();
                     break;
-                /* Message type always render because it's a part of Joomla! system */
+                /* Message type always render because it's a part of Joomla!system */
                 case 'message':
                     return true;
                     break;
@@ -275,12 +243,18 @@ if (!class_exists('Zo2Layout')) {
                     return true;
                     break;
                 default:
+                    $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+                    if (in_array($item->get('position'), $exceptPos)) {
+                        return true;
+                    }
                     /* Modules position */
                     if (strpos('addon-', $jdoc, 0) === false) {
                         jimport('joomla.application.module.helper');
-                        $modules = JModuleHelper::getModules($item->get('positions'));
+                        $modules = JModuleHelper::getModules($item->get('position'));
                         if (count($modules) > 0) {
                             return true;
+                        } else {
+                            return false;
                         }
                     } else { /* 3rd party */
                         $jdoc = str_replace('addon-', '', $jdoc);
@@ -300,28 +274,29 @@ if (!class_exists('Zo2Layout')) {
          * @return string
          */
         private function _generateColumn($item) {
-            $jItem = new JRegistry($item);
 
             /* Check is allowed to show this jdoc */
-            if ($this->_showJDoc($jItem)) {
-                $jdoc = $jItem->get('jdoc', 'modules');
-                /**
-                 * @todo move to layouts/html and use Zo2Template to fetch
-                 */
+            if ($this->_checkShowColumn($item)) {
+                $jdoc = $item->get('jdoc', 'modules');
+
                 $html = '';
-                $class = 'col-md-' . $item['span'];
-                if ($item['offset'] != 0) {
-                    $class .= ' col-md-offset-' . $item['offset'];
+                $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
+                $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
+
+                $class = 'col-md-' . $item->get('span');
+                if ($item->get('offset') != 0) {
+                    $class .= ' col-md-offset-' . $item->get('offset');
                 }
-                $class .= ' ' . $this->_generateVisibilityClass($item['visibility']);
-                //$class = 'col-xs-' . $item['span'] . ' col-md-' . $item['span'] . ' col-lg-' . $item['span'];
-                if (!empty($item['customClass']))
-                    $class .= ' ' . $item['customClass'];
-                if (!empty($item['id']))
-                    $html .= '<section id="' . $item['id'] . '" class="' . $class . '">';
+                $class .= ' ' . $item->getVisibilityClass();
+                $customClass = ($item->get('customClass') == '') ? 'zo2-no-class' : $item->get('customClass');
+                $customClass .= ' ';
+
+                /* BEGIN COL */
+                if ($item->get('id'))
+                    $html .= '<section id="' . $item->get('id') . '" class="zo2-col ' . $customClass . $class . '">';
                 else
-                    $html .= '<section class="' . $class . '">';
-                
+                    $html .= '<section class="zo2-col ' . $customClass . $class . '">';
+
                 switch ($jdoc) {
                     case 'component':
                         $html .= '<jdoc:include type="component" />';
@@ -334,18 +309,18 @@ if (!class_exists('Zo2Layout')) {
                          * old code
                          * @todo position only used to define where is element render not what kind of element
                          */
-                        if (($item['position'] == 'component'))
+                        if (($item->get('position') == 'component'))
                             $html .= '<jdoc:include type="component" />';
-                        else if (($item['position'] == 'message'))
+                        else if (($item->get('position') == 'message'))
                             $html .= '<jdoc:include type="message" />';
                         else {
-                            $html = '<jdoc:include type="modules" name="' . $item['position'] . '"  style="' . $jItem->get('style') . '" />';
+                            $html .= '<jdoc:include type="modules" name="' . $item->get('position') . '"  style="' . $item->get('style') . '" />';
                         }
                         /**
                          * @todo need move to correct jdoc
                          */
                         $template = new Zo2Template();
-                        switch ($item['position']) {
+                        switch ($item->get('position')) {
                             case 'footer_copyright':
                                 $html .= $template->fetch('zo2://html/layouts/copyright.php');
                                 break;
@@ -356,6 +331,11 @@ if (!class_exists('Zo2Layout')) {
                                  */
                                 $headerLogo = new Zo2Component_header_logo();
                                 $html .= $headerLogo->render();
+                                break;
+                            case 'mega_menu':
+                                $framework = Zo2Factory::getFramework();
+                                $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
+                                $html .= $megamenu;
                                 break;
                         }
                         break;
@@ -386,25 +366,13 @@ if (!class_exists('Zo2Layout')) {
                         }
                 }
 
-                /* Sub items */
-                if ($total = count($item['children']) > 0) {
-                    for ($i = 0; $i < $total; $i++) {
-                        $html .= self::_buildItem($item['children'][$i]);
-                    }
+                foreach ($item->get('children') as $child) {
+                    $html .= $this->_buildItem($child);
                 }
-
+                /* END COLUMN */
                 $html .= '</section>';
                 return $html;
             }
-        }
-
-        private function _generateVisibilityClass($visibilityData) {
-            $classes = array();
-            $classes[] = $visibilityData['xs'] ? 'visible-xs' : 'hidden-xs';
-            $classes[] = $visibilityData['sm'] ? 'visible-sm' : 'hidden-sm';
-            $classes[] = $visibilityData['md'] ? 'visible-md' : 'hidden-md';
-            $classes[] = $visibilityData['lg'] ? 'visible-lg' : 'hidden-lg';
-            return implode(' ', $classes);
         }
 
         /**
@@ -413,40 +381,15 @@ if (!class_exists('Zo2Layout')) {
          * @param $input
          * @return mixed
          */
-        public static function compressHtml($input) {
-            $input = str_replace("\n\n", "\n", $input);
-            $input = str_replace("\r\r", "\r", $input);
-            return $input;
-        }
-
-        /**
-         * Import components
-         */
-        public function importComponents() {
-
-            $pluginComponentsPath = ZO2PATH_ROOT . '/components/*.php';
-            $templateComponentsPath = $this->get('templatePath') . 'components/*.php';
-
-            $pluginComponents = glob($pluginComponentsPath);
-            $templateComponents = glob($templateComponentsPath);
-
-            foreach ($pluginComponents as $comp) {
-                $compName = JFILE::stripExt(basename($comp));
-                $this->_components[$compName] = $comp;
-            }
-
-            foreach ($templateComponents as $comp) {
-                $compName = JFILE::stripExt(basename($comp));
-                $this->_components[$compName] = $comp;
-            }
+        protected function _compressHtml($buffer) {
+            $buffer = str_replace("\n\n", "\n", $buffer);
+            $buffer = str_replace("\r\r", "\r", $buffer);
+            return $buffer;
         }
 
         public function getBodyClass($customClass = '') {
-            //$jinput = JFactory::getApplication()->input;
             $classes = array();
-            //$classes[] = $jinput->get('view');
             $classes[] = Zo2Factory::getCurrentPage();
-
             return trim(implode(' ', $classes) . ' ' . $customClass);
         }
 
@@ -464,22 +407,66 @@ if (!class_exists('Zo2Layout')) {
             }
         }
 
-        public function addStyleSheet($url, $type = 'text/css') {
-            $this->_style[] = array('path' => $url, 'mime' => $type);
+    }
+
+}
+
+/**
+ * Class exists checking
+ */
+if (!class_exists('Zo2LayoutItem')) {
+
+    /**
+     * Zo2 layout item class object
+     */
+    class Zo2LayoutItem extends JObject {
+
+        public $type = null;
+        public $name = null;
+        public $classClass = null;
+        public $id = null;
+        public $fullwidth = null;
+        public $visibility = array();
+        public $children = array();
+        private $_exceptions = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+
+        public function getVisibilityClass() {
+            $visibility = new JObject($this->get('visibility'));
+            $classes = array();
+            $classes[] = ($visibility->get('xs') == 1) ? 'visible-xs' : 'hidden-xs';
+            $classes[] = ($visibility->get('sm') == 1) ? 'visible-sm' : 'hidden-sm';
+            $classes[] = ($visibility->get('md') == 1) ? 'visible-md' : 'hidden-md';
+            $classes[] = ($visibility->get('lg') == 1) ? 'visible-lg' : 'hidden-lg';
+            return implode(' ', $classes);
         }
 
-        public function addStyleDeclaration($content, $type = 'text/css') {
-            $this->_styleDeclaration[] = array('content' => $content, 'mime' => $type);
+        /**
+         * 
+         * @return boolean
+         */
+        public function haveChildren() {
+            if (count($this->get('children')) > 0) {
+                return true;
+            }
+            return false;
         }
 
-        public function addScriptDeclaration($content, $type = 'text/javascript') {
-            $this->_scriptDeclaration[] = array('content' => $content, 'mime' => $type);
+        public function getCustomClass($default = 'zo2-no-class') {
+            if (trim($this->get('customClass')) == '') {
+                return $default;
+            } else {
+                return trim($this->get('customClass'));
+            }
         }
 
-        public function addScript($url, $type = 'text/javascript') {
-            $this->_script[] = array('path' => $url, 'mime' => $type);
+        public function isExcepted() {
+            if (in_array($this->get('position'), $this->_exceptions)) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }
 
-}
+}    
