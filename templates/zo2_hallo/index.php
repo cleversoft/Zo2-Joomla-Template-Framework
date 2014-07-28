@@ -35,7 +35,8 @@ $framework = Zo2Factory::getFramework();
 </head>
 <body class="<?php echo $this->zo2->layout->getBodyClass(); ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
     <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>
-    <section class="wrapper <?php echo $this->zo2->framework->isBoxed() ? 'boxed container' : ''; ?>">
+    <!-- Main wrapper -->
+    <section class="zo2 wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">
         <?php //echo $this->zo2->utilities->socialshares->render('floatbar');  ?>
         <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
         <?php echo $this->zo2->layout->render(); ?>
