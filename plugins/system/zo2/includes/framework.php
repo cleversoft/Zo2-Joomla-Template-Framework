@@ -107,6 +107,10 @@ if (!class_exists('Zo2Framework')) {
                     if ($templateAssets) {
                         $this->assets->load($templateAssets->assets);
                     }
+                    /* Load bootstrap-rtl if needed */
+                    if (JFactory::getLanguage()->isRTL()) {
+                        $this->assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.min.css');
+                    }
                     $this->_loadProfile();
                 } else {
                     /* Backend loading */
