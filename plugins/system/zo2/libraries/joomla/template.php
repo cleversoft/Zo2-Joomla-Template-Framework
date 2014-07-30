@@ -20,6 +20,8 @@ if (!class_exists('Zo2JTemplate')) {
 
         public function __construct() {
             $this->_jinput = JFactory::getApplication()->input;
+            JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
+            JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
         }
 
         public function process() {
@@ -74,6 +76,31 @@ if (!class_exists('Zo2JTemplate')) {
             $profile = $this->_jinput->get('profile');
             $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $profile . '.json');
             $templateId = $this->_jinput->get('id');
+
+            /* Get table */
+            $table = JTable::getInstance('Style', 'TemplatesTable');
+            if ($table->load($this->_jinput->get('id'))) {
+                $table->params = new JRegistry($table->params);
+                /* Update profile assign list */
+                $list = $table->params->get('profile', array());
+
+                if (is_object($list)) {
+                    foreach ($list as $key => $value) {
+                        $tList[$key] = $value;
+                    }
+                    $list = $tList;
+                }
+                foreach ($list as $index => $value) {
+                    if ($value == $profile) {
+                        unset($list[$index]);
+                    }
+                }
+                $table->params->set('profile', $list);
+                $table->params = (string) $table->params;
+                if ($table->check()) {
+                    $table->store();
+                }
+            }
             if (JFile::exists($profileFile)) {
                 JFile::delete($profileFile);
                 JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=default', false));
@@ -94,9 +121,6 @@ if (!class_exists('Zo2JTemplate')) {
             /* Do build process when template update */
             $assets = Zo2Assets::getInstance();
             $assets->buildAssets();
-
-            JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
-            JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
 
             /* Get table */
             $table = JTable::getInstance('Style', 'TemplatesTable');
