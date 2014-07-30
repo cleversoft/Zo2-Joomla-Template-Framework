@@ -62,6 +62,32 @@ if (!class_exists('Zo2JTemplate')) {
             if ($oldProfileName != $newProfileName) {
                 if (JFile::exists($profileFile)) {
                     JFile::move($profileFile, $newProfile);
+
+                    /* Get table */
+                    $table = JTable::getInstance('Style', 'TemplatesTable');
+                    if ($table->load($this->_jinput->get('id'))) {
+                        $table->params = new JRegistry($table->params);
+                        /* Update profile assign list */
+                        $list = $table->params->get('profile', array());
+
+                        if (is_object($list)) {
+                            foreach ($list as $key => $value) {
+                                $tList[$key] = $value;
+                            }
+                            $list = $tList;
+                        }
+                        foreach ($list as $index => $value) {
+                            if ($value == $oldProfileName) {
+                                $list[$index] = $newProfileName;
+                            }
+                        }
+                        $table->params->set('profile', $list);
+                        $table->params = (string) $table->params;
+                        if ($table->check()) {
+                            $table->store();
+                        }
+                    }
+
                     JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=' . $newProfileName, false));
                 } else {
                     JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=default', false));
