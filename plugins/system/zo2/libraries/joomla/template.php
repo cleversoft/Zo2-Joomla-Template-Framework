@@ -124,7 +124,17 @@ if (!class_exists('Zo2JTemplate')) {
                     }
                     $list = $tList;
                 }
-
+                /* Remove old checked menu */
+                /**
+                 * @todo Code is not optimized need improve
+                 */
+                foreach ($list as $index => $value) {
+                    if ($value == $profileName) {
+                        if (!isset($formData['profile-menu'][$value])) {
+                            unset($list[$index]);
+                        }
+                    }
+                }
                 if (isset($formData['profile-menu'])) {
                     foreach ($formData['profile-menu'] as $menuId) {
                         $list[$menuId] = $profileName;
