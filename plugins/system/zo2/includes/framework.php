@@ -97,7 +97,7 @@ if (!class_exists('Zo2Framework')) {
                     /* Load core assets */
                     $this->assets->load($assets->frontend);
                     /* Responsive */
-                    if ($this->get('responsive_layout'))
+                    if ($this->get('responsive_layout') == 1)
                         $this->assets->addStyleSheet('zo2/css/non-responsive.css');
                     /* Custom css */
                     if ($this->get('enable_custom_css', 1) == 1)
@@ -384,7 +384,7 @@ if (!class_exists('Zo2Framework')) {
         public function compileLess($lessPath, $templateName = '') {
             $filename = md5($lessPath) . '.css';
             $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
-                DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
+                    DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
             $relPath = 'assets/cache/' . $filename;
             if (!file_exists($absPath)) {
                 if (!class_exists('lessc', false))
@@ -630,7 +630,7 @@ if (!class_exists('Zo2Framework')) {
             if (isset($properties[$name])) {
                 return $properties;
             } else {
-
+                
             }
         }
 
