@@ -87,7 +87,7 @@ if (!class_exists('Zo2Layout')) {
         }
 
         /**
-         * 
+         * Get physical path for cache file
          * @return boolean
          */
         protected function _getCacheFile() {
@@ -174,11 +174,11 @@ if (!class_exists('Zo2Layout')) {
                 $usedSpace = 0;
                 $offsetSpace = 0;
                 $prevSpace = 0;
-                $children = array();
                 $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
-
+                $children = $item->get('children');
+                $updateChildren = array();
                 /* Process span value for children */
-                foreach ($item->get('children') as $child) {
+                foreach ($children as $index => $child) {
                     /* Count number of available modules in this position */
                     $modulesInPosition = count(JModuleHelper::getModules($child->position));
                     /**
@@ -193,18 +193,28 @@ if (!class_exists('Zo2Layout')) {
                     if ($modulesInPosition == 0) {
                         /* Do nothing */
                         $prevSpace = $child->span;
+                        if (isset($children[$index + 1])) {
+                            /* If right element exists than plus for right */
+                            $children[$index + 1]->span += $prevSpace;
+                            $usedSpace += $child->span; /* Increase used space */
+                            $prevSpace = 0; /* Reset value */
+                        } else {
+                            /* If right element not exists than plus for left */
+                            if (isset($children[$index - 1])) {
+
+                                $children[$index - 1]->span += $prevSpace;
+                                $usedSpace += $child->span; /* Increase used space */
+                                $prevSpace = 0; /* Reset value */
+                            }
+                        }
                     } else {
-                        $child->span +=$prevSpace;
-                        $usedSpace += $child->span; /* Increase used space */
-                        $children[] = $child; /* Save this child to render later */
-                        $prevSpace = 0;
+                        $usedSpace += $child->span;
                     }
                     $offsetSpace += $child->offset;
                 }
 
                 if ($usedSpace <= 0)
                     return '<!--empty row: ' . trim($item->get('name', 'unknown')) . ' -->';
-
                 /* Increase span for last element */
                 if ($usedSpace <= $maxSpace) {
                     $remainingSpace = $maxSpace - $usedSpace - $offsetSpace;
