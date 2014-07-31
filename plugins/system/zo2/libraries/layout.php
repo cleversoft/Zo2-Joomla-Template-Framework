@@ -208,14 +208,14 @@ if (!class_exists('Zo2Layout')) {
 
                 if ($usedSpace <= 0)
                     return '<!--empty row: ' . trim($item->get('name', 'unknown')) . ' -->';
-                /* Increase span for last element */
-                if ($usedSpace <= $maxSpace) {
-                    $remainingSpace = $maxSpace - $usedSpace - $offsetSpace;
-                    /* Point to last element */
-                    end($children);
-                    $key = key($children);
-                    $children[$key]->span += $remainingSpace; /* Plus with remaining space */
-                }
+//                /* Increase span for last element */
+//                if ($usedSpace <= $maxSpace) {
+//                    $remainingSpace = $maxSpace - $usedSpace - $offsetSpace;
+//                    /* Point to last element */
+//                    end($children);
+//                    $key = key($children);
+//                    $children[$key]->span += $remainingSpace; /* Plus with remaining space */
+//                }
 
                 foreach ($children as $child) {
                     $html .= $this->_buildItem($child);
@@ -247,11 +247,12 @@ if (!class_exists('Zo2Layout')) {
                 /* Message type always render because it's a part of Joomla!system */
                 case 'message':
                     return true;
-                    break;
+                /* Megamenu always render */
+                case 'canvasmenu':
+                    return true;
                 /* Megamenu always render */
                 case 'megamenu':
                     return true;
-                    break;
                 default:
                     $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
                     if (in_array($item->get('position'), $exceptPos)) {
