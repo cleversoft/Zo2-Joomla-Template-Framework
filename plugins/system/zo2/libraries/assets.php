@@ -153,7 +153,7 @@ if (!class_exists('Zo2Assets')) {
                         $outputFile = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/zo2/' . $typePath . '/' . $outputName;
                     }
                     if ($inputFile) {
-                        echo $outputFile . '<br />';
+                        //echo $outputFile . '<br />';
                         if ($type == 'less') {
                             Zo2HelperCompiler::less($inputFile, $outputFile);
                         } elseif ($type == 'js') {
