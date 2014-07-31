@@ -108,7 +108,7 @@ if (!class_exists('Zo2Framework')) {
                         $this->assets->load($templateAssets->assets);
                     }
                     /* Load bootstrap-rtl if needed */
-                    if (JFactory::getLanguage()->isRTL()) {
+                    if (JFactory::getLanguage()->isRTL() && $this->get('enable_rtl') == 1) {
                         $this->assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.min.css');
                     }
                     $this->_loadProfile();
@@ -386,7 +386,7 @@ if (!class_exists('Zo2Framework')) {
         public function compileLess($lessPath, $templateName = '') {
             $filename = md5($lessPath) . '.css';
             $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
-                DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
+                    DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
             $relPath = 'assets/cache/' . $filename;
             if (!file_exists($absPath)) {
                 if (!class_exists('lessc', false))
