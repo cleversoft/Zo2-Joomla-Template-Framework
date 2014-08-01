@@ -91,6 +91,26 @@
             },
             "children": [
                 {
+                    "jdoc": "canvasmenu",
+                    "type": "col",
+                    "name": "mega_menu",
+                    "position": "mega_menu",
+                    "span": 1,
+                    "offset": 0,
+                    "customClass": "",
+                    "style": "",
+                    "id": "",
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": false,
+                        "lg": false
+                    },
+                    "children": [
+
+                    ]
+                },
+                {
                     "jdoc": "modules",
                     "type": "col",
                     "name": "header_logo",
@@ -115,7 +135,7 @@
                     "type": "col",
                     "name": "mega_menu",
                     "position": "mega_menu",
-                    "span": 9,
+                    "span": 8,
                     "offset": 0,
                     "customClass": "col-sm-9 col-xs-2 mobile-menu",
                     "style": "none",
@@ -539,8 +559,8 @@
         "text": "",
         "link": "#7FBE54",
         "link_hover": "#449d44",
-        "bottom1": "#416941",
-        "bottom2": "#416941",
+        "bottom1": "",
+        "bottom2": "",
         "footer": "",
         "extra": "{}",
         "bg_image": "",

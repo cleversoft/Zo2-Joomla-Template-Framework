@@ -268,6 +268,7 @@ if (!class_exists('Zo2MegaMenu')) {
         function renderMenu($isAdmin = false) {
             //
             $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">';
+            /*
             $prefix .= '<div class="navbar-header">';
 
 
@@ -276,10 +277,9 @@ if (!class_exists('Zo2MegaMenu')) {
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
-                    </button>';
-
-            $prefix .= '</div>
-                    <div class="navbar-collapse collapse">';
+                    </button></div>';
+            */
+            $prefix .= '<div class="navbar-collapse collapse">';
             $suffix = '</div></nav>';
             $html = '';
             $hover = ' data-hover="' . Zo2Factory::get('hover_type', 'hover') . '"';

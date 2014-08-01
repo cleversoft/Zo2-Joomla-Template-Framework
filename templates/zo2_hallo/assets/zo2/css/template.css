@@ -725,6 +725,19 @@ ul.menu li {
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 12px;
 }
+.search #searchForm .inputbox {
+  width: 210px;
+  margin: 0 10px 0 0;
+}
+.search #searchForm fieldset label,
+.search #searchForm fieldset input {
+  float: left;
+  margin: 3px 5px 0 0;
+  padding: 3px;
+}
+.search #searchForm fieldset input {
+  position: static;
+}
 #mod-finder-searchform.form-search {
   position: relative;
   margin: 0;
@@ -989,14 +1002,17 @@ body.contentpane form table tbody tr td.key {
   -o-border-radius: 50%;
   -ms-border-radius: 50%;
 }
-.blog .article_content h2 {
+.blog .article_content h3 {
   font-size: 200%;
   font-weight: bold;
   text-align: center;
   margin: 10px 0 20px;
 }
-.blog .article_content h2 a {
+.blog .article_content h3 a {
   color: #525252;
+}
+.blog .article_content h3 a:hover {
+  text-decoration: underline;
 }
 .blog .article_content .introtext {
   color: #525252;
@@ -3023,6 +3039,9 @@ footer .footer_zo2_logo img {
 code {
   white-space: inherit;
 }
+.style-switcher ul.options.layout-select li a {
+  width: 54px;
+}
 .style-switcher ul.options.layout-select li a img {
   width: 54px;
 }
@@ -3275,11 +3294,11 @@ code {
   left: auto;
 }
 .rtl h3.moduletitle {
-  background: url("../images/rtl/module-title-line.jpg") no-repeat right bottom;
+  background: url("../images/module-title-line.jpg") no-repeat right bottom;
 }
 .rtl #zo2-bottom1 h3.moduletitle,
 .rtl #zo2-bottom2 h3.moduletitle {
-  background: url("../images/rtl/module-title-line-dark.jpg") no-repeat right bottom;
+  background: url("../images/module-title-line-dark.jpg") no-repeat right bottom;
 }
 .rtl .latest-news .thumb {
   float: right;
@@ -3332,4 +3351,10 @@ code {
 }
 .rtl #zo2-bottom2 address i {
   padding: 0 0 0 15px;
+}
+.zo2-row-wrapper .custom > div {
+  height: auto !important;
+}
+.zo2-row-wrapper .custom .carousel {
+  margin: 0 !important;
 }
