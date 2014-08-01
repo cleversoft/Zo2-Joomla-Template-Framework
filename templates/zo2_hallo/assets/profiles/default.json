@@ -97,14 +97,13 @@
                     "position": "mega_menu",
                     "span": 1,
                     "offset": 0,
-                    "customClass": "",
-                    "style": "",
+                    "customClass": "col-xs-1",
                     "id": "",
                     "visibility": {
                         "xs": true,
                         "sm": true,
-                        "md": false,
-                        "lg": false
+                        "md": true,
+                        "lg": true
                     },
                     "children": [
 
@@ -559,8 +558,8 @@
         "text": "",
         "link": "#7FBE54",
         "link_hover": "#449d44",
-        "bottom1": "",
-        "bottom2": "",
+        "bottom1": "#416941",
+        "bottom2": "#416941",
         "footer": "",
         "extra": "{}",
         "bg_image": "",

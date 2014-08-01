@@ -168,9 +168,15 @@ if (!class_exists('Zo2MegaMenu')) {
             }
         }
 
-        public function renderOffCanvasMenu($isAdmin = false) {
-            $this->isAdmin = $isAdmin;
-            $html = '<div class="offcanvas offcanvas-left hidden-lg hidden-md hidden-sm visible-xs">' .
+        public function renderOffCanvasMenu($config) {
+            $visibility = $config['item']->visibility;
+            $classes = array();
+            $classes[] = ($visibility->xs == 1) ? 'visible-xs' : 'hidden-xs';
+            $classes[] = ($visibility->sm == 1) ? 'visible-sm' : 'hidden-sm';
+            $classes[] = ($visibility->md == 1) ? 'visible-md' : 'hidden-md';
+            $classes[] = ($visibility->lg == 1) ? 'visible-lg' : 'hidden-lg';
+            $class =  implode(' ', $classes);
+            $html = '<div class="offcanvas offcanvas-left '.$class.'">' .
                     '<a href="#" class="sidebar-close"></a>' .
                     '<div class="sidebar-nav">';
 

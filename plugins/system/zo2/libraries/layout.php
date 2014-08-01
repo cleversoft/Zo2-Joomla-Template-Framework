@@ -375,15 +375,7 @@ if (!class_exists('Zo2Layout')) {
                     case 'canvasmenu':
                         $this->set('canvasMenu', $item);
 
-                        $html .= '<div class="navbar-header">
-                                      <button type="button" class="navbar-toggle off-canvas-trigger" data-toggle="offcanvas">
-                                          <span class="sr-only">ZO2</span>
-                                          <span class="icon-bar"></span>
-                                          <span class="icon-bar"></span>
-                                          <span class="icon-bar"></span>
-                                      </button>
-                                </div>
-                        ';
+                        $html .= '<span class="button-canvas"><i class="fa fa-2x fa-bars" data-toggle="offcanvas"></i></span>';
 
 
                         break;
