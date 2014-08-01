@@ -458,10 +458,10 @@ if (!class_exists('Zo2LayoutItem')) {
         public function getVisibilityClass() {
             $visibility = new JObject($this->get('visibility'));
             $classes = array();
-            $classes[] = ($visibility->get('xs') == 1) ? 'visible-xs' : 'hidden-xs';
-            $classes[] = ($visibility->get('sm') == 1) ? 'visible-sm' : 'hidden-sm';
-            $classes[] = ($visibility->get('md') == 1) ? 'visible-md' : 'hidden-md';
-            $classes[] = ($visibility->get('lg') == 1) ? 'visible-lg' : 'hidden-lg';
+            $classes[] = ($visibility->get('xs', 0) == 1) ? 'visible-xs' : 'hidden-xs';
+            $classes[] = ($visibility->get('sm', 0) == 1) ? 'visible-sm' : 'hidden-sm';
+            $classes[] = ($visibility->get('md', 0) == 1) ? 'visible-md' : 'hidden-md';
+            $classes[] = ($visibility->get('lg', 0) == 1) ? 'visible-lg' : 'hidden-lg';
             return implode(' ', $classes);
         }
 
