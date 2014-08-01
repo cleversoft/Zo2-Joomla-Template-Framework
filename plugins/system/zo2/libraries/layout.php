@@ -37,6 +37,8 @@ if (!class_exists('Zo2Layout')) {
             $html = '';
 
             $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 1;
+            /* Must follow Joomla! global config */
+            $canCache = $canCache && ( JFactory::getConfig()->get('caching') != 0 );            
             $cacheLoaded = false;
             $cacheFile = $this->_getCacheFile();
 
@@ -70,7 +72,7 @@ if (!class_exists('Zo2Layout')) {
                     $this->_buffer[] = $this->_buildItem($property);
                 }
                 if ($this->get('canvasMenu') instanceof Zo2LayoutItem) {
-                    $config['item'] = $this->get('canvasMenu');                
+                    $config['item'] = $this->get('canvasMenu');
                     $this->_outBuffer[] = Zo2Factory::getFramework()->displayOffCanvasMenu($config);
                 }
                 $html = implode("", $this->_buffer);
