@@ -27,6 +27,7 @@ if (!class_exists('Zo2Layout')) {
          * @var array
          */
         private $_buffer = array();
+        private $_outBuffer = array();
 
         /**
          * Generate body html
@@ -68,8 +69,12 @@ if (!class_exists('Zo2Layout')) {
                 foreach ($properties as $property) {
                     $this->_buffer[] = $this->_buildItem($property);
                 }
+                if ($this->canvasMenu) {
+                    $this->_outBuffer[] = Zo2Factory::getFramework()->displayOffCanvasMenu();
+                }
                 $html = implode("", $this->_buffer);
             }
+
             if (Zo2Factory::get('compress_html')) {
                 $html = $this->_compressHtml($html);
             }
@@ -84,6 +89,14 @@ if (!class_exists('Zo2Layout')) {
                 }
             }
             return $html;
+        }
+
+        /**
+         * 
+         * @return type
+         */
+        public function renderOut() {
+            return implode("", $this->_outBuffer);
         }
 
         /**
@@ -357,8 +370,8 @@ if (!class_exists('Zo2Layout')) {
                         $html .= $megamenu;
                         break;
                     case 'canvasmenu':
-                        $framework = Zo2Factory::getFramework();
-                        $html .= $framework->displayOffCanvasMenu();
+                        $this->set('canvasMenu', 1);
+                        $html .= '<img class="zo2-canvansmenu-trigger" onClick=""/>';
                         break;
                     default:
                         /**
