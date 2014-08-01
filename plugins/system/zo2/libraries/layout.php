@@ -69,8 +69,9 @@ if (!class_exists('Zo2Layout')) {
                 foreach ($properties as $property) {
                     $this->_buffer[] = $this->_buildItem($property);
                 }
-                if ($this->canvasMenu) {
-                    $this->_outBuffer[] = Zo2Factory::getFramework()->displayOffCanvasMenu();
+                if ($this->get('canvasMenu') instanceof Zo2LayoutItem) {
+                    $config['item'] = $this->get('canvasMenu');                
+                    $this->_outBuffer[] = Zo2Factory::getFramework()->displayOffCanvasMenu($config);
                 }
                 $html = implode("", $this->_buffer);
             }
@@ -370,7 +371,7 @@ if (!class_exists('Zo2Layout')) {
                         $html .= $megamenu;
                         break;
                     case 'canvasmenu':
-                        $this->set('canvasMenu', 1);
+                        $this->set('canvasMenu', $item);
                         $html .= '<img class="zo2-canvansmenu-trigger" onClick=""/>';
                         break;
                     default:

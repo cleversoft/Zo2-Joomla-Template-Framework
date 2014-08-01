@@ -49,6 +49,7 @@ if (!class_exists('Zo2Framework')) {
         public $profile = null;
         public $layout = null;
         protected $_addons = array();
+        public $canvasMenu = false;
 
         /**
          * Constructor
@@ -530,18 +531,19 @@ if (!class_exists('Zo2Framework')) {
             return $menu->renderMenu($isAdmin);
         }
 
-        public function displayOffCanvasMenu($menutype = null, $isAdmin = false) {
-            if ($menutype === null) {
-                $menutype = self::get('menu_type', 'mainmenu');
-            }
-            $params = $this->template->params;
+        public function displayOffCanvasMenu($config) {
+            $config = array_merge(array(
+                'menuType' => self::get('menu_type', 'mainmenu'),
+                'isAdmin' => false), $config
+            );
+
             //$configs = json_decode($params->get('menu_config', ''), true);
             //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             //if (JFactory::getApplication()->isAdmin()) {
             //$mmconfig['edit'] = true;
             //}
-            $menu = new Zo2MegaMenu($menutype);
-            return $menu->renderOffCanvasMenu($isAdmin);
+            $menu = new Zo2MegaMenu($config['menuType']);
+            return $menu->renderOffCanvasMenu($config);
         }
 
         /**
@@ -632,7 +634,7 @@ if (!class_exists('Zo2Framework')) {
             if (isset($properties[$name])) {
                 return $properties;
             } else {
-
+                
             }
         }
 
