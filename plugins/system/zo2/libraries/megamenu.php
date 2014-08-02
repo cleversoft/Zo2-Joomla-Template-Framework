@@ -22,14 +22,14 @@ if (!class_exists('Zo2MegaMenu')) {
         protected $children = null;
         protected $_items = null;
         protected $edit = false;
-        protected $isAdmin = false;
+        protected $isAdmin;
         private $_activeMenuId = -1;
 
         function __construct($menuType = 'mainmenu', $configs = array()) {
             $this->_menuType = $menuType;
             $this->_configs = $configs;
             $this->edit = isset($configs['edit']) ? $configs['edit'] : false;
-
+            $this->isAdmin  = JFactory::getApplication()->isSite();
             $this->loadMegaMenu();
         }
 

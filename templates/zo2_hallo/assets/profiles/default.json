@@ -98,6 +98,7 @@
                     "span": 1,
                     "offset": 0,
                     "customClass": "col-xs-1",
+                    "style": "",
                     "id": "",
                     "visibility": {
                         "xs": true,
@@ -551,7 +552,7 @@
         "name": "green",
         "css": "presets\/green",
         "less": "presets\/green",
-        "boxed": "0",
+        "boxed": "1",
         "background": "#ffffff",
         "header": "",
         "header_top": "",

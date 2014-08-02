@@ -24,7 +24,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 
 !function($) {
     var currentSelected = null,
-            megamenu, nav_items, nav_subs, nav_cols, nav_all;
+        megamenu, nav_items, nav_subs, nav_cols, nav_all;
 
     $.fn.megamenuAdmin = function(options) {
         var defaultOptions = {
@@ -40,7 +40,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         // hide sub
         nav_items.each(function() {
             var a = $(this),
-                    liitem = a.closest('li');
+                liitem = a.closest('li');
             if (liitem.data('hidesub') == 1) {
                 var sub = liitem.find('.menu-child:first');
                 // check if have menu-items in sub
@@ -117,7 +117,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!currentSelected)
             return;
         var liitem = currentSelected.closest('li'),
-                sub = liitem.find('.menu-child:first');
+            sub = liitem.find('.menu-child:first');
         if (liitem.data('group'))
             return; // not allow do with group
         if (sub.length == 0 || sub.css('display') == 'none') {
@@ -157,7 +157,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!currentSelected)
             return;
         var liitem = currentSelected.parent(),
-                sub = liitem.find('.menu-child:first');
+            sub = liitem.find('.menu-child:first');
         if (liitem.data('level') == 1)
             return; // ignore for top level
         if (liitem.data('group')) {
@@ -183,18 +183,18 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!currentSelected)
             return;
         var $item = currentSelected.closest('li'),
-                $liparent = $item.parent().closest('li'),
-                level = $liparent.data('level'),
-                $col = $item.closest('[class*="span"]'),
-                $items = $col.find('ul:first > li'),
-                itemidx = $items.index($item),
-                $moveitems = $items.slice(0, itemidx + 1),
-                itemleft = $items.length - $moveitems.length,
-                $rows = $col.parent().parent().children('[class*="row"]'),
-                $cols = $rows.children('[class*="span"]').filter(function() {
-            return !$(this).data('module_id')
-        }),
-                colidx = $cols.index($col);
+            $liparent = $item.parent().closest('li'),
+            level = $liparent.data('level'),
+            $col = $item.closest('[class*="span"]'),
+            $items = $col.find('ul:first > li'),
+            itemidx = $items.index($item),
+            $moveitems = $items.slice(0, itemidx + 1),
+            itemleft = $items.length - $moveitems.length,
+            $rows = $col.parent().parent().children('[class*="row"]'),
+            $cols = $rows.children('[class*="span"]').filter(function() {
+                return !$(this).data('module_id')
+            }),
+            colidx = $cols.index($col);
         if (!$liparent.length)
             return; // need make this is mega first
 
@@ -229,18 +229,18 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!currentSelected)
             return;
         var $item = currentSelected.closest('li'),
-                $liparent = $item.parent().closest('li'),
-                level = $liparent.data('level'),
-                $col = $item.closest('[class*="span"]'),
-                $items = $col.find('ul:first > li'),
-                itemidx = $items.index($item),
-                $moveitems = $items.slice(itemidx),
-                itemleft = $items.length - $moveitems.length,
-                $rows = $col.parent().parent().children('[class*="row"]'),
-                $cols = $rows.children('[class*="span"]').filter(function() {
-            return !$(this).data('module_id')
-        }),
-                colidx = $cols.index($col);
+            $liparent = $item.parent().closest('li'),
+            level = $liparent.data('level'),
+            $col = $item.closest('[class*="span"]'),
+            $items = $col.find('ul:first > li'),
+            itemidx = $items.index($item),
+            $moveitems = $items.slice(itemidx),
+            itemleft = $items.length - $moveitems.length,
+            $rows = $col.parent().parent().children('[class*="row"]'),
+            $cols = $rows.children('[class*="span"]').filter(function() {
+                return !$(this).data('module_id')
+            }),
+            colidx = $cols.index($col);
         if (!$liparent.length)
             return; // need make this is mega first
 
@@ -273,7 +273,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!currentSelected)
             return;
         var $row = $('<div class="row-fluid"><div class="span12"><div class="mega-inner"></div></div></div>').appendTo(currentSelected.find('.mega-dropdown-inner')),
-                $col = $row.children();
+            $col = $row.children();
         // bind event
         bindEvents($col);
         currentSelected = null;
@@ -300,8 +300,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!currentSelected)
             return;
         var $cols = currentSelected.parent().children('[class*="span"]'),
-                colcount = $cols.length + 1,
-                colwidths = defaultColumnsWidth(colcount);
+            colcount = $cols.length + 1,
+            colwidths = defaultColumnsWidth(colcount);
 
         // add new column
         var $col = $('<div><div class="mega-inner"></div></div>');
@@ -327,22 +327,22 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         }
 
         var $col = currentSelected,
-                $row = $col.parent(),
-                $rows = $row.parent().children('[class*="row"]'),
-                $allcols = $rows.children('[class*="span"]'),
-                $allmenucols = $allcols.filter(function() {
-                    return !$(this).data('module_id')
-                }),
-                $haspos = $allcols.filter(function() {
-                    return $(this).data('module_id')
-                }).length,
-                $cols = $row.children('[class*="span"]'),
-                colcount = $cols.length - 1,
-                colwidths = defaultColumnsWidth(colcount),
-                type_menu = $col.data('module_id') ? false : true;
+            $row = $col.parent(),
+            $rows = $row.parent().children('[class*="row"]'),
+            $allcols = $rows.children('[class*="span"]'),
+            $allmenucols = $allcols.filter(function() {
+                return !$(this).data('module_id')
+            }),
+            $haspos = $allcols.filter(function() {
+                return $(this).data('module_id')
+            }).length,
+            $cols = $row.children('[class*="span"]'),
+            colcount = $cols.length - 1,
+            colwidths = defaultColumnsWidth(colcount),
+            type_menu = $col.data('module_id') ? false : true;
 
         if ((type_menu && ((!$haspos && $allmenucols.length == 1) || ($haspos && $allmenucols.length == 0)))
-                || $allcols.length == 1) {
+            || $allcols.length == 1) {
             // if this is the only one column left
             return;
         }
@@ -351,13 +351,13 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         // check and move content to other column
         if (type_menu) {
             var colidx = $allmenucols.index($col),
-                    tocol = colidx == 0 ? $allmenucols[1] : $allmenucols[colidx - 1];
+                tocol = colidx == 0 ? $allmenucols[1] : $allmenucols[colidx - 1];
 
             $col.find('ul:first > li').appendTo($(tocol).find('ul:first'));
         }
 
         var colidx = $allcols.index($col),
-                nextActiveCol = colidx == 0 ? $allcols[1] : $allcols[colidx - 1];
+            nextActiveCol = colidx == 0 ? $allcols[1] : $allcols[colidx - 1];
 
         if (colcount < 1) {
             $row.remove();
@@ -401,11 +401,11 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 
     actions.saveConfig = function(e) {
         var config = {},
-                items = megamenu.find('ul[class*="level"] > li');
+            items = megamenu.find('ul[class*="level"] > li');
         items.each(function() {
             var $this = $(this),
-                    id = 'item-' + $this.data('id'),
-                    item = {};
+                id = 'item-' + $this.data('id'),
+                item = {};
             if ($this.hasClass('mega')) {
                 var $sub = $this.find('.menu-child:first');
                 item['submenu'] = {};
@@ -416,16 +416,16 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 }
                 // build row
                 var $rows = $sub.find('[class*="row"]:first').parent().children('[class*="row"]'),
-                        rows = [],
-                        i = 0;
+                    rows = [],
+                    i = 0;
 
                 $rows.each(function() {
                     var row = [],
-                            $cols = $(this).children('[class*="span"]'),
-                            j = 0;
+                        $cols = $(this).children('[class*="span"]'),
+                        j = 0;
                     $cols.each(function() {
                         var li = $(this).find('ul[class*="level"] > li:first'),
-                                col = {};
+                            col = {};
                         if (li.length) {
                             col['item'] = li.data('id');
                         } else if ($(this).data('module_id')) {
@@ -460,8 +460,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         });
 
         var menutype = $('#jform_params_menu_type').val(),
-                jmmconfig = $('#jform_params_menu_config'),
-                curconfig = null;
+            jmmconfig = $('#jform_params_menu_config'),
+            curconfig = null;
 
         try {
             curconfig = jmmconfig.val() ? $.parseJSON(jmmconfig.val()) : {};
@@ -525,8 +525,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             case 'item':
                 // value for toggle
                 var liitem = currentSelected.closest('li'),
-                        liparent = liitem.parent().closest('li'),
-                        sub = liitem.find('.menu-child:first');
+                    liparent = liitem.parent().closest('li'),
+                    sub = liitem.find('.menu-child:first');
 
                 $('.toolitem-exclass').attr('value', liitem.data('class') || '');
                 $('.toolitem-xicon').attr('value', liitem.data('xicon') || '');
@@ -642,8 +642,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 
     apply_toolbox = function(input) {
         var name = $(input).data('name'),
-                value = input.value,
-                type = toolbox_type();
+            value = input.value,
+            type = toolbox_type();
         switch (name) {
             case 'width':
                 if (type == 'sub') {
@@ -707,8 +707,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (count < 1)
             return null;
         var total = 12,
-                min = Math.floor(total / count),
-                widths = [];
+            min = Math.floor(total / count),
+            widths = [];
         for (var i = 0; i < count; i++) {
             widths[i] = min;
         }
@@ -808,12 +808,12 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             zo2_admin.find('.radio.btn-group label').addClass('btn');
             zo2_admin.find('.btn-group label').unbind('click').click(function() {
                 var label = $(this),
-                        input = $('#' + label.attr('for'));
+                    input = $('#' + label.attr('for'));
 
                 if (!input.prop('checked')) {
                     label.closest('.btn-group')
-                            .find('label')
-                            .removeClass('active btn-success btn-danger btn-primary');
+                        .find('label')
+                        .removeClass('active btn-success btn-danger btn-primary');
 
                     label.addClass('active ' + (input.val() == '' ? 'btn-primary' : (input.val() == 0 ? 'btn-danger' : 'btn-success')));
 
@@ -824,10 +824,10 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             zo2_admin.on('update', 'input[type=radio]', function() {
                 if (this.checked) {
                     $(this)
-                            .closest('.btn-group')
-                            .find('label').removeClass('active btn-success btn-danger btn-primary')
-                            .filter('[for="' + this.id + '"]')
-                            .addClass('active ' + ($(this).val() == '' ? 'btn-primary' : ($(this).val() == 0 ? 'btn-danger' : 'btn-success')));
+                        .closest('.btn-group')
+                        .find('label').removeClass('active btn-success btn-danger btn-primary')
+                        .filter('[for="' + this.id + '"]')
+                        .addClass('active ' + ($(this).val() == '' ? 'btn-primary' : ($(this).val() == 0 ? 'btn-danger' : 'btn-success')));
                 }
             });
 
