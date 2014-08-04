@@ -65,7 +65,27 @@ if (!class_exists('Zo2Assets')) {
          * We do not allow create new instance directly. Must go via getInstance
          */
         protected function __construct() {
-            
+            $application = JFactory::getApplication();
+            /* Dynamic load by backend options */
+            if ($application->isAdmin()) {
+                if (Zo2Factory::isJoomla25()) {
+                    /* For Joomla! 2.5 we need add jQuery into head */
+                    $document = JFactory::getDocument();
+                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
+                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
+                }
+            } else {
+                /* Allow user turn of jQuery if needed */
+                if (Zo2Factory::isJoomla25() && Zo2Factory::get('enable_jquery', 1) == 1) {
+                    /* For Joomla! 2.5 we need add jQuery into head */
+                    $document = JFactory::getDocument();
+                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
+                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
+                }
+                /* Responsive */
+                if (Zo2Factory::get('responsive_layout'))
+                    $this->addStyleSheet('css/non-responsive.css');
+            }
         }
 
         /**
