@@ -15,8 +15,11 @@ defined('_JEXEC') or die('resticted aceess');
 class AdminMenu {
 
     public static function display() {
+
+        Zo2Factory::import('core.Zo2Megamenu');
         $input = JFactory::getApplication()->input;
         $menutype = $input->get('menutype', 'mainmenu');
+        $template = Zo2Factory::getTemplate()->template;
         return Zo2Factory::getFramework()->displayMegaMenu($menutype, true);
     }
 
