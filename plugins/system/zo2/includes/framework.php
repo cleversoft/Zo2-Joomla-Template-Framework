@@ -525,12 +525,22 @@ if (!class_exists('Zo2Framework')) {
             return $menu->renderMenu($isAdmin);
         }
 
-        public function displayOffCanvasMenu($menutype = null, $isAdmin = false) {
-            if ($menutype === null) {
-                $menutype = self::get('menu_type', 'mainmenu');
+        /**
+         * @todo Create new renderMenu to wrap both of mega & canvas menu function
+         * @todo Parameter is object / array config
+         * @param type $config
+         * @param type $isAdmin
+         * @return type
+         */
+        public function displayOffCanvasMenu($config = null, $isAdmin = false) {
+            if (!isset($config['menu_type'])) {
+                $config['menu_type'] = self::get('menu_type', 'mainmenu');
             }
-            $menu = new Zo2MegaMenu($menutype);
-            return $menu->renderOffCanvasMenu($isAdmin);
+            if (!isset($config['isAdmin'])) {
+                $config['isAdmin'] = false;
+            }
+            $menu = new Zo2MegaMenu($config['menu_type'], $config);
+            return $menu->renderOffCanvasMenu($config);
         }
 
         /**
