@@ -171,8 +171,8 @@ if (!class_exists('Zo2MegaMenu')) {
         public function renderOffCanvasMenu($config) {
             $this->isAdmin = $config['isAdmin'];
             $html = '<div class="offcanvas offcanvas-left ' . $config['item']->getVisibilityClass() . '">' .
-                    '<a href="#" class="sidebar-close"></a>' .
-                    '<div class="sidebar-nav">';
+                '<a href="#" class="sidebar-close"></a>' .
+                '<div class="sidebar-nav">';
 
             $keys = array_keys($this->_items);
             $html .= $this->getOffCanvasMenu(null, $keys[0]);
@@ -261,7 +261,7 @@ if (!class_exists('Zo2MegaMenu')) {
         }
 
         /**
-         * 
+         *
          * @param type $isAdmin
          * @return string
          */
