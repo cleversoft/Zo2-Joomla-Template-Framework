@@ -38,7 +38,7 @@ if (!class_exists('Zo2Layout')) {
 
             $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 1;
             /* Must follow Joomla! global config */
-            $canCache = $canCache && ( JFactory::getConfig()->get('caching') != 0 );            
+            $canCache = $canCache && ( JFactory::getConfig()->get('caching') != 0 );
             $cacheLoaded = false;
             $cacheFile = $this->_getCacheFile();
 
@@ -362,22 +362,19 @@ if (!class_exists('Zo2Layout')) {
                                 break;
                             case 'mega_menu':
                                 $framework = Zo2Factory::getFramework();
-                                $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
+                                $megamenu = $framework->displayMegaMenu($framework->get('menutype', 'mainmenu'), false);
                                 $html .= $megamenu;
                                 break;
                         }
                         break;
                     case 'megamenu':
                         $framework = Zo2Factory::getFramework();
-                        $megamenu = $framework->displayMegaMenu($framework->get('menutype', $framework->get('menu_type')), Zo2Factory::getTemplate());
+                        $megamenu = $framework->displayMegaMenu($framework->get('menutype', 'mainmenu'), false);
                         $html .= $megamenu;
                         break;
                     case 'canvasmenu':
                         $this->set('canvasMenu', $item);
-
-                        $html .= '<span class="button-canvas"><i class="fa fa-2x fa-bars" data-toggle="offcanvas"></i></span>';
-
-
+                        $html .= '<img class="zo2-canvansmenu-trigger" onClick=""/>';
                         break;
                     default:
                         /**
