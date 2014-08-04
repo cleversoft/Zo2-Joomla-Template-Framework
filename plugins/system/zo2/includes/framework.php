@@ -431,7 +431,7 @@ if (!class_exists('Zo2Framework')) {
             $templateId = Zo2Factory::getTemplate()->id;
             if (!isset($instances[$templateId])) {
                 $instances[$templateId] = new Zo2Layout();
-            }            
+            }
             return $instances[$templateId];
         }
 
@@ -512,18 +512,15 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * @param $menutype
-         * @param $template
-         * @param bool $isAdmin
+         * Get HTML for Megamenu
+         * @param string $menutype
+         * @param string $isAdmin True to generate megamenu in backend
          * @return string
          */
-        public function displayMegaMenu($menutype, $template, $isAdmin = false) {
-            $params = $this->template->params;
-            //$configs = json_decode($params->get('menu_config', ''), true);
-            //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
-            //if (JFactory::getApplication()->isAdmin()) {
-            //$mmconfig['edit'] = true;
-            //}
+        public function displayMegaMenu($menutype = null, $isAdmin = false) {
+            if ($menutype === null) {
+                $menutype = self::get('menu_type', 'mainmenu');
+            }
             $menu = new Zo2MegaMenu($menutype);
             return $menu->renderMenu($isAdmin);
         }
