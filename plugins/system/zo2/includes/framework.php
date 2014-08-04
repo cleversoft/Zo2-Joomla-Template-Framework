@@ -49,7 +49,6 @@ if (!class_exists('Zo2Framework')) {
         public $profile = null;
         public $layout = null;
         protected $_addons = array();
-        public $canvasMenu = false;
 
         /**
          * Constructor
@@ -377,10 +376,12 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public function isBoxed() {
-
-            if (isset($this->profile->theme->boxed) && $this->profile->theme->boxed == 1)
-                return true;
-
+            $preset = $this->get('theme');
+            if (!empty($preset)) {
+                $presetData = json_decode($preset, true);
+                if (isset($presetData['boxed']) && $presetData['boxed'] == 1)
+                    return true;
+            }
             return false;
         }
 
@@ -427,14 +428,10 @@ if (!class_exists('Zo2Framework')) {
          */
         public function getLayout($templateName = null) {
             static $instances;
-            $template = Zo2Factory::getTemplate();
             $templateId = Zo2Factory::getTemplate()->id;
             if (!isset($instances[$templateId])) {
                 $instances[$templateId] = new Zo2Layout();
-                if ($templateName === null)
-                    $templateName = Zo2Factory::getTemplate()->template;
-                $instances[$templateId]->init($templateName);
-            }
+            }            
             return $instances[$templateId];
         }
 
@@ -520,24 +517,29 @@ if (!class_exists('Zo2Framework')) {
          * @param bool $isAdmin
          * @return string
          */
-        public function displayMegaMenu($menutype, $isAdmin = false) {
-            $menu = new Zo2MegaMenu($menutype);
-            return $menu->renderMenu($isAdmin);
-        }
-
-        public function displayOffCanvasMenu($config) {
-            $config = array_merge(array(
-                'menuType' => self::get('menu_type', 'mainmenu'),
-                'isAdmin' => false), $config
-            );
-
+        public function displayMegaMenu($menutype, $template, $isAdmin = false) {
+            $params = $this->template->params;
             //$configs = json_decode($params->get('menu_config', ''), true);
             //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
             //if (JFactory::getApplication()->isAdmin()) {
             //$mmconfig['edit'] = true;
             //}
-            $menu = new Zo2MegaMenu($config['menuType']);
-            return $menu->renderOffCanvasMenu($config);
+            $menu = new Zo2MegaMenu($menutype);
+            return $menu->renderMenu($isAdmin);
+        }
+
+        public function displayOffCanvasMenu($menutype = null, $isAdmin = false) {
+            if ($menutype === null) {
+                $menutype = self::get('menu_type', 'mainmenu');
+            }
+            $params = $this->template->params;
+            //$configs = json_decode($params->get('menu_config', ''), true);
+            //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
+            //if (JFactory::getApplication()->isAdmin()) {
+            //$mmconfig['edit'] = true;
+            //}
+            $menu = new Zo2MegaMenu($menutype);
+            return $menu->renderOffCanvasMenu($isAdmin);
         }
 
         /**
