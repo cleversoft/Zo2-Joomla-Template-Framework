@@ -529,12 +529,6 @@ if (!class_exists('Zo2Framework')) {
             if ($menutype === null) {
                 $menutype = self::get('menu_type', 'mainmenu');
             }
-            $params = $this->template->params;
-            //$configs = json_decode($params->get('menu_config', ''), true);
-            //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
-            //if (JFactory::getApplication()->isAdmin()) {
-            //$mmconfig['edit'] = true;
-            //}
             $menu = new Zo2MegaMenu($menutype);
             return $menu->renderOffCanvasMenu($isAdmin);
         }
