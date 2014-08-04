@@ -50,6 +50,10 @@ if (!class_exists('Zo2Profile')) {
             return new JObject($this->get('theme'));
         }
 
+        public function getMenuConfig() {
+            return json_decode(json_encode($this->get('menuConfig')), true);
+        }
+
         /**
          * 
          * @return type

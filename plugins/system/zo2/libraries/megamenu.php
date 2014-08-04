@@ -25,9 +25,10 @@ if (!class_exists('Zo2MegaMenu')) {
         protected $isAdmin = false;
         private $_activeMenuId = -1;
 
-        function __construct($menuType = 'mainmenu', $configs = array()) {
+        function __construct($menuType = 'mainmenu') {
             $this->_menuType = $menuType;
-            $this->_configs = $configs;
+            $this->_configs = Zo2Factory::getProfile()->getMenuConfig();
+            print_r ($this->_configs);
             $this->edit = isset($configs['edit']) ? $configs['edit'] : false;
 
             $this->loadMegaMenu();
@@ -265,8 +266,8 @@ if (!class_exists('Zo2MegaMenu')) {
          * @param type $isAdmin
          * @return string
          */
-        function renderMenu($isAdmin = false) {                 
-            $this->isAdmin = $isAdmin;            
+        function renderMenu($isAdmin = false) {
+            $this->isAdmin = $isAdmin;
             $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">';
             $prefix .= '<div class="navbar-header">';
 

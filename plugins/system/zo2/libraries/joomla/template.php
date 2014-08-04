@@ -178,13 +178,16 @@ if (!class_exists('Zo2JTemplate')) {
                 /**
                  * @todo Code is not optimized need improve
                  */
-                foreach ($list as $index => $value) {
-                    if ($value == $profileName) {
-                        if (!isset($formData['profile-menu'][$value])) {
-                            unset($list[$index]);
+                if (is_array($list)) {
+                    foreach ($list as $index => $value) {
+                        if ($value == $profileName) {
+                            if (!isset($formData['profile-menu'][$value])) {
+                                unset($list[$index]);
+                            }
                         }
                     }
                 }
+
                 if (isset($formData['profile-menu'])) {
                     foreach ($formData['profile-menu'] as $menuId) {
                         $list[$menuId] = $profileName;
@@ -207,6 +210,7 @@ if (!class_exists('Zo2JTemplate')) {
                         $profile->name = $profileName;
                         $profile->layout = json_decode($params->get('layout'));
                         $profile->theme = json_decode($params->get('theme'));
+                        $profile->menuConfig = json_decode($params->get('menu_config'));
 
                         $profile->save();
 
