@@ -30,7 +30,7 @@ $profiles = $framework->getProfiles();
             </div>
             <div class="controls">
                 <!-- Select profile -->
-                <select class="form-control zo2-select-profile" name="jform[profile-select]">
+                <select class="form-control zo2-select-profile" name="jform[profile-select]" data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>" >
                     <?php
                     foreach ($profiles as $key => $profile) {
                         if ($key == $profileName) {
@@ -43,12 +43,6 @@ $profiles = $framework->getProfiles();
                 </select>
 
                 <span class="input-group-btn">
-                    <!-- Load profile -->
-                    <button 
-                        class="btn btn-default" id="zo2-loadProfile" 
-                        data-url="<?php echo JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . JFactory::getApplication()->input->get('id')); ?>">
-                        Load Profile
-                    </button>
                     <!-- Add -->
                     <button class="btn btn-default" id="zo2-addProfile" >Add</button>
                     <!-- Do not allow to rename & remove when we only have 1 profile -->
