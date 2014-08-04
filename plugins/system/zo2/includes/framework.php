@@ -520,13 +520,15 @@ if (!class_exists('Zo2Framework')) {
          * @param bool $isAdmin
          * @return string
          */
-        public function displayMegaMenu($menutype, $template, $isAdmin = false) {
-            $params = $this->template->params;
+        public function displayMegaMenu($menutype) {
+            //$params = $this->template->params;
             //$configs = json_decode($params->get('menu_config', ''), true);
             //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
-            //if (JFactory::getApplication()->isAdmin()) {
-            //$mmconfig['edit'] = true;
-            //}
+            if (JFactory::getApplication()->isAdmin()) {
+                $isAdmin = true;
+            } else {
+                $isAdmin = false;
+            }
             $menu = new Zo2MegaMenu($menutype);
             return $menu->renderMenu($isAdmin);
         }

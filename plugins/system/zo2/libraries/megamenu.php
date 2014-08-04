@@ -168,9 +168,9 @@ if (!class_exists('Zo2MegaMenu')) {
             }
         }
 
-        public function renderOffCanvasMenu($isAdmin = false) {
-            $this->isAdmin = $isAdmin;
-            $html = '<div class="offcanvas offcanvas-left hidden-lg hidden-md hidden-sm visible-xs">' .
+        public function renderOffCanvasMenu($config) {
+            $this->isAdmin = $config['isAdmin'];
+            $html = '<div class="offcanvas offcanvas-left ' . $config['item']->getVisibilityClass() . '">' .
                     '<a href="#" class="sidebar-close"></a>' .
                     '<div class="sidebar-nav">';
 
@@ -265,8 +265,7 @@ if (!class_exists('Zo2MegaMenu')) {
          * @param type $isAdmin
          * @return string
          */
-        function renderMenu($isAdmin = false) {
-            //
+        function renderMenu($isAdmin = false) {            
             $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">';
             $prefix .= '<div class="navbar-header">';
 
