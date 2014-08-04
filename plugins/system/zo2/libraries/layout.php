@@ -361,15 +361,17 @@ if (!class_exists('Zo2Layout')) {
                                 $html .= $headerLogo->render();
                                 break;
                             case 'mega_menu':
+                                /* Display frontend megamenu */
                                 $framework = Zo2Factory::getFramework();
-                                $megamenu = $framework->displayMegaMenu($framework->get('menutype', 'mainmenu'), false);
+                                $megamenu = $framework->displayMegaMenu();
                                 $html .= $megamenu;
                                 break;
                         }
                         break;
                     case 'megamenu':
+                        /* Display frontend megamenu */
                         $framework = Zo2Factory::getFramework();
-                        $megamenu = $framework->displayMegaMenu($framework->get('menutype', 'mainmenu'), false);
+                        $megamenu = $framework->displayMegaMenu();
                         $html .= $megamenu;
                         break;
                     case 'canvasmenu':
