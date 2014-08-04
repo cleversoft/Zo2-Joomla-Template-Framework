@@ -158,6 +158,9 @@
   background: inherit;
   color: inherit;
 }
+.navbar-toggle .icon-bar {
+  background-color: #222222;
+}
 @media (min-width: 768px) {
   .zo2-megamenu.animate.elastic .mega > .mega-dropdown-menu {
     transform: scale(0,1);

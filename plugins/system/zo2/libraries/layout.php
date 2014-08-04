@@ -374,7 +374,10 @@ if (!class_exists('Zo2Layout')) {
                         break;
                     case 'canvasmenu':
                         $this->set('canvasMenu', $item);
-                        $html .= '<img class="zo2-canvansmenu-trigger" onClick=""/>';
+
+                        $html .= '<span class="button-canvas"><i class="fa fa-2x fa-bars" data-toggle="offcanvas"></i></span>';
+
+
                         break;
                     default:
                         /**

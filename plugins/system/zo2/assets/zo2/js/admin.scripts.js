@@ -291,6 +291,7 @@ jQuery(document).ready(function($) {
         var $this = $(this);
         var $col = $this.closest('.sortable-col');
         $.data(document.body, 'editingEl', $col);
+        var jdoc = $col.attr('data-zo2-jdoc');
         var spanWidth = $col.attr('data-zo2-span');
         var spanPosition = $col.attr('data-zo2-position');
         var spanOffset = $col.attr('data-zo2-offset');
@@ -324,6 +325,7 @@ jQuery(document).ready(function($) {
             $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
 
         $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
+        $('#dlColJDoc').val(jdoc).trigger("liszt:updated");
         $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
         $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
         $('#ddlColStyle').val(spanStyle).trigger("liszt:updated");
