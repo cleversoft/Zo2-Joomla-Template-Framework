@@ -22,14 +22,14 @@ if (!class_exists('Zo2MegaMenu')) {
         protected $children = null;
         protected $_items = null;
         protected $edit = false;
-        protected $isAdmin = false;
+        protected $isAdmin;
         private $_activeMenuId = -1;
 
         function __construct($menuType = 'mainmenu', $configs = array()) {
             $this->_menuType = $menuType;
             $this->_configs = $configs;
             $this->edit = isset($configs['edit']) ? $configs['edit'] : false;
-
+            $this->isAdmin  = JFactory::getApplication()->isSite();
             $this->loadMegaMenu();
         }
 
@@ -169,8 +169,19 @@ if (!class_exists('Zo2MegaMenu')) {
         }
 
         public function renderOffCanvasMenu($config) {
+<<<<<<< HEAD
             $this->isAdmin = $config['isAdmin'];
             $html = '<div class="offcanvas offcanvas-left ' . $config['item']->getVisibilityClass() . '">' .
+=======
+            $visibility = $config['item']->visibility;
+            $classes = array();
+            $classes[] = ($visibility->xs == 1) ? 'visible-xs' : 'hidden-xs';
+            $classes[] = ($visibility->sm == 1) ? 'visible-sm' : 'hidden-sm';
+            $classes[] = ($visibility->md == 1) ? 'visible-md' : 'hidden-md';
+            $classes[] = ($visibility->lg == 1) ? 'visible-lg' : 'hidden-lg';
+            $class =  implode(' ', $classes);
+            $html = '<div class="offcanvas offcanvas-left '.$class.'">' .
+>>>>>>> origin/1.4
                     '<a href="#" class="sidebar-close"></a>' .
                     '<div class="sidebar-nav">';
 
@@ -267,6 +278,7 @@ if (!class_exists('Zo2MegaMenu')) {
          */
         function renderMenu($isAdmin = false) {            
             $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">';
+            /*
             $prefix .= '<div class="navbar-header">';
 
 
@@ -275,10 +287,9 @@ if (!class_exists('Zo2MegaMenu')) {
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
-                    </button>';
-
-            $prefix .= '</div>
-                    <div class="navbar-collapse collapse">';
+                    </button></div>';
+            */
+            $prefix .= '<div class="navbar-collapse collapse">';
             $suffix = '</div></nav>';
             $html = '';
             $hover = ' data-hover="' . Zo2Factory::get('hover_type', 'hover') . '"';
