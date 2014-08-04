@@ -27,8 +27,7 @@ if (!class_exists('Zo2MegaMenu')) {
 
         function __construct($menuType = 'mainmenu') {
             $this->_menuType = $menuType;
-            $this->_configs = Zo2Factory::getProfile()->getMenuConfig();
-            print_r ($this->_configs);
+            $this->_configs = Zo2Factory::getProfile()->getMenuConfig($menuType);
             $this->edit = isset($configs['edit']) ? $configs['edit'] : false;
 
             $this->loadMegaMenu();
