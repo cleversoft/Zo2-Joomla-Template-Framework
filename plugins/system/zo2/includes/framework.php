@@ -521,10 +521,10 @@ if (!class_exists('Zo2Framework')) {
          * @return string
          */
         public function displayMegaMenu($menutype, $isAdmin = false) {
-            //$params = $this->template->params;
-            //$configs = json_decode($params->get('menu_config', ''), true);
-            //$mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();            
-            $menu = new Zo2MegaMenu($menutype);
+            $params = $this->template->params;
+            $configs = json_decode($params->get('menu_config', ''), true);
+            $mmconfig = ($configs && isset($configs[$menutype])) ? $configs[$menutype] : array();
+            $menu = new Zo2MegaMenu($menutype, $mmconfig );
             return $menu->renderMenu($isAdmin);
         }
 
