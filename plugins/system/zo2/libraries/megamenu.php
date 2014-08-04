@@ -13,8 +13,15 @@
 //no direct accees
 defined('_JEXEC') or die('resticted aceess');
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2MegaMenu')) {
 
+    /**
+     * Zo2 Megamenu
+     * @todo This class must be extends from JObject and init with themself default properties
+     */
     class Zo2MegaMenu {
 
         private $_menuType = 'mainmenu';
@@ -25,7 +32,7 @@ if (!class_exists('Zo2MegaMenu')) {
         protected $isAdmin = false;
         private $_activeMenuId = -1;
 
-        function __construct($menuType = 'mainmenu') {
+        public function __construct($menuType = 'mainmenu', $configs = array()) {
             $this->_menuType = $menuType;
             $this->_configs = Zo2Factory::getProfile()->getMenuConfig($menuType);
             $this->edit = isset($configs['edit']) ? $configs['edit'] : false;
