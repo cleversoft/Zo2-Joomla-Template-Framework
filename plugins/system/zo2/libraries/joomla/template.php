@@ -210,8 +210,17 @@ if (!class_exists('Zo2JTemplate')) {
                         $profile->name = $profileName;
                         $profile->layout = json_decode($params->get('layout'));
                         $profile->theme = json_decode($params->get('theme'));
-                        $profile->menuConfig = json_decode($params->get('menu_config'));
+                        
+                        $menu['hover_type'] = $params->get('hover_type');
+                        $menu['nav_type'] = $params->get('nav_type');
+                        $menu['animation'] = $params->get('animation');
+                        $menu['duration'] = $params->get('duration');
+                        $menu['show_submenu'] = $params->get('show_submenu');
+                        $menu['menu_type'] = $params->get('menu_type');
+                        $menu['mega_config'] = $params->get('menu_config');
 
+                        $profile->menuConfig = $menu;
+                        
                         $profile->save();
 
                         $application = JFactory::getApplication();
