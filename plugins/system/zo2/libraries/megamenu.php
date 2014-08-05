@@ -112,7 +112,7 @@ if (!class_exists('Zo2MegaMenu')) {
                     $item->show_group = true;
                 } else {
                     // if this item is a parent then setting up the status is dropdown
-                    if (Zo2Factory::get('show_submenu', 1) && (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit)))) {
+                    if (Zo2Factory::getProfile()->getMenuConfig()->get('show_submenu', 1) && (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit)))) {
                         $item->isdropdown = true;
                     }
                 }
@@ -289,9 +289,10 @@ if (!class_exists('Zo2MegaMenu')) {
                     <div class="navbar-collapse collapse">';
             $suffix = '</div></nav>';
             $html = '';
-            $hover = ' data-hover="' . Zo2Factory::get('hover_type', 'hover') . '"';
-            $animation = Zo2Factory::get('animation', '');
-            $duration = Zo2Factory::get('duration', 400);
+            $menuConfig = Zo2Factory::getProfile()->getMenuConfig();
+            $hover = ' data-hover="' . $menuConfig->get('hover_type') . '"';
+            $animation = $menuConfig->get('animation');
+            $duration = $menuConfig->get('duration');
             $class = 'class="zo2-megamenu' . ($animation ? ' animate ' . $animation : '') . '"';
             $data = $animation && $duration ? ' data-duration="' . $duration . '"' : '';
 
