@@ -552,7 +552,7 @@
         "name": "green",
         "css": "presets\/green",
         "less": "presets\/green",
-        "boxed": "1",
+        "boxed": "0",
         "background": "#ffffff",
         "header": "",
         "header_top": "",
@@ -582,6 +582,7 @@
             },
             "item-468": {
                 "submenu": {
+                    "width": 400,
                     "rows": [
                         [
                             {
