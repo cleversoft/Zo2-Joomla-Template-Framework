@@ -91,9 +91,10 @@ if (!class_exists('Zo2Factory')) {
                     $instances[$id] = $template;
                     return $instances[$id];
                 } else {
+					$option = JFactory::getApplication()->input->get('option');
                     /* Get requesting template for backend only */
                     $id = JFactory::getApplication()->input->get('id');
-                    if ($id) {
+                    if ($id && $option == 'com_templates') {
                         return self::getTemplate($id);
                     }
                 }
