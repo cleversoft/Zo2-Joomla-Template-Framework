@@ -75,9 +75,12 @@ if (!class_exists('Zo2Framework')) {
         public static function isZo2Template() {
             $templatePath = self::getTemplatePath();
             $templateName = self::getTemplateName();
-            if (JFile::exists($templatePath . '/assets/template.json')) {
-                return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
-            }
+			$option = JFactory::getApplication()->input->get('option');
+			if ($option == 'com_templates') {
+				if (JFile::exists($templatePath . '/assets/template.json')) {
+					return (strpos($templateName, 'zo2') !== false || strpos($templateName, 'zt') !== false);
+				}
+			}
             return false;
         }
 
