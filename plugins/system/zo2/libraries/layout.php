@@ -284,7 +284,7 @@ if (!class_exists('Zo2Layout')) {
                             return false;
                         }
                     } else { /* 3rd party */
-                        $jdoc = str_replace('addon-', '', $jdoc);
+                        $jdoc = str_replace('addon-', '', $jdoc);$html .=
                         $addons = Zo2Factory::getFramework()->getRegisteredAddons();
                         if (isset($addons[$jdoc])) {
                             return true;
@@ -376,7 +376,7 @@ if (!class_exists('Zo2Layout')) {
                         break;
                     case 'canvasmenu':
                         $this->set('canvasMenu', $item);
-                        $html .= '<img class="zo2-canvansmenu-trigger" onClick=""/>';
+                        $html .= '<span class="button-canvas"><i class="fa fa-2x fa-bars" data-toggle="offcanvas"></i></span>';
                         break;
                     default:
                         /**
