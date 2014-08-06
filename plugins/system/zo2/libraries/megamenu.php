@@ -281,18 +281,7 @@ if (!class_exists('Zo2MegaMenu')) {
          */
         function renderMenu($isAdmin = false) {
             $this->isAdmin = $isAdmin;
-            $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">';
-            $prefix .= '<div class="navbar-header">';
-
-
-            $prefix .= '<button type="button" class="navbar-toggle off-canvas-trigger" data-toggle="offcanvas">
-                          <span class="sr-only">ZO2</span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                          <span class="icon-bar"></span>
-                    </button>';
-
-            $prefix .= '</div>
+            $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">
                     <div class="navbar-collapse collapse">';
             $suffix = '</div></nav>';
             $html = '';
