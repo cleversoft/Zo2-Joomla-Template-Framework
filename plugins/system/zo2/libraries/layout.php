@@ -284,7 +284,7 @@ if (!class_exists('Zo2Layout')) {
                             return false;
                         }
                     } else { /* 3rd party */
-                        $jdoc = str_replace('addon-', '', $jdoc);$html .=
+                        $jdoc = str_replace('addon-', '', $jdoc);
                         $addons = Zo2Factory::getFramework()->getRegisteredAddons();
                         if (isset($addons[$jdoc])) {
                             return true;
