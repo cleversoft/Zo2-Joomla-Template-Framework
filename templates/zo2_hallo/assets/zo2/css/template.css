@@ -1537,8 +1537,6 @@ html {
   -moz-transition: transform 0.5s ease 0s;
   -o-transition: transform 0.5s ease 0s;
   transition: transform 0.5s ease 0s;
-  -webkit-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
 }
 .wrapper:after {
   background: none repeat scroll 0 0 rgba(0,0,0,0.2);
@@ -1658,21 +1656,6 @@ body.overflow-hidden {
   -moz-transition: transform 0.5s;
   -o-transition: transform 0.5s;
   transition: transform 0.5s;
-}
-body> * {
-  left: 0;
-  -webkit-transform: translateX(0);
-  -moz-transform: translateX(0);
-  -o-transform: translateX(0);
-  transform: translateX(0);
-  -webkit-transition: -webkit-transform 500ms ease;
-  -moz-transition: -moz-transform 500ms ease;
-  -o-transition: -o-transform 500ms ease;
-  transition: transform 500ms ease;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 body.overflow-hidden > * {
   -webkit-transform: translateX(250px);

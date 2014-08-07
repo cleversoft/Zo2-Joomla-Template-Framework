@@ -121,11 +121,18 @@
         $('[data-toggle=offcanvas]').click(function() {
             var $offcanvas = $('.offcanvas');
             $offcanvas.toggleClass('active');
-
             if ($offcanvas.hasClass('active')) {
                 showOffCanvasMenu();
             }
             else {
+                hideOffCanvasMenu();
+            }
+        });
+
+        $(document).mouseup(function (e) {
+            var container = $(".offcanvas");
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                && container.has(e.target).length === 0) {// ... nor a descendant of the container
                 hideOffCanvasMenu();
             }
         });

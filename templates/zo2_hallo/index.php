@@ -43,8 +43,8 @@ $framework = Zo2Factory::getFramework();
     </section>
     <?php echo $this->zo2->layout->renderOut(); ?>               
     <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>
-    <script>
-<?php echo $this->zo2->utilities->bottomscript->render(); ?>
+    <script type="text/javascript">
+        <?php echo $this->zo2->utilities->bottomscript->render(); ?>
     </script>
 </body>
 </html>
