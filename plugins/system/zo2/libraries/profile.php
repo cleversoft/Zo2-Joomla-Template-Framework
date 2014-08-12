@@ -12,6 +12,9 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2Profile')) {
 
     /**
@@ -41,8 +44,30 @@ if (!class_exists('Zo2Profile')) {
             }
             if ($profileFile) {
                 $this->loadFile($profileFile);
+                /* This's old profile than load from database */
+                if (!$this->get('layout') && !$this->get('layout')) {
+                    $framework = Zo2Factory::getFramework();
+                    $profile = new stdClass();
+                    $profile->layout = json_decode($framework->get('layout'));
+                    $profile->theme = json_decode($framework->get('theme'));
+
+                    $menu['hover_type'] = $framework->get('hover_type');
+                    $menu['nav_type'] = $framework->get('nav_type');
+                    $menu['animation'] = $framework->get('animation');
+                    $menu['duration'] = $framework->get('duration');
+                    $menu['show_submenu'] = $framework->get('show_submenu');
+                    $menu['menu_type'] = $framework->get('menu_type');
+                    $menu['mega_config'] = $framework->get('menu_config');
+
+                    $profile->menuConfig = $menu;
+
+                    $this->loadObject($profile);
+                    /* Save to profile */
+                    $this->save();
+                }
                 return true;
             }
+
             return false;
         }
 
