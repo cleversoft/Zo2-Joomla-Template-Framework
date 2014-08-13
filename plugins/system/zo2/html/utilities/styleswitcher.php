@@ -113,9 +113,7 @@ $theme = $profile->getTheme();
         jQuery('#zo2-bottom1').css({'background-color': presets[style_number].variables.bottom1});
         jQuery('#zo2-bottom2').css({'background-color': presets[style_number].variables.bottom2});
         jQuery('#zo2-footer').css({'background-color': presets[style_number].variables.footer});
-        if (jQuery('.color-select li.selected').length > 0) {
-            document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastElementChild);
-        }
+
         document.createStyleSheet('<?php echo $zPath->toUrl($presetDir); ?>' + style_name + '.css');
     }
 
