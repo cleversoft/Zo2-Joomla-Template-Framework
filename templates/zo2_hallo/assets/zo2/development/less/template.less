@@ -1021,13 +1021,6 @@ code{
     right: 0;
     left: auto;
   }
-  h3.moduletitle {
-    background: url("../images/module-title-line.jpg") no-repeat right bottom;
-  }
-  #zo2-bottom1 h3.moduletitle,
-  #zo2-bottom2 h3.moduletitle {
-    background: url("../images/module-title-line-dark.jpg") no-repeat right bottom;
-  }
   .latest-news{
     .thumb {
       float: right;
@@ -1072,6 +1065,10 @@ code{
     float: left;
   }
   #zo2-bottom2 address i{padding: 0 0 0 15px;}
+  h3.moduletitle:after{
+    left: inherit;
+    right: 0;
+  }
 }
 .zo2-row-wrapper{
   .custom{
