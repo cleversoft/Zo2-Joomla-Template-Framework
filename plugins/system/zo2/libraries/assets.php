@@ -293,14 +293,14 @@ if (!class_exists('Zo2Assets')) {
                 $jsHtml = '';
                 /* Do compress */
                 if ($combineJs) {
-                    $jsName = 'cache/script.combined.js';
-                    $jsFilePath = JPATH_ROOT . '/' . $jsName;
+                    $jsFile = 'cache/script.combined.js';
+                    $jsFilePath = JPATH_ROOT . '/' . $jsFile;
                     $jsContent = '';
                     //if (!file_exists($jsFilePath)) {
-                        foreach ($this->_javascripts as $javascript => $path) {
-                            $jsContent .= file_get_contents($path) . "\n";
-                        }
-                        file_put_contents($jsFilePath, $jsContent);
+                    foreach ($this->_javascripts as $javascript => $path) {
+                        $jsContent .= file_get_contents($path) . "\n";
+                    }
+                    file_put_contents($jsFilePath, $jsContent);
                     //}
                     $jsHtml .='<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $jsFile . '"></script>';
                 } else {
@@ -318,8 +318,8 @@ if (!class_exists('Zo2Assets')) {
                 $cssHtml = '';
                 if ($combineCss) {
                     $cssName = 'cache/style.combined.css';
-                    $cssFilePath = $zPath->keyConvert('templates://assets/' . $cssName);
-                    $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssFile;
+                    $cssFilePath = JPATH_ROOT . '/' . $cssName;
+                    $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssName;
                     if (!file_exists($cssFilePath)) {
                         $cssContent = '';
                         foreach ($this->_stylesheets as $styleSheets => $path) {
