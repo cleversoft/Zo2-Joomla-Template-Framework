@@ -294,14 +294,14 @@ if (!class_exists('Zo2Assets')) {
                 /* Do compress */
                 if ($combineJs) {
                     $jsName = 'cache/script.combined.js';
-                    $jsFilePath = $zPath->keyConvert('templates://assets/' . $jsName);
+                    $jsFilePath = JPATH_ROOT . '/' . $jsName;
                     $jsContent = '';
-                    if (!file_exists($jsFilePath)) {
+                    //if (!file_exists($jsFilePath)) {
                         foreach ($this->_javascripts as $javascript => $path) {
                             $jsContent .= file_get_contents($path) . "\n";
                         }
                         file_put_contents($jsFilePath, $jsContent);
-                    }
+                    //}
                     $jsHtml .='<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $jsFile . '"></script>';
                 } else {
                     foreach ($this->_javascripts as $javascript => $path) {
