@@ -278,7 +278,7 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * 
+         * @todo Move all these process to backend. Frontend just load only
          * @param type $type
          * @return string
          */
@@ -288,6 +288,7 @@ if (!class_exists('Zo2Assets')) {
             $framework = Zo2Factory::getFramework();
             $combineJs = $framework->get('combine_js');
             $combineCss = $framework->get('combine_css');
+
             /* Generate javascript */
             if ($type == 'js') {
                 $jsHtml = '';
@@ -320,17 +321,20 @@ if (!class_exists('Zo2Assets')) {
                     $cssName = 'cache/style.combined.css';
                     $cssFilePath = JPATH_ROOT . '/' . $cssName;
                     $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssName;
-                    if (!file_exists($cssFilePath)) {
-                        $cssContent = '';
-                        foreach ($this->_stylesheets as $styleSheets => $path) {
+                    $cssContent = '';
+                    foreach ($this->_stylesheets as $styleSheets => $path) {
+                        if (strpos($path, 'vendor') !== false) {
+                            $cssHtml .= '<link rel="stylesheet" href="' . $zPath->toUrl($styleSheets) . '">';
+                        } else {
                             $currentCssContent = file_get_contents($path);
                             //$currentCssContent = CssMinifier::minify($currentCssContent);
                             $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri, '/' . $styleSheets);
                             $cssContent .= $currentCssContent . "\n";
                         }
-                        $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
-                        file_put_contents($cssFilePath, $cssContent);
                     }
+                    $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
+                    file_put_contents($cssFilePath, $cssContent);
+
                     $cssHtml .='<link rel="stylesheet" href="' . $cssUri . '"></script>';
                 } else {
                     foreach ($this->_stylesheets as $styleSheets => $path) {
