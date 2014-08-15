@@ -104,7 +104,7 @@ if (!class_exists('Zo2Framework')) {
                         $this->assets->addStyleSheet('zo2/css/custom.css');
                     /* Template side */
                     $templateAssets = $this->getAssets();
-                    if ($templateAssets && isset($templateAssets->assets) {
+                    if ($templateAssets && isset($templateAssets->assets)) {
                         $this->assets->load($templateAssets->assets);
                     }
                     /* Load bootstrap-rtl if needed */
