@@ -132,9 +132,7 @@ if (!class_exists('Zo2Framework')) {
          * @return mixed
          */
         public function get($property, $default = null) {
-            if ( $this->template->params instanceof JRegistry )
-                return $this->template->params->get($property, $default);
-            return $default;
+            return $this->template->params->get($property, $default);
         }
 
         public function getPath($key) {
