@@ -1018,7 +1018,7 @@ jQuery(document).ready(function() {
      */
 
     /* Load profile */
-    jQuery('select[name="jform[profile-select]"]').on('click', function() {
+    jQuery('select[name="jform[profile-select]"]').on('change', function() {
         var url = jQuery(this).data('url');
         /* Get selected profile */
         var selectedProfile = jQuery('.zo2-select-profile').val();
