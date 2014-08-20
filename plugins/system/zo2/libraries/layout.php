@@ -35,6 +35,8 @@ if (!class_exists('Zo2Layout')) {
          */
         public function render() {
             $html = '';
+            $document = JFactory::getDocument();
+            $document->addCustomTag('<!— built with zo2 framework: http://www.zootemplate.com/zo2 —>');
 
             $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 1;
             /* Must follow Joomla! global config */
@@ -63,6 +65,7 @@ if (!class_exists('Zo2Layout')) {
                     }
                 }
             }
+
 
             /* Process layout build when no cache loaded */
             if ($cacheLoaded == false) {
