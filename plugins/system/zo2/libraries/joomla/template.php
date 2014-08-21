@@ -47,51 +47,14 @@ if (!class_exists('Zo2JTemplate')) {
          * Profile rename
          */
         public function rename() {
-
-            /* Do never use $_REQUEST */
-            $oldProfileName = $this->_jinput->get('profile');
             $newProfileName = $this->_jinput->get('newName');
-            $templateId = $this->_jinput->get('id');
-
-            if (trim($newProfileName) == '') {
-                $newProfileName = $oldProfileName;
-            }
-            $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $oldProfileName . '.json');
-            $newProfile = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/profiles/' . $newProfileName . '.json';
-
-            if ($oldProfileName != $newProfileName) {
-                if (JFile::exists($profileFile)) {
-                    JFile::move($profileFile, $newProfile);
-
-                    /* Get table */
-                    $table = JTable::getInstance('Style', 'TemplatesTable');
-                    if ($table->load($this->_jinput->get('id'))) {
-                        $table->params = new JRegistry($table->params);
-                        /* Update profile assign list */
-                        $list = $table->params->get('profile', array());
-
-                        if (is_object($list)) {
-                            foreach ($list as $key => $value) {
-                                $tList[$key] = $value;
-                            }
-                            $list = $tList;
-                        }
-                        foreach ($list as $index => $value) {
-                            if ($value == $oldProfileName) {
-                                $list[$index] = $newProfileName;
-                            }
-                        }
-                        $table->params->set('profile', $list);
-                        $table->params = (string) $table->params;
-                        if ($table->check()) {
-                            $table->store();
-                        }
-                    }
-
-                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=' . $newProfileName, false));
-                } else {
-                    JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=default', false));
-                }
+            $profile = Zo2Factory::getProfile();
+            $framework = Zo2Factory::getFramework();
+            $id = $framework->template->id;
+            if ($profile->rename($newProfileName)) {
+                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=' . $newProfileName, false));
+            } else {
+                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=default', false));
             }
         }
 
@@ -99,37 +62,11 @@ if (!class_exists('Zo2JTemplate')) {
          * Profile remove
          */
         public function remove() {
-            $profile = $this->_jinput->get('profile');
-            $profileFile = Zo2Factory::getPath('templates://assets/profiles/' . $profile . '.json');
-            $templateId = $this->_jinput->get('id');
-
-            /* Get table */
-            $table = JTable::getInstance('Style', 'TemplatesTable');
-            if ($table->load($this->_jinput->get('id'))) {
-                $table->params = new JRegistry($table->params);
-                /* Update profile assign list */
-                $list = $table->params->get('profile', array());
-
-                if (is_object($list)) {
-                    foreach ($list as $key => $value) {
-                        $tList[$key] = $value;
-                    }
-                    $list = $tList;
-                }
-                foreach ($list as $index => $value) {
-                    if ($value == $profile) {
-                        unset($list[$index]);
-                    }
-                }
-                $table->params->set('profile', $list);
-                $table->params = (string) $table->params;
-                if ($table->check()) {
-                    $table->store();
-                }
-            }
-            if (JFile::exists($profileFile)) {
-                JFile::delete($profileFile);
-                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $templateId . '&profile=default', false));
+            $framework = Zo2Factory::getFramework();
+            $id = $framework->template->id;
+            $profile = Zo2Factory::getProfile();
+            if ($profile->delete()) {
+                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=default', false));
             }
         }
 
@@ -161,6 +98,7 @@ if (!class_exists('Zo2JTemplate')) {
                 $model->save($formData);
 
                 /* Request profileName */
+                $formData['profile-select'] = isset($formData['profile-select']) ? $formData['profile-select'] : 'default';
                 $profileName = $this->_jinput->get('profile-name', $formData['profile-select']);
                 if ($profileName == '')
                     $profileName = $formData['profile-select'];
@@ -210,7 +148,7 @@ if (!class_exists('Zo2JTemplate')) {
                         $profile->name = $profileName;
                         $profile->layout = json_decode($params->get('layout'));
                         $profile->theme = json_decode($params->get('theme'));
-                        
+
                         $menu['hover_type'] = $params->get('hover_type');
                         $menu['nav_type'] = $params->get('nav_type');
                         $menu['animation'] = $params->get('animation');
@@ -220,7 +158,7 @@ if (!class_exists('Zo2JTemplate')) {
                         $menu['mega_config'] = $params->get('menu_config');
 
                         $profile->menuConfig = $menu;
-                        
+
                         $profile->save();
 
                         $application = JFactory::getApplication();
