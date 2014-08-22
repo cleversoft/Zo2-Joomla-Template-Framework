@@ -596,7 +596,7 @@ if (!class_exists('Zo2Framework')) {
          * @return \Zo2Profile
          */
         public function getProfiles() {
-            $templateDir = Zo2Factory::getPath('templates://assets/profiles');
+            $templateDir = Zo2Factory::getPath('templates://assets/profiles/' . $this->template->id);
             $profiles = array();
             if (JFolder::exists($templateDir)) {
                 $files = JFolder::files($templateDir);
