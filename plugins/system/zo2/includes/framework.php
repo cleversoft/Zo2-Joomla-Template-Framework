@@ -132,7 +132,7 @@ if (!class_exists('Zo2Framework')) {
          * @return mixed
          */
         public function get($property, $default = null) {
-            if ( $this->template->params instanceof JRegistry )
+            if ($this->template->params instanceof JRegistry)
                 return $this->template->params->get($property, $default);
             return $default;
         }
@@ -378,7 +378,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public function isBoxed() {
-            if($this->profile->theme && $this->profile->theme->boxed == 1)
+            if ($this->profile->theme && $this->profile->theme->boxed == 1)
                 return true;
             return false;
         }
@@ -610,6 +610,8 @@ if (!class_exists('Zo2Framework')) {
                     }
                 }
             }
+            if (empty($profiles))
+                $profiles[] = 'default';
             return $profiles;
         }
 
