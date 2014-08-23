@@ -76,52 +76,55 @@ if (!class_exists('Zo2Framework')) {
          * Framework init
          */
         public function init() {
-            $jinput = JFactory::getApplication()->input;
-            /* Init framework variables */
-            $this->assets = Zo2Assets::getInstance();
-            $this->profile = Zo2Factory::getProfile($jinput->getWord('profile'));
-            $this->layout = new Zo2Layout($this->profile->layout);
+			if (!defined('ZO2_LOADED')) {			
+				$jinput = JFactory::getApplication()->input;
+				/* Init framework variables */
+				$this->assets = Zo2Assets::getInstance();
+				$this->profile = Zo2Factory::getProfile($jinput->getWord('profile'));
+				$this->layout = new Zo2Layout($this->profile->layout);
 
-            /* Get specific core assets */
-            if (Zo2Factory::isJoomla25()) {
-                $assetsFile = 'assets.joomla25.json';
-            } else {
-                $assetsFile = 'assets.default.json';
-            }
-            /* Load Zo2' assets */
-            $assetsFile = Zo2Factory::getPath('zo2://assets/' . $assetsFile);
-            if ($assetsFile) {
-                $assets = json_decode(file_get_contents($assetsFile));
-                /* Site loading */
-                if (Zo2Factory::isSite()) {
-                    /* Load core assets */
-                    $this->assets->load($assets->frontend);
-                    /* Responsive */
-                    if ($this->get('responsive_layout') == 1)
-                        $this->assets->addStyleSheet('zo2/css/non-responsive.css');
-                    /* Custom css */
-                    if ($this->get('enable_custom_css', 1) == 1)
-                        $this->assets->addStyleSheet('zo2/css/custom.css');
-                    /* Template side */
-                    $templateAssets = $this->getAssets();
-                    if ($templateAssets && isset($templateAssets->assets)) {
-                        $this->assets->load($templateAssets->assets);
-                    }
-                    /* Load bootstrap-rtl if needed */
-                    if (JFactory::getLanguage()->isRTL() && $this->get('enable_rtl') == 1) {
-                        $this->assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.min.css');
-                    }
-                    $this->_loadProfile();
-                } else {
-                    /* Backend loading */
-                    if (Zo2Factory::isZo2Template()) {
-                        /* Load core assets */
-                        $this->assets->load($assets->backend);
-                    }
-                }
-            } else {
-                JFactory::getApplication()->enqueueMessage('Zo2 assets file not found');
-            }
+				/* Get specific core assets */
+				if (Zo2Factory::isJoomla25()) {
+					$assetsFile = 'assets.joomla25.json';
+				} else {
+					$assetsFile = 'assets.default.json';
+				}
+				/* Load Zo2' assets */
+				$assetsFile = Zo2Factory::getPath('zo2://assets/' . $assetsFile);
+				if ($assetsFile) {
+					$assets = json_decode(file_get_contents($assetsFile));
+					/* Site loading */
+					if (Zo2Factory::isSite()) {
+						/* Load core assets */
+						$this->assets->load($assets->frontend);
+						/* Responsive */
+						if ($this->get('responsive_layout') == 1)
+							$this->assets->addStyleSheet('zo2/css/non-responsive.css');
+						/* Custom css */
+						if ($this->get('enable_custom_css', 1) == 1)
+							$this->assets->addStyleSheet('zo2/css/custom.css');
+						/* Template side */
+						$templateAssets = $this->getAssets();
+						if ($templateAssets && isset($templateAssets->assets)) {
+							$this->assets->load($templateAssets->assets);
+						}
+						/* Load bootstrap-rtl if needed */
+						if (JFactory::getLanguage()->isRTL() && $this->get('enable_rtl') == 1) {
+							$this->assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.min.css');
+						}
+						$this->_loadProfile();
+					} else {
+						/* Backend loading */
+						if (Zo2Factory::isZo2Template()) {
+							/* Load core assets */
+							$this->assets->load($assets->backend);
+						}
+					}
+				} else {
+					JFactory::getApplication()->enqueueMessage('Zo2 assets file not found');
+				}
+				define('ZO2_LOADED',1);
+			}            
         }
 
         /**
