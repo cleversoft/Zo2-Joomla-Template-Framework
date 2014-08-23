@@ -271,7 +271,7 @@ if (!isset($preset_data['bg_image']))
                             foreach ($bgPatterns as $pattern) {
                                 $selected = '';
                                 $pattern_src = $zPath->toUrl($pattern);
-                                $pattern_path = str_replace(JPATH_ROOT . '/', '', $pattern);
+                                $pattern_path = str_replace(JPATH_ROOT . DIRECTORY_SEPARATOR, '', $pattern);
                                 if (isset($preset_data['bg_pattern']) && ($pattern_path == $preset_data['bg_pattern']))
                                     $selected = 'selected';
                                 echo '<li class="' . $selected . '"><img rel="' . $pattern_path . '" src="' . $pattern_src . '" /></li>';

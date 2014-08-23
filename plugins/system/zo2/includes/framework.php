@@ -307,6 +307,7 @@ if (!class_exists('Zo2Framework')) {
          */
         protected function _loadProfile() {
             $style = '';
+            $zPath = Zo2Path::getInstance();
             if ($this->profile->theme) {
                 $presetData = get_object_vars($this->profile->theme);
 
@@ -341,7 +342,7 @@ if (!class_exists('Zo2Framework')) {
                 if (!empty($presetData['bg_image'])) {
                     $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
                 } elseif (!empty($presetData['bg_pattern'])) {
-                    $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_pattern'] . '")}';
+                    $style .= 'body.boxed {background-image: url("' . $zPath->toUrl($presetData['bg_pattern']) . '")}';
                 }
 
                 if (!empty($presetData['css']))
