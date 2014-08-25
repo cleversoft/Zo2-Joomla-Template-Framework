@@ -98,13 +98,13 @@ The latest version (v1.3.10): [Zo2 Framework](http://www.zo2framework.org/index.
 ##Bug tracking
 
 Found a bug or have a feature request? Feel free to open an issue via this link:
-[https://github.com/aploss/zo2/issues](https://github.com/aploss/zo2/issues)
+[https://github.com/aploss/zo2/issues](https://github.com/cleversoft/zo2/issues)
 
 ##Documents
 http://docs.zo2framework.org
 
 ##Copyright, License & Usage
-Copyright (c) 2008 - 2014 [APL Solutions](http://apl.vn)
+Copyright (c) 2008 - 2014 [CleverSoft Solutions](http://cleversoft.co)
 
 ### License
 Zo2Framework is licensed under GNU General Public License (GPL), version 2 or later.
