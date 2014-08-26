@@ -11,8 +11,8 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die;
-Zo2Framework::import('vendor.less.lessc');
-Zo2Framework::import('vendor.minify.css');
+Zo2Factory::import('vendor.less.lessc');
+Zo2Factory::import('vendor.minify.css');
 /**
  * Class exists checking
  */
@@ -51,7 +51,7 @@ if (!class_exists('Zo2HelperCompiler')) {
          * @return boolean
          */
         public static function javascript($inputFile, $outputFile) {
-            if (JFile::exists($inputFile) && (!is_file($outputFile) || filemtime($inputFile) > filemtime($outputFile))) {
+            if (JFile::exists($inputFile)) {
                 $content = JFile::read($inputFile);
                 /**
                  * @todo apply javascript compress method here

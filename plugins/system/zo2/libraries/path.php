@@ -31,10 +31,10 @@ if (!class_exists('Zo2Path')) {
         /**
          * 
          * @staticvar Zo2Template $instances
-         * @param type $name
+         * @param type $name default is common
          * @return \Zo2Template
          */
-        public static function &getInstance($name) {
+        public static function &getInstance($name = 'zo2') {
             static $instances;
             if (!isset($instances[$name])) {
                 $instances[$name] = new Zo2Path();
@@ -44,29 +44,30 @@ if (!class_exists('Zo2Path')) {
         }
 
         protected function _init() {
-            $zo2Path = Zo2Framework::getZo2Path();
-
             /**
              * Zo2 paths
              */
             /* Zo2 root dir */
-            $this->registerNamespace('zo2', $zo2Path);
+            $this->registerNamespace('zo2', ZO2PATH_ROOT);
             /* Zo2 html */
-            $this->registerNamespace('html', $zo2Path . '/html');
+            $this->registerNamespace('html', ZO2PATH_ROOT . '/html');
             /* Zo2 assets */
-            $this->registerNamespace('assets', $zo2Path . '/assets');
-
+            $this->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
             /**
              * Joomla! paths
              */
             /* Zo2 profile dir */
             $this->registerNamespace('cache', JPATH_ROOT . '/cache');
 
+            $templateName = Zo2Factory::getTemplateName();
             /**
-             * Joomla! template
+             * Zo2 template
              */
-            $template = Zo2Framework::getTemplate();
-            $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $template->template . '/assets');
+            $this->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
+            /* Current */
+            $this->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
+            /* Override Zo2 html directory */
+            $this->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
         }
 
         /**
@@ -133,10 +134,39 @@ if (!class_exists('Zo2Path')) {
                     }
                 }
             }
-            if (
-                    $showError)
+            if ($showError)
                 JFactory::getApplication()->enqueueMessage('Directory not found: ' . $key, 'error');
 
+            return false;
+        }
+
+        /**
+         * Get physical path ( folder or file )
+         * @param type $key
+         * @param type $showError
+         * @return boolean|string
+         */
+        public function getPath($key, $showError = false) {
+            /* Extract key to get namespace and path */
+            $parts = explode('://', $key);
+            if (is_array($parts) && count($parts) == 2) {
+                $namespace = $parts[0];
+                $path = $parts[1];
+                /* Make sure this namespace is registered */
+                if (isset($this->_namespaces[$namespace])) {
+                    /* Find first exists filePath */
+                    foreach ($this->_namespaces[$namespace] as $namespace) {
+                        $physicalPath = $namespace . '/' . $path;
+                        if (JFile::exists($physicalPath)) {
+                            return str_replace('/', DIRECTORY_SEPARATOR, $physicalPath);
+                        } elseif (JFolder::exists($physicalPath)) {
+                            return str_replace('/', DIRECTORY_SEPARATOR, $physicalPath);
+                        }
+                    }
+                }
+            }
+            if ($showError)
+                JFactory::getApplication()->enqueueMessage('Path not found: ' . $key, 'error');
             return false;
         }
 
@@ -147,7 +177,6 @@ if (!class_exists('Zo2Path')) {
          */
         public function getUrl($key) {
             /* Extract key to get namespace and path */
-
             $parts = explode('://', $key);
             if (is_array($parts) && count($parts) == 2) {
                 $namespace = $parts[0];
@@ -158,14 +187,53 @@ if (!class_exists('Zo2Path')) {
                     foreach ($this->_namespaces[$namespace] as $namespace) {
                         $realPath = $namespace . '/' . $path;
                         if (JFile::exists($realPath)) {
-                            return Zo2HelperPath::toUrl($realPath);
+                            return $this->toUrl($realPath);
                         } elseif (JFolder::exists($realPath)) {
-                            return Zo2HelperPath::toUrl($realPath);
+                            return $this->toUrl($realPath);
                         }
                     }
                 }
             }
             return false;
+        }
+
+        /**
+         * A simple wrapped to convert physicalPath to offset/url/path
+         * We need this to remove further conflict
+         * @param string $physicalPath
+         * @param string $pathType
+         * @return string
+         */
+        public function pathConvert($physicalPath, $pathType = null) {
+            //Offset path
+            if ($pathType === null) {
+                return str_replace(JPATH_ROOT . '/', '', $physicalPath);
+            } elseif ($pathType === 'url') {
+                return $this->toUrl($physicalPath);
+            } else {
+                return $physicalPath;
+            }
+        }
+
+        /**
+         * A simple wrapped to convert key to offset/url/path
+         * @param string $key
+         * @param string $pathType
+         * @return string
+         */
+        public function keyConvert($key, $pathType = null) {
+            return $this->pathConvert($this->getPath($key), $pathType);
+        }
+
+        /**
+         * Convert physical path to URL
+         * @param string $path
+         * @return string
+         */
+        public function toUrl($path) {
+            /* Fix / is missing in url */
+            $path = (substr($path, 0, 1) == '/') ? $path : '/' . $path;
+            return str_replace('\\', '/', rtrim(JUri::root(), '/') . str_replace(JPATH_ROOT, '', $path));
         }
 
         public function getConfigFile($key, $assoc = false) {

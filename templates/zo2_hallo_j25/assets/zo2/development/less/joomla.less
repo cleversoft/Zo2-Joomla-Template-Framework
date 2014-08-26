@@ -732,6 +732,24 @@ ul.menu li{
     }
   }
 }
+.search{
+  #searchForm{
+    .inputbox{
+      width: 210px;
+      margin: 0 10px 0 0;
+    }
+    fieldset{
+      label,input{
+        float: left;
+        margin: 3px 5px 0 0;
+        padding: 3px;
+      }
+      input{
+        position: static;
+      }
+    }
+  }
+}
 #mod-finder-searchform{
   &.form-search  {
     position: relative;
@@ -994,13 +1012,16 @@ body.contentpane form table tbody tr td.key {
       -o-border-radius: 50%;
       -ms-border-radius: 50%;
     }
-    h2{
+    h3{
       font-size: 200%;
       font-weight: bold;
       text-align: center;
       margin: 10px 0 20px;
       a{
         color: #525252;
+        &:hover{
+          text-decoration: underline;
+        }
       }
     }
     .introtext{

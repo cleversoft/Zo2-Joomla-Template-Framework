@@ -35,7 +35,7 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 
 ##Download
 
-The latest version (v1.3.10): [Zo2 Framework](http://www.zo2framework.org/index.php/download)
+The latest version (v1.4.0): [Zo2 Framework](http://www.zo2framework.org/index.php/download)
 
 ##Demo
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
@@ -55,8 +55,7 @@ The latest version (v1.3.10): [Zo2 Framework](http://www.zo2framework.org/index.
 12. Version 1.3.7: released on Apr 28, 2014
 13. Version 1.3.8: released on May 12, 2014
 14. Version 1.3.9: released on May 31, 2014
-15. Version 1.3.10: released on Jul 18, 2014
-
+15. Version 1.4.0: released on August 20, 2014
 ## Roadmap
 
 **1.2.1: Dec 30, 2013 - Jan 06, 2014**
@@ -98,13 +97,13 @@ The latest version (v1.3.10): [Zo2 Framework](http://www.zo2framework.org/index.
 ##Bug tracking
 
 Found a bug or have a feature request? Feel free to open an issue via this link:
-[https://github.com/cleversoft/zo2/issues](https://github.com/cleversoft/zo2/issues)
+[https://github.com/aploss/zo2/issues](https://github.com/aploss/zo2/issues)
 
 ##Documents
 http://docs.zo2framework.org
 
 ##Copyright, License & Usage
-Copyright (c) 2008 - 2014 [CleverSoft Solutions](http://cleversoft.co)
+Copyright (c) 2008 - 2014 [APL Solutions](http://apl.vn)
 
 ### License
 Zo2Framework is licensed under GNU General Public License (GPL), version 2 or later.

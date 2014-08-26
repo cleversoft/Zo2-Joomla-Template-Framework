@@ -12,7 +12,7 @@
 //no direct accees
 defined('_JEXEC') or die ('resticted aceess');
 
-Zo2Framework::import2('core.Zo2Shortcode');
+Zo2Factory::import('core.Zo2Shortcode');
 
 class Flickr extends Zo2Shortcode
 {

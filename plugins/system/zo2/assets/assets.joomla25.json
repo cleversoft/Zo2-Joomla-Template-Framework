@@ -1,0 +1,43 @@
+{
+    "frontend": {
+        "css": [
+            "vendor\/bootstrap\/3.2.0\/css\/bootstrap.min.css",
+            "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
+            "zo2\/css\/site.styles.css",
+            "zo2\/css\/site.shortcodes.css",
+            "zo2\/css\/template.css"
+        ],
+        "js": [
+            "vendor\/bootstrap\/3.2.0\/js\/bootstrap.min.js",
+            "vendor\/ekko-lightbox.js",
+            "vendor\/jquery.sticky.js",
+            "vendor\/colorbox\/js\/jquery.colorbox-min.js",
+            "zo2\/js\/scripts.js",
+            "zo2\/js\/site.megamenu.js",
+            "zo2\/js\/site.scripts.js"
+        ]
+    },
+    "backend": {
+        "css": [
+            "vendor\/bootstrap\/2.3.2\/css\/bootstrap.min.css",
+            "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
+            "vendor\/bootstrap\/addons\/gridsystem\/bootstrap.gridsystem.css",
+            "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/css\/bootstrap-colorpicker.css",
+            "vendor\/fontselect\/fontselect.css",
+            "vendor\/fontello\/css\/fontello.css",
+            "zo2\/css\/admin.styles.css",
+            "zo2\/css\/admin.megamenu.css"
+        ],
+        "js": [
+            "vendor\/bootstrap\/2.3.2\/js\/bootstrap.min.js",
+            "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
+            "vendor\/fontselect\/jquery.fontselect.js",
+            "zo2\/js\/admin.megamenu.js",
+            "zo2\/js\/admin.assets.js",
+            "zo2\/js\/admin.social.js",
+            "zo2\/js\/scripts.js",
+            "zo2\/js\/admin.scripts.js"
+        ]
+    }
+
+}

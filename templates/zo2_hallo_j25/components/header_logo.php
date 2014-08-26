@@ -22,12 +22,13 @@ class Zo2Component_header_logo extends Zo2Component {
     public $position = Zo2Component::RENDER_BEFORE;
 
     public function render() {
-        $zo2 = Zo2Framework::getInstance();
+        /* Get Zo2Framework */
+        $framework = Zo2Factory::getFramework();
 
-        $logo = $zo2->get('header_logo');
-        $logoRetina = $zo2->get('header_retina_logo');
-        $sitename = $zo2->get('site_name');
-        $slogan = $zo2->get('site_slogan');
+        $logo = $framework->get('header_logo');
+        $logoRetina = $framework->get('header_retina_logo');
+        $sitename = $framework->get('site_name');
+        $slogan = $framework->get('site_slogan');
 
         if (!empty($logo) && !empty($logoRetina)) {
             $logo = json_decode($logo, true);
@@ -43,8 +44,8 @@ class Zo2Component_header_logo extends Zo2Component {
                 }';
 
             // still having bug with this
-            //$zo2->getLayout()->insertCssDeclaration($customStyle);
-            //$zo2->getLayout()->addStyleDeclaration($customStyle);
+            //$framework->getLayout()->insertCssDeclaration($customStyle);
+            //$framework->getLayout()->addStyleDeclaration($customStyle);
             $assets = Zo2Assets::getInstance();
             $assets->addStyleSheetDeclaration($customStyle);
 

@@ -24,7 +24,7 @@ class Zo2Controller {
 
     public static function menu() {
         $task = JFactory::getApplication()->input->get('task', '');
-        Zo2Framework::import('core.classes.admin.menu');
+        Zo2Factory::import('core.classes.admin.menu');
         if (method_exists('AdminMenu', $task)) {
             echo AdminMenu::$task();
             exit;
@@ -68,7 +68,7 @@ class Zo2Controller {
      */
     public static function getLayout() {
         if (isset($_GET['layout']) && $_GET['template']) {
-            $layout = Zo2Framework::getLayout($_GET['template']);
+            $layout = Zo2Factory::getFramework()->getLayout($_GET['template']);
             echo $layout->getLayoutJson(true, true);
         }
     }
@@ -76,14 +76,14 @@ class Zo2Controller {
     public static function getComponents() {
         if ($_GET['template']) {
             header('Content-Type: application/json');
-            echo Zo2Framework::getComponents($_GET['template']);
+            echo Zo2Factory::getFramework()->getComponents($_GET['template']);
         }
     }
 
     public static function getLayouts() {
         if ($_GET['template']) {
             header('Content-Type: application/json');
-            echo Zo2Framework::getTemplateLayoutsName($_GET['template']);
+            echo Zo2Factory::getFramework()->getTemplateLayoutsName($_GET['template']);
         }
     }
 
@@ -95,8 +95,8 @@ class Zo2Controller {
     }
 
     public static function clearCache() {
-        $layoutDir = Zo2HelperPath::getPath(Zo2HelperPath::getSiteTemplatePath() . '/layouts/cache');
-        $rootCacheDir = Zo2HelperPath::getSiteTemplatePath() . '/cache';
+        $layoutDir = Zo2Factory::getPath('templates://layouts/cache');
+        $rootCacheDir =  Zo2Factory::getPath('cache://');
         $files = glob($layoutDir . '/*');
         $cacheFiles = glob($rootCacheDir . '/*');
         foreach ($files as $file) {

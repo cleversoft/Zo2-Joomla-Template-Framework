@@ -62,6 +62,7 @@ if (!class_exists('Zo2UtilitySocialShares')) {
         }
 
         public function getSocials() {
+            $framework = Zo2Factory::getFramework();
             $file = Zo2Assets::getInstance()->getAssetFile('zo2/socialshares.json');
             $socialshares = json_decode(JFile::read($file));
 
@@ -71,7 +72,7 @@ if (!class_exists('Zo2UtilitySocialShares')) {
                     $list[$socialshare->name] = $socialshare;
             }
             /* And now get ordering from saved */
-            $socialOrders = json_decode(Zo2Framework::get('social_order'));
+            $socialOrders = json_decode($framework->get('social_order'));
             if ($socialOrders) {
                 foreach ($socialOrders as $social) {
                     if ($social->enable == 1) {
@@ -86,7 +87,7 @@ if (!class_exists('Zo2UtilitySocialShares')) {
                                     break;
                                 case 'Facebook':
                                     $default->layout = $social->button_design;
-                                    $default->action = Zo2Framework::get('fb_action');
+                                    $default->action = $framework->get('fb_action');
                                     break;
                                 case 'Buffer':
                                     $default->count = $social->button_design;
@@ -137,6 +138,7 @@ if (!class_exists('Zo2UtilitySocialShares')) {
          * @return string
          */
         public function horizontalbar() {
+            $framework = Zo2Factory::getFramework();
             /* Config checking */
             $jinput = JFactory::getApplication()->input;
             $option = $jinput->get('option');
@@ -151,14 +153,14 @@ if (!class_exists('Zo2UtilitySocialShares')) {
                             /* of course false */
                             break;
                         case 'article':
-                            $display = (bool) Zo2Framework::get('socialshare_in_article');
+                            $display = (bool) $framework->get('socialshare_in_article');
                             /* We do not check article in filter categories here. Will do that in template override */
                             break;
                         case 'category':
-                            $display = (bool) Zo2Framework::get('socialshare_in_article_list');
+                            $display = (bool) $framework->get('socialshare_in_article_list');
                             break;
                         case 'featured':
-                            $display = (bool) Zo2Framework::get('socialshare_in_featured');
+                            $display = (bool) $framework->get('socialshare_in_featured');
                             break;
                     }
 
@@ -178,12 +180,13 @@ if (!class_exists('Zo2UtilitySocialShares')) {
         }
 
         public function render() {
+            $framework = Zo2Factory::getFramework();
             $args = func_get_args();
             $style = $args[0];
             /**
              * @todo parameter must be prefixed by socialshares_<func>
              */
-            if (Zo2Framework::get('socialshare_' . $style, 1) == 1) {
+            if ($framework->get('socialshare_' . $style, 1) == 1) {
                 if (method_exists($this, $style)) {
                     return $this->$style();
                 }

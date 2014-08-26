@@ -1,18 +1,14 @@
 <?php
-$presets_json = '';
-$presetPath = Zo2Framework::getTemplatePath() . '/assets/template.presets.json';
+$presetPath = Zo2Factory::getPath('templates://assets/presets.json');
 if (file_exists($presetPath)) {
-    $presets_json = json_decode(file_get_contents($presetPath));
+    $presets_defined = json_decode(file_get_contents($presetPath));
 }
 
-$backgroundsDir =  Zo2Framework::getTemplatePath(). '/assets/zo2/images/background-patterns';
-$presetDir = Zo2Framework::getTemplatePath(). '/assets/zo2/css/presets/';
+$backgroundsDir = Zo2Factory::getPath('templates://assets/zo2/images/background-patterns');
+$presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
 
-$presets = Zo2Framework::get('theme');
-
-if(!empty($presets)) {
-    $presetData = json_decode($presets, true);
-}
+$profile = Zo2Factory::getProfile();
+$theme = $profile->getTheme();
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>
@@ -27,12 +23,14 @@ if(!empty($presets)) {
         <h5>Primary Color</h5>
         <ul class="options color-select">
             <?php
-            foreach($presets_json  as $key => $preset ) {
-                $selected = '';
-                if(isset( $presetData['name'] ) && $presetData['name'] == $preset->name)
-                    $selected = 'selected';
+            if (is_array($presets_defined)) {
+                foreach ($presets_defined as $key => $preset) {
+                    $selected = '';
+                    if ($theme->get('name') == $preset->name)
+                        $selected = 'selected';
 
-                echo '<li class="'.$selected.'"><a href="#" data-color="'.$key.'" data-layout="'.$preset->name.'" style="background-color: '.$preset->color.';"></a></li>';
+                    echo '<li class="' . $selected . '"><a href="#" data-color="' . $key . '" data-layout="' . $preset->name . '" style="background-color: ' . $preset->color . ';"></a></li>';
+                }
             }
             ?>
         </ul>
@@ -40,29 +38,29 @@ if(!empty($presets)) {
             <h5>Patterns (Boxed Version)</h5>
             <ul class="options background-select">
                 <?php
-                $bgPatterns =  glob($backgroundsDir.'/*.*');
+                $bgPatterns = glob($backgroundsDir . '/*.*');
+                $zPath = Zo2Path::getInstance();
 
-                if(count($bgPatterns) > 0) {
-                    foreach($bgPatterns as $pattern ) {
+                if (count($bgPatterns) > 0) {
+                    foreach ($bgPatterns as $pattern) {
                         $selected = '';
-                        $pattern_src = Zo2HelperPath::toUrl($pattern);
-                        if( isset($presetData['bg_pattern']) && ($pattern_src == $presetData['bg_pattern']) )
+                        $pattern_src = $zPath->toUrl($pattern);
+                        if ($pattern_src == $theme->get('bg_pattern'))
                             $selected = 'selected';
 
-                        echo '<li class="'.$selected.'"><img alt="Pattern background image" src="'.$pattern_src.'" /></li>';
+                        echo '<li class="' . $selected . '"><img alt="Pattern background image" src="' . $pattern_src . '" /></li>';
                     }
                 }
-
                 ?>
             </ul>
         </div>
     </div>
 </div>
 <script>
-    if(typeof document.createStyleSheet === 'undefined') {
+    if (typeof document.createStyleSheet === 'undefined') {
         document.createStyleSheet = (function() {
             function createStyleSheet(href) {
-                if(typeof href !== 'undefined') {
+                if (typeof href !== 'undefined') {
                     var element = document.createElement('link');
                     element.type = 'text/css';
                     element.rel = 'stylesheet';
@@ -76,17 +74,17 @@ if(!empty($presets)) {
                 document.getElementsByTagName('head')[0].appendChild(element);
                 var sheet = document.styleSheets[document.styleSheets.length - 1];
 
-                if(typeof sheet.addRule === 'undefined')
+                if (typeof sheet.addRule === 'undefined')
                     sheet.addRule = addRule;
 
-                if(typeof sheet.removeRule === 'undefined')
+                if (typeof sheet.removeRule === 'undefined')
                     sheet.removeRule = sheet.deleteRule;
 
                 return sheet;
             }
 
             function addRule(selectorText, cssText, index) {
-                if(typeof index === 'undefined')
+                if (typeof index === 'undefined')
                     index = this.cssRules.length;
 
                 this.insertRule(selectorText + ' {' + cssText + '}', index);
@@ -115,24 +113,22 @@ if(!empty($presets)) {
         jQuery('#zo2-bottom1').css({'background-color': presets[style_number].variables.bottom1});
         jQuery('#zo2-bottom2').css({'background-color': presets[style_number].variables.bottom2});
         jQuery('#zo2-footer').css({'background-color': presets[style_number].variables.footer});
-        if(jQuery('.color-select li.selected').length > 0) {
-            document.getElementsByTagName('head')[0].removeChild(document.getElementsByTagName('head')[0].lastElementChild);
-        }
-        document.createStyleSheet('<?php echo Zo2HelperPath::toUrl($presetDir); ?>'+style_name+'.css');
+
+        document.createStyleSheet('<?php echo $zPath->toUrl($presetDir); ?>' + style_name + '.css');
     }
 
     jQuery(document).ready(function() {
 
         //style switcher
-        if(jQuery('body').hasClass('boxed')) {
+        if (jQuery('body').hasClass('boxed')) {
             jQuery('#boxed-layout').addClass('selected');
             jQuery('.background-select-wrap').show();
-        }else {
+        } else {
             jQuery('#fullwidth-layout').addClass('selected');
         }
 
         jQuery(".style-switcher-icon").click(function() {
-            if(jQuery('#ss_position').val() == 'hide') {
+            if (jQuery('#ss_position').val() == 'hide') {
                 jQuery('#style-switcher').animate({'left': '0px'}, 600);
                 jQuery('#ss_position').val('show');
             } else {
@@ -141,10 +137,10 @@ if(!empty($presets)) {
             }
         });
 
-        jQuery(document).mouseup(function (e) {
+        jQuery(document).mouseup(function(e) {
             var container = jQuery("#style-switcher");
             if (!container.is(e.target) // if the target of the click isn't the container...
-                && container.has(e.target).length === 0) { // ... nor a descendant of the container
+                    && container.has(e.target).length === 0) { // ... nor a descendant of the container
 
                 container.animate({'left': '-230px'}, 600);
             }
@@ -154,7 +150,7 @@ if(!empty($presets)) {
             jQuery('.layout-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var color = jQuery('.color-select li.selected a').attr('data-color');
-            if(jQuery(this).attr('id') == 'boxed-layout') {
+            if (jQuery(this).attr('id') == 'boxed-layout') {
                 jQuery('body').addClass('boxed');
                 jQuery('body .wrapper').addClass('boxed').addClass('container');
                 jQuery('.background-select-wrap').fadeIn(500);
@@ -169,7 +165,7 @@ if(!empty($presets)) {
 
             jQuery('.color-select li').removeClass('selected');
             jQuery(this).addClass('selected');
-            var presetjson = '<?php echo json_encode($presets_json);?>';
+            var presetjson = '<?php echo json_encode($presets_defined); ?>';
             set_presets(jQuery(this).find('a').attr('data-color'), jQuery(this).find('a').attr('data-layout'), presetjson);
         });
 
@@ -178,7 +174,7 @@ if(!empty($presets)) {
             jQuery('.background-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var background = jQuery(this).find('img').attr('src');
-            jQuery('head').append('<style> body.boxed {background-image: url("'+background+'")}</style>');
+            jQuery('head').append('<style> body.boxed {background-image: url("' + background + '")}</style>');
         });
     });
 </script>

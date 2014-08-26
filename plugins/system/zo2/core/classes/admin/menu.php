@@ -14,13 +14,14 @@ defined('_JEXEC') or die('resticted aceess');
 
 class AdminMenu {
 
+    /**
+     * @todo Move to libraries
+     * @return type
+     */
     public static function display() {
-
-        Zo2Framework::import('core.Zo2Megamenu');
         $input = JFactory::getApplication()->input;
         $menutype = $input->get('menutype', 'mainmenu');
-        $template = Zo2Framework::getTemplate()->template;
-        return Zo2Framework::displayMegaMenu($menutype, $template, true);
+        return Zo2Factory::getFramework()->displayMegaMenu($menutype, true);
     }
 
     public static function save() {

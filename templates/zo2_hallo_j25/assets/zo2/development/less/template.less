@@ -386,6 +386,9 @@ nav.zo2-menu{
     max-width: none;
     width: 100%;
     padding: 15px 0;
+    .zo2-megamenu .mega > .mega-dropdown-menu .mega-dropdown-inner{
+        margin-top: 28px;
+    }
   }
 }
 
@@ -567,6 +570,9 @@ nav.zo2-menu{
         font-size: 11px;
     }
 }
+#system-message{
+    margin: 0 0 20px;
+}
 //Fix Googlemap page
 .gmap-page{
     .embed-container{
@@ -667,6 +673,7 @@ footer{
     a{
         background: none;
         padding: 10px 0;
+        display: block;
         &:hover,
             &:active,
             &:focus{
@@ -743,8 +750,11 @@ footer{
 code{
     white-space: inherit;
 }
-.style-switcher ul.options.layout-select li a img {
+.style-switcher ul.options.layout-select li a {
     width: 54px;
+    img {
+        width: 54px;
+    }
 }
 /* Responsive */
 @media (max-width: 767px) {
@@ -1013,11 +1023,11 @@ code{
     left: auto;
   }
   h3.moduletitle {
-    background: url("../images/rtl/module-title-line.jpg") no-repeat right bottom;
+    background: url("../images/module-title-line.jpg") no-repeat right bottom;
   }
   #zo2-bottom1 h3.moduletitle,
   #zo2-bottom2 h3.moduletitle {
-    background: url("../images/rtl/module-title-line-dark.jpg") no-repeat right bottom;
+    background: url("../images/module-title-line-dark.jpg") no-repeat right bottom;
   }
   .latest-news{
     .thumb {

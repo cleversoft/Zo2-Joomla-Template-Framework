@@ -13,6 +13,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 require_once __DIR__ . '/defines.php';
+require_once __DIR__ . '/framework.php';
+require_once __DIR__ . '/factory.php';
 
 /* Joomla! autoloading register */
 JLoader::discover('Zo2', ZO2PATH_ROOT . '/libraries');
@@ -20,43 +22,36 @@ JLoader::discover('Zo2Helper', ZO2PATH_ROOT . '/helpers');
 JLoader::discover('Zo2Service', ZO2PATH_ROOT . '/libraries/services');
 JLoader::discover('Zo2Imager', ZO2PATH_ROOT . '/libraries/imagers');
 
-if (Zo2Framework::isZo2Template()) {
+if (Zo2Factory::isZo2Template()) {
 
-    $assets = Zo2Assets::getInstance();
-
-    $assets->buildAssets();
-    $assets->loadAssets();
-
-    /**
-     * Framework init
-     */
-    if (!Zo2Framework::isJoomla25()) {
+    $framework = Zo2Factory::getFramework();
+    $framework->init();
+    
+    if (Zo2Factory::isJoomla25()) {
+        
+    } else {
+        JHtml::_('bootstrap.framework');
         JFactory::getApplication()->loadLanguage();
     }
-    Zo2Framework::import('core.Zo2Layout');
-    Zo2Framework::import('core.Zo2Component');
-    Zo2Framework::import('core.Zo2AssetsManager');
 
     /**
      * @todo remove this core hacking
      */
     if (!class_exists('JViewLegacy', false))
-        Zo2Framework::import('core.classes.legacy');
+        Zo2Factory::import('core.classes.legacy');
 
-    if (Zo2Framework::isSite()) {
-        $template = Zo2Framework::getTemplate();
-
+    if (Zo2Factory::isSite()) {
         /**
          * @todo remove this core hacking
          */
         if (!class_exists('JModuleHelper', false))
-            Zo2Framework::import('core.classes.helper');
+            Zo2Factory::import('core.classes.helper');
     } else {
-        $zo2 = Zo2Framework::getInstance();
-        $zo2->joomla('template')->process();
+
+        $framework->joomla('template')->process();
     }
-    //
-    Zo2Framework::getController();
+
+    Zo2Factory::execController();
 
     $script = 'zo2.settings.token = "' . JFactory::getSession()->getFormToken() . '";';
     Zo2Assets::getInstance()->addScriptDeclaration($script);
@@ -64,3 +59,4 @@ if (Zo2Framework::isZo2Template()) {
     
 }
 Zo2Ajax::getInstance()->register('Zo2Style', 'apply');
+Zo2Ajax::getInstance()->process();

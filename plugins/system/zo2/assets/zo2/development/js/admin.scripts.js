@@ -291,6 +291,7 @@ jQuery(document).ready(function($) {
         var $this = $(this);
         var $col = $this.closest('.sortable-col');
         $.data(document.body, 'editingEl', $col);
+        var jdoc = $col.attr('data-zo2-jdoc');
         var spanWidth = $col.attr('data-zo2-span');
         var spanPosition = $col.attr('data-zo2-position');
         var spanOffset = $col.attr('data-zo2-offset');
@@ -324,6 +325,7 @@ jQuery(document).ready(function($) {
             $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
 
         $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
+        $('#dlColJDoc').val(jdoc).trigger("liszt:updated");
         $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
         $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
         $('#ddlColStyle').val(spanStyle).trigger("liszt:updated");
@@ -339,6 +341,7 @@ jQuery(document).ready(function($) {
 
     $('#btnSaveColSettings').on('click', function() {
         var $col = $.data(document.body, 'editingEl');
+        $col.attr('data-zo2-jdoc', $('#dlColJDoc').val());
         $col.attr('data-zo2-span', $('#dlColWidth').val());
         $col.attr('data-zo2-offset', $('#ddlColOffset').val());
         $col.attr('data-zo2-style', $('#ddlColStyle').val());
@@ -532,16 +535,15 @@ jQuery(document).ready(function($) {
         $input.val($this.attr('data-zo2-theme'));
 
         $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
-        $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header'));
+        $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
+        $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
         $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
         $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
         $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
-        /*
-         $('#color_background').val($this.attr('data-zo2-background'));
-         $('#color_header').val($this.attr('data-zo2-header'));
-         $('#color_text').val($this.attr('data-zo2-text'));
-         $('#color_link').val($this.attr('data-zo2-link'));
-         */
+        $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
+        $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
+        $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
+
 
         $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
         $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
@@ -626,7 +628,7 @@ jQuery(document).ready(function($) {
     });
 
     jQuery('.background-select li').click(function() {
-        if(jQuery(this).hasClass('selected')) {
+        if (jQuery(this).hasClass('selected')) {
             jQuery(this).removeClass('selected');
         } else {
             jQuery(".background-select li").removeClass('selected');
@@ -799,9 +801,14 @@ var generateFontOptions = function($container) {
     $result.val(JSON.stringify(options));
 };
 
+/**
+ *
+ * @returns {String}
+ */
 var generateJson = function() {
     var $rootParent = jQuery('#droppable-container .zo2-container');
     var json = [];
+    /* Loop all rows */
     $rootParent.find('>[data-zo2-type="row"]').each(function() {
         var itemJson = generateItemJson(jQuery(this));
         if (itemJson != null)
@@ -811,13 +818,18 @@ var generateJson = function() {
     return JSON.stringify(json);
 };
 
+/**
+ *
+ * @param {type} $item
+ * @returns {generateItemJson.result}
+ */
 var generateItemJson = function($item) {
     var result = null;
     var $childrenContainer = null;
+    /* Row */
     if ($item.attr('data-zo2-type') == 'row') {
         result = {
             type: "row",
-            //layout: $item.attr('data-zo2-layout'),
             name: $item.find('> .row-control > .row-control-container > .row-name').text(),
             customClass: $item.attr('data-zo2-customClass'),
             id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
@@ -838,8 +850,10 @@ var generateItemJson = function($item) {
             result.children.push(childItem);
         });
     }
+    /* Column */
     else if ($item.attr('data-zo2-type') == 'span') {
         result = {
+            jdoc: $item.attr('data-zo2-jdoc'),
             type: "col",
             name: $item.find('> .col-wrap > .col-name').text(),
             position: $item.attr('data-zo2-position'),
@@ -939,18 +953,6 @@ var injectFormSubmit = function() {
      */
 };
 
-function setZo2SettingInputValue() {
-    var $ = jQuery;
-    var $input = $('.hfLayoutHtml');
-    $('.toolbox-saveConfig').trigger('click');
-    $('.field-logo-container').each(function() {
-        generateLogoJson($(this));
-    });
-    $input.val(generateJson());
-}
-
-
-
 /* Override default submit function */
 Joomla.submitform = function(task, form) {
     if (typeof (form) === 'undefined' || form === null) {
@@ -997,7 +999,7 @@ jQuery(document).ready(function() {
     jQuery('.layout_style_choose').click(function() {
         jQuery('.layout_style_choose').removeClass('btn-success');
         jQuery(this).addClass('btn-success');
-        if(jQuery(this).hasClass('boxed')) {
+        if (jQuery(this).hasClass('boxed')) {
             jQuery('input[name="zo2_boxed_style"]').val('1');
             jQuery('.zo2_background_and_pattern').fadeIn(500);
         } else {
@@ -1011,15 +1013,53 @@ jQuery(document).ready(function() {
         generatePresetData();
     });
 
-    //gender profile name when profile is changed
-    jQuery('.zo2_profile_name').val(jQuery('.zo2_select_profile').val());
-    jQuery('.zo2_select_profile').change(function() {
-        jQuery('.zo2_profile_name').val(jQuery(this).val());
+    /**
+     * Profile process
+     */
+
+    /* Load profile */
+    jQuery('select[name="jform[profile-select]"]').on('change', function() {
+        var url = jQuery(this).data('url');
+        /* Get selected profile */
+        var selectedProfile = jQuery('.zo2-select-profile').val();
+        if (selectedProfile != '') {
+            zo2.document.redirect(url + '&profile=' + selectedProfile);
+        } else {
+            alert('Please select profile');
+        }
+    });
+    /* Toggle add profile form */
+    jQuery('#zo2-addProfile').on('click', function() {
+        jQuery('#zo2-form-addProfile').toggle();
+    });
+    /* Submit save */
+    jQuery('#zo2-save-profile').on('click', function() {
+        Joomla.submitbutton('style.apply');
+    });
+    /* Cancel add profile form */
+    jQuery('#zo2-cancel-profile').on('click', function() {
+        jQuery('#zo2-form-addProfile').hide();
+    });
+    /* Toogle rename profile form */
+    jQuery('#zo2-renameProfile').on('click', function() {
+        jQuery('#zo2-form-renameProfile').toggle();
+    });
+    /* Cancel rename profile form */
+    jQuery('#zo2-cancel-rename-profile').on('click', function() {
+        jQuery('#zo2-form-renameProfile').hide();
+    });
+    /* Submit rename */
+    jQuery('#zo2-rename-profile').on('click', function() {
+        var url = jQuery(this).data('url');
+        var oldprofile = jQuery('.zo2-select-profile').val();
+        var newProfile = jQuery('#zo2-form-renameProfile #zo2-new-profile-name').val();
+        zo2.document.redirect(url + '&task=rename&profile=' + oldprofile + '&newName=' + newProfile);
+    });
+    /* Submit remove */
+    jQuery('#zo2-removeProfile').on('click', function() {
+        var url = jQuery(this).data('url');
+        var profile = jQuery('.zo2-select-profile').val();
+        zo2.document.redirect(url + '&profile=' + profile);
     });
 
-    jQuery('#zo2-loadprofile').on('click', function () {
-        var url = jQuery(this).data('url');
-        var profile = jQuery('.zo2_select_profile').val();
-        zo2.document.redirect(url + '&profile=' +profile);
-    })
 });

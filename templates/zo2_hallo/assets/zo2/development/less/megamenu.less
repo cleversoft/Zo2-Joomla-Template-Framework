@@ -273,9 +273,7 @@
     &.animate.elastic .mega.open > .mega-dropdown-menu {
       .scale(1);
     }
-    &.animate.slide .mega.hovering > .mega-dropdown-menu {
-      overflow: hidden;
-    }
+
     &.animate.slide .mega > .mega-dropdown-menu > div {
       .transition(all 400ms);
       .backface-visibility(hidden);
@@ -359,7 +357,6 @@
 * Off Canvas
 * --------------------------------------------------
 */
-@media screen and (max-width: 767px) {
   html{
       width: 100%;
        overflow-x: hidden;
@@ -394,8 +391,6 @@
   }
   .wrapper{
     .transition(transform 0.5s ease 0s);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
     &:after{
       background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
       content: "";
@@ -461,7 +456,7 @@
       margin: 0;
       position: absolute;
       left: 0;
-      top: 0;
+      top: 30px;
       width: 250px;
       ul{
         li{
@@ -503,21 +498,6 @@
       }
     }
   }
-  body> * {
-    left: 0;
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -o-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-transition: -webkit-transform 500ms ease;
-    -moz-transition: -moz-transform 500ms ease;
-    -o-transition: -o-transform 500ms ease;
-    transition: transform 500ms ease;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
   body.overflow-hidden > * {
     -webkit-transform: translateX(250px);
     -moz-transform: translateX(250px);
@@ -537,8 +517,6 @@
     font-size:18px;
     height: 8px;
   }
-
-}
 .dropdown-menu{
   z-index: 2000;
 }
@@ -557,5 +535,10 @@
   &::before {
     content: "\f00d";
   }
+}
+.button-canvas {
+  cursor: pointer;
+  display: block;
+  padding-top: 10px;
 }
 

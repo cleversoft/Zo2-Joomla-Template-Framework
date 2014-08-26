@@ -22,18 +22,17 @@ class JFormFieldThemeColor extends JFormField {
      * @return string
      */
     public function getInput() {
-        $zo2 = Zo2Framework::getInstance();
-        $presetPath = Zo2Framework::getTemplatePath() . '/assets/template.presets.json';
+        $presetPath = Zo2Factory::getPath('templates://assets/presets.json');
         $presets = array();
-        if (file_exists($presetPath)) {
+        if ($presetPath) {
             $presets = json_decode(file_get_contents($presetPath), true);
+            $path = Zo2Factory::getPath('zo2://templates/themecolor.php');
+            ob_start();
+            include($path);
+            $html = ob_get_contents();
+            ob_end_clean();
+            return $html;
         }
-        $path = JPATH_SITE . '/plugins/system/zo2/templates/themecolor.php';
-        ob_start();
-        include($path);
-        $html = ob_get_contents();
-        ob_end_clean();
-        return $html;
     }
 
     private function mapThemes($item) {

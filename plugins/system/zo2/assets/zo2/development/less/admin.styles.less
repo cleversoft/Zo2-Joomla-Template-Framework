@@ -9,9 +9,9 @@
 * @license     GPL v2
 */
 /* Global variables */
-@import "variables";
+@import "variables.less";
 /* Admin menu styles */
-@import "admin.megamenu";
+@import "admin.megamenu.less";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
 
 body{
@@ -576,9 +576,6 @@ body{
   .sortable-row,.sortable-col {
     border: none;
   }
-  .row-fluid {
-    overflow: hidden;
-  }
   .category-item label,.category-item input {
     margin-bottom: 0px;
     margin-top: 0px;
@@ -690,7 +687,6 @@ body{
     font-size: 15px;
     font-weight: normal;
     padding-bottom: 5px;
-    text-transform: uppercase;
     margin-top: 0;
     padding: 10px 0;
   }
@@ -2187,3 +2183,16 @@ body{
   }
 }
 
+#theme .profiles-pane{
+  .profiles-pane-inner{
+    .controls{
+      .input-group-btn .btn-default{
+        background: #f5f5f5;
+        border: 1px solid #e6e6e6;
+      }
+      .add-new-profiles{
+        margin:15px 0;
+      }
+    }
+  }
+}

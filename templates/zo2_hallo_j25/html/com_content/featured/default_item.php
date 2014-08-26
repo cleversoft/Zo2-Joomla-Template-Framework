@@ -1,7 +1,7 @@
 <?php
 /**
  * @package		Joomla.Site
- * @subpackage	com_content
+ * @subpackage	Templates.beez5
  * @copyright	Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
@@ -10,17 +10,21 @@
 defined('_JEXEC') or die;
 
 // Create a shortcut for params.
+$canEdit	= $this->item->params->get('access-edit');
 $params = &$this->item->params;
 $images = json_decode($this->item->images);
-$canEdit	= $this->item->params->get('access-edit');
-if (Zo2Framework::get('show_in_article') ) {
-    $socialShares = new Zo2Socialshares();
-    $social = $socialShares->getHorizontalBar();
-}
+$app = JFactory::getApplication();
+$templateparams =$app->getTemplate(true)->params;
+
+if ($templateparams->get('html5')!=1)
+{
+	require JPATH_BASE.'/components/com_content/views/featured/tmpl/default_item.php';
+	//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
+} else {
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 ?>
 
 <?php if ($this->item->state == 0 || strtotime($this->item->publish_up) > strtotime(JFactory::getDate())) : ?>
-<div class="system-unpublished">
 <?php endif; ?>
 <?php if ($params->get('show_title')) : ?>
 	<h2>
@@ -34,21 +38,24 @@ if (Zo2Framework::get('show_in_article') ) {
 <?php endif; ?>
 
 <?php if ($params->get('show_print_icon') || $params->get('show_email_icon') || $canEdit) : ?>
-    <div class="btn-group pull-right">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <span class="fa fa-cog"></span> <span class="caret"></span> </a>
-        <?php // Note the actions class is deprecated. Use dropdown-menu instead. ?>
-        <ul class="dropdown-menu actions">
-            <?php if ($params->get('show_print_icon')) : ?>
-                <li class="print-icon"> <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?> </li>
-            <?php endif; ?>
-            <?php if ($params->get('show_email_icon')) : ?>
-                <li class="email-icon"> <?php echo JHtml::_('icon.email', $this->item, $params); ?> </li>
-            <?php endif; ?>
-            <?php if ($canEdit) : ?>
-                <li class="edit-icon"><a> <?php echo JHtml::_('icon.edit', $this->item, $params); ?></a> </li>
-            <?php endif; ?>
-        </ul>
-    </div>
+	<ul class="actions">
+		<?php if ($params->get('show_print_icon')) : ?>
+		<li class="print-icon">
+			<?php echo JHtml::_('icon.print_popup', $this->item, $params); ?>
+		</li>
+		<?php endif; ?>
+		<?php if ($params->get('show_email_icon')) : ?>
+		<li class="email-icon">
+			<?php echo JHtml::_('icon.email', $this->item, $params); ?>
+		</li>
+		<?php endif; ?>
+
+		<?php if ($canEdit) : ?>
+		<li class="edit-icon">
+			<?php echo JHtml::_('icon.edit', $this->item, $params); ?>
+		</li>
+		<?php endif; ?>
+	</ul>
 <?php endif; ?>
 
 <?php if (!$params->get('show_intro')) : ?>
@@ -66,6 +73,7 @@ if (Zo2Framework::get('show_in_article') ) {
 <?php if ($params->get('show_parent_category') && $this->item->parent_id != 1) : ?>
 		<dd class="parent-category-name">
 			<?php $title = $this->escape($this->item->parent_title);
+				$title = ($title) ? $title : JText::_('JGLOBAL_UNCATEGORISED');
 				$url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->parent_slug)) . '">' . $title . '</a>'; ?>
 			<?php if ($params->get('link_parent_category') and $this->item->parent_slug) : ?>
 				<?php echo JText::sprintf('COM_CONTENT_PARENT', $url); ?>
@@ -76,8 +84,9 @@ if (Zo2Framework::get('show_in_article') ) {
 <?php endif; ?>
 <?php if ($params->get('show_category')) : ?>
 		<dd class="category-name">
-			<?php $title = $this->escape($this->item->category_title);
-				$url = '<a href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->catslug)).'">'.$title.'</a>';?>
+			<?php 	$title = $this->escape($this->item->category_title);
+					$title = ($title) ? $title : JText::_('JGLOBAL_UNCATEGORISED');
+					$url = '<a href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($this->item->catslug)).'">'.$title.'</a>';?>
 			<?php if ($params->get('link_category') and $this->item->catslug) : ?>
 				<?php echo JText::sprintf('COM_CONTENT_CATEGORY', $url); ?>
 				<?php else : ?>
@@ -97,28 +106,26 @@ if (Zo2Framework::get('show_in_article') ) {
 <?php endif; ?>
 <?php if ($params->get('show_publish_date')) : ?>
 		<dd class="published">
-            <span class="fa fa-calendar"></span>
-		    <?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC2'))); ?>
+		<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $this->item->publish_up, JText::_('DATE_FORMAT_LC2'))); ?>
 		</dd>
 <?php endif; ?>
 <?php if ($params->get('show_author') && !empty($this->item->author )) : ?>
 	<dd class="createdby">
-        <i class="fa fa-user"></i>
 		<?php $author =  $this->item->author; ?>
 		<?php $author = ($this->item->created_by_alias ? $this->item->created_by_alias : $author);?>
-        <?php if (!empty($this->item->contactid ) &&  $params->get('link_author') == true):?>
-            <?php 	echo JText::sprintf('COM_CONTENT_WRITTEN_BY' ,
-             JHtml::_('link', JRoute::_('index.php?option=com_contact&view=contact&id='.$this->item->contactid), $author)); ?>
 
-        <?php else :?>
-            <?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
-        <?php endif; ?>
+			<?php if (!empty($this->item->contactid ) &&  $params->get('link_author') == true):?>
+				<?php 	echo JText::sprintf('COM_CONTENT_WRITTEN_BY' ,
+				 JHtml::_('link', JRoute::_('index.php?option=com_contact&view=contact&id='.$this->item->contactid), $author)); ?>
+
+			<?php else :?>
+				<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
+			<?php endif; ?>
 	</dd>
 <?php endif; ?>
 <?php if ($params->get('show_hits')) : ?>
 		<dd class="hits">
-            <span class="fa fa-eye"></span>
-		    <?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $this->item->hits); ?>
+		<?php echo JText::sprintf('COM_CONTENT_ARTICLE_HITS', $this->item->hits); ?>
 		</dd>
 <?php endif; ?>
 <?php if (($params->get('show_author')) or ($params->get('show_category')) or ($params->get('show_create_date')) or ($params->get('show_modify_date')) or ($params->get('show_publish_date')) or ($params->get('show_parent_category')) or ($params->get('show_hits'))) : ?>
@@ -127,8 +134,7 @@ if (Zo2Framework::get('show_in_article') ) {
 
 <?php  if (isset($images->image_intro) and !empty($images->image_intro)) : ?>
 	<?php $imgfloat = (empty($images->float_intro)) ? $params->get('float_intro') : $images->float_intro; ?>
-
-	<div class="img-intro-<?php echo htmlspecialchars($imgfloat); ?>">
+	<div class="img-intro-"<?php echo htmlspecialchars($imgfloat); ?>">
 	<img
 		<?php if ($images->image_intro_caption):
 			echo 'class="caption"'.' title="' .htmlspecialchars($images->image_intro_caption) .'"';
@@ -152,7 +158,7 @@ if (Zo2Framework::get('show_in_article') ) {
 		$link->setVar('return', base64_encode(urlencode($returnURL)));
 	endif;
 ?>
-			<p class="readmore">
+		<p class="readmore">
 				<a href="<?php echo $link; ?>">
 					<?php if (!$params->get('access-view')) :
 						echo JText::_('COM_CONTENT_REGISTER_TO_READ_MORE');
@@ -176,3 +182,5 @@ if (Zo2Framework::get('show_in_article') ) {
 
 <div class="item-separator"></div>
 <?php echo $this->item->event->afterDisplayContent; ?>
+
+<?php } ?>
