@@ -137,7 +137,8 @@ if (!class_exists('Zo2Assets')) {
          * Function build all development assets file into Zo2Assets class
          */
         public function buildAssets() {
-            $assetsFile = ZO2PATH_ROOT . '/assets/build.json';
+            $zPath = Zo2Path::getInstance();
+            $assetsFile = $zPath->keyConvert('assets://build.json');
             if ($assetsFile) {
                 $assets = json_decode(file_get_contents($assetsFile));
                 if (isset($assets->build->core->less))
