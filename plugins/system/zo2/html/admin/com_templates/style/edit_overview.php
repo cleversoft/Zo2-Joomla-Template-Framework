@@ -108,7 +108,7 @@ $templateManifest = $framework->getTemplateManifest();
                 }
                 ?>
                 <strong><?php echo $message; ?></strong>
-                <?php if (1) { ?>
+                <?php if ($update) { ?>
                     <div id="updater-desc">
                         Please <a href="<?php echo JUri::root(); ?>administrator/index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
                         <blockquote>
