@@ -1062,4 +1062,16 @@ jQuery(document).ready(function() {
         zo2.document.redirect(url + '&profile=' + profile);
     });
 
+    jQuery('#updater-desc a.btn-success').click(function(e) {
+        e.preventDefault();
+        jPrompt( jQuery(this).next().find('span').html()+'. Type "OK" to Continuous.', '', 'ZO2 Framework update confirmation box', function(confirm){
+            if( confirm == "OK" || confirm == "ok" || confirm == "oK" || confirm == "Ok") {
+                location.href = jQuery('#updater-desc a.btn-success').attr('href');
+            }else {
+                return false;
+            }
+        });
+    });
+
+
 });

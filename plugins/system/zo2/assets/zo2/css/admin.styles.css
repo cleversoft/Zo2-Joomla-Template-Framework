@@ -351,6 +351,11 @@ body {
   color: #FFFFFF;
   text-shadow: none;
 }
+#zo2framework #updater.alert small {
+  color: red;
+  font-size: 110%;
+  margin-top: 12px;
+}
 #zo2framework .main-navigator.nav.nav-tabs {
   background: #313940;
   border: medium none;
@@ -853,9 +858,6 @@ body {
 #zo2framework .sortable-row,
 #zo2framework .sortable-col {
   border: none;
-}
-#zo2framework .row-fluid {
-  overflow: hidden;
 }
 #zo2framework .category-item label,
 #zo2framework .category-item input {

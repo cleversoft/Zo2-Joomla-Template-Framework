@@ -240,9 +240,6 @@
     backface-visibility: hidden;
     margin-top: -100%;
   }
-  .zo2-megamenu.animate.slide .mega.hovering > .mega-dropdown-menu {
-    overflow: hidden;
-  }
   .zo2-megamenu.animate.slide .mega.open > .mega-dropdown-menu > div {
     margin-top: 0%;
   }

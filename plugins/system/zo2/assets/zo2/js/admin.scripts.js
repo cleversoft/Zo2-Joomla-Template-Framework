@@ -1018,7 +1018,7 @@ jQuery(document).ready(function() {
      */
 
     /* Load profile */
-    jQuery('select[name="jform[profile-select]"]').on('click', function() {
+    jQuery('select[name="jform[profile-select]"]').on('change', function() {
         var url = jQuery(this).data('url');
         /* Get selected profile */
         var selectedProfile = jQuery('.zo2-select-profile').val();
@@ -1061,5 +1061,17 @@ jQuery(document).ready(function() {
         var profile = jQuery('.zo2-select-profile').val();
         zo2.document.redirect(url + '&profile=' + profile);
     });
+
+    jQuery('#updater-desc a.btn-success').click(function(e) {
+        e.preventDefault();
+        jPrompt( jQuery(this).next().find('span').html()+'. Type "OK" to Continuous.', '', 'ZO2 Framework update confirmation box', function(confirm){
+            if( confirm == "OK" || confirm == "ok" || confirm == "oK" || confirm == "Ok") {
+                location.href = jQuery('#updater-desc a.btn-success').attr('href');
+            }else {
+                return false;
+            }
+        });
+    });
+
 
 });

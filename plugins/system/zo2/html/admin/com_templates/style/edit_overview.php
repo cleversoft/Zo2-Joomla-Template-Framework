@@ -108,11 +108,11 @@ $templateManifest = $framework->getTemplateManifest();
                 }
                 ?>
                 <strong><?php echo $message; ?></strong>
-                <?php if ($update) { ?>
+                <?php if (1) { ?>
                     <div id="updater-desc">
-                        Please <a href="index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
+                        Please <a href="<?php echo JUri::root(); ?>administrator/index.php?option=com_installer&amp;view=update" class="btn btn-success btn-small"><i class="icon-white icon-circle-arrow-down"></i> download</a> the latest version now.
                         <blockquote>
-                            <small><strong><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_ATTENTION'); ?></strong> <?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_COMPATIBLE') . ' ' . $version['latestVersion']; ?></small>
+                            <small><strong><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_ATTENTION'); ?></strong> <span><?php echo JText::_('ZO2_ADMIN_EDITOVERVIEW_COMPATIBLE') . ' ' . $version['latestVersion']; ?></span></small>
                         </blockquote>
                     </div>
                 <?php } ?>

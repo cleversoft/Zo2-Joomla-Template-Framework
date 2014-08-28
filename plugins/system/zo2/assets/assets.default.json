@@ -24,10 +24,12 @@
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/css\/bootstrap-colorpicker.css",
             "vendor\/fontselect\/fontselect.css",
             "vendor\/fontello\/css\/fontello.css",
+            "vendor\/jqueryalert\/jquery.alerts.css",
             "zo2\/css\/admin.styles.css",
             "zo2\/css\/admin.megamenu.css"
         ],
         "js": [
+            "vendor\/jqueryalert\/jquery.alerts.js",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
             "vendor\/fontselect\/jquery.fontselect.js",
             "zo2\/js\/admin.megamenu.js",
