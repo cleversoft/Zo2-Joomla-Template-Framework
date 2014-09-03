@@ -11,28 +11,28 @@
  */
 $templatePath = Zo2Factory::getUrl('templates://');
 $profile = Zo2Factory::getProfile();
-$preset_theme = $profile->getTheme()->getProperties();
+$presetTheme = $profile->get('theme');
 /**
  * @todo Must use JRegistry
  */
 $preset_data = array(
-    'name' => isset($preset_theme['name']) ? $preset_theme['name'] : '',
-    'css' => isset($preset_theme['css']) ? $preset_theme['css'] : '',
-    'less' => isset($preset_theme['less']) ? $preset_theme['less'] : '',
-    'boxed' => isset($preset_theme['boxed']) ? $preset_theme['boxed'] : 0,
-    'background' => isset($preset_theme['background']) ? $preset_theme['background'] : '',
-    'header' => isset($preset_theme['header']) ? $preset_theme['header'] : '',
-    'header_top' => isset($preset_theme['header_top']) ? $preset_theme['header_top'] : '',
-    'text' => isset($preset_theme['text']) ? $preset_theme['text'] : '',
-    'link' => isset($preset_theme['link']) ? $preset_theme['link'] : '',
-    'link_hover' => isset($preset_theme['link_hover']) ? $preset_theme['link_hover'] : '',
-    'bottom1' => isset($preset_theme['bottom1']) ? $preset_theme['bottom1'] : '',
-    'bottom2' => isset($preset_theme['bottom2']) ? $preset_theme['bottom2'] : '',
-    'footer' => isset($preset_theme['footer']) ? $preset_theme['footer'] : '',
-    'extra' => isset($preset_theme['extra']) ? $preset_theme['extra'] : '',
-    'bg_image' => isset($preset_theme['bg_image']) ? $preset_theme['bg_image'] : '',
-    'bg_pattern' => isset($preset_theme['bg_pattern']) ? $preset_theme['bg_pattern'] : '',
-    'background' => isset($preset_theme['background']) ? $preset_theme['background'] : '',
+    'name' => $presetTheme->get('name'),
+    'css' => $presetTheme->get('css'),
+    'less' => $presetTheme->get('less'),
+    'boxed' => $presetTheme->get('boxed', 0),
+    'background' => $presetTheme->get('background'),
+    'header' => $presetTheme->get('header'),
+    'header_top' => $presetTheme->get('header_top'),
+    'text' => $presetTheme->get('text'),
+    'link' => $presetTheme->get('link'),
+    'link_hover' => $presetTheme->get('link_hover'),
+    'bottom1' => $presetTheme->get('bottom1'),
+    'bottom2' => $presetTheme->get('bottom2'),
+    'footer' => $presetTheme->get('footer'),
+    'extra' => $presetTheme->get('extra'),
+    'bg_image' => $presetTheme->get('bg_image'),
+    'bg_pattern' => $presetTheme->get('bg_pattern'),
+    'background' => $presetTheme->get('background'),
 );
 
 
