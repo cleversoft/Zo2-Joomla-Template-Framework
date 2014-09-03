@@ -91,7 +91,7 @@ if (!class_exists('Zo2Factory')) {
                     $instances[$id] = $template;
                     return $instances[$id];
                 } else {
-					$option = JFactory::getApplication()->input->get('option');
+                    $option = JFactory::getApplication()->input->get('option');
                     /* Get requesting template for backend only */
                     $id = JFactory::getApplication()->input->get('id');
                     if ($id && $option == 'com_templates') {
@@ -273,6 +273,10 @@ if (!class_exists('Zo2Factory')) {
                 $profiles[$profileName] = $profile;
             }
             return $profiles[$profileName];
+        }
+
+        public static function addLog($title, $message, $type = 'notice') {
+            Zo2Logs::getInstance()->add($title, $message, $type);
         }
 
     }
