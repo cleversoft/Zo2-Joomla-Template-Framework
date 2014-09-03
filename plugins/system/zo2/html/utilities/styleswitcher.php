@@ -8,7 +8,7 @@ $backgroundsDir = Zo2Factory::getPath('templates://assets/zo2/images/background-
 $presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
 
 $profile = Zo2Factory::getProfile();
-$theme = $profile->getTheme();
+$theme = $profile->get('theme');
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>
