@@ -76,7 +76,7 @@ if (!class_exists('Zo2Framework')) {
          * Framework init
          */
         public function init() {
-			if (!defined('ZO2_LOADED')) {			
+			//if (!defined('ZO2_LOADED')) {
 				$jinput = JFactory::getApplication()->input;
 				/* Init framework variables */
 				$this->assets = Zo2Assets::getInstance();
@@ -123,8 +123,8 @@ if (!class_exists('Zo2Framework')) {
 				} else {
 					JFactory::getApplication()->enqueueMessage('Zo2 assets file not found');
 				}
-				define('ZO2_LOADED',1);
-			}            
+				//define('ZO2_LOADED',1);
+			//}
         }
 
         /**
@@ -615,7 +615,7 @@ if (!class_exists('Zo2Framework')) {
                 }
             }
             if (empty($profiles))
-                $profiles[] = 'default';
+                $profiles['default'] = 'default';
             return $profiles;
         }
 

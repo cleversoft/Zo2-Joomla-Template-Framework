@@ -106,6 +106,10 @@ if (!class_exists('Zo2JTemplate')) {
                 /* Update profile assign list */
                 $list = $table->params->get('profile', array());
 
+                if (count ($list) == 0 ) {
+                    $list = array();
+                }
+
                 if (is_object($list)) {
                     foreach ($list as $key => $value) {
                         $tList[$key] = $value;
