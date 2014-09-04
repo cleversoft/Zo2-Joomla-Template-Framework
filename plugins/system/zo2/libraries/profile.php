@@ -20,7 +20,7 @@ if (!class_exists('Zo2Profile')) {
     /**
      * Zo2 profile object
      */
-    class Zo2Profile extends \Joomla\Registry\Registry {
+    class Zo2Profile extends JRegistry {
 
         /**
          * Profile file path
