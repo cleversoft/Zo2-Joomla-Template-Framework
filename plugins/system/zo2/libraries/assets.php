@@ -82,9 +82,6 @@ if (!class_exists('Zo2Assets')) {
                     $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
                     $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
                 }
-                /* Responsive */
-                if (Zo2Factory::get('responsive_layout'))
-                    $this->addStyleSheet('css/non-responsive.css');
             }
         }
 
@@ -347,7 +344,11 @@ if (!class_exists('Zo2Assets')) {
                     $cssDeclarationHtml .= $stylesheetDeclaration;
                 }
                 $cssDeclarationHtml .= '</style>';
-                return $cssHtml . "\n" . $cssDeclarationHtml;
+                /* Responsive */
+                if (!Zo2Factory::get('responsive_layout')) {
+                    $bootstrap_non_responsive = '<link rel="stylesheet" href="' . Juri::root() . '/plugins/system/zo2/assets/vendor/bootstrap/3.2.0/css/non-responsive.css' . '">';
+                }
+                return $cssHtml . $bootstrap_non_responsive . "\n" . $cssDeclarationHtml;
             }
         }
 

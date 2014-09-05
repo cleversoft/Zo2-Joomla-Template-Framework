@@ -18,14 +18,18 @@ require_once __DIR__ . '/includes/bootstrap.php';
  * @todo Opengraph support
  * @todo Facebook & Twitter ... data attributes support
  */
-/* Get Zo2Framework */
-$framework = Zo2Factory::getFramework();
 ?>
+
 <!DOCTYPE html>
 <html lang="<?php echo $this->zo2->template->getLanguage(); ?>" dir="<?php echo $this->zo2->template->getDirection(); ?>">
     <head>
         <?php unset($this->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']); ?>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <?php if($this->zo2->framework->get('responsive_layout')) :  ?>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php endif; ?>
+
         <?php echo $this->zo2->template->fetch('html://layouts/head.response.php'); ?>
         <?php echo $this->zo2->template->fetch('html://layouts/head.favicon.php'); ?>
         <!--[if !IE 8]> -->

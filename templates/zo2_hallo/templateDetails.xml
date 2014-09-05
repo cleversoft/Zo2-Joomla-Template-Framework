@@ -82,6 +82,10 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
+                <field name="responsive_layout" type="radio" default="1" label="Responsive Layout" class="btn-group" description="Enable or disable responsive layout">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
                 <field name="enable_sticky_menu" type="radio" default="1" label="Enable Sticky Menu" class="btn-group" description="">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
