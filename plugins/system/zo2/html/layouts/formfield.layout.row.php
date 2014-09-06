@@ -22,9 +22,13 @@
         </div>
 
         <div class="col-container">
-            <?php foreach ($row->get('children') as $column) { ?>            
-                <?php require 'formfield.layout.column.php'; ?>
-            <?php } ?>            
+            <?php
+            $columns = $row->get('children');
+            if(count($columns) > 1)
+                foreach ( $columns as $column) {
+                    require 'formfield.layout.column.php';
+                }
+            ?>
         </div>
     </div>
 </div>
