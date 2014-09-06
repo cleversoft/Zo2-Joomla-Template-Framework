@@ -41,6 +41,7 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
 
 ##Release
+
 1. Version 1.0.0: released on December 07th, 2013
 2. Version 1.1.0: released on December 24th, 2013
 3. Version 1.2.0: released on December 30th, 2013
@@ -57,6 +58,7 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 14. Version 1.3.9: released on May 31, 2014
 15. Version 1.4.0: released on August 20, 2014
 16. Version 1.4.1: released on Sep 06, 2014
+
 ## Roadmap
 
 **1.2.1: Dec 30, 2013 - Jan 06, 2014**
