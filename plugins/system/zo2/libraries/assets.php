@@ -347,8 +347,9 @@ if (!class_exists('Zo2Assets')) {
                 /* Responsive */
                 if (!Zo2Factory::get('responsive_layout')) {
                     $bootstrap_non_responsive = '<link rel="stylesheet" href="' . Juri::root() . '/plugins/system/zo2/assets/vendor/bootstrap/3.2.0/css/non-responsive.css' . '">';
+                    return $cssHtml . $bootstrap_non_responsive . "\n" . $cssDeclarationHtml;
                 }
-                return $cssHtml . $bootstrap_non_responsive . "\n" . $cssDeclarationHtml;
+                return $cssHtml . "\n" . $cssDeclarationHtml;
             }
         }
 
