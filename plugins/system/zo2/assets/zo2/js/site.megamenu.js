@@ -1,7 +1,7 @@
 /**
  * Zo2 Framework (http://zo2framework.org)
  *
- * @link     http://github.com/aploss/zo2
+ * @link     https://github.com/cleversoft/zo2
  * @package  Zo2
  * @author   Hiepvu
  * @copyright  Copyright ( c ) 2008 - 2013 APL Solutions
