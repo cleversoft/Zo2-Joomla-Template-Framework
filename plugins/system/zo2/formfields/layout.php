@@ -62,7 +62,11 @@ if (!class_exists('JFormFieldLayout')) {
             $templatePath = Zo2Factory::getPath('templates://');
 
             $profile = Zo2Factory::getProfile();
-            $layoutData = $profile->layout;
+            if(is_object($profile->layout)) {
+                $layoutData = $profile->layout->layout;
+            } else {
+                $layoutData = $profile->layout;
+            }
 
             $layoutFile = $path->getFile('html://layouts/formfield.layout.php');
 
