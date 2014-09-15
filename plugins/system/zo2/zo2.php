@@ -6,7 +6,7 @@
  *
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
- * @author      ZooTemplate <http://zootemplate.com99
+ * @author      ZooTemplate <http://zootemplate.com>
  * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
@@ -37,9 +37,9 @@ if (!class_exists('plgSystemZo2')) {
          * Init our framework
          */
         public function onAfterInitialise() {
-            include_once __DIR__ . '/includes/bootstrap.php';
+            include_once __DIR__ . '/framework/includes/bootstrap.php';
         }
-  
+
         /**
          * 
          */

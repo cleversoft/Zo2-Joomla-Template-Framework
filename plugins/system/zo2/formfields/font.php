@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
@@ -11,8 +12,8 @@
  */
 defined('_JEXEC') or die;
 
-class JFormFieldFont extends JFormField
-{
+class JFormFieldFont extends JFormField {
+
     protected $type = 'Font';
 
     /**
@@ -20,9 +21,8 @@ class JFormFieldFont extends JFormField
      *
      * @return string
      */
-    public function getInput()
-    {
-        $path = JPATH_SITE.'/plugins/system/zo2/templates/font.php';
+    public function getInput() {
+        $path = JPATH_SITE . '/plugins/system/zo2/framework/html/zo2/font.php';
         ob_start();
         include($path);
         $html = ob_get_contents();
@@ -30,10 +30,8 @@ class JFormFieldFont extends JFormField
         return $html;
     }
 
-    public function getLabel()
-    {
-        switch($this->fieldname)
-        {
+    public function getLabel() {
+        switch ($this->fieldname) {
             case 'body_font': return 'Body';
             case 'h1_font': return 'Headline H1';
             case 'h2_font': return 'Headline H2';
@@ -44,4 +42,5 @@ class JFormFieldFont extends JFormField
             default: return '';
         }
     }
+
 }
