@@ -178,16 +178,17 @@ if (!class_exists('Zo2Layout')) {
                     $html .= '<section class="zo2-row-wrapper ' . $customClass . '">';
 
                 /* START CONTAINER */
+
                 $containerClass = $item->get('fullwidth') ? '' : 'container';
                 $containerClass .= ' ' . $item->getVisibilityClass();
                 if (trim($containerClass) != '') {
-                    $html .= '<section class="' . trim($containerClass) . '">';
+                    $html .= '<div class="' . trim($containerClass) . '">';
                 } else {
-                    $html .= '<section>';
+                    $html .= '<div>';
                 }
 
                 /* START ROW  */
-                $html .= '<section class="row">';
+                $html .= '<div class="row">';
 
                 $maxSpace = 12;
                 $usedSpace = 0;
@@ -240,9 +241,9 @@ if (!class_exists('Zo2Layout')) {
                     $html .= $this->_buildItem($child);
                 }
                 /* END ROW */
-                $html .= '</section>';
+                $html .= '</div>';
                 /* END CONTAINER */
-                $html .= '</section>';
+                $html .= '</div>';
                 /* END WRAPPER */
                 $html .= '</section>';
                 return $html;
@@ -314,7 +315,7 @@ if (!class_exists('Zo2Layout')) {
                 $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
                 $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
 
-                $class = 'col-md-' . $item->get('span');
+                $class = 'col-md-' . $item->get('span') . ' col-sm-' . $item->get('span');
                 if ($item->get('offset') != 0) {
                     $class .= ' col-md-offset-' . $item->get('offset');
                 }
@@ -324,9 +325,9 @@ if (!class_exists('Zo2Layout')) {
 
                 /* BEGIN COL */
                 if ($item->get('id'))
-                    $html .= '<section id="' . $item->get('id') . '" class="zo2-col ' . $customClass . $class . '">';
+                    $html .= '<div id="' . $item->get('id') . '" class="zo2-col ' . $customClass . $class . '">';
                 else
-                    $html .= '<section class="zo2-col ' . $customClass . $class . '">';
+                    $html .= '<div class="zo2-col ' . $customClass . $class . '">';
 
                 switch ($jdoc) {
                     case 'component':
@@ -403,7 +404,7 @@ if (!class_exists('Zo2Layout')) {
                     $html .= $this->_buildItem($child);
                 }
                 /* END COLUMN */
-                $html .= '</section>';
+                $html .= '</div>';
                 return $html;
             }
         }
