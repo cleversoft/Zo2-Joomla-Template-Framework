@@ -41,6 +41,7 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
 
 ##Release
+
 1. Version 1.0.0: released on December 07th, 2013
 2. Version 1.1.0: released on December 24th, 2013
 3. Version 1.2.0: released on December 30th, 2013
@@ -56,6 +57,8 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 13. Version 1.3.8: released on May 12, 2014
 14. Version 1.3.9: released on May 31, 2014
 15. Version 1.4.0: released on August 20, 2014
+16. Version 1.4.1: released on Sep 06, 2014
+
 ## Roadmap
 
 **1.2.1: Dec 30, 2013 - Jan 06, 2014**
@@ -97,20 +100,25 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 ##Bug tracking
 
 Found a bug or have a feature request? Feel free to open an issue via this link:
+
 [https://github.com/cleversoft/zo2/issues](https://github.com/cleversoft/zo2/issues)
+
 
 ##Documents
 
 [http://docs.zootemplate.com/category/zo2](http://docs.zootemplate.com/category/zo2)
 
+## All Questions
+
+[http://www.zootemplate.com/zo2-support](http://www.zootemplate.com/zo2-support)
 ##Copyright, License & Usage
+
 Copyright (c) 2008 - 2014 [CleverSoft Solutions](http://cleversoft.co)
 
 ### License
+
 Zo2Framework is licensed under GNU General Public License (GPL), version 2 or later.
 [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
-
-Zo2 Hallo designed by http://www.zootemplate.com
 
 ### Usage
 You are free to use Zo2 Framework for your personal and commercial projects. You do not have to keep the Zo2 or Zootemplate links and logos in the front end, however, you must ensure that all copyright notices in the code are retained. Also, if you intend to use the Zo2 Framework in a commercial project, or a template you intend to redistribute in any form, please retain a "Powered by Zo2" logo and link in the backend administrative interface.
