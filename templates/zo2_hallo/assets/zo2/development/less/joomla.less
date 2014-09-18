@@ -58,7 +58,7 @@ input[type="color"],
   transition: all 0.4s ease 0s;
   &:hover{
     background: none repeat scroll 0 0 #7fbe54;
-    color: #fff;
+    color: @white;
   }
 }
 //Article
@@ -181,8 +181,8 @@ p.img_caption {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: #000;
-  color: #ffffff;
+  background: @black;
+  color: @whitefff;
   font-size: 12px;
   padding: 5px 10px;
   margin: 0;
@@ -268,7 +268,7 @@ p.img_caption {
   &:active,
   &:focus{
     background: none repeat scroll 0 0 #7fbe54;
-    color: #fff;
+    color: @white;
     .box-shadow(0 0 0 26px rgba(0, 0, 0, 0.1) inset);
   }
   .transition(all 0.4s ease 0s);
@@ -498,13 +498,13 @@ ul.menu li{
         >span{
           background: #7fbe54;
           border: 1px solid #7fbe54;
-          color: #fff;
+          color: @white;
           &:hover,
           &:active,
           &:focus{
             background: #7fbe54;
             border: 1px solid #7fbe54;
-            color: #fff;
+            color: @white;
           }
         }
       }
@@ -531,7 +531,7 @@ ul.menu li{
       &:active,
       &:focus{
         background: none repeat scroll 0 0 #7fbe54;
-        color: #fff;
+        color: @white;
         .box-shadow(0 0 0 26px rgba(0, 0, 0, 0.1) inset);
       }
       .transition(all 0.4s ease 0s);
@@ -597,7 +597,7 @@ ul.menu li{
       width: 100%;
       font-size: 10px;
       text-transform: uppercase;
-      color: #000;
+      color: @black;
       margin: 0;
     }
   }
@@ -814,7 +814,7 @@ ul.menu li{
     .transition(all 250ms ease-in-out);
     &:hover,
     &:focus{
-      border: 1px solid #000;
+      border: 1px solid @black;
       color: #565656;
     }
   }
@@ -837,12 +837,12 @@ ul.menu li{
       &.active{
         >a{
           background: #0C7FCF;
-          color: #fff;
+          color: @white;
           &:hover,
           &:active,
           &:focus{
             border: none;
-            color: #fff;
+            color: @white;
           }
         }
       }
@@ -923,7 +923,7 @@ body.contentpane button {
   cursor: pointer;
   .border-radius(4px);
   .user-select(none);
-  color: #FFF;
+  color: @white;
   background-color: #1085DE;
   border: 1px solid #1085DE;
 }
@@ -944,8 +944,8 @@ button#upload-submit.btn {
   border: 1px solid #1085DE;
   .border-radius(4px);
   .user-select(none);
-  color: #000;
-  background-color: #fff;
+  color: @black;
+  background-color: @white;
 }
 
 form#adminForm.form-inline fieldset.filter div.btn-toolbar div.btn-group {
@@ -981,7 +981,7 @@ body.contentpane form table tbody tr td.key {
     position: relative;
     top: 0px;
     border-top: 3px solid #7fbe54;
-    background: #fff;
+    background: @white;
     padding: 30px;
     z-index: 1;
     box-shadow: 0 3px 4px 2px rgba(171,171,171,0.2);
@@ -1004,7 +1004,7 @@ body.contentpane form table tbody tr td.key {
       margin-left: -26px;
       top:-25px;
       font-size: 200%;
-      color: #fff;
+      color: @white;
       background: #7fbe54;
       border-radius: 50%;
       -moz-border-radius: 50%;
@@ -1044,7 +1044,7 @@ body.contentpane form table tbody tr td.key {
         height: 32px;
         line-height: 32px;
         background: #7fbe54;
-        color: #fff;
+        color: @white;
         font-size: 133%;
         font-weight: 700;
         text-transform: capitalize;
@@ -1069,7 +1069,7 @@ body.contentpane form table tbody tr td.key {
     clear: both;
     position: relative;
     border-top: 3px solid #7fbe54;
-    background: #fff;
+    background: @white;
     padding: 30px;
     box-shadow: 0 3px 4px 2px rgba(171,171,171,0.2);
     -ms-box-shadow: 0 3px 4px 2px rgba(171,171,171,0.2);
@@ -1091,7 +1091,7 @@ body.contentpane form table tbody tr td.key {
       margin-left: -26px;
       top:-25px;
       font-size: 200%;
-      color: #fff;
+      color: @white;
       background: #7fbe54;
       border-radius: 50%;
       -moz-border-radius: 50%;
