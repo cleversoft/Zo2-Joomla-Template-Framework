@@ -2,10 +2,10 @@
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>Zo2_hallo</name>
     <creationDate>10 March 2014</creationDate>
-    <author>APL</author>
-    <authorEmail>support@apl.vn</authorEmail>
-    <authorUrl>http://github.com/aploss/</authorUrl>
-    <copyright>Copyright (c) 2008 - 2014 APL Solutions</copyright>
+    <author>CleverSoft</author>
+    <authorEmail>hello@cleversoft.co</authorEmail>
+    <authorUrl>https://github.com/cleversoft</authorUrl>
+    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <version>1.4.1</version>
     <description>
