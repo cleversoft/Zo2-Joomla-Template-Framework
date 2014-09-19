@@ -1,18 +1,35 @@
 @import 'mixins';
 /*Module*/
 h3.moduletitle{
-  background: url("../images/module-title-line.jpg") no-repeat left bottom;
   font-size: 20px;
   font-weight: 300;
   line-height: normal;
   margin: 0 0 20px;
   padding-bottom: 25px;
   color: #2d3d51;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  position: relative;
+  &:after{
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 1px;
+    bottom: -1px;
+    left: 0;
+    background-color: rgba(0,0,0,0.9);
+  }
+}
+#zo2-bottom2{
+  h3.moduletitle{
+    border-bottom-color: rgba(255,255,255,0.1);
+    &:after{
+      background-color: rgba(255,255,255,0.9);
+    }
+  }
 }
 #zo2-bottom1 h3.moduletitle,
 #zo2-bottom2 h3.moduletitle{
-  background: url("../images/module-title-line-dark.jpg") no-repeat left bottom;
-  color: #fff;
+  color: @white;
   font-size: 22px;
 }
 .no-line h3.moduletitle{
@@ -91,7 +108,7 @@ ul.archive-module{
         font-size: 11px;
         &:hover{
           background-color: #333333;
-          color: #fff;
+          color: @white;
         }
       }
     }
@@ -113,7 +130,7 @@ ul.mostread{
       &:hover {
         background-color: #333333;
         padding: 4px 17px 4px 15px;
-        color: #fff;
+        color: @white;
       }
     }
   }
