@@ -1403,7 +1403,7 @@ ul.tabs li a {
   text-transform: uppercase;
 }
 ul.tabs li a.active {
-  background: #ffffff !important;
+  background: #FFFFFF !important;
   height: 40px;
   position: relative;
   margin: 0;
@@ -1417,7 +1417,7 @@ ul.tabs-content {
   display: block;
   list-style: none;
   border: 1px solid #edecec;
-  background: #ffffff;
+  background: #FFFFFF;
 }
 ul.tabs-content > li {
   display: none;

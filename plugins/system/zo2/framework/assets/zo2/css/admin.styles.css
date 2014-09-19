@@ -707,7 +707,7 @@ body {
 }
 #zo2framework #zo2Tabs .icon-edit:before,
 #zo2framework .icon-pencil:before {
-  color: #ffffff;
+  color: #FFFFFF;
 }
 #zo2framework .control-label label {
   color: #333333;
@@ -777,7 +777,7 @@ body {
   border: 1px solid #e9e9e9;
   margin: 5px;
   border-radius: 3px;
-  background: #ffffff;
+  background: #FFFFFF;
 }
 #zo2framework .sortable-row,
 #zo2framework .sortable-col {
@@ -852,7 +852,7 @@ body {
   z-index: 9999;
 }
 #zo2framework #zo2-config {
-  background: #ffffff;
+  background: #FFFFFF;
   padding: 30px 10px;
 }
 #zo2framework .sortable-row,
@@ -1050,7 +1050,7 @@ body {
   float: left;
 }
 #zo2framework #layoutbuilder-toolbar {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 4px;
   display: none;
   height: 16px;
