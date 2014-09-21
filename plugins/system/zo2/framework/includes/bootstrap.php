@@ -43,8 +43,26 @@ if (Zo2Factory::isZo2Template()) {
         if (!class_exists('JModuleHelper', false))
             Zo2Factory::import('core.classes.helper');
     } else {
-
-        $framework->joomla('template')->process();
+        $jinput = JFactory::getApplication()->input;       
+        if ($jinput->get('option') == 'com_templates') {
+            $task = $jinput->get('task');
+            $model = Zo2ModelTemplate::getInstance();
+            switch ($task) {
+                case 'style.save':
+                    $model->save();
+                    break;
+                case 'style.apply':
+                    $model = Zo2ModelTemplate::getInstance();
+                    $model->save();
+                    break;
+                case 'remove':
+                    $model->remove();
+                    break;
+                case 'rename':
+                    $model->rename();
+                    break;
+            }
+        }
     }
 
     Zo2Factory::execController();
