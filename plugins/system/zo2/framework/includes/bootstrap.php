@@ -43,17 +43,18 @@ if (Zo2Factory::isZo2Template()) {
         if (!class_exists('JModuleHelper', false))
             Zo2Factory::import('core.classes.helper');
     } else {
-        $jinput = JFactory::getApplication()->input;       
+        $jinput = JFactory::getApplication()->input;
         if ($jinput->get('option') == 'com_templates') {
             $task = $jinput->get('task');
             $model = Zo2ModelTemplate::getInstance();
             switch ($task) {
                 case 'style.save':
                     $model->save();
+                    $model->build();
                     break;
                 case 'style.apply':
-                    $model = Zo2ModelTemplate::getInstance();
                     $model->save();
+                    $model->build();
                     break;
                 case 'remove':
                     $model->remove();

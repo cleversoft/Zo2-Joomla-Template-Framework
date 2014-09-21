@@ -19,9 +19,19 @@ if (!class_exists('Zo2ModelTemplate')) {
 
     class Zo2ModelTemplate {
 
+        /**
+         * Do not allow create new instance directly
+         */
         protected function __construct() {
             JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
             JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
+            /* Load language */
+            $lang = JFactory::getLanguage();
+            $extension = 'com_templates';
+            $base_dir = JPATH_ADMINISTRATOR;
+            $language_tag = 'en-GB';
+            $reload = true;
+            $lang->load($extension, $base_dir, $language_tag, $reload);
         }
 
         /**
@@ -41,6 +51,7 @@ if (!class_exists('Zo2ModelTemplate')) {
          * Profile rename
          */
         public function rename() {
+            $jinput = JFactory::getApplication()->input;
             $newProfileName = $jinput->get('newName');
             $profile = Zo2Factory::getProfile();
             $framework = Zo2Factory::getFramework();
@@ -64,12 +75,17 @@ if (!class_exists('Zo2ModelTemplate')) {
             }
         }
 
+        /**
+         * Save template
+         */
         public function save() {
-            $this->_build();
             $this->_save();
         }
 
-        private function _build() {
+        /**
+         * Build template
+         */
+        public function build() {
             /* Do build process when template update */
             $assets = Zo2Assets::getInstance();
             $assets->buildAssets();
@@ -77,14 +93,6 @@ if (!class_exists('Zo2ModelTemplate')) {
 
         private function _save() {
             $jinput = JFactory::getApplication()->input;
-            /* Load language */
-            $lang = JFactory::getLanguage();
-            $extension = 'com_templates';
-            $base_dir = JPATH_ADMINISTRATOR;
-            $language_tag = 'en-GB';
-            $reload = true;
-            $lang->load($extension, $base_dir, $language_tag, $reload);
-
             /* Get table */
             $table = JTable::getInstance('Style', 'TemplatesTable');
             $id = $jinput->get('id');
@@ -182,8 +190,11 @@ if (!class_exists('Zo2ModelTemplate')) {
             }
         }
 
+        /**
+         * Get template_styles table
+         * @return JTable
+         */
         private function _getTable() {
-            JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
             return JTable::getInstance('Style', 'TemplatesTable');
         }
 
