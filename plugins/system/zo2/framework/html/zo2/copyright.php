@@ -9,7 +9,7 @@ $html = '<footer>';
 $html .= '<section class="copyright" style="text-align:center">' . $copyright . '</section>';
 if ($logo == 1) {
     $html .= '<a title="Powered by Zo2Framework" class="footer_zo2_logo" href="http://zo2framework.org" style="display:block;">';
-    $html .= '<img src="' . JUri::root(true) . '/plugins/system/zo2/assets/zo2/images/zo2logo.png" />';
+    $html .= '<img src="' . ZO2URL_ROOT . '/assets/zo2/images/zo2logo.png" />';
     $html .= '</a>';
 }
 if ($gototop) {

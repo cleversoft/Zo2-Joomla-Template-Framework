@@ -22,7 +22,7 @@ class JFormFieldFont extends JFormField {
      * @return string
      */
     public function getInput() {
-        $path = JPATH_SITE . '/plugins/system/zo2/framework/html/zo2/font.php';
+        $path = JPATH_SITE . '/html/zo2/font.php';
         ob_start();
         include($path);
         $html = ob_get_contents();

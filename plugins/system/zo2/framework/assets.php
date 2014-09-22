@@ -71,16 +71,16 @@ if (!class_exists('Zo2Assets')) {
                 if (Zo2Factory::isJoomla25()) {
                     /* For Joomla! 2.5 we need add jQuery into head */
                     $document = JFactory::getDocument();
-                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
-                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
+                    $document->addScript(ZO2URL_ROOT . '/assets/vendor/jquery/jquery-1.10.2.min.js');
+                    $document->addScript(ZO2URL_ROOT . '/assets/vendor/jquery/jquery.noConflict.js');
                 }
             } else {
                 /* Allow user turn of jQuery if needed */
                 if (Zo2Factory::isJoomla25() && Zo2Factory::get('enable_jquery', 1) == 1) {
                     /* For Joomla! 2.5 we need add jQuery into head */
                     $document = JFactory::getDocument();
-                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
-                    $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
+                    $document->addScript(ZO2URL_ROOT . '/assets/vendor/jquery/jquery-1.10.2.min.js');
+                    $document->addScript(ZO2URL_ROOT . '/assets/vendor/jquery/jquery.noConflict.js');
                 }
             }
         }
@@ -346,7 +346,7 @@ if (!class_exists('Zo2Assets')) {
                 $cssDeclarationHtml .= '</style>';
                 /* Responsive */
                 if (!Zo2Factory::get('responsive_layout')) {
-                    $bootstrap_non_responsive = '<link rel="stylesheet" href="' . Juri::root() . '/plugins/system/zo2/assets/vendor/bootstrap/3.2.0/css/non-responsive.css' . '">';
+                    $bootstrap_non_responsive = '<link rel="stylesheet" href="' . ZO2URL_ROOT . '/assets/vendor/bootstrap/3.2.0/css/non-responsive.css' . '">';
                     return $cssHtml . $bootstrap_non_responsive . "\n" . $cssDeclarationHtml;
                 }
                 return $cssHtml . "\n" . $cssDeclarationHtml;
