@@ -1994,3 +1994,9 @@ div.zo2-gmap img {
 .rtl .style-switcher ul.options li {
   float: right;
 }
+.rtl nav.zo2-menu .navbar-nav ul.mega-nav li a {
+  text-align: right;
+}
+.rtl nav.zo2-menu .dropdown-menu .dropdown-menu {
+  right: 100%;
+}
