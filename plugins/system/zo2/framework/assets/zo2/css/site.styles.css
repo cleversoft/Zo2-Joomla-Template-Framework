@@ -1976,3 +1976,21 @@ div.zo2-gmap img {
   display: block;
   cursor: pointer;
 }
+.rtl .style-switcher {
+  right: -230px;
+  left: inherit;
+}
+.rtl .style-switcher h4 {
+  margin: 0 0 15px -40px;
+  text-align: right;
+  border-radius: 3px 0 0 3px;
+}
+.rtl .style-switcher h4 .style-switcher-icon {
+  float: left;
+}
+.rtl .style-switcher ul.options {
+  padding: 0 0px 10px;
+}
+.rtl .style-switcher ul.options li {
+  float: right;
+}

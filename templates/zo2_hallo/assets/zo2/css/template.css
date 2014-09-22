@@ -229,7 +229,7 @@ p.img_caption {
   bottom: 0;
   right: 0;
   background: #000;
-  color: #ffffff;
+  color: #fff;
   font-size: 12px;
   padding: 5px 10px;
   margin: 0;
@@ -910,7 +910,7 @@ body.contentpane button {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  color: #FFF;
+  color: #fff;
   background-color: #1085DE;
   border: 1px solid #1085DE;
 }
@@ -1633,7 +1633,7 @@ body.overflow-hidden {
 .offcanvas .sidebar-nav >ul >li.nav-active > a {
   background: none repeat scroll 0 0 #7FBE54;
   border-bottom: 1px solid rgba(0,0,0,0.2);
-  color: #FFFFFF;
+  color: #fff;
 }
 .offcanvas.active {
   -webkit-transform: translateX(0);
@@ -1927,7 +1927,7 @@ pre,
 }
 .zt-code3 h4 {
   background: none repeat scroll 0 0 #A8B4EF;
-  color: #FFFFFF;
+  color: #fff;
   margin: 0 0 0 -64px !important;
   padding: 3px 10px;
   position: relative;
@@ -2559,11 +2559,11 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 .carousel-inner .slide-button {
   background: none repeat scroll 0 0 rgba(0,0,0,0);
-  border: 1px solid #FFFFFF;
+  border: 1px solid #fff;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
-  color: #FFFFFF;
+  color: #fff;
   font-size: 13px;
   margin-top: 15px;
   padding: 10px 28px;
@@ -2614,7 +2614,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   position: relative;
 }
 #zo2-features .top-features .zo2-feature .zo2-circle {
-  background-color: #FFFFFF;
+  background-color: #fff;
   border: 5px solid #EFEFEF;
   top: -36px;
   left: 44%;
@@ -2699,7 +2699,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 #zo2-bottom1 {
   background-color: #2a2a2a;
-  color: #ffffff;
+  color: #fff;
 }
 #zo2-bottom1 .container {
   border-bottom: 1px solid #404141;
@@ -2751,7 +2751,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 #zo2-bottom2 {
   background-color: #2a2a2a;
-  color: #ffffff;
+  color: #fff;
   padding: 50px 0;
 }
 #zo2-bottom2 a {
@@ -2945,7 +2945,7 @@ footer .footer_zo2_logo img {
 }
 .box-color h3.moduletitle {
   background: none;
-  color: #ffffff;
+  color: #fff;
   font-size: 200%;
   font-weight: 300;
   padding-bottom: 0;
@@ -3223,7 +3223,7 @@ code {
   overflow: inherit;
 }
 .zo2-socialshares-floatbar {
-  background: none repeat scroll 0 0 padding-box #FFFFFF;
+  background: none repeat scroll 0 0 padding-box #fff;
   border: 1px solid #BBBBBB;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;

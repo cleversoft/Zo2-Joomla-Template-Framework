@@ -92,6 +92,7 @@ if (!class_exists('Zo2ModelTemplate')) {
         }
 
         private function _save() {
+            $this->build();
             $jinput = JFactory::getApplication()->input;
             /* Get table */
             $table = JTable::getInstance('Style', 'TemplatesTable');

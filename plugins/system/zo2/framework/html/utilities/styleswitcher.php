@@ -129,10 +129,18 @@ $theme = $profile->get('theme');
 
         jQuery(".style-switcher-icon").click(function() {
             if (jQuery('#ss_position').val() == 'hide') {
-                jQuery('#style-switcher').animate({'left': '0px'}, 600);
+                if(jQuery('body').hasClass('rtl')){
+                    jQuery('#style-switcher').animate({'right': '0px'}, 600);
+                } else {
+                    jQuery('#style-switcher').animate({'left': '0px'}, 600);
+                }
                 jQuery('#ss_position').val('show');
             } else {
-                jQuery('#style-switcher').animate({'left': '-230px'}, 600);
+                if(jQuery('body').hasClass('rtl')){
+                    jQuery('#style-switcher').animate({'right': '-230px'}, 600);
+                } else {
+                    jQuery('#style-switcher').animate({'left': '-230px'}, 600);
+                }
                 jQuery('#ss_position').val('hide');
             }
         });
