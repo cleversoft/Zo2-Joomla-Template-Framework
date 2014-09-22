@@ -31,7 +31,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -49,7 +51,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -67,7 +71,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -100,7 +106,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -118,7 +126,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "megamenu",
@@ -136,7 +146,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -169,7 +181,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -202,7 +216,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -235,7 +251,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -268,7 +286,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -301,7 +321,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -319,7 +341,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -337,7 +361,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -370,7 +396,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -403,7 +431,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -436,7 +466,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -454,7 +486,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -472,7 +506,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -505,25 +541,27 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         }
     ],
     "theme": {
-        "name": "green",
-        "css": "presets\/green",
-        "less": "presets\/green",
+        "name": "orange",
+        "css": "presets\/orange",
+        "less": "presets\/orange",
         "boxed": "0",
         "background": "#ffffff",
-        "header": "",
-        "header_top": "",
-        "text": "",
-        "link": "#7FBE54",
-        "link_hover": "#449d44",
-        "bottom1": "",
-        "bottom2": "",
-        "footer": "",
+        "header": "#F5F1EF",
+        "header_top": "#F7C9AA",
+        "text": "#4d4d62",
+        "link": "#d35400",
+        "link_hover": "#e67e22",
+        "bottom1": "#2c3e50",
+        "bottom2": "#2c3e50",
+        "footer": "#edeff1",
         "extra": "{}",
         "bg_image": "",
         "bg_pattern": "templates\/zo2_hallo\/assets\/zo2\/images\/background-patterns\/congruent_pentagon.png"

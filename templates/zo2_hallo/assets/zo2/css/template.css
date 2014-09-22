@@ -1528,6 +1528,7 @@ html {
 }
 .offcanvas.active {
   left: 0;
+  display: block;
 }
 .wrapper {
   -webkit-transition: transform 0.5s ease 0s;
