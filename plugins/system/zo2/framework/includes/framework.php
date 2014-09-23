@@ -117,9 +117,6 @@ if (!class_exists('Zo2Framework')) {
                 if (Zo2Factory::isSite()) {
                     /* Load core assets */
                     $this->assets->load($assets->frontend);
-                    /* Disable responsive */
-                    if ($this->get('responsive_layout') == 0)
-                        $this->assets->addStyleSheet('zo2/css/non-responsive.css');
                     /* Custom css */
                     if ($this->get('enable_custom_css', 1) == 1)
                         $this->assets->addStyleSheet('zo2/css/custom.css');

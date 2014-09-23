@@ -345,7 +345,7 @@ if (!class_exists('Zo2Assets')) {
                 }
                 $cssDeclarationHtml .= '</style>';
                 /* Responsive */
-                if (!Zo2Factory::get('responsive_layout')) {
+                if (!Zo2Factory::get('responsive_layout', 1)) {
                     $bootstrap_non_responsive = '<link rel="stylesheet" href="' . ZO2URL_ROOT . '/assets/vendor/bootstrap/3.2.0/css/non-responsive.css' . '">';
                     return $cssHtml . $bootstrap_non_responsive . "\n" . $cssDeclarationHtml;
                 }
