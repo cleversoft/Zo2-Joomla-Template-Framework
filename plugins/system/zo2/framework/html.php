@@ -48,14 +48,29 @@ if (!class_exists('Zo2Html')) {
         }
 
         /**
+         * 
+         * @return string
+         */
+        public static function _() {
+            $args = func_get_args();
+            $prefix = array_shift($args);
+            $method = array_shift($args);
+            $className = 'Zo2Html' . ucfirst($prefix);
+            $class = new $className();
+            return call_user_func_array(array(
+                $class, $method
+                    ), $args);
+        }
+
+        /**
          * Fetch template file
          * @param string $key
          * @return string
          */
         public function fetch($key) {
-            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);
+            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);            
             /* Make sure this template file is exists */
-            if ($tplFile) {
+            if ($tplFile) {                
                 $properties = $this->getProperties();
                 ob_start();
                 extract($properties, EXTR_REFS);

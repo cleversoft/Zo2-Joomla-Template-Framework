@@ -353,8 +353,8 @@ if (!class_exists('Zo2Layout')) {
                          */
                         $template = new Zo2Template();
                         switch ($item->get('position')) {
-                            case 'footer_copyright':
-                                $html .= $template->fetch('html://zo2/copyright.php');
+                            case 'footer_copyright':                                
+                                $html .= Zo2Html::_('copyright', 'render');
                                 break;
                             case 'header_logo':
                                 require_once ZO2PATH_ROOT . '/html/zo2/header_logo.php';

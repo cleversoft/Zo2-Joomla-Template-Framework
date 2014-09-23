@@ -1,5 +1,4 @@
 <?php
-
 $assets = Zo2Assets::getInstance();
 $logo = Zo2Factory::get('footer_logo');
 $copyright = Zo2Factory::get('footer_copyright');
@@ -13,12 +12,30 @@ if ($logo == 1) {
     $html .= '</a>';
 }
 if ($gototop) {
-    $html .= '<a href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>';
+    $html .= '';
 
-    $script = 'jQuery("#gototop").click(function(){jQuery("body, html").animate({scrollTop: 0}); return false;});';
+    $script = '';
 
     $assets->addScriptDeclaration($script);
 }
 $html .= '</footer>';
 echo $html;
 ?>
+<footer>
+    <section class="zo2-copyright"><?php echo $copyright; ?></section>
+    <?php if ($logoUrl !== null) : ?>
+        <a 
+            title="<?php echo $title; ?>" 
+            class="zo2-copyright-logo" 
+            href="<?php echo $link; ?>">
+            <img src="<?php echo $logoUrl; ?>" />
+        </a>
+    <?php endif; ?>
+    <a href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>
+    <script>
+        jQuery("#gototop").click(function () {
+            jQuery("body, html").animate({scrollTop: 0});
+            return false;
+        });
+    </script>
+</footer>
