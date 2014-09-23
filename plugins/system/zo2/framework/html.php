@@ -32,6 +32,12 @@ if (!class_exists('Zo2Html')) {
         private $_path;
 
         /**
+         *
+         * @var string
+         */
+        private $_namespace = 'zo2://html';
+
+        /**
          * Constructor
          * @param object|array $properties
          */
@@ -47,7 +53,7 @@ if (!class_exists('Zo2Html')) {
          * @return string
          */
         public function fetch($key) {
-            $tplFile = $this->_path->getPath('html://' . $key);
+            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);
             /* Make sure this template file is exists */
             if ($tplFile) {
                 $properties = $this->getProperties();
@@ -65,7 +71,7 @@ if (!class_exists('Zo2Html')) {
          * @return \Zo2Html
          */
         public function load() {
-            $tplFile = $this->_path->getPath('html://' . $key);
+            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);
             if ($tplFile) {
                 $properties = $this->getProperties();
                 extract($properties, EXTR_REFS);
