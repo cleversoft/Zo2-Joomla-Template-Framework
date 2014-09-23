@@ -23,12 +23,6 @@ if (!class_exists('Zo2Ajax')) {
     class Zo2Ajax {
 
         /**
-         * Registered class & func allow to use in ajax
-         * @var array 
-         */
-        protected $_registeredClass = array();
-
-        /**
          * Responses data
          * @var array
          */
@@ -36,15 +30,8 @@ if (!class_exists('Zo2Ajax')) {
 
         /**
          * 
-         */
-        public function __construct() {
-            
-        }
-
-        /**
-         * Get singleton instance
-         * @staticvar self $instance
-         * @return \self
+         * @staticvar Zo2Ajax $instance
+         * @return \Zo2Ajax
          */
         public static function getInstance() {
             static $instance;
@@ -52,6 +39,60 @@ if (!class_exists('Zo2Ajax')) {
                 $instance = new Zo2Ajax();
             }
             return $instance;
+        }
+
+        /**
+         * Add response data
+         * @param mixed $data
+         * @param string $key
+         * @return \Zo2Ajax
+         */
+        public function add($data, $key = 'global') {
+            $this->_responses[$key][] = $data;
+            return $this;
+        }
+
+        /**
+         * Add HTML to client side
+         * @param type $html
+         * @param type $target
+         * @return \Zo2Ajax
+         */
+        public function addHtml($html, $target = '') {
+            $data = new stdClass();
+            $data->html = $html;
+            $data->target = $target;
+            return $this->add($data, 'html');
+        }
+
+        /**
+         * Append HTML to client side
+         * @param type $html
+         * @param type $target
+         * @return \Zo2Ajax
+         */
+        public function appendHtml($html, $target = '') {
+            $data = new stdClass();
+            $data->html = $html;
+            $data->target = $target;
+            return $this->add($data, 'appendHtml');
+        }
+
+        /**
+         * Add execute script
+         * @param string $script
+         * @return \Zo2Ajax
+         */
+        public function addExecute($script) {
+            return $this->add($script, 'execute');
+        }
+
+        /**
+         * Response to client side & end ajax session
+         */
+        public function response() {
+            echo json_encode($this->_responses);
+            exit();
         }
 
         /**
