@@ -422,6 +422,7 @@
       width: 100%;
     }
   }
+
   body.overflow-hidden{
     width: 100%;
     overflow-x: hidden;
@@ -538,5 +539,18 @@
   cursor: pointer;
   display: block;
   padding-top: 10px;
+}
+
+.rtl {
+  .offcanvas.active{
+    right: 0;
+    display: block;
+  }
+  .wrapper.offcanvas-push{
+    .transition(transform 0.5s ease 0s);
+    -webkit-transform: translate3d(-250px, 0, 0);
+    transform: translate3d(-250px, 0, 0);
+
+  }
 }
 
