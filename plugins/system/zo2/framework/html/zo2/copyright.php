@@ -1,25 +1,17 @@
 <?php
-$assets = Zo2Assets::getInstance();
-$logo = Zo2Factory::get('footer_logo');
-$copyright = Zo2Factory::get('footer_copyright');
-$gototop = Zo2Factory::get('footer_gototop');
-
-$html = '<footer>';
-$html .= '<section class="copyright" style="text-align:center">' . $copyright . '</section>';
-if ($logo == 1) {
-    $html .= '<a title="Powered by Zo2Framework" class="footer_zo2_logo" href="http://zo2framework.org" style="display:block;">';
-    $html .= '<img src="' . JUri::root(true) . '/plugins/system/zo2/assets/zo2/images/zo2logo.png" />';
-    $html .= '</a>';
-}
-if ($gototop) {
-    $html .= '';
-
-    $script = '';
-
-    $assets->addScriptDeclaration($script);
-}
-$html .= '</footer>';
-echo $html;
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @version     1.4.3
+ * @since       1.4.3
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
 ?>
 <footer>
     <section class="zo2-copyright"><?php echo $copyright; ?></section>
