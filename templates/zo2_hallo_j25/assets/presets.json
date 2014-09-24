@@ -13,8 +13,8 @@
             "link": "#7FBE54",
             "link_hover": "#449d44",
             "text": "",
-            "bottom1": "#416941",
-            "bottom2": "#416941",
+            "bottom1": "",
+            "bottom2": "",
             "footer": "",
             "extra": ""
         }
@@ -27,9 +27,9 @@
         "color": "#0099FF",
         "thumbnail": "/assets/zo2/images/presets/blue.jpg",
         "variables": {
-            "background": "#A0C0D8",
-            "header": "#95c5e8",
-            "header_top": "#C6E4FA",
+            "background": "",
+            "header": "",
+            "header_top": "",
             "link": "#184587",
             "link_hover": "#5eaf28",
             "text": "#222",
@@ -48,8 +48,8 @@
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
             "background": "#ffffff",
-            "header": "#F7C9AA",
-            "header_top": "#F5F1EF",
+            "header": "",
+            "header_top": "",
             "link": "#d35400",
             "link_hover": "#e67e22",
             "text": "#4d4d62",

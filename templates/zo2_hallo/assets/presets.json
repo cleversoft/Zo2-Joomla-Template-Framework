@@ -48,8 +48,8 @@
         "thumbnail": "/assets/zo2/images/presets/orange.jpg",
         "variables": {
             "background": "#ffffff",
-            "header": "#F7C9AA",
-            "header_top": "#F5F1EF",
+            "header": "",
+            "header_top": "",
             "link": "#d35400",
             "link_hover": "#e67e22",
             "text": "#4d4d62",
