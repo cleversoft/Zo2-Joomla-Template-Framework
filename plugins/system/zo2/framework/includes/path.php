@@ -63,7 +63,7 @@ if (!class_exists('Zo2Path')) {
          * @return boolean|string
          */
         public function getPath($key) {
-            /* Extract key to get namespace and path */
+            /* Extract key to get namespace and path */            
             $parts = explode('://', $key);
             if (is_array($parts) && count($parts) == 2) {
                 $namespace = $parts[0];

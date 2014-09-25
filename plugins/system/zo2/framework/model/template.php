@@ -17,6 +17,9 @@ defined('_JEXEC') or die('Restricted access');
  */
 if (!class_exists('Zo2ModelTemplate')) {
 
+    /**
+     * 
+     */
     class Zo2ModelTemplate {
 
         /**
@@ -25,13 +28,6 @@ if (!class_exists('Zo2ModelTemplate')) {
         protected function __construct() {
             JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
             JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
-            /* Load language */
-            $lang = JFactory::getLanguage();
-            $extension = 'com_templates';
-            $base_dir = JPATH_ADMINISTRATOR;
-            $language_tag = 'en-GB';
-            $reload = true;
-            $lang->load($extension, $base_dir, $language_tag, $reload);
         }
 
         /**
@@ -57,9 +53,9 @@ if (!class_exists('Zo2ModelTemplate')) {
             $framework = Zo2Factory::getFramework();
             $id = $framework->template->id;
             if ($profile->rename($newProfileName)) {
-                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=' . $newProfileName, false));
+                $this->_redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=' . $newProfileName, false), JText::_('PLG_ZO2_PROFILE_RENAME_SUCCESS'));
             } else {
-                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=default', false));
+                $this->_redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id, false), JText::_('PLG_ZO2_PROFILE_RENAME_FAILED'));
             }
         }
 
@@ -71,7 +67,7 @@ if (!class_exists('Zo2ModelTemplate')) {
             $id = $framework->template->id;
             $profile = Zo2Factory::getProfile();
             if ($profile->delete()) {
-                JFactory::getApplication()->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=default', false));
+                $this->_redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id, false), JText::_('PLG_ZO2_PROFILE_DELETED'));
             }
         }
 
@@ -188,6 +184,13 @@ if (!class_exists('Zo2ModelTemplate')) {
             } else {
                 JFactory::getApplication()->enqueueMessage('Style save error');
             }
+        }
+
+        private function _redirect($url, $message = null) {
+            if ($message !== NULL) {
+                JFactory::getApplication()->enqueueMessage($message);
+            }
+            JFactory::getApplication()->redirect($url);
         }
 
         /**

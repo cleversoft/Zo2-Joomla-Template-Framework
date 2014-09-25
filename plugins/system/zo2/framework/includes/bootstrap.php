@@ -34,7 +34,7 @@ if (Zo2Factory::isZo2Template()) {
      * @todo remove this core hacking
      */
     if (!class_exists('JViewLegacy', false))
-        Zo2Factory::import('core.classes.legacy');
+        //Zo2Factory::import('core.classes.legacy');
 
     if (Zo2Factory::isSite()) {
         /**

@@ -68,9 +68,9 @@ if (!class_exists('Zo2Html')) {
          * @return string
          */
         public function fetch($key) {
-            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);            
+            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);
             /* Make sure this template file is exists */
-            if ($tplFile) {                
+            if ($tplFile) {
                 $properties = $this->getProperties();
                 ob_start();
                 extract($properties, EXTR_REFS);
