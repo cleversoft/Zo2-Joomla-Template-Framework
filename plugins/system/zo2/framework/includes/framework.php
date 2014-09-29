@@ -76,6 +76,9 @@ if (!class_exists('Zo2Framework')) {
          * Framework init
          */
         public function init() {
+            $language = JFactory::getLanguage();
+            $language->load('plg_system_zo2', ZO2PATH_ROOT);
+            
             //if (!defined('ZO2_LOADED')) {
             $jinput = JFactory::getApplication()->input;
             /* Init framework variables */
