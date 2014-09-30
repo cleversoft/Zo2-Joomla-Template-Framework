@@ -32,6 +32,8 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 8. LESS compiler
 	+ Integrate LESS compiler
 
+9. Font Icons: 
+	+ FontAwesome Icons
 
 ##Download
 
