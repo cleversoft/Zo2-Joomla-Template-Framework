@@ -15,14 +15,7 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <!-- Move these css to admin.css than call it -->
-<style>
-    #attrib-zo2 .controls {
-        margin-left: 0px;
-    }
-    #attrib-zo2 .controls .container{
-        margin-left: 0px;
-    }
-</style>
+
 <!-- include css & bootrap Joomla! here -->
 
 <section id="content">
