@@ -1,18 +1,18 @@
 <?php
 /**
- * Zo2 (http://www.zo2framework.org)
+ * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @link        http://www.zo2framework.org
- * @link        http://github.com/aploss/zo2
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 defined('_JEXEC') or die;
 
-class JFormFieldIncludecats extends JFormField
-{
+class JFormFieldIncludecats extends JFormField {
+
     protected $type = 'Includecats';
 
     /**
@@ -20,10 +20,9 @@ class JFormFieldIncludecats extends JFormField
      *
      * @return string
      */
-    public function getInput()
-    {
+    public function getInput() {
 
-        $extension = $this->element['extension'] ? (string)$this->element['extension'] : '';
+        $extension = $this->element['extension'] ? (string) $this->element['extension'] : '';
         $categories = $this->getCategories($extension);
         ?>
 
@@ -42,20 +41,20 @@ class JFormFieldIncludecats extends JFormField
                 $count = count($categories);
 
                 foreach ($categories as $category) :
-                $checked = in_array($category->id, is_array($this->value) ? $this->value : array()) ? ' checked="checked"' : '';
-                ?>
-                <li class="category-item">
-                    <input type="checkbox" class="checkbox" name="<?php echo $this->name; ?>[]"
-                           value="<?php echo (int)$category->id; ?>"
-                           id="category<?php echo (int)$category->id; ?>"<?php echo $checked; ?>/>
-                    <label for="category<?php echo (int)$category->id; ?>">
-                        <?php echo $category->title; ?>
-                    </label>
-                </li>
-                <?php if ($count > 10) : ?>
+                    $checked = in_array($category->id, is_array($this->value) ? $this->value : array()) ? ' checked="checked"' : '';
+                    ?>
+                    <li class="category-item">
+                        <input type="checkbox" class="checkbox" name="<?php echo $this->name; ?>[]"
+                               value="<?php echo (int) $category->id; ?>"
+                               id="category<?php echo (int) $category->id; ?>"<?php echo $checked; ?>/>
+                        <label for="category<?php echo (int) $category->id; ?>">
+                            <?php echo $category->title; ?>
+                        </label>
+                    </li>
+                    <?php if ($count > 10) : ?>
                     </ul>
                     <ul class="treeCategories">
-                <?php endif; ?>
+                    <?php endif; ?>
 
                 <?php endforeach; ?>
 
@@ -63,17 +62,16 @@ class JFormFieldIncludecats extends JFormField
 
         </div>
 
-    <?php
+        <?php
     }
 
-    function getCategories($extension)
-    {
+    function getCategories($extension) {
 
         $db = JFactory::getDbo();
         $query = $db->getQuery(true)
-            ->select('a.id, a.title, a.level')
-            ->from('#__categories AS a')
-            ->where('a.parent_id > 0 AND a.published = 1');
+                ->select('a.id, a.title, a.level')
+                ->from('#__categories AS a')
+                ->where('a.parent_id > 0 AND a.published = 1');
 
         $query->where('extension = ' . $db->quote($extension));
 
@@ -88,7 +86,6 @@ class JFormFieldIncludecats extends JFormField
         }
 
         return $items;
-
     }
 
 }

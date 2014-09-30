@@ -31,7 +31,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 #zo2-features .top-features:hover .zo2-circle {
   background-color: #0099FF;
-  color: #fff;
+  color: ;
 }
 .box-color {
   background: #0099FF;
@@ -43,7 +43,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 .btn-success {
   background-color: #0099FF;
-  color: #fff !important;
+  color:  !important;
 }
 .zo2-pagination ul >li.active >span,
 .pagination li:hover a {

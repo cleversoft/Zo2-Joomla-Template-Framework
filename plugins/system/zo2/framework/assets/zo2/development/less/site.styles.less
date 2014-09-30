@@ -1,0 +1,171 @@
+/**
+* Zo2 (http://www.zootemplate.com/zo2)
+* A powerful Joomla template framework
+*
+* @link        http://www.zootemplate.com/zo2
+* @link        https://github.com/cleversoft/zo2
+* @author      ZooTemplate <http://zootemplate.com>
+* @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+* @license     GPL v2
+*/
+/* Global variables */
+@import "variables";
+/* Mega menu */
+@import "megamenu";
+@import "megamenu-responsive";
+@import "shortcodes";
+@import "socialshare";
+
+
+
+.style-switcher {
+  -moz-box-sizing: content-box;
+  background: #738E96;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  display: block;
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  left: -230px;
+  line-height: 30px;
+  margin-bottom: 0;
+  position: fixed;
+  top: 80px;
+  width: 230px;
+  z-index: 9999;
+  .switch-container{
+    background-color: #fff;
+    height: auto;
+    width: 230px;
+    padding: 7px 15px;
+  }
+  ul {
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    &.options {
+      border-bottom: 1px solid #ccc;
+      height: auto;
+      margin-bottom: 15px;
+      overflow: hidden;
+      padding: 0 15px 10px;
+      li{
+        display: inline;
+        float: left;
+        margin-bottom: 0;
+        text-align: center;
+      }
+      &.layout-select{
+        width: auto;
+        li{
+          &:first-child{
+            margin-right: 10px;
+          }
+          &.selected{
+            background: #8DC63F;
+          }
+          a{
+            color: @color_white;
+            display: block;
+            padding: 4px;
+            text-decoration: none;
+            img {
+              width: auto;
+              height: 50px;
+            }
+          }
+        }
+      }
+      &.color-select, &.background-select{
+        li{
+          padding: 2px;
+          width: 27px;
+          margin: 4px;
+          border: solid #808080 1px;
+          &.selected{
+            background: #8DC63F;
+          }
+          a{
+            display: block;
+            height: 27px;
+            width: 100%;
+          }
+          img{
+            display: block;
+            height: 27px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  h5{
+    display: inline-block;
+    font-size: 12px;
+    color: #000000;
+  }
+  h4{
+    background: none repeat scroll 0 0 @color_white;
+    border-radius: 0 3px 3px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    height: auto;
+    line-height: 30px;
+    margin: 0 -40px 15px 0;
+    padding: 7px 10px;
+    position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    width: 270px;
+    display: inline-block;
+    color: #000000;
+    .style-switcher-icon{
+      float: right;
+      font-size: 26px;
+      text-align: right;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+    }
+  }
+}
+
+/* ============================== */
+/// Style RTL
+/* ============================== */
+.rtl{
+  .style-switcher{
+    right: -230px;
+    left: inherit;
+    h4{
+      margin: 0 0 15px -40px;
+      text-align: right;
+      border-radius: 3px 0 0 3px;
+      .style-switcher-icon{
+        float: left;
+      }
+    }
+    ul.options{
+      padding: 0 0px 10px;
+      li{
+        float: right;
+      }
+    }
+  }
+  nav.zo2-menu{
+    .navbar-nav ul.mega-nav{
+      li a{
+        text-align: right;
+      }
+    }
+    .dropdown-menu{
+      .dropdown-menu{
+        right: 100%;
+      }
+    }
+  }
+}

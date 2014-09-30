@@ -1,24 +1,24 @@
 <?php
+
 /**
- * Zo2 (http://www.zo2framework.org)
+ * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @link        http://www.zo2framework.org
- * @link        http://github.com/aploss/zo2
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
- //no direct accees
-defined ('_JEXEC') or die ('resticted aceess');
+//no direct accees
+defined('_JEXEC') or die('resticted aceess');
 
 JFormHelper::loadFieldClass('list');
 
 require_once realpath(JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
 
+class JFormFieldMenutype extends JFormFieldMenu {
 
-class JFormFieldMenutype extends JFormFieldMenu
-{
     /**
      * The form field type.
      *
@@ -35,8 +35,7 @@ class JFormFieldMenutype extends JFormFieldMenu
      *
      * @since   11.1
      */
-    protected function getInput()
-    {
+    protected function getInput() {
 
 
         $html = array();
@@ -44,16 +43,16 @@ class JFormFieldMenutype extends JFormFieldMenu
         $calls = array();
 
         $input = JFactory::getApplication()->input;
-        if($input->getCmd('option') == 'com_templates' &&
-            (preg_match('/style\./', $input->getCmd('task')) || $input->getCmd('view') == 'style' || $input->getCmd('view') == 'template')
-        ){
+        if ($input->getCmd('option') == 'com_templates' &&
+                (preg_match('/style\./', $input->getCmd('task')) || $input->getCmd('view') == 'style' || $input->getCmd('view') == 'template')
+        ) {
             $vars['url'] = JUri::root() . 'index.php?zo2controller=menu&task=display';
         }
-        $calls[] = 'Assets.ajax(\''.$this->getName('menu_type').'\', ' . json_encode($vars) . ');';
+        $calls[] = 'Assets.ajax(\'' . $this->getName('menu_type') . '\', ' . json_encode($vars) . ');';
 
         $html[] = '<script type="text/javascript">';
         $html[] = '         jQuery(window).on(\'load\', function(){';
-        $html[] = '             '.implode("\n", $calls).'';
+        $html[] = '             ' . implode("\n", $calls) . '';
         $html[] = '         })';
         $html[] = '</script>';
 
@@ -63,8 +62,7 @@ class JFormFieldMenutype extends JFormFieldMenu
         $attr .= $this->element['class'] ? ' class="' . (string) $this->element['class'] . '"' : '';
 
         // To avoid user's confusion, readonly="true" should imply disabled="true".
-        if ((string) $this->element['readonly'] == 'true' || (string) $this->element['disabled'] == 'true')
-        {
+        if ((string) $this->element['readonly'] == 'true' || (string) $this->element['disabled'] == 'true') {
             $attr .= ' disabled="disabled"';
         }
 
@@ -79,14 +77,12 @@ class JFormFieldMenutype extends JFormFieldMenu
         $options = (array) $this->getOptions();
 
         // Create a read-only list (no name) with a hidden input to store the value.
-        if ((string) $this->element['readonly'] == 'true')
-        {
+        if ((string) $this->element['readonly'] == 'true') {
             $html[] = JHtml::_('select.genericlist', $options, '', trim($attr), 'value', 'text', $this->value, $this->id);
             $html[] = '<input type="hidden" name="' . $this->name . '" value="' . $this->value . '"/>';
         }
         // Create a regular list.
-        else
-        {
+        else {
             $html[] = JHtml::_('select.genericlist', $options, $this->name, trim($attr), 'value', 'text', $this->value, $this->id);
         }
 

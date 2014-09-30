@@ -1,14 +1,11 @@
 /**
- * Zo2 (http://www.zo2framework.org)
+ * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @link        http://www.zo2framework.org
- * @link        http://github.com/aploss/zo2
- * @author      Duc Nguyen <ducntv@gmail.com>
- * @author      Hiepvu <vqhiep2010@gmail.com>
- * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
- *
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
@@ -50,8 +47,8 @@
      padding: 0;
      margin: 0;
      .mega-dropdown-inner{
-       border-top: 3px solid #000;
-       background-color: #fff;
+       border-top: 3px solid @black;
+       background-color: @white;
        .box-shadow(0 0 7px rgba(0,0,0,.07));
        margin-top: 58px;
        .mega-dropdown-inner{
@@ -273,9 +270,7 @@
     &.animate.elastic .mega.open > .mega-dropdown-menu {
       .scale(1);
     }
-    &.animate.slide .mega.hovering > .mega-dropdown-menu {
-      overflow: hidden;
-    }
+
     &.animate.slide .mega > .mega-dropdown-menu > div {
       .transition(all 400ms);
       .backface-visibility(hidden);
@@ -359,7 +354,6 @@
 * Off Canvas
 * --------------------------------------------------
 */
-@media screen and (max-width: 767px) {
   html{
       width: 100%;
        overflow-x: hidden;
@@ -385,17 +379,16 @@
       top: 0;
       z-index: 999;
       &:hover{
-        color: #000;
+        color: @black;
       }
     }
   }
   .offcanvas.active{
     left:0;
+    display: block;
   }
   .wrapper{
     .transition(transform 0.5s ease 0s);
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
     &:after{
       background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
       content: "";
@@ -483,7 +476,7 @@
           > a {
             background: none repeat scroll 0 0 #7FBE54;
             border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-            color: #FFFFFF;
+            color: @white;
           }
         }
       }
@@ -502,21 +495,6 @@
         .transition(transform 0.5s);;
       }
     }
-  }
-  body> * {
-    left: 0;
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -o-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-transition: -webkit-transform 500ms ease;
-    -moz-transition: -moz-transform 500ms ease;
-    -o-transition: -o-transform 500ms ease;
-    transition: transform 500ms ease;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -o-backface-visibility: hidden;
-    backface-visibility: hidden;
   }
   body.overflow-hidden > * {
     -webkit-transform: translateX(250px);
@@ -537,8 +515,6 @@
     font-size:18px;
     height: 8px;
   }
-
-}
 .dropdown-menu{
   z-index: 2000;
 }
@@ -557,5 +533,10 @@
   &::before {
     content: "\f00d";
   }
+}
+.button-canvas {
+  cursor: pointer;
+  display: block;
+  padding-top: 10px;
 }
 

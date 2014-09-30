@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Zo2 (http://www.zo2framework.org)
+ * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @link        http://www.zo2framework.org
- * @link        http://github.com/aploss/zo2
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
@@ -62,7 +62,11 @@ if (!class_exists('JFormFieldLayout')) {
             $templatePath = Zo2Factory::getPath('templates://');
 
             $profile = Zo2Factory::getProfile();
-            $layoutData = $profile->layout;
+            if(is_object($profile->layout)) {
+                $layoutData = $profile->layout->layout;
+            } else {
+                $layoutData = $profile->layout;
+            }
 
             $layoutFile = $path->getFile('html://layouts/formfield.layout.php');
 

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Zo2 (http://www.zo2framework.org)
+ * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @link        http://www.zo2framework.org
- * @link        http://github.com/aploss/zo2
- * @author      ZooTemplate <http://zootemplate.com99
- * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
@@ -37,9 +37,9 @@ if (!class_exists('plgSystemZo2')) {
          * Init our framework
          */
         public function onAfterInitialise() {
-            include_once __DIR__ . '/includes/bootstrap.php';
+            include_once __DIR__ . '/framework/includes/bootstrap.php';
         }
-  
+
         /**
          * 
          */

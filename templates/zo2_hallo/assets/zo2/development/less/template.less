@@ -1,12 +1,12 @@
 /**
- * Zo2 (http://www.zo2framework.org)
+ * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @link        http://www.zo2framework.org
- * @link        http://github.com/aploss/zo2
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
  * @author      Duc Nguyen <ducntv@gmail.com>
  * @author      Hiepvu <vqhiep2010@gmail.com>
- * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 
@@ -32,7 +32,7 @@
   }
 }
 
-body {line-height: 20px;font-size: 12px; font-family: 'Open Sans', sans-serif; color: #4e4d4d; background-color:#fff; overflow-x: hidden;}
+body {line-height: 20px;font-size: 12px; font-family: 'Open Sans', sans-serif; color: #4e4d4d; background-color:@white; overflow-x: hidden;}
 article,
 aside,
 details,
@@ -83,7 +83,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  color: #000;
+  color: @black;
   text-decoration: none;
 }
 img{
@@ -138,7 +138,7 @@ body.boxed{
           &:hover,
           &:focus{
             background: none;
-            color: #000;
+            color: @black;
           }
         }
         &:last-child{
@@ -251,9 +251,9 @@ nav.zo2-menu{
   z-index: 0;
   .slide-button{
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-    border: 1px solid #FFFFFF;
+    border: 1px solid @white;
     .border-radius(0);
-    color: #FFFFFF;
+    color: @white;
     font-size: 13px;
     margin-top: 15px;
     padding: 10px 28px;
@@ -263,7 +263,7 @@ nav.zo2-menu{
     &:active,
     &:focus{
       background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
-      color: #fff;
+      color: @white;
       .box-shadow(0 0 0 26px rgba(0, 0, 0, 0.1) inset);
     }
   }
@@ -297,11 +297,11 @@ nav.zo2-menu{
     padding-top: 50px;
     .zo2-feature{
       margin-top:35px;
-      background-color:#fff;
+      background-color:@white;
       color:#313131;
       position:relative;
       .zo2-circle{
-        background-color: #FFFFFF;
+        background-color: @white;
         border: 5px solid #EFEFEF;
         top:-36px;
         left:44%;
@@ -359,7 +359,7 @@ nav.zo2-menu{
       .zo2-circle{
         background-color:#7FBE54;
         border: 5px solid transparent;
-        color: #fff;
+        color: @white;
       }
       .zo2-circle:before{
         filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
@@ -381,7 +381,7 @@ nav.zo2-menu{
   position: relative;
   z-index: 999;
   #zo2-header{
-    background-color: #fff;
+    background-color: @white;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     max-width: none;
     width: 100%;
@@ -395,7 +395,7 @@ nav.zo2-menu{
 /*Bottom*/
 #zo2-bottom1{
   background-color: #2a2a2a;
-  color: #ffffff;
+  color: @white;
   .container{
     border-bottom: 1px solid #404141;
     padding-bottom: 50px;
@@ -440,10 +440,10 @@ nav.zo2-menu{
 }
 #zo2-bottom2{
   background-color: #2a2a2a;
-  color: #ffffff;
+  color: @white;
   padding: 50px 0;
   a{
-    color: #fff;
+    color: @white;
   }
   p{
     color: #ababab;
@@ -476,7 +476,7 @@ nav.zo2-menu{
     margin: 0 5px;
     width: 37px;
     &:hover{
-      color: #fff;
+      color: @white;
       text-decoration: none;
     }
     i{
@@ -589,7 +589,7 @@ nav.zo2-menu{
   margin: 5px;
   box-shadow: none;
   img{
-    border: 4px solid #fff;
+    border: 4px solid @white;
   }
 }
 a.cboxElement img{
@@ -647,7 +647,7 @@ footer{
     background-color: rgba(0, 0, 0, 0.4);
   }
   i{
-    color: #fff;
+    color: @white;
     font-size: 24px;
     line-height: 24px;
   }
@@ -661,7 +661,7 @@ footer{
 }
 .box-color h3.moduletitle{
   background: none;
-  color: #ffffff;
+  color: @white;
   font-size: 200%;
   font-weight: 300;
   padding-bottom: 0;
@@ -689,7 +689,7 @@ footer{
 }
 .box-color ul.weblinks li a,
 .box-color ul.menu li a{
-  color: #fff !important;
+  color: @white !important;
 }
 //Homepage
 .homepage .zo2-social-wrap{
@@ -719,10 +719,10 @@ footer{
   font-weight: 300;
   text-align: left;
   top: 20%;
-  color: #fff;
+  color: @white;
 }
 .carousel-caption h3{
-  color: #fff;
+  color: @white;
   font-size: 40px;
 }
 .carousel-caption p{
@@ -947,7 +947,7 @@ code{
 }
 //Social
 .zo2-socialshares-floatbar{
-  background: none repeat scroll 0 0 padding-box #FFFFFF;
+  background: none repeat scroll 0 0 padding-box @white;
   border: 1px solid #BBBBBB;
   .border-radius(5px);
   .box-shadow(1px 0 15px rgba(0, 0, 0, 0.2));
@@ -993,13 +993,13 @@ code{
     &:hover{
       a{
         background-color: #7fbe54;
-        color: #fff;
+        color: @white;
       }
     }
     &.active{
       span{
         background-color: #7fbe54;
-        color: #fff;
+        color: @white;
       }
     }
   }

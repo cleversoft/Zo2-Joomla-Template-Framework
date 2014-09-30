@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="plugin" group="system" method="upgrade">
     <name>Zo2 Framework</name>
-    <author>APL</author>
+    <author>CleverSoft</author>
     <creationDate>May 2013</creationDate>
-    <copyright>Copyright (c) 2008 - 2013 APL Solutions</copyright>
+    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <authorEmail>support@apl.vn</authorEmail>
-    <authorUrl>www.apl.vn</authorUrl>
-    <version>1.4.1</version>
+    <authorEmail>hello@cleversoft.co</authorEmail>
+    <authorUrl>https://github.com/cleversoft</authorUrl>
+    <version>1.4.2</version>
     <description>Zo2 Framework - Template Framework for Joomla 3</description>
 
     <languages>
@@ -16,18 +16,11 @@
 
     <files>        
         <folder>addons</folder>
-        <folder>assets</folder>
-        <folder>core</folder>
         <folder>formfields</folder>
-        <folder>helpers</folder>
-        <folder>html</folder>        
-        <folder>includes</folder>        
-        <folder>language</folder>        
-        <folder>libraries</folder>        
-        <folder>templates</folder>
-        <folder>vendor</folder>
+        <folder>framework</folder>
         <filename plugin="zo2">zo2.php</filename>
     </files>
+
     <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
     <updateservers>		
         <server type="extension" name="Zo2 Framework's Updates">http://update.zo2framework.org/zo2/extension.xml</server>

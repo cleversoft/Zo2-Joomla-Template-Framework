@@ -1,18 +1,19 @@
 <?php
+
 /**
- * Zo2 (http://www.zo2framework.org)
+ * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @link        http://www.zo2framework.org
- * @link        http://github.com/aploss/zo2
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2013 APL Solutions (http://apl.vn)
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 defined('_JEXEC') or die;
 
-class JFormFieldFont extends JFormField
-{
+class JFormFieldFont extends JFormField {
+
     protected $type = 'Font';
 
     /**
@@ -20,9 +21,8 @@ class JFormFieldFont extends JFormField
      *
      * @return string
      */
-    public function getInput()
-    {
-        $path = JPATH_SITE.'/plugins/system/zo2/templates/font.php';
+    public function getInput() {
+        $path = ZO2PATH_ROOT . '/html/zo2/font.php';
         ob_start();
         include($path);
         $html = ob_get_contents();
@@ -30,10 +30,8 @@ class JFormFieldFont extends JFormField
         return $html;
     }
 
-    public function getLabel()
-    {
-        switch($this->fieldname)
-        {
+    public function getLabel() {
+        switch ($this->fieldname) {
             case 'body_font': return 'Body';
             case 'h1_font': return 'Headline H1';
             case 'h2_font': return 'Headline H2';
@@ -44,4 +42,5 @@ class JFormFieldFont extends JFormField
             default: return '';
         }
     }
+
 }
