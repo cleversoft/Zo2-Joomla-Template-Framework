@@ -24,7 +24,7 @@ defined('_JEXEC') or die('Restricted access');
     }
 </style>
 <!-- include css & bootrap Joomla! here -->
-<div class="container-fluid container-main">
+
 <section id="content">
 <!-- Begin Content -->
 
@@ -2975,157 +2975,157 @@ return false;
 <div class="profiles-pane">
 <h3 class="title-profile">Advanced</h3>
 <div class="profiles-pane-inner">
-<div class="accordion" id="advanced-accordion">
-<div class="accordion-group">
-    <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-google">
-            Google        </a>
-    </div>
-    <div id="advanced-google" class="accordion-body collapse in">
-        <div class="accordion-inner">
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_enable_googleauthorship-lbl" for="jform_params_enable_googleauthorship" class="hasTooltip" title="" data-original-title="<strong>Google Authorship</strong>">Google Authorship</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_enable_googleauthorship" class="radio btn-group"><input type="radio" id="jform_params_enable_googleauthorship0" name="jform[params][enable_googleauthorship]" value="0" checked="checked" style="display: none;"><label for="jform_params_enable_googleauthorship0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_enable_googleauthorship1" name="jform[params][enable_googleauthorship]" value="1" style="display: none;"><label for="jform_params_enable_googleauthorship1" class="btn">Yes</label></fieldset>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_google_profile_url-lbl" for="jform_params_google_profile_url" class="hasTooltip" title="" data-original-title="<strong>Google Profile URL</strong>">Google Profile URL</label>                </div>
-                <div class="controls">
-                    <input type="text" name="jform[params][google_profile_url]" id="jform_params_google_profile_url" value="">                </div>
-            </div>
+    <div class="accordion" id="advanced-accordion">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-google">
+                Google        </a>
         </div>
-    </div>
-</div>
-
-<div class="accordion-group">
-    <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-comments">
-            Comments        </a>
-    </div>
-    <div id="advanced-comments" class="accordion-body collapse">
-        <div class="accordion-inner">
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_enable_comments-lbl" for="jform_params_enable_comments" class="hasTooltip" title="" data-original-title="<strong>Enable Comments</strong>">Enable Comments</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_enable_comments" class="radio btn-group"><input type="radio" id="jform_params_enable_comments0" name="jform[params][enable_comments]" value="1" style="display: none;"><label for="jform_params_enable_comments0" class="btn">Yes</label><input type="radio" id="jform_params_enable_comments1" name="jform[params][enable_comments]" value="0" checked="checked" style="display: none;"><label for="jform_params_enable_comments1" class="btn active btn-danger first">No</label></fieldset>                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_tab_order-lbl" for="jform_params_tab_order" class="hasTooltip" title="" data-original-title="<strong>Tabs Order</strong><br />Only tabs listed will be showed">Tabs Order</label>                </div>
-                <div class="controls">
-                    <input type="text" name="jform[params][tab_order]" id="jform_params_tab_order" value="facebook,gplus,disqus"><div style="margin: 5px 0;">
-                        <strong>Notes</strong>: Comma Separated List, First listed is the default, If left empty it will use default value below, only tabs listed will be shown. <br>
-                        <strong>Possible Values </strong>: gplus,facebook,disqus <br>
-                        <strong>Default Value </strong>: gplus,facebook <br>
-                    </div>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_disqus_shortname-lbl" for="jform_params_disqus_shortname" class="hasTooltip" title="" data-original-title="<strong>Disqus Shortname</strong><br />Required if showing the disqus tab">Disqus Shortname</label>                </div>
-                <div class="controls">
-                    <input type="text" name="jform[params][disqus_shortname]" id="jform_params_disqus_shortname" value="zootemplates"><div style="margin: 5px 0;">
-                        <strong>Notes </strong>: Required if showing the Disqus Tab
-                    </div>                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_facebook_label-lbl" for="jform_params_facebook_label" class="">Facebook Label</label>                </div>
-                <div class="controls">
-                    <input type="text" name="jform[params][facebook_label]" id="jform_params_facebook_label" value="Facebook">                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_gplus_label-lbl" for="jform_params_gplus_label" class="">Google+ Label</label>                </div>
-                <div class="controls">
-                    <input type="text" name="jform[params][gplus_label]" id="jform_params_gplus_label" value="Google+">                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_disqus_label-lbl" for="jform_params_disqus_label" class="">Disqus Label</label>                </div>
-                <div class="controls">
-                    <input type="text" name="jform[params][disqus_label]" id="jform_params_disqus_label" value="Disqus">                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="accordion-group">
-    <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-advanced">
-            Advanced Options        </a>
-    </div>
-    <div id="advanced-advanced" class="accordion-body collapse">
-        <div class="accordion-inner">
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_ga_code-lbl" for="jform_params_ga_code" class="hasTooltip" title="" data-original-title="<strong>Tracking code</strong><br />Include the tracking code">Tracking code</label>                </div>
-                <div class="controls">
-                    <textarea name="jform[params][ga_code]" id="jform_params_ga_code"></textarea>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_component_area-lbl" for="jform_params_component_area" class="hasTooltip" title="" data-original-title="<strong>Hide Component Area</strong><br />Show component area from front page">Hide Component Area</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_component_area" class="radio btn-group"><input type="radio" id="jform_params_component_area0" name="jform[params][component_area]" value="0" checked="checked" style="display: none;"><label for="jform_params_component_area0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_component_area1" name="jform[params][component_area]" value="1" style="display: none;"><label for="jform_params_component_area1" class="btn">Yes</label></fieldset>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_combine_css-lbl" for="jform_params_combine_css" class="hasTooltip" title="" data-original-title="<strong>Combine CSS</strong><br />Combine CSS files into one file">Combine CSS</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_combine_css" class="radio btn-group"><input type="radio" id="jform_params_combine_css0" name="jform[params][combine_css]" value="0" checked="checked" style="display: none;"><label for="jform_params_combine_css0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_combine_css1" name="jform[params][combine_css]" value="1" style="display: none;"><label for="jform_params_combine_css1" class="btn">Yes</label></fieldset>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_combine_js-lbl" for="jform_params_combine_js" class="hasTooltip" title="" data-original-title="<strong>Combine JS</strong><br />Combine JS files into one file">Combine JS</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_combine_js" class="radio btn-group"><input type="radio" id="jform_params_combine_js0" name="jform[params][combine_js]" value="0" checked="checked" style="display: none;"><label for="jform_params_combine_js0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_combine_js1" name="jform[params][combine_js]" value="1" style="display: none;"><label for="jform_params_combine_js1" class="btn">Yes</label></fieldset>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_load_jquery-lbl" for="jform_params_load_jquery" class="hasTooltip" title="" data-original-title="<strong>Load jQuery</strong><br />Force load jQuery">Load jQuery</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_load_jquery" class="radio btn-group"><input type="radio" id="jform_params_load_jquery0" name="jform[params][load_jquery]" value="0" checked="checked" style="display: none;"><label for="jform_params_load_jquery0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_load_jquery1" name="jform[params][load_jquery]" value="1" style="display: none;"><label for="jform_params_load_jquery1" class="btn">Yes</label></fieldset>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label"></div>
-                <div class="controls">
-                    <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px">Clear layout cache</button>
+        <div id="advanced-google" class="accordion-body collapse in">
+            <div class="accordion-inner">
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_enable_googleauthorship-lbl" for="jform_params_enable_googleauthorship" class="hasTooltip" title="" data-original-title="<strong>Google Authorship</strong>">Google Authorship</label>                </div>
+                    <div class="controls">
+                        <fieldset id="jform_params_enable_googleauthorship" class="radio btn-group"><input type="radio" id="jform_params_enable_googleauthorship0" name="jform[params][enable_googleauthorship]" value="0" checked="checked" style="display: none;"><label for="jform_params_enable_googleauthorship0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_enable_googleauthorship1" name="jform[params][enable_googleauthorship]" value="1" style="display: none;"><label for="jform_params_enable_googleauthorship1" class="btn">Yes</label></fieldset>                </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_google_profile_url-lbl" for="jform_params_google_profile_url" class="hasTooltip" title="" data-original-title="<strong>Google Profile URL</strong>">Google Profile URL</label>                </div>
+                    <div class="controls">
+                        <input type="text" name="jform[params][google_profile_url]" id="jform_params_google_profile_url" value="">                </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="accordion-group">
-    <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-dev">
-            Developer Options        </a>
-    </div>
-    <div id="advanced-dev" class="accordion-body collapse">
-        <div class="accordion-inner">
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_debug_visibility-lbl" for="jform_params_debug_visibility" class="hasTooltip" title="" data-original-title="<strong>Debug</strong><br />Allow Developer to rebuild the cache. ONLY use this feature if you are developer">Debug</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_debug_visibility" class="radio btn-group"><input type="radio" id="jform_params_debug_visibility0" name="jform[params][debug_visibility]" value="0" checked="checked" style="display: none;"><label for="jform_params_debug_visibility0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_debug_visibility1" name="jform[params][debug_visibility]" value="1" style="display: none;"><label for="jform_params_debug_visibility1" class="btn">Yes</label></fieldset>                </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label id="jform_params_disable_mootools-lbl" for="jform_params_disable_mootools" class="hasTooltip" title="" data-original-title="<strong>Disable mootools</strong><br />Disable mootools to avoid script conflict">Disable mootools</label>                </div>
-                <div class="controls">
-                    <fieldset id="jform_params_disable_mootools" class="radio btn-group"><input type="radio" id="jform_params_disable_mootools0" name="jform[params][disable_mootools]" value="0" style="display: none;"><label for="jform_params_disable_mootools0" class="btn first">No</label><input type="radio" id="jform_params_disable_mootools1" name="jform[params][disable_mootools]" value="1" checked="checked" style="display: none;"><label for="jform_params_disable_mootools1" class="btn active btn-success">Yes</label></fieldset>                </div>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-comments">
+                Comments        </a>
+        </div>
+        <div id="advanced-comments" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_enable_comments-lbl" for="jform_params_enable_comments" class="hasTooltip" title="" data-original-title="<strong>Enable Comments</strong>">Enable Comments</label>                </div>
+                    <div class="controls">
+                        <fieldset id="jform_params_enable_comments" class="radio btn-group"><input type="radio" id="jform_params_enable_comments0" name="jform[params][enable_comments]" value="1" style="display: none;"><label for="jform_params_enable_comments0" class="btn">Yes</label><input type="radio" id="jform_params_enable_comments1" name="jform[params][enable_comments]" value="0" checked="checked" style="display: none;"><label for="jform_params_enable_comments1" class="btn active btn-danger first">No</label></fieldset>                </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_tab_order-lbl" for="jform_params_tab_order" class="hasTooltip" title="" data-original-title="<strong>Tabs Order</strong><br />Only tabs listed will be showed">Tabs Order</label>                </div>
+                    <div class="controls">
+                        <input type="text" name="jform[params][tab_order]" id="jform_params_tab_order" value="facebook,gplus,disqus"><div style="margin: 5px 0;">
+                            <strong>Notes</strong>: Comma Separated List, First listed is the default, If left empty it will use default value below, only tabs listed will be shown. <br>
+                            <strong>Possible Values </strong>: gplus,facebook,disqus <br>
+                            <strong>Default Value </strong>: gplus,facebook <br>
+                        </div>                </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_disqus_shortname-lbl" for="jform_params_disqus_shortname" class="hasTooltip" title="" data-original-title="<strong>Disqus Shortname</strong><br />Required if showing the disqus tab">Disqus Shortname</label>                </div>
+                    <div class="controls">
+                        <input type="text" name="jform[params][disqus_shortname]" id="jform_params_disqus_shortname" value="zootemplates"><div style="margin: 5px 0;">
+                            <strong>Notes </strong>: Required if showing the Disqus Tab
+                        </div>                </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_facebook_label-lbl" for="jform_params_facebook_label" class="">Facebook Label</label>                </div>
+                    <div class="controls">
+                        <input type="text" name="jform[params][facebook_label]" id="jform_params_facebook_label" value="Facebook">                </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_gplus_label-lbl" for="jform_params_gplus_label" class="">Google+ Label</label>                </div>
+                    <div class="controls">
+                        <input type="text" name="jform[params][gplus_label]" id="jform_params_gplus_label" value="Google+">                </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_disqus_label-lbl" for="jform_params_disqus_label" class="">Disqus Label</label>                </div>
+                    <div class="controls">
+                        <input type="text" name="jform[params][disqus_label]" id="jform_params_disqus_label" value="Disqus">                </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>                        </div>
+
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-advanced">
+                Advanced Options        </a>
+        </div>
+        <div id="advanced-advanced" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_ga_code-lbl" for="jform_params_ga_code" class="hasTooltip" title="" data-original-title="<strong>Tracking code</strong><br />Include the tracking code">Tracking code</label>                </div>
+                    <div class="controls">
+                        <textarea name="jform[params][ga_code]" id="jform_params_ga_code"></textarea>                </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_component_area-lbl" for="jform_params_component_area" class="hasTooltip" title="" data-original-title="<strong>Hide Component Area</strong><br />Show component area from front page">Hide Component Area</label>                </div>
+                    <div class="controls">
+                        <fieldset id="jform_params_component_area" class="radio btn-group"><input type="radio" id="jform_params_component_area0" name="jform[params][component_area]" value="0" checked="checked" style="display: none;"><label for="jform_params_component_area0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_component_area1" name="jform[params][component_area]" value="1" style="display: none;"><label for="jform_params_component_area1" class="btn">Yes</label></fieldset>                </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_combine_css-lbl" for="jform_params_combine_css" class="hasTooltip" title="" data-original-title="<strong>Combine CSS</strong><br />Combine CSS files into one file">Combine CSS</label>                </div>
+                    <div class="controls">
+                        <fieldset id="jform_params_combine_css" class="radio btn-group"><input type="radio" id="jform_params_combine_css0" name="jform[params][combine_css]" value="0" checked="checked" style="display: none;"><label for="jform_params_combine_css0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_combine_css1" name="jform[params][combine_css]" value="1" style="display: none;"><label for="jform_params_combine_css1" class="btn">Yes</label></fieldset>                </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_combine_js-lbl" for="jform_params_combine_js" class="hasTooltip" title="" data-original-title="<strong>Combine JS</strong><br />Combine JS files into one file">Combine JS</label>                </div>
+                    <div class="controls">
+                        <fieldset id="jform_params_combine_js" class="radio btn-group"><input type="radio" id="jform_params_combine_js0" name="jform[params][combine_js]" value="0" checked="checked" style="display: none;"><label for="jform_params_combine_js0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_combine_js1" name="jform[params][combine_js]" value="1" style="display: none;"><label for="jform_params_combine_js1" class="btn">Yes</label></fieldset>                </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label">
+                        <label id="jform_params_load_jquery-lbl" for="jform_params_load_jquery" class="hasTooltip" title="" data-original-title="<strong>Load jQuery</strong><br />Force load jQuery">Load jQuery</label>                </div>
+                    <div class="controls">
+                        <fieldset id="jform_params_load_jquery" class="radio btn-group"><input type="radio" id="jform_params_load_jquery0" name="jform[params][load_jquery]" value="0" checked="checked" style="display: none;"><label for="jform_params_load_jquery0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_load_jquery1" name="jform[params][load_jquery]" value="1" style="display: none;"><label for="jform_params_load_jquery1" class="btn">Yes</label></fieldset>                </div>
+                </div>
+                <div class="control-group">
+                    <div class="control-label"></div>
+                    <div class="controls">
+                        <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px">Clear layout cache</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-dev">
+                    Developer Options        </a>
+            </div>
+            <div id="advanced-dev" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="control-group">
+                        <div class="control-label">
+                            <label id="jform_params_debug_visibility-lbl" for="jform_params_debug_visibility" class="hasTooltip" title="" data-original-title="<strong>Debug</strong><br />Allow Developer to rebuild the cache. ONLY use this feature if you are developer">Debug</label>                </div>
+                        <div class="controls">
+                            <fieldset id="jform_params_debug_visibility" class="radio btn-group"><input type="radio" id="jform_params_debug_visibility0" name="jform[params][debug_visibility]" value="0" checked="checked" style="display: none;"><label for="jform_params_debug_visibility0" class="btn active btn-danger first">No</label><input type="radio" id="jform_params_debug_visibility1" name="jform[params][debug_visibility]" value="1" style="display: none;"><label for="jform_params_debug_visibility1" class="btn">Yes</label></fieldset>                </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="control-label">
+                            <label id="jform_params_disable_mootools-lbl" for="jform_params_disable_mootools" class="hasTooltip" title="" data-original-title="<strong>Disable mootools</strong><br />Disable mootools to avoid script conflict">Disable mootools</label>                </div>
+                        <div class="controls">
+                            <fieldset id="jform_params_disable_mootools" class="radio btn-group"><input type="radio" id="jform_params_disable_mootools0" name="jform[params][disable_mootools]" value="0" style="display: none;"><label for="jform_params_disable_mootools0" class="btn first">No</label><input type="radio" id="jform_params_disable_mootools1" name="jform[params][disable_mootools]" value="1" checked="checked" style="display: none;"><label for="jform_params_disable_mootools1" class="btn active btn-success">Yes</label></fieldset>                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>                        </div>
 </div>
 </div>
 </div>
@@ -3139,4 +3139,3 @@ return false;
 <!-- End Content -->
 </section>
 
-</div>
