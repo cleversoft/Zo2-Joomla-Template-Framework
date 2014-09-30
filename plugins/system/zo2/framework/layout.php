@@ -353,16 +353,11 @@ if (!class_exists('Zo2Layout')) {
                          */
                         $template = new Zo2Template();
                         switch ($item->get('position')) {
-                            case 'footer_copyright':                                
+                            case 'footer_copyright':
                                 $html .= Zo2Html::_('copyright', 'render');
                                 break;
                             case 'header_logo':
-                                require_once ZO2PATH_ROOT . '/html/zo2/header_logo.php';
-                                /**
-                                 * @todo move to correct html layout instead dump class here
-                                 */
-                                $headerLogo = new Zo2Component_header_logo();
-                                $html .= $headerLogo->render();
+                                $html .= Zo2Html::_('headerlogo', 'render');
                                 break;
                             case 'mega_menu':
                                 /* Display frontend megamenu */
