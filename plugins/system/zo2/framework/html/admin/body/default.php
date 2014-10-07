@@ -14,21 +14,10 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<div id="zo2-framework" class="zo2-framwork container">
-
-    <!-- Begin Content -->
-    <div class="row-fluid">
-        <div class="span12">
-            <?php $this->load('admin/top/default.php'); ?>
-            <?php $this->load('admin/body/default.php'); ?>
-        </div>
+<div class="row-fluid">
+    <div class="span12">
+        <section class="zo2-body">
+            <?php $this->load('admin/body/sidebar.php'); ?>            
+        </section>
     </div>
-    <!-- End Content -->
-
 </div>
-
-<style>
-    #attrib-zo2 .controls {
-        margin-left: 0px;
-    }
-</style>

@@ -14,21 +14,8 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<div id="zo2-framework" class="zo2-framwork container">
-
-    <!-- Begin Content -->
-    <div class="row-fluid">
-        <div class="span12">
-            <?php $this->load('admin/top/default.php'); ?>
-            <?php $this->load('admin/body/default.php'); ?>
-        </div>
-    </div>
-    <!-- End Content -->
-
+<!-- tabs content -->
+<div class="tab-content main-navigator">
+    <a href="http://zo2framework.org" target="_blank" id="logo" title="Zo2 Framework"></a>    
 </div>
-
-<style>
-    #attrib-zo2 .controls {
-        margin-left: 0px;
-    }
-</style>
+<!-- /tabs content -->

@@ -85,7 +85,7 @@ if (!class_exists('Zo2Html')) {
          * Include another template into current template
          * @return \Zo2Html
          */
-        public function load() {
+        public function load($key) {
             $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);
             if ($tplFile) {
                 $properties = $this->getProperties();
