@@ -1,5 +1,9 @@
 <!-- Mega Menu Tab Pane -->
-<div class="tab-pane" id="megamenu">
+<div class="tab-pane" id="zo2-menu">
+    <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+    </blockquote>
     <div class="profiles-pane">
         <h3 class="title-profile">Mega Menus</h3>
         <div class="profiles-pane-inner">

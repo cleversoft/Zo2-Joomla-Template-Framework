@@ -17,22 +17,18 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2HtmlAdmin')) {
+if (!class_exists('Zo2HtmlRadio')) {
 
     /**
-     * @uses    Render HTML for backend template administration
+     * @uses    Render radio group buttons
      * @since 1.4.3
      */
-    class Zo2HtmlAdmin {
+    class Zo2HtmlRadio {
 
-        public function render() {
-            /**
-             * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
-             */
-            $html = new Zo2Html();
-            $params = Zo2Factory::getFramework()->template->params;
-            $html->set('params', $params);
-            return $html->fetch('admin/default.php');
+        public function render($name, $value) {
+            $html[] = '<fieldset id="' . $name . '" class="radio btn-group">';
+            $checked = ((string) $option->value == (string) $this->value) ? ' checked="checked"' : '';
+            $html[] = '</fieldset>';
         }
 
     }

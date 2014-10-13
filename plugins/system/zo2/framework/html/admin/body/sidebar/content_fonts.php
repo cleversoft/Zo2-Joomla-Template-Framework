@@ -1,8 +1,10 @@
-
 <!-- Tab Fonts -->
-<div class="tab-pane" id="fonts">
-    <div class="profiles-pane">
-        <h3 class="title-profile">Fonts</h3>
+<div class="tab-pane" id="zo2-fonts">
+    <blockquote>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+    </blockquote>
+    <div class="profiles-pane">        
         <div id="font_chooser">
             <div class="font-container">
                 <input type="hidden" value="">

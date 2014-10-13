@@ -13,7 +13,9 @@
 //no direct accees
 defined('JPATH_BASE') or die;
 
-
+/**
+ * Class exists checking
+ */
 if (!class_exists('JFormFieldZo2')) {
     jimport('joomla.form.formfield');
 

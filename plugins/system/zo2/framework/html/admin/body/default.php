@@ -17,7 +17,10 @@ defined('_JEXEC') or die('Restricted access');
 <div class="row-fluid">
     <div class="span12">
         <section class="zo2-body">
-            <?php $this->load('admin/body/sidebar.php'); ?>            
+            <div class="tabbable tabs-left">
+                <?php $this->load('admin/body/sidebar/header.php'); ?>
+                <?php $this->load('admin/body/sidebar/content.php'); ?>
+            </div>
         </section>
     </div>
 </div>
