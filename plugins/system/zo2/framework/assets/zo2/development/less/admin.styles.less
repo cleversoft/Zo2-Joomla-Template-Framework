@@ -40,7 +40,7 @@ body{
   margin-top: -11px;
 }
 
-#zo2framework {
+#zo2-framework {
   /* Logo */
   #logo {
     background: url('../images/zo2logo.png') no-repeat 0 0;
@@ -69,17 +69,16 @@ body{
     }
   }
   /* Tabs */
-  .main-navigator.nav.nav-tabs{
+  #myTabZo2Sidebar.nav.nav-tabs{
     background: #313940;
     border: medium none;
     box-sizing: border-box;
     float: left;
-    margin-bottom: 0;
-    margin-right: -100%;
+    margin: 0;
     padding: 0;
     width: 249px;
   }
-  .main-navigator.nav.nav-tabs{
+  #myTabZo2Sidebar.nav.nav-tabs{
     /* Put your style or zo2-tabs-title */
   }
   .tab-pane{ min-height: 402px }
@@ -100,7 +99,7 @@ body{
   }
 
   /* Tabs content */
-  .main-navigator.tab-content {
+  #myTabZo2Sidebar.tab-content {
     -moz-box-shadow: 0 1px 5px rgba(0,0,0,.07);
     -webkit-box-shadow: 0 1px 5px rgba(0,0,0,.07);
     border-left:solid 1px #EBECF1;
@@ -174,7 +173,14 @@ body{
 
   .tab-pane {
     padding:15px;
+    padding-top: 0;
     position: relative;
+  }
+  #zo2-general{
+    padding-top: 0;
+    .tab-pane{
+      padding: 0;
+    }
   }
   .title-dark{
     border-bottom: 1px solid rgba(255, 255, 255, 0.6);
@@ -499,7 +505,8 @@ body{
         border-radius: 0;
         color: #D9D9D9;
         font-size: 14px;
-        margin-right: 0;
+        margin: 0;
+        position: relative;
         padding: 15px 15px 10px 15px;
         i{
           font-weight: normal;
@@ -507,6 +514,18 @@ body{
           padding-right: 5px;
           text-align: center;
           width: 20px;
+        }
+      }
+      &.active > a{
+        &:after{
+          border-color: transparent transparent transparent #2c3439;
+          border-style: solid;
+          border-width: 8px;
+          content: "";
+          margin-top: -5px;
+          position: absolute;
+          right: -16px;
+          top: 50%;
         }
       }
     }
@@ -2213,4 +2232,61 @@ body{
       }
     }
   }
+}
+
+/* Tab Style */
+#myTabContent, #myTabGeneralContent{
+  padding: 20px;
+  border: 1px solid #3bafda;
+  border-top: 0;
+}
+#myTabTabs, #myTabGeneral{
+  margin-bottom: 0;
+  border: none;
+  background-color: #3bafda;
+  &.nav-tabs, &.nav-pills{
+    > li{
+      margin-bottom: 0;
+      > a{
+        background-color: transparent;
+        border: medium none;
+        color: #fff;
+        border-radius: 0;
+        margin: 0;
+        padding: 12px 30px;
+      }
+      &.active, &:hover{
+        > a{
+          background-color: #0b7ba5;
+          &:focus{
+            border: none;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* zo2-body */
+.zo2-body{
+  background-color: #313940;
+}
+#myTabZo2SidebarContent{
+  background-color: #fff;
+}
+
+.form-horizontal{
+  .control-label{
+    min-width: 160px;
+  }
+}
+
+/* Input, Select */
+input[type="text"], input[type="password"], input[type="number"], input[type="email"]{
+  width: 300px;
+}
+textarea{
+  min-width: 500px;
+  width: 50%;
 }

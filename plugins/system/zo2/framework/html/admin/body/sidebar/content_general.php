@@ -7,7 +7,7 @@
             <li class=""><a href="#general-features" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_GENERAL_FEATURES'); ?></a></li>
         </ul>
         <div id="myTabGeneralContent" class="tab-content">
-            <div class="tab-pane fade" id="general-global">                
+            <div class="tab-pane fade" id="general-global">
                 <!-- Description -->
                 <div class="well well-small">
                     <blockquote>
@@ -16,7 +16,7 @@
                     </blockquote>
                 </div>
                 <div class="row-fluid">
-                    <div class="span4">
+                    <div class="span12">
                         <!-- Site Name -->
                         <div class="control-group">
                             <label class="control-label" for="jform_params_site_name"><?php echo JText::_('ZO2_ADMIN_SITENAME'); ?></label>
@@ -35,20 +35,19 @@
                         <div class="control-group">
                             <label class="control-label"><?php echo JText::_('ZO2_ADMIN_COPYRIGHT'); ?></label>
                             <div class="controls">
-                                <?php
-                                $editor = JFactory::getEditor();
-                                $params = array('smilies' => '0',
-                                    'style' => '1',
-                                    'layer' => '0',
-                                    'table' => '0',
-                                    'clear_entities' => '0'
-                                );
-                                echo $editor->display('desc', $this->params->get('copyright'), '400', '200', '20', '10', false, null, null, null, $params);
-                                ?>                                
+<!--                                --><?php
+//                                $editor = JFactory::getEditor();
+//                                $params = array('smilies' => '0',
+//                                    'style' => '1',
+//                                    'layer' => '0',
+//                                    'table' => '0',
+//                                    'clear_entities' => '0'
+//                                );
+//                                echo $editor->display('desc', $this->params->get('copyright'), '400', '200', '20', '10', false, null, null, null, $params);
+//                                ?><!--                                -->
+                                <textarea class="mce_editable" rows="10" cols="20" id="desc" name="desc"></textarea>
                             </div>
                         </div>
-                    </div>
-                    <div class="span4">
                         <!-- Favicon -->
                         <div class="control-group">
                             <div class="control-label">
@@ -63,8 +62,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="span4">
                         <!-- Header logo -->
                         <div class="control-group">
                             <div class="control-label">
@@ -165,8 +162,6 @@
                                 </fieldset>
                             </div>
                         </div>
-                    </div>
-                    <div class="span4">
                         <!-- Enable Style Switcher -->
                         <div class="control-group">
                             <div class="control-label">
@@ -197,9 +192,7 @@
                                     <label class="btn active btn-success">Yes</label>
                                 </fieldset>
                             </div>
-                        </div>                  
-                    </div>
-                    <div class="span4">
+                        </div>
                         <!-- Show "Go to top" -->
                         <div class="control-group">
                             <div class="control-label">

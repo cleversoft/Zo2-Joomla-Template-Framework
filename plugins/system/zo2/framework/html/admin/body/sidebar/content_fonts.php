@@ -4,7 +4,8 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
-    <div class="profiles-pane">        
+    <div class="profiles-pane">
+        <h3 class="title-profile">Font Options</h3>
         <div id="font_chooser">
             <div class="font-container">
                 <input type="hidden" value="">
