@@ -9,6 +9,29 @@
  * @license     GPL v2
  */
 
+(function (window, zo2, $) {
+    /**
+     * Zo2 administrator object
+     * Only use for backend
+     */
+    zo2.admin = {
+        _settings: {
+            strantegy: [[12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]]
+        },
+        /**
+         * Init function
+         * @returns {undefined}
+         */
+        _init: function () {
+        }
+
+    };
+    /* Init Zo2.admin */
+    $(document).ready(function () {
+        zo2.admin._init();
+    });
+
+})(window, zo2, zo2.jQuery);
 var strategy = [
     [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
 ];
@@ -17,20 +40,21 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
+        'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 /**
  * @todo Do not use $ to prevent conflict with Mootools
  * @type @exp;jQuery@call;noConflict
  */
 var $ = jQuery.noConflict();
 
-$(window).bind('load', function() {
+
+$(window).bind('load', function () {
     addIconToMenu();
     fixToolbarIcon();
     fixPreviewIcon();
 });
 
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
 
     /*============For joomla 2.5==============*/
     // Turn radios into btn-group
@@ -39,7 +63,7 @@ jQuery(document).ready(function($) {
     $('.radio.btn-group label').addClass('btn');
     $('.radio.btn-group input[value="0"]').next().addClass('first');
 
-    $('.btn-group label:not(.active)').click(function()
+    $('.btn-group label:not(.active)').click(function ()
     {
         var label = $(this);
         var input = $('#' + label.attr('for'));
@@ -56,7 +80,7 @@ jQuery(document).ready(function($) {
             input.prop('checked', true);
         }
     });
-    $('.btn-group input[checked=checked]').each(function()
+    $('.btn-group input[checked=checked]').each(function ()
     {
         if ($(this).val() == '') {
             $('label[for=' + $(this).attr('id') + ']').addClass('active btn-primary');
@@ -74,7 +98,7 @@ jQuery(document).ready(function($) {
     bindSortable();
 
     // bind event to generate row id
-    $('#txtRowName').on('keyup', function(e) {
+    $('#txtRowName').on('keyup', function (e) {
         var $this = $(this);
         $('#txtRowId').val(generateSlug($this.val()));
     });
@@ -86,7 +110,7 @@ jQuery(document).ready(function($) {
 
     //loadLayout(templateName, layoutName);
 
-    $('.btn-group-onoff > button').on('click', function(e) {
+    $('.btn-group-onoff > button').on('click', function (e) {
         var $this = $(this);
         var $container = $this.closest('.btn-group-onoff');
 
@@ -99,7 +123,7 @@ jQuery(document).ready(function($) {
         return false;
     });
 
-    $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function() {
+    $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function () {
         var $this = $(this);
         var $parent = $this.closest('.zo2-row');
         var $container = $this.closest('.zo2-container, .sortable-col');
@@ -112,21 +136,21 @@ jQuery(document).ready(function($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control">' +
-            '<div class="row-control-container">' +
-            '<div class="row-name">(unnamed row)</div>' +
-            '<div class="row-control-buttons">' +
-            '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-            '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-            '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
-            '</div></div>' +
-            '<div class="col-container"></div></div>');
+                '<div class="row-control-container">' +
+                '<div class="row-name">(unnamed row)</div>' +
+                '<div class="row-control-buttons">' +
+                '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
+                '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
+                '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
+                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+                '</div></div>' +
+                '<div class="col-container"></div></div>');
         $meta.appendTo($row);
 
     });
 
-    $('#droppable-container').on('click', '.row-control-buttons > .split', function() {
+    $('#droppable-container').on('click', '.row-control-buttons > .split', function () {
         var $this = $(this);
         var $container = $this.closest('[data-zo2-type="row"]');
         var $colContainer = $container.find('>.col-md-12>.col-container');
@@ -147,12 +171,12 @@ jQuery(document).ready(function($) {
                 $span.attr(visibilityAttributes[i], '1');
             }
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                '<div class="col-control-buttons">' +
-                '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
-                '</div><div class="row-container"></div></div></div>';
+                    '<div class="col-control-buttons">' +
+                    '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
+                    '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
+                    '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
+                    '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div></div></div>';
             var $meta = jQuery(metaHtml);
             $meta.appendTo($span);
             /*
@@ -162,7 +186,7 @@ jQuery(document).ready(function($) {
             $span.appendTo($colContainer);
 
             // apply new span number
-            $colContainer.find('>[data-zo2-type="span"]').each(function(index) {
+            $colContainer.find('>[data-zo2-type="span"]').each(function (index) {
                 var $this = jQuery(this);
                 $this.removeClass(allColClass);
                 $this.addClass('col-md-' + selectedStrategy[index]);
@@ -174,18 +198,18 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $('#droppable-container').on('click', '.row-control-buttons > .delete', function() {
+    $('#droppable-container').on('click', '.row-control-buttons > .delete', function () {
         var $this = $(this);
-        bootbox.confirm('Are you sure want to delete this row?', function(result) {
+        bootbox.confirm('Are you sure want to delete this row?', function (result) {
             if (result)
                 $this.closest('.sortable-row').remove();
         });
     });
 
-    $('#droppable-container').on('click', '.col-control-buttons > .delete', function() {
+    $('#droppable-container').on('click', '.col-control-buttons > .delete', function () {
         var $this = $(this);
 
-        bootbox.confirm('Are you sure want to delete this column?', function(result) {
+        bootbox.confirm('Are you sure want to delete this column?', function (result) {
             var $container = $this.closest('.col-container');
             if (result)
                 $this.closest('.sortable-col').remove();
@@ -193,7 +217,7 @@ jQuery(document).ready(function($) {
         });
     });
 
-    $('#droppable-container').on('click', '.col-control-buttons > .add-row', function() {
+    $('#droppable-container').on('click', '.col-control-buttons > .add-row', function () {
         var $this = $(this);
         var $container = $this.parents('.col-wrap').find('>.row-container');
 
@@ -206,18 +230,18 @@ jQuery(document).ready(function($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-            '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-            '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-            '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+                '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
+                '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
+                '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
+                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
         $meta.appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
 
     });
 
-    $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
+    $('#droppable-container').on('click', '.row-control-buttons > .settings', function () {
         var $this = $(this);
         var $row = $this.closest('.sortable-row');
         var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
@@ -272,7 +296,7 @@ jQuery(document).ready(function($) {
         $modal.modal('show');
     });
 
-    $('#btnSaveRowSettings').on('click', function() {
+    $('#btnSaveRowSettings').on('click', function () {
         var $row = $.data(document.body, 'editingEl');
         $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
         $row.attr('data-zo2-customClass', $('#txtRowCss').val());
@@ -287,7 +311,7 @@ jQuery(document).ready(function($) {
         return false;
     });
 
-    $('#droppable-container').on('click', '.col-control-buttons > .settings', function() {
+    $('#droppable-container').on('click', '.col-control-buttons > .settings', function () {
         var $this = $(this);
         var $col = $this.closest('.sortable-col');
         $.data(document.body, 'editingEl', $col);
@@ -339,7 +363,7 @@ jQuery(document).ready(function($) {
         $modal.modal('show');
     });
 
-    $('#btnSaveColSettings').on('click', function() {
+    $('#btnSaveColSettings').on('click', function () {
         var $col = $.data(document.body, 'editingEl');
         $col.attr('data-zo2-jdoc', $('#dlColJDoc').val());
         $col.attr('data-zo2-span', $('#dlColWidth').val());
@@ -363,12 +387,12 @@ jQuery(document).ready(function($) {
     });
 
     // cause joomla does not have bootstrap tabs :|
-    $('.zo2-tabs').on('click', 'li a', function() {
+    $('.zo2-tabs').on('click', 'li a', function () {
         var $this = $(this);
         var $tabs = $this.closest('.zo2-tabs');
         var $actives = $tabs.find('.active');
         $actives.removeClass('active');
-        $actives.each(function() {
+        $actives.each(function () {
             var $activeTab = $('#' + $(this).attr('data-toggle'));
             $activeTab.removeClass('active');
         });
@@ -377,7 +401,7 @@ jQuery(document).ready(function($) {
     });
 
     // font
-    $('.font-container .txtColorPicker').colorpicker().on('change', function() {
+    $('.font-container .txtColorPicker').colorpicker().on('change', function () {
         var $this = $(this);
         var $parent = $this.parent();
         var $container = $this.closest('.font-container');
@@ -391,7 +415,7 @@ jQuery(document).ready(function($) {
     });
 
     // init font container: show/hide depends on active
-    $('.cbEnableFont').each(function() {
+    $('.cbEnableFont').each(function () {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         var $optionsContainer = $container.find('>.font_options');
@@ -403,7 +427,7 @@ jQuery(document).ready(function($) {
     });
 
     // bind on/off for font
-    $('.cbEnableFont > button').on('click', function() {
+    $('.cbEnableFont > button').on('click', function () {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         var $optionsContainer = $container.find('>.font_options');
@@ -416,38 +440,38 @@ jQuery(document).ready(function($) {
         $container.trigger('font-change');
     });
 
-    $('.font-container').on('click', '.btnStandardFonts', function() {
+    $('.font-container').on('click', '.btnStandardFonts', function () {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         $container.find('.font-types').find('button').removeClass('btn-success');
         $this.addClass('btn-success');
         $container.find('.font-options-google').stop().slideUp(300);
         $container.find('.font-options-fontdeck').stop().slideUp(300);
-        $container.find('.font-options-standard').stop().slideDown(400, function() {
+        $container.find('.font-options-standard').stop().slideDown(400, function () {
             $container.trigger('font-change');
         });
     });
 
-    $('.font-container').on('click', '.btnGoogleFonts', function() {
+    $('.font-container').on('click', '.btnGoogleFonts', function () {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         $container.find('.font-types').find('button').removeClass('btn-success');
         $this.addClass('btn-success');
         $container.find('.font-options-standard').stop().slideUp(300);
         $container.find('.font-options-fontdeck').stop().slideUp(300);
-        $container.find('.font-options-google').stop().slideDown(400, function() {
+        $container.find('.font-options-google').stop().slideDown(400, function () {
             $container.trigger('font-change');
         });
     });
 
-    $('.font-container').on('click', '.btnFontDeck', function() {
+    $('.font-container').on('click', '.btnFontDeck', function () {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         $container.find('.font-types').find('button').removeClass('btn-success');
         $this.addClass('btn-success');
         $container.find('.font-options-standard').stop().slideUp(300);
         $container.find('.font-options-google').stop().slideUp(300);
-        $container.find('.font-options-fontdeck').stop().slideDown(400, function() {
+        $container.find('.font-options-fontdeck').stop().slideDown(400, function () {
             $container.trigger('font-change');
         });
     });
@@ -455,21 +479,21 @@ jQuery(document).ready(function($) {
     $('.txtGoogleFontSelect').fontselect();
 
     // listen to font options change
-    $('#font_chooser').on('font-change', '.font-container', function() {
+    $('#font_chooser').on('font-change', '.font-container', function () {
         var $this = $(this);
         generateFontOptions($this);
     });
 
     var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
-        '.ddlStandardFont';
+            '.ddlStandardFont';
 
-    $('.font-container').on('change', changeSelector, function() {
+    $('.font-container').on('change', changeSelector, function () {
         var $this = $(this);
         var $container = $this.closest('.font-container');
         $container.trigger('font-change');
     });
 
-    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function() {
+    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
         var $this = $(this);
         var $parent = $this.parent();
         var $preview = $parent.find('.color-preview');
@@ -481,9 +505,9 @@ jQuery(document).ready(function($) {
         generatePresetData();
     });
 
-    $('.add_more_preset').click(function() {
+    $('.add_more_preset').click(function () {
         $(this).parent().before(
-            '<div class="zo2_themes_form">' +
+                '<div class="zo2_themes_form">' +
                 '<div class="control-group">' +
                 '<div class="control-label">' +
                 '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
@@ -497,8 +521,8 @@ jQuery(document).ready(function($) {
                 '</div>' +
                 '</div>' +
                 '</div>'
-        );
-        $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function() {
+                );
+        $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
             var $this = $(this);
             var $parent = $this.parent();
             var $preview = $parent.find('.color-preview');
@@ -510,22 +534,22 @@ jQuery(document).ready(function($) {
             generatePresetData();
         });
 
-        $('.zo2_other_preset_element').on('change', function() {
+        $('.zo2_other_preset_element').on('change', function () {
             generatePresetData();
         });
 
-        $('.remove_preset').click(function() {
+        $('.remove_preset').click(function () {
             $(this).parent().parent().parent().parent().remove();
             generatePresetData();
         });
     });
 
-    $('.remove_preset').click(function() {
+    $('.remove_preset').click(function () {
         $(this).parent().parent().parent().parent().remove();
         generatePresetData();
     });
 
-    $('#zo2_themes').on('click', '> li', function() {
+    $('#zo2_themes').on('click', '> li', function () {
         var $this = $(this);
         var $container = $('#zo2_themes_container');
         var $list = $('#zo2_themes');
@@ -558,7 +582,7 @@ jQuery(document).ready(function($) {
         generatePresetData();
     });
 
-    $('.field-logo-container').on('click', '.btn-remove-preview', function() {
+    $('.field-logo-container').on('click', '.btn-remove-preview', function () {
         var $this = $(this);
         var $container = $this.closest('.field-logo-container');
         var $preview = $container.find('.logo-preview');
@@ -568,7 +592,7 @@ jQuery(document).ready(function($) {
         return false;
     });
 
-    $('.logo-type-switcher').on('click', 'button', function() {
+    $('.logo-type-switcher').on('click', 'button', function () {
         var $this = $(this);
         var $container = $this.closest('.field-logo-container');
         var $buttons = $this.closest('.logo-type-switcher').find('button');
@@ -591,13 +615,13 @@ jQuery(document).ready(function($) {
     });
 
     /*
-
+     
      var $select = $('#display_type_choose').find('select:first');
      var $normal_display = $('.display_type_normal');
-
+     
      if ($select.val() == 'normal') $normal_display.show();
      else $normal_display.hide();
-
+     
      jQuery('#display_type_choose').find('select:first').change(function() {
      var $this = $(this);
      if ($this.val() == 'normal') $normal_display.slideDown();
@@ -606,28 +630,28 @@ jQuery(document).ready(function($) {
      */
 
     // bind clear cache button
-    $('#btnClearCache').on('click', function() {
+    $('#btnClearCache').on('click', function () {
         var $this = $(this);
         var clearCacheUrl = Assets.root + 'index.php?zo2controller=clearCache';
         var prefix = '';
-        var interval = setInterval(function() {
+        var interval = setInterval(function () {
             prefix += '.';
             if (prefix.length >= 4)
                 prefix = '';
             $this.text('Clearing cache' + prefix);
         }, 1000);
-        $.get(clearCacheUrl, function() {
+        $.get(clearCacheUrl, function () {
             clearInterval(interval);
             $this.removeClass('btn-danger').addClass('btn-success').text('Clear cache successfully');
 
-            setTimeout(function() {
+            setTimeout(function () {
                 $this.removeClass('btn-success').addClass('btn-danger').text('Clear layout cache');
             }, 2000);
         });
         return false;
     });
 
-    jQuery('.background-select li').click(function() {
+    jQuery('.background-select li').click(function () {
         if (jQuery(this).hasClass('selected')) {
             jQuery(this).removeClass('selected');
         } else {
@@ -638,12 +662,12 @@ jQuery(document).ready(function($) {
     });
 });
 
-var generatePresetData = function() {
+var generatePresetData = function () {
     var $ = jQuery;
     var $preset = $('#zo2_themes').find('.active');
     var extra = {};
 
-    $('.zo2_other_preset_element').each(function() {
+    $('.zo2_other_preset_element').each(function () {
         var element = $(this).val();
         var value = $(this).parent().parent().parent().find('.zo2_other_preset_value').val();
         if (element != '' && value != '') {
@@ -675,7 +699,7 @@ var generatePresetData = function() {
 };
 
 
-var refreshLogoPreview = function(ele) {
+var refreshLogoPreview = function (ele) {
     var $ = jQuery;
     var $this = $(ele);
     var $container = $this.closest('.field-logo-container');
@@ -689,14 +713,14 @@ var refreshLogoPreview = function(ele) {
     var $previewImg = $('<img />').appendTo($preview);
     $logoWidth.val('0');
     $logoHeight.val('0');
-    $previewImg.on('load', function() {
+    $previewImg.on('load', function () {
         $logoWidth.val(this.naturalWidth);
         $logoHeight.val(this.naturalHeight);
     });
     $previewImg.attr('src', baseUri + '/' + $this.val());
 };
 
-var generateLogoJson = function($container) {
+var generateLogoJson = function ($container) {
     var $buttons = $container.find('.logo-type-switcher').find('button');
     var $input = $container.find('.logoInput');
     var $activeButton = $container.find('.logo-type-switcher').find('button.active');
@@ -732,7 +756,7 @@ var generateLogoJson = function($container) {
     $input.val(JSON.stringify(data));
 };
 
-var bindSortable = function() {
+var bindSortable = function () {
 //    // thêm > vào items
 //    jQuery('#droppable-container > .zo2-container').sortable({
 //        items: '>.sortable-row',
@@ -754,7 +778,7 @@ var bindSortable = function() {
 //    });
 };
 
-var generateFontOptions = function($container) {
+var generateFontOptions = function ($container) {
     var $result = $container.find(' > input:first');
     var $enable = $container.find('.cbEnableFont');
     if (!$enable.find('.btn-on').hasClass('active')) {
@@ -805,11 +829,11 @@ var generateFontOptions = function($container) {
  *
  * @returns {String}
  */
-var generateJson = function() {
+var generateJson = function () {
     var $rootParent = jQuery('#droppable-container .zo2-container');
     var json = [];
     /* Loop all rows */
-    $rootParent.find('>[data-zo2-type="row"]').each(function() {
+    $rootParent.find('>[data-zo2-type="row"]').each(function () {
         var itemJson = generateItemJson(jQuery(this));
         if (itemJson != null)
             json.push(itemJson);
@@ -823,7 +847,7 @@ var generateJson = function() {
  * @param {type} $item
  * @returns {generateItemJson.result}
  */
-var generateItemJson = function($item) {
+var generateItemJson = function ($item) {
     var result = null;
     var $childrenContainer = null;
     /* Row */
@@ -845,7 +869,7 @@ var generateItemJson = function($item) {
 
         $childrenContainer = $item.find('> .row-control > .col-container');
 
-        $childrenContainer.find('> [data-zo2-type]').each(function() {
+        $childrenContainer.find('> [data-zo2-type]').each(function () {
             var childItem = generateItemJson(jQuery(this));
             result.children.push(childItem);
         });
@@ -873,7 +897,7 @@ var generateItemJson = function($item) {
 
         $childrenContainer = $item.find('> .col-wrap > .row-container');
 
-        $childrenContainer.find('> [data-zo2-type]').each(function() {
+        $childrenContainer.find('> [data-zo2-type]').each(function () {
             var childItem = generateItemJson(jQuery(this));
             result.children.push(childItem);
         });
@@ -882,7 +906,7 @@ var generateItemJson = function($item) {
     return result;
 };
 
-var rearrangeSpan = function($container) {
+var rearrangeSpan = function ($container) {
     var $ = jQuery;
     var $spans = $container.find('>[data-zo2-type="span"]');
     if ($spans.length > 0) {
@@ -913,7 +937,7 @@ var rearrangeSpan = function($container) {
         }
     }
 };
-var addIconToMenu = function() {
+var addIconToMenu = function () {
     var $ = jQuery;
     $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Overview');
     $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General');
@@ -926,19 +950,19 @@ var addIconToMenu = function() {
 };
 
 
-var fixToolbarIcon = function() {
+var fixToolbarIcon = function () {
     var $ = jQuery;
     $('.icon-apply').replaceWith('<i class="icon-check"></i>');
     $('.icon-save-copy').replaceWith('<i class="icon-copy"></i>');
     $('.icon-cancel').replaceWith('<i class="icon-remove-sign color4"></i>');
 };
 
-var fixPreviewIcon = function() {
+var fixPreviewIcon = function () {
     var $ = jQuery;
     $('.icon-eye').removeClass('icon-eye').addClass('icon-eye-open');
 };
 
-var injectFormSubmit = function() {
+var injectFormSubmit = function () {
     /*
      var $ = jQuery;
      var $input = $('.hfLayoutHtml');
@@ -954,7 +978,7 @@ var injectFormSubmit = function() {
 };
 
 /* Override default submit function */
-Joomla.submitform = function(task, form) {
+Joomla.submitform = function (task, form) {
     if (typeof (form) === 'undefined' || form === null) {
         form = document.adminForm;
     }
@@ -974,7 +998,7 @@ Joomla.submitform = function(task, form) {
 
     var $ = jQuery;
     var $input = $('.hfLayoutHtml');
-    $('.field-logo-container').each(function() {
+    $('.field-logo-container').each(function () {
         generateLogoJson($(this));
     });
     $input.val(generateJson());
@@ -982,7 +1006,7 @@ Joomla.submitform = function(task, form) {
     form.submit();
 };
 
-var generateSlug = function(str) {
+var generateSlug = function (str) {
     str = str.replace(/^\s+|\s+$/g, '');
     var from = "ÁÀẠẢÃĂẮẰẶẲẴÂẤẦẬẨẪáàạảãăắằặẳẵâấầậẩẫóòọỏõÓÒỌỎÕôốồộổỗÔỐỒỘỔỖơớờợởỡƠỚỜỢỞỠéèẹẻẽÉÈẸẺẼêếềệểễÊẾỀỆỂỄúùụủũÚÙỤỦŨưứừựửữƯỨỪỰỬỮíìịỉĩÍÌỊỈĨýỳỵỷỹÝỲỴỶỸĐđÑñÇç·/_,:;";
     var to = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaooooooooooooooooooooooooooooooooooeeeeeeeeeeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuiiiiiiiiiiyyyyyyyyyyddnncc------";
@@ -995,8 +1019,8 @@ var generateSlug = function(str) {
     return str;
 };
 
-jQuery(document).ready(function() {
-    jQuery('.layout_style_choose').click(function() {
+jQuery(document).ready(function () {
+    jQuery('.layout_style_choose').click(function () {
         jQuery('.layout_style_choose').removeClass('btn-success');
         jQuery(this).addClass('btn-success');
         if (jQuery(this).hasClass('boxed')) {
@@ -1009,7 +1033,7 @@ jQuery(document).ready(function() {
         generatePresetData();
     });
 
-    jQuery('#zo2_background_image').change(function() {
+    jQuery('#zo2_background_image').change(function () {
         generatePresetData();
     });
 
@@ -1018,7 +1042,7 @@ jQuery(document).ready(function() {
      */
 
     /* Load profile */
-    jQuery('select[name="jform[profile-select]"]').on('change', function() {
+    jQuery('select[name="jform[profile-select]"]').on('change', function () {
         var url = jQuery(this).data('url');
         /* Get selected profile */
         var selectedProfile = jQuery('.zo2-select-profile').val();
@@ -1029,45 +1053,45 @@ jQuery(document).ready(function() {
         }
     });
     /* Toggle add profile form */
-    jQuery('#zo2-addProfile').on('click', function() {
+    jQuery('#zo2-addProfile').on('click', function () {
         jQuery('#zo2-form-addProfile').toggle();
     });
     /* Submit save */
-    jQuery('#zo2-save-profile').on('click', function() {
+    jQuery('#zo2-save-profile').on('click', function () {
         Joomla.submitbutton('style.apply');
     });
     /* Cancel add profile form */
-    jQuery('#zo2-cancel-profile').on('click', function() {
+    jQuery('#zo2-cancel-profile').on('click', function () {
         jQuery('#zo2-form-addProfile').hide();
     });
     /* Toogle rename profile form */
-    jQuery('#zo2-renameProfile').on('click', function() {
+    jQuery('#zo2-renameProfile').on('click', function () {
         jQuery('#zo2-form-renameProfile').toggle();
     });
     /* Cancel rename profile form */
-    jQuery('#zo2-cancel-rename-profile').on('click', function() {
+    jQuery('#zo2-cancel-rename-profile').on('click', function () {
         jQuery('#zo2-form-renameProfile').hide();
     });
     /* Submit rename */
-    jQuery('#zo2-rename-profile').on('click', function() {
+    jQuery('#zo2-rename-profile').on('click', function () {
         var url = jQuery(this).data('url');
         var oldprofile = jQuery('.zo2-select-profile').val();
         var newProfile = jQuery('#zo2-form-renameProfile #zo2-new-profile-name').val();
         zo2.document.redirect(url + '&task=rename&profile=' + oldprofile + '&newName=' + newProfile);
     });
     /* Submit remove */
-    jQuery('#zo2-removeProfile').on('click', function() {
+    jQuery('#zo2-removeProfile').on('click', function () {
         var url = jQuery(this).data('url');
         var profile = jQuery('.zo2-select-profile').val();
         zo2.document.redirect(url + '&profile=' + profile);
     });
 
-    jQuery('#updater-desc a.btn-success').click(function(e) {
+    jQuery('#updater-desc a.btn-success').click(function (e) {
         e.preventDefault();
-        jPrompt( jQuery(this).next().find('span').html()+'. Type "OK" to Continuous.', '', 'ZO2 Framework update confirmation box', function(confirm){
-            if( confirm == "OK" || confirm == "ok" || confirm == "oK" || confirm == "Ok") {
+        jPrompt(jQuery(this).next().find('span').html() + '. Type "OK" to Continuous.', '', 'ZO2 Framework update confirmation box', function (confirm) {
+            if (confirm == "OK" || confirm == "ok" || confirm == "oK" || confirm == "Ok") {
                 location.href = jQuery('#updater-desc a.btn-success').attr('href');
-            }else {
+            } else {
                 return false;
             }
         });
