@@ -148,6 +148,9 @@ if (!class_exists('Zo2Framework')) {
             }
             //define('ZO2_LOADED',1);
             //}
+
+            $assets = Zo2Assets::getInstance();
+            $assets->buildAssets();
         }
 
         /**
