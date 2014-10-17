@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * Init Zo2 Javascript Framework
+ *
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
 header("Content-type: application/x-javascript; charset: UTF-8");
 ?>
 /**
@@ -10,7 +18,6 @@ header("Content-type: application/x-javascript; charset: UTF-8");
  * @returns {undefined}
  */
 (function(w, $) {
-
     if (typeof w.zo2 === 'undefined') {
         /* Local zo2 definition */
         var _zo2 = {
