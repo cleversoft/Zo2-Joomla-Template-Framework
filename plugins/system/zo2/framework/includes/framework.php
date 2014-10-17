@@ -78,7 +78,7 @@ if (!class_exists('Zo2Framework')) {
         public function init() {
             $language = JFactory::getLanguage();
             $language->load('plg_system_zo2', ZO2PATH_ROOT);
-            
+
             //if (!defined('ZO2_LOADED')) {
             $jinput = JFactory::getApplication()->input;
             /* Init framework variables */
@@ -101,6 +101,11 @@ if (!class_exists('Zo2Framework')) {
             $this->path->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
             /* Override Zo2 html directory */
             $this->path->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
+
+            $document = JFactory::getDocument();
+            $document->addScript(JUri::root() . '/plugins/system/zo2/framework/assets/vendor/jquery/jquery-1.11.1.min.js');
+            $document->addScript(JUri::root() . '/plugins/system/zo2/framework/assets/vendor/jquery/jquery.noConflict.js');
+            $document->addScript(JUri::root() . '/plugins/system/zo2/framework/assets/zo2/zo2.php');
 
             $this->assets = Zo2Assets::getInstance();
             $this->profile = Zo2Factory::getProfile($jinput->getWord('profile'));
