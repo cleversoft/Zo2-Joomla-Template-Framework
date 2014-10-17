@@ -720,11 +720,11 @@ if (!class_exists('Zo2Megamenu')) {
         public static function getMenuTypes() {
             $db = JFactory::getDbo();
             $query = $db->getQuery(true)
-                ->select('a.menutype')
+                ->select('a.menutype, a.title')
                 ->from('#__menu_types AS a');
             $db->setQuery($query);
 
-            return $db->loadColumn();
+            return $db->loadObjectList();
         }
     }
 }
