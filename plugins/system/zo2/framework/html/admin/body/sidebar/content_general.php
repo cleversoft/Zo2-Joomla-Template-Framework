@@ -19,33 +19,23 @@
                     <div class="span12">
                         <!-- Site Name -->
                         <div class="control-group">
-                            <label class="control-label" for="jform_params_site_name"><?php echo JText::_('ZO2_ADMIN_SITENAME'); ?></label>
+                            <label class="control-label" for="zo2_site_name"><?php echo JText::_('ZO2_ADMIN_SITENAME'); ?></label>
                             <div class="controls">
-                                <input type="text" name="jform[params][site_name]" id="jform_params_site_name" value="<?php echo $this->params->get('site_name', JFactory::getConfig()->get('sitename')); ?>">
+                                <input type="text" name="zo2_site_name" id="zo2-site_name" value="<?php echo $this->params->get('site_name', JFactory::getConfig()->get('sitename')); ?>">
                             </div>
                         </div>
                         <!-- Site Slogan -->
                         <div class="control-group">                            
-                            <label class="control-label" for="jform_params_site_slogan"><?php echo JText::_('ZO2_ADMIN_SLOGAN'); ?></label>                            
+                            <label class="control-label" for="zo2_site_slogan"><?php echo JText::_('ZO2_ADMIN_SLOGAN'); ?></label>
                             <div class="controls">
-                                <input type="text" name="jform[params][site_slogan]" id="jform_params_site_slogan" value="<?php echo $this->params->get('site_slogan'); ?>">
+                                <input type="text" name="zo2_site_slogan" id="zo2_site_slogan" value="<?php echo $this->params->get('site_slogan'); ?>">
                             </div>
                         </div>
                         <!-- Copyright -->
                         <div class="control-group">
                             <label class="control-label"><?php echo JText::_('ZO2_ADMIN_COPYRIGHT'); ?></label>
                             <div class="controls">
-<!--                                --><?php
-//                                $editor = JFactory::getEditor();
-//                                $params = array('smilies' => '0',
-//                                    'style' => '1',
-//                                    'layer' => '0',
-//                                    'table' => '0',
-//                                    'clear_entities' => '0'
-//                                );
-//                                echo $editor->display('desc', $this->params->get('copyright'), '400', '200', '20', '10', false, null, null, null, $params);
-//                                ?><!--                                -->
-                                <textarea class="mce_editable" rows="10" cols="20" id="desc" name="desc"></textarea>
+                                <textarea class="mce_editable" rows="10" cols="20" id="zo2_footer_copyright" name="zo2_footer_copyright"></textarea>
                             </div>
                         </div>
                         <!-- Favicon -->
@@ -56,7 +46,7 @@
                             <div class="controls">
                                 <div class="input-prepend input-append">
                                     <div class="media-preview add-on"><span class="hasTipPreview" title=""><i class="icon-eye-open"></i></span></div>
-                                    <input type="text" value="templates/zo2_hallo/assets/zo2/images/favicon.ico" readonly="readonly" class="input-small">
+                                    <input type="text" name="zzo2_favicon" id="zo2_favicon"  value="templates/zo2_hallo/assets/zo2/images/favicon.ico" readonly="readonly" class="input-small">
                                     <a class="modal btn" title="<?php echo JText::_('ZO2_ADMIN_SELECT'); ?>" href="#" rel=""><?php echo JText::_('ZO2_ADMIN_SELECT'); ?></a>
                                     <a class="btn hasTooltip" title="" href="#" data-original-title="Clear"><i class="icon-remove"></i></a>
                                 </div>
@@ -69,7 +59,7 @@
                             </div>
                             <div class="controls">
                                 <div class="field-logo-container">
-                                    <input class="logoInput" type="hidden" value="">
+                                    <input class="logoInput" type="hidden" value="" name="zo2_header_logo" id="zo2_header_logo" />
                                     <div class="radio btn-group logo-type-switcher">
                                         <button class="btn logo-type-none active btn-success"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
                                         <button class="btn logo-type-image "><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
@@ -101,7 +91,7 @@
                             </div>
                             <div class="controls">
                                 <div class="field-logo-container">
-                                    <input class="logoInput" type="hidden" value="">
+                                    <input class="logoInput" type="hidden" value="" name="zo2_header_retina_logo" id="zo2_header_retina_logo">
                                     <div class="radio btn-group logo-type-switcher">
                                         <button class="btn logo-type-none "><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
                                         <button class="btn logo-type-image active btn-success"><?php echo JText::_('ZO2_ADMIN_NONE_IMAGE'); ?></button>
@@ -140,9 +130,9 @@
                             </div>
                             <div class="controls">
                                 <fieldset class="radio btn-group">
-                                    <input type="radio" value="0" style="display: none;">
+                                    <input name="zo2_enable_rtl" id="" type="radio" value="0" style="display: none;">
                                     <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                    <input type="radio" value="1" checked="checked" style="display: none;">
+                                    <input name="zo2_enable_rtl" id=""  type="radio" value="1" checked="checked" style="display: none;">
                                     <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                 </fieldset>
                             </div>
@@ -155,9 +145,9 @@
                             </div>
                             <div class="controls">
                                 <fieldset class="radio btn-group">
-                                    <input type="radio" value="0" style="display: none;">
+                                    <input name="zo2_responsive_layout" id=""  type="radio" value="0" style="display: none;">
                                     <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                    <input type="radio" value="1" checked="checked" style="display: none;">
+                                    <input name="zo2_responsive_layout" id=""  type="radio" value="1" checked="checked" style="display: none;">
                                     <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                 </fieldset>
                             </div>
@@ -169,9 +159,9 @@
                             </div>
                             <div class="controls">
                                 <fieldset class="radio btn-group">
-                                    <input type="radio" value="0" style="display: none;">
+                                    <input name="zo2_enable_style_switcher" id=""  type="radio" value="0" style="display: none;">
                                     <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                    <input type="radio" value="1" checked="checked" style="display: none;">
+                                    <input name="zo2_enable_style_switcher" id=""  type="radio" value="1" checked="checked" style="display: none;">
                                     <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                 </fieldset>
                             </div>
@@ -186,9 +176,9 @@
                             </div>
                             <div class="controls">
                                 <fieldset class="radio btn-group">
-                                    <input type="radio" value="0" style="display: none;">
+                                    <input name="zo2_enable_sticky_menu" id=""  type="radio" value="0" style="display: none;">
                                     <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                    <input type="radio" value="1" checked="checked" style="display: none;">
+                                    <input name="zo2_enable_sticky_menu" id=""  type="radio" value="1" checked="checked" style="display: none;">
                                     <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                 </fieldset>
                             </div>
@@ -199,8 +189,10 @@
                                 <label class=""><?php echo JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP'); ?></label>
                             </div>
                             <div class="controls">
-                                <fieldset class="radio btn-group"><input type="radio" value="0" style="display: none;">
-                                    <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label><input type="radio" value="1" checked="checked" style="display: none;">
+                                <fieldset class="radio btn-group">
+                                    <input name="zo2_footer_gototop" id=""  type="radio" value="0" style="display: none;">
+                                    <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
+                                    <input name="zo2_footer_gototop" id=""  type="radio" value="1" checked="checked" style="display: none;">
                                     <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                 </fieldset>
                             </div>
@@ -210,9 +202,10 @@
                                 <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO'); ?></label>
                             </div>
                             <div class="controls">
-                                <fieldset class="radio btn-group"><input type="radio" value="0" style="display: none;">
+                                <fieldset class="radio btn-group">
+                                    <input name="zo2_footer_logo" id=""  type="radio" value="0" style="display: none;">
                                     <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                    <input type="radio" value="1" checked="checked" style="display: none;">
+                                    <input name="zo2_footer_logo" id=""  type="radio" value="1" checked="checked" style="display: none;">
                                     <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                 </fieldset>
                             </div>

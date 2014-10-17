@@ -19,9 +19,10 @@
                                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_AUTHORSHIP'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_AUTHORSHIP'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <fieldset class="radio btn-group"><input type="radio" value="0" checked="checked" style="display: none;">
+                                    <fieldset class="radio btn-group">
+                                        <input name="zo2_enable_googleauthorship" id="" type="radio" value="0" checked="checked" style="display: none;">
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input type="radio" value="1" style="display: none;">
+                                        <input name="zo2_enable_googleauthorship" id=""  type="radio" value="1" style="display: none;">
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -31,7 +32,7 @@
                                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_PROFILE_URL'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_PROFILE_URL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" value="">
+                                    <input name="zo2_google_profile_url" id="zo2_google_profile_url" type="text" value="">
                                 </div>
                             </div>
                         </div>
@@ -50,9 +51,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input type="radio" value="1" style="display: none;">
+                                        <input name="zo2_enable_comments" id="" type="radio" value="1" style="display: none;">
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
-                                        <input type="radio" value="0" checked="checked" style="display: none;">
+                                        <input name="zo2_enable_comments" id="" type="radio" value="0" checked="checked" style="display: none;">
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
                                     </fieldset>
                                 </div>
@@ -60,14 +61,12 @@
 
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_TABS_ORDER_TITLE '); ?>"><?php echo JText::_('ZO2_ADMIN_TABS_ORDER'); ?></label>
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_TABS_ORDER_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_TABS_ORDER'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" value="facebook,gplus,disqus">
+                                    <input name="zo2_tab_order" id="" type="text" value="facebook,gplus,disqus">
                                     <div style="margin: 5px 0;">
-                                        <strong>Notes</strong>: Comma Separated List, First listed is the default, If left empty it will use default value below, only tabs listed will be shown. <br>
-                                        <strong>Possible Values </strong>: gplus,facebook,disqus <br>
-                                        <strong>Default Value </strong>: gplus,facebook <br>
+                                        <?php echo JText::_('ZO2_ADMIN_TABS_ORDER_DESCRIPTION'); ?>
                                     </div>
                                 </div>
                             </div>
@@ -77,37 +76,37 @@
                                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" value="zootemplates">
+                                    <input name="zo_disqus_shortname" id="zo_disqus_shortname" type="text" value="zootemplates">
                                     <div style="margin: 5px 0;">
-                                        <?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?><strong>Notes </strong>: Required if showing the Disqus Tab
+                                        <?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME_DESCRIPTION'); ?>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class=""><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Facebook Label</label>
+                                    <label class=""><?php echo JText::_('ZO2_ADMIN_FACEBOOK_LABEL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" value="Facebook">
+                                    <input name="zo2_facebook_label" id="zo2_facebook_label" type="text" value="Facebook">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class=""><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Google+ Label</label>
+                                    <label class=""><?php echo JText::_('ZO2_ADMIN_GOOGLE_LABEL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" value="Google+">
+                                    <input name="zo2_gplus_label" id="zo2_gplus_label" type="text" value="Google+">
                                 </div>
                             </div>
 
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class=""><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Disqus Label</label>
+                                    <label class=""><?php echo JText::_('ZO2_ADMIN_DISQUS_LABEL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input type="text" value="Disqus">
+                                    <input name="zo2_disqus_label" id="zo2_disqus_label" type="text" value="Disqus">
                                 </div>
                             </div>
                         </div>
@@ -116,62 +115,66 @@
 
                 <div class="accordion-group">
                     <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-advanced"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Advanced Options</a>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-advanced"><?php echo JText::_('ZO2_ADMIN_ADVANCED_OPTION'); ?></a>
                     </div>
                     <div id="advanced-advanced" class="accordion-body collapse">
                         <div class="accordion-inner">
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Tracking code<br />Include the tracking code"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Tracking code</label>
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <textarea></textarea>
+                                    <textarea  name="zo2_ga_code" id="zo2_ga_code"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Hide Component Area<br />Show component area from front page"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Hide Component Area</label>                </div>
-                                <div class="controls">
-                                    <fieldset class="radio btn-group"><input type="radio" value="0" checked="checked" style="display: none;">
-                                        <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input type="radio" value="1" style="display: none;">
-                                        <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Combine CSS<br />Combine CSS files into one file"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Combine CSS</label>
-                                </div>
-                                <div class="controls">
-                                    <fieldset class="radio btn-group"><input type="radio" value="0" checked="checked" style="display: none;">
-                                        <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input type="radio" value="1" style="display: none;">
-                                        <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Combine JS<br />Combine JS files into one file"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Combine JS</label>
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_HIDE_COMPONENT_AREA_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_HIDE_COMPONENT_AREA'); ?></label>
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input type="radio" value="0" checked="checked" style="display: none;">
+                                        <input name="zo2_component_area" id="" type="radio" value="0" checked="checked" style="display: none;">
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input type="radio" value="1" style="display: none;">
+                                        <input name="zo2_component_area" id="" type="radio" value="1" style="display: none;">
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Load jQuery<br />Force load jQuery"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Load jQuery</label>
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_COMBINE_CSS_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_COMBINE_CSS'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <fieldset class="radio btn-group"><input type="radio" value="0" checked="checked" style="display: none;">
+                                    <fieldset class="radio btn-group">
+                                        <input name="zo2_combine_css" id="" type="radio" value="0" checked="checked" style="display: none;">
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input type="radio" value="1" style="display: none;">
+                                        <input  name="zo2_combine_css" id=""type="radio" value="1" style="display: none;">
+                                        <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="control-label">
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_COMBINE_JS_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_COMBINE_JS'); ?></label>
+                                </div>
+                                <div class="controls">
+                                    <fieldset class="radio btn-group">
+                                        <input name="zo2_combine_js" id="" type="radio" value="0" checked="checked" style="display: none;">
+                                        <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
+                                        <input name="zo2_combine_js" id="" type="radio" value="1" style="display: none;">
+                                        <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="control-label">
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_LOAD_JQUERY_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_LOAD_JQUERY'); ?></label>
+                                </div>
+                                <div class="controls">
+                                    <fieldset class="radio btn-group">
+                                        <input name="zo2_load_jquery" id="" type="radio" value="0" checked="checked" style="display: none;">
+                                        <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
+                                        <input name="zo2_load_jquery" id="" type="radio" value="1" style="display: none;">
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -179,7 +182,7 @@
                             <div class="control-group">
                                 <div class="control-label"></div>
                                 <div class="controls">
-                                    <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Clear layout cache</button>
+                                    <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px"><?php echo JText::_('ZO2_ADMIN_CLEAR_LAYOUT_CACHE'); ?></button>
                                 </div>
                             </div>
                         </div>
@@ -188,32 +191,32 @@
 
                 <div class="accordion-group">
                     <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-dev"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Developer Options</a>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#advanced-accordion" href="#advanced-dev"><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></a>
                     </div>
                     <div id="advanced-dev" class="accordion-body collapse">
                         <div class="accordion-inner">
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Debug<br />Allow Developer to rebuild the cache. ONLY use this feature if you are developer"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Debug</label>
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_DEBUG_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_DEBUG'); ?></label>
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input type="radio" value="0" checked="checked" style="display: none;">
+                                        <input name="zo2_debug_visibility" id="" type="radio" value="0" checked="checked" style="display: none;">
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input type="radio" value="1" style="display: none;">
+                                        <input name="zo2_debug_visibility" id="" type="radio" value="1" style="display: none;">
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <div class="control-label">
-                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Disable mootools<br />Disable mootools to avoid script conflict"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?>Disable mootools</label>
+                                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_DISABLE_MOOTOOLS_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_DISABLE_MOOTOOLS'); ?></label>
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input type="radio" value="0" style="display: none;">
+                                        <input name="zo2_disable_mootools" id="" type="radio" value="0" style="display: none;">
                                         <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input type="radio" value="1" checked="checked" style="display: none;">
+                                        <input name="zo2_disable_mootools" id="" type="radio" value="1" checked="checked" style="display: none;">
                                         <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
