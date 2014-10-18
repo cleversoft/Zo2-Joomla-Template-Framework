@@ -102,11 +102,6 @@ if (!class_exists('Zo2Framework')) {
             /* Override Zo2 html directory */
             $this->path->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
 
-            $document = JFactory::getDocument();
-            $document->addScript(JUri::root() . '/plugins/system/zo2/framework/assets/vendor/jquery/jquery-1.11.1.min.js');
-            $document->addScript(JUri::root() . '/plugins/system/zo2/framework/assets/vendor/jquery/jquery.noConflict.js');
-            $document->addScript(JUri::root() . '/plugins/system/zo2/framework/assets/zo2/zo2.php');
-
             $this->assets = Zo2Assets::getInstance();
             $this->profile = Zo2Factory::getProfile($jinput->getWord('profile'));
             $this->layout = new Zo2Layout($this->profile->layout);
