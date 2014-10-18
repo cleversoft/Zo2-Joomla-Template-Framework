@@ -9,6 +9,13 @@
  * @license     GPL v2
  */
 
+/**
+ * 
+ * @param {type} window
+ * @param {type} zo2
+ * @param {type} $
+ * @returns {undefined}
+ */
 (function (window, zo2, $) {
     /**
      * Zo2 administrator object
@@ -16,7 +23,12 @@
      */
     zo2.admin = {
         _settings: {
-            strantegy: [[12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]]
+            strantegy: [
+                [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
+            ],
+            visibilityAttributes: [
+                'data-zo2-visibility-xs', 'data-zo2-visibility-sm', 'data-zo2-visibility-md', 'data-zo2-visibility-lg'
+            ]
         },
         /**
          * Init function
@@ -32,6 +44,7 @@
     });
 
 })(window, zo2, zo2.jQuery);
+
 var strategy = [
     [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
 ];
@@ -41,20 +54,15 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
         'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
-/**
- * @todo Do not use $ to prevent conflict with Mootools
- * @type @exp;jQuery@call;noConflict
- */
-var $ = jQuery.noConflict();
 
 
-$(window).bind('load', function () {
+zo2.jQuery(window).bind('load', function () {
     addIconToMenu();
     fixToolbarIcon();
     fixPreviewIcon();
 });
 
-jQuery(document).ready(function ($) {
+zo2.jQuery(document).ready(function ($) {
 
     /*============For joomla 2.5==============*/
     // Turn radios into btn-group
