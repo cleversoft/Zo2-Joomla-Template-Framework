@@ -35,6 +35,10 @@ if (!class_exists('Zo2HtmlAdmin')) {
             return $html->fetch('admin/default.php');
         }
 
+        /**
+         * Admin layout builder
+         * @return type
+         */
         public function builder() {
             $assets = Zo2Assets::getInstance();
             /* jQueryUI */
