@@ -20,9 +20,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_enable_googleauthorship" type="radio" value="0" checked="checked" >
+                                        <input name="jform[params][zo2_enable_googleauthorship]" type="radio" value="0" checked="checked" >
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input name="zo2_enable_googleauthorship"  type="radio" value="1" >
+                                        <input name="jform[params][zo2_enable_googleauthorship]"  type="radio" value="1" >
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -32,7 +32,7 @@
                                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_PROFILE_URL'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_PROFILE_URL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input name="zo2_google_profile_url" id="zo2_google_profile_url" type="text" value="">
+                                    <input name="jform[params][zo2_google_profile_url]" type="text" value="">
                                 </div>
                             </div>
                         </div>
@@ -51,9 +51,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_enable_comments" type="radio" value="1" >
+                                        <input name="jform[params][zo2_enable_comments]" type="radio" value="1" >
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
-                                        <input name="zo2_enable_comments" type="radio" value="0" checked="checked" >
+                                        <input name="jform[params][zo2_enable_comments]" type="radio" value="0" checked="checked" >
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
                                     </fieldset>
                                 </div>
@@ -64,7 +64,7 @@
                                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_TABS_ORDER_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_TABS_ORDER'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input name="zo2_tab_order" type="text" value="facebook,gplus,disqus">
+                                    <input name="jform[params][zo2_tab_order]" type="text" value="facebook,gplus,disqus">
                                     <div style="margin: 5px 0;">
                                         <?php echo JText::_('ZO2_ADMIN_TABS_ORDER_DESCRIPTION'); ?>
                                     </div>
@@ -76,7 +76,7 @@
                                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input name="zo_disqus_shortname" id="zo_disqus_shortname" type="text" value="zootemplates">
+                                    <input name="jform[params][zo_disqus_shortname]" type="text" value="zootemplates">
                                     <div style="margin: 5px 0;">
                                         <?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME_DESCRIPTION'); ?>
                                     </div>
@@ -88,7 +88,7 @@
                                     <label class=""><?php echo JText::_('ZO2_ADMIN_FACEBOOK_LABEL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input name="zo2_facebook_label" id="zo2_facebook_label" type="text" value="Facebook">
+                                    <input name="jform[params][zo2_facebook_label]" type="text" value="Facebook">
                                 </div>
                             </div>
 
@@ -97,7 +97,7 @@
                                     <label class=""><?php echo JText::_('ZO2_ADMIN_GOOGLE_LABEL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input name="zo2_gplus_label" id="zo2_gplus_label" type="text" value="Google+">
+                                    <input name="jform[params][zo2_gplus_label]" type="text" value="Google+">
                                 </div>
                             </div>
 
@@ -106,7 +106,7 @@
                                     <label class=""><?php echo JText::_('ZO2_ADMIN_DISQUS_LABEL'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <input name="zo2_disqus_label" id="zo2_disqus_label" type="text" value="Disqus">
+                                    <input name="jform[params][zo2_disqus_label]" type="text" value="Disqus">
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE'); ?></label>
                                 </div>
                                 <div class="controls">
-                                    <textarea  name="zo2_ga_code" id="zo2_ga_code"></textarea>
+                                    <textarea  name="jform[params][zo2_ga_code]" id="zo2_ga_code"></textarea>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -133,9 +133,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_component_area" type="radio" value="0" checked="checked" >
+                                        <input name="jform[params][zo2_component_area]" type="radio" value="0" checked="checked" >
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input name="zo2_component_area" type="radio" value="1" >
+                                        <input name="jform[params][zo2_component_area]" type="radio" value="1" >
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -146,9 +146,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_combine_css" type="radio" value="0" checked="checked" >
+                                        <input name="jform[params][zo2_combine_css]" type="radio" value="0" checked="checked" >
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input  name="zo2_combine_css" type="radio" value="1" >
+                                        <input  name="jform[params][zo2_combine_css]" type="radio" value="1" >
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -159,9 +159,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_combine_js" type="radio" value="0" checked="checked" >
+                                        <input name="jform[params][zo2_combine_js]" type="radio" value="0" checked="checked" >
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input name="zo2_combine_js" type="radio" value="1" >
+                                        <input name="jform[params][zo2_combine_js]" type="radio" value="1" >
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -172,9 +172,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_load_jquery" type="radio" value="0" checked="checked" >
+                                        <input name="jform[params][zo2_load_jquery]" type="radio" value="0" checked="checked" >
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input name="zo2_load_jquery" type="radio" value="1" >
+                                        <input name="jform[params][zo2_load_jquery]" type="radio" value="1" >
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -201,9 +201,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_debug_visibility" type="radio" value="0" checked="checked" >
+                                        <input name="jform[params][zo2_debug_visibility]" type="radio" value="0" checked="checked" >
                                         <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input name="zo2_debug_visibility" type="radio" value="1" >
+                                        <input name="jform[params][zo2_debug_visibility]" type="radio" value="1" >
                                         <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>
@@ -214,9 +214,9 @@
                                 </div>
                                 <div class="controls">
                                     <fieldset class="radio btn-group">
-                                        <input name="zo2_disable_mootools" type="radio" value="0" >
+                                        <input name="jform[params][zo2_disable_mootools]" type="radio" value="0" >
                                         <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                                        <input name="zo2_disable_mootools" type="radio" value="1" checked="checked" >
+                                        <input name="jform[params][zo2_disable_mootools]" type="radio" value="1" checked="checked" >
                                         <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                                     </fieldset>
                                 </div>

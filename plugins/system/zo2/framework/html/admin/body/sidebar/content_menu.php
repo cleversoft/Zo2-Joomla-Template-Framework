@@ -18,7 +18,7 @@
                     <label class="hasTooltip" title="" data-original-title="Hover type"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_HOVER_TYPE'); ?></label>
                 </div>
                 <div class="controls">
-                    <select name="zo2_menu_hover_type" id="zo2_menu_hover_type">
+                    <select name="jform[params][zo2_menu_hover_type]" id="zo2_menu_hover_type">
                         <option value="hover" selected="selected"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
                         <option value="click"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
                     </select>
@@ -31,7 +31,7 @@
                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_NAVIGATION_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_NAVIGATION_TYPE'); ?></label>
                 </div>
                 <div class="controls">
-                    <select name="zo2_menu_nav_type" id="zo2_menu_nav_type">
+                    <select name="jform[params][zo2_menu_nav_type]" id="zo2_menu_nav_type">
                         <option value="megamenu" selected="selected"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU'); ?></option>
                     </select>
                 </div>
@@ -43,7 +43,7 @@
                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION'); ?></label>
                 </div>
                 <div class="controls">
-                    <select  name="zo2_menu_animation" id="zo2_menu_animation">
+                    <select  name="jform[params][zo2_menu_animation]" id="zo2_menu_animation">
                         <option value=""><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_NONE'); ?></option>
                         <option value="fading"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_FADING'); ?></option>
                         <option value="slide"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_SLIDE'); ?></option>
@@ -59,7 +59,7 @@
                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'); ?></label>
                 </div>
                 <div class="controls">
-                    <input name="zo2_menu_duration" type="text" value="400">
+                    <input name="jform[params][zo2_menu_duration]" type="text" value="400">
                 </div>
             </div>
 
@@ -70,9 +70,9 @@
                 </div>
                 <div class="controls">
                     <fieldset class="radio btn-group">
-                        <input name="zo2_menu_show_submenu" type="radio" value="0" >
+                        <input name="jform[params][zo2_menu_show_submenu]" type="radio" value="0" >
                         <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                        <input name="zo2_menu_show_submenu" type="radio" value="1" checked="checked" >
+                        <input name="jform[params][zo2_menu_show_submenu]" type="radio" value="1" checked="checked" >
                         <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                     </fieldset>
                 </div>
@@ -84,7 +84,7 @@
                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
                 </div>
                 <div class="controls">
-                    <select name="zo2_menu_type" id="zo2_menu_type">
+                    <select name="jform[params][zo2_menu_type]" id="zo2_menu_type">
                         <?php
                         $menu_types = Zo2Megamenu::getMenuTypes();
                         if ($menu_types) {
