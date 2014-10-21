@@ -67,13 +67,11 @@ zo2.jQuery(document).ready(function ($) {
     /*============For joomla 2.5==============*/
     function radio_button() {
         jQuery('.btn-group label:not(.active)').on("click", function () {
-
             var label = jQuery(this);
             var input = label.prev();
 
             if (!input.prop('checked')) {
                 label.closest('.btn-group').find('label').removeClass('active btn-success btn-danger btn-primary');
-alert(input.val());
                 if (input.val() == '') {
                     label.addClass('active btn-primary');
                 } else if (input.val() == 0) {
@@ -90,10 +88,13 @@ alert(input.val());
 
     $('.radio.btn-group label').addClass('btn');
     $('.radio.btn-group input[value="0"]').next().addClass('first');
+
     radio_button();
+
     $('.btn-group label').on("click", function () {
         radio_button();
     });
+
     $('.btn-group input[checked=checked]').each(function () {
         var label = $(this).next();
         if ($(this).val() == '') {

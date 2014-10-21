@@ -70,9 +70,9 @@
                 </div>
                 <div class="controls">
                     <fieldset class="radio btn-group">
-                        <input name="zo2_menu_show_submenu" type="radio" value="0" style="display: none;">
+                        <input name="zo2_menu_show_submenu" type="radio" value="0" >
                         <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                        <input name="zo2_menu_show_submenu" type="radio" value="1" checked="checked" style="display: none;">
+                        <input name="zo2_menu_show_submenu" type="radio" value="1" checked="checked" >
                         <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
                     </fieldset>
                 </div>
