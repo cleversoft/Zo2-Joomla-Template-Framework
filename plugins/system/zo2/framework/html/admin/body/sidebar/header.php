@@ -34,6 +34,12 @@ defined('_JEXEC') or die('Restricted access');
             <i class="fa fa-sitemap"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_LAYOUT'); ?>
         </a>
     </li>
+    <!-- Layout -->
+    <li class="">
+        <a href="#zo2-themecolor" role="tab" data-toggle="tab">
+            <i class="fa fa-sitemap"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_THEMECOLOR'); ?>
+        </a>
+    </li>
     <!-- Menu -->
     <li class="">
         <a href="#zo2-menu" role="tab" data-toggle="tab">

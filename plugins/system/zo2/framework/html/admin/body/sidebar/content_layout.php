@@ -5,767 +5,292 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <h3 class="title-profile">Layout Builder</h3>
+        <h3 class="title-profile"><?php echo JText::_('ZO2_ADMIN_LAYOUT_BUILDER'); ?></h3>
+
+
+
+
         <div class="profiles-pane-inner">
-            <div id="layoutbuilder-container">
-                <!-- Hidden fields -->
-                <fieldset>
-                    <!-- Input field to store generate layout data -->
-                    <input type="text" value="">
-                    <input type="hidden" id="hfTemplateName" value="zo2_hallo">
-                    <input type="hidden" id="hdLayoutBuilder" value="0">
-                    <input type="hidden" id="hfLayoutName" value="homepage">
-                </fieldset>
-
-                <!-- Main layout -->
-                <div id="droppable-container">
-                    <div class="zo2-container ui-sortable">
-
-                        <!-- Top Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="zo2-header-top" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Top</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-
-                                    <!-- Top Menu -->
-                                    <div class="sortable-col col-md-4 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="4" data-zo2-offset="0" data-zo2-position="top-menu" data-zo2-style="zo2_menu" data-zo2-customclass="col-sm-4" data-zo2-id="top-menu" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">top-menu</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Search -->
-                                    <div class="sortable-col col-md-4 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="4" data-zo2-offset="0" data-zo2-position="search" data-zo2-style="zo2_xhtml" data-zo2-customclass="col-sm-4" data-zo2-id="top-search" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">search</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Top Social -->
-                                    <div class="sortable-col col-md-4 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="4" data-zo2-offset="0" data-zo2-position="top-social" data-zo2-style="zo2_xhtml" data-zo2-customclass="col-sm-4" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">top-social</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Header Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="zo2-sticky" data-zo2-id="zo2-header" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Header</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-
-                                    <!-- Mega Menu -->
-                                    <div class="sortable-col col-md-1 col-md-offset-0" data-zo2-jdoc="canvasmenu" data-zo2-type="span" data-zo2-span="1" data-zo2-offset="0" data-zo2-position="mega_menu" data-zo2-style="" data-zo2-customclass="col-xs-1" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">mega_menu</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Header Logo -->
-                                    <div class="sortable-col col-md-3 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="3" data-zo2-offset="0" data-zo2-position="header_logo" data-zo2-style="" data-zo2-customclass="col-sm-3 col-xs-10 mobile-logo" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">header_logo</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                    <div class="sortable-col col-md-8 col-md-offset-0" data-zo2-jdoc="megamenu" data-zo2-type="span" data-zo2-span="8" data-zo2-offset="0" data-zo2-position="mega_menu" data-zo2-style="none" data-zo2-customclass="col-sm-9 col-xs-2 mobile-menu" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">mega_menu</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Slider Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="full-width" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="1">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Slide</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-12 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="12" data-zo2-offset="0" data-zo2-position="slide" data-zo2-style="none" data-zo2-customclass="full-width" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">slide</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Feature Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="zo2-hello" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name"> Feature </div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-12 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="12" data-zo2-offset="0" data-zo2-position="feature" data-zo2-style="zo2_xhtml" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">feature</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Breadcrumb Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Breadcrumb</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-12 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="12" data-zo2-offset="0" data-zo2-position="breadcrumb" data-zo2-style="" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">breadcrumb</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Zo2 Message -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="zo2-message" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">zo2-message</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-12 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="12" data-zo2-offset="0" data-zo2-position="message" data-zo2-style="none" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">message</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Body Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="zo2-mainframe" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Body</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-
-                                    <!-- Body Left -->
-                                    <div class="sortable-col col-md-3 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="3" data-zo2-offset="0" data-zo2-position="left" data-zo2-style="zo2_xhtml" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">left</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Body Component -->
-                                    <div class="sortable-col col-md-6 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="6" data-zo2-offset="0" data-zo2-position="component" data-zo2-style="none" data-zo2-customclass="" data-zo2-id="zo2-component" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">component</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Body Right -->
-                                    <div class="sortable-col col-md-3 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="3" data-zo2-offset="0" data-zo2-position="right" data-zo2-style="zo2_xhtml" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">right</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div id="zo2_themes_container">
+                <?php
+                $presetPath = Zo2Factory::getPath('templates://assets/presets.json');
+                $presets = array();
+                if ($presetPath) {
+                    $presets = json_decode(file_get_contents($presetPath), true);
+                }
+                $templatePath = Zo2Factory::getUrl('templates://');
+                $profile = Zo2Factory::getProfile();
+                $presetTheme = $profile->get('theme');
+                /**
+                 * @todo Must use JRegistry
+                 */
+                $preset_data = array(
+                    'name' => $presetTheme->get('name'),
+                    'css' => $presetTheme->get('css'),
+                    'less' => $presetTheme->get('less'),
+                    'boxed' => $presetTheme->get('boxed', 0),
+                    'background' => $presetTheme->get('background'),
+                    'header' => $presetTheme->get('header'),
+                    'header_top' => $presetTheme->get('header_top'),
+                    'text' => $presetTheme->get('text'),
+                    'link' => $presetTheme->get('link'),
+                    'link_hover' => $presetTheme->get('link_hover'),
+                    'bottom1' => $presetTheme->get('bottom1'),
+                    'bottom2' => $presetTheme->get('bottom2'),
+                    'footer' => $presetTheme->get('footer'),
+                    'extra' => $presetTheme->get('extra'),
+                    'bg_image' => $presetTheme->get('bg_image'),
+                    'bg_pattern' => $presetTheme->get('bg_pattern'),
+                    'background' => $presetTheme->get('background'),
+                );
 
 
-                        <!-- News Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="news" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">News</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-12 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="12" data-zo2-offset="0" data-zo2-position="news" data-zo2-style="zo2_xhtml" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">news</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Area 1 -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="zo2-bottom1" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Bottom 1</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-12 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="12" data-zo2-offset="0" data-zo2-position="bottom1" data-zo2-style="zo2_xhtml" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">bottom1</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-
-                                            <div class="row-container">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Bottom Area 2 -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="zo2-bottom2" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Bottom 2</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-4 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="4" data-zo2-offset="0" data-zo2-position="bottom2" data-zo2-style="zo2_xhtml" data-zo2-customclass="col-sm-4" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">bottom2</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                    <div class="sortable-col col-md-4 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="4" data-zo2-offset="0" data-zo2-position="bottom3" data-zo2-style="zo2_xhtml" data-zo2-customclass="col-sm-4" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">bottom3</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                    <div class="sortable-col col-md-4 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="4" data-zo2-offset="0" data-zo2-position="bottom4" data-zo2-style="zo2_xhtml" data-zo2-customclass="col-sm-4" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">bottom4</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Footer Area -->
-                        <div class="zo2-row sortable-row ui-sortable" data-zo2-type="row" data-zo2-customclass="" data-zo2-id="zo2-footer" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1" data-zo2-fullwidth="0">
-                            <div class="col-md-12 row-control">
-                                <div class="row-control-container">
-                                    <div class="row-name">Footer</div>
-                                    <div class="row-control-buttons">
-                                        <i title="" class="icon-move row-control-icon dragger hasTooltip" data-original-title="Drag row"></i>
-                                        <i title="" class="icon-cogs row-control-icon settings hasTooltip" data-original-title="Row's settings"></i>
-                                        <i title="" class="row-control-icon duplicate icon-align-justify hasTooltip" data-original-title="Duplicate row"></i>
-                                        <i title="" class="row-control-icon split icon-columns hasTooltip" data-original-title="Split row"></i>
-                                        <i title="" class="row-control-icon delete icon-remove hasTooltip" data-original-title="Remove row"></i>
-                                    </div>
-                                </div>
-                                <div class="col-container">
-                                    <div class="sortable-col col-md-12 col-md-offset-0" data-zo2-jdoc="modules" data-zo2-type="span" data-zo2-span="12" data-zo2-offset="0" data-zo2-position="footer_copyright" data-zo2-style="xhtml" data-zo2-customclass="" data-zo2-id="" data-zo2-visibility-xs="1" data-zo2-visibility-sm="1" data-zo2-visibility-md="1" data-zo2-visibility-lg="1">
-                                        <div class="col-wrap">
-                                            <div class="col-name">footer_copyright</div>
-                                            <div class="col-control-buttons">
-                                                <i title="" class="col-control-icon dragger icon-move hasTooltip" data-original-title="Drag column"></i>
-                                                <i title="" class="icon-cog col-control-icon settings hasTooltip" data-original-title="Column's settings"></i>
-                                                <i title="" class="col-control-icon add-row icon-align-justify hasTooltip" data-original-title="Append new row"></i>
-                                                <i title="" class="icon-remove col-control-icon delete hasTooltip" data-original-title="Remove column"></i>
-                                            </div>
-                                            <div class="row-container"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                if (!isset($preset_data['name']))
+                    $preset_data['name'] = 'custom';
+                if (!isset($preset_data['boxed']))
+                    $preset_data['boxed'] = 1;
+                if (!isset($preset_data['bg_image']))
+                    $preset_data['bg_image'] = '';
+                ?>
+                <div class="zo2_themes_row clearfix">
+                    <div class="zo2_themes_label">
+                        <?php echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT'); ?>
                     </div>
-                </div>
-
-                <!-- Modal: Row settings -->
-                <div id="rowSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-                    <!-- Modal header -->
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3>Row's settings</h3>
-                        <!-- Tab titles -->
-                        <ul class="zo2-tabs">
-                            <li><a class="active" href="#row-basic" data-toggle="tab">Basic</a></li>
-                            <li><a href="#row-responsive" data-toggle="tab">Responsive</a></li>
+                    <div class="zo2_themes_form">
+                        <ul id="zo2_themes">
+                            <?php foreach ($presets as $p) : ?>
+                                <li class="<?php echo $p['name'] == $preset_data['name'] ? 'active' : '' ?>"
+                                    data-zo2-theme="<?php echo $p['name'] ?>" data-zo2-background="<?php echo $p['variables']['background'] ?>"
+                                    data-zo2-header="<?php echo $p['variables']['header'] ?>"
+                                    data-zo2-header-top="<?php echo $p['variables']['header_top'] ?>"
+                                    data-zo2-link="<?php echo $p['variables']['link'] ?>"
+                                    data-zo2-link-hover="<?php echo $p['variables']['link_hover'] ?>"
+                                    data-zo2-text="<?php echo $p['variables']['text'] ?>"
+                                    data-zo2-bottom1="<?php echo $p['variables']['bottom1'] ?>"
+                                    data-zo2-bottom2="<?php echo $p['variables']['bottom2'] ?>"
+                                    data-zo2-footer="<?php echo $p['variables']['footer'] ?>"
+                                    data-zo2-css="<?php echo $p['css'] ?>" data-zo2-less="<?php echo $p['less'] ?>"
+                                    >
+                                    <div class="theme_title"><?php echo ucfirst($p['name']) ?></div>
+                                    <div class="theme_thumbnail">
+                                        <img src="<?php echo $templatePath . $p['thumbnail'] ?>">
+                                    </div>
+                                </li>
+                            <?php endforeach ?>
                         </ul>
                     </div>
-
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="form-horizontal">
-                            <!-- Tab contents -->
-                            <div class="zo2-tabs-content">
-                                <!-- Basic -->
-                                <div class="active" id="row-basic">
-                                    <div class="control-group">
-                                        <label class="control-label" for="txtRowName">Name</label>
-                                        <div class="controls">
-                                            <input type="text" id="txtRowName" placeholder="Row's name">
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="txtRowId">ID</label>
-                                        <div class="controls">
-                                            <input type="text" id="txtRowId" placeholder="Row's ID">
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="txtRowCss">Custom CSS class</label>
-                                        <div class="controls">
-                                            <input type="text" id="txtRowCss" placeholder="Row's custom CSS class">
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Full Width</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgFullWidth">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Responsive -->
-                                <div id="row-responsive">
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Phone</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgRowPhone">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Tablet</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgRowTablet">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Desktop</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgRowDesktop">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Large desktop</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgRowLargeDesktop">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Model footer -->
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                        <button class="btn btn-primary" id="btnSaveRowSettings">Save changes</button>
-                    </div>
                 </div>
-
-                <!-- Model: Column settings -->
-                <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3>Column's settings</h3>
-                        <ul class="zo2-tabs">
-                            <li><a class="active" href="#column-basic" data-toggle="tab">Basic</a></li>
-                            <li><a href="#column-responsive" data-toggle="tab">Responsive</a></li>
-                        </ul>
+                <div class="zo2_themes_row clearfix">
+                    <div class="zo2_themes_label">
+                        Preset Settings
                     </div>
-                    <div class="modal-body">
-                        <div class="form-horizontal">
-                            <div class="zo2-tabs-content">
-                                <div class="active" id="column-basic">
-
-                                    <!-- begin -->
-                                    <div class="control-group">
-                                        <label class="control-label" for="dlColJDoc">JDoc</label>
-                                        <div class="controls">
-
-                                            <!-- http://docs.joomla.org/Jdoc_statements -->
-                                            <select id="dlColJDoc">
-                                                <optgroup label="Joomla! Document">
-                                                    <option value="component">Component</option>
-                                                    <option value="modules">Modules</option>
-                                                    <option value="messsge">Message</option>
-                                                </optgroup>
-
-                                                <!-- These are extended for 3rd parties -->
-                                                <optgroup label="Menu">
-                                                    <option value="canvasmenu">Canvas</option>
-                                                    <option value="megamenu">Mega</option>
-                                                </optgroup>
-
-                                                <!-- These are extended for 3rd parties -->
-                                                <optgroup label="3rd parties">
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- begin -->
-                                    <div class="control-group">
-                                        <label class="control-label" for="dlColType">Position</label>
-                                        <div class="controls">
-                                            <select id="dlColPosition">
-                                                <option value="">(none)</option>
-                                                <option value="component">Component</option>
-                                                <option value="message">Message</option>
-                                                <option value="mega_menu">Mega Menu</option>
-                                                <option value="top">top</option>
-                                                <option value="header_logo">header_logo</option>
-                                                <option value="top-social">top-social</option>
-                                                <option value="top-menu">top-menu</option>
-                                                <option value="search">search</option>
-                                                <option value="logo">logo</option>
-                                                <option value="header_logo">header_logo</option>
-                                                <option value="menu">menu</option>
-                                                <option value="breadcrumb">breadcrumb</option>
-                                                <option value="search">search</option>
-                                                <option value="slide">slide</option>
-                                                <option value="user1">user1</option>
-                                                <option value="user2">user2</option>
-                                                <option value="user3">user3</option>
-                                                <option value="user4">user4</option>
-                                                <option value="left">left</option>
-                                                <option value="right">right</option>
-                                                <option value="feature">feature</option>
-                                                <option value="bottom1">bottom1</option>
-                                                <option value="bottom2">bottom2</option>
-                                                <option value="bottom3">bottom3</option>
-                                                <option value="bottom4">bottom4</option>
-                                                <option value="footer_logo">footer_logo</option>
-                                                <option value="footer1">footer1</option>
-                                                <option value="footer2">footer2</option>
-                                                <option value="footer_copyright">footer_copyright</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="dlColWidth">Width</label>
-                                        <div class="controls">
-                                            <select id="dlColWidth">
-                                                <option value="1">span1</option>
-                                                <option value="2">span2</option>
-                                                <option value="3">span3</option>
-                                                <option value="4">span4</option>
-                                                <option value="5">span5</option>
-                                                <option value="6">span6</option>
-                                                <option value="7">span7</option>
-                                                <option value="8">span8</option>
-                                                <option value="9">span9</option>
-                                                <option value="10">span10</option>
-                                                <option value="11">span11</option>
-                                                <option value="12">span12</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="ddlColOffset">Offset</label>
-                                        <div class="controls">
-                                            <select id="ddlColOffset">
-                                                <option value="0">No Offset</option>
-                                                <option value="1">offset1</option>
-                                                <option value="2">offset2</option>
-                                                <option value="3">offset3</option>
-                                                <option value="4">offset4</option>
-                                                <option value="5">offset5</option>
-                                                <option value="6">offset6</option>
-                                                <option value="7">offset7</option>
-                                                <option value="8">offset8</option>
-                                                <option value="9">offset9</option>
-                                                <option value="10">offset10</option>
-                                                <option value="11">offset11</option>
-                                                <option value="12">offset12</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="ddlColStyle">Style</label>
-                                        <div class="controls">
-                                            <select id="ddlColStyle">
-                                                <option value="none">None</option>
-                                                <option value="zo2_xhtml">zo2_xhtml</option>
-                                                <option value="zo2_flat">zo2_flat</option>
-                                                <option value="zo2_raw">zo2_raw</option>
-                                                <option value="zo2_menu">zo2_menu</option>
-                                                <option value="rounded">rounded</option>
-                                                <option value="table">table</option>
-                                                <option value="horz">horz</option>
-                                                <option value="xhtml">xhtml</option>
-                                                <option value="outline">outline</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="txtColId">ID</label>
-                                        <div class="controls">
-                                            <input type="text" id="txtColId" placeholder="Column's ID">
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <label class="control-label" for="txtColCss">Custom CSS class</label>
-                                        <div class="controls">
-                                            <input type="text" id="txtColCss" placeholder="Column's custom CSS class">
-                                        </div>
-                                    </div>
-                                    <!-- end -->
+                    <div class="zo2_themes_form">
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_background"><?php echo JText::_('ZO2_TEMPLATE_THEME_BACKGROUND'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_background" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['background'] ?>">
+                                    <span id="color_background_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['background']) ? 'transparent' : $preset_data['background'] ?>"></span>
                                 </div>
-                                <div id="column-responsive">
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Phone</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgColPhone">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Tablet</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgColTablet">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Desktop</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgColDesktop">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="control-label">
-                                            <div class="control-label">Large desktop</div>
-                                        </div>
-                                        <div class="controls btn-group btn-group-onoff" id="btgColLargeDesktop">
-                                            <button class="btn btn-on">On</button>
-                                            <button class="btn btn-off">Off</button>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_header"><?php echo JText::_('ZO2_TEMPLATE_THEME_HEADER'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_header" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['header'] ?>">
+                                    <span id="color_header_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['header']) ? 'transparent' : $preset_data['header'] ?>"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_HEADER_TOP'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_header_top" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['header_top'] ?>">
+                                    <span id="color_header_top_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['header_top']) ? 'transparent' : $preset_data['header_top'] ?>"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_text"><?php echo JText::_('ZO2_TEMPLATE_THEME_TEXT'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_text" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['text'] ?>">
+                                    <span id="color_text_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['text']) ? 'transparent' : $preset_data['text'] ?>"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_link"><?php echo JText::_('ZO2_TEMPLATE_THEME_LINK'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_link" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['link'] ?>">
+                                    <span id="color_link_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['link']) ? 'transparent' : $preset_data['link'] ?>"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_LINK_HOVER'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_link_hover" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['link_hover'] ?>">
+                                    <span id="color_link_hover_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['link_hover']) ? 'transparent' : $preset_data['link_hover'] ?>"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_BOTTOM'); ?> 1</label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_bottom1" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['bottom1'] ?>">
+                                    <span id="color_bottom1_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['bottom1']) ? 'transparent' : $preset_data['bottom1'] ?>"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_BOTTOM'); ?> 2</label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_bottom2" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['bottom2'] ?>">
+                                    <span id="color_bottom2_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['bottom2']) ? 'transparent' : $preset_data['bottom2'] ?>"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label for="color_footer"><?php echo JText::_('ZO2_TEMPLATE_THEME_FOOTER'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <div class="colorpicker-container">
+                                    <input id="color_footer" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['footer'] ?>">
+                                    <span id="color_footer_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['footer']) ? 'transparent' : $preset_data['footer'] ?>"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                        <button id="btnSaveColSettings" class="btn btn-primary">Save changes</button>
+
+                </div>
+                <div class="zo2_themes_row clearfix">
+                    <div class="zo2_themes_label">
+                        <?php echo JText::_('ZO2_TEMPLATE_THEME_OTHER_SETTINGS'); ?>
                     </div>
+                    <div class="zo2_themes_form_container preset-setting">
+                        <?php
+                        if (!empty($preset_data['extra'])) {
+                            $extra = json_decode($preset_data['extra']);
+                            if (count($extra) > 0) {
+                                foreach ($extra as $element => $color) {
+                                    ?>
+                                    <div class="zo2_themes_form">
+                                        <div class="control-group">
+                                            <div class="control-label">
+                                                <label><input value="<?php echo $element; ?>" class="zo2_other_preset_element zo2_other_preset"></label>
+                                            </div>
+                                            <div class="controls">
+                                                <div class="colorpicker-container">
+                                                    <input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="<?php echo $color ?>">
+                                                    <span id="extra_element_preview" class="color-preview" style="background-color: <?php echo empty($color) ? 'transparent' : $color ?>"></span>
+                                                    <input type="button" class="btn remove_preset" value="<?php echo JText::_('ZO2_ADMIN_EDITPROFILE_REMOVE'); ?>" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                            }
+                        }
+                        ?>
+                        <div class="zo2_themes_form">
+                            <input type="button" class="btn add_more_preset" value="<?php echo JText::_('ZO2_ADMIN_EDITPROFILE_ADDMORE'); ?>" />
+                        </div>
+                    </div>
+
+
+
+                    <div class="zo2_themes_row clearfix">
+
+                        <div class="zo2_themes_label">
+                            <?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_BACKGROUND'); ?>
+                        </div>
+                        <div class="control-group">
+                            <div class="control-label">
+                                <label class="hasTooltip"><?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_CHOOSE_LAYOUT'); ?></label>
+                            </div>
+                            <div class="controls">
+                                <fieldset class="radio btn-group">
+                                    <input type="hidden" value="<?php echo $preset_data['boxed']; ?>" name="zo2_boxed_style" id="zo2_boxed_style" />
+                                    <label class="btn layout_style_choose <?php if ($preset_data['boxed'] == 0) echo 'btn-success'; ?>"><?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_FULL_WIDTH_LAYOUT'); ?></label>
+                                    <label class="btn layout_style_choose boxed <?php if ($preset_data['boxed'] == 1) echo 'btn-success'; ?>"><?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_BOXED_LAYOUT'); ?></label>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="zo2_background_and_pattern" <?php if ($preset_data['boxed'] == 0) echo 'style="display:none"'; ?>>
+                            <div class="control-group">
+                                <div class="control-label">
+                                    <label class=""><?php echo JText::_('ZO2_TEMPLATE_THEME_BACKGROUND_IMAGE'); ?></label>
+                                </div>
+                                <div class="controls">
+                                    <div class="input-prepend input-append">
+                                        <div class="media-preview add-on">
+                                            <span class="hasTipPreview" title=""><i class="icon-eye-open"></i></span>
+                                        </div>
+                                        <input type="text" name="zo2_background_image" id="zo2_background_image" value="<?php echo $preset_data['bg_image']; ?>" readonly="readonly" class="input-small">
+                                        <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=zo2_background_image&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
+                                            <?php echo JText::_('ZO2_TEMPLATE_THEME_SELECT'); ?>
+                                        </a>
+                                        <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', 'zo2_background_image');
+                                            return false;" data-original-title="Clear">
+                                            <i class="icon-remove"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="zo2_themes_label">
+                                <?php echo JText::_('ZO2_TEMPLATE_THEME_PATTERN_BACKGROUND'); ?>
+                            </div>
+                            <div class="zo2_themes_form">
+                                <ul class="options background-select">
+                                    <?php
+                                    $zPath = Zo2Path::getInstance();
+                                    $backgroundsDir = Zo2Factory::getPath("templates://assets/zo2/images/background-patterns");
+                                    $bgPatterns = glob($backgroundsDir . '/*.*');
+                                    if (count($bgPatterns) > 0) {
+                                        foreach ($bgPatterns as $pattern) {
+                                            $selected = '';
+                                            $pattern_src = $zPath->toUrl($pattern);
+                                            $pattern_path = str_replace(JPATH_ROOT . DIRECTORY_SEPARATOR, '', $pattern);
+                                            if (isset($preset_data['bg_pattern']) && ($pattern_path == $preset_data['bg_pattern']))
+                                                $selected = 'selected';
+                                            echo '<li class="' . $selected . '"><img rel="' . $pattern_path . '" src="' . $pattern_src . '" /></li>';
+                                        }
+                                    }
+                                    ?>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
                 </div>
             </div>
         </div>

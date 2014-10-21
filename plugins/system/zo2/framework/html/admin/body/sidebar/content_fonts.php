@@ -5,907 +5,129 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <h3 class="title-profile">Font Options</h3>
-        <div id="font_chooser">
-            <div class="font-container">
-                <input type="hidden" value="">
-                <h3>Body</h3>
+        <h3 class="title-profile"><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></h3>
+        <?php
+            $data = null;
+            $enable = false;
+            $value = '';
+            if (!empty($value)) {
+                $data = json_decode($value, true);
+                $enable = true;
+            }
+            /**
+             * Init default data
+             */
+            if (!isset($data['type']))
+                $data['type'] = 'standard';
+            if (!isset($data['size']))
+                $data['size'] = null;
+            if (!isset($data['color']))
+                $data['color'] = null;
+            if (!isset($data['style']))
+                $data['style'] = null;
+            if (!isset($data['family']))
+                $data['family'] = null;
 
-                <!-- Enable Font -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <div class="font-label">Enable</div>
-                    </div>
-                    <div class="controls btn-group btn-group-onoff cbEnableFont">
-                        <button class="btn btn-on ">On</button>
-                        <button class="btn btn-off active btn-danger">Off</button>
-                    </div>
+            $standardFonts = array(
+                '\'Helvetica Neue\', Helvetica',
+                'Arial',
+                'Tahoma',
+                'Verdana',
+                '\'Myriad Pro\''
+            );
+
+            $fontStyles = array(
+                'n' => 'Normal',
+                'b' => 'Bold',
+                'i' => 'Italic',
+                'bi' => 'Bold Italic'
+            );
+        ?>
+        <div class="font-container">
+            <h3><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></h3>
+            <div class="control-group">
+                <div class="control-label">
+                    <div class="font-label"><?php echo JText::_('ZO2_ADMIN_ENABLE'); ?></div>
                 </div>
-
-                <!-- Font type -->
-                <div class="font_options" style="display: none;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font type</div>
-                            <div class="font-desc">Choose the type of font you want to use for body</div>
-                        </div>
-                        <div class="controls">
-                            <div class="btn-group font-types" data-toggle="buttons-radio">
-                                <button type="button" class="btn btnStandardFonts active btn-success">Standard Fonts</button>
-                                <button type="button" class="btn btnGoogleFonts ">Google Fonts</button>
-                                <button type="button" class="btn btnFontDeck ">FontDeck</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Standard Font -->
-                    <div class="font-options-standard control-group" style="display:block">
-                        <div class="control-label">
-                            <div class="font-label">Standard Font</div>
-                            <div class="font-desc">Choose the font face that is used for body</div>
-                        </div>
-                        <div class="controls">
-                            <select class="ddlStandardFont show">
-                                <option value="'Helvetica Neue', Helvetica">'Helvetica Neue', Helvetica</option>
-                                <option value="Arial">Arial</option>
-                                <option value="Tahoma">Tahoma</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="'Myriad Pro'">'Myriad Pro'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Google Font -->
-                    <div class="font-options-google hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">Google Font</div>
-                            <div class="font-desc">Choose the type of font you want to use for body</div>
-                        </div>
-                        <div class="controls">
-                            <input type="text" class="txtGoogleFontSelect" value="" style="display: none;">
-                            <div class="font-select">
-                                <a><span>Select a font</span><div><b></b></div></a>
-                                <div class="fs-drop" style="display: none;">
-                                    <div class="fs-search">
-                                        <input type="text" class="fs-searchinput">
-                                    </div>
-                                    <ul class="fs-results" style="display: none;">
-                                        <li data-value="Open Sans" style="font-family: Open Sans; font-weight: 400">Open Sans</li>
-                                        <li data-value="Oswald" style="font-family: Oswald; font-weight: 400">Oswald</li>
-                                        <li data-value="Lustria" style="font-family: Lustria; font-weight: 400">Lustria</li>
-                                        <li data-value="Lato" style="font-family: Lato; font-weight: 400">Lato</li>
-                                        <li data-value="Roboto" style="font-family: Roboto; font-weight: 400">Roboto</li>
-                                        <li data-value="Roboto Slab" style="font-family: Roboto Slab; font-weight: 400">Roboto Slab</li>
-                                        <li data-value="Yanone Kaffeesatz" style="font-family: Yanone Kaffeesatz; font-weight: 400">Yanone Kaffeesatz</li>
-                                        <li data-value="Arvo" style="font-family: Arvo; font-weight: 400">Arvo</li>
-                                        <li data-value="Ubuntu" style="font-family: Ubuntu; font-weight: 400">Ubuntu</li>
-                                        <li data-value="Lora" style="font-family: Lora; font-weight: 400">Lora</li>
-                                        <li data-value="Raleway" style="font-family: Raleway; font-weight: 400">Raleway</li>
-                                        <li data-value="Merriweather" style="font-family: Merriweather; font-weight: 400">Merriweather</li>
-                                        <li data-value="Bitter" style="font-family: Bitter; font-weight: 400">Bitter</li>
-                                        <li data-value="Cabin" style="font-family: Cabin; font-weight: 400">Cabin</li>
-                                        <li data-value="Cuprum" style="font-family: Cuprum; font-weight: 400">Cuprum</li>
-                                        <li data-value="Quattrocento" style="font-family: Quattrocento; font-weight: 400">Quattrocento</li>
-                                        <li data-value="Quattrocento Sans" style="font-family: Quattrocento Sans; font-weight: 400">Quattrocento Sans</li>
-                                        <li data-value="Droid Sans" style="font-family: Droid Sans; font-weight: 400">Droid Sans</li>
-                                        <li data-value="Vollkorn" style="font-family: Vollkorn; font-weight: 400">Vollkorn</li>
-                                        <li data-value="PT Mono" style="font-family: PT Mono; font-weight: 400">PT Mono</li>
-                                        <li data-value="Gravitas One" style="font-family: Gravitas One; font-weight: 400">Gravitas One</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FontDeck Name -->
-                    <div class="font-options-fontdeck hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">FontDeck Name</div>
-                            <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
-                        </div>
-                        <div class="controls">
-                            <textarea class="txtFontDeckCss"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Font options -->
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font options</div>
-                            <div class="font-desc">Specify the body font properties</div>
-                        </div>
-                        <div class="controls floatdiv clearfix">
-                            <div><input type="text" class="txtFontSize" value=""> px</div>
-
-                            <div class="colorpicker-container">
-                                <input type="text" class="txtColorPicker" value="" data-colorpicker-guid="1">
-                                <span class="color-preview" style="background-color: transparent"></span>
-                            </div>
-
-                            <div>
-                                <select class="ddlFontStyle">
-                                    <option value="n">Normal</option>
-                                    <option value="b">Bold</option>
-                                    <option value="i">Italic</option>
-                                    <option value="bi">Bold Italic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div class="controls btn-group btn-group-onoff cbEnableFont">
+                    <button class="btn btn-on <?php echo $enable ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ON'); ?></button>
+                    <button class="btn btn-off <?php echo!$enable ? 'active btn-danger' : '' ?>"><?php echo JText::_('ZO2_OFF'); ?></button>
                 </div>
             </div>
-
-            <!-- Font For Headline H1 -->
-            <div class="font-container">
-                <input type="hidden" value="">
-                <h3>Headline H1</h3>
-
-                <!-- Enable -->
+            <div class="font_options" <?php echo $data ? 'style="display:block"' : 'style="display:none"' ?>>
                 <div class="control-group">
                     <div class="control-label">
-                        <div class="font-label">Enable</div>
-                    </div>
-                    <div class="controls btn-group btn-group-onoff cbEnableFont">
-                        <button class="btn btn-on ">On</button>
-                        <button class="btn btn-off active btn-danger">Off</button>
-                    </div>
-                </div>
-
-                <!-- Font type -->
-                <div class="font_options" style="display: none;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font type</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <div class="btn-group font-types" data-toggle="buttons-radio">
-                                <button type="button" class="btn btnStandardFonts active btn-success">Standard Fonts</button>
-                                <button type="button" class="btn btnGoogleFonts ">Google Fonts</button>
-                                <button type="button" class="btn btnFontDeck ">FontDeck</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Standard Font -->
-                    <div class="font-options-standard control-group" style="display:block">
-                        <div class="control-label">
-                            <div class="font-label">Standard Font</div>
-                            <div class="font-desc">Choose the font face that is used for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <select class="ddlStandardFont show">
-                                <option value="'Helvetica Neue', Helvetica">'Helvetica Neue', Helvetica</option>
-                                <option value="Arial">Arial</option>
-                                <option value="Tahoma">Tahoma</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="'Myriad Pro'">'Myriad Pro'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Google Font -->
-                    <div class="font-options-google hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">Google Font</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <input type="text" class="txtGoogleFontSelect" value="" style="display: none;">
-                            <div class="font-select">
-                                <a><span>Select a font</span><div><b></b></div></a>
-                                <div class="fs-drop" style="display: none;">
-                                    <div class="fs-search">
-                                        <input type="text" class="fs-searchinput">
-                                    </div>
-                                    <ul class="fs-results" style="display: none;">
-                                        <li data-value="Open Sans" style="font-family: Open Sans; font-weight: 400">Open Sans</li>
-                                        <li data-value="Oswald" style="font-family: Oswald; font-weight: 400">Oswald</li>
-                                        <li data-value="Lustria" style="font-family: Lustria; font-weight: 400">Lustria</li>
-                                        <li data-value="Lato" style="font-family: Lato; font-weight: 400">Lato</li>
-                                        <li data-value="Roboto" style="font-family: Roboto; font-weight: 400">Roboto</li>
-                                        <li data-value="Roboto Slab" style="font-family: Roboto Slab; font-weight: 400">Roboto Slab</li>
-                                        <li data-value="Yanone Kaffeesatz" style="font-family: Yanone Kaffeesatz; font-weight: 400">Yanone Kaffeesatz</li>
-                                        <li data-value="Arvo" style="font-family: Arvo; font-weight: 400">Arvo</li>
-                                        <li data-value="Ubuntu" style="font-family: Ubuntu; font-weight: 400">Ubuntu</li>
-                                        <li data-value="Lora" style="font-family: Lora; font-weight: 400">Lora</li>
-                                        <li data-value="Raleway" style="font-family: Raleway; font-weight: 400">Raleway</li>
-                                        <li data-value="Merriweather" style="font-family: Merriweather; font-weight: 400">Merriweather</li>
-                                        <li data-value="Bitter" style="font-family: Bitter; font-weight: 400">Bitter</li>
-                                        <li data-value="Cabin" style="font-family: Cabin; font-weight: 400">Cabin</li>
-                                        <li data-value="Cuprum" style="font-family: Cuprum; font-weight: 400">Cuprum</li>
-                                        <li data-value="Quattrocento" style="font-family: Quattrocento; font-weight: 400">Quattrocento</li>
-                                        <li data-value="Quattrocento Sans" style="font-family: Quattrocento Sans; font-weight: 400">Quattrocento Sans</li>
-                                        <li data-value="Droid Sans" style="font-family: Droid Sans; font-weight: 400">Droid Sans</li>
-                                        <li data-value="Vollkorn" style="font-family: Vollkorn; font-weight: 400">Vollkorn</li>
-                                        <li data-value="PT Mono" style="font-family: PT Mono; font-weight: 400">PT Mono</li>
-                                        <li data-value="Gravitas One" style="font-family: Gravitas One; font-weight: 400">Gravitas One</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FontDeck Name -->
-                    <div class="font-options-fontdeck hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">FontDeck Name</div>
-                            <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
-                        </div>
-                        <div class="controls">
-                            <textarea class="txtFontDeckCss"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Font options -->
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font options</div>
-                            <div class="font-desc">Specify the headline h1 font properties</div>
-                        </div>
-                        <div class="controls floatdiv clearfix">
-                            <div><input type="text" class="txtFontSize" value=""> px</div>
-
-                            <div class="colorpicker-container">
-                                <input type="text" class="txtColorPicker" value="" data-colorpicker-guid="2">
-                                <span class="color-preview" style="background-color: transparent"></span>
-                            </div>
-
-                            <div>
-                                <select class="ddlFontStyle">
-                                    <option value="n">Normal</option>
-                                    <option value="b">Bold</option>
-                                    <option value="i">Italic</option>
-                                    <option value="bi">Bold Italic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="font-container">
-                <input type="hidden" value="">
-                <h3>Headline H2</h3>
-                <!-- Enable -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <div class="font-label">Enable</div>
-                    </div>
-                    <div class="controls btn-group btn-group-onoff cbEnableFont">
-                        <button class="btn btn-on ">On</button>
-                        <button class="btn btn-off active btn-danger">Off</button>
-                    </div>
-                </div>
-
-                <!-- Font type -->
-                <div class="font_options" style="display: none;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font type</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <div class="btn-group font-types" data-toggle="buttons-radio">
-                                <button type="button" class="btn btnStandardFonts active btn-success">Standard Fonts</button>
-                                <button type="button" class="btn btnGoogleFonts ">Google Fonts</button>
-                                <button type="button" class="btn btnFontDeck ">FontDeck</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Standard Font -->
-                    <div class="font-options-standard control-group" style="display:block">
-                        <div class="control-label">
-                            <div class="font-label">Standard Font</div>
-                            <div class="font-desc">Choose the font face that is used for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <select class="ddlStandardFont show">
-                                <option value="'Helvetica Neue', Helvetica">'Helvetica Neue', Helvetica</option>
-                                <option value="Arial">Arial</option>
-                                <option value="Tahoma">Tahoma</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="'Myriad Pro'">'Myriad Pro'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Google Font -->
-                    <div class="font-options-google hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">Google Font</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <input type="text" class="txtGoogleFontSelect" value="" style="display: none;">
-                            <div class="font-select">
-                                <a><span>Select a font</span><div><b></b></div></a>
-                                <div class="fs-drop" style="display: none;">
-                                    <div class="fs-search">
-                                        <input type="text" class="fs-searchinput">
-                                    </div>
-                                    <ul class="fs-results" style="display: none;">
-                                        <li data-value="Open Sans" style="font-family: Open Sans; font-weight: 400">Open Sans</li>
-                                        <li data-value="Oswald" style="font-family: Oswald; font-weight: 400">Oswald</li>
-                                        <li data-value="Lustria" style="font-family: Lustria; font-weight: 400">Lustria</li>
-                                        <li data-value="Lato" style="font-family: Lato; font-weight: 400">Lato</li>
-                                        <li data-value="Roboto" style="font-family: Roboto; font-weight: 400">Roboto</li>
-                                        <li data-value="Roboto Slab" style="font-family: Roboto Slab; font-weight: 400">Roboto Slab</li>
-                                        <li data-value="Yanone Kaffeesatz" style="font-family: Yanone Kaffeesatz; font-weight: 400">Yanone Kaffeesatz</li>
-                                        <li data-value="Arvo" style="font-family: Arvo; font-weight: 400">Arvo</li>
-                                        <li data-value="Ubuntu" style="font-family: Ubuntu; font-weight: 400">Ubuntu</li>
-                                        <li data-value="Lora" style="font-family: Lora; font-weight: 400">Lora</li>
-                                        <li data-value="Raleway" style="font-family: Raleway; font-weight: 400">Raleway</li>
-                                        <li data-value="Merriweather" style="font-family: Merriweather; font-weight: 400">Merriweather</li>
-                                        <li data-value="Bitter" style="font-family: Bitter; font-weight: 400">Bitter</li>
-                                        <li data-value="Cabin" style="font-family: Cabin; font-weight: 400">Cabin</li>
-                                        <li data-value="Cuprum" style="font-family: Cuprum; font-weight: 400">Cuprum</li>
-                                        <li data-value="Quattrocento" style="font-family: Quattrocento; font-weight: 400">Quattrocento</li>
-                                        <li data-value="Quattrocento Sans" style="font-family: Quattrocento Sans; font-weight: 400">Quattrocento Sans</li>
-                                        <li data-value="Droid Sans" style="font-family: Droid Sans; font-weight: 400">Droid Sans</li>
-                                        <li data-value="Vollkorn" style="font-family: Vollkorn; font-weight: 400">Vollkorn</li>
-                                        <li data-value="PT Mono" style="font-family: PT Mono; font-weight: 400">PT Mono</li>
-                                        <li data-value="Gravitas One" style="font-family: Gravitas One; font-weight: 400">Gravitas One</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FontDeck Name -->
-                    <div class="font-options-fontdeck hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">FontDeck Name</div>
-                            <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
-                        </div>
-                        <div class="controls">
-                            <textarea class="txtFontDeckCss"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Font options -->
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font options</div>
-                            <div class="font-desc">Specify the headline h1 font properties</div>
-                        </div>
-                        <div class="controls floatdiv clearfix">
-                            <div><input type="text" class="txtFontSize" value=""> px</div>
-
-                            <div class="colorpicker-container">
-                                <input type="text" class="txtColorPicker" value="" data-colorpicker-guid="2">
-                                <span class="color-preview" style="background-color: transparent"></span>
-                            </div>
-
-                            <div>
-                                <select class="ddlFontStyle">
-                                    <option value="n">Normal</option>
-                                    <option value="b">Bold</option>
-                                    <option value="i">Italic</option>
-                                    <option value="bi">Bold Italic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="font-container">
-                <input type="hidden" value="">
-                <h3>Headline H3</h3>
-                <!-- Enable -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <div class="font-label">Enable</div>
-                    </div>
-                    <div class="controls btn-group btn-group-onoff cbEnableFont">
-                        <button class="btn btn-on ">On</button>
-                        <button class="btn btn-off active btn-danger">Off</button>
-                    </div>
-                </div>
-
-                <!-- Font type -->
-                <div class="font_options" style="display: none;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font type</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <div class="btn-group font-types" data-toggle="buttons-radio">
-                                <button type="button" class="btn btnStandardFonts active btn-success">Standard Fonts</button>
-                                <button type="button" class="btn btnGoogleFonts ">Google Fonts</button>
-                                <button type="button" class="btn btnFontDeck ">FontDeck</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Standard Font -->
-                    <div class="font-options-standard control-group" style="display:block">
-                        <div class="control-label">
-                            <div class="font-label">Standard Font</div>
-                            <div class="font-desc">Choose the font face that is used for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <select class="ddlStandardFont show">
-                                <option value="'Helvetica Neue', Helvetica">'Helvetica Neue', Helvetica</option>
-                                <option value="Arial">Arial</option>
-                                <option value="Tahoma">Tahoma</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="'Myriad Pro'">'Myriad Pro'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Google Font -->
-                    <div class="font-options-google hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">Google Font</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <input type="text" class="txtGoogleFontSelect" value="" style="display: none;">
-                            <div class="font-select">
-                                <a><span>Select a font</span><div><b></b></div></a>
-                                <div class="fs-drop" style="display: none;">
-                                    <div class="fs-search">
-                                        <input type="text" class="fs-searchinput">
-                                    </div>
-                                    <ul class="fs-results" style="display: none;">
-                                        <li data-value="Open Sans" style="font-family: Open Sans; font-weight: 400">Open Sans</li>
-                                        <li data-value="Oswald" style="font-family: Oswald; font-weight: 400">Oswald</li>
-                                        <li data-value="Lustria" style="font-family: Lustria; font-weight: 400">Lustria</li>
-                                        <li data-value="Lato" style="font-family: Lato; font-weight: 400">Lato</li>
-                                        <li data-value="Roboto" style="font-family: Roboto; font-weight: 400">Roboto</li>
-                                        <li data-value="Roboto Slab" style="font-family: Roboto Slab; font-weight: 400">Roboto Slab</li>
-                                        <li data-value="Yanone Kaffeesatz" style="font-family: Yanone Kaffeesatz; font-weight: 400">Yanone Kaffeesatz</li>
-                                        <li data-value="Arvo" style="font-family: Arvo; font-weight: 400">Arvo</li>
-                                        <li data-value="Ubuntu" style="font-family: Ubuntu; font-weight: 400">Ubuntu</li>
-                                        <li data-value="Lora" style="font-family: Lora; font-weight: 400">Lora</li>
-                                        <li data-value="Raleway" style="font-family: Raleway; font-weight: 400">Raleway</li>
-                                        <li data-value="Merriweather" style="font-family: Merriweather; font-weight: 400">Merriweather</li>
-                                        <li data-value="Bitter" style="font-family: Bitter; font-weight: 400">Bitter</li>
-                                        <li data-value="Cabin" style="font-family: Cabin; font-weight: 400">Cabin</li>
-                                        <li data-value="Cuprum" style="font-family: Cuprum; font-weight: 400">Cuprum</li>
-                                        <li data-value="Quattrocento" style="font-family: Quattrocento; font-weight: 400">Quattrocento</li>
-                                        <li data-value="Quattrocento Sans" style="font-family: Quattrocento Sans; font-weight: 400">Quattrocento Sans</li>
-                                        <li data-value="Droid Sans" style="font-family: Droid Sans; font-weight: 400">Droid Sans</li>
-                                        <li data-value="Vollkorn" style="font-family: Vollkorn; font-weight: 400">Vollkorn</li>
-                                        <li data-value="PT Mono" style="font-family: PT Mono; font-weight: 400">PT Mono</li>
-                                        <li data-value="Gravitas One" style="font-family: Gravitas One; font-weight: 400">Gravitas One</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FontDeck Name -->
-                    <div class="font-options-fontdeck hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">FontDeck Name</div>
-                            <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
-                        </div>
-                        <div class="controls">
-                            <textarea class="txtFontDeckCss"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Font options -->
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font options</div>
-                            <div class="font-desc">Specify the headline h1 font properties</div>
-                        </div>
-                        <div class="controls floatdiv clearfix">
-                            <div><input type="text" class="txtFontSize" value=""> px</div>
-
-                            <div class="colorpicker-container">
-                                <input type="text" class="txtColorPicker" value="" data-colorpicker-guid="2">
-                                <span class="color-preview" style="background-color: transparent"></span>
-                            </div>
-
-                            <div>
-                                <select class="ddlFontStyle">
-                                    <option value="n">Normal</option>
-                                    <option value="b">Bold</option>
-                                    <option value="i">Italic</option>
-                                    <option value="bi">Bold Italic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="font-container">
-                <input type="hidden" value="">
-                <h3>Headline H4</h3>
-                <!-- Enable -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <div class="font-label">Enable</div>
-                    </div>
-                    <div class="controls btn-group btn-group-onoff cbEnableFont">
-                        <button class="btn btn-on ">On</button>
-                        <button class="btn btn-off active btn-danger">Off</button>
-                    </div>
-                </div>
-
-                <!-- Font type -->
-                <div class="font_options" style="display: none;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font type</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <div class="btn-group font-types" data-toggle="buttons-radio">
-                                <button type="button" class="btn btnStandardFonts active btn-success">Standard Fonts</button>
-                                <button type="button" class="btn btnGoogleFonts ">Google Fonts</button>
-                                <button type="button" class="btn btnFontDeck ">FontDeck</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Standard Font -->
-                    <div class="font-options-standard control-group" style="display:block">
-                        <div class="control-label">
-                            <div class="font-label">Standard Font</div>
-                            <div class="font-desc">Choose the font face that is used for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <select class="ddlStandardFont show">
-                                <option value="'Helvetica Neue', Helvetica">'Helvetica Neue', Helvetica</option>
-                                <option value="Arial">Arial</option>
-                                <option value="Tahoma">Tahoma</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="'Myriad Pro'">'Myriad Pro'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Google Font -->
-                    <div class="font-options-google hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">Google Font</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <input type="text" class="txtGoogleFontSelect" value="" style="display: none;">
-                            <div class="font-select">
-                                <a><span>Select a font</span><div><b></b></div></a>
-                                <div class="fs-drop" style="display: none;">
-                                    <div class="fs-search">
-                                        <input type="text" class="fs-searchinput">
-                                    </div>
-                                    <ul class="fs-results" style="display: none;">
-                                        <li data-value="Open Sans" style="font-family: Open Sans; font-weight: 400">Open Sans</li>
-                                        <li data-value="Oswald" style="font-family: Oswald; font-weight: 400">Oswald</li>
-                                        <li data-value="Lustria" style="font-family: Lustria; font-weight: 400">Lustria</li>
-                                        <li data-value="Lato" style="font-family: Lato; font-weight: 400">Lato</li>
-                                        <li data-value="Roboto" style="font-family: Roboto; font-weight: 400">Roboto</li>
-                                        <li data-value="Roboto Slab" style="font-family: Roboto Slab; font-weight: 400">Roboto Slab</li>
-                                        <li data-value="Yanone Kaffeesatz" style="font-family: Yanone Kaffeesatz; font-weight: 400">Yanone Kaffeesatz</li>
-                                        <li data-value="Arvo" style="font-family: Arvo; font-weight: 400">Arvo</li>
-                                        <li data-value="Ubuntu" style="font-family: Ubuntu; font-weight: 400">Ubuntu</li>
-                                        <li data-value="Lora" style="font-family: Lora; font-weight: 400">Lora</li>
-                                        <li data-value="Raleway" style="font-family: Raleway; font-weight: 400">Raleway</li>
-                                        <li data-value="Merriweather" style="font-family: Merriweather; font-weight: 400">Merriweather</li>
-                                        <li data-value="Bitter" style="font-family: Bitter; font-weight: 400">Bitter</li>
-                                        <li data-value="Cabin" style="font-family: Cabin; font-weight: 400">Cabin</li>
-                                        <li data-value="Cuprum" style="font-family: Cuprum; font-weight: 400">Cuprum</li>
-                                        <li data-value="Quattrocento" style="font-family: Quattrocento; font-weight: 400">Quattrocento</li>
-                                        <li data-value="Quattrocento Sans" style="font-family: Quattrocento Sans; font-weight: 400">Quattrocento Sans</li>
-                                        <li data-value="Droid Sans" style="font-family: Droid Sans; font-weight: 400">Droid Sans</li>
-                                        <li data-value="Vollkorn" style="font-family: Vollkorn; font-weight: 400">Vollkorn</li>
-                                        <li data-value="PT Mono" style="font-family: PT Mono; font-weight: 400">PT Mono</li>
-                                        <li data-value="Gravitas One" style="font-family: Gravitas One; font-weight: 400">Gravitas One</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FontDeck Name -->
-                    <div class="font-options-fontdeck hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">FontDeck Name</div>
-                            <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
-                        </div>
-                        <div class="controls">
-                            <textarea class="txtFontDeckCss"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Font options -->
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font options</div>
-                            <div class="font-desc">Specify the headline h1 font properties</div>
-                        </div>
-                        <div class="controls floatdiv clearfix">
-                            <div><input type="text" class="txtFontSize" value=""> px</div>
-
-                            <div class="colorpicker-container">
-                                <input type="text" class="txtColorPicker" value="" data-colorpicker-guid="2">
-                                <span class="color-preview" style="background-color: transparent"></span>
-                            </div>
-
-                            <div>
-                                <select class="ddlFontStyle">
-                                    <option value="n">Normal</option>
-                                    <option value="b">Bold</option>
-                                    <option value="i">Italic</option>
-                                    <option value="bi">Bold Italic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="font-container">
-                <input type="hidden" value="">
-                <h3>Headline H5</h3>
-                <!-- Enable -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <div class="font-label">Enable</div>
-                    </div>
-                    <div class="controls btn-group btn-group-onoff cbEnableFont">
-                        <button class="btn btn-on ">On</button>
-                        <button class="btn btn-off active btn-danger">Off</button>
-                    </div>
-                </div>
-
-                <!-- Font type -->
-                <div class="font_options" style="display: none;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font type</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <div class="btn-group font-types" data-toggle="buttons-radio">
-                                <button type="button" class="btn btnStandardFonts active btn-success">Standard Fonts</button>
-                                <button type="button" class="btn btnGoogleFonts ">Google Fonts</button>
-                                <button type="button" class="btn btnFontDeck ">FontDeck</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Standard Font -->
-                    <div class="font-options-standard control-group" style="display:block">
-                        <div class="control-label">
-                            <div class="font-label">Standard Font</div>
-                            <div class="font-desc">Choose the font face that is used for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <select class="ddlStandardFont show">
-                                <option value="'Helvetica Neue', Helvetica">'Helvetica Neue', Helvetica</option>
-                                <option value="Arial">Arial</option>
-                                <option value="Tahoma">Tahoma</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="'Myriad Pro'">'Myriad Pro'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Google Font -->
-                    <div class="font-options-google hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">Google Font</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <input type="text" class="txtGoogleFontSelect" value="" style="display: none;">
-                            <div class="font-select">
-                                <a><span>Select a font</span><div><b></b></div></a>
-                                <div class="fs-drop" style="display: none;">
-                                    <div class="fs-search">
-                                        <input type="text" class="fs-searchinput">
-                                    </div>
-                                    <ul class="fs-results" style="display: none;">
-                                        <li data-value="Open Sans" style="font-family: Open Sans; font-weight: 400">Open Sans</li>
-                                        <li data-value="Oswald" style="font-family: Oswald; font-weight: 400">Oswald</li>
-                                        <li data-value="Lustria" style="font-family: Lustria; font-weight: 400">Lustria</li>
-                                        <li data-value="Lato" style="font-family: Lato; font-weight: 400">Lato</li>
-                                        <li data-value="Roboto" style="font-family: Roboto; font-weight: 400">Roboto</li>
-                                        <li data-value="Roboto Slab" style="font-family: Roboto Slab; font-weight: 400">Roboto Slab</li>
-                                        <li data-value="Yanone Kaffeesatz" style="font-family: Yanone Kaffeesatz; font-weight: 400">Yanone Kaffeesatz</li>
-                                        <li data-value="Arvo" style="font-family: Arvo; font-weight: 400">Arvo</li>
-                                        <li data-value="Ubuntu" style="font-family: Ubuntu; font-weight: 400">Ubuntu</li>
-                                        <li data-value="Lora" style="font-family: Lora; font-weight: 400">Lora</li>
-                                        <li data-value="Raleway" style="font-family: Raleway; font-weight: 400">Raleway</li>
-                                        <li data-value="Merriweather" style="font-family: Merriweather; font-weight: 400">Merriweather</li>
-                                        <li data-value="Bitter" style="font-family: Bitter; font-weight: 400">Bitter</li>
-                                        <li data-value="Cabin" style="font-family: Cabin; font-weight: 400">Cabin</li>
-                                        <li data-value="Cuprum" style="font-family: Cuprum; font-weight: 400">Cuprum</li>
-                                        <li data-value="Quattrocento" style="font-family: Quattrocento; font-weight: 400">Quattrocento</li>
-                                        <li data-value="Quattrocento Sans" style="font-family: Quattrocento Sans; font-weight: 400">Quattrocento Sans</li>
-                                        <li data-value="Droid Sans" style="font-family: Droid Sans; font-weight: 400">Droid Sans</li>
-                                        <li data-value="Vollkorn" style="font-family: Vollkorn; font-weight: 400">Vollkorn</li>
-                                        <li data-value="PT Mono" style="font-family: PT Mono; font-weight: 400">PT Mono</li>
-                                        <li data-value="Gravitas One" style="font-family: Gravitas One; font-weight: 400">Gravitas One</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FontDeck Name -->
-                    <div class="font-options-fontdeck hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">FontDeck Name</div>
-                            <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
-                        </div>
-                        <div class="controls">
-                            <textarea class="txtFontDeckCss"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Font options -->
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font options</div>
-                            <div class="font-desc">Specify the headline h1 font properties</div>
-                        </div>
-                        <div class="controls floatdiv clearfix">
-                            <div><input type="text" class="txtFontSize" value=""> px</div>
-
-                            <div class="colorpicker-container">
-                                <input type="text" class="txtColorPicker" value="" data-colorpicker-guid="2">
-                                <span class="color-preview" style="background-color: transparent"></span>
-                            </div>
-
-                            <div>
-                                <select class="ddlFontStyle">
-                                    <option value="n">Normal</option>
-                                    <option value="b">Bold</option>
-                                    <option value="i">Italic</option>
-                                    <option value="bi">Bold Italic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="font-container">
-                <input type="hidden" value="">
-                <h3>Headline H6</h3>
-                <!-- Enable -->
-                <div class="control-group">
-                    <div class="control-label">
-                        <div class="font-label">Enable</div>
-                    </div>
-                    <div class="controls btn-group btn-group-onoff cbEnableFont">
-                        <button class="btn btn-on ">On</button>
-                        <button class="btn btn-off active btn-danger">Off</button>
-                    </div>
-                </div>
-
-                <!-- Font type -->
-                <div class="font_options" style="display: none;">
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font type</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <div class="btn-group font-types" data-toggle="buttons-radio">
-                                <button type="button" class="btn btnStandardFonts active btn-success">Standard Fonts</button>
-                                <button type="button" class="btn btnGoogleFonts ">Google Fonts</button>
-                                <button type="button" class="btn btnFontDeck ">FontDeck</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Standard Font -->
-                    <div class="font-options-standard control-group" style="display:block">
-                        <div class="control-label">
-                            <div class="font-label">Standard Font</div>
-                            <div class="font-desc">Choose the font face that is used for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <select class="ddlStandardFont show">
-                                <option value="'Helvetica Neue', Helvetica">'Helvetica Neue', Helvetica</option>
-                                <option value="Arial">Arial</option>
-                                <option value="Tahoma">Tahoma</option>
-                                <option value="Verdana">Verdana</option>
-                                <option value="'Myriad Pro'">'Myriad Pro'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Google Font -->
-                    <div class="font-options-google hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">Google Font</div>
-                            <div class="font-desc">Choose the type of font you want to use for headline h1</div>
-                        </div>
-                        <div class="controls">
-                            <input type="text" class="txtGoogleFontSelect" value="" style="display: none;">
-                            <div class="font-select">
-                                <a><span>Select a font</span><div><b></b></div></a>
-                                <div class="fs-drop" style="display: none;">
-                                    <div class="fs-search">
-                                        <input type="text" class="fs-searchinput">
-                                    </div>
-                                    <ul class="fs-results" style="display: none;">
-                                        <li data-value="Open Sans" style="font-family: Open Sans; font-weight: 400">Open Sans</li>
-                                        <li data-value="Oswald" style="font-family: Oswald; font-weight: 400">Oswald</li>
-                                        <li data-value="Lustria" style="font-family: Lustria; font-weight: 400">Lustria</li>
-                                        <li data-value="Lato" style="font-family: Lato; font-weight: 400">Lato</li>
-                                        <li data-value="Roboto" style="font-family: Roboto; font-weight: 400">Roboto</li>
-                                        <li data-value="Roboto Slab" style="font-family: Roboto Slab; font-weight: 400">Roboto Slab</li>
-                                        <li data-value="Yanone Kaffeesatz" style="font-family: Yanone Kaffeesatz; font-weight: 400">Yanone Kaffeesatz</li>
-                                        <li data-value="Arvo" style="font-family: Arvo; font-weight: 400">Arvo</li>
-                                        <li data-value="Ubuntu" style="font-family: Ubuntu; font-weight: 400">Ubuntu</li>
-                                        <li data-value="Lora" style="font-family: Lora; font-weight: 400">Lora</li>
-                                        <li data-value="Raleway" style="font-family: Raleway; font-weight: 400">Raleway</li>
-                                        <li data-value="Merriweather" style="font-family: Merriweather; font-weight: 400">Merriweather</li>
-                                        <li data-value="Bitter" style="font-family: Bitter; font-weight: 400">Bitter</li>
-                                        <li data-value="Cabin" style="font-family: Cabin; font-weight: 400">Cabin</li>
-                                        <li data-value="Cuprum" style="font-family: Cuprum; font-weight: 400">Cuprum</li>
-                                        <li data-value="Quattrocento" style="font-family: Quattrocento; font-weight: 400">Quattrocento</li>
-                                        <li data-value="Quattrocento Sans" style="font-family: Quattrocento Sans; font-weight: 400">Quattrocento Sans</li>
-                                        <li data-value="Droid Sans" style="font-family: Droid Sans; font-weight: 400">Droid Sans</li>
-                                        <li data-value="Vollkorn" style="font-family: Vollkorn; font-weight: 400">Vollkorn</li>
-                                        <li data-value="PT Mono" style="font-family: PT Mono; font-weight: 400">PT Mono</li>
-                                        <li data-value="Gravitas One" style="font-family: Gravitas One; font-weight: 400">Gravitas One</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- FontDeck Name -->
-                    <div class="font-options-fontdeck hide control-group">
-                        <div class="control-label">
-                            <div class="font-label">FontDeck Name</div>
-                            <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
-                        </div>
-                        <div class="controls">
-                            <textarea class="txtFontDeckCss"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Font options -->
-                    <div class="control-group">
-                        <div class="control-label">
-                            <div class="font-label">Font options</div>
-                            <div class="font-desc">Specify the headline h1 font properties</div>
-                        </div>
-                        <div class="controls floatdiv clearfix">
-                            <div><input type="text" class="txtFontSize" value=""> px</div>
-
-                            <div class="colorpicker-container">
-                                <input type="text" class="txtColorPicker" value="" data-colorpicker-guid="2">
-                                <span class="color-preview" style="background-color: transparent"></span>
-                            </div>
-
-                            <div>
-                                <select class="ddlFontStyle">
-                                    <option value="n">Normal</option>
-                                    <option value="b">Bold</option>
-                                    <option value="i">Italic</option>
-                                    <option value="bi">Bold Italic</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="font-container">
-                <div class="control-group font-deck-code" style="margin-top:20px">
-                    <div class="control-label">
-                        <div class="font-label">
-                            <label class="hasTooltip" title="" data-original-title="FontDeck code<br />Paste the JS script code from Step 1 in FontDeck website">FontDeck code</label>
-                        </div>
-                        <div class="font-desc">Paste the JS script code from Step 1 in FontDeck website</div>
+                        <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_TYPE'); ?></div>
+                        <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_TYPE_DESC'); ?><?php //echo strtolower($this->getLabel()) ?></div>
                     </div>
                     <div class="controls">
-                        <textarea></textarea>
+                        <div class="btn-group font-types" data-toggle="buttons-radio">
+                            <button type="button" class="btn btnStandardFonts <?php echo $data['type'] == 'standard' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_FONT_STANDARD'); ?></button>
+                            <button type="button" class="btn btnGoogleFonts <?php echo $data['type'] == 'googlefonts' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_FONT_GOOGLE'); ?></button>
+                            <button type="button" class="btn btnFontDeck <?php echo $data['type'] == 'fontdeck' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK'); ?></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="font-options-standard control-group" <?php echo $data['type'] == 'standard' ? 'style="display:block"' : '' ?>>
+                    <div class="control-label">
+                        <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_STANDARD'); ?></div>
+                        <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_STANDARD_DESCRIPTION'); ?><?php //echo strtolower($this->getLabel()) ?></div>
+                    </div>
+                    <div class="controls">
+                        <select class="ddlStandardFont show">
+                            <?php foreach ($standardFonts as $font) : ?>
+                                <option <?php echo $data['family'] == $font ? 'selected' : '' ?> value="<?php echo htmlspecialchars($font) ?>"><?php echo htmlspecialchars($font) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="font-options-google hide control-group" <?php echo $data['type'] == 'googlefonts' ? 'style="display:block"' : '' ?>>
+                    <div class="control-label">
+                        <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_GOOGLE'); ?></div>
+                        <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_GOOGLE_DESCRIPTION'); ?><?php //echo strtolower($this->getLabel()) ?></div>
+                    </div>
+                    <div class="controls">
+                        <input type="text" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
+                    </div>
+                </div>
+
+                <div class="font-options-fontdeck hide control-group" <?php echo $data['type'] == 'fontdeck' ? 'style="display:block"' : '' ?>>
+                    <div class="control-label">
+                        <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK'); ?></div>
+                        <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK_DESCRIPTION'); ?></div>
+                    </div>
+                    <div class="controls">
+                        <textarea class="txtFontDeckCss"><?php echo $data['type'] == 'fontdeck' ? $data['family'] : '' ?></textarea>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="control-label">
+                        <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></div>
+                        <div class="font-desc">Specify the <?php //echo strtolower($this->getLabel()) ?> font properties</div>
+                    </div>
+                    <div class="controls floatdiv clearfix">
+                        <div><input type="text" class="txtFontSize" value="<?php echo $data['size'] ?>" /> px</div>
+
+                        <div class="colorpicker-container">
+                            <input type="text" class="txtColorPicker" value="<?php echo $data['color'] ?>" />
+                            <span class="color-preview" style="background-color: <?php echo empty($data['color']) ? 'transparent' : $data['color'] ?>"></span>
+                        </div>
+
+                        <div>
+                            <select class="ddlFontStyle">
+                                <?php foreach ($fontStyles as $style => $title) { ?>
+                                    <?php $selected = trim($data['style']) == trim($style); ?>
+                                    <option <?php echo ($selected) ? 'selected' : '' ?> value="<?php echo $style ?>"><?php echo $title ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
