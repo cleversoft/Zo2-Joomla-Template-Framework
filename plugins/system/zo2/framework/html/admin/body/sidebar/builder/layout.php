@@ -18,7 +18,12 @@ $addons = $framework->getRegisteredAddons();
     <!-- Hidden fields -->
     <fieldset>
         <!-- Input field to store generate layout data -->
-        <input type="text" value="<?php echo htmlspecialchars($this->value) ?>" style="display: none" class="hfLayoutHtml" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
+        <input type="text" 
+               name="jform[params][layout]"
+               id="jform_params_layout"
+               value="<?php echo json_encode($layoutData, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE); ?>" 
+               style="display: none" 
+               class="hfLayoutHtml" />
         <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Factory::getTemplateName() ?>" />
         <input type="hidden" id="hdLayoutBuilder" value="0" />
         <input type="hidden" id="hfLayoutName" value="homepage" />
@@ -27,7 +32,10 @@ $addons = $framework->getRegisteredAddons();
     <!-- Main layout -->
     <div id="droppable-container">
         <div class="zo2-container">
-            <?php $this->renderLayout($layoutData) ?>
+            <?php foreach ($layoutData as $row) : ?>
+                <?php $this->set('row', $row); ?>
+                <?php echo $this->load('admin/body/sidebar/builder/layout.row.php'); ?>
+            <?php endforeach; ?>        
         </div>
     </div>
 

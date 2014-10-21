@@ -8,7 +8,7 @@
      data-zo2-visibility-md="<?php echo $row->get('visibility')->md ? 1 : 0 ?>"
      data-zo2-visibility-lg="<?php echo $row->get('visibility')->lg ? 1 : 0 ?>"
      data-zo2-fullwidth="<?php echo $row->get('fullwidth') ? 1 : 0 ?>"
-    >
+     >
     <div class="col-md-12 row-control">
         <div class="row-control-container">
             <div class="row-name"><?php echo $row->get('name'); ?></div>
@@ -24,9 +24,9 @@
         <div class="col-container">
             <?php
             $columns = $row->get('children');
-            if(count($columns) > 0)
-                foreach ( $columns as $column) {
-                    require 'formfield.layout.column.php';
+            if (count($columns) > 0)
+                foreach ($columns as $column) {
+                    require 'layout.column.php';
                 }
             ?>
         </div>
