@@ -101,11 +101,11 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 
 Everyone is welcome to help contribute and improve this project. There are several ways you can contribute:
 
-	+ Reporting issues (please read [https://github.com/necolas/issue-guidelines](issue guidelines) )
-	+ Suggesting new features
-	+ Writing or refactoring code
-	+ Fixing [https://github.com/cleversoft/zo2/issues](issues)
-	+ Replying to questions on the forum
+	* Reporting issues (please read [https://github.com/necolas/issue-guidelines](issue guidelines))
+	* Suggesting new features
+	* Writing or refactoring code
+	* Fixing [https://github.com/cleversoft/zo2/issues](issues)
+	* Replying to questions on the forum
 
 ##Support
 
