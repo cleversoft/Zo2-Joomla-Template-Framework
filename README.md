@@ -105,7 +105,7 @@ Everyone is welcome to help contribute and improve this project. There are sever
 * Suggesting new features
 * Writing or refactoring code
 * Fixing [issues](https://github.com/cleversoft/zo2/issues)
-* Replying to questions on the forum
+* Replying to questions on [the forum](http://www.zootemplate.com/zo2-support)
 
 ##Support
 
