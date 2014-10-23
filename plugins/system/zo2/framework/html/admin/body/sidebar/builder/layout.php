@@ -34,7 +34,7 @@ $addons = $framework->getRegisteredAddons();
         <div class="zo2-container">
             <?php foreach ($layoutData as $row) : ?>
                 <?php $this->set('row', $row); ?>
-                <?php echo $this->load('admin/body/sidebar/builder/layout.row.php'); ?>
+                <?php $this->load('admin/body/sidebar/builder/layout.row.php'); ?>
             <?php endforeach; ?>        
         </div>
     </div>
