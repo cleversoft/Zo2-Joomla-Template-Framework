@@ -6,6 +6,8 @@
     </blockquote>
     <div class="profiles-pane">
         <h3 class="title-profile"><?php echo JText::_('ZO2_ADMIN_ADVANCED_OPTION'); ?></h3>
+        <button class="btn btn-danger" id="btnClearCache" onClick="zo2.admin.ajax.clearCache(); return false;">Clear cache</button>
+        <button class="btn btn-primary" id="btnClearCache">Compile</button>
         <div class="profiles-pane-inner">
             <div class="accordion" id="advanced-accordion">
                 <div class="accordion-group">
