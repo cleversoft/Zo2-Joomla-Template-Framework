@@ -22,12 +22,21 @@ if (!class_exists('Zo2ModelAjax')) {
      */
     class Zo2ModelAjax {
 
+        /**
+         * 
+         */
         public function clearCache() {
             if (JFolder::delete(ZO2PATH_CACHE)) {
                 $this->_respond('Cache deleted');
             } else {
                 $this->_respond('Something wrong');
             }
+        }
+
+        public function buildAssets() {
+            $assets = Zo2Assets::getInstance();
+            $assets->buildAssets();
+            $this->_respond('Build success');
         }
 
         private function _respond($data) {

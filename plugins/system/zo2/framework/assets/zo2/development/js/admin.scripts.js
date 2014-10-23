@@ -36,7 +36,14 @@
          */
         _init: function () {
         },
+        /**
+         * Backend ajax
+         */
         ajax: {
+            /**
+             * Clear Zo2 cache
+             * @returns {undefined}
+             */
             clearCache: function () {
                 $.ajax({
                     /* Default URL */
@@ -51,8 +58,41 @@
                         format: 'raw',
                         zo2_ajax: 1,
                         zo2_task: 'clearCache'
+                    },
+                    beforeSend: function () {
+                        jQuery('#btnClearCache').button('loading');
                     }
-                });
+                })
+                        .done(function () {
+                            jQuery('#btnClearCache').button('reset');
+                        });
+            },
+            /**
+             * 
+             * @returns {undefined}
+             */
+            buildAssets: function () {
+                $.ajax({
+                    /* Default URL */
+                    url: document.URL,
+                    /* Default method */
+                    type: 'POST',
+                    /* Default data type */
+                    dataType: 'json',
+                    /* Data format */
+                    data: {
+                        /* Force using raw */
+                        format: 'raw',
+                        zo2_ajax: 1,
+                        zo2_task: 'buildAssets'
+                    },
+                    beforeSend: function () {
+                        jQuery('#btnBuildAssets').button('loading');
+                    }
+                })
+                        .done(function () {
+                            jQuery('#btnBuildAssets').button('reset');
+                        });
             }
         }
 
