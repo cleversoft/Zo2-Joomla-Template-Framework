@@ -101,20 +101,20 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 
 Everyone is welcome to help contribute and improve this project. There are several ways you can contribute:
 
-* Reporting issues (please read [https://github.com/necolas/issue-guidelines](issue guidelines))
+* Reporting issues (please read [issue guidelines](https://github.com/necolas/issue-guidelines))
 * Suggesting new features
 * Writing or refactoring code
-* Fixing [https://github.com/cleversoft/zo2/issues](issues)
+* Fixing [issues](https://github.com/cleversoft/zo2/issues)
 * Replying to questions on the forum
 
 ##Support
 
-Use the [http://www.zootemplate.com/zo2-support](Zo2 Support) to ask questions and get support.
+Use the [Zo2 Support](http://www.zootemplate.com/zo2-support) to ask questions and get support.
 
 
 ##Documents
 
-[http://docs.zootemplate.com/category/zo2](http://docs.zootemplate.com/category/zo2)
+[Zo2 Documents](http://docs.zootemplate.com/category/zo2)
 
 
 ##Copyright, License & Usage
