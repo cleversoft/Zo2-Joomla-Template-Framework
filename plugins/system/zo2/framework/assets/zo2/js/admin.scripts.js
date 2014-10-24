@@ -63,8 +63,8 @@
                         jQuery('#btnClearCache').button('loading');
                     }
                 })
-                        .done(function (data) {
-                            jQuery('#btnClearCache').button(data);
+                        .done(function () {
+                            jQuery('#btnClearCache').button('reset');
                         });
             },
             /**
@@ -90,8 +90,8 @@
                         jQuery('#btnBuildAssets').button('loading');
                     }
                 })
-                        .done(function (data) {
-                            jQuery('#btnBuildAssets').button(data);
+                        .done(function () {
+                            jQuery('#btnBuildAssets').button('reset');
                         });
             }
         }

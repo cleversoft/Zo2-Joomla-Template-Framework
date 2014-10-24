@@ -11,12 +11,12 @@
             <!-- Global -->
             <div class="tab-pane fade" id="general-global">
                 <!-- Description -->
-                <div class="well well-small">
-                    <blockquote>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                        <small></small>
-                    </blockquote>
-                </div>
+
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <small></small>
+                </blockquote>
+
                 <div class="row-fluid">
                     <div class="span12">
                         <!-- Site Name -->
@@ -121,6 +121,12 @@
             </div>
             <!-- Features -->
             <div class="tab-pane fade" id="general-features">
+
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <small></small>
+                </blockquote>
+
                 <!-- Common options -->
                 <div class="row-fluid">
                     <div class="span12">
