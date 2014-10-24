@@ -9,7 +9,7 @@
         <?php
             $data = null;
             $enable = false;
-            $value = '';
+            $value = $this->params->get('fonts');
             if (!empty($value)) {
                 $data = json_decode($value, true);
                 $enable = true;
