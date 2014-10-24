@@ -35,15 +35,6 @@
 (function (window, zo2, $) {
 
     /**
-     * Ajax class
-     */
-    zo2.ajax = {
-        /* Default settings */
-        _settings: {
-        }
-    };
-
-    /**
      * Animation class
      */
     zo2.animate = {

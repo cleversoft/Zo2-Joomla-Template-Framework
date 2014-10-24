@@ -97,20 +97,26 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 
      + backend ajax
 
-##Bug tracking
+##Contributing
 
-Found a bug or have a feature request? Feel free to open an issue via this link:
+Everyone is welcome to help contribute and improve this project. There are several ways you can contribute:
 
-[https://github.com/cleversoft/zo2/issues](https://github.com/cleversoft/zo2/issues)
+* Reporting issues (please read [issue guidelines](https://github.com/necolas/issue-guidelines))
+* Suggesting new features
+* Writing or refactoring code
+* Fixing [issues](https://github.com/cleversoft/zo2/issues)
+* Replying to questions on [the forum](http://www.zootemplate.com/zo2-support)
+
+##Support
+
+Use the [Zo2 Support](http://www.zootemplate.com/zo2-support) to ask questions and get support.
 
 
 ##Documents
 
-[http://docs.zootemplate.com/category/zo2](http://docs.zootemplate.com/category/zo2)
+[Zo2 Documents](http://docs.zootemplate.com/category/zo2)
 
-## All Questions
 
-[http://www.zootemplate.com/zo2-support](http://www.zootemplate.com/zo2-support)
 ##Copyright, License & Usage
 
 Copyright (c) 2008 - 2014 [CleverSoft Solutions](http://cleversoft.co)

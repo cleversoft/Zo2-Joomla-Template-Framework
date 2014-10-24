@@ -32,11 +32,11 @@
             "vendor\/jqueryalert\/jquery.alerts.js",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
             "vendor\/fontselect\/jquery.fontselect.js",
-            "zo2\/js\/admin.megamenu.js",
-            "zo2\/js\/admin.assets.js",
-            "zo2\/js\/admin.social.js",
             "zo2\/js\/scripts.js",
-            "zo2\/js\/admin.scripts.js"
+            "zo2\/js\/admin.assets.js",
+            "zo2\/js\/admin.scripts.js",
+            "zo2\/js\/admin.social.js",
+            "zo2\/js\/admin.megamenu.js"
         ]
     }
 
