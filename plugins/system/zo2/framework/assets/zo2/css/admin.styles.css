@@ -823,9 +823,13 @@ body {
   color: #e30004;
 }
 #zo2-framework .font-desc {
+  clear: left;
   color: #444;
+  float: none;
+  font-size: 93%;
   font-style: italic;
   font-weight: normal;
+  padding: 3px 0 0 5px;
 }
 #zo2-framework .sortable-col {
   margin-bottom: 20px;
@@ -1006,12 +1010,12 @@ body {
   width: 180px;
 }
 #zo2-framework .font-container .txtColorPicker {
-  width: 160px;
+  width: 180px;
   display: block;
   float: left;
 }
 #zo2-framework .font-container .txtFontSize {
-  width: 30px;
+  width: 205px;
 }
 #zo2-framework .font-container .ui-tabs-nav li,
 #zo2-framework #zo2_themes_container .ui-tabs-nav li,
@@ -1066,7 +1070,7 @@ body {
 }
 #zo2-framework #zo2_themes_container .txtColorPicker {
   float: left;
-  width: 160px;
+  width: 180px;
   position: relative;
   z-index: 9;
 }
@@ -2482,6 +2486,7 @@ body {
   border-width: 1px 1px medium;
   color: #000;
   margin-bottom: -1px;
+  outline: none;
 }
 #myTabZo2SidebarContent .nav > li > a:hover,
 #myTabZo2SidebarContent .nav > li > a:focus {
@@ -2493,8 +2498,11 @@ body {
 #myTabZo2SidebarContent {
   background-color: #fff;
 }
-.form-horizontal .control-label {
+.form-horizontal #zo2-framework .control-label {
   min-width: 180px;
+}
+.form-horizontal #zo2-framework .control-group .controls:not(.btn-group) {
+  padding-left: 180px;
 }
 input[type="text"],
 input[type="password"],

@@ -565,9 +565,13 @@ body{
     color: #e30004;
   }
   .font-desc {
-    color:#444;
+    clear: left;
+    color: #444;
+    float: none;
+    font-size: 93%;
     font-style: italic;
     font-weight: normal;
+    padding: 3px 0 0 5px;
   }
   .sortable-col {
     margin-bottom: 20px;
@@ -742,12 +746,12 @@ body{
       width:180px;
     }
     .txtColorPicker {
-      width: 160px;
+      width: 180px;
       display:block;
       float:left;
     }
     .txtFontSize {
-      width:30px;
+      width:205px;
     }
   }
   .font-container, #zo2_themes_container,
@@ -813,7 +817,7 @@ body{
   #zo2_themes_container {
     .txtColorPicker {
       float:left;
-      width: 160px;
+      width: 180px;
       position: relative;
       z-index: 9;
     }
@@ -2290,6 +2294,7 @@ body{
     border-width: 1px 1px medium;
     color: #000;
     margin-bottom: -1px;
+    outline: none;
   }
   .nav > li > a:hover, .nav > li > a:focus{
     background-color: transparent;
@@ -2305,8 +2310,13 @@ body{
 }
 
 .form-horizontal{
-  .control-label{
-    min-width: 180px;
+  #zo2-framework{
+    .control-label{
+      min-width: 180px;
+    }
+    .control-group .controls:not(.btn-group){
+      padding-left: 180px;
+    }
   }
 }
 
