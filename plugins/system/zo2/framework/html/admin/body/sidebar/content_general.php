@@ -65,26 +65,36 @@
                                         <button class="btn logo-type-image "><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
                                         <button class="btn logo-type-text "><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
                                     </div>
-                                    <div class="logo-image ">
-                                        <input type="hidden" class="basePath" value="/hallo142">
-                                        <input type="hidden" class="logo-path" value="">
-                                        <div class="btn-group">
-                                            <span class="logo-preview"></span>
-                                            <a href="#" class="btn btn-primary btn-select-logo modal" rel=""><?php echo JText::_('ZO2_ADMIN_SELECT'); ?></a>
-                                            <a href="#" class="btn btn-danger btn-remove-preview"><i class="icon-remove"></i></a>
-                                        </div>
-                                        <label>Width</label>
-                                        <input type="text" class="logo-width input-mini" value="">
-                                        <label>Height</label>
-                                        <input type="text" class="logo-height input-mini" value="">
-                                    </div>
-                                    <div class="logo-text ">
-                                        <label>Text</label>
-                                        <input type="text" class="logo-text-input" value="">
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Logo Image</label>
+                            <div class="logo-image ">
+                                <input type="hidden" class="basePath" value="/hallo142">
+                                <input type="hidden" class="logo-path" value="">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-primary btn-select-logo modal" rel=""><?php echo JText::_('ZO2_ADMIN_SELECT'); ?></a>
+<!--                                    <a href="#" class="btn btn-danger btn-remove-preview"><i class="icon-remove"></i></a>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Logo Width</label>
+                            <input type="text" class="logo-width input-mini" value="">
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Logo Height</label>
+                            <input type="text" class="logo-height input-mini" value="">
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Logo Text</label>
+                            <div class="logo-text ">
+                                <input type="text" class="logo-text-input" value="">
+                            </div>
+                        </div>
+                        <div class="zo2-divider"></div>
                         <!-- Header Retina logo -->
                         <div class="control-group">
                             <label class="control-label"><?php echo JText::_('ZO2_ADMIN_HEADER__RETINA_LOGO'); ?></label>                            
@@ -96,24 +106,33 @@
                                         <button class="btn logo-type-image active btn-success"><?php echo JText::_('ZO2_ADMIN_NONE_IMAGE'); ?></button>
                                         <button class="btn logo-type-text "><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
                                     </div>
-                                    <div class="logo-image show">
-                                        <input type="hidden" class="basePath" value="/hallo142">
-                                        <input type="hidden" class="logo-path" value="images/logo-retina.png">
-                                        <div class="btn-group">
-                                            <span class="logo-preview">
-                                                <img src="/hallo142/images/logo-retina.png">
-                                            </span>
-                                            <a href="#" class="btn btn-primary btn-select-logo modal" rel=""><?php echo JText::_('ZO2_ADMIN_SELECT'); ?></a>
-                                            <a href="#" class="btn btn-danger btn-remove-preview"><i class="icon-remove"></i></a>
-                                        </div>
-                                        <label>Width</label> <input type="text" class="logo-width input-mini" value="424">
-                                        <label>Height</label> <input type="text" class="logo-height input-mini" value="40">
-                                    </div>
-                                    <div class="logo-text">
-                                        <label>Text</label>
-                                        <input type="text" class="logo-text-input" value="">
-                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Retina Logo Image</label>
+                            <div class="logo-image show">
+                                <input type="hidden" class="basePath" value="/hallo142">
+                                <input type="hidden" class="logo-path" value="images/logo-retina.png">
+                                <div class="btn-group">
+                                    <span class="logo-preview"><img src="http://img.photobucket.com/albums/v710/bkirchner1/Screenshot2010-06-16at45413PM%7CJun16.jpg"></span><br />
+                                    <a href="#" class="btn btn-primary btn-select-logo modal" rel=""><?php echo JText::_('ZO2_ADMIN_SELECT'); ?></a>
+                                    <a href="#" class="btn btn-danger btn-remove-preview"><i class="icon-remove"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Retina Logo Width</label>
+                            <input type="text" class="logo-width input-mini" value="424">
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Retina Logo Height</label>
+                            <input type="text" class="logo-height input-mini" value="40">
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">Header Retina Logo Text</label>
+                            <div class="logo-text">
+                                <input type="text" class="logo-text-input" value="">
                             </div>
                         </div>
                     </div>

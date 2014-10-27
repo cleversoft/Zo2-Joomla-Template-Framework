@@ -44,7 +44,7 @@
             );
         ?>
         <div class="font-container">
-            <h3><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></h3>
+<!--            <h3>--><?php //echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?><!--</h3>-->
             <div class="control-group">
                 <div class="control-label">
                     <div class="font-label"><?php echo JText::_('ZO2_ADMIN_ENABLE'); ?></div>

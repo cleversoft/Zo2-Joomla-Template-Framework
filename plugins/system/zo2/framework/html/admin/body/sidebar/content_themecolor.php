@@ -11,7 +11,7 @@
 
 
 <div id="theme">
-<div id="zo2_themes_container">
+<div id="zo2_themes_container" class="profiles-pane-inner">
 <?php
 $presetPath = Zo2Factory::getPath('templates://assets/presets.json');
 $presets = array();

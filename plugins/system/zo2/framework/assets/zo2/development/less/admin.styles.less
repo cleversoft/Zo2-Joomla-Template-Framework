@@ -27,6 +27,23 @@
     }
 }
 
+.zo2-divider{
+  display: block;
+  float: left;
+  margin: 15px 0 30px;
+  position: relative;
+  width: 100%;
+}
+.zo2-divider:after{
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  bottom: 0;
+  left: 0;
+  content: "";
+}
+
 body{
   color: inherit!important;
 }
@@ -84,18 +101,19 @@ body{
   .tab-pane{ min-height: 402px }
 
   .profiles-pane{
-    border: 1px solid #3BAFDA;
-    border-radius: 3px;
     margin-bottom: 30px;
     padding-bottom: 15px;
     h3.title-profile{
-      background-color: #3BAFDA;
-      color: #fff;
-      padding-left: 10px;
+      color: #000;
+      margin: 0 0 20px 10px;
+      text-transform: uppercase;
     }
     .profiles-pane-inner{
       padding: 15px;
     }
+  }
+  #myTabAdvance{
+    margin-top: 20px;
   }
 
   /* Tabs content */
@@ -413,13 +431,14 @@ body{
     }
   }
   .color-preview {
-    display:block;
-    float:left;
-    width:25px;
-    height:25px;
     background-color: transparent;
-    border:solid 1px #323e41;
-    margin-left:5px;
+    border: 1px solid #ccc;
+    border-radius: 0 3px 3px 0;
+    display: block;
+    float: left;
+    height: 26px;
+    margin-left: -2px;
+    width: 25px;
   }
   * {
     html {
@@ -441,8 +460,7 @@ body{
   }
   .logo-image, .logo-text {
     float:left;
-    padding-left:10px;
-    display:none;
+    display:block;
   }
   .zo2-tabs-content &>div.active, .zo2-tabs-content &>section.active {
     display: block;
@@ -670,19 +688,9 @@ body{
     }
   }
   .logo-preview {
-    display:inline-block;
-    height:26px;
-    border-radius: 4px 0 0 4px;
-    background-color:#eeeeee;
-    width:150px;
-    border:1px solid #ccc;
-    border-right: 0;
-    float:left;
+    border: 1px solid #ccc;
+    display: block;
     text-align: center;
-    img {
-      max-width: 60%;
-      padding: 4px 0;
-    }
   }
   .zo2_themes_row {
     clear:both;
@@ -715,10 +723,6 @@ body{
     padding-bottom: 30px;
     margin-bottom: 30px;
   }
-
-  .colorpicker-container {
-    width:120px;
-  }
   .font-container h3, .title-profile {
     border-bottom: 1px solid #E2E2E2;
     font-size: 15px;
@@ -733,13 +737,12 @@ body{
   }
   .font-container {
     position: relative;
-    border-bottom:solid 1px #E2E2E2;
     padding:0 15px 10px 15px;
     .control-label {
-      width:160px;
+      width:180px;
     }
     .txtColorPicker {
-      width:60px;
+      width: 160px;
       display:block;
       float:left;
     }
@@ -747,6 +750,7 @@ body{
       width:30px;
     }
   }
+  .font-container, #zo2_themes_container,
   .ui-tabs {
     .ui-tabs-nav {
       li {
@@ -809,7 +813,9 @@ body{
   #zo2_themes_container {
     .txtColorPicker {
       float:left;
-      width:60px;
+      width: 160px;
+      position: relative;
+      z-index: 9;
     }
     .color-preview {
       float:left;
@@ -2235,12 +2241,15 @@ body{
 }
 
 /* Tab Style */
-#myTabContent, #myTabGeneralContent{
+#myTabContent{
   padding: 20px;
   border: 1px solid #3bafda;
   border-top: 0;
 }
-#myTabTabs, #myTabGeneral{
+#myTabGeneral, #myTabAdvance{
+  border-bottom: 1px solid #ccc;
+}
+#myTabTabs{
   margin-bottom: 0;
   border: none;
   background-color: #3bafda;
@@ -2267,6 +2276,25 @@ body{
     }
   }
 }
+#myTabZo2SidebarContent{
+  .nav-pills > li > a{
+    margin-bottom: 0;
+    padding: 12px 20px;
+  }
+  .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus{
+    background: #fff;
+    border-color: #dddddd #dddddd transparent #dddddd;
+    border-image: none;
+    border-radius: 5px 5px 0 0;
+    border-style: solid solid none;
+    border-width: 1px 1px medium;
+    color: #000;
+    margin-bottom: -1px;
+  }
+  .nav > li > a:hover, .nav > li > a:focus{
+    background-color: transparent;
+  }
+}
 
 /* zo2-body */
 .zo2-body{
@@ -2278,7 +2306,7 @@ body{
 
 .form-horizontal{
   .control-label{
-    min-width: 160px;
+    min-width: 180px;
   }
 }
 

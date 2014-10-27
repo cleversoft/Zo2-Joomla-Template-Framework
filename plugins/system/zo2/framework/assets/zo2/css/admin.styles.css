@@ -317,6 +317,22 @@
 .zo2-megamenu .dropdown-menu .nav {
   margin: 0 0 0 15px;
 }
+.zo2-divider {
+  display: block;
+  float: left;
+  margin: 15px 0 30px;
+  position: relative;
+  width: 100%;
+}
+.zo2-divider:after {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  bottom: 0;
+  left: 0;
+  content: "";
+}
 body {
   color: inherit !important;
 }
@@ -369,18 +385,19 @@ body {
   min-height: 402px;
 }
 #zo2-framework .profiles-pane {
-  border: 1px solid #3BAFDA;
-  border-radius: 3px;
   margin-bottom: 30px;
   padding-bottom: 15px;
 }
 #zo2-framework .profiles-pane h3.title-profile {
-  background-color: #3BAFDA;
-  color: #fff;
-  padding-left: 10px;
+  color: #000;
+  margin: 0 0 20px 10px;
+  text-transform: uppercase;
 }
 #zo2-framework .profiles-pane .profiles-pane-inner {
   padding: 15px;
+}
+#zo2-framework #myTabAdvance {
+  margin-top: 20px;
 }
 #zo2-framework #myTabZo2Sidebar.tab-content {
   -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.07);
@@ -677,13 +694,14 @@ body {
   border-color: #d0cccc;
 }
 #zo2-framework .color-preview {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 0 3px 3px 0;
   display: block;
   float: left;
+  height: 26px;
+  margin-left: -2px;
   width: 25px;
-  height: 25px;
-  background-color: transparent;
-  border: solid 1px #323e41;
-  margin-left: 5px;
 }
 #zo2-framework * html .clearfix {
   height: 1%;
@@ -701,8 +719,7 @@ body {
 #zo2-framework .logo-image,
 #zo2-framework .logo-text {
   float: left;
-  padding-left: 10px;
-  display: none;
+  display: block;
 }
 .zo2-tabs-content #zo2-framework>div.active,
 .zo2-tabs-content #zo2-framework>section.active {
@@ -931,19 +948,9 @@ body {
   cursor: move;
 }
 #zo2-framework .logo-preview {
-  display: inline-block;
-  height: 26px;
-  border-radius: 4px 0 0 4px;
-  background-color: #eeeeee;
-  width: 150px;
   border: 1px solid #ccc;
-  border-right: 0;
-  float: left;
+  display: block;
   text-align: center;
-}
-#zo2-framework .logo-preview img {
-  max-width: 60%;
-  padding: 4px 0;
 }
 #zo2-framework .zo2_themes_row {
   clear: both;
@@ -978,9 +985,6 @@ body {
   padding-bottom: 30px;
   margin-bottom: 30px;
 }
-#zo2-framework .colorpicker-container {
-  width: 120px;
-}
 #zo2-framework .font-container h3,
 #zo2-framework .title-profile {
   border-bottom: 1px solid #E2E2E2;
@@ -996,20 +1000,21 @@ body {
 }
 #zo2-framework .font-container {
   position: relative;
-  border-bottom: solid 1px #E2E2E2;
   padding: 0 15px 10px 15px;
 }
 #zo2-framework .font-container .control-label {
-  width: 160px;
+  width: 180px;
 }
 #zo2-framework .font-container .txtColorPicker {
-  width: 60px;
+  width: 160px;
   display: block;
   float: left;
 }
 #zo2-framework .font-container .txtFontSize {
   width: 30px;
 }
+#zo2-framework .font-container .ui-tabs-nav li,
+#zo2-framework #zo2_themes_container .ui-tabs-nav li,
 #zo2-framework .ui-tabs .ui-tabs-nav li {
   bottom: -1px;
   top: auto;
@@ -1061,7 +1066,9 @@ body {
 }
 #zo2-framework #zo2_themes_container .txtColorPicker {
   float: left;
-  width: 60px;
+  width: 160px;
+  position: relative;
+  z-index: 9;
 }
 #zo2-framework #zo2_themes_container .color-preview {
   float: left;
@@ -2420,28 +2427,26 @@ body {
 #theme .profiles-pane .profiles-pane-inner .controls .add-new-profiles {
   margin: 15px 0;
 }
-#myTabContent,
-#myTabGeneralContent {
+#myTabContent {
   padding: 20px;
   border: 1px solid #3bafda;
   border-top: 0;
 }
-#myTabTabs,
-#myTabGeneral {
+#myTabGeneral,
+#myTabAdvance {
+  border-bottom: 1px solid #ccc;
+}
+#myTabTabs {
   margin-bottom: 0;
   border: none;
   background-color: #3bafda;
 }
 #myTabTabs.nav-tabs > li,
-#myTabTabs.nav-pills > li,
-#myTabGeneral.nav-tabs > li,
-#myTabGeneral.nav-pills > li {
+#myTabTabs.nav-pills > li {
   margin-bottom: 0;
 }
 #myTabTabs.nav-tabs > li > a,
-#myTabTabs.nav-pills > li > a,
-#myTabGeneral.nav-tabs > li > a,
-#myTabGeneral.nav-pills > li > a {
+#myTabTabs.nav-pills > li > a {
   background-color: transparent;
   border: medium none;
   color: #fff;
@@ -2452,23 +2457,35 @@ body {
 #myTabTabs.nav-tabs > li.active > a,
 #myTabTabs.nav-tabs > li:hover > a,
 #myTabTabs.nav-pills > li.active > a,
-#myTabTabs.nav-pills > li:hover > a,
-#myTabGeneral.nav-tabs > li.active > a,
-#myTabGeneral.nav-tabs > li:hover > a,
-#myTabGeneral.nav-pills > li.active > a,
-#myTabGeneral.nav-pills > li:hover > a {
+#myTabTabs.nav-pills > li:hover > a {
   background-color: #0b7ba5;
 }
 #myTabTabs.nav-tabs > li.active > a:focus,
 #myTabTabs.nav-tabs > li:hover > a:focus,
 #myTabTabs.nav-pills > li.active > a:focus,
-#myTabTabs.nav-pills > li:hover > a:focus,
-#myTabGeneral.nav-tabs > li.active > a:focus,
-#myTabGeneral.nav-tabs > li:hover > a:focus,
-#myTabGeneral.nav-pills > li.active > a:focus,
-#myTabGeneral.nav-pills > li:hover > a:focus {
+#myTabTabs.nav-pills > li:hover > a:focus {
   border: none;
   outline: none;
+}
+#myTabZo2SidebarContent .nav-pills > li > a {
+  margin-bottom: 0;
+  padding: 12px 20px;
+}
+#myTabZo2SidebarContent .nav-pills > .active > a,
+#myTabZo2SidebarContent .nav-pills > .active > a:hover,
+#myTabZo2SidebarContent .nav-pills > .active > a:focus {
+  background: #fff;
+  border-color: #dddddd #dddddd transparent #dddddd;
+  border-image: none;
+  border-radius: 5px 5px 0 0;
+  border-style: solid solid none;
+  border-width: 1px 1px medium;
+  color: #000;
+  margin-bottom: -1px;
+}
+#myTabZo2SidebarContent .nav > li > a:hover,
+#myTabZo2SidebarContent .nav > li > a:focus {
+  background-color: transparent;
 }
 .zo2-body {
   background-color: #313940;
@@ -2477,7 +2494,7 @@ body {
   background-color: #fff;
 }
 .form-horizontal .control-label {
-  min-width: 160px;
+  min-width: 180px;
 }
 input[type="text"],
 input[type="password"],
