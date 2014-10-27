@@ -69,14 +69,6 @@
         <fields name="params" addfieldpath="/plugins/system/zo2/formfields">            
             <fieldset name="zo2">
                 <field name="zo2" type="zo2"/>
-                <field name="menu_type" type="menutype" default="mainmenu"
-                       label="Menu type"
-                       description="Menu type"
-                />
-                <field name="menu_config" type="megamenu" hide="true"
-                       label=""
-                       description=""
-                />
             </fieldset>  
                                   
         </fields>
