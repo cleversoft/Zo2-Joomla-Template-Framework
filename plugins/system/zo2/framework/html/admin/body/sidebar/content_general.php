@@ -21,17 +21,28 @@
                     <div class="span12">
                         <!-- Site Name -->
                         <div class="control-group">
-                            <label class="control-label"><?php echo JText::_('ZO2_ADMIN_SITENAME'); ?></label>
-                            <div class="controls">
-                                <input type="text" name="jform[params][site_name]" value="<?php echo $this->params->get('site_name', JFactory::getConfig()->get('sitename')); ?>">
-                            </div>
+                            <?php
+                            echo Zo2Html::field(
+                                    'text', array(
+                                'label' => JText::_('ZO2_ADMIN_SITENAME'),
+                                    ), array(
+                                'name' => 'jform[params][site_name]',
+                                'value' => Zo2Factory::get('site_name')
+                            ));
+                            ?>
+
                         </div>
                         <!-- Site Slogan -->
-                        <div class="control-group">                            
-                            <label class="control-label"><?php echo JText::_('ZO2_ADMIN_SLOGAN'); ?></label>
-                            <div class="controls">
-                                <input type="text" name="jform[params][site_slogan]" value="<?php echo $this->params->get('site_slogan'); ?>">
-                            </div>
+                        <div class="control-group">            
+                            <?php
+                            echo Zo2Html::field(
+                                    'text', array(
+                                'label' => JText::_('ZO2_ADMIN_SLOGAN'),
+                                    ), array(
+                                'name' => 'jform[params][site_slogan]',
+                                'value' => Zo2Factory::get('site_slogan')
+                            ));
+                            ?>                            
                         </div>
                         <!-- Copyright -->
                         <div class="control-group">
