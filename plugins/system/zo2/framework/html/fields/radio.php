@@ -17,18 +17,19 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2HtmlRadio')) {
+if (!class_exists('Zo2HtmlFieldRadio')) {
 
     /**
      * @uses    Render radio group buttons
      * @since 1.4.3
      */
-    class Zo2HtmlRadio {
+    class Zo2HtmlFieldRadio {
 
         public function render($name, $value) {
             $html[] = '<fieldset id="' . $name . '" class="radio btn-group">';
-            $checked = ((string) $option->value == (string) $this->value) ? ' checked="checked"' : '';
+            $html[] = '<option>ddd</option>';
             $html[] = '</fieldset>';
+            return implode('', $html);
         }
 
     }
