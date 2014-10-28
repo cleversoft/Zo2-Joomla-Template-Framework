@@ -62,6 +62,20 @@ if (!class_exists('Zo2Html')) {
                     ), $args);
         }
 
+        public static function field() {
+            $args = func_get_args();
+            $type = array_shift($args);
+            $label = array_shift($args);
+            $data = array_shift($args);
+            if (!isset($data['value'])) {
+                $data['value'] = isset($data['default']) ? $data['default'] : '';
+            }
+            $html = new Zo2Html();
+            $html->set('label', $label);
+            $html->set('data', $data);
+            return $html->fetch('fields/' . $type . '.php');
+        }
+
         /**
          * Fetch template file
          * @param string $key
