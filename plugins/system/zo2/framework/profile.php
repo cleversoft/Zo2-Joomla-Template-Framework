@@ -179,7 +179,7 @@ if (!class_exists('Zo2Profile')) {
             }
             if ($this->get('theme') == '') {
                 Zo2Factory::addLog('Invalid profile', 'Theme field is missed', 'error');
-                return false;
+                //return false;
             }
             if ($this->get('menuConfig') == '') {
                 Zo2Factory::addLog('Invalid profile', 'menuConfig field is missed', 'error');
