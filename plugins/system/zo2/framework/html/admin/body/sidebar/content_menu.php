@@ -55,12 +55,15 @@
 
             <!-- Duration -->
             <div class="control-group">
-                <div class="control-label">
-                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'); ?></label>
-                </div>
-                <div class="controls">
-                    <input name="jform[params][menu_duration]" type="text" value="<?php echo $this->params->get('menu_duration'); ?>">
-                </div>
+                <?php
+                echo Zo2Html::field(
+                        'text', array(
+                    'label' => JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'),
+                        ), array(
+                    'name' => 'jform[params][menu_duration]',
+                    'value' => Zo2Factory::get('menu_duration')
+                ));
+                ?>                 
             </div>
 
             <!-- Show submenu -->

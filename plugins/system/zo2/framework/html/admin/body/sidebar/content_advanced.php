@@ -37,12 +37,15 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <div class="control-label">
-                            <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_PROFILE_URL'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_PROFILE_URL'); ?></label>
-                        </div>
-                        <div class="controls">
-                            <input name="jform[params][google_profile_url]" type="text" value="<?php echo $this->params->get('google_profile_url'); ?>">
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_GOOGLE_PROFILE_URL'),
+                                ), array(
+                            'name' => 'jform[params][google_profile_url]',
+                            'value' => Zo2Factory::get('google_profile_url')
+                        ));
+                        ?>
                     </div>
                 </div>
                 <div id="advance-comments" class="tab-pane">
@@ -61,64 +64,78 @@
                     </div>
 
                     <div class="control-group">
-                        <div class="control-label">
-                            <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_TABS_ORDER_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_TABS_ORDER'); ?></label>
-                        </div>
-                        <div class="controls">
-                            <input name="jform[params][tab_order]" type="text" value="<?php echo $this->params->get('tab_order'); ?>">
-                            <div style="margin: 5px 0;">
-                                <?php echo JText::_('ZO2_ADMIN_TABS_ORDER_DESCRIPTION'); ?>
-                            </div>
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_TABS_ORDER'),
+                                ), array(
+                            'name' => 'jform[params][tab_order]',
+                            'value' => Zo2Factory::get('tab_order')
+                        ));
+                        ?>                      
                     </div>
 
                     <div class="control-group">
-                        <div class="control-label">
-                            <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME'); ?></label>
-                        </div>
-                        <div class="controls">
-                            <input name="jform[params][disqus_shortname]" type="text" value="<?php echo $this->params->get('disqus_shortname'); ?>">
-                            <div style="margin: 5px 0;">
-                                <?php echo JText::_('ZO2_ADMIN_DISQUS_SHORTNAME_DESCRIPTION'); ?>
-                            </div>
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_DISQUS_SHORTNAME'),
+                                ), array(
+                            'name' => 'jform[params][disqus_shortname]',
+                            'value' => Zo2Factory::get('disqus_shortname')
+                        ));
+                        ?>
                     </div>
 
                     <div class="control-group">
-                        <div class="control-label">
-                            <label class=""><?php echo JText::_('ZO2_ADMIN_FACEBOOK_LABEL'); ?></label>
-                        </div>
-                        <div class="controls">
-                            <input name="jform[params][facebook_label]" type="text" value="<?php echo $this->params->get('facebook_label'); ?>">
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_FACEBOOK_LABEL'),
+                                ), array(
+                            'name' => 'jform[params][facebook_label]',
+                            'value' => Zo2Factory::get('facebook_label')
+                        ));
+                        ?>                       
                     </div>
 
                     <div class="control-group">
-                        <div class="control-label">
-                            <label class=""><?php echo JText::_('ZO2_ADMIN_GOOGLE_LABEL'); ?></label>
-                        </div>
-                        <div class="controls">
-                            <input name="jform[params][gplus_label]" type="text" value="<?php echo $this->params->get('gplus_label'); ?>">
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_GOOGLE_LABEL'),
+                                ), array(
+                            'name' => 'jform[params][gplus_label]',
+                            'value' => Zo2Factory::get('gplus_label')
+                        ));
+                        ?>                      
                     </div>
 
                     <div class="control-group">
-                        <div class="control-label">
-                            <label class=""><?php echo JText::_('ZO2_ADMIN_DISQUS_LABEL'); ?></label>
-                        </div>
-                        <div class="controls">
-                            <input name="jform[params][disqus_label]" type="text" value="<?php echo $this->params->get('disqus_label'); ?>">
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_DISQUS_LABEL'),
+                                ), array(
+                            'name' => 'jform[params][disqus_label]',
+                            'value' => Zo2Factory::get('disqus_label')
+                        ));
+                        ?>                      
                     </div>
                 </div>
                 <div id="advance-option" class="tab-pane">
                     <div class="control-group">
-                        <div class="control-label">
-                            <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE'); ?></label>
-                        </div>
-                        <div class="controls">
-                            <textarea  name="jform[params][ga_code]" id="zo2_ga_code"><?php echo $this->params->get('ga_code'); ?></textarea>
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'textarea', array(
+                            'label' => JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE'),
+                                ), array(
+                            'name' => 'jform[params][footer_copyright]',
+                            'rows' => 10,
+                            'cols' => 20,
+                            'value' => Zo2Factory::get('ga_code')
+                        ));
+                        ?>
                     </div>
                     <div class="control-group">
                         <div class="control-label">

@@ -45,11 +45,18 @@
                             ?>                            
                         </div>
                         <!-- Copyright -->
-                        <div class="control-group">
-                            <label class="control-label"><?php echo JText::_('ZO2_ADMIN_COPYRIGHT'); ?></label>
-                            <div class="controls">
-                                <textarea class="mce_editable" rows="10" cols="20" name="jform[params][footer_copyright]"><?php echo $this->params->get('footer_copyright'); ?></textarea>
-                            </div>
+                        <div class="control-group">                           
+                            <?php
+                            echo Zo2Html::field(
+                                    'textarea', array(
+                                'label' => JText::_('ZO2_ADMIN_COPYRIGHT'),
+                                    ), array(
+                                'name' => 'jform[params][footer_copyright]',
+                                'rows' => 10,
+                                'cols' => 20,
+                                'value' => Zo2Factory::get('footer_copyright')
+                            ));
+                            ?>                                   
                         </div>
                         <!-- Favicon -->
                         <div class="control-group">
