@@ -110,6 +110,7 @@ body{
     }
     .profiles-pane-inner{
       padding: 15px;
+      padding-left: 0;
     }
   }
   #myTabAdvance{
@@ -190,9 +191,11 @@ body{
   }
 
   .tab-pane {
-    padding:15px;
-    padding-top: 0;
+    padding: 0 15px 15px 25px;
     position: relative;
+    .tab-pane{
+      padding-left: 0;
+    }
   }
   #zo2-general{
     padding-top: 0;
@@ -583,9 +586,7 @@ body{
     font-style: normal;
   }
   .zo2-label {
-    font-weight: bold;
-    color: #FFF;
-    padding: 4px 12px 4px;
+    padding: 4px 0 4px;
     border-radius: 3px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -741,7 +742,7 @@ body{
   }
   .font-container {
     position: relative;
-    padding:0 15px 10px 15px;
+    padding:0 15px 0 0;
     .control-label {
       width:180px;
     }

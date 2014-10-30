@@ -5,12 +5,8 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <h3 class="title-profile"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU'); ?></h3>
+<!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU'); ?><!--</h3>-->
         <div class="profiles-pane-inner">
-            <div class="control-group">
-                <div class="control-label"></div>
-                <div class="controls"></div>
-            </div>
 
             <!-- Hover type -->
             <div class="control-group">

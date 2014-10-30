@@ -5,7 +5,7 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <h3 class="title-profile"><?php echo JText::_('ZO2_ADMIN_ADVANCED_OPTION'); ?></h3>
+<!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_ADVANCED_OPTION'); ?><!--</h3>-->
 
         <div class="profiles-pane-inner">
 

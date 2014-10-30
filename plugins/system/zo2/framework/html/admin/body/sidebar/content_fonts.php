@@ -5,7 +5,7 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <h3 class="title-profile"><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></h3>
+<!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?><!--</h3>-->
         <?php
         $data = null;
         $enable = false;
@@ -140,6 +140,20 @@
                 </div>
             </div>
         </div>
-
+        <div class="font-container">
+            <div class="control-group font-deck-code" style="margin-top:20px">
+                <div class="control-label">
+                    <div class="font-label">
+                        <label id="jform_params_fontdeck_code-lbl" for="jform_params_fontdeck_code" class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_FONT_FONTDESK_CODE_TITLE'); ?>" aria-invalid="false">
+                            <?php echo JText::_('ZO2_ADMIN_FONT_FONTDESK_CODE'); ?>
+                        </label>
+                    </div>
+                    <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDESK_CODE_DESCRIPTION'); ?></div>
+                </div>
+                <div class="controls">
+                    <textarea name="jform[params][fontdeck_code]" id="jform_params_fontdeck_code"><?php echo $this->params->get('fontdeck_code'); ?></textarea>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

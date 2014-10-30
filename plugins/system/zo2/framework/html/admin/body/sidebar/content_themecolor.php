@@ -5,7 +5,7 @@
     <small>Someone famous <cite title="Source Title">Source Title</cite></small>
 </blockquote>
 <div class="profiles-pane">
-<h3 class="title-profile"><?php echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT'); ?></h3>
+<!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT'); ?><!--</h3>-->
 
 
 
@@ -186,6 +186,20 @@ if (!isset($preset_data['bg_image']))
                 </div>
             </div>
         </div>
+
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_FOOTER'),
+            ), array(
+                'name' => 'color_footer',
+                'id' => 'color_footer',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['footer']
+            ));
+        ?>
+
+
     </div>
 
 </div>
@@ -254,7 +268,7 @@ if (!isset($preset_data['bg_image']))
                             <span class="hasTipPreview" title=""><i class="icon-eye-open"></i></span>
                         </div>
                         <input type="text" name="zo2_background_image" id="zo2_background_image" value="<?php echo $preset_data['bg_image']; ?>" readonly="readonly" class="input-small">
-                        <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=zo2_background_image&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
+                        <a class="modal btn" data-toggle="modal" title="Select" data-target="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=zo2_background_image&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
                             <?php echo JText::_('ZO2_TEMPLATE_THEME_SELECT'); ?>
                         </a>
                         <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', 'zo2_background_image');
