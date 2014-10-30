@@ -116,7 +116,7 @@ var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offse
 
 
 zo2.jQuery(window).bind('load', function () {
-    addIconToMenu();
+
     fixToolbarIcon();
     fixPreviewIcon();
 });
@@ -1011,18 +1011,6 @@ var rearrangeSpan = function ($container) {
         }
     }
 };
-var addIconToMenu = function () {
-    var $ = jQuery;
-    $('#myTabTabs').find('a').eq(0).html('<i class="icon-info" /> Overview');
-    $('#myTabTabs').find('a').eq(1).html('<i class="icon-cog" /> General');
-    $('#myTabTabs').find('a').eq(2).html('<i class="icon-font" /> Fonts');
-    $('#myTabTabs').find('a').eq(3).html('<i class="icon-pencil" /> Preset Styles');
-    $('#myTabTabs').find('a').eq(4).html('<i class="icon-th" /> Layout Builder');
-    $('#myTabTabs').find('a').eq(5).html('<i class="icon-list-alt" /> Mega Menus');
-    $('#myTabTabs').find('a').eq(6).html('<i class="icon-edit-sign" /> Assignment');
-    $('#myTabTabs').find('a').eq(7).html('<i class="icon-wrench" /> Advanced');
-};
-
 
 var fixToolbarIcon = function () {
     var $ = jQuery;
