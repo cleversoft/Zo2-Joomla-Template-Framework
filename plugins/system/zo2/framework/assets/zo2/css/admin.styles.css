@@ -395,6 +395,7 @@ body {
 }
 #zo2-framework .profiles-pane .profiles-pane-inner {
   padding: 15px;
+  padding-left: 0;
 }
 #zo2-framework #myTabAdvance {
   margin-top: 20px;
@@ -466,9 +467,11 @@ body {
   width: 120px;
 }
 #zo2-framework .tab-pane {
-  padding: 15px;
-  padding-top: 0;
+  padding: 0 15px 15px 25px;
   position: relative;
+}
+#zo2-framework .tab-pane .tab-pane {
+  padding-left: 0;
 }
 #zo2-framework #zo2-general {
   padding-top: 0;
@@ -842,9 +845,7 @@ body {
   font-style: normal;
 }
 #zo2-framework .zo2-label {
-  font-weight: bold;
-  color: #FFF;
-  padding: 4px 12px 4px;
+  padding: 4px 0 4px;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -1004,7 +1005,7 @@ body {
 }
 #zo2-framework .font-container {
   position: relative;
-  padding: 0 15px 10px 15px;
+  padding: 0 15px 0 0;
 }
 #zo2-framework .font-container .control-label {
   width: 180px;
