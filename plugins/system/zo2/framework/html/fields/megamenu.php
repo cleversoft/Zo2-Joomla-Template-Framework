@@ -30,8 +30,13 @@ $html[] = '</script>';
 $options = (array) JHtml::_('menu.menus');
 
 $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($attr), 'value', 'text', $this->data['value'], $this->data['id']);
-echo implode("\n", $html);
 ?>
+<div class="control-group">
+    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
+    <div class="controls">
+        <?php echo implode("\n", $html); ?>
+    </div>
+</div>
 <div id="zo2-admin-megamenu" class="hidden zo2-admin-megamenu">
     <div class="admin-inline-toolbox clearfix">
         <div class="zo2-admin-mm-row clearfix">
@@ -233,7 +238,6 @@ echo implode("\n", $html);
         </div>
     </div>
 
-    <div id="zo2-admin-mm-container" class="navbar clearfix">                   
-    </div>
+    <div id="zo2-admin-mm-container" class="navbar clearfix"></div>
+    <input type="hidden" name="jform[params][menu_config]" id="jform_params_menu_config" value="">
 </div> 
-<input type="hidden" name="jform[params][menu_config]" id="jform_params_menu_config" value="">
