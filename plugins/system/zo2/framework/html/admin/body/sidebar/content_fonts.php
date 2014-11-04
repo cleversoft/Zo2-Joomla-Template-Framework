@@ -1,6 +1,5 @@
 <!-- Tab Fonts -->
 <div class="tab-pane" id="zo2-fonts">
-
     <!-- Sub navbar -->
     <ul id="myTabGeneral" class="nav nav-pills">
         <li class=""><a href="#fonts-options" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></a></li>        
@@ -55,7 +54,7 @@
             );
             ?>
             <div class="font-container">
-                <!--            <h3>--><?php //echo JText::_('ZO2_ADMIN_FONT_OPTION');       ?><!--</h3>-->
+                <!--            <h3>--><?php //echo JText::_('ZO2_ADMIN_FONT_OPTION');        ?><!--</h3>-->
                 <div class="control-group">
                     <div class="control-label">
                         <div class="font-label"><?php echo JText::_('ZO2_ADMIN_ENABLE'); ?></div>
@@ -76,7 +75,7 @@
                                 <button type="button" class="btn btnGoogleFonts <?php echo $data['type'] == 'googlefonts' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_FONT_GOOGLE'); ?></button>
                                 <button type="button" class="btn btnFontDeck <?php echo $data['type'] == 'fontdeck' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK'); ?></button>
                             </div>
-                            <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_TYPE_DESC'); ?><?php //echo strtolower($this->getLabel())       ?></div>
+                            <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_TYPE_DESC'); ?><?php //echo strtolower($this->getLabel())        ?></div>
                         </div>
                     </div>
 
@@ -90,7 +89,7 @@
                                     <option <?php echo $data['family'] == $font ? 'selected' : '' ?> value="<?php echo htmlspecialchars($font) ?>"><?php echo htmlspecialchars($font) ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_STANDARD_DESCRIPTION'); ?><?php //echo strtolower($this->getLabel())       ?></div>
+                            <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_STANDARD_DESCRIPTION'); ?><?php //echo strtolower($this->getLabel())        ?></div>
                         </div>
                     </div>
 
@@ -100,7 +99,7 @@
                         </div>
                         <div class="controls">
                             <input type="text" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
-                            <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_GOOGLE_DESCRIPTION'); ?><?php //echo strtolower($this->getLabel())       ?></div>
+                            <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_GOOGLE_DESCRIPTION'); ?><?php //echo strtolower($this->getLabel())        ?></div>
                         </div>
                     </div>
 
@@ -145,7 +144,7 @@
                                     <option <?php echo ($selected) ? 'selected' : '' ?> value="<?php echo $style ?>"><?php echo $title ?></option>
                                 <?php } ?>
                             </select>
-                            <div class="font-desc">Specify the <?php //echo strtolower($this->getLabel())       ?> font properties</div>
+                            <div class="font-desc">Specify the <?php //echo strtolower($this->getLabel())        ?> font properties</div>
                         </div>
 
                     </div>
