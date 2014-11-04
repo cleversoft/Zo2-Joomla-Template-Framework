@@ -65,12 +65,10 @@
         <folder>components</folder>
     </files>
     <config>
-
         <fields name="params" addfieldpath="/plugins/system/zo2/formfields">            
             <fieldset name="zo2">
-                <field name="zo2" type="zo2"/>
-            </fieldset>  
-                                  
+                <field name="zo2" type="zo2"/>               
+            </fieldset>                                    
         </fields>
     </config>
 </extension>
