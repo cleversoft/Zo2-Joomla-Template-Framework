@@ -5,7 +5,7 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');  ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');      ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -82,20 +82,18 @@
                 <div class="control-label">
                     <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
                 </div>
-                <div class="controls">
-                    <select name="jform[params][menu_type]" id="jform_params_menu_type">
-                        <?php
-                        $menu_types = Zo2Megamenu::getMenuTypes();
-                        if ($menu_types) {
-                            foreach ($menu_types as $menu_type) {
-                                echo '<option value="' . $menu_type->menutype . '" selected="selected">' . $menu_type->title . '</option>';
-                            }
-                        }
-                        ?>
-                    </select>
-                    <div class="progress progress-striped zo2-progress active" style="display: none;"><div class="bar" style="width: 100%"></div></div>
-                </div>
-            </div>          
+                <?php
+                echo Zo2Html::field(
+                        'megamenu', array(), array(
+                    'id' => 'jform_params_menu_type',
+                    'name' => 'jform[params][menu_type]',
+                    'value' => Zo2Factory::get('menu_type')
+                ));
+                ?>
+            </div>
+            <?php
+            echo Zo2Html::_('admin', 'megaMenu');
+            ?>
         </div>
     </div>
 </div>
