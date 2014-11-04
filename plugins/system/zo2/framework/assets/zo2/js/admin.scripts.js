@@ -93,6 +93,27 @@
                         .done(function () {
                             jQuery('#btnBuildAssets').button('reset');
                         });
+            },
+            render: function () {
+                $.ajax({
+                    /* Default URL */
+                    url: document.URL,
+                    /* Default method */
+                    type: 'POST',
+                    /* Default data type */
+                    dataType: 'json',
+                    /* Data format */
+                    data: {
+                        /* Force using raw */
+                        format: 'raw',
+                        zo2_ajax: 1,
+                        zo2_task: 'renderAdmin'
+                    }
+
+                })
+                        .done(function (data) {
+                            jQuery('#zo2-framework').parent().html(data);
+                        });
             }
         }
 

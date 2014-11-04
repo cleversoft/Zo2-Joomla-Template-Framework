@@ -39,6 +39,10 @@ if (!class_exists('Zo2ModelAjax')) {
             $this->_respond('Build success');
         }
 
+        public function renderAdmin() {
+            $this->_respond(Zo2Html::_('admin', 'render'));
+        }
+
         private function _respond($data) {
             echo json_encode($data);
         }
