@@ -5,7 +5,7 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');      ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');         ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -92,8 +92,15 @@
                 ?>
             </div>
             <?php
-            echo Zo2Html::_('admin', 'megaMenu');
-            ?>
+            $model = new Zo2ModelJoomla();
+            echo Zo2Html::field(
+                    'megamenu', array(), array(
+                'id' => 'jform_params_menu_type',
+                'name' => 'jform[params][menu_type]',
+                'value' => Zo2Factory::get('menu_type'),
+                'modules' => $model->getModels()
+            ));
+            ?>            
         </div>
     </div>
 </div>
