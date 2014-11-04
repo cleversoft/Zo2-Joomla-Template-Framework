@@ -5,7 +5,7 @@
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-<!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU'); ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');  ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -95,17 +95,7 @@
                     </select>
                     <div class="progress progress-striped zo2-progress active" style="display: none;"><div class="bar" style="width: 100%"></div></div>
                 </div>
-            </div>
-            <div class="control-group">
-                <div class="control-label">
-                    <label class=""></label>
-                </div>
-
-                <!-- Megamenu Toolbox -->
-                <div class="controls">
-                    <?php echo Zo2Html::_('admin', 'megamenu'); ?>
-                </div>
-            </div>
+            </div>          
         </div>
     </div>
 </div>
