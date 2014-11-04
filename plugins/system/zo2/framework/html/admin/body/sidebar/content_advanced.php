@@ -4,9 +4,7 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
-    <div class="profiles-pane">
-<!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_ADVANCED_OPTION'); ?><!--</h3>-->
-
+    <div class="profiles-pane">        
         <div class="profiles-pane-inner">
 
             <button class="btn btn-danger" id="btnClearCache" onClick="zo2.admin.ajax.clearCache();
@@ -188,13 +186,7 @@
                                 <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
                             </fieldset>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label"></div>
-                        <div class="controls">
-                            <button class="btn btn-danger btn-large" id="btnClearCache" style="width: 300px"><?php echo JText::_('ZO2_ADMIN_CLEAR_LAYOUT_CACHE'); ?></button>
-                        </div>
-                    </div>
+                    </div>                    
                 </div>
                 <div id="advance-developer" class="tab-pane">
                     <div class="control-group">
