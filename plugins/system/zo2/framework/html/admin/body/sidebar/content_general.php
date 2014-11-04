@@ -11,53 +11,47 @@
             <!-- Global -->
             <div class="tab-pane fade" id="general-global">
                 <!-- Description -->
-
-                <blockquote>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                    <small></small>
-                </blockquote>
-
+                <?php
+                echo Zo2Html::field(
+                        'description', null, array(
+                    'text' => 'Short description about this page',
+                    'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+                ));
+                ?>
                 <div class="row-fluid">
                     <div class="span12">
                         <!-- Site Name -->
-                        <div class="control-group">
-                            <?php
-                            echo Zo2Html::field(
-                                    'text', array(
-                                'label' => JText::_('ZO2_ADMIN_SITENAME'),
-                                    ), array(
-                                'name' => 'jform[params][site_name]',
-                                'value' => Zo2Factory::get('site_name')
-                            ));
-                            ?>
-
-                        </div>
-                        <!-- Site Slogan -->
-                        <div class="control-group">            
-                            <?php
-                            echo Zo2Html::field(
-                                    'text', array(
-                                'label' => JText::_('ZO2_ADMIN_SLOGAN'),
-                                    ), array(
-                                'name' => 'jform[params][site_slogan]',
-                                'value' => Zo2Factory::get('site_slogan')
-                            ));
-                            ?>                            
-                        </div>
-                        <!-- Copyright -->
-                        <div class="control-group">                           
-                            <?php
-                            echo Zo2Html::field(
-                                    'textarea', array(
-                                'label' => JText::_('ZO2_ADMIN_COPYRIGHT'),
-                                    ), array(
-                                'name' => 'jform[params][footer_copyright]',
-                                'rows' => 10,
-                                'cols' => 20,
-                                'value' => Zo2Factory::get('footer_copyright')
-                            ));
-                            ?>                                   
-                        </div>
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_SITENAME'),
+                                ), array(
+                            'name' => 'jform[params][site_name]',
+                            'value' => Zo2Factory::get('site_name')
+                        ));
+                        ?>
+                        <!-- Site Slogan -->                      
+                        <?php
+                        echo Zo2Html::field(
+                                'text', array(
+                            'label' => JText::_('ZO2_ADMIN_SLOGAN'),
+                                ), array(
+                            'name' => 'jform[params][site_slogan]',
+                            'value' => Zo2Factory::get('site_slogan')
+                        ));
+                        ?>                                                    
+                        <!-- Copyright -->                       
+                        <?php
+                        echo Zo2Html::field(
+                                'textarea', array(
+                            'label' => JText::_('ZO2_ADMIN_COPYRIGHT'),
+                                ), array(
+                            'name' => 'jform[params][footer_copyright]',
+                            'rows' => 10,
+                            'cols' => 20,
+                            'value' => Zo2Factory::get('footer_copyright')
+                        ));
+                        ?>                                   
                         <!-- Favicon -->
                         <div class="control-group">
                             <label class="control-label"><?php echo JText::_('ZO2_ADMIN_FAVICON'); ?></label>
