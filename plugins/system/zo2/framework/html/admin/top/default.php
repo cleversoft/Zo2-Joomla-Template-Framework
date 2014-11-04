@@ -56,6 +56,12 @@ defined('_JEXEC') or die('Restricted access');
                                     </div>
                                     <input type="hidden" name="profile-id" value="11">
                                 </div>
+                                <div class="row-fluid">
+                                    <div class="span12">
+                                        <button class="btn btn-primary" id="btnBackupProfile" onClick="" data-toggle="button" data-loading-text="Processing..." >Backup</button>
+                                        <button class="btn" id="btnRestoreProfile" onClick="" data-toggle="button" data-loading-text="Processing..." >Restore</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
