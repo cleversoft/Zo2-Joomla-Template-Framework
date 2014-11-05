@@ -14,6 +14,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+$html = '';
 /**
  * Apply standard logo & retina logo
  */
@@ -62,13 +63,13 @@ if (!empty($logo) && !empty($logoRetina)) {
 
     $html;
 } else if (!empty($logo) && empty($logoRetina)) {
-    $html = '<header id="header_logo"><h1><a href="/" title="' . (!empty($sitename) ? $sitename : '') . '">';
-    $html .= '<img class="logo_normal" src="' . $logo['path'] . '" />';
-    $html .= '</a></h1>';
-    $html .=!empty($slogan) ? '<h2>' . $slogan . '</h2>' : '';
-    $html .= '</header>';
-
-    $html;
+    if (isset($logo['path'])) {
+        $html = '<header id="header_logo"><h1><a href="/" title="' . (!empty($sitename) ? $sitename : '') . '">';
+        $html .= '<img class="logo_normal" src="' . $logo['path'] . '" />';
+        $html .= '</a></h1>';
+        $html .=!empty($slogan) ? '<h2>' . $slogan . '</h2>' : '';
+        $html .= '</header>';
+    }
 } else
     $html = '';
 echo $html
