@@ -148,9 +148,6 @@ if (!class_exists('Zo2Framework')) {
             }
             //define('ZO2_LOADED',1);
             //}
-
-            $assets = Zo2Assets::getInstance();
-            $assets->buildAssets();
         }
 
         /**
@@ -408,7 +405,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public function isBoxed() {
-            if ($this->profile->theme && $this->profile->theme->boxed == 1)
+            if ($this->profile->get('theme') && $this->profile->get('theme')->boxed == 1)
                 return true;
             return false;
         }
