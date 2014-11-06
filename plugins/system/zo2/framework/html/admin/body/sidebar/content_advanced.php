@@ -14,13 +14,13 @@
 
             <!-- Tab Panel Advance -->
             <ul class="nav nav-pills" id="myTabAdvance">
-                <li class=""><a data-toggle="tab" href="#advance-google"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?></a></li>
+                <li class="active"><a data-toggle="tab" href="#advance-google"><?php echo JText::_('ZO2_ADMIN_GOOGLE'); ?></a></li>
                 <li class=""><a data-toggle="tab" href="#advance-comments"><?php echo JText::_('ZO2_ADMIN_COMMENTS'); ?></a></li>
                 <li class=""><a data-toggle="tab" href="#advance-option"><?php echo JText::_('ZO2_ADMIN_ADVANCED_OPTION'); ?></a></li>
                 <li class=""><a data-toggle="tab" href="#advance-developer"><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></a></li>
             </ul>
             <div id="myTabAdvanceContent" class="tab-content">
-                <div id="advance-google" class="tab-pane">
+                <div id="advance-google" class="tab-pane active">
                     <div class="control-group">
                         <div class="control-label">
                             <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_GOOGLE_AUTHORSHIP'); ?>"><?php echo JText::_('ZO2_ADMIN_GOOGLE_AUTHORSHIP'); ?></label>

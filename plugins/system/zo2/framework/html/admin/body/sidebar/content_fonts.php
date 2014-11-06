@@ -7,7 +7,7 @@
     <!-- Sub navbar content -->
     <div id="myTabFontsContent" class="tab-content">
         <!-- Options -->
-        <div class="tab-pane fade" id="fonts-options">
+        <div class="tab-pane active" id="fonts-options">
             <!-- Description -->
             <?php
             echo Zo2Html::field(

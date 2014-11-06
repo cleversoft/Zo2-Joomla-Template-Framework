@@ -214,10 +214,10 @@ if (!isset($preset_data['bg_image']))
             if (count($extra) > 0) {
                 foreach ($extra as $element => $color) {
                     ?>
-                    <div class="zo2_themes_form">
+                    <div class="zo2_themes_form zo2-preset-form">
                         <div class="control-group">
                             <div class="control-label">
-                                <label><input value="<?php echo $element; ?>" class="zo2_other_preset_element zo2_other_preset"></label>
+                                <label><input type="text" value="<?php echo $element; ?>" class="zo2_other_preset_element zo2_other_preset"></label>
                             </div>
                             <div class="controls">
                                 <div class="colorpicker-container">

@@ -1,15 +1,15 @@
 <!-- Tab Panel General -->
-<div class="tab-pane" id="zo2-general">    
+<div class="tab-pane active" id="zo2-general">
     <div class="tab-content">
         <!-- Sub navbar -->
         <ul id="myTabGeneral" class="nav nav-pills">
-            <li class=""><a href="#general-global" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_GENERAL_GLOBAL'); ?></a></li>
+            <li class="active"><a href="#general-global" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_GENERAL_GLOBAL'); ?></a></li>
             <li class=""><a href="#general-features" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_GENERAL_FEATURES'); ?></a></li>
         </ul>
         <!-- Sub navbar content -->
         <div id="myTabGeneralContent" class="tab-content">
             <!-- Global -->
-            <div class="tab-pane fade" id="general-global">
+            <div class="tab-pane active" id="general-global">
                 <!-- Description -->
                 <?php
                 echo Zo2Html::field(
@@ -115,7 +115,7 @@
                                     <input class="logoInput" type="hidden" value="<?php echo $this->params->get('header_retina_logo'); ?>" name="jform[params][header_retina_logo]" id="header_retina_logo">
                                     <div class="radio btn-group logo-type-switcher">
                                         <button class="btn logo-type-none "><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
-                                        <button class="btn logo-type-image active btn-success"><?php echo JText::_('ZO2_ADMIN_NONE_IMAGE'); ?></button>
+                                        <button class="btn logo-type-image active btn-success"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
                                         <button class="btn logo-type-text "><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
                                     </div>
                                 </div>
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <!-- Features -->
-            <div class="tab-pane fade" id="general-features">
+            <div class="tab-pane" id="general-features">
                 <?php
                 echo Zo2Html::field(
                         'description', null, array(

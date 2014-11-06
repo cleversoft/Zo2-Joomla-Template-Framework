@@ -16,6 +16,9 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <!-- Sidebar header -->
 <ul class="nav nav-tabs" id="myTabZo2Sidebar" role="tablist">
+    <div class="logo-framework">
+        <img src="<?php echo ZO2URL_ASSETS.'/zo2/images/logo-framework.png'; ?>" alt="Zo2 Hallo">
+    </div>
     <!-- General: Default active tab -->
     <li class="active">
         <a href="#zo2-general" role="tab" data-toggle="tab">
@@ -31,7 +34,7 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Layout -->
     <li class="">
         <a href="#zo2-layout" role="tab" data-toggle="tab">
-            <i class="fa fa-sitemap"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_LAYOUT'); ?>
+            <i class="fa fa-dashboard"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_LAYOUT'); ?>
         </a>
     </li>
     <!-- Layout -->
@@ -43,7 +46,7 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Menu -->
     <li class="">
         <a href="#zo2-menu" role="tab" data-toggle="tab">
-            <i class="fa fa-sitemap"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?>
+            <i class="fa fa-indent"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?>
         </a>
     </li>
     <!-- Advanced -->
