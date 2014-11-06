@@ -1,11 +1,13 @@
 <!-- Mega Menu Tab Pane -->
 <div class="tab-pane" id="zo2-menu">
+    <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?></h2>
+    <div class="zo2-divider"></div>
     <blockquote>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
         <small>Someone famous <cite title="Source Title">Source Title</cite></small>
     </blockquote>
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');           ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');         ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -69,14 +71,28 @@
                 </div>
                 <div class="controls">
                     <fieldset class="radio btn-group">
-                        <input name="jform[params][menu_show_submenu]" id="jform_params_menu_show_submenu0" type="radio" value="0" >
-                        <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
                         <input name="jform[params][menu_show_submenu]" id="jform_params_menu_show_submenu1" type="radio" value="1" checked="checked" >
                         <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
+                        <input name="jform[params][menu_show_submenu]" id="jform_params_menu_show_submenu0" type="radio" value="0" >
+                        <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
                     </fieldset>
                 </div>
             </div>
 
+            <!-- Menu type -->
+            <div class="control-group">
+                <div class="control-label">
+                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
+                </div>
+                <?php
+                echo Zo2Html::field(
+                        'megamenu', array(), array(
+                    'id' => 'jform_params_menu_type',
+                    'name' => 'jform[params][menu_type]',
+                    'value' => Zo2Factory::get('menu_type')
+                ));
+                ?>
+            </div>
             <?php
             $model = new Zo2ModelJoomla();
             echo Zo2Html::field(
@@ -84,7 +100,6 @@
                 'id' => 'jform_params_menu_type',
                 'name' => 'jform[params][menu_type]',
                 'value' => Zo2Factory::get('menu_type'),
-                'megamenu' => Zo2Factory::get('menu_config'),
                 'modules' => $model->getModels()
             ));
             ?>            

@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="col-container">
+        <div class="col-container zo2-row">
             <?php
             $columns = $row->get('children');
             if (count($columns) > 0)

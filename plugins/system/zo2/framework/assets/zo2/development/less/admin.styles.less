@@ -32,9 +32,8 @@
 }
 
 .zo2-divider{
-  display: block;
-  float: left;
-  margin: 15px 0 30px;
+  display: inline-block;
+  margin: 24px 0 24px;
   position: relative;
   width: 100%;
 }
@@ -47,7 +46,12 @@
   left: 0;
   content: "";
 }
-
+#zo2-about .zo2-divider, #zo2-about dd{
+  margin: 0;
+}
+#zo2-about dt{
+  margin-top: 10px;
+}
 body{
   color: inherit!important;
 }
@@ -59,6 +63,9 @@ body{
   background-color: #2C3439;
   padding-bottom: 30px;
   margin-top: -11px;
+}
+#profile-menu-assignment{
+  margin-top: 10px;
 }
 
 #zo2-framework {
@@ -737,6 +744,10 @@ body{
   .control-group:after{
     clear: none !important;
     width: 100%;
+  }
+  .no-label .control-group{
+    float: left;
+    margin-right: 40px;
   }
   .font-container {
     position: relative;
@@ -2197,37 +2208,8 @@ body{
   }
 }
 /* Layout Profiles */
-#theme{
-  .zo2_themes_row{
-    .zo2_themes_form{
-      .background-select{
-        margin: 10px 0 0;
-        list-style: none;
-        width: 60%;
-        li{
-          display: inline-block;
-          margin: 0 15px 15px 0;
-          text-align: center;
-          cursor: pointer;
-          border: 3px solid #ddd;
-          img{
-            width: 50px;
-            height: 50px;
-          }
-          &.selected{
-            border-color: #5BB75B;
-            &:hover{
-              border-color: #5BB75B;
-            }
-          }
-          &:hover,&:focus{
-            border-color: #3B65F6;
-          }
-        }
-      }
-    }
-  }
-}
+
+control-group:after
 
 #theme .profiles-pane{
   .profiles-pane-inner{
@@ -2244,40 +2226,9 @@ body{
 }
 
 /* Tab Style */
-#myTabContent{
-  padding: 20px;
-  border: 1px solid #3bafda;
-  border-top: 0;
-}
+
 #myTabGeneral, #myTabAdvance{
   border-bottom: 1px solid #ccc;
-}
-#myTabTabs{
-  margin-bottom: 0;
-  border: none;
-  background-color: #3bafda;
-  &.nav-tabs, &.nav-pills{
-    > li{
-      margin-bottom: 0;
-      > a{
-        background-color: transparent;
-        border: medium none;
-        color: #fff;
-        border-radius: 0;
-        margin: 0;
-        padding: 12px 30px;
-      }
-      &.active, &:hover{
-        > a{
-          background-color: #0b7ba5;
-          &:focus{
-            border: none;
-            outline: none;
-          }
-        }
-      }
-    }
-  }
 }
 #myTabZo2SidebarContent{
   padding: 25px;
@@ -2305,6 +2256,10 @@ body{
 .zo2-body{
   background-color: #fafafa;
   border: 1px solid #ebebeb;
+  h2{
+    font-weight: normal;
+    font-size: 200%;
+  }
 }
 #myTabZo2SidebarContent{
   background-color: #fff;
@@ -2315,8 +2270,14 @@ body{
     .control-label{
       min-width: 180px;
     }
+    .no-label .control-label{
+      display: none;
+    }
     .control-group .controls:not(.btn-group){
       padding-left: 180px;
+    }
+    .control-group.no-margin .controls:not(.btn-group){
+      padding-left: 0;
     }
     .zo2-top{
       .control-label{
