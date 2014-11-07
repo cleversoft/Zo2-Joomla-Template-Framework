@@ -88,14 +88,6 @@ if (!class_exists('Zo2Ajax')) {
         }
 
         /**
-         * Response to client side & end ajax session
-         */
-        public function response() {
-            echo json_encode($this->_responses);
-            exit();
-        }
-
-        /**
          * Do process ajax request
          */
         public function process() {
@@ -164,6 +156,10 @@ if (!class_exists('Zo2Ajax')) {
         }
 
         public function addMessage($message, $type) {
+            $message = '<div class="alert alert-' . $type . ' alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  ' . $message . '
+</div>';
             $data = array(
                 'func' => 'zo2.document.message',
                 'args' => array('message' => $message, 'type' => $type)
