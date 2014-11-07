@@ -98,7 +98,7 @@
                             jQuery('#btnBuildAssets').button('reset');
                         });
             },
-            render: function () {
+            loadProfile: function (value) {
                 $.ajax({
                     /* Default URL */
                     url: document.URL,
@@ -111,12 +111,13 @@
                         /* Force using raw */
                         format: 'raw',
                         zo2_ajax: 1,
-                        zo2_task: 'renderAdmin'
+                        zo2_task: 'renderAdmin',
+                        profile: value
                     }
 
                 })
                         .done(function (data) {
-                            jQuery('#zo2-framework').parent().html(data);
+                            jQuery('#zo2-framework').parent().html(data[0].html);
                         });
             }
         },
