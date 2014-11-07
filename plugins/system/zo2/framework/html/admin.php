@@ -25,10 +25,10 @@ if (!class_exists('Zo2HtmlAdmin')) {
      */
     class Zo2HtmlAdmin {
 
+        /**
+         * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
+         */
         public function render() {
-            /**
-             * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
-             */
             $html = new Zo2Html();
             $params = Zo2Factory::getFramework()->template->params;
             $html->set('params', $params);
