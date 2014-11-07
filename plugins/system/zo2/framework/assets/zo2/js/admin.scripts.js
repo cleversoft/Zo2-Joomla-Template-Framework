@@ -158,13 +158,6 @@ var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
         'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
-
-zo2.jQuery(window).bind('load', function () {
-
-    fixToolbarIcon();
-    fixPreviewIcon();
-});
-
 zo2.jQuery(document).ready(function ($) {
 
     /*============For joomla 2.5==============*/
@@ -1036,17 +1029,6 @@ var rearrangeSpan = function ($container) {
     }
 };
 
-var fixToolbarIcon = function () {
-    var $ = jQuery;
-    $('.icon-apply').replaceWith('<i class="icon-check"></i>');
-    $('.icon-save-copy').replaceWith('<i class="icon-copy"></i>');
-    $('.icon-cancel').replaceWith('<i class="icon-remove-sign color4"></i>');
-};
-
-var fixPreviewIcon = function () {
-    var $ = jQuery;
-    $('.icon-eye').removeClass('icon-eye').addClass('icon-eye-open');
-};
 
 var injectFormSubmit = function () {
     /*
