@@ -63,8 +63,11 @@
                         jQuery('#btnClearCache').button('loading');
                     }
                 })
-                        .done(function () {
+                        .done(function (data) {
                             jQuery('#btnClearCache').button('reset');
+                            jQuery.each(data, function (key, value) {
+                                zo2.document.message(value.args.message);
+                            })
                         });
             },
             /**

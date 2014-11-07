@@ -22,29 +22,34 @@ if (!class_exists('Zo2ModelAjax')) {
      */
     class Zo2ModelAjax {
 
+        private $_ajax;
+
+        public function __construct() {
+            $this->_ajax = Zo2Ajax::getInstance();
+        }
+
         /**
          * 
          */
         public function clearCache() {
             if (JFolder::delete(ZO2PATH_CACHE)) {
-                $this->_respond('Cache deleted');
+                $this->_ajax->addMessage('Clear cleared', 'success');
             } else {
-                $this->_respond('Something wrong');
+                $this->_ajax->addMessage('Something wrong', 'error');
             }
+            $this->_ajax->response();
         }
 
         public function buildAssets() {
             $assets = Zo2Assets::getInstance();
             $assets->buildAssets();
-            $this->_respond('Build success');
+            $this->_ajax->addMessage('Build success', 'success');
+            $this->_ajax->response();
         }
 
         public function renderAdmin() {
-            $this->_respond(Zo2Html::_('admin', 'render'));
-        }
-
-        private function _respond($data) {
-            echo json_encode($data);
+            $this->_ajax->addHtml(Zo2Html::_('admin', 'render'));
+            $this->_ajax->response();
         }
 
     }

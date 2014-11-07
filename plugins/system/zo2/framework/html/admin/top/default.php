@@ -16,6 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <div class="row-fluid">
     <div class="span12">
+        <div id="zo2-messages" class="zo2-messages wrapper"></div>
         <section class="zo2-top">
             <div class="well well-small">
                 <div class="profiles-pane-inner">
@@ -67,7 +68,7 @@ defined('_JEXEC') or die('Restricted access');
                     </div>
                 </div>
             </div>
-        </section>
+        </section>        
     </div>   
 </div>
 

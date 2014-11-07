@@ -50,4 +50,13 @@
             }, 1500);
         }
     };
+
+    zo2.document = {
+        _elements: {
+            message: '#zo2-messages'
+        },
+        message: function (message) {
+            jQuery(this._elements.message).html(message);
+        }
+    }
 })(window, zo2, zo2.jQuery);
