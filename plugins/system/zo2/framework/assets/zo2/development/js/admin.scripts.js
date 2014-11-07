@@ -35,6 +35,7 @@
          * @returns {undefined}
          */
         _init: function () {
+            this.bindSortable();
         },
         /**
          * Backend ajax
@@ -118,8 +119,27 @@
                             jQuery('#zo2-framework').parent().html(data);
                         });
             }
-        }
+        },
+        bindSortable: function () {
+            jQuery('#droppable-container > .zo2-container').sortable({
+                items: '>.sortable-row',
+                handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
+                containment: 'parent',
+                tolerance: 'pointer',
+                forcePlaceholderSize: true,
+                axis: 'y'
+            });
 
+            jQuery('.sortable-row').sortable({
+                items: '>.row-control>.col-container>.sortable-col',
+                connectWith: '>.sortable-row',
+                handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
+                containment: 'parent',
+                tolerance: "pointer",
+                helper: 'clone',
+                axis: 'x'
+            });
+        }
     };
     /* Init Zo2.admin */
     $(document).ready(function () {
@@ -854,27 +874,7 @@ var generateLogoJson = function ($container) {
     $input.val(JSON.stringify(data));
 };
 
-var bindSortable = function () {
-//    // thêm > vào items
-    jQuery('#droppable-container > .zo2-container').sortable({
-        items: '>.sortable-row',
-        handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
-        containment: 'parent',
-        tolerance: 'pointer',
-        forcePlaceholderSize: true,
-        axis: 'y'
-    });
 
-    jQuery('.sortable-row').sortable({
-        items: '>.row-control>.col-container>.sortable-col',
-        connectWith: '>.sortable-row',
-        handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
-        containment: 'parent',
-        tolerance: "pointer",
-        helper: 'clone',
-        axis: 'x'
-    });
-};
 
 var generateFontOptions = function ($container) {
     var $result = $container.find(' > input:first');
