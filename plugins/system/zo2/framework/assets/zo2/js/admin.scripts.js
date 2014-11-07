@@ -856,24 +856,24 @@ var generateLogoJson = function ($container) {
 
 var bindSortable = function () {
 //    // thêm > vào items
-//    jQuery('#droppable-container > .zo2-container').sortable({
-//        items: '>.sortable-row',
-//        handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
-//        containment: 'parent',
-//        tolerance: 'pointer',
-//        forcePlaceholderSize: true,
-//        axis: 'y'
-//    });
+    jQuery('#droppable-container > .zo2-container').sortable({
+        items: '>.sortable-row',
+        handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
+        containment: 'parent',
+        tolerance: 'pointer',
+        forcePlaceholderSize: true,
+        axis: 'y'
+    });
 
-//    jQuery('.sortable-row').sortable({
-//        items: '>.row-control>.col-container>.sortable-col',
-//        //connectWith: '>.sortable-row',
-//        handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
-//        containment: 'parent',
-//        tolerance: "pointer",
-//        helper: 'clone',
-//        axis: 'x'
-//    });
+    jQuery('.sortable-row').sortable({
+        items: '>.row-control>.col-container>.sortable-col',
+        connectWith: '>.sortable-row',
+        handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
+        containment: 'parent',
+        tolerance: "pointer",
+        helper: 'clone',
+        axis: 'x'
+    });
 };
 
 var generateFontOptions = function ($container) {

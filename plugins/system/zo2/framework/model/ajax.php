@@ -32,10 +32,14 @@ if (!class_exists('Zo2ModelAjax')) {
          * 
          */
         public function clearCache() {
-            if (JFolder::delete(ZO2PATH_CACHE)) {
-                $this->_ajax->addMessage('Clear cleared', 'success');
+            if (JFolder::exists(ZO2PATH_CACHE)) {
+                if (JFolder::delete(ZO2PATH_CACHE)) {
+                    $this->_ajax->addMessage('Clear cleared', 'success');
+                } else {
+                    $this->_ajax->addMessage('Something wrong', 'error');
+                }
             } else {
-                $this->_ajax->addMessage('Something wrong', 'error');
+                $this->_ajax->addMessage('No cached', 'info');
             }
             $this->_ajax->response();
         }
