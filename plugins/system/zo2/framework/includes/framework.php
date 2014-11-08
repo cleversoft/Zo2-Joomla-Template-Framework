@@ -620,26 +620,32 @@ if (!class_exists('Zo2Framework')) {
         }
 
         /**
-         * Get array of profiles
+         * Get array of exists profiles
          * @return \Zo2Profile
          */
         public function getProfiles() {
-            $templateDir = Zo2Factory::getPath('templates://assets/profiles/' . $this->template->id);
+            $templateProfiles = $this->_getProfiles(Zo2Factory::getPath('templates://assets/profiles/' . $this->template->id));
+            $defaultProfiles = $this->_getProfiles(Zo2Factory::getPath('templates://assets/profiles'));
+            $profiles = array_merge($defaultProfiles, $templateProfiles);
+            return $profiles;
+        }
+
+        private function _getProfiles($dir) {
             $profiles = array();
-            if (JFolder::exists($templateDir)) {
-                $files = JFolder::files($templateDir);
+            if (JFolder::exists($dir)) {
+                $files = JFolder::files($dir);
                 if ($files) {
                     foreach ($files as $file) {
                         if (JFile::getExt($file) == 'json') {
-                            $profile = new Zo2Profile();
+                            $profile = new Zo2Profile();                            
                             $profile->load(JFile::stripExt($file));
-                            $profiles[JFile::stripExt($file)] = $profile;
+                            if ($profile->isValid()) {
+                                $profiles[JFile::stripExt($file)] = $profile;
+                            }
                         }
                     }
                 }
             }
-            if (empty($profiles))
-                $profiles['default'] = 'default';
             return $profiles;
         }
 
