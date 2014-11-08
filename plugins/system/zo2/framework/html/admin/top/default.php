@@ -23,7 +23,14 @@ defined('_JEXEC') or die('Restricted access');
                     <p>Store your modifications in a layout profile and assign it to different pages. The default layout will be used on pages without an assigned layout</p>
                     <div class="row-fluid">
                         <div class="span6">
-                            <?php echo Zo2Html::field('profiles', array(), array()); ?>
+                            <?php
+                            echo Zo2Html::field('profiles', array(
+                                'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
+                                    ), array(
+                                'profile' => Zo2Factory::getProfile(),
+                                'profiles' => Zo2Factory::getFramework()->getProfiles()
+                            ));
+                            ?>
                         </div>
                     </div>
                 </div>

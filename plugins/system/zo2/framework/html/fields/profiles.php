@@ -1,12 +1,16 @@
 <!-- Select profile -->
 <div class="control-group">
-    <div class="control-label">Select profile</div>
-    <div class="controls">
-        <!-- Select profile -->
+    <div class="control-label"><?php echo $this->label['label']; ?></div>
+    <div class="controls">        
+        <!-- Select profile -->        
         <select class="form-control zo2-select-profile" onchange="zo2.admin.ajax.loadProfile(this.value);
                 return false;">
-            <option value="default" selected="" >default</option>
-            <option value="test" >test</option>
+            <!-- Loop profiles -->
+            <?php foreach ($this->data['profiles'] as $profile): ?>
+                <option value="<?php echo $profile->name; ?>" 
+                    <?php echo ($profile->name == $this->data['profile']->name) ? 'selected="selected"' : ''; ?> ><?php echo $profile->name; ?></option>
+            <?php endforeach; ?>
+
         </select>
 
         <span class="input-group-btn">

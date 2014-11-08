@@ -117,7 +117,8 @@
 
                 })
                         .done(function (data) {
-                            jQuery('#zo2-framework').parent().html(data[0].html);
+                            jQuery('#zo2-framework').parent().html(data.html[0].html);
+                            zo2.admin._init();
                         });
             }
         },
@@ -206,8 +207,6 @@ zo2.jQuery(document).ready(function ($) {
     /*============For all==============*/
     injectFormSubmit();
     //wrapForm();
-
-    bindSortable();
 
     // bind event to generate row id
     $('#txtRowName').on('keyup', function (e) {
@@ -305,7 +304,7 @@ zo2.jQuery(document).ready(function ($) {
                 $this.attr('data-zo2-span', selectedStrategy[index]);
             });
 
-            bindSortable();
+            //bindSortable();
 
         }
     });
