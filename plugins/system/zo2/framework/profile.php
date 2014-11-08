@@ -99,65 +99,14 @@ if (!class_exists('Zo2Profile')) {
                 Zo2Factory::addLog('Loading profile', $profileFile);
                 /* Load profile data by use json file */
                 $this->loadFile($profileFile);
-                /* Profile exists but this's old format */
-                if (!$this->_check()) {
-                    /* Load and migrate into new format */
-                    $this->_loadFromOldProfile($profileFile);
-                    $this->_profileFile = $this->_profileDir . '/' . self::DEFAULT_PROFILE_NAME . '.json';
-                    $this->_profileName = self::DEFAULT_PROFILE_NAME;
-                    return $this->_save($this->_profileFile);
-                } else {
-                    /* Load profile corrected */
-                    $this->_profileFile = $profileFile;
-                    $this->_profileName = $name;
-                    return true;
-                }
-            } else { /* Profile file is not existed */
-                $this->_loadFromDatabase();
-                $this->_profileFile = $this->_profileDir . '/' . self::DEFAULT_PROFILE_NAME . '.json';
-                $this->_profileName = self::DEFAULT_PROFILE_NAME;
-                return $this->_save($this->_profileFile);
+                $this->set('theme', new JObject($this->get('theme')));
+                return $this->isValid();
             }
             return false;
         }
 
-        /**
-         * Load profile from old profile format
-         * @param string $profileFile
-         */
-        private function _loadFromOldProfile($profileFile) {
-            Zo2Factory::addLog('Load old profile', $profileFile, 'notice');
-            $framework = Zo2Factory::getFramework();
-            $this->template = $framework->template->template;
-            $this->name = self::DEFAULT_PROFILE_NAME;
-            $this->layout = json_decode(file_get_contents($profileFile));
-            $this->theme = new JObject(json_decode($framework->template->params->get('theme')));
-            $this->menuConfig = new JObject();
-            $this->menuConfig->hover_type = $framework->template->params->get('hover_type');
-            $this->menuConfig->nav_type = $framework->template->params->get('nav_type');
-            $this->menuConfig->animation = $framework->template->params->get('animation');
-            $this->menuConfig->duration = $framework->template->params->get('duration');
-            $this->menuConfig->menu_type = $framework->template->params->get('menu_type');
-            $this->menuConfig->mega_config = $framework->template->params->get('menu_config');
-        }
-
-        /**
-         * Load profile from database
-         */
-        private function _loadFromDatabase() {
-            Zo2Factory::addLog('Load database profile', '', 'notice');
-            $framework = Zo2Factory::getFramework();
-            $this->template = $framework->template->template;
-            $this->name = self::DEFAULT_PROFILE_NAME;
-            $this->layout = json_decode($framework->template->params->get('layout'));
-            $this->theme = new JObject(json_decode($framework->template->params->get('theme')));
-            $this->menuConfig = new JObject();
-            $this->menuConfig->hover_type = $framework->template->params->get('hover_type');
-            $this->menuConfig->nav_type = $framework->template->params->get('nav_type');
-            $this->menuConfig->animation = $framework->template->params->get('animation');
-            $this->menuConfig->duration = $framework->template->params->get('duration');
-            $this->menuConfig->menu_type = $framework->template->params->get('menu_type');
-            $this->menuConfig->mega_config = $framework->template->params->get('menu_config');
+        public function isValid() {
+            return $this->_check();
         }
 
         /**
@@ -185,7 +134,6 @@ if (!class_exists('Zo2Profile')) {
                 Zo2Factory::addLog('Invalid profile', 'menuConfig field is missed', 'error');
                 return false;
             }
-            $this->set('theme', new JObject($this->get('theme')));
             return true;
         }
 
