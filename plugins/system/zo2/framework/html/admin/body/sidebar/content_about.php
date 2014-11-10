@@ -11,7 +11,7 @@
                     <h3>Version</h3>
                     <span class="label label-important">Your Zo2 version is out of date.</span><br />
                     <strong>Latest version: 1.4.3</strong>
-                    <small>Current version: 1.4.2</small>
+                    <small>Current version: <?php echo Zo2Factory::getFramework()->getManifest()->version; ?></small>
                     <div class="zo2-divider"></div>
                     <h3>Documentation</h3>
                     <dl>

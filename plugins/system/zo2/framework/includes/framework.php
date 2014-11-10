@@ -593,14 +593,16 @@ if (!class_exists('Zo2Framework')) {
             return $assets[$name];
         }
 
+        /**
+         * 
+         * @return SimpleXMLElement
+         */
         public function getManifest() {
-            $xml = JFactory::getXML(ZO2PATH_ROOT . '/../zo2.xml');
-            return $xml;
-        }
-
-        public function getTemplateManifest() {
-            $xml = JFactory::getXML(Zo2Factory::getPath('templates://templateDetails.xml'));
-            return $xml;
+            $manifestFile = realpath(ZO2PATH_ROOT . '/../zo2.xml');
+            if (JFile::exists($manifestFile)) {
+                return simplexml_load_file($manifestFile);
+            }
+            return false;
         }
 
         /**
@@ -637,7 +639,7 @@ if (!class_exists('Zo2Framework')) {
                 if ($files) {
                     foreach ($files as $file) {
                         if (JFile::getExt($file) == 'json') {
-                            $profile = new Zo2Profile();                            
+                            $profile = new Zo2Profile();
                             $profile->load(JFile::stripExt($file));
                             if ($profile->isValid()) {
                                 $profiles[JFile::stripExt($file)] = $profile;
