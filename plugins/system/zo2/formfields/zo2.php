@@ -38,7 +38,7 @@ if (!class_exists('JFormFieldZo2')) {
          * @return string
          */
         public function getInput() {
-            return Zo2Html::_('admin', 'render');
+            return Zo2Html::_('admin', $this->element['layout']);
         }
 
     }
