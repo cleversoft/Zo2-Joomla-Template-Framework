@@ -36,7 +36,7 @@
          */
         _init: function () {
             this.bindSortable();
-            this.selectStyle();
+            this.themePresets.init();
         },
         /**
          * Backend ajax
@@ -143,42 +143,118 @@
                 axis: 'x'
             });
         },
-        selectStyle: function () {
-            jQuery('#zo2_themes').on('click', '> li', function () {
-                var $this = $(this);
-                var $container = $('#zo2_themes_container');
-                var $list = $('#zo2_themes');
-                var $input = $container.find('> input');
-                $list.find('>li').removeClass('active');
-                $this.addClass('active');
-                $input.val($this.attr('data-zo2-theme'));
-                alert($('#color_background').val());
-                $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
-                $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
-                $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
-                $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
-                $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
-                $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
-                $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
-                $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
-                $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
+        themePresets: {
+            init: function() {
+                zo2.admin.themePresets.selectPresets();
+                zo2.admin.themePresets.addMorePreset();
+                zo2.admin.themePresets.removePreset();
+                zo2.admin.themePresets.colorPresetChange();
+                zo2.admin.themePresets.selectBackgroundImage();
+            },
+            selectPresets: function () {
+                jQuery('#zo2_themes').on('click', '> li', function () {
+                    var $this = $(this);
+                    var $container = $('#zo2_themes_container');
+                    var $list = $('#zo2_themes');
+                    var $input = $container.find('> input');
+                    $list.find('>li').removeClass('active');
+                    $this.addClass('active');
+                    $input.val($this.attr('data-zo2-theme'));
+
+                    $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
+                    $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
+                    $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
+                    $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
+                    $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
+                    $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
+                    $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
+                    $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
+                    $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
 
 
-                $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
-                $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
-                $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
-                $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
-                $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
-                $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
-                $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
-                $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
-                $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
+                    $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
+                    $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
+                    $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
+                    $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
+                    $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
+                    $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
+                    $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
+                    $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
+                    $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
 
-                generatePresetData();
-                alert($('#color_background').val());
-            });
-        },
-        generatePresetData: function() {
+                    generatePresetData();
+                });
+            },
+            addMorePreset: function() {
+                $('.add_more_preset').click(function () {
+                    $(this).parent().before(
+                        '<div class="zo2_themes_form">' +
+                            '<div class="control-group">' +
+                            '<div class="control-label">' +
+                            '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
+                            '</div>' +
+                            '<div class="controls">' +
+                            '<div class="colorpicker-container">' +
+                            '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
+                            '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
+                            '<input type="button" class="btn remove_preset" value="Remove" />' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                    );
+                    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
+                        var $this = $(this);
+                        var $parent = $this.parent();
+                        var $preview = $parent.find('.color-preview');
+                        if ($this.val().length > 0)
+                            $preview.css('background-color', $this.val());
+                        else
+                            $preview.css('background-color', 'transparent');
+
+                        generatePresetData();
+                    });
+
+                    $('.zo2_other_preset_element').on('change', function () {
+                        generatePresetData();
+                    });
+
+                    $('.remove_preset').click(function () {
+                        $(this).parent().parent().parent().parent().remove();
+                        generatePresetData();
+                    });
+                });
+            },
+            removePreset: function() {
+                $('.remove_preset').click(function () {
+                    $(this).parent().parent().parent().parent().remove();
+                    generatePresetData();
+                });
+            },
+            colorPresetChange: function () {
+                $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
+                    var $this = $(this);
+                    var $parent = $this.parent();
+                    var $preview = $parent.find('.color-preview');
+                    if ($this.val().length > 0)
+                        $preview.css('background-color', $this.val());
+                    else
+                        $preview.css('background-color', 'transparent');
+
+                    generatePresetData();
+                });
+            },
+            selectBackgroundImage: function() {
+                jQuery('.background-select li').click(function () {
+                    if (jQuery(this).hasClass('selected')) {
+                        jQuery(this).removeClass('selected');
+                    } else {
+                        jQuery(".background-select li").removeClass('selected');
+                        jQuery(this).addClass('selected');
+                    }
+                    generatePresetData();
+                });
+            }
 
         }
     };
@@ -643,61 +719,10 @@ zo2.jQuery(document).ready(function ($) {
         $container.trigger('font-change');
     });
 
-    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
-        var $this = $(this);
-        var $parent = $this.parent();
-        var $preview = $parent.find('.color-preview');
-        if ($this.val().length > 0)
-            $preview.css('background-color', $this.val());
-        else
-            $preview.css('background-color', 'transparent');
 
-        generatePresetData();
-    });
 
-    $('.add_more_preset').click(function () {
-        $(this).parent().before(
-            '<div class="zo2_themes_form">' +
-                '<div class="control-group">' +
-                '<div class="control-label">' +
-                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
-                '</div>' +
-                '<div class="controls">' +
-                '<div class="colorpicker-container">' +
-                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
-                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
-                '<input type="button" class="btn remove_preset" value="Remove" />' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>'
-        );
-        $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
-            var $this = $(this);
-            var $parent = $this.parent();
-            var $preview = $parent.find('.color-preview');
-            if ($this.val().length > 0)
-                $preview.css('background-color', $this.val());
-            else
-                $preview.css('background-color', 'transparent');
 
-            generatePresetData();
-        });
 
-        $('.zo2_other_preset_element').on('change', function () {
-            generatePresetData();
-        });
-
-        $('.remove_preset').click(function () {
-            $(this).parent().parent().parent().parent().remove();
-            generatePresetData();
-        });
-    });
-
-    $('.remove_preset').click(function () {
-        $(this).parent().parent().parent().parent().remove();
-        generatePresetData();
-    });
 
     /*
     $('#zo2_themes').on('click', '> li', function () {
@@ -803,15 +828,7 @@ zo2.jQuery(document).ready(function ($) {
 //        return false;
 //    });
 
-    jQuery('.background-select li').click(function () {
-        if (jQuery(this).hasClass('selected')) {
-            jQuery(this).removeClass('selected');
-        } else {
-            jQuery(".background-select li").removeClass('selected');
-            jQuery(this).addClass('selected');
-        }
-        generatePresetData();
-    });
+
 });
 
 var generatePresetData = function () {
