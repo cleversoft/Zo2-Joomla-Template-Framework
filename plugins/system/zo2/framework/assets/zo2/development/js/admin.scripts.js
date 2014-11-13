@@ -36,6 +36,7 @@
          */
         _init: function () {
             this.bindSortable();
+            this.selectStyle();
         },
         /**
          * Backend ajax
@@ -119,6 +120,7 @@
                         .done(function (data) {
                             jQuery('#zo2-framework').parent().html(data.html[0].html);
                             zo2.admin._init();
+                            alert(1);
                         });
             }
         },
@@ -141,6 +143,43 @@
                 helper: 'clone',
                 axis: 'x'
             });
+        },
+        selectStyle: function () {
+            jQuery('#zo2_themes').on('click', '> li', function () {
+                var $this = $(this);
+                var $container = $('#zo2_themes_container');
+                var $list = $('#zo2_themes');
+                var $input = $container.find('> input');
+                $list.find('>li').removeClass('active');
+                $this.addClass('active');
+                $input.val($this.attr('data-zo2-theme'));
+
+                $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
+                $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
+                $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
+                $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
+                $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
+                $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
+                $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
+                $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
+                $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
+
+
+                $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
+                $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
+                $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
+                $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
+                $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
+                $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
+                $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
+                $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
+                $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
+
+                generatePresetData();
+            });
+        },
+        generatePresetData: function() {
+
         }
     };
     /* Init Zo2.admin */

@@ -63,7 +63,8 @@ if (!isset($preset_data['bg_image']))
         <ul id="zo2_themes">
             <?php foreach ($presets as $p) : ?>
                 <li class="<?php echo $p['name'] == $preset_data['name'] ? 'active' : '' ?>"
-                    data-zo2-theme="<?php echo $p['name'] ?>" data-zo2-background="<?php echo $p['variables']['background'] ?>"
+                    data-zo2-theme="<?php echo $p['name'] ?>"
+                    data-zo2-background="<?php echo $p['variables']['background'] ?>"
                     data-zo2-header="<?php echo $p['variables']['header'] ?>"
                     data-zo2-header-top="<?php echo $p['variables']['header_top'] ?>"
                     data-zo2-link="<?php echo $p['variables']['link'] ?>"
@@ -240,10 +241,6 @@ if (!isset($preset_data['bg_image']))
             <input type="button" class="btn add_more_preset" value="<?php echo JText::_('ZO2_ADMIN_EDITPROFILE_ADDMORE'); ?>" />
         </div>
     </div>
-
-
-
-
     <br />
 </div>
 </div>
