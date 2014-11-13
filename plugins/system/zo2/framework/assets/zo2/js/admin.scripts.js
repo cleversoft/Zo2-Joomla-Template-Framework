@@ -259,6 +259,13 @@
 
         },
         layoutBuilder: {
+            strategy : [
+                [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
+            ],
+            visibilityAttributes: ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 'data-zo2-visibility-md', 'data-zo2-visibility-lg'],
+            allColClass: 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12',
+            allColOffset: 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
+                'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12',
             init: function() {
                 zo2.admin.layoutBuilder.duplicate();
                 zo2.admin.layoutBuilder.slipt();
@@ -276,8 +283,8 @@
                     $row.attr('data-zo2-type', 'row');
                     $row.attr('data-zo2-customClass', '');
                     $row.attr('data-zo2-fullwidth', '0');
-                    for (var i = 0; i < visibilityAttributes.length; i++) {
-                        $row.attr(visibilityAttributes[i], '1');
+                    for (var i = 0; i < zo2.admin.layoutBuilder.visibilityAttributes.length; i++) {
+                        $row.attr(zo2.admin.layoutBuilder.visibilityAttributes[i], '1');
                     }
                     //$row.attr('data-zo2-layout', 'fixed');
                     var $meta = jQuery('<div class="col-md-12 row-control">' +
@@ -307,14 +314,14 @@
                         return false;
                     else
                     {
-                        var selectedStrategy = strategy[strategyNum];
+                        var selectedStrategy = zo2.admin.layoutBuilder.strategy[strategyNum];
                         var $span = jQuery('<div />').addClass('sortable-col');
                         $span.attr('data-zo2-type', 'span');
                         $span.attr('data-zo2-position', '');
                         $span.attr('data-zo2-offset', 0);
                         $span.attr('data-zo2-customClass', '');
-                        for (var i = 0; i < visibilityAttributes.length; i++) {
-                            $span.attr(visibilityAttributes[i], '1');
+                        for (var i = 0; i < zo2.admin.layoutBuilder.visibilityAttributes.length; i++) {
+                            $span.attr(zo2.admin.layoutBuilder.visibilityAttributes[i], '1');
                         }
                         var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
                             '<div class="col-control-buttons">' +
@@ -334,7 +341,7 @@
                         // apply new span number
                         $colContainer.find('>[data-zo2-type="span"]').each(function (index) {
                             var $this = jQuery(this);
-                            $this.removeClass(allColClass);
+                            $this.removeClass(zo2.admin.layoutBuilder.allColClass);
                             $this.addClass('col-md-' + selectedStrategy[index]);
                             $this.attr('data-zo2-span', selectedStrategy[index]);
                         });
@@ -365,8 +372,8 @@
                     $row.attr('data-zo2-type', 'row');
                     $row.attr('data-zo2-customClass', '');
                     $row.attr('data-zo2-fullwidth', '0');
-                    for (var i = 0; i < visibilityAttributes.length; i++) {
-                        $row.attr(visibilityAttributes[i], '1');
+                    for (var i = 0; i < zo2.admin.layoutBuilder.visibilityAttributes.length; i++) {
+                        $row.attr(zo2.admin.layoutBuilder.visibilityAttributes[i], '1');
                     }
                     //$row.attr('data-zo2-layout', 'fixed');
                     var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
@@ -453,8 +460,8 @@
                     $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
 
                     var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
-                    $col.removeClass(allColClass).addClass('col-md-' + $('#dlColWidth').val());
-                    $col.removeClass(allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
+                    $col.removeClass(zo2.admin.layoutBuilder.allColClass).addClass('col-md-' + $('#dlColWidth').val());
+                    $col.removeClass(zo2.admin.layoutBuilder.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
                     $col.attr('data-zo2-position', $('#dlColPosition').val());
                     $col.find('>.col-wrap>.col-name').text(colName);
                     $('#colSettingsModal').modal('hide');
@@ -471,15 +478,7 @@
 
 })(window, zo2, zo2.jQuery);
 
-var strategy = [
-    [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
-];
 
-var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 'data-zo2-visibility-md', 'data-zo2-visibility-lg'];
-
-var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
-var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-        'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
 zo2.jQuery(document).ready(function ($) {
 
@@ -526,8 +525,6 @@ zo2.jQuery(document).ready(function ($) {
     });
 
     /*============For all==============*/
-    injectFormSubmit();
-    //wrapForm();
 
     // bind event to generate row id
     $('#txtRowName').on('keyup', function (e) {
@@ -663,45 +660,6 @@ zo2.jQuery(document).ready(function ($) {
     });
 
 
-
-
-
-
-    /*
-    $('#zo2_themes').on('click', '> li', function () {
-        var $this = $(this);
-        var $container = $('#zo2_themes_container');
-        var $list = $('#zo2_themes');
-        var $input = $container.find('> input');
-        $list.find('>li').removeClass('active');
-        $this.addClass('active');
-        $input.val($this.attr('data-zo2-theme'));
-
-        $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
-        $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
-        $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
-        $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
-        $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
-        $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
-        $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
-        $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
-        $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
-
-
-        $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
-        $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
-        $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
-        $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
-        $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
-        $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
-        $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
-        $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
-        $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
-
-        generatePresetData();
-    });
-    */
-
     $('.field-logo-container').on('click', '.btn-remove-preview', function () {
         var $this = $(this);
         var $container = $this.closest('.field-logo-container');
@@ -733,44 +691,6 @@ zo2.jQuery(document).ready(function ($) {
         }
         return false;
     });
-
-    /*
-     
-     var $select = $('#display_type_choose').find('select:first');
-     var $normal_display = $('.display_type_normal');
-     
-     if ($select.val() == 'normal') $normal_display.show();
-     else $normal_display.hide();
-     
-     jQuery('#display_type_choose').find('select:first').change(function() {
-     var $this = $(this);
-     if ($this.val() == 'normal') $normal_display.slideDown();
-     else $normal_display.slideUp();
-     });
-     */
-
-    // bind clear cache button
-//    $('#btnClearCache').on('click', function () {
-//        var $this = $(this);
-//        var clearCacheUrl = Assets.root + 'index.php?zo2controller=clearCache';
-//        var prefix = '';
-//        var interval = setInterval(function () {
-//            prefix += '.';
-//            if (prefix.length >= 4)
-//                prefix = '';
-//            $this.text('Clearing cache' + prefix);
-//        }, 1000);
-//        $.get(clearCacheUrl, function () {
-//            clearInterval(interval);
-//            $this.removeClass('btn-danger').addClass('btn-success').text('Clear cache successfully');
-//
-//            setTimeout(function () {
-//                $this.removeClass('btn-success').addClass('btn-danger').text('Clear layout cache');
-//            }, 2000);
-//        });
-//        return false;
-//    });
-
 
 });
 
@@ -1028,22 +948,6 @@ var rearrangeSpan = function ($container) {
             }
         }
     }
-};
-
-
-var injectFormSubmit = function () {
-    /*
-     var $ = jQuery;
-     var $input = $('.hfLayoutHtml');
-     document.adminForm.onsubmit = function() {
-     console.log('will this run');
-     $('.field-logo-container').each(function() {
-     generateLogoJson($(this));
-     });
-     $input.val(generateJson());
-     return true;
-     };
-     */
 };
 
 /* Override default submit function */
