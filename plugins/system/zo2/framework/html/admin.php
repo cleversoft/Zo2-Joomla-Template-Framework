@@ -28,11 +28,21 @@ if (!class_exists('Zo2HtmlAdmin')) {
         /**
          * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
          */
-        public function render() {
+        public function config() {
             $html = new Zo2Html();
             $params = Zo2Factory::getFramework()->template->params;
             $html->set('params', $params);
             return $html->fetch('admin/default.php');
+        }
+
+        /**
+         * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
+         */
+        public function about() {
+            $html = new Zo2Html();
+            $params = Zo2Factory::getFramework()->template->params;
+            $html->set('params', $params);
+            return $html->fetch('admin/about.php');
         }
 
         /**

@@ -57,9 +57,7 @@ if (!class_exists('Zo2Html')) {
             $method = array_shift($args);
             $className = 'Zo2Html' . ucfirst($prefix);
             $class = new $className();
-            return call_user_func_array(array(
-                $class, $method
-                    ), $args);
+            return call_user_func_array(array($class, (string) $method), $args);
         }
 
         public static function field() {

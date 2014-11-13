@@ -69,7 +69,7 @@
                             jQuery('#btnClearCache').button('reset');
                             jQuery.each(data, function (key, value) {
                                 zo2.document.message(value.args.message);
-                            })
+                            });
                         });
             },
             /**
@@ -122,6 +122,14 @@
                             zo2.admin._init();
                             alert(1);
                         });
+            }
+        },
+        profile: {
+            _elements: {
+                addNewProfileInput: '#zo2-profile-name'
+            },
+            add: function () {
+                Joomla.submitbutton('style.apply');
             }
         },
         bindSortable: function () {
@@ -1163,10 +1171,7 @@ jQuery(document).ready(function () {
     jQuery('#zo2-addProfile').on('click', function () {
         jQuery('#zo2-form-addProfile').toggle();
     });
-    /* Submit save */
-    jQuery('#zo2-save-profile').on('click', function () {
-        Joomla.submitbutton('style.apply');
-    });
+   
     /* Cancel add profile form */
     jQuery('#zo2-cancel-profile').on('click', function () {
         jQuery('#zo2-form-addProfile').hide();

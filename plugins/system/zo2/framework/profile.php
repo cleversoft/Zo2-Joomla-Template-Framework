@@ -269,6 +269,27 @@ if (!class_exists('Zo2Profile')) {
             return false;
         }
 
+        public function isDefault() {
+            if ($this->get('name') == 'default') {
+                return true;
+            }
+        }
+
+        public function authorise($action) {
+            switch ($action) {
+                case 'add':
+                    return true;
+                case 'rename';
+                    return true;
+                    return !$this->isDefault();
+                case 'remove';
+                    return true;
+                    return !$this->isDefault();
+                default:
+                    return true;
+            }
+        }
+
     }
 
 }
