@@ -13,8 +13,8 @@ defined('_JEXEC') or die('Restricted access');
 /* @var $this JFormFieldFont */
 $data = null;
 $enable = false;
-if (!empty($this->value)) {
-    $data = json_decode($this->value, true);
+if (!empty($this->data['value'])) {
+    $data = json_decode($this->data['value'], true);
     $enable = true;
 }
 /**
@@ -47,8 +47,8 @@ $fontStyles = array(
 );
 ?>
 <div class="font-container">
-    <input type="hidden" value="<?php echo htmlspecialchars($this->value) ?>" name="<?php echo $this->name ?>" id="<?php echo $this->id ?>" />
-    <h3><?php echo $this->getLabel() ?></h3>
+    <input type="hidden" value="<?php echo htmlspecialchars($this->data['value']) ?>" name="<?php echo $this->data['name'] ?>" id="<?php echo $this->data['id'] ?>" />
+    <h3><?php echo $this->label['label']; ?></h3>
     <div class="control-group">
         <div class="control-label">
             <div class="font-label">Enable</div>
@@ -62,7 +62,7 @@ $fontStyles = array(
         <div class="control-group">
             <div class="control-label">
                 <div class="font-label">Font type</div>
-                <div class="font-desc">Choose the type of font you want to use for <?php echo strtolower($this->getLabel()) ?></div>
+                <div class="font-desc">Choose the type of font you want to use for <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <div class="btn-group font-types" data-toggle="buttons-radio">
@@ -76,7 +76,7 @@ $fontStyles = array(
         <div class="font-options-standard control-group" <?php echo $data['type'] == 'standard' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
                 <div class="font-label">Standard Font</div>
-                <div class="font-desc">Choose the font face that is used for <?php echo strtolower($this->getLabel()) ?></div>
+                <div class="font-desc">Choose the font face that is used for <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <select class="ddlStandardFont show">
@@ -90,7 +90,7 @@ $fontStyles = array(
         <div class="font-options-google hide control-group" <?php echo $data['type'] == 'googlefonts' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
                 <div class="font-label">Google Font</div>
-                <div class="font-desc">Choose the type of font you want to use for <?php echo strtolower($this->getLabel()) ?></div>
+                <div class="font-desc">Choose the type of font you want to use for <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <input type="text" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
@@ -110,7 +110,7 @@ $fontStyles = array(
         <div class="control-group">
             <div class="control-label">
                 <div class="font-label">Font options</div>
-                <div class="font-desc">Specify the <?php echo strtolower($this->getLabel()) ?> font properties</div>
+                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
             </div>
             <div class="controls floatdiv clearfix">
                 <div><input type="text" class="txtFontSize" value="<?php echo $data['size'] ?>" /> px</div>

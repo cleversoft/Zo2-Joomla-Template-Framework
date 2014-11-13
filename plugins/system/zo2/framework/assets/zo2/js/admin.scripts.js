@@ -926,7 +926,7 @@ var rearrangeSpan = function ($container) {
         if ($spans.length == 1) {
             width = 12 - parseInt($spans.attr('data-zo2-offset'));
             if (width > 0) {
-                $spans.removeClass(allColClass);
+                $spans.removeClass(zo2.admin.layoutBuilder.allColClass);
                 $spans.addClass('col-md-' + width);
                 $spans.attr('data-zo2-span', width);
             }
@@ -942,7 +942,7 @@ var rearrangeSpan = function ($container) {
 
             width = 12 - totalWidth;
             if (width > 0) {
-                $lastSpan.removeClass(allColClass);
+                $lastSpan.removeClass(zo2.admin.layoutBuilder.allColClass);
                 $lastSpan.addClass('col-md-' + width);
                 $lastSpan.attr('data-zo2-span', width);
             }
