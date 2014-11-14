@@ -38,7 +38,7 @@ if (!class_exists('Zo2Layout')) {
             $document = JFactory::getDocument();
             $document->addCustomTag('<!— built with zo2 framework: http://www.zootemplate.com/zo2 —>');
 
-            $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 1;
+            $canCache = (bool) Zo2Factory::get('debug', 0) == 1;
             /* Must follow Joomla! global config */
             $canCache = $canCache && ( JFactory::getConfig()->get('caching') != 0 );
             $cacheLoaded = false;

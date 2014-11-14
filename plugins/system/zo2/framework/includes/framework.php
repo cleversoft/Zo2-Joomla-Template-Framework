@@ -116,6 +116,10 @@ if (!class_exists('Zo2Framework')) {
             $assetsFile = Zo2Factory::getPath('zo2://assets/' . $assetsFile);
             if ($assetsFile) {
                 $assets = json_decode(file_get_contents($assetsFile));
+                /* Debug mode */
+                if ($this->get('debug')) {
+                    $this->assets->buildAssets();
+                }
                 /* Site loading */
                 if (Zo2Factory::isSite()) {
                     /* Load core assets */

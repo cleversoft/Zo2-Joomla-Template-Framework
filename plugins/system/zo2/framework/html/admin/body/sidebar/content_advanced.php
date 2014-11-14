@@ -149,9 +149,9 @@
         </div>
         <div class="controls">
             <fieldset class="radio btn-group">
-                <input name="jform[params][debug_visibility]" type="radio" value="1" >
+                <input name="jform[params][debug]" type="radio" value="1" >
                 <label class="btn"><?php echo JText::_('ZO2_YES'); ?></label>
-                <input name="jform[params][debug_visibility]" type="radio" value="0" checked="checked" >
+                <input name="jform[params][debug]" type="radio" value="0" checked="checked" >
                 <label class="btn active btn-danger first"><?php echo JText::_('ZO2_NO'); ?></label>
             </fieldset>
         </div>
