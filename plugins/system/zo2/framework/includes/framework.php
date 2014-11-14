@@ -123,9 +123,9 @@ if (!class_exists('Zo2Framework')) {
                     /* Disable responsive */
                     if ($this->get('responsive_layout') == 0)
                         $this->assets->addStyleSheet('zo2/css/non-responsive.css');
-                    /* Custom css */
-                    if ($this->get('enable_custom_css', 1) == 1)
-                        $this->assets->addStyleSheet('zo2/css/custom.css');
+                    /* Custom files */
+                    $this->assets->addStyleSheet('zo2/css/custom.css');
+                    $this->assets->addScript('zo2/js/custom.js');
                     /* Template side */
                     $templateAssets = $this->getAssets();
                     if ($templateAssets && isset($templateAssets->assets)) {
@@ -687,7 +687,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public function getAssetsFile($path) {
-            $assetsFile = $this->getPath('assets/' . $path);            
+            $assetsFile = $this->getPath('assets/' . $path);
             if ($assetsFile) {
                 return file_get_contents($assetsFile);
             }
