@@ -52,7 +52,7 @@ if (!class_exists('Zo2ModelAjax')) {
         }
 
         public function renderAdmin() {
-            $this->_ajax->addHtml(Zo2Html::_('admin', 'render'));
+            $this->_ajax->addHtml(Zo2Html::_('admin', 'config'));
             $this->_ajax->response();
         }
 
