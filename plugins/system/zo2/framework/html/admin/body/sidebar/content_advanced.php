@@ -182,7 +182,7 @@
             'value' => Zo2Factory::getFramework()->getAssetsFile('zo2/css/custom.css')
         ));
         ?>
-        <span>Put your own custom css</span>
+        <span>Here you can include your additional CSS styles</span>
     </div>    
     <div class="control-group no-margin no-label">
         <?php
@@ -196,7 +196,7 @@
             'value' => Zo2Factory::getFramework()->getAssetsFile('zo2/js/custom.js')
         ));
         ?>
-        <span>Put your own custom js</span>
+        <span>Here you can include your additional JavaScript code</span>
     </div>
     <!-- Features -->
 
