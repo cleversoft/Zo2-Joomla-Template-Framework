@@ -56,6 +56,21 @@ if (!class_exists('Zo2ModelAjax')) {
             $this->_ajax->response();
         }
 
+        public function renameProfile() {
+            $jinput = JFactory::getApplication()->input;
+            $newProfileName = $jinput->get('newProfileName');
+            $profile = Zo2Factory::getProfile();
+
+            $framework = Zo2Factory::getFramework();
+
+            if ($profile->rename($newProfileName)) {
+                $this->_ajax->addMessage('Build success', 'success');
+            } else {
+                
+            }
+            $this->_ajax->response();
+        }
+
     }
 
 }

@@ -99,6 +99,7 @@ if (!class_exists('Zo2Profile')) {
                 Zo2Factory::addLog('Loading profile', $profileFile);
                 /* Load profile data by use json file */
                 $this->loadFile($profileFile);
+                $this->_profileFile = $profileFile;
                 $this->set('theme', new JObject($this->get('theme')));
                 return $this->isValid();
             }
@@ -238,7 +239,13 @@ if (!class_exists('Zo2Profile')) {
             if (JFile::exists($newFilePath)) {
                 JFactory::getApplication()->enqueueMessage('Profile file existed', 'error');
             } else {
-                JFile::move($this->_profileFile, $newFilePath);
+                $this->name = $newName;
+                $this->save();
+                /* delete old file */
+                $this->delete();
+                /* reload */
+                $this->load($newName);
+                //JFile::move($this->_profileFile, $newFilePath);
                 /* Database update */
 
                 /* Get table */ $table = JTable::getInstance('Style', 'TemplatesTable');

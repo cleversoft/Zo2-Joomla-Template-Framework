@@ -48,7 +48,7 @@ if (!class_exists('Zo2ModelTemplate')) {
          */
         public function rename() {
             $jinput = JFactory::getApplication()->input;
-            $newProfileName = $jinput->get('newName');
+            $newProfileName = $jinput->get('newProfileName');
             $profile = Zo2Factory::getProfile();
             $framework = Zo2Factory::getFramework();
             $id = $framework->template->id;

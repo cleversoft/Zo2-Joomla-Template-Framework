@@ -21,7 +21,7 @@ defined('_JEXEC') or die('Restricted access');
                 return false;" name="jform[profile-select]">
             <!-- Display list of profiles -->
             <?php foreach ($this->data['profiles'] as $profile): ?>
-                <option value="<?php echo $profile->name; ?>" 
+                <option value="<?php echo trim($profile->name); ?>" 
                         <?php echo ($profile->name == $this->data['profile']->name) ? 'selected="selected"' : ''; ?> ><?php echo $profile->name; ?>
                 </option>
             <?php endforeach; ?>
@@ -32,16 +32,16 @@ defined('_JEXEC') or die('Restricted access');
             <div class="zo2-addProfile">            
                 <span class="input-group-btn">            
                     <button class="btn btn-default" id="zo2-addProfile" onClick="jQuery('zo2-form-addProfile').toggle();
-                                return false;">Add</button> 
+                            return false;">Add</button> 
                 </span>            
                 <div class="zo2-form-addProfile" id="zo2-form-addProfile">
                     <p>Please enter new profile name</p>
                     <input type="text" id="zo2-profile-name" name="profile-name">
                     <span class="input-group-btn">
                         <button class="btn btn-primary" id="zo2-save-profile" onclick="zo2.admin.profile.add();
-                                    return false;">Save</button>
+                                return false;">Save</button>
                         <button class="btn btn-default" id="zo2-cancel-profile" onclick="jQuery('zo2-form-addProfile').toggle();
-                                    return false;">Cancel</button>
+                                return false;">Cancel</button>
                     </span>
                 </div>    
             </div>
@@ -52,13 +52,14 @@ defined('_JEXEC') or die('Restricted access');
             <div class="zo2-renameProfile">
                 <span class="input-group-btn">            
                     <button class="btn btn-default" id="zo2-renameProfile" onClick="jQuery('zo2-form-renameProfile').toggle();
-                                return false;">Add</button> 
+                            return false;">Add</button> 
                 </span>  
                 <div class="zo2-form-newProfile" id="zo2-form-renameProfile" style="">
                     <p>Please enter layout profile name</p>
-                    <input type="text" id="zo2-new-profile-name" name="new-profile-name">
+                    <input type="text" id="zo2-new-profile-name" name="newProfileName">
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" id="zo2-rename-profile">Save</button>
+                        <button class="btn btn-primary" id="zo2-rename-profile" onclick="zo2.admin.profile.rename('<?php echo $this->data['profile']->name; ?>');
+                                return false;">Save</button>
                         <button class="btn btn-default" id="zo2-cancel-rename-profile">Cancel</button>
                     </span>
                 </div>
@@ -70,7 +71,7 @@ defined('_JEXEC') or die('Restricted access');
             <div class="zo2-renameProfile">
                 <span class="input-group-btn">            
                     <button class="btn btn-danger" id="zo2-renameProfile" onClick="zo2.admin.ajax.removeProfile();
-                                return false;">Remove</button> 
+                            return false;">Remove</button> 
                 </span>                  
             </div>
         <?php endif; ?>
