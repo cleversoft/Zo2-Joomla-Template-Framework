@@ -88,6 +88,7 @@ if (!class_exists('Zo2ModelTemplate')) {
         }
 
         private function _save() {
+
             $jinput = JFactory::getApplication()->input;
             /* Get table */
             $table = JTable::getInstance('Style', 'TemplatesTable');
@@ -105,9 +106,12 @@ if (!class_exists('Zo2ModelTemplate')) {
 
                 /* Request profileName */
                 $formData['profile-select'] = isset($formData['profile-select']) ? $formData['profile-select'] : 'default';
-                $profileName = $jinput->get('profile-name', $formData['profile-select']);
-                if ($profileName == '')
+                $profileName = $jinput->get('profile-name');
+                if ($profileName == '') {
                     $profileName = $formData['profile-select'];
+                } else {
+                    JFactory::getApplication()->enqueueMessage('Added new profile: ' . $profileName, 'notice');
+                }
 
                 /* Update profile assign list */
                 $list = $table->params->get('profile', array());
@@ -170,6 +174,17 @@ if (!class_exists('Zo2ModelTemplate')) {
                         $profile->menuConfig = $menu;
 
                         $profile->save();
+
+                        /* Save Zo2 data */
+                        $zo2Data = $jinput->post->get('zo2', array(), 'array');
+                        $framework = Zo2Factory::getFramework();
+                        $templateDir = JPATH_ROOT . '/templates/' . $table->template;
+                        $customCssFile = $templateDir . '/assets/zo2/css/custom.css';
+                        $customCss = trim($zo2Data['custom_css']);
+                        JFile::write($customCssFile, $customCss);
+                        $customJsFile = $templateDir . '/assets/zo2/js/custom.js';
+                        $customJs = trim($zo2Data['custom_js']);
+                        JFile::write($customJsFile, $customJs);
 
                         $application = JFactory::getApplication();
                         $application->enqueueMessage('Style successfully saved');

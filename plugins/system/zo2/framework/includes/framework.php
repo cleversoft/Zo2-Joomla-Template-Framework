@@ -686,6 +686,13 @@ if (!class_exists('Zo2Framework')) {
             return $this->_addons;
         }
 
+        public function getAssetsFile($path) {
+            $assetsFile = $this->getPath('assets/' . $path);            
+            if ($assetsFile) {
+                return file_get_contents($assetsFile);
+            }
+        }
+
     }
 
 }

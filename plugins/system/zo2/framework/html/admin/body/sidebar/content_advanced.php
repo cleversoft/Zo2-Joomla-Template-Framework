@@ -72,14 +72,14 @@
     <div class="control-group no-margin no-label">
         <?php
         echo Zo2Html::field(
-            'textarea', array(
-                'label' => '',
-            ), array(
-                'name' => 'jform[params][footer_copyright]',
-                'rows' => 10,
-                'cols' => 20,
-                'value' => Zo2Factory::get('ga_code')
-            ));
+                'textarea', array(
+            'label' => '',
+                ), array(
+            'name' => 'jform[params][footer_copyright]',
+            'rows' => 10,
+            'cols' => 20,
+            'value' => Zo2Factory::get('ga_code')
+        ));
         ?>
         <span>Paste your Google Analytics (or other) tracking code here.<br /> This will be added before the closing body tag in the template. <br/> This should be something like<br /> &#60;script&#62;<br />....<br />&#60;/script&#62;</span>
     </div>
@@ -168,6 +168,35 @@
                 <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
             </fieldset>
         </div>
+    </div>
+    <div class="zo2-divider"></div>
+    <div class="control-group no-margin no-label">
+        <?php
+        echo Zo2Html::field(
+                'textarea', array(
+            'label' => 'Custom CSS',
+                ), array(
+            'name' => 'zo2[custom_css]',
+            'rows' => 10,
+            'cols' => 20,
+            'value' => Zo2Factory::getFramework()->getAssetsFile('zo2/css/custom.css')
+        ));
+        ?>
+        <span>Put your own custom css</span>
+    </div>    
+    <div class="control-group no-margin no-label">
+        <?php
+        echo Zo2Html::field(
+                'textarea', array(
+            'label' => 'Custom JS',
+                ), array(
+            'name' => 'zo2[custom_js]',
+            'rows' => 10,
+            'cols' => 20,
+            'value' => Zo2Factory::getFramework()->getAssetsFile('zo2/js/custom.js')
+        ));
+        ?>
+        <span>Put your own custom js</span>
     </div>
     <!-- Features -->
 
