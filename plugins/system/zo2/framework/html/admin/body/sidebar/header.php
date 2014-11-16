@@ -58,15 +58,8 @@ defined('_JEXEC') or die('Restricted access');
         <a href="#zo2-advanced" role="tab" data-toggle="tab">
             <i class="fa fa-wrench"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_ADVANCED'); ?>
         </a>
-    </li>
-    <!-- About -->    
-    <li class="">
-        <a href="#zo2-about" role="tab" data-toggle="tab">
-            <i class="fa fa-info"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_ABOUT'); ?>
-            <span class="label label-important">Out of date</span>
-        </a>
-    </li>
+    </li>  
     <div class="logo-framework">
-        <img src="<?php echo ZO2URL_ASSETS.'/zo2/images/logo-framework.png'; ?>" alt="Zo2 Hallo">
+        <img src="<?php echo ZO2URL_ASSETS . '/zo2/images/logo-framework.png'; ?>" alt="Zo2 Hallo">
     </div>
 </ul>
