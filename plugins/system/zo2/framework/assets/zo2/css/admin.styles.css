@@ -318,6 +318,30 @@
 #zo2-framework .zo2-top #zo2-form-renameProfile {
   display: none;
 }
+#zo2-framework .zo2-body #myTabZo2SidebarContent {
+  padding: 15px;
+}
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > li > a {
+  margin-bottom: 0;
+  padding: 12px 20px;
+}
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > .active > a,
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > .active > a:hover,
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > .active > a:focus {
+  background: #fff;
+  border-color: #dddddd #dddddd transparent #dddddd;
+  border-image: none;
+  border-radius: 5px 5px 0 0;
+  border-style: solid solid none;
+  border-width: 1px 1px medium;
+  color: #000;
+  margin-bottom: -1px;
+  outline: none;
+}
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav > li > a:hover,
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav > li > a:focus {
+  background-color: transparent;
+}
 #zo2-framework .zo2-body .zo2-divider {
   display: inline-block;
   margin: 24px 0 24px;
@@ -2427,30 +2451,6 @@ control-group:after
 #myTabGeneral,
 #myTabAdvance {
   border-bottom: 1px solid #ccc;
-}
-#myTabZo2SidebarContent {
-  padding: 25px;
-}
-#myTabZo2SidebarContent .nav-pills > li > a {
-  margin-bottom: 0;
-  padding: 12px 20px;
-}
-#myTabZo2SidebarContent .nav-pills > .active > a,
-#myTabZo2SidebarContent .nav-pills > .active > a:hover,
-#myTabZo2SidebarContent .nav-pills > .active > a:focus {
-  background: #fff;
-  border-color: #dddddd #dddddd transparent #dddddd;
-  border-image: none;
-  border-radius: 5px 5px 0 0;
-  border-style: solid solid none;
-  border-width: 1px 1px medium;
-  color: #000;
-  margin-bottom: -1px;
-  outline: none;
-}
-#myTabZo2SidebarContent .nav > li > a:hover,
-#myTabZo2SidebarContent .nav > li > a:focus {
-  background-color: transparent;
 }
 .zo2-body {
   background-color: #fafafa;
