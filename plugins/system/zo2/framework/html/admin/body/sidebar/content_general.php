@@ -142,28 +142,22 @@
         </div>
 
         <!-- Show "Go to top" -->
-        <div class="control-group">
-            <label class="control-label"><?php echo JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP'); ?></label>
-            <div class="controls">
-                <fieldset class="radio btn-group">
-                    <input name="jform[params][footer_gototop]" id="jform_params_footer_gototop1" type="radio" value="1" checked="checked" >
-                    <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
-                    <input name="jform[params][footer_gototop]" id="jform_params_footer_gototop0" type="radio" value="0" >
-                    <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                </fieldset>
-            </div>
-        </div>
+        <?php
+            echo Zo2Html::field(
+                'radio', array(
+                'label' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP'),
+            ), array(
+                'name' => 'jform[params][footer_gototop]',
+            ));
+        ?>
         <!-- Show footer logo -->
-        <div class="control-group">
-            <label class="control-label hasTooltip" data-original-title="<?php echo JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO_TITLE'); ?>"><?php echo JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO'); ?></label>
-            <div class="controls">
-                <fieldset class="radio btn-group">
-                    <input name="jform[params][footer_logo]" id="jform_params_footer_logo1" type="radio" value="1" checked="checked" >
-                    <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
-                    <input name="jform[params][footer_logo]" id="jform_params_footer_logo0" type="radio" value="0" >
-                    <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                </fieldset>
-            </div>
-        </div>
+        <?php
+            echo Zo2Html::field(
+                'radio', array(
+                'label' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO'),
+            ), array(
+                'name' => 'jform[params][footer_logo]',
+            ));
+        ?>
     </div>
 </div>

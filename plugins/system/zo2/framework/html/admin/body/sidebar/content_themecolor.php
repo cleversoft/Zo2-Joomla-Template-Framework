@@ -89,108 +89,102 @@ if (!isset($preset_data['bg_image']))
         Preset Settings
     </div>
     <div class="zo2_themes_form">
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_background"><?php echo JText::_('ZO2_TEMPLATE_THEME_BACKGROUND'); ?></label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_background" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['background'] ?>">
-                    <span id="color_background_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['background']) ? 'transparent' : $preset_data['background'] ?>"></span>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_header"><?php echo JText::_('ZO2_TEMPLATE_THEME_HEADER'); ?></label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_header" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['header'] ?>">
-                    <span id="color_header_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['header']) ? 'transparent' : $preset_data['header'] ?>"></span>
-                </div>
-            </div>
-        </div>
 
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_HEADER_TOP'); ?></label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_header_top" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['header_top'] ?>">
-                    <span id="color_header_top_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['header_top']) ? 'transparent' : $preset_data['header_top'] ?>"></span>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_text"><?php echo JText::_('ZO2_TEMPLATE_THEME_TEXT'); ?></label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_text" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['text'] ?>">
-                    <span id="color_text_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['text']) ? 'transparent' : $preset_data['text'] ?>"></span>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_link"><?php echo JText::_('ZO2_TEMPLATE_THEME_LINK'); ?></label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_link" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['link'] ?>">
-                    <span id="color_link_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['link']) ? 'transparent' : $preset_data['link'] ?>"></span>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_LINK_HOVER'); ?></label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_link_hover" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['link_hover'] ?>">
-                    <span id="color_link_hover_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['link_hover']) ? 'transparent' : $preset_data['link_hover'] ?>"></span>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_BOTTOM'); ?> 1</label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_bottom1" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['bottom1'] ?>">
-                    <span id="color_bottom1_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['bottom1']) ? 'transparent' : $preset_data['bottom1'] ?>"></span>
-                </div>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_link_hover"><?php echo JText::_('ZO2_TEMPLATE_THEME_BOTTOM'); ?> 2</label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_bottom2" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['bottom2'] ?>">
-                    <span id="color_bottom2_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['bottom2']) ? 'transparent' : $preset_data['bottom2'] ?>"></span>
-                </div>
-            </div>
-        </div>
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_BACKGROUND'),
+            ), array(
+                'name' => 'color_background',
+                'id' => 'color_background',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['background']
+            ));
+        ?>
 
-        <div class="control-group">
-            <div class="control-label">
-                <label for="color_footer"><?php echo JText::_('ZO2_TEMPLATE_THEME_FOOTER'); ?></label>
-            </div>
-            <div class="controls">
-                <div class="colorpicker-container">
-                    <input id="color_footer" type="text" class="txtColorPicker zo2_preset_variable" value="<?php echo $preset_data['footer'] ?>">
-                    <span id="color_footer_preview" class="color-preview" style="background-color: <?php echo empty($preset_data['footer']) ? 'transparent' : $preset_data['footer'] ?>"></span>
-                </div>
-            </div>
-        </div>
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_HEADER'),
+            ), array(
+                'name' => 'color_header',
+                'id' => 'color_header',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['header']
+            ));
+        ?>
 
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_HEADER_TOP'),
+            ), array(
+                'name' => 'color_header_top',
+                'id' => 'color_header_top',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['header_top']
+            ));
+        ?>
+
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_TEXT'),
+            ), array(
+                'name' => 'color_text',
+                'id' => 'color_text',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['text']
+            ));
+        ?>
+
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_LINK'),
+            ), array(
+                'name' => 'color_link',
+                'id' => 'color_link',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['link']
+            ));
+        ?>
+
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_LINK_HOVER'),
+            ), array(
+                'name' => 'color_link_hover',
+                'id' => 'color_link_hover',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['link_hover']
+            ));
+        ?>
+
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_BOTTOM'),
+            ), array(
+                'name' => 'color_bottom1',
+                'id' => 'color_bottom1',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['bottom1']
+            ));
+        ?>
+
+        <?php
+            echo Zo2Html::field(
+                'colorpicker', array(
+                'label' => JText::_('ZO2_TEMPLATE_THEME_BOTTOM_2'),
+            ), array(
+                'name' => 'color_bottom2',
+                'id' => 'color_bottom2',
+                'class' => 'txtColorPicker zo2_preset_variable',
+                'value' => $preset_data['bottom2']
+            ));
+        ?>
         <?php
             echo Zo2Html::field(
                 'colorpicker', array(

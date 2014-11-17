@@ -65,19 +65,14 @@
             </div>
 
             <!-- Show submenu -->
-            <div class="control-group">
-                <div class="control-label">
-                    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU'); ?></label>
-                </div>
-                <div class="controls">
-                    <fieldset class="radio btn-group">
-                        <input name="jform[params][menu_show_submenu]" id="jform_params_menu_show_submenu1" type="radio" value="1" checked="checked" >
-                        <label class="btn active btn-success"><?php echo JText::_('ZO2_YES'); ?></label>
-                        <input name="jform[params][menu_show_submenu]" id="jform_params_menu_show_submenu0" type="radio" value="0" >
-                        <label class="btn first"><?php echo JText::_('ZO2_NO'); ?></label>
-                    </fieldset>
-                </div>
-            </div>
+            <?php
+                echo Zo2Html::field(
+                    'radio', array(
+                    'label' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU'),
+                ), array(
+                    'name' => 'jform[params][menu_show_submenu]',
+                ));
+            ?>
 
             <!-- Menu type -->
             <div class="control-group">
