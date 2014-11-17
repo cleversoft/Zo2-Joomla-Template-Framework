@@ -601,18 +601,6 @@ zo2.jQuery(document).ready(function ($) {
         $container.trigger('font-change');
     });
 
-    // init font container: show/hide depends on active
-    $('.cbEnableFont').each(function () {
-        var $this = $(this);
-        var $container = $this.closest('.font-container');
-        var $optionsContainer = $container.find('>.font_options');
-
-        if ($this.find('.btn-on').hasClass('active'))
-            $optionsContainer.show();
-        else
-            $optionsContainer.hide();
-    });
-
     // bind on/off for font
     $('.cbEnableFont > button').on('click', function () {
         var $this = $(this);
@@ -1200,5 +1188,15 @@ jQuery(document).ready(function () {
         });
     });
 
+    jQuery(".slider_font_size").each(function() {
+        this.slider({
+            min: 0,
+            max: 100,
+            value: 60,
+            slide: function( event, ui ) {
+                this.next().next().val( ui.value );
+            }
+        });
+    });
 
 });

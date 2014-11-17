@@ -49,15 +49,6 @@ $fontStyles = array(
 <div class="font-container">
     <input type="hidden" value="<?php echo htmlspecialchars($this->data['value']) ?>" name="<?php echo $this->data['name'] ?>" id="<?php echo $this->data['id'] ?>" />
     <h3><?php echo $this->label['label']; ?></h3>
-    <div class="control-group">
-        <div class="control-label">
-            <div class="font-label">Enable</div>
-        </div>
-        <div class="controls btn-group btn-group-onoff cbEnableFont">
-            <button class="btn btn-on <?php echo $enable ? 'active btn-success' : '' ?>">On</button>
-            <button class="btn btn-off <?php echo!$enable ? 'active btn-danger' : '' ?>">Off</button>
-        </div>
-    </div>
     <div class="font_options" <?php echo $data ? 'style="display:block"' : 'style="display:none"' ?>>
         <div class="control-group">
             <div class="control-label">
@@ -109,17 +100,31 @@ $fontStyles = array(
 
         <div class="control-group">
             <div class="control-label">
-                <div class="font-label">Font options</div>
+                <div class="font-label">Font Size</div>
                 <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
             </div>
-            <div class="controls floatdiv clearfix">
-                <div><input type="text" class="txtFontSize" value="<?php echo $data['size'] ?>" /> px</div>
+            <div class="controls clearfix">
+                <div class="slider_font_size"></div>
+                <label for="amount"></label>
+                <input type="text" class="slider_font_size_value" readonly>
+            </div>
 
+            <div class="control-label">
+                <div class="font-label">Font Size</div>
+                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
+            </div>
+            <div class="controls clearfix">
                 <div class="colorpicker-container">
                     <input type="text" class="txtColorPicker" value="<?php echo $data['color'] ?>" />
                     <span class="color-preview" style="background-color: <?php echo empty($data['color']) ? 'transparent' : $data['color'] ?>"></span>
                 </div>
+            </div>
 
+            <div class="control-label">
+                <div class="font-label">Font Size</div>
+                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
+            </div>
+            <div class="controls clearfix">
                 <div>
                     <select class="ddlFontStyle">
                         <?php foreach ($fontStyles as $style => $title) { ?>
