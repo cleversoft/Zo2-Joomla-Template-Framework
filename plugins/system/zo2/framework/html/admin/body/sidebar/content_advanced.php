@@ -10,6 +10,7 @@
             'label' => JText::_('ZO2_ADMIN_ENABLE_RTL'),
         ), array(
             'name' => 'jform[params][enable_rtl]',
+            'value' => Zo2Factory::get('enable_rtl')
         ));
     ?>
     <!-- Responsive Layout -->
@@ -19,6 +20,7 @@
             'label' => JText::_('ZO2_ADMIN_RESPONSIVE_LAYOUT'),
         ), array(
             'name' => 'jform[params][responsive_layout]',
+            'value' => Zo2Factory::get('responsive_layout')
         ));
     ?>
     <!-- Enable Style Switcher -->
@@ -28,6 +30,7 @@
             'label' => JText::_('ZO2_ADMIN_ENABLE_STYLE_SWITCHER'),
         ), array(
             'name' => 'jform[params][enable_style_switcher]',
+            'value' => Zo2Factory::get('enable_style_switcher')
         ));
     ?>
     <!-- Enable Sticky Menu -->
@@ -37,6 +40,7 @@
             'label' => JText::_('ZO2_ADMIN_ENABLE_STICKY_MENU'),
         ), array(
             'name' => 'jform[params][enable_sticky_menu]',
+            'value' => Zo2Factory::get('enable_sticky_menu')
         ));
     ?>
 
@@ -53,7 +57,7 @@
             'name' => 'jform[params][footer_copyright]',
             'rows' => 10,
             'cols' => 20,
-            'value' => Zo2Factory::get('ga_code')
+            'value' => Zo2Factory::get('footer_copyright')
         ));
         ?>
         <span>Paste your Google Analytics (or other) tracking code here.<br /> This will be added before the closing body tag in the template. <br/> This should be something like<br /> &#60;script&#62;<br />....<br />&#60;/script&#62;</span>
@@ -70,6 +74,7 @@
             'label' => JText::_('ZO2_ADMIN_COMBINE_CSS'),
         ), array(
             'name' => 'jform[params][combine_css]',
+            'value' => Zo2Factory::get('combine_css')
         ));
     ?>
 
@@ -78,7 +83,8 @@
             'radio', array(
             'label' => JText::_('ZO2_ADMIN_COMBINE_JS'),
         ), array(
-            'name' => 'jform[params][combine_js]',
+            'value' => Zo2Factory::get('combine_js'),
+            'name' => 'jform[params][combine_js]'
         ));
     ?>
 
@@ -89,6 +95,7 @@
             'label' => JText::_('ZO2_ADMIN_LOAD_JQUERY'),
         ), array(
             'name' => 'jform[params][load_jquery]',
+            'value' => Zo2Factory::get('load_jquery')
         ));
     ?>
 
@@ -115,6 +122,7 @@
             'label' => JText::_('ZO2_ADMIN_DEBUG'),
         ), array(
             'name' => 'jform[params][debug]',
+            'value' => Zo2Factory::get('debug')
         ));
     ?>
 
@@ -124,6 +132,7 @@
             'label' => JText::_('ZO2_ADMIN_DISABLE_MOOTOOLS'),
         ), array(
             'name' => 'jform[params][disable_mootools]',
+            'value' => Zo2Factory::get('disable_mootools')
         ));
     ?>
 

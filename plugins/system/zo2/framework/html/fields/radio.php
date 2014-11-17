@@ -42,6 +42,7 @@ if(empty($this->data['options']))
     </div>
 <div class="controls">
     <fieldset class="radio btn-group">
+
         <?php
         foreach($this->data['options'] as $option) {
             $active = '';
