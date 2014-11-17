@@ -34,6 +34,9 @@ if (!class_exists('plgSystemZo2')) {
              */
             $jinput = JFactory::getApplication()->input;
             if ($jinput->get('zo2_task')) {
+                /**
+                 * @todo Provide better params to get different model for executing!
+                 */
                 $task = $jinput->get('zo2_task');
                 $model = new Zo2ModelAjax();
                 if (method_exists($model, $task)) {
