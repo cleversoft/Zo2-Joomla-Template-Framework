@@ -22,7 +22,7 @@ if (!class_exists('Zo2ModelJoomla')) {
      */
     class Zo2ModelJoomla {
 
-        public function getModels() {
+        public function getModules() {
             $app = JFactory::getApplication();
             $user = JFactory::getUser();
             $groups = implode(',', $user->getAuthorisedViewLevels());

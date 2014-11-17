@@ -100,7 +100,7 @@
                 'id' => 'jform_params_menu_type',
                 'name' => 'jform[params][menu_type]',
                 'value' => Zo2Factory::get('menu_type'),
-                'modules' => $model->getModels()
+                'modules' => $model->getModules()
             ));
             ?>            
         </div>

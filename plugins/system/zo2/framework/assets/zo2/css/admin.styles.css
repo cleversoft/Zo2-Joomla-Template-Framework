@@ -116,9 +116,6 @@
 #zo2-admin-megamenu .row-fluid [class*="span"]:first-child {
   margin-left: 0;
 }
-#zo2-admin-megamenu .admin-inline-toolbox {
-  height: 119px;
-}
 #zo2-admin-megamenu .dropdown-menu a {
   white-space: normal;
 }
@@ -317,14 +314,41 @@
 .zo2-megamenu .dropdown-menu .nav {
   margin: 0 0 0 15px;
 }
-.zo2-divider {
-  display: block;
-  float: left;
-  margin: 15px 0 30px;
+#zo2-framework .zo2-top #zo2-form-addProfile,
+#zo2-framework .zo2-top #zo2-form-renameProfile {
+  display: none;
+}
+#zo2-framework .zo2-body #myTabZo2SidebarContent {
+  padding: 15px;
+}
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > li > a {
+  margin-bottom: 0;
+  padding: 12px 20px;
+}
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > .active > a,
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > .active > a:hover,
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav-pills > .active > a:focus {
+  background: #fff;
+  border-color: #dddddd #dddddd transparent #dddddd;
+  border-image: none;
+  border-radius: 5px 5px 0 0;
+  border-style: solid solid none;
+  border-width: 1px 1px medium;
+  color: #000;
+  margin-bottom: -1px;
+  outline: none;
+}
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav > li > a:hover,
+#zo2-framework .zo2-body #myTabZo2SidebarContent .nav > li > a:focus {
+  background-color: transparent;
+}
+#zo2-framework .zo2-body .zo2-divider {
+  display: inline-block;
+  margin: 24px 0 24px;
   position: relative;
   width: 100%;
 }
-.zo2-divider:after {
+#zo2-framework .zo2-body .zo2-divider:after {
   position: absolute;
   width: 100%;
   height: 1px;
@@ -333,16 +357,9 @@
   left: 0;
   content: "";
 }
-body {
-  color: inherit !important;
-}
-#zo2fields {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  border: 1px solid #EBECF1;
-  background-color: #2C3439;
-  padding-bottom: 30px;
-  margin-top: -11px;
+#zo2-framework .zo2-body .logo-framework {
+  display: block;
+  padding: 40px 0 40px 25px;
 }
 #zo2-framework #logo {
   background: url('../images/zo2logo.png') no-repeat 0 0;
@@ -373,13 +390,14 @@ body {
   margin-top: 12px;
 }
 #zo2-framework #myTabZo2Sidebar.nav.nav-tabs {
-  background: #313940;
+  background: #fafafa;
   border: medium none;
   box-sizing: border-box;
   float: left;
   margin: 0;
   padding: 0;
-  width: 249px;
+  width: 245px;
+  border-right: 1px solid #ebebeb;
 }
 #zo2-framework .tab-pane {
   min-height: 402px;
@@ -467,7 +485,6 @@ body {
   width: 120px;
 }
 #zo2-framework .tab-pane {
-  padding: 0 15px 15px 25px;
   position: relative;
 }
 #zo2-framework .tab-pane .tab-pane {
@@ -531,7 +548,7 @@ body {
   float: left;
 }
 #zo2-framework #droppable-container {
-  overflow: auto;
+  overflow: hidden;
   position: relative;
 }
 #zo2-framework .disabled {
@@ -661,7 +678,7 @@ body {
   margin: 15px 0 20px;
 }
 #zo2-framework .admin-inline-toolbox ul {
-  margin: 0;
+  margin: 0 5px 10px 0;
   padding: 0;
 }
 #zo2-framework .admin-inline-toolbox li {
@@ -748,7 +765,6 @@ body {
 }
 #zo2-framework .row-control-container {
   float: left;
-  padding: 0 15px;
   width: 100%;
   height: 57px;
   line-height: 51px;
@@ -779,40 +795,32 @@ body {
   float: none;
   margin: 0;
   padding: 0;
-  border-bottom: 1px solid #2C3439;
 }
 #zo2-framework .nav-tabs > li > a {
-  border: none !important;
+  border: none;
   border-radius: 0;
-  color: #D9D9D9;
+  color: #555555;
   font-size: 14px;
   margin: 0;
   position: relative;
-  padding: 15px 15px 10px 15px;
+  padding: 8px 25px;
 }
 #zo2-framework .nav-tabs > li > a i {
+  font-size: 16px;
   font-weight: normal;
   height: 20px;
+  line-height: normal;
   padding-right: 5px;
   text-align: center;
+  vertical-align: 0;
   width: 20px;
-}
-#zo2-framework .nav-tabs > li.active > a:after {
-  border-color: transparent transparent transparent #2c3439;
-  border-style: solid;
-  border-width: 8px;
-  content: "";
-  margin-top: -5px;
-  position: absolute;
-  right: -16px;
-  top: 50%;
 }
 #zo2-framework #layoutbuilder-toolbar:hover {
   opacity: 1;
 }
 #zo2-framework .col-wrap {
   border: 1px solid #e9e9e9;
-  margin: 5px;
+  margin: 5px 0;
   border-radius: 3px;
   background: #FFFFFF;
 }
@@ -837,7 +845,6 @@ body {
 #zo2-framework .sortable-col {
   margin-bottom: 20px;
   position: relative;
-  padding: 0;
 }
 #zo2-framework [class^="icon-"]:before,
 #zo2-framework [class*=" icon-"]:before {
@@ -876,9 +883,10 @@ body {
 }
 #zo2-framework .zo2-progress {
   display: inline-block;
-  height: 25px;
+  height: 27px;
+  margin: 0 0 0 6px;
   vertical-align: top;
-  width: 30px;
+  width: 44px;
 }
 #zo2-framework .zo2-progress .bar {
   border-radius: 2px;
@@ -977,7 +985,12 @@ body {
   margin-left: 10px;
 }
 #zo2-framework .zo2_themes_row .zo2_themes_form input.zo2_other_preset_element {
-  width: inherit;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.075) inset;
+  margin-top: -5px;
+  padding: 4px 6px;
 }
 #zo2-framework .zo2_themes_row:last-child,
 #zo2-framework .zo2_themes_row .zo2_themes_row {
@@ -1002,6 +1015,10 @@ body {
 #zo2-framework .control-group:after {
   clear: none !important;
   width: 100%;
+}
+#zo2-framework .no-label .control-group {
+  float: left;
+  margin-right: 40px;
 }
 #zo2-framework .font-container {
   position: relative;
@@ -1046,8 +1063,8 @@ body {
 }
 #zo2-framework .col-control-buttons {
   position: absolute;
-  right: 10px;
-  top: 15px;
+  right: 20px;
+  top: 25px;
 }
 #zo2-framework .row-container {
   overflow: hidden;
@@ -1095,14 +1112,14 @@ body {
   height: 16px;
   width: 16px;
 }
-#zo2-framework .nav-tabs >.active >a,
-#zo2-framework .nav-tabs >.active >a:hover,
-#zo2-framework .nav-tabs >.active >a:focus,
-#zo2-framework .nav-tabs >li >a:hover {
-  background-color: #2C3439;
-  border: none !important;
-  color: #D9D9D9;
+#zo2-framework .nav-tabs > .active > a {
+  background-color: #ffffff;
   outline: none;
+  border-bottom: 1px solid #ebebeb;
+  border-top: 1px solid #ebebeb;
+}
+#zo2-framework .nav-tabs > li:first-child.active > a {
+  border-top: none;
 }
 #zo2-framework .sortable-row {
   margin-bottom: 20px;
@@ -2399,102 +2416,49 @@ body {
 #zo2-framework.joomla-25 #assignment #menu-assignment ul.menu-links label {
   float: none;
 }
-#theme .zo2_themes_row .zo2_themes_form .background-select {
-  margin: 10px 0 0;
-  list-style: none;
-  width: 60%;
+#zo2-about .zo2-divider,
+#zo2-about dd {
+  margin: 0;
 }
-#theme .zo2_themes_row .zo2_themes_form .background-select li {
-  display: inline-block;
-  margin: 0 15px 15px 0;
-  text-align: center;
-  cursor: pointer;
-  border: 3px solid #ddd;
+#zo2-about dt {
+  margin-top: 10px;
 }
-#theme .zo2_themes_row .zo2_themes_form .background-select li img {
-  width: 50px;
-  height: 50px;
+body {
+  color: inherit !important;
 }
-#theme .zo2_themes_row .zo2_themes_form .background-select li.selected {
-  border-color: #5BB75B;
+#zo2fields {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  border: 1px solid #EBECF1;
+  background-color: #2C3439;
+  padding-bottom: 30px;
+  margin-top: -11px;
 }
-#theme .zo2_themes_row .zo2_themes_form .background-select li.selected:hover {
-  border-color: #5BB75B;
+#profile-menu-assignment {
+  margin-top: 10px;
 }
-#theme .zo2_themes_row .zo2_themes_form .background-select li:hover,
-#theme .zo2_themes_row .zo2_themes_form .background-select li:focus {
-  border-color: #3B65F6;
-}
+control-group:after
+
 #theme .profiles-pane .profiles-pane-inner .controls .input-group-btn .btn-default {
   background: #f5f5f5;
   border: 1px solid #e6e6e6;
 }
+control-group:after
+
 #theme .profiles-pane .profiles-pane-inner .controls .add-new-profiles {
   margin: 15px 0;
-}
-#myTabContent {
-  padding: 20px;
-  border: 1px solid #3bafda;
-  border-top: 0;
 }
 #myTabGeneral,
 #myTabAdvance {
   border-bottom: 1px solid #ccc;
 }
-#myTabTabs {
-  margin-bottom: 0;
-  border: none;
-  background-color: #3bafda;
-}
-#myTabTabs.nav-tabs > li,
-#myTabTabs.nav-pills > li {
-  margin-bottom: 0;
-}
-#myTabTabs.nav-tabs > li > a,
-#myTabTabs.nav-pills > li > a {
-  background-color: transparent;
-  border: medium none;
-  color: #fff;
-  border-radius: 0;
-  margin: 0;
-  padding: 12px 30px;
-}
-#myTabTabs.nav-tabs > li.active > a,
-#myTabTabs.nav-tabs > li:hover > a,
-#myTabTabs.nav-pills > li.active > a,
-#myTabTabs.nav-pills > li:hover > a {
-  background-color: #0b7ba5;
-}
-#myTabTabs.nav-tabs > li.active > a:focus,
-#myTabTabs.nav-tabs > li:hover > a:focus,
-#myTabTabs.nav-pills > li.active > a:focus,
-#myTabTabs.nav-pills > li:hover > a:focus {
-  border: none;
-  outline: none;
-}
-#myTabZo2SidebarContent .nav-pills > li > a {
-  margin-bottom: 0;
-  padding: 12px 20px;
-}
-#myTabZo2SidebarContent .nav-pills > .active > a,
-#myTabZo2SidebarContent .nav-pills > .active > a:hover,
-#myTabZo2SidebarContent .nav-pills > .active > a:focus {
-  background: #fff;
-  border-color: #dddddd #dddddd transparent #dddddd;
-  border-image: none;
-  border-radius: 5px 5px 0 0;
-  border-style: solid solid none;
-  border-width: 1px 1px medium;
-  color: #000;
-  margin-bottom: -1px;
-  outline: none;
-}
-#myTabZo2SidebarContent .nav > li > a:hover,
-#myTabZo2SidebarContent .nav > li > a:focus {
-  background-color: transparent;
-}
 .zo2-body {
-  background-color: #313940;
+  background-color: #fafafa;
+  border: 1px solid #ebebeb;
+}
+.zo2-body h2 {
+  font-weight: normal;
+  font-size: 200%;
 }
 #myTabZo2SidebarContent {
   background-color: #fff;
@@ -2502,8 +2466,26 @@ body {
 .form-horizontal #zo2-framework .control-label {
   min-width: 180px;
 }
+.form-horizontal #zo2-framework .no-label .control-label {
+  display: none;
+}
 .form-horizontal #zo2-framework .control-group .controls:not(.btn-group) {
   padding-left: 180px;
+}
+.form-horizontal #zo2-framework .control-group.no-margin .controls:not(.btn-group) {
+  padding-left: 0;
+}
+.form-horizontal #zo2-framework .zo2-top .control-label {
+  min-width: 220px;
+}
+.form-horizontal #zo2-framework .zo2-top .control-group .controls:not(.btn-group) {
+  padding-left: 220px;
+}
+.form-horizontal #zo2-framework .zo2-top input[type="text"],
+.form-horizontal #zo2-framework .zo2-top input[type="password"],
+.form-horizontal #zo2-framework .zo2-top input[type="number"],
+.form-horizontal #zo2-framework .zo2-top input[type="email"] {
+  width: 206px;
 }
 input[type="text"],
 input[type="password"],
@@ -2514,4 +2496,23 @@ input[type="email"] {
 textarea {
   min-width: 500px;
   width: 50%;
+}
+.zo2-overlay {
+  background-color: rgba(0,0,0,0.6);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+.zo2-overlay > span.zo2-overlay-loadding {
+  background: url("../images/zo2_loading.gif") no-repeat center center rgba(0,0,0,0.5);
+  border-radius: 4px;
+  height: 44px;
+  left: 50%;
+  margin: -17px 0 0 -17px;
+  position: absolute;
+  top: 50%;
+  width: 44px;
 }
