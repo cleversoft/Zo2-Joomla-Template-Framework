@@ -86,8 +86,8 @@ defined('_JEXEC') or die('Restricted access');
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <button class="btn btn-primary" id="btnBackupProfile" onClick="window.open('<?php echo JUri::getInstance()->toString() . '&zo2_task=downloadBackup&tmpl=raw'; ?>');return false;" data-toggle="button" data-loading-text="Processing..." >Backup</button>
-            <button class="btn btn-danger" id="btnRestoreProfile" onClick="" data-toggle="button" data-loading-text="Processing..." >Restore</button>
+            <button class="btn btn-primary" id="btnBackupProfile" onClick="window.open('<?php echo JUri::getInstance()->toString() . '&zo2_task=downloadBackup&tmpl=raw'; ?>');
+                    return false;" data-toggle="button" data-loading-text="Processing..." >Backup</button>            
         </div>
     </div>
 </div>
