@@ -148,6 +148,7 @@
                 'label' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP'),
             ), array(
                 'name' => 'jform[params][footer_gototop]',
+                'value' => Zo2Factory::get('footer_gototop')
             ));
         ?>
         <!-- Show footer logo -->
@@ -157,6 +158,7 @@
                 'label' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO'),
             ), array(
                 'name' => 'jform[params][footer_logo]',
+                'value' => Zo2Factory::get('footer_logo')
             ));
         ?>
     </div>

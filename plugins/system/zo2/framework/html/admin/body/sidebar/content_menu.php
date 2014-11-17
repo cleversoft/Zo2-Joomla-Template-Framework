@@ -71,6 +71,7 @@
                     'label' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU'),
                 ), array(
                     'name' => 'jform[params][menu_show_submenu]',
+                    'value' => Zo2Factory::get('menu_show_submenu')
                 ));
             ?>
 
