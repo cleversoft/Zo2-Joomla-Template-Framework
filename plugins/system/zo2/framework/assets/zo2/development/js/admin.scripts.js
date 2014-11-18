@@ -552,6 +552,37 @@
                 zo2.admin.layoutBuilder.setting();
                 zo2.admin.layoutBuilder.save();
             },
+            rearrangeSpan: function ($container) {
+                var $ = jQuery;
+                var $spans = $container.find('>[data-zo2-type="span"]');
+                if ($spans.length > 0) {
+                    var width = 0;
+                    if ($spans.length == 1) {
+                        width = 12 - parseInt($spans.attr('data-zo2-offset'));
+                        if (width > 0) {
+                            $spans.removeClass(allColClass);
+                            $spans.addClass('col-md-' + width);
+                            $spans.attr('data-zo2-span', width);
+                        }
+                    }
+                    else
+                    {
+                        var $lastSpan = $spans.eq($spans.length - 1);
+                        var totalWidth = 0;
+                        for (var i = 0, total = $spans.length - 1; i < total; i++) {
+                            var $currentSpan = $spans.eq(i);
+                            totalWidth += parseInt($currentSpan.attr('data-zo2-offset')) + parseInt($currentSpan.attr('data-zo2-span'));
+                        }
+
+                        width = 12 - totalWidth;
+                        if (width > 0) {
+                            $lastSpan.removeClass(allColClass);
+                            $lastSpan.addClass('col-md-' + width);
+                            $lastSpan.attr('data-zo2-span', width);
+                        }
+                    }
+                }
+            },
             duplicate: function() {
                 $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function () {
                     var $this = $(this);
@@ -637,7 +668,7 @@
                         var $container = $this.closest('.col-container');
                         if (result)
                             $this.closest('.sortable-col').remove();
-                        rearrangeSpan($container);
+                        zo2.admin.layoutBuilder.rearrangeSpan($container);
                     });
                 });
             },
@@ -752,7 +783,122 @@
                     return false;
                 });
             }
+        },
+
+
+        generateJson: function () {
+            var $rootParent = jQuery('#droppable-container .zo2-container');
+            var json = [];
+            /* Loop all rows */
+            $rootParent.find('>[data-zo2-type="row"]').each(function () {
+                var itemJson = zo2.admin.generateItemJson(jQuery(this));
+                if (itemJson != null)
+                    json.push(itemJson);
+            });
+
+            return JSON.stringify(json);
+        },
+
+        /**
+         *
+         * @param {type} $item
+         * @returns {generateItemJson.result}
+         */
+        generateItemJson: function ($item) {
+            var result = null;
+            var $childrenContainer = null;
+            /* Row */
+            if ($item.attr('data-zo2-type') == 'row') {
+                result = {
+                    type: "row",
+                    name: $item.find('> .row-control > .row-control-container > .row-name').text(),
+                    customClass: $item.attr('data-zo2-customClass'),
+                    id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
+                    fullwidth: $item.attr('data-zo2-fullwidth') == '1',
+                    visibility: {
+                        xs: $item.attr('data-zo2-visibility-xs') == '1',
+                        sm: $item.attr('data-zo2-visibility-sm') == '1',
+                        md: $item.attr('data-zo2-visibility-md') == '1',
+                        lg: $item.attr('data-zo2-visibility-lg') == '1'
+                    },
+                    children: []
+                };
+
+                $childrenContainer = $item.find('> .row-control > .col-container');
+
+                $childrenContainer.find('> [data-zo2-type]').each(function () {
+                    var childItem = zo2.admin.generateItemJson(jQuery(this));
+                    result.children.push(childItem);
+                });
+            }
+            /* Column */
+            else if ($item.attr('data-zo2-type') == 'span') {
+                result = {
+                    jdoc: $item.attr('data-zo2-jdoc'),
+                    type: "col",
+                    name: $item.find('> .col-wrap > .col-name').text(),
+                    position: $item.attr('data-zo2-position'),
+                    span: parseInt($item.attr('data-zo2-span')),
+                    offset: parseInt($item.attr('data-zo2-offset')),
+                    customClass: $item.attr('data-zo2-customClass') ? $item.attr('data-zo2-customClass') : '',
+                    style: $item.attr('data-zo2-style'),
+                    id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
+                    visibility: {
+                        xs: $item.attr('data-zo2-visibility-xs') == '1',
+                        sm: $item.attr('data-zo2-visibility-sm') == '1',
+                        md: $item.attr('data-zo2-visibility-md') == '1',
+                        lg: $item.attr('data-zo2-visibility-lg') == '1'
+                    },
+                    children: []
+                };
+
+                $childrenContainer = $item.find('> .col-wrap > .row-container');
+
+                $childrenContainer.find('> [data-zo2-type]').each(function () {
+                    var childItem = zo2.admin.generateItemJson(jQuery(this));
+                    result.children.push(childItem);
+                });
+            }
+
+            return result;
+        },
+
+        generateLogoJson: function ($container) {
+            var $buttons = $container.find('.logo-type-switcher').find('button');
+            var $input = $container.find('.logoInput');
+            var $activeButton = $container.find('.logo-type-switcher').find('button.active');
+
+            var data = {type: "none"};
+
+            if ($activeButton.hasClass('logo-type-none')) {
+                data = {type: "none"};
+            }
+            else if ($activeButton.hasClass('logo-type-image')) {
+                var logoPath = $container.find('.logo-path').val();
+                var width = parseInt($container.find('.logo-width').val());
+                var height = parseInt($container.find('.logo-height').val());
+                if (isNaN(width))
+                    width = 0;
+                if (isNaN(height))
+                    height = 0;
+
+                data = {
+                    type: "image",
+                    path: logoPath,
+                    width: width,
+                    height: height
+                };
+            }
+            else if ($activeButton.hasClass('logo-type-text')) {
+                data = {
+                    type: "text",
+                    text: $container.find('.logo-text-input').val()
+                };
+            }
+            $input.val(JSON.stringify(data));
         }
+
+
     };
     /* Init Zo2.admin */
     $(document).ready(function () {
@@ -845,9 +991,6 @@ zo2.jQuery(document).ready(function ($) {
     });
 
 
-
-
-
     $('.field-logo-container').on('click', '.btn-remove-preview', function () {
         var $this = $(this);
         var $container = $this.closest('.field-logo-container');
@@ -880,253 +1023,58 @@ zo2.jQuery(document).ready(function ($) {
         return false;
     });
 
-    /*
-
-     var $select = $('#display_type_choose').find('select:first');
-     var $normal_display = $('.display_type_normal');
-
-     if ($select.val() == 'normal') $normal_display.show();
-     else $normal_display.hide();
-
-     jQuery('#display_type_choose').find('select:first').change(function() {
-     var $this = $(this);
-     if ($this.val() == 'normal') $normal_display.slideDown();
-     else $normal_display.slideUp();
-     });
-     */
-
-    // bind clear cache button
-//    $('#btnClearCache').on('click', function () {
-//        var $this = $(this);
-//        var clearCacheUrl = Assets.root + 'index.php?zo2controller=clearCache';
-//        var prefix = '';
-//        var interval = setInterval(function () {
-//            prefix += '.';
-//            if (prefix.length >= 4)
-//                prefix = '';
-//            $this.text('Clearing cache' + prefix);
-//        }, 1000);
-//        $.get(clearCacheUrl, function () {
-//            clearInterval(interval);
-//            $this.removeClass('btn-danger').addClass('btn-success').text('Clear cache successfully');
-//
-//            setTimeout(function () {
-//                $this.removeClass('btn-success').addClass('btn-danger').text('Clear layout cache');
-//            }, 2000);
-//        });
-//        return false;
-//    });
-
-});
 
 
+    var refreshLogoPreview = function (ele) {
+        var $ = jQuery;
+        var $this = $(ele);
+        var $container = $this.closest('.field-logo-container');
+        var $preview = $container.find('.logo-preview');
+        var baseUri = $container.find('.basePath').val();
+        var $input = $container.find('.logoInput');
+        var $logoWidth = $container.find('.logo-width');
+        var $logoHeight = $container.find('.logo-height');
 
-var refreshLogoPreview = function (ele) {
-    var $ = jQuery;
-    var $this = $(ele);
-    var $container = $this.closest('.field-logo-container');
-    var $preview = $container.find('.logo-preview');
-    var baseUri = $container.find('.basePath').val();
-    var $input = $container.find('.logoInput');
-    var $logoWidth = $container.find('.logo-width');
-    var $logoHeight = $container.find('.logo-height');
-
-    $preview.empty();
-    var $previewImg = $('<img />').appendTo($preview);
-    $logoWidth.val('0');
-    $logoHeight.val('0');
-    $previewImg.on('load', function () {
-        $logoWidth.val(this.naturalWidth);
-        $logoHeight.val(this.naturalHeight);
-    });
-    $previewImg.attr('src', baseUri + '/' + $this.val());
-};
-
-var generateLogoJson = function ($container) {
-    var $buttons = $container.find('.logo-type-switcher').find('button');
-    var $input = $container.find('.logoInput');
-    var $activeButton = $container.find('.logo-type-switcher').find('button.active');
-
-    var data = {type: "none"};
-
-    if ($activeButton.hasClass('logo-type-none')) {
-        data = {type: "none"};
-    }
-    else if ($activeButton.hasClass('logo-type-image')) {
-        var logoPath = $container.find('.logo-path').val();
-        var width = parseInt($container.find('.logo-width').val());
-        var height = parseInt($container.find('.logo-height').val());
-        if (isNaN(width))
-            width = 0;
-        if (isNaN(height))
-            height = 0;
-
-        data = {
-            type: "image",
-            path: logoPath,
-            width: width,
-            height: height
-        };
-    }
-    else if ($activeButton.hasClass('logo-type-text')) {
-        data = {
-            type: "text",
-            text: $container.find('.logo-text-input').val()
-        };
-    }
-
-    $input.val(JSON.stringify(data));
-};
-
-
-
-/**
- *
- * @returns {String}
- */
-var generateJson = function () {
-    var $rootParent = jQuery('#droppable-container .zo2-container');
-    var json = [];
-    /* Loop all rows */
-    $rootParent.find('>[data-zo2-type="row"]').each(function () {
-        var itemJson = generateItemJson(jQuery(this));
-        if (itemJson != null)
-            json.push(itemJson);
-    });
-
-    return JSON.stringify(json);
-};
-
-/**
- *
- * @param {type} $item
- * @returns {generateItemJson.result}
- */
-var generateItemJson = function ($item) {
-    var result = null;
-    var $childrenContainer = null;
-    /* Row */
-    if ($item.attr('data-zo2-type') == 'row') {
-        result = {
-            type: "row",
-            name: $item.find('> .row-control > .row-control-container > .row-name').text(),
-            customClass: $item.attr('data-zo2-customClass'),
-            id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
-            fullwidth: $item.attr('data-zo2-fullwidth') == '1',
-            visibility: {
-                xs: $item.attr('data-zo2-visibility-xs') == '1',
-                sm: $item.attr('data-zo2-visibility-sm') == '1',
-                md: $item.attr('data-zo2-visibility-md') == '1',
-                lg: $item.attr('data-zo2-visibility-lg') == '1'
-            },
-            children: []
-        };
-
-        $childrenContainer = $item.find('> .row-control > .col-container');
-
-        $childrenContainer.find('> [data-zo2-type]').each(function () {
-            var childItem = generateItemJson(jQuery(this));
-            result.children.push(childItem);
+        $preview.empty();
+        var $previewImg = $('<img />').appendTo($preview);
+        $logoWidth.val('0');
+        $logoHeight.val('0');
+        $previewImg.on('load', function () {
+            $logoWidth.val(this.naturalWidth);
+            $logoHeight.val(this.naturalHeight);
         });
-    }
-    /* Column */
-    else if ($item.attr('data-zo2-type') == 'span') {
-        result = {
-            jdoc: $item.attr('data-zo2-jdoc'),
-            type: "col",
-            name: $item.find('> .col-wrap > .col-name').text(),
-            position: $item.attr('data-zo2-position'),
-            span: parseInt($item.attr('data-zo2-span')),
-            offset: parseInt($item.attr('data-zo2-offset')),
-            customClass: $item.attr('data-zo2-customClass') ? $item.attr('data-zo2-customClass') : '',
-            style: $item.attr('data-zo2-style'),
-            id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
-            visibility: {
-                xs: $item.attr('data-zo2-visibility-xs') == '1',
-                sm: $item.attr('data-zo2-visibility-sm') == '1',
-                md: $item.attr('data-zo2-visibility-md') == '1',
-                lg: $item.attr('data-zo2-visibility-lg') == '1'
-            },
-            children: []
-        };
+        $previewImg.attr('src', baseUri + '/' + $this.val());
+    };
 
-        $childrenContainer = $item.find('> .col-wrap > .row-container');
 
-        $childrenContainer.find('> [data-zo2-type]').each(function () {
-            var childItem = generateItemJson(jQuery(this));
-            result.children.push(childItem);
+    /* Override default submit function */
+    Joomla.submitform = function (task, form) {
+        if (typeof (form) === 'undefined' || form === null) {
+            form = document.adminForm;
+        }
+        jQuery('.toolbox-saveConfig').trigger('click'); // dirty hack for megamenu save
+
+        if (typeof (task) !== 'undefined') {
+            form.task.value = task;
+        }
+
+        // Submit the form.
+        if (typeof form.onsubmit == 'function') {
+            form.onsubmit();
+        }
+        if (typeof form.fireEvent == "function") {
+            form.fireEvent('submit');
+        }
+
+        var $ = jQuery;
+        var $input = $('.hfLayoutHtml');
+        $('.field-logo-container').each(function () {
+            zo2.admin.generateLogoJson($(this));
         });
-    }
+        $input.val(zo2.admin.generateJson());
 
-    return result;
-};
-
-var rearrangeSpan = function ($container) {
-    var $ = jQuery;
-    var $spans = $container.find('>[data-zo2-type="span"]');
-    if ($spans.length > 0) {
-        var width = 0;
-        if ($spans.length == 1) {
-            width = 12 - parseInt($spans.attr('data-zo2-offset'));
-            if (width > 0) {
-                $spans.removeClass(allColClass);
-                $spans.addClass('col-md-' + width);
-                $spans.attr('data-zo2-span', width);
-            }
-        }
-        else
-        {
-            var $lastSpan = $spans.eq($spans.length - 1);
-            var totalWidth = 0;
-            for (var i = 0, total = $spans.length - 1; i < total; i++) {
-                var $currentSpan = $spans.eq(i);
-                totalWidth += parseInt($currentSpan.attr('data-zo2-offset')) + parseInt($currentSpan.attr('data-zo2-span'));
-            }
-
-            width = 12 - totalWidth;
-            if (width > 0) {
-                $lastSpan.removeClass(allColClass);
-                $lastSpan.addClass('col-md-' + width);
-                $lastSpan.attr('data-zo2-span', width);
-            }
-        }
-    }
-};
-
-
-/* Override default submit function */
-Joomla.submitform = function (task, form) {
-    if (typeof (form) === 'undefined' || form === null) {
-        form = document.adminForm;
-    }
-    jQuery('.toolbox-saveConfig').trigger('click'); // dirty hack for megamenu save
-
-    if (typeof (task) !== 'undefined') {
-        form.task.value = task;
-    }
-
-    // Submit the form.
-    if (typeof form.onsubmit == 'function') {
-        form.onsubmit();
-    }
-    if (typeof form.fireEvent == "function") {
-        form.fireEvent('submit');
-    }
-
-    var $ = jQuery;
-    var $input = $('.hfLayoutHtml');
-    $('.field-logo-container').each(function () {
-        generateLogoJson($(this));
-    });
-    $input.val(generateJson());
-
-    form.submit();
-};
-
-
-
-jQuery(document).ready(function () {
-
+        form.submit();
+    };
 
 
     /* Submit remove */
