@@ -28,7 +28,10 @@
             ],
             visibilityAttributes: [
                 'data-zo2-visibility-xs', 'data-zo2-visibility-sm', 'data-zo2-visibility-md', 'data-zo2-visibility-lg'
-            ]
+            ],
+            allColClass: 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12',
+            allColOffset: 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
+                'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12'
         },
         /**
          * Init function
@@ -560,7 +563,7 @@
                     if ($spans.length == 1) {
                         width = 12 - parseInt($spans.attr('data-zo2-offset'));
                         if (width > 0) {
-                            $spans.removeClass(allColClass);
+                            $spans.removeClass(zo2.admin._settings.allColClass);
                             $spans.addClass('col-md-' + width);
                             $spans.attr('data-zo2-span', width);
                         }
@@ -576,7 +579,7 @@
 
                         width = 12 - totalWidth;
                         if (width > 0) {
-                            $lastSpan.removeClass(allColClass);
+                            $lastSpan.removeClass(zo2.admin._settings.allColClass);
                             $lastSpan.addClass('col-md-' + width);
                             $lastSpan.attr('data-zo2-span', width);
                         }
@@ -592,8 +595,8 @@
                     $row.attr('data-zo2-type', 'row');
                     $row.attr('data-zo2-customClass', '');
                     $row.attr('data-zo2-fullwidth', '0');
-                    for (var i = 0; i < visibilityAttributes.length; i++) {
-                        $row.attr(visibilityAttributes[i], '1');
+                    for (var i = 0; i < zo2.admin._settings.visibilityAttributes.length; i++) {
+                        $row.attr(zo2.admin._settings.visibilityAttributes[i], '1');
                     }
                     //$row.attr('data-zo2-layout', 'fixed');
                     var $meta = jQuery('<div class="col-md-12 row-control">' +
@@ -629,8 +632,8 @@
                         $span.attr('data-zo2-position', '');
                         $span.attr('data-zo2-offset', 0);
                         $span.attr('data-zo2-customClass', '');
-                        for (var i = 0; i < visibilityAttributes.length; i++) {
-                            $span.attr(visibilityAttributes[i], '1');
+                        for (var i = 0; i < zo2.admin._settings.visibilityAttributes.length; i++) {
+                            $span.attr(zo2.admin._settings.visibilityAttributes[i], '1');
                         }
                         var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
                             '<div class="col-control-buttons">' +
@@ -650,7 +653,7 @@
                         // apply new span number
                         $colContainer.find('>[data-zo2-type="span"]').each(function (index) {
                             var $this = jQuery(this);
-                            $this.removeClass(allColClass);
+                            $this.removeClass(zo2.admin._settings.allColClass);
                             $this.addClass('col-md-' + selectedStrategy[index]);
                             $this.attr('data-zo2-span', selectedStrategy[index]);
                         });
@@ -681,8 +684,8 @@
                     $row.attr('data-zo2-type', 'row');
                     $row.attr('data-zo2-customClass', '');
                     $row.attr('data-zo2-fullwidth', '0');
-                    for (var i = 0; i < visibilityAttributes.length; i++) {
-                        $row.attr(visibilityAttributes[i], '1');
+                    for (var i = 0; i < zo2.admin._settings.visibilityAttributes.length; i++) {
+                        $row.attr(zo2.admin._settings.visibilityAttributes[i], '1');
                     }
                     //$row.attr('data-zo2-layout', 'fixed');
                     var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
@@ -775,8 +778,8 @@
                     $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
 
                     var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
-                    $col.removeClass(allColClass).addClass('col-md-' + $('#dlColWidth').val());
-                    $col.removeClass(allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
+                    $col.removeClass(zo2.admin._settings.allColClass).addClass('col-md-' + $('#dlColWidth').val());
+                    $col.removeClass(zo2.admin._settings.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
                     $col.attr('data-zo2-position', $('#dlColPosition').val());
                     $col.find('>.col-wrap>.col-name').text(colName);
                     $('#colSettingsModal').modal('hide');
@@ -906,16 +909,6 @@
     });
 
 })(window, zo2, zo2.jQuery);
-
-var strategy = [
-    [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
-];
-
-var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 'data-zo2-visibility-md', 'data-zo2-visibility-lg'];
-
-var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
-var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
 zo2.jQuery(document).ready(function ($) {
 
@@ -1075,7 +1068,6 @@ zo2.jQuery(document).ready(function ($) {
 
         form.submit();
     };
-
 
     /* Submit remove */
     jQuery('#zo2-removeProfile').on('click', function () {
