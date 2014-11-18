@@ -83,7 +83,6 @@ if (!class_exists('Zo2Assets')) {
                     $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
                 }
             }
-            JHtml::_('jquery.ui');
         }
 
         /**

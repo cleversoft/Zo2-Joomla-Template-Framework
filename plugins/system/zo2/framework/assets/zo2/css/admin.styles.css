@@ -811,6 +811,11 @@
 #zo2-framework .font-options-fontdeck {
   display: none;
 }
+#zo2-framework .slider_font_size {
+  width: 300px;
+  float: left;
+  margin-right: 20px;
+}
 #zo2-framework #megamenu,
 #zo2-framework #advanced {
   padding: 15px;

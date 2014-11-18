@@ -23,9 +23,7 @@ if (!empty($this->data['value'])) {
 if (!isset($data['type']))
     $data['type'] = 'standard';
 if (!isset($data['size']))
-    $data['size'] = null;
-if (!isset($data['color']))
-    $data['color'] = null;
+    $data['size'] = '14';
 if (!isset($data['style']))
     $data['style'] = null;
 if (!isset($data['family']))
@@ -105,23 +103,12 @@ $fontStyles = array(
             </div>
             <div class="controls clearfix">
                 <div class="slider_font_size"></div>
-                <label for="amount"></label>
-                <input type="text" class="slider_font_size_value" readonly>
+                <label for="amount"><?php echo $data['size'] ?> px</label><?php echo $data['size'] ?>
+                <input type="hidden" class="txtFontSize slider_font_size_value" value="<?php echo $data['size'] ?>" readonly>
             </div>
 
             <div class="control-label">
-                <div class="font-label">Font Size</div>
-                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
-            </div>
-            <div class="controls clearfix">
-                <div class="colorpicker-container">
-                    <input type="text" class="txtColorPicker" value="<?php echo $data['color'] ?>" />
-                    <span class="color-preview" style="background-color: <?php echo empty($data['color']) ? 'transparent' : $data['color'] ?>"></span>
-                </div>
-            </div>
-
-            <div class="control-label">
-                <div class="font-label">Font Size</div>
+                <div class="font-label">Font Style</div>
                 <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
             </div>
             <div class="controls clearfix">

@@ -45,9 +45,7 @@ if(empty($this->data['options']))
 
         <?php
         foreach($this->data['options'] as $option) {
-            $active = '';
-            $checked = '';
-            $class = '';
+            $active = $checked = $class = '';
             if($this->data['value'] == $option['value']){
                 $active = 'active';
                 $checked = 'checked';

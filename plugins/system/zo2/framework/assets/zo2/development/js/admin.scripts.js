@@ -37,6 +37,7 @@
         _init: function () {
             this.bindSortable();
             this.themes.init();
+            this.font.init();
         },
         /**
          * Backend ajax
@@ -366,6 +367,22 @@
                     generatePresetData();
                 });
             }
+        },
+        font: {
+            init: function() {
+                zo2.admin.font.fontSizeSlider();
+            },
+            fontSizeSlider: function() {
+                jQuery( ".slider_font_size" ).slider({
+                    min: 5,
+                    max: 100,
+                    value: jQuery(this).next().next().val(),
+                    slide: function( event, ui ) {
+                        jQuery(this).next().html(ui.value+ ' px');
+                        jQuery(this).next().next().val( ui.value );
+                    }
+                });
+            }
         }
     };
     /* Init Zo2.admin */
@@ -429,9 +446,6 @@ zo2.jQuery(document).ready(function ($) {
         }
     });
 
-    /*============For all==============*/
-    injectFormSubmit();
-    //wrapForm();
 
     // bind event to generate row id
     $('#txtRowName').on('keyup', function (e) {
@@ -1187,6 +1201,5 @@ jQuery(document).ready(function () {
             }
         });
     });
-
 
 });
