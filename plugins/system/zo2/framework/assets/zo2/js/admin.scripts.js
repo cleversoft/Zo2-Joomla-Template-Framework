@@ -394,7 +394,7 @@ zo2.jQuery(document).ready(function ($) {
             var input = label.prev();
 
             if (!input.prop('checked')) {
-                label.closest('.btn-group').find('label').removeClass('active btn-success btn-danger btn-primary');
+                label.closest('.btn-group').find('label').removeClass('btn-success').removeClass('btn-danger').removeClass('btn-primary');
                 if (input.val() == '') {
                     label.addClass('active btn-primary');
                 } else if (input.val() == 0) {
