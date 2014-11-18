@@ -52,7 +52,7 @@
         }
         echo Zo2Html::field(
                 'textarea', array(
-            'label' => 'Custom CSS',
+            'label' => 'Custom CSS Styles',
                 ), array(
             'name' => 'zo2[custom_css]',
             'rows' => 10,
@@ -70,7 +70,7 @@
         }
         echo Zo2Html::field(
                 'textarea', array(
-            'label' => 'Custom JS',
+            'label' => 'Custom Javascript code',
                 ), array(
             'name' => 'zo2[custom_js]',
             'rows' => 10,
