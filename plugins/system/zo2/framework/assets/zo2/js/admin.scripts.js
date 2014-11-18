@@ -36,7 +36,7 @@
          */
         _init: function () {
             this.bindSortable();
-            this.themes.selectPreset();
+            this.themes.init();
         },
         /**
          * Backend ajax
@@ -183,6 +183,18 @@
         },
         themes: {
             /**
+             *  Initial events for preset theme
+             * @returns {undefined}
+             */
+            init: function() {
+                zo2.admin.themes.selectPreset();
+                zo2.admin.themes.addMorePreset();
+                zo2.admin.themes.removePreset();
+                zo2.admin.themes.colorPresetChange();
+                zo2.admin.themes.selectBackgroundImage();
+                zo2.admin.themes.selectLayoutType();
+            },
+            /**
              *
              * @returns {undefined}
              */
@@ -245,8 +257,116 @@
                     bg_pattern: jQuery('.background-select li.selected img').attr('rel')
                 };
                 jQuery(hiddenInput).val(JSON.stringify(data));
+            },
+            /**
+             * Add more other preset setting
+             * @returns {undefined}
+             */
+            addMorePreset: function() {
+                $('.add_more_preset').click(function () {
+                    $(this).parent().before(
+                        '<div class="zo2_themes_form">' +
+                            '<div class="control-group">' +
+                            '<div class="control-label">' +
+                            '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
+                            '</div>' +
+                            '<div class="controls">' +
+                            '<div class="colorpicker-container">' +
+                            '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
+                            '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
+                            '<input type="button" class="btn remove_preset" value="Remove" />' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                    );
+                    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
+                        var $this = $(this);
+                        var $parent = $this.parent();
+                        var $preview = $parent.find('.color-preview');
+                        if ($this.val().length > 0)
+                            $preview.css('background-color', $this.val());
+                        else
+                            $preview.css('background-color', 'transparent');
+
+                        zo2.admin.themes.generatePresetData();
+                    });
+
+                    $('.zo2_other_preset_element').on('change', function () {
+                        zo2.admin.themes.generatePresetData();
+                    });
+
+                    $('.remove_preset').click(function () {
+                        $(this).parent().parent().parent().parent().remove();
+                        zo2.admin.themes.generatePresetData();
+                    });
+                });
+            },
+            /**
+             * Remove preset added in addMorePreset
+             * @returns {undefined}
+             */
+            removePreset: function() {
+                $('.remove_preset').click(function () {
+                    $(this).parent().parent().parent().parent().remove();
+                    zo2.admin.themes.generatePresetData();
+                });
+            },
+            /**
+             *
+             * @returns {undefined}
+             */
+            colorPresetChange: function () {
+                $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
+                    var $this = $(this);
+                    var $parent = $this.parent();
+                    var $preview = $parent.find('.color-preview');
+                    if ($this.val().length > 0)
+                        $preview.css('background-color', $this.val());
+                    else
+                        $preview.css('background-color', 'transparent');
+
+                    zo2.admin.themes.generatePresetData();
+                });
+            },
+            /**
+             *
+             * @returns {undefined}
+             */
+            selectBackgroundImage: function() {
+                jQuery('.background-select li').click(function () {
+                    if (jQuery(this).hasClass('selected')) {
+                        jQuery(this).removeClass('selected');
+                    } else {
+                        jQuery(".background-select li").removeClass('selected');
+                        jQuery(this).addClass('selected');
+                    }
+                    zo2.admin.themes.generatePresetData();
+                });
+            },
+            /**
+             *
+             * @returns {undefined}
+             */
+            selectLayoutType: function() {
+                jQuery('.layout_style_choose').click(function () {
+                    jQuery('.layout_style_choose').removeClass('btn-success');
+                    jQuery(this).addClass('btn-success');
+                    if (jQuery(this).hasClass('boxed')) {
+                        jQuery('input[name="zo2_boxed_style"]').val('1');
+                        jQuery('.zo2_background_and_pattern').fadeIn(500);
+                    } else {
+                        jQuery('input[name="zo2_boxed_style"]').val('0');
+                        jQuery('.zo2_background_and_pattern').fadeOut(500);
+                    }
+                    generatePresetData();
+                });
+
+                jQuery('#zo2_background_image').change(function () {
+                    generatePresetData();
+                });
             }
-        },
+        }
     };
     /* Init Zo2.admin */
     $(document).ready(function () {
@@ -709,94 +829,7 @@ zo2.jQuery(document).ready(function ($) {
         $container.trigger('font-change');
     });
 
-    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
-        var $this = $(this);
-        var $parent = $this.parent();
-        var $preview = $parent.find('.color-preview');
-        if ($this.val().length > 0)
-            $preview.css('background-color', $this.val());
-        else
-            $preview.css('background-color', 'transparent');
 
-        generatePresetData();
-    });
-
-    $('.add_more_preset').click(function () {
-        $(this).parent().before(
-            '<div class="zo2_themes_form">' +
-                '<div class="control-group">' +
-                '<div class="control-label">' +
-                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
-                '</div>' +
-                '<div class="controls">' +
-                '<div class="colorpicker-container">' +
-                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
-                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
-                '<input type="button" class="btn remove_preset" value="Remove" />' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>'
-        );
-        $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
-            var $this = $(this);
-            var $parent = $this.parent();
-            var $preview = $parent.find('.color-preview');
-            if ($this.val().length > 0)
-                $preview.css('background-color', $this.val());
-            else
-                $preview.css('background-color', 'transparent');
-
-            generatePresetData();
-        });
-
-        $('.zo2_other_preset_element').on('change', function () {
-            generatePresetData();
-        });
-
-        $('.remove_preset').click(function () {
-            $(this).parent().parent().parent().parent().remove();
-            generatePresetData();
-        });
-    });
-
-    $('.remove_preset').click(function () {
-        $(this).parent().parent().parent().parent().remove();
-        generatePresetData();
-    });
-
-    $('#zo2_themes').on('click', '> li', function () {
-        var $this = $(this);
-        var $container = $('#zo2_themes_container');
-        var $list = $('#zo2_themes');
-        var $input = $container.find('> input');
-        $list.find('>li').removeClass('active');
-        $this.addClass('active');
-        $input.val($this.attr('data-zo2-theme'));
-
-        $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
-        $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
-        $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
-        $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
-        $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
-        $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
-        $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
-        $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
-        $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
-
-
-        $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
-        $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
-        $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
-        $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
-        $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
-        $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
-        $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
-        $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
-        $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
-
-        generatePresetData();
-    });
 
     $('.field-logo-container').on('click', '.btn-remove-preview', function () {
         var $this = $(this);
@@ -867,52 +900,8 @@ zo2.jQuery(document).ready(function ($) {
 //        return false;
 //    });
 
-    jQuery('.background-select li').click(function () {
-        if (jQuery(this).hasClass('selected')) {
-            jQuery(this).removeClass('selected');
-        } else {
-            jQuery(".background-select li").removeClass('selected');
-            jQuery(this).addClass('selected');
-        }
-        generatePresetData();
-    });
 });
 
-var generatePresetData = function () {
-    var $ = jQuery;
-    var $preset = $('#zo2_themes').find('.active');
-    var extra = {};
-
-    $('.zo2_other_preset_element').each(function () {
-        var element = $(this).val();
-        var value = $(this).parent().parent().parent().find('.zo2_other_preset_value').val();
-        if (element != '' && value != '') {
-            extra[element] = value;
-        }
-    });
-
-
-    var data = {
-        name: $preset.attr('data-zo2-theme'),
-        css: $preset.attr('data-zo2-css'),
-        less: $preset.attr('data-zo2-less'),
-        boxed: jQuery('#zo2_boxed_style').val(),
-        background: $('#color_background').val(),
-        header: $('#color_header').val(),
-        header_top: $('#color_header_top').val(),
-        text: $('#color_text').val(),
-        link: $('#color_link').val(),
-        link_hover: $('#color_link_hover').val(),
-        bottom1: $('#color_bottom1').val(),
-        bottom2: $('#color_bottom2').val(),
-        footer: $('#color_footer').val(),
-        extra: JSON.stringify(extra),
-        bg_image: $('#zo2_background_image').val(),
-        bg_pattern: $('.background-select li.selected img').attr('rel')
-    };
-
-    $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
-};
 
 
 var refreshLogoPreview = function (ele) {
@@ -1135,21 +1124,6 @@ var rearrangeSpan = function ($container) {
 };
 
 
-var injectFormSubmit = function () {
-    /*
-     var $ = jQuery;
-     var $input = $('.hfLayoutHtml');
-     document.adminForm.onsubmit = function() {
-     console.log('will this run');
-     $('.field-logo-container').each(function() {
-     generateLogoJson($(this));
-     });
-     $input.val(generateJson());
-     return true;
-     };
-     */
-};
-
 /* Override default submit function */
 Joomla.submitform = function (task, form) {
     if (typeof (form) === 'undefined' || form === null) {
@@ -1193,22 +1167,7 @@ var generateSlug = function (str) {
 };
 
 jQuery(document).ready(function () {
-    jQuery('.layout_style_choose').click(function () {
-        jQuery('.layout_style_choose').removeClass('btn-success');
-        jQuery(this).addClass('btn-success');
-        if (jQuery(this).hasClass('boxed')) {
-            jQuery('input[name="zo2_boxed_style"]').val('1');
-            jQuery('.zo2_background_and_pattern').fadeIn(500);
-        } else {
-            jQuery('input[name="zo2_boxed_style"]').val('0');
-            jQuery('.zo2_background_and_pattern').fadeOut(500);
-        }
-        generatePresetData();
-    });
 
-    jQuery('#zo2_background_image').change(function () {
-        generatePresetData();
-    });
 
 
     /* Submit remove */
