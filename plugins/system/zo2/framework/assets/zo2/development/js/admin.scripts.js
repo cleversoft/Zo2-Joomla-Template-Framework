@@ -370,8 +370,14 @@
         },
         font: {
             init: function() {
+                zo2.admin.font.fontChange();
                 zo2.admin.font.fontSizeSlider();
+                zo2.admin.font.initFontActive();
             },
+            /**
+             * Event select font size
+             * @returns {undefined}
+             */
             fontSizeSlider: function() {
                 jQuery( ".slider_font_size" ).slider({
                     min: 5,
@@ -381,6 +387,146 @@
                         jQuery(this).next().html(ui.value+ ' px');
                         jQuery(this).next().next().val( ui.value );
                     }
+                });
+            },
+
+            /**
+             * Gender font seting
+             * @returns {undefined}
+             */
+            generateFontOptions: function ($container) {
+                var $result = $container.find(' > input:first');
+                var $enable = $container.find('.cbEnableFont');
+                if (!$enable.find('.btn-on').hasClass('active')) {
+                    $result.val('');
+                    return;
+                }
+
+                var options = {};
+
+                var size = parseInt($container.find('.txtFontSize').val());
+                if (isNaN(size))
+                    size = 12;
+                if (size <= 0)
+                    size = 12;
+
+                if ($container.find('.btnStandardFonts').hasClass('active')) {
+                    options = {
+                        type: 'standard',
+                        family: $container.find('.ddlStandardFont').val(),
+                        size: size,
+                        color: $container.find('.txtColorPicker').val(),
+                        style: $container.find('.ddlFontStyle').val()
+                    };
+                }
+                else if ($container.find('.btnGoogleFonts').hasClass('active')) {
+                    options = {
+                        type: 'googlefonts',
+                        family: $container.find('.txtGoogleFontSelect').val(),
+                        size: size,
+                        color: $container.find('.txtColorPicker').val(),
+                        style: $container.find('.ddlFontStyle').val()
+                    };
+                }
+                else if ($container.find('.btnFontDeck').hasClass('active')) {
+                    options = {
+                        type: 'fontdeck',
+                        family: $container.find('.txtFontDeckCss').val(),
+                        size: size,
+                        color: $container.find('.txtColorPicker').val(),
+                        style: $container.find('.ddlFontStyle').val()
+                    };
+                }
+
+                $result.val(JSON.stringify(options));
+            },
+
+            /**
+             * Add event when value change
+             * @returns {undefined}
+             */
+            fontChange: function() {
+                $('#font_chooser').on('font-change', '.font-container', function () {
+                    var $this = $(this);
+                    zo2.admin.font.generateFontOptions($this);
+                });
+
+                $('.font-container').on('click', '.btnStandardFonts', function () {
+                    var $this = $(this);
+                    var $container = $this.closest('.font-container');
+                    $container.find('.font-types').find('button').removeClass('btn-success');
+                    $this.addClass('btn-success');
+                    $container.find('.font-options-google').stop().slideUp(300);
+                    $container.find('.font-options-fontdeck').stop().slideUp(300);
+                    $container.find('.font-options-standard').stop().slideDown(400, function () {
+                        $container.trigger('font-change');
+                    });
+                });
+
+                $('.font-container').on('click', '.btnGoogleFonts', function () {
+                    var $this = $(this);
+                    var $container = $this.closest('.font-container');
+                    $container.find('.font-types').find('button').removeClass('btn-success');
+                    $this.addClass('btn-success');
+                    $container.find('.font-options-standard').stop().slideUp(300);
+                    $container.find('.font-options-fontdeck').stop().slideUp(300);
+                    $container.find('.font-options-google').stop().slideDown(400, function () {
+                        $container.trigger('font-change');
+                    });
+                });
+
+                $('.font-container').on('click', '.btnFontDeck', function () {
+                    var $this = $(this);
+                    var $container = $this.closest('.font-container');
+                    $container.find('.font-types').find('button').removeClass('btn-success');
+                    $this.addClass('btn-success');
+                    $container.find('.font-options-standard').stop().slideUp(300);
+                    $container.find('.font-options-google').stop().slideUp(300);
+                    $container.find('.font-options-fontdeck').stop().slideDown(400, function () {
+                        $container.trigger('font-change');
+                    });
+                });
+
+                $('.txtGoogleFontSelect').fontselect();
+
+                // listen to font options change
+                var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
+                    '.ddlStandardFont';
+
+                $('.font-container').on('change', changeSelector, function () {
+                    var $this = $(this);
+                    var $container = $this.closest('.font-container');
+                    $container.trigger('font-change');
+                });
+            },
+
+            /**
+             * Init font container: show/hide depends on active
+             * @returns {undefined}
+             */
+            initFontActive: function(){
+                $('.cbEnableFont').each(function () {
+                    var $this = $(this);
+                    var $container = $this.closest('.font-container');
+                    var $optionsContainer = $container.find('>.font_options');
+
+                    if ($this.find('.btn-on').hasClass('active'))
+                        $optionsContainer.show();
+                    else
+                        $optionsContainer.hide();
+                });
+
+                $('.cbEnableFont > button').on('click', function () {
+                    var $this = $(this);
+                    var $container = $this.closest('.font-container');
+                    var $optionsContainer = $container.find('>.font_options');
+
+                    if ($container.find('.btn-on').hasClass('active'))
+                        $optionsContainer.stop().slideDown();
+                    else
+                        $optionsContainer.stop().slideUp();
+
+                    $container.trigger('font-change');
                 });
             }
         }
@@ -750,98 +896,12 @@ zo2.jQuery(document).ready(function ($) {
         $('#' + $this.attr('data-toggle')).addClass('active');
     });
 
-    // font
-    $('.font-container .txtColorPicker').colorpicker().on('change', function () {
-        var $this = $(this);
-        var $parent = $this.parent();
-        var $container = $this.closest('.font-container');
-        var $preview = $parent.find('.color-preview');
-        if ($this.val().length > 0)
-            $preview.css('background-color', $this.val());
-        else
-            $preview.css('background-color', 'transparent');
 
-        $container.trigger('font-change');
-    });
-
-    // init font container: show/hide depends on active
-    $('.cbEnableFont').each(function () {
-        var $this = $(this);
-        var $container = $this.closest('.font-container');
-        var $optionsContainer = $container.find('>.font_options');
-
-        if ($this.find('.btn-on').hasClass('active'))
-            $optionsContainer.show();
-        else
-            $optionsContainer.hide();
-    });
 
     // bind on/off for font
-    $('.cbEnableFont > button').on('click', function () {
-        var $this = $(this);
-        var $container = $this.closest('.font-container');
-        var $optionsContainer = $container.find('>.font_options');
 
-        if ($container.find('.btn-on').hasClass('active'))
-            $optionsContainer.stop().slideDown();
-        else
-            $optionsContainer.stop().slideUp();
 
-        $container.trigger('font-change');
-    });
 
-    $('.font-container').on('click', '.btnStandardFonts', function () {
-        var $this = $(this);
-        var $container = $this.closest('.font-container');
-        $container.find('.font-types').find('button').removeClass('btn-success');
-        $this.addClass('btn-success');
-        $container.find('.font-options-google').stop().slideUp(300);
-        $container.find('.font-options-fontdeck').stop().slideUp(300);
-        $container.find('.font-options-standard').stop().slideDown(400, function () {
-            $container.trigger('font-change');
-        });
-    });
-
-    $('.font-container').on('click', '.btnGoogleFonts', function () {
-        var $this = $(this);
-        var $container = $this.closest('.font-container');
-        $container.find('.font-types').find('button').removeClass('btn-success');
-        $this.addClass('btn-success');
-        $container.find('.font-options-standard').stop().slideUp(300);
-        $container.find('.font-options-fontdeck').stop().slideUp(300);
-        $container.find('.font-options-google').stop().slideDown(400, function () {
-            $container.trigger('font-change');
-        });
-    });
-
-    $('.font-container').on('click', '.btnFontDeck', function () {
-        var $this = $(this);
-        var $container = $this.closest('.font-container');
-        $container.find('.font-types').find('button').removeClass('btn-success');
-        $this.addClass('btn-success');
-        $container.find('.font-options-standard').stop().slideUp(300);
-        $container.find('.font-options-google').stop().slideUp(300);
-        $container.find('.font-options-fontdeck').stop().slideDown(400, function () {
-            $container.trigger('font-change');
-        });
-    });
-
-    $('.txtGoogleFontSelect').fontselect();
-
-    // listen to font options change
-    $('#font_chooser').on('font-change', '.font-container', function () {
-        var $this = $(this);
-        generateFontOptions($this);
-    });
-
-    var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
-        '.ddlStandardFont';
-
-    $('.font-container').on('change', changeSelector, function () {
-        var $this = $(this);
-        var $container = $this.closest('.font-container');
-        $container.trigger('font-change');
-    });
 
 
 
@@ -976,53 +1036,6 @@ var generateLogoJson = function ($container) {
 };
 
 
-
-var generateFontOptions = function ($container) {
-    var $result = $container.find(' > input:first');
-    var $enable = $container.find('.cbEnableFont');
-    if (!$enable.find('.btn-on').hasClass('active')) {
-        $result.val('');
-        return;
-    }
-
-    var options = {};
-
-    var size = parseInt($container.find('.txtFontSize').val());
-    if (isNaN(size))
-        size = 12;
-    if (size <= 0)
-        size = 12;
-
-    if ($container.find('.btnStandardFonts').hasClass('active')) {
-        options = {
-            type: 'standard',
-            family: $container.find('.ddlStandardFont').val(),
-            size: size,
-            color: $container.find('.txtColorPicker').val(),
-            style: $container.find('.ddlFontStyle').val()
-        };
-    }
-    else if ($container.find('.btnGoogleFonts').hasClass('active')) {
-        options = {
-            type: 'googlefonts',
-            family: $container.find('.txtGoogleFontSelect').val(),
-            size: size,
-            color: $container.find('.txtColorPicker').val(),
-            style: $container.find('.ddlFontStyle').val()
-        };
-    }
-    else if ($container.find('.btnFontDeck').hasClass('active')) {
-        options = {
-            type: 'fontdeck',
-            family: $container.find('.txtFontDeckCss').val(),
-            size: size,
-            color: $container.find('.txtColorPicker').val(),
-            style: $container.find('.ddlFontStyle').val()
-        };
-    }
-
-    $result.val(JSON.stringify(options));
-};
 
 /**
  *

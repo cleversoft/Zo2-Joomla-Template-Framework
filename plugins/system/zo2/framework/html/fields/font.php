@@ -45,7 +45,8 @@ $fontStyles = array(
 );
 ?>
 <div class="font-container">
-    <input type="hidden" value="<?php echo htmlspecialchars($this->data['value']) ?>" name="<?php echo $this->data['name'] ?>" id="<?php echo $this->data['id'] ?>" />
+    <input type="hidden" value="" name="jform[params][<?php echo $this->data['name'] ?>]" id="jform_params_<?php echo $this->data['name'] ?>">
+
     <h3><?php echo $this->label['label']; ?></h3>
     <div class="font_options" <?php echo $data ? 'style="display:block"' : 'style="display:none"' ?>>
         <div class="control-group">
@@ -103,8 +104,8 @@ $fontStyles = array(
             </div>
             <div class="controls clearfix">
                 <div class="slider_font_size"></div>
-                <label for="amount"><?php echo $data['size'] ?> px</label><?php echo $data['size'] ?>
-                <input type="hidden" class="txtFontSize slider_font_size_value" value="<?php echo $data['size'] ?>" readonly>
+                <label for="amount"><?php echo $data['size'] ?> px</label>
+                <input type="hidden" class="txtFontSize slider_font_size_value" value="<?php echo $data['size'] ?>">
             </div>
 
             <div class="control-label">

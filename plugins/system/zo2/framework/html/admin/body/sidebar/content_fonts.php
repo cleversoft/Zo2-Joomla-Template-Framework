@@ -2,7 +2,7 @@
 <div class="tab-pane" id="zo2-fonts">
     <h2><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></h2>
     <div class="zo2-divider"></div>
-    <!-- Description -->
+
     <?php
     echo Zo2Html::field(
         'description', null, array(
@@ -93,19 +93,4 @@
         'value' => Zo2Factory::get('h6_font')
     ));
     ?>
-    <div class="font-container">
-        <div class="control-group font-deck-code" style="margin-top:20px">
-            <?php
-            echo Zo2Html::field(
-            'textarea', array(
-            'label' => JText::_('ZO2_ADMIN_FONT_FONTDESK_CODE'),
-            ), array(
-            'name' => 'jform[params][fontdeck_code]',
-            'rows' => 10,
-            'cols' => 20,
-            'value' => Zo2Factory::get('fontdeck_code')
-            ));
-            ?>
-        </div>
-    </div>
 </div>
