@@ -18,14 +18,14 @@ defined('_JEXEC') or die('Restricted access');
 if(empty($this->data['options']))
     $this->data['options'] = array(
             array(
-                'value' => 0,
-                'label' => JText::_('ZO2_NO'),
-                'class' => 'first'
-            ),
-            array(
                 'value' => 1,
                 'label' => JText::_('ZO2_YES'),
                 'class' => 'btn-success'
+            ),
+            array(
+                'value' => 0,
+                'label' => JText::_('ZO2_NO'),
+                'class' => 'btn-danger'
             )
         );
 
@@ -46,11 +46,16 @@ if(empty($this->data['options']))
         <?php
         foreach($this->data['options'] as $option) {
             $active = '';
-            if($this->data['value'] == $option['value'])
+            $checked = '';
+            $class = '';
+            if($this->data['value'] == $option['value']){
                 $active = 'active';
+                $checked = 'checked';
+                $class = $option['class'];
+            }
             ?>
-            <input name="<?php echo $this->data['name'] ?>" type="radio" value="<?php echo $option['value']?>" >
-            <label class="btn <?php echo $option['class'] ?> <?php echo $active?>"><?php echo $option['label']?></label>
+            <input name="<?php echo $this->data['name'] ?>" checked="<?php echo $checked; ?>" type="radio" value="<?php echo $option['value']?>" >
+            <label class="btn <?php echo $class; ?> <?php echo $active?>"><?php echo $option['label']?></label>
             <?php
         }
         ?>

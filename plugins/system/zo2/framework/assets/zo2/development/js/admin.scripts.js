@@ -10,7 +10,7 @@
  */
 
 /**
- * 
+ *
  * @param {type} window
  * @param {type} zo2
  * @param {type} $
@@ -36,7 +36,7 @@
          */
         _init: function () {
             this.bindSortable();
-            this.themes.selectPreset();
+            this.themes.init();
         },
         /**
          * Backend ajax
@@ -65,15 +65,15 @@
                         jQuery('#btnClearCache').button('loading');
                     }
                 })
-                        .done(function (data) {
-                            jQuery('#btnClearCache').button('reset');
-                            jQuery.each(data, function (key, value) {
-                                zo2.document.message(value.args.message);
-                            });
+                    .done(function (data) {
+                        jQuery('#btnClearCache').button('reset');
+                        jQuery.each(data, function (key, value) {
+                            zo2.document.message(value.args.message);
                         });
+                    });
             },
             /**
-             * 
+             *
              * @returns {undefined}
              */
             buildAssets: function () {
@@ -95,9 +95,9 @@
                         jQuery('#btnBuildAssets').button('loading');
                     }
                 })
-                        .done(function () {
-                            jQuery('#btnBuildAssets').button('reset');
-                        });
+                    .done(function () {
+                        jQuery('#btnBuildAssets').button('reset');
+                    });
             },
             /**
              * Ajax to load selected profile
@@ -122,10 +122,10 @@
                     }
 
                 })
-                        .done(function (data) {
-                            jQuery('#zo2-framework').parent().html(data.html[0].html);
-                            zo2.admin._init();
-                        });
+                    .done(function (data) {
+                        jQuery('#zo2-framework').parent().html(data.html[0].html);
+                        zo2.admin._init();
+                    });
             }
         },
         profile: {
@@ -156,14 +156,46 @@
                     }
 
                 })
-                        .done(function (data) {
-                            zo2.admin.ajax.loadProfile(newProfileName);
-                        });
+                    .done(function (data) {
+                        zo2.admin.ajax.loadProfile(newProfileName);
+                    });
             }
+        },
+        bindSortable: function () {
+            jQuery('#droppable-container > .zo2-container').sortable({
+                items: '>.sortable-row',
+                handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
+                containment: 'parent',
+                tolerance: 'pointer',
+                forcePlaceholderSize: true,
+                axis: 'y'
+            });
+
+            jQuery('.sortable-row').sortable({
+                items: '>.row-control>.col-container>.sortable-col',
+                connectWith: '>.sortable-row',
+                handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
+                containment: 'parent',
+                tolerance: "pointer",
+                helper: 'clone',
+                axis: 'x'
+            });
         },
         themes: {
             /**
-             * 
+             *  Initial events for preset theme
+             * @returns {undefined}
+             */
+            init: function() {
+                zo2.admin.themes.selectPreset();
+                zo2.admin.themes.addMorePreset();
+                zo2.admin.themes.removePreset();
+                zo2.admin.themes.colorPresetChange();
+                zo2.admin.themes.selectBackgroundImage();
+                zo2.admin.themes.selectLayoutType();
+            },
+            /**
+             *
              * @returns {undefined}
              */
             selectPreset: function () {
@@ -225,27 +257,115 @@
                     bg_pattern: jQuery('.background-select li.selected img').attr('rel')
                 };
                 jQuery(hiddenInput).val(JSON.stringify(data));
-            }
-        },
-        bindSortable: function () {
-            jQuery('#droppable-container > .zo2-container').sortable({
-                items: '>.sortable-row',
-                handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
-                containment: 'parent',
-                tolerance: 'pointer',
-                forcePlaceholderSize: true,
-                axis: 'y'
-            });
+            },
+            /**
+             * Add more other preset setting
+             * @returns {undefined}
+             */
+            addMorePreset: function() {
+                $('.add_more_preset').click(function () {
+                    $(this).parent().before(
+                        '<div class="zo2_themes_form">' +
+                            '<div class="control-group">' +
+                            '<div class="control-label">' +
+                            '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
+                            '</div>' +
+                            '<div class="controls">' +
+                            '<div class="colorpicker-container">' +
+                            '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
+                            '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
+                            '<input type="button" class="btn remove_preset" value="Remove" />' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                    );
+                    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
+                        var $this = $(this);
+                        var $parent = $this.parent();
+                        var $preview = $parent.find('.color-preview');
+                        if ($this.val().length > 0)
+                            $preview.css('background-color', $this.val());
+                        else
+                            $preview.css('background-color', 'transparent');
 
-            jQuery('.sortable-row').sortable({
-                items: '>.row-control>.col-container>.sortable-col',
-                connectWith: '>.sortable-row',
-                handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
-                containment: 'parent',
-                tolerance: "pointer",
-                helper: 'clone',
-                axis: 'x'
-            });
+                        zo2.admin.themes.generatePresetData();
+                    });
+
+                    $('.zo2_other_preset_element').on('change', function () {
+                        zo2.admin.themes.generatePresetData();
+                    });
+
+                    $('.remove_preset').click(function () {
+                        $(this).parent().parent().parent().parent().remove();
+                        zo2.admin.themes.generatePresetData();
+                    });
+                });
+            },
+            /**
+             * Remove preset added in addMorePreset
+             * @returns {undefined}
+             */
+            removePreset: function() {
+                $('.remove_preset').click(function () {
+                    $(this).parent().parent().parent().parent().remove();
+                    zo2.admin.themes.generatePresetData();
+                });
+            },
+            /**
+             *
+             * @returns {undefined}
+             */
+            colorPresetChange: function () {
+                $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
+                    var $this = $(this);
+                    var $parent = $this.parent();
+                    var $preview = $parent.find('.color-preview');
+                    if ($this.val().length > 0)
+                        $preview.css('background-color', $this.val());
+                    else
+                        $preview.css('background-color', 'transparent');
+
+                    zo2.admin.themes.generatePresetData();
+                });
+            },
+            /**
+             *
+             * @returns {undefined}
+             */
+            selectBackgroundImage: function() {
+                jQuery('.background-select li').click(function () {
+                    if (jQuery(this).hasClass('selected')) {
+                        jQuery(this).removeClass('selected');
+                    } else {
+                        jQuery(".background-select li").removeClass('selected');
+                        jQuery(this).addClass('selected');
+                    }
+                    zo2.admin.themes.generatePresetData();
+                });
+            },
+            /**
+             *
+             * @returns {undefined}
+             */
+            selectLayoutType: function() {
+                jQuery('.layout_style_choose').click(function () {
+                    jQuery('.layout_style_choose').removeClass('btn-success');
+                    jQuery(this).addClass('btn-success');
+                    if (jQuery(this).hasClass('boxed')) {
+                        jQuery('input[name="zo2_boxed_style"]').val('1');
+                        jQuery('.zo2_background_and_pattern').fadeIn(500);
+                    } else {
+                        jQuery('input[name="zo2_boxed_style"]').val('0');
+                        jQuery('.zo2_background_and_pattern').fadeOut(500);
+                    }
+                    generatePresetData();
+                });
+
+                jQuery('#zo2_background_image').change(function () {
+                    generatePresetData();
+                });
+            }
         }
     };
     /* Init Zo2.admin */
@@ -263,7 +383,7 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-        'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
+    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
 zo2.jQuery(document).ready(function ($) {
 
@@ -274,7 +394,7 @@ zo2.jQuery(document).ready(function ($) {
             var input = label.prev();
 
             if (!input.prop('checked')) {
-                label.closest('.btn-group').find('label').removeClass('active btn-success btn-danger btn-primary');
+                label.closest('.btn-group').find('label').removeClass('btn-success').removeClass('btn-danger').removeClass('btn-primary');
                 if (input.val() == '') {
                     label.addClass('active btn-primary');
                 } else if (input.val() == 0) {
@@ -352,16 +472,16 @@ zo2.jQuery(document).ready(function ($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control">' +
-                '<div class="row-control-container">' +
-                '<div class="row-name">(unnamed row)</div>' +
-                '<div class="row-control-buttons">' +
-                '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-                '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-                '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
-                '</div></div>' +
-                '<div class="col-container"></div></div>');
+            '<div class="row-control-container">' +
+            '<div class="row-name">(unnamed row)</div>' +
+            '<div class="row-control-buttons">' +
+            '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
+            '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
+            '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
+            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+            '</div></div>' +
+            '<div class="col-container"></div></div>');
         $meta.appendTo($row);
 
     });
@@ -387,12 +507,12 @@ zo2.jQuery(document).ready(function ($) {
                 $span.attr(visibilityAttributes[i], '1');
             }
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                    '<div class="col-control-buttons">' +
-                    '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                    '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                    '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                    '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
-                    '</div><div class="row-container"></div></div></div>';
+                '<div class="col-control-buttons">' +
+                '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
+                '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                '</div><div class="row-container"></div></div></div>';
             var $meta = jQuery(metaHtml);
             $meta.appendTo($span);
             /*
@@ -446,11 +566,11 @@ zo2.jQuery(document).ready(function ($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-                '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-                '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-                '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+            '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
+            '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
+            '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
+            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
         $meta.appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
@@ -701,7 +821,7 @@ zo2.jQuery(document).ready(function ($) {
     });
 
     var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
-            '.ddlStandardFont';
+        '.ddlStandardFont';
 
     $('.font-container').on('change', changeSelector, function () {
         var $this = $(this);
@@ -709,94 +829,7 @@ zo2.jQuery(document).ready(function ($) {
         $container.trigger('font-change');
     });
 
-    $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
-        var $this = $(this);
-        var $parent = $this.parent();
-        var $preview = $parent.find('.color-preview');
-        if ($this.val().length > 0)
-            $preview.css('background-color', $this.val());
-        else
-            $preview.css('background-color', 'transparent');
 
-        generatePresetData();
-    });
-
-    $('.add_more_preset').click(function () {
-        $(this).parent().before(
-                '<div class="zo2_themes_form">' +
-                '<div class="control-group">' +
-                '<div class="control-label">' +
-                '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
-                '</div>' +
-                '<div class="controls">' +
-                '<div class="colorpicker-container">' +
-                '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
-                '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
-                '<input type="button" class="btn remove_preset" value="Remove" />' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>'
-                );
-        $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
-            var $this = $(this);
-            var $parent = $this.parent();
-            var $preview = $parent.find('.color-preview');
-            if ($this.val().length > 0)
-                $preview.css('background-color', $this.val());
-            else
-                $preview.css('background-color', 'transparent');
-
-            generatePresetData();
-        });
-
-        $('.zo2_other_preset_element').on('change', function () {
-            generatePresetData();
-        });
-
-        $('.remove_preset').click(function () {
-            $(this).parent().parent().parent().parent().remove();
-            generatePresetData();
-        });
-    });
-
-    $('.remove_preset').click(function () {
-        $(this).parent().parent().parent().parent().remove();
-        generatePresetData();
-    });
-
-    $('#zo2_themes').on('click', '> li', function () {
-        var $this = $(this);
-        var $container = $('#zo2_themes_container');
-        var $list = $('#zo2_themes');
-        var $input = $container.find('> input');
-        $list.find('>li').removeClass('active');
-        $this.addClass('active');
-        $input.val($this.attr('data-zo2-theme'));
-
-        $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
-        $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
-        $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
-        $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
-        $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
-        $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
-        $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
-        $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
-        $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
-
-
-        $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
-        $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
-        $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
-        $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
-        $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
-        $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
-        $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
-        $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
-        $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
-
-        generatePresetData();
-    });
 
     $('.field-logo-container').on('click', '.btn-remove-preview', function () {
         var $this = $(this);
@@ -831,13 +864,13 @@ zo2.jQuery(document).ready(function ($) {
     });
 
     /*
-     
+
      var $select = $('#display_type_choose').find('select:first');
      var $normal_display = $('.display_type_normal');
-     
+
      if ($select.val() == 'normal') $normal_display.show();
      else $normal_display.hide();
-     
+
      jQuery('#display_type_choose').find('select:first').change(function() {
      var $this = $(this);
      if ($this.val() == 'normal') $normal_display.slideDown();
@@ -867,20 +900,8 @@ zo2.jQuery(document).ready(function ($) {
 //        return false;
 //    });
 
-    jQuery('.background-select li').click(function () {
-        if (jQuery(this).hasClass('selected')) {
-            jQuery(this).removeClass('selected');
-        } else {
-            jQuery(".background-select li").removeClass('selected');
-            jQuery(this).addClass('selected');
-        }
-        generatePresetData();
-    });
 });
 
-var generatePresetData = function () {
-
-};
 
 
 var refreshLogoPreview = function (ele) {
@@ -1103,21 +1124,6 @@ var rearrangeSpan = function ($container) {
 };
 
 
-var injectFormSubmit = function () {
-    /*
-     var $ = jQuery;
-     var $input = $('.hfLayoutHtml');
-     document.adminForm.onsubmit = function() {
-     console.log('will this run');
-     $('.field-logo-container').each(function() {
-     generateLogoJson($(this));
-     });
-     $input.val(generateJson());
-     return true;
-     };
-     */
-};
-
 /* Override default submit function */
 Joomla.submitform = function (task, form) {
     if (typeof (form) === 'undefined' || form === null) {
@@ -1161,22 +1167,7 @@ var generateSlug = function (str) {
 };
 
 jQuery(document).ready(function () {
-    jQuery('.layout_style_choose').click(function () {
-        jQuery('.layout_style_choose').removeClass('btn-success');
-        jQuery(this).addClass('btn-success');
-        if (jQuery(this).hasClass('boxed')) {
-            jQuery('input[name="zo2_boxed_style"]').val('1');
-            jQuery('.zo2_background_and_pattern').fadeIn(500);
-        } else {
-            jQuery('input[name="zo2_boxed_style"]').val('0');
-            jQuery('.zo2_background_and_pattern').fadeOut(500);
-        }
-        generatePresetData();
-    });
 
-    jQuery('#zo2_background_image').change(function () {
-        generatePresetData();
-    });
 
 
     /* Submit remove */
