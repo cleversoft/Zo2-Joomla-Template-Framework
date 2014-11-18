@@ -12,13 +12,11 @@
 defined('_JEXEC') or die;
 ?>
 <div class="control-group">
-    <label
-        class="control-label zo2-label <?php echo (isset($this->label['class'])) ? $this->label['class'] : ''; ?>"
-        for="<?php echo $this->data['name']; ?>"
-        >
-            <?php echo $this->label['label'];
-            ?>
-    </label>
+    <div class="control-label">
+        <label class="zo2-label <?php echo (isset($this->label['class'])) ? $this->label['class'] : ''; ?>" for="<?php echo $this->data['name']; ?>">
+                <?php echo $this->label['label']; ?>
+        </label>
+    </div>
     <div class="controls">
         <input 
             type="text"

@@ -10,7 +10,7 @@
  */
 
 /**
- * 
+ *
  * @param {type} window
  * @param {type} zo2
  * @param {type} $
@@ -36,7 +36,7 @@
          */
         _init: function () {
             this.bindSortable();
-            this.themes.selectPreset();
+            this.selectStyle();
         },
         /**
          * Backend ajax
@@ -65,15 +65,15 @@
                         jQuery('#btnClearCache').button('loading');
                     }
                 })
-                        .done(function (data) {
-                            jQuery('#btnClearCache').button('reset');
-                            jQuery.each(data, function (key, value) {
-                                zo2.document.message(value.args.message);
-                            });
+                    .done(function (data) {
+                        jQuery('#btnClearCache').button('reset');
+                        jQuery.each(data, function (key, value) {
+                            zo2.document.message(value.args.message);
                         });
+                    });
             },
             /**
-             * 
+             *
              * @returns {undefined}
              */
             buildAssets: function () {
@@ -95,9 +95,9 @@
                         jQuery('#btnBuildAssets').button('loading');
                     }
                 })
-                        .done(function () {
-                            jQuery('#btnBuildAssets').button('reset');
-                        });
+                    .done(function () {
+                        jQuery('#btnBuildAssets').button('reset');
+                    });
             },
             /**
              * Ajax to load selected profile
@@ -122,10 +122,10 @@
                     }
 
                 })
-                        .done(function (data) {
-                            jQuery('#zo2-framework').parent().html(data.html[0].html);
-                            zo2.admin._init();
-                        });
+                    .done(function (data) {
+                        jQuery('#zo2-framework').parent().html(data.html[0].html);
+                        zo2.admin._init();
+                    });
             }
         },
         profile: {
@@ -156,75 +156,9 @@
                     }
 
                 })
-                        .done(function (data) {
-                            zo2.admin.ajax.loadProfile(newProfileName);
-                        });
-            }
-        },
-        themes: {
-            /**
-             * 
-             * @returns {undefined}
-             */
-            selectPreset: function () {
-                jQuery('#zo2_themes').on('click', '> li', function () {
-                    var $this = $(this);
-                    var $container = $('#zo2_themes_container');
-                    var $list = $('#zo2_themes');
-                    var $input = $container.find('> input');
-                    $list.find('>li').removeClass('active');
-                    $this.addClass('active');
-                    $input.val($this.attr('data-zo2-theme'));
-
-                    $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
-                    $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
-                    $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
-                    $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
-                    $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
-                    $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
-                    $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
-                    $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
-                    $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
-
-
-                    $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
-                    $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
-                    $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
-                    $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
-                    $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
-                    $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
-                    $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
-                    $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
-                    $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
-
-                    zo2.admin.themes.generatePresetData();
-                });
-            },
-            /**
-             * Generate data from preset box
-             * @returns {undefined}
-             */
-            generatePresetData: function () {
-                var currentPreset = jQuery('#zo2_themes').find('.active');
-                hiddenInput = jQuery('#zo2_themes_container').find('input:first');
-                var data = {
-                    name: currentPreset.attr('data-zo2-theme'),
-                    css: currentPreset.attr('data-zo2-css'),
-                    less: currentPreset.attr('data-zo2-less'),
-                    boxed: jQuery('#zo2_boxed_style').val(),
-                    background: jQuery('#color_background').val(),
-                    header: jQuery('#color_header').val(),
-                    header_top: jQuery('#color_header_top').val(),
-                    text: jQuery('#color_text').val(),
-                    link: jQuery('#color_link').val(),
-                    link_hover: jQuery('#color_link_hover').val(),
-                    bottom1: jQuery('#color_bottom1').val(),
-                    bottom2: jQuery('#color_bottom2').val(),
-                    footer: jQuery('#color_footer').val(),
-                    bg_image: jQuery('#zo2_background_image').val(),
-                    bg_pattern: jQuery('.background-select li.selected img').attr('rel')
-                };
-                jQuery(hiddenInput).val(JSON.stringify(data));
+                    .done(function (data) {
+                        zo2.admin.ajax.loadProfile(newProfileName);
+                    });
             }
         },
         bindSortable: function () {
@@ -246,6 +180,43 @@
                 helper: 'clone',
                 axis: 'x'
             });
+        },
+        selectStyle: function () {
+            jQuery('#zo2_themes').on('click', '> li', function () {
+                var $this = $(this);
+                var $container = $('#zo2_themes_container');
+                var $list = $('#zo2_themes');
+                var $input = $container.find('> input');
+                $list.find('>li').removeClass('active');
+                $this.addClass('active');
+                $input.val($this.attr('data-zo2-theme'));
+
+                $('#color_background').colorpicker('setValue', $this.attr('data-zo2-background'));
+                $('#color_header').colorpicker('setValue', $this.attr('data-zo2-header-top'));
+                $('#color_header_top').colorpicker('setValue', $this.attr('data-zo2-header'));
+                $('#color_text').colorpicker('setValue', $this.attr('data-zo2-text'));
+                $('#color_link').colorpicker('setValue', $this.attr('data-zo2-link'));
+                $('#color_link_hover').colorpicker('setValue', $this.attr('data-zo2-link-hover'));
+                $('#color_bottom1').colorpicker('setValue', $this.attr('data-zo2-bottom1'));
+                $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
+                $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
+
+
+                $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
+                $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
+                $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
+                $('#color_text_preview').css('background-color', $this.attr('data-zo2-text'));
+                $('#color_link_preview').css('background-color', $this.attr('data-zo2-link'));
+                $('#color_link_hover_preview').css('background-color', $this.attr('data-zo2-link-hover'));
+                $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
+                $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
+                $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
+
+                generatePresetData();
+            });
+        },
+        generatePresetData: function () {
+
         }
     };
     /* Init Zo2.admin */
@@ -263,7 +234,7 @@ var visibilityAttributes = ['data-zo2-visibility-xs', 'data-zo2-visibility-sm', 
 
 var allColClass = 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12';
 var allColOffset = 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-        'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
+    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12';
 
 zo2.jQuery(document).ready(function ($) {
 
@@ -352,16 +323,16 @@ zo2.jQuery(document).ready(function ($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control">' +
-                '<div class="row-control-container">' +
-                '<div class="row-name">(unnamed row)</div>' +
-                '<div class="row-control-buttons">' +
-                '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-                '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-                '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
-                '</div></div>' +
-                '<div class="col-container"></div></div>');
+            '<div class="row-control-container">' +
+            '<div class="row-name">(unnamed row)</div>' +
+            '<div class="row-control-buttons">' +
+            '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
+            '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
+            '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
+            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+            '</div></div>' +
+            '<div class="col-container"></div></div>');
         $meta.appendTo($row);
 
     });
@@ -387,12 +358,12 @@ zo2.jQuery(document).ready(function ($) {
                 $span.attr(visibilityAttributes[i], '1');
             }
             var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                    '<div class="col-control-buttons">' +
-                    '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                    '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                    '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                    '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
-                    '</div><div class="row-container"></div></div></div>';
+                '<div class="col-control-buttons">' +
+                '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
+                '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                '</div><div class="row-container"></div></div></div>';
             var $meta = jQuery(metaHtml);
             $meta.appendTo($span);
             /*
@@ -446,11 +417,11 @@ zo2.jQuery(document).ready(function ($) {
         }
         //$row.attr('data-zo2-layout', 'fixed');
         var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-                '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-                '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-                '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-                '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+            '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
+            '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+            '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
+            '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
+            '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
         $meta.appendTo($row);
         var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
         $colContainer.appendTo($meta);
@@ -701,7 +672,7 @@ zo2.jQuery(document).ready(function ($) {
     });
 
     var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
-            '.ddlStandardFont';
+        '.ddlStandardFont';
 
     $('.font-container').on('change', changeSelector, function () {
         var $this = $(this);
@@ -723,7 +694,7 @@ zo2.jQuery(document).ready(function ($) {
 
     $('.add_more_preset').click(function () {
         $(this).parent().before(
-                '<div class="zo2_themes_form">' +
+            '<div class="zo2_themes_form">' +
                 '<div class="control-group">' +
                 '<div class="control-label">' +
                 '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
@@ -737,7 +708,7 @@ zo2.jQuery(document).ready(function ($) {
                 '</div>' +
                 '</div>' +
                 '</div>'
-                );
+        );
         $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
             var $this = $(this);
             var $parent = $this.parent();
@@ -831,13 +802,13 @@ zo2.jQuery(document).ready(function ($) {
     });
 
     /*
-     
+
      var $select = $('#display_type_choose').find('select:first');
      var $normal_display = $('.display_type_normal');
-     
+
      if ($select.val() == 'normal') $normal_display.show();
      else $normal_display.hide();
-     
+
      jQuery('#display_type_choose').find('select:first').change(function() {
      var $this = $(this);
      if ($this.val() == 'normal') $normal_display.slideDown();
@@ -879,7 +850,39 @@ zo2.jQuery(document).ready(function ($) {
 });
 
 var generatePresetData = function () {
+    var $ = jQuery;
+    var $preset = $('#zo2_themes').find('.active');
+    var extra = {};
 
+    $('.zo2_other_preset_element').each(function () {
+        var element = $(this).val();
+        var value = $(this).parent().parent().parent().find('.zo2_other_preset_value').val();
+        if (element != '' && value != '') {
+            extra[element] = value;
+        }
+    });
+
+
+    var data = {
+        name: $preset.attr('data-zo2-theme'),
+        css: $preset.attr('data-zo2-css'),
+        less: $preset.attr('data-zo2-less'),
+        boxed: jQuery('#zo2_boxed_style').val(),
+        background: $('#color_background').val(),
+        header: $('#color_header').val(),
+        header_top: $('#color_header_top').val(),
+        text: $('#color_text').val(),
+        link: $('#color_link').val(),
+        link_hover: $('#color_link_hover').val(),
+        bottom1: $('#color_bottom1').val(),
+        bottom2: $('#color_bottom2').val(),
+        footer: $('#color_footer').val(),
+        extra: JSON.stringify(extra),
+        bg_image: $('#zo2_background_image').val(),
+        bg_pattern: $('.background-select li.selected img').attr('rel')
+    };
+
+    $('#zo2_themes_container').find('input:first').val(JSON.stringify(data));
 };
 
 
