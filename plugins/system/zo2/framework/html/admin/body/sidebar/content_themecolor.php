@@ -6,13 +6,7 @@
     <div class="profiles-pane">
         <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');   ?><!--</h3>-->
 
-        <?php
-        echo Zo2Html::field(
-                'description', null, array(
-            'text' => 'Select which preset style the layout should load',
-            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
-        ));
-        ?>
+
 
 
         <div id="theme">

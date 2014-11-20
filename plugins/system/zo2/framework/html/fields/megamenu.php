@@ -124,6 +124,7 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                     </ul>
                     <ul>
                         <li>
+                            <video dis
                             <label class="hasTip" title="<?php echo JText::_('ZO2_NAVIGATION_MM_HIDE_COLLAPSE'), '::', JText::_('ZO2_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JText::_('ZO2_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
                             <fieldset class="radio btn-group toolsub-hidewhencollapse">
                                 <input type="radio" id="togglesubHideWhenCollapse0" class="toolbox-toggle" data-action="hideWhenCollapse" name="togglesubHideWhenCollapse" value="0" checked="checked"/>

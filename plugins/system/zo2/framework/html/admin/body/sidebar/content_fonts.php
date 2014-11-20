@@ -3,13 +3,6 @@
     <h2><?php echo JText::_('ZO2_ADMIN_FONT_OPTION'); ?></h2>
     <div class="zo2-divider"></div>
 
-    <?php
-    echo Zo2Html::field(
-        'description', null, array(
-            'text' => 'These are the options for fonts used within the template',
-            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
-        ));
-    ?>
     <!-- Body font-->
     <?php
     echo Zo2Html::field(

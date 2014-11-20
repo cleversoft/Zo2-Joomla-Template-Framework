@@ -2,10 +2,7 @@
 <div class="tab-pane" id="zo2-menu">
     <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?></h2>
     <div class="zo2-divider"></div>
-    <blockquote>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-        <small>Someone famous <cite title="Source Title">Source Title</cite></small>
-    </blockquote>
+
     <div class="profiles-pane">
         <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');          ?><!--</h3>-->
         <div class="profiles-pane-inner">
