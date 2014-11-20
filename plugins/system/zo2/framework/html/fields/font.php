@@ -61,7 +61,6 @@ $fontStyles = array(
         <div class="control-group">
             <div class="control-label">
                 <div class="font-label">Font type</div>
-                <div class="font-desc">Choose the type of font you want to use for <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <div class="btn-group font-types" data-toggle="buttons-radio">
@@ -89,6 +88,7 @@ $fontStyles = array(
         <div class="font-options-google hide control-group" <?php echo $data['type'] == 'googlefonts' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
                 <div class="font-label">Google Font</div>
+                <div class="font-desc">Choose the type of font you want to use for <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <input type="text" id="<?php echo $this->data['name'] ?>_font_family" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
