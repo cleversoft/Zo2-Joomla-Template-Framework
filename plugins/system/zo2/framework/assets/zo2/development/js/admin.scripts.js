@@ -434,6 +434,7 @@
                         type: 'standard',
                         family: $container.find('.ddlStandardFont').val(),
                         size: size,
+                        font_line_height: parseInt($container.find('.txtFontLineHeight').val()),
                         color: $container.find('.txtColorPicker').val(),
                         style: $container.find('.ddlFontStyle').val()
                     };
@@ -506,7 +507,7 @@
                 });
 
                 // listen to font options change
-                var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
+                var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, .txtFontLineHeight' +
                         '.ddlStandardFont';
 
                 $('.font-container').on('change', changeSelector, function () {
