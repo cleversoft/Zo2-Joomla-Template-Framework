@@ -86,7 +86,7 @@ $standardFonts = array(
             </div>
             <div class="controls">
                 <input type="text" id="<?php echo $this->data['name'] ?>_font_family" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
-                <h3 class="example" id="<?php echo $this->data['name'] ?>_font_family_example" style="font-family: <?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>"><?php echo JText::_('ZO2_TEMPLATE_FONT_EXAMPLE'); ?></h3>
+                <h3 class="example" id="<?php echo $this->data['name'] ?>_font_family_example" style="font-family: <?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>"><?php echo JText::_('ZO2_ADMIN_FONT_EXAMPLE'); ?></h3>
             </div>
         </div>
 
