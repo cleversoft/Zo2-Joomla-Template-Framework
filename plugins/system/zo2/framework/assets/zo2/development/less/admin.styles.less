@@ -561,9 +561,10 @@
         display:none;
     }
     .slider_font_size {
-        width: 300px;
-        float: left;
-        margin-right: 20px;
+      float: left;
+      margin-left: 8px;
+      margin-right: 20px;
+      width: 300px;
     }
     #megamenu, #advanced {
         padding:15px;
@@ -619,7 +620,7 @@
         font-size: 93%;
         font-style: italic;
         font-weight: normal;
-        padding: 3px 0 0 5px;
+        padding: 3px 0 0 0;
     }
     .sortable-col {
         margin-bottom: 20px;
@@ -630,7 +631,7 @@
         font-style: normal;
     }
     .zo2-label {
-        padding: 4px 0 4px;
+        padding: 0;
         border-radius: 3px;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -798,7 +799,8 @@
         position: relative;
         padding:0 15px 0 0;
         .control-label {
-            width:180px;
+            width:200px;
+            padding-right: 20px;
         }
         .txtColorPicker {
             width: 180px;
@@ -1176,7 +1178,10 @@ body{
 
 /* Layout Profiles */
 
-control-group:after
+.controls > .radio:first-child,
+.controls > .checkbox:first-child{
+  padding-top: 0;
+}
 
 #theme .profiles-pane{
     .profiles-pane-inner{
@@ -1217,14 +1222,11 @@ control-group:after
         .control-label{
             min-width: 180px;
         }
-        .no-label .control-label{
-            display: none;
-        }
         .control-group .controls:not(.btn-group){
             padding-left: 180px;
         }
         .control-group.no-margin .controls:not(.btn-group){
-            padding-left: 0;
+            padding-left: 186px;
         }
         .zo2-top{
             .control-label{

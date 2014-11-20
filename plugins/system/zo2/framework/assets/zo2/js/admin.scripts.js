@@ -503,8 +503,11 @@
                     });
                 });
 
+<<<<<<< HEAD
                 $('.txtGoogleFontSelect').fontselect();
 
+=======
+>>>>>>> origin/1.4.3
                 // listen to font options change
                 var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
                     '.ddlStandardFont';
@@ -911,7 +914,6 @@
 })(window, zo2, zo2.jQuery);
 
 zo2.jQuery(document).ready(function ($) {
-
     /*============For joomla 2.5==============*/
     function radio_button() {
         jQuery('.btn-group label:not(.active)').on("click", function () {
@@ -1016,8 +1018,13 @@ zo2.jQuery(document).ready(function ($) {
         return false;
     });
 
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> origin/1.4.3
     var refreshLogoPreview = function (ele) {
         var $ = jQuery;
         var $this = $(ele);
@@ -1038,8 +1045,13 @@ zo2.jQuery(document).ready(function ($) {
         });
         $previewImg.attr('src', baseUri + '/' + $this.val());
     };
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> origin/1.4.3
     /* Override default submit function */
     Joomla.submitform = function (task, form) {
         if (typeof (form) === 'undefined' || form === null) {
@@ -1050,6 +1062,7 @@ zo2.jQuery(document).ready(function ($) {
         if (typeof (task) !== 'undefined') {
             form.task.value = task;
         }
+<<<<<<< HEAD
 
         // Submit the form.
         if (typeof form.onsubmit == 'function') {
@@ -1059,6 +1072,17 @@ zo2.jQuery(document).ready(function ($) {
             form.fireEvent('submit');
         }
 
+=======
+
+        // Submit the form.
+        if (typeof form.onsubmit == 'function') {
+            form.onsubmit();
+        }
+        if (typeof form.fireEvent == "function") {
+            form.fireEvent('submit');
+        }
+
+>>>>>>> origin/1.4.3
         var $ = jQuery;
         var $input = $('.hfLayoutHtml');
         $('.field-logo-container').each(function () {
@@ -1086,5 +1110,4 @@ zo2.jQuery(document).ready(function ($) {
             }
         });
     });
-
 });

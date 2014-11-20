@@ -83,7 +83,8 @@ $fontStyles = array(
                 <div class="font-desc">Choose the type of font you want to use for <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
-                <input type="text" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
+                <input type="text" id="<?php echo $this->data['name'] ?>_font_family" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
+                <h3 class="example" id="<?php echo $this->data['name'] ?>_font_family_example" style="font-family: <?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>">The quick brown fox jumps over the lazy dog</h3>
             </div>
         </div>
 
