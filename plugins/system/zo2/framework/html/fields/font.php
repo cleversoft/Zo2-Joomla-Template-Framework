@@ -89,7 +89,6 @@ $fontStyles = array(
         <div class="font-options-google hide control-group" <?php echo $data['type'] == 'googlefonts' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
                 <div class="font-label">Google Font</div>
-                <div class="font-desc">Choose the type of font you want to use for <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <input type="text" id="<?php echo $this->data['name'] ?>_font_family" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
@@ -110,7 +109,7 @@ $fontStyles = array(
         <div class="control-group">
             <div class="control-label">
                 <div class="font-label">Font Size</div>
-                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
+
             </div>
             <div class="controls clearfix">
                 <div class="slider_font_size"></div>
@@ -121,7 +120,7 @@ $fontStyles = array(
         <div class="control-group">
             <div class="control-label">
                 <div class="font-label">Font Line Height</div>
-                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
+
             </div>
             <div class="controls clearfix">
                 <div class="slider_font_size"></div>
@@ -132,7 +131,7 @@ $fontStyles = array(
         <div class="control-group">
             <div class="control-label">
                 <div class="font-label">Font Style</div>
-                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
+
             </div>
             <div class="controls clearfix">
                 <div>
