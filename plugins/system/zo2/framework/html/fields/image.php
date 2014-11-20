@@ -25,10 +25,11 @@ $element_id = str_replace(']_', '_',str_replace('[', '_',substr($this->data['nam
                 <span class="hasTipPreview" title=""><i class="icon-eye-open"></i></span>
             </div>
             <input type="text" name="<?php echo $this->data['name']; ?>" id="<?php echo $element_id;?>" value="<?php echo $this->data['value']; ?>" readonly="readonly" class="input-small">
-            <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=<?php echo $element_id; ?>&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
+            <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=<?php echo $element_id;?>&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
                 <?php echo JText::_('ZO2_TEMPLATE_THEME_SELECT'); ?>
             </a>
-            <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', '<?php echo $element_id; ?>');return false;" data-original-title="Clear">
+            <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', '<?php echo $element_id;?>');
+                                    return false;" data-original-title="Clear">
                 <i class="icon-remove"></i>
             </a>
         </div>
