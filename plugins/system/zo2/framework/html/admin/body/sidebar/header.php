@@ -20,7 +20,7 @@ defined('_JEXEC') or die('Restricted access');
     <!-- General: Default active tab -->
     <li class="active">
         <a href="#zo2-general" role="tab" data-toggle="tab">
-            <i class="icon-cog fa-lg"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_GENERAL'); ?>
+            <i class="fa fa-cog fa-lg"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_GENERAL'); ?>
         </a>
     </li>
     <!-- Fonts -->
