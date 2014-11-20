@@ -383,7 +383,7 @@ if (!class_exists('Zo2Framework')) {
             /* Prepare Fonts */
             $selectors = array(
                 'body_font' => 'body',
-                'menu_font' => 'nav, sidebar-nav',
+                'menu_font' => 'nav, .sidebar-nav',
                 'h1_font' => 'h1',
                 'h2_font' => 'h2',
                 'h3_font' => 'h3',
