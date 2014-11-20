@@ -32,7 +32,9 @@ $options = (array) JHtml::_('menu.menus');
 $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($attr), 'value', 'text', $this->data['value'], $this->data['id']);
 ?>
 <div class="control-group">
-    <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
+    <div class="control-label">
+        <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
+    </div>
     <div class="controls">
         <?php echo implode("\n", $html); ?>
     </div>
@@ -75,8 +77,8 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                         <li>
                             <label class="hasTip" title="<?php echo JText::_('ZO2_NAVIGATION_MM_POSITIONS'), '::', JText::_('ZO2_NAVIGATION_MM_POSITIONS_DESC') ?>"><?php echo JText::_('ZO2_NAVIGATION_MM_POSITIONS') ?></label>
                             <fieldset class="btn-group">
-                                <a href="" class="btn toolitem-moveleft toolbox-action" data-action="moveItemsLeft" title="<?php echo JText::_('ZO2_NAVIGATION_MM_MOVE_LEFT') ?>"><i class="icon-arrow-left"></i></a>
-                                <a href="" class="btn toolitem-moveright toolbox-action" data-action="moveItemsRight" title="<?php echo JText::_('ZO2_NAVIGATION_MM_MOVE_RIGHT') ?>"><i class="icon-arrow-right"></i></a>
+                                <a href="" class="btn toolitem-moveleft toolbox-action" data-action="moveItemsLeft" title="<?php echo JText::_('ZO2_NAVIGATION_MM_MOVE_LEFT') ?>"><i class="fa fa-arrow-left"></i></a>
+                                <a href="" class="btn toolitem-moveright toolbox-action" data-action="moveItemsRight" title="<?php echo JText::_('ZO2_NAVIGATION_MM_MOVE_RIGHT') ?>"><i class="fa fa-arrow-right"></i></a>
                             </fieldset>
                         </li>
                     </ul>
@@ -91,7 +93,7 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                     <ul>
                         <li>
                             <label class="hasTip" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ICON'), '::', JText::_('ZO2_NAVIGATION_MM_ICON_DESC') ?>">
-                                <a href="http://fortawesome.github.io/Font-Awesome/#icons-web-app" target="_blank"><i class="icon-search"></i><?php echo JText::_('ZO2_NAVIGATION_MM_ICON') ?></a>
+                                <a href="http://fortawesome.github.io/Font-Awesome/#icons-web-app" target="_blank"><i class="fa fa-search"></i><?php echo JText::_('ZO2_NAVIGATION_MM_ICON') ?></a>
                             </label>
                             <fieldset class="">
                                 <input type="text" class="input-medium toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
@@ -116,7 +118,7 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                         <li>
                             <label class="hasTip" title="<?php echo JText::_('ZO2_NAVIGATION_MM_SUBMNEU_GRID'), '::', JText::_('ZO2_NAVIGATION_MM_SUBMNEU_GRID_DESC') ?>"><?php echo JText::_('ZO2_NAVIGATION_MM_SUBMNEU_GRID') ?></label>
                             <fieldset class="btn-group">
-                                <a href="" class="btn toolsub-addrow toolbox-action" data-action="addRow"><i class="icon-plus"></i></a>
+                                <a href="" class="btn toolsub-addrow toolbox-action" data-action="addRow"><i class="fa fa-plus"></i></a>
                             </fieldset>
                         </li>
                     </ul>
@@ -144,10 +146,10 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                             <label class="hasTip" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN'), '::', JText::_('ZO2_NAVIGATION_MM_ALIGN_DESC') ?>"><?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN') ?></label>
                             <fieldset class="toolsub-alignment">
                                 <div class="btn-group">
-                                    <a class="btn toolsub-align-left toolbox-action" href="#" data-action="alignment" data-align="left" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_LEFT') ?>"><i class="icon-align-left"></i></a>
-                                    <a class="btn toolsub-align-right toolbox-action" href="#" data-action="alignment" data-align="right" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_RIGHT') ?>"><i class="icon-align-right"></i></a>
-                                    <a class="btn toolsub-align-center toolbox-action" href="#" data-action="alignment" data-align="center" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_CENTER') ?>"><i class="icon-align-center"></i></a>
-                                    <a class="btn toolsub-align-justify toolbox-action" href="#" data-action="alignment" data-align="justify" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_JUSTIFY') ?>"><i class="icon-align-justify"></i></a>
+                                    <a class="btn toolsub-align-left toolbox-action" href="#" data-action="alignment" data-align="left" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_LEFT') ?>"><i class="fa fa-align-left"></i></a>
+                                    <a class="btn toolsub-align-right toolbox-action" href="#" data-action="alignment" data-align="right" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_RIGHT') ?>"><i class="fa fa-align-right"></i></a>
+                                    <a class="btn toolsub-align-center toolbox-action" href="#" data-action="alignment" data-align="center" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_CENTER') ?>"><i class="fa fa-align-center"></i></a>
+                                    <a class="btn toolsub-align-justify toolbox-action" href="#" data-action="alignment" data-align="justify" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ALIGN_JUSTIFY') ?>"><i class="fa fa-align-justify"></i></a>
                                 </div>
                             </fieldset>
                         </li>
@@ -168,8 +170,8 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                         <li>
                             <label class="hasTip" title="<?php echo JText::_('ZO2_NAVIGATION_MM_ADD_REMOVE_COLUMN'), '::', JText::_('ZO2_NAVIGATION_MM_ADD_REMOVE_COLUMN_DESC') ?>"><?php echo JText::_('ZO2_NAVIGATION_MM_ADD_REMOVE_COLUMN') ?></label>
                             <fieldset class="btn-group">
-                                <a href="" class="btn toolcol-addcol toolbox-action" data-action="addColumn"><i class="icon-plus"></i></a>
-                                <a href="" class="btn toolcol-removecol toolbox-action" data-action="removeColumn"><i class="icon-minus"></i></a>
+                                <a href="" class="btn toolcol-addcol toolbox-action" data-action="addColumn"><i class="fa fa-plus"></i></a>
+                                <a href="" class="btn toolcol-removecol toolbox-action" data-action="removeColumn"><i class="fa fa-minus"></i></a>
                             </fieldset>
                         </li>
                     </ul>
@@ -232,7 +234,7 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
             </div>
 
             <div class="toolbox-actions-group">
-                <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i><?php echo JText::_('ZO2_NAVIGATION_MM_SAVE') ?></button>
+                <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="fa fa-save"></i><?php echo JText::_('ZO2_NAVIGATION_MM_SAVE') ?></button>
             </div>
 
         </div>

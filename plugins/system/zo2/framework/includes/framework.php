@@ -409,7 +409,7 @@ if (!class_exists('Zo2Framework')) {
         }
 
         public function isBoxed() {
-            if ($this->profile->get('theme') && $this->profile->get('theme')->boxed == 1)
+            if (isset($this->profile->get('theme')->boxed) && $this->profile->get('theme')->boxed == 1)
                 return true;
             return false;
         }

@@ -1503,12 +1503,15 @@ html {
   position: relative;
 }
 .offcanvas {
-  display: none;
   background: none repeat scroll 0 0 #465158;
   position: absolute;
   height: 100%;
-  transition: transform 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
   top: 0;
+  opacity: 0;
   left: -50%;
   width: 49%;
 }
@@ -1528,6 +1531,7 @@ html {
 }
 .offcanvas.active {
   left: 0;
+  opacity: 1;
 }
 .wrapper {
   -webkit-transition: transform 0.5s ease 0s;

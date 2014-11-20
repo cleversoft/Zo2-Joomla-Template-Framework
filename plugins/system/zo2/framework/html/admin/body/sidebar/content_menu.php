@@ -52,17 +52,15 @@
             </div>
 
             <!-- Duration -->
-            <div class="control-group">
-                <?php
-                echo Zo2Html::field(
-                        'text', array(
-                    'label' => JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'),
-                        ), array(
-                    'name' => 'jform[params][menu_duration]',
-                    'value' => Zo2Factory::get('menu_duration')
-                ));
-                ?>                 
-            </div>
+            <?php
+            echo Zo2Html::field(
+                    'text', array(
+                'label' => JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'),
+                    ), array(
+                'name' => 'jform[params][menu_duration]',
+                'value' => Zo2Factory::get('menu_duration')
+            ));
+            ?>
 
             <!-- Show submenu -->
             <?php

@@ -44,6 +44,8 @@
     ));
     ?>
     <div class="zo2-divider"></div>
+    <h2><?php echo JText::_('ZO2_ADMIN_CUSTOM_CSS_JS'); ?></h2>
+    <div class="zo2-divider"></div>
     <div class="control-group no-margin no-label">
         <?php
         $value = Zo2Factory::getFramework()->getAssetsFile('zo2/css/custom.css');
