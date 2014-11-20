@@ -28,6 +28,8 @@ if (!isset($data['style']))
     $data['style'] = null;
 if (!isset($data['family']))
     $data['family'] = null;
+if (!isset($data['font_line_height']))
+    $data['font_line_height'] = '30';
 
 $standardFonts = array(
     '\'Helvetica Neue\', Helvetica',
@@ -108,7 +110,19 @@ $fontStyles = array(
                 <label for="amount"><?php echo $data['size'] ?> px</label>
                 <input type="hidden" class="txtFontSize slider_font_size_value" value="<?php echo $data['size'] ?>">
             </div>
-
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                <div class="font-label">Font Line Height</div>
+                <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>
+            </div>
+            <div class="controls clearfix">
+                <div class="slider_font_size"></div>
+                <label for="amount"><?php echo $data['font_line_height'] ?> px</label>
+                <input type="hidden" class="txtFontLineHeight" value="<?php echo $data['font_line_height'] ?>">
+            </div>
+        </div>
+        <div class="control-group">
             <div class="control-label">
                 <div class="font-label">Font Style</div>
                 <div class="font-desc">Specify the <?php echo $this->label['label']; ?> font properties</div>

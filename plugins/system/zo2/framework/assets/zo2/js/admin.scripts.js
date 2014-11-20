@@ -396,7 +396,7 @@
              */
             fontSizeSlider: function() {
                 jQuery( ".slider_font_size" ).slider({
-                    min: 5,
+                    min: 10,
                     max: 100,
                     value: jQuery(this).next().next().val(),
                     slide: function( event, ui ) {
