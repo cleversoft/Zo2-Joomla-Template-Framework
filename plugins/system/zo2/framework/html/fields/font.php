@@ -113,7 +113,7 @@ $standardFonts = array(
         </div>
         <div class="control-group">
             <div class="control-label">
-                <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT'); ?>Font Line Height</div>
+                <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT'); ?></div>
                 <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT_DESC'); ?></div>
             </div>
             <div class="controls clearfix">
