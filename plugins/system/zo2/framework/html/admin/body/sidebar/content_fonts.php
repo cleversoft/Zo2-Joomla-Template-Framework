@@ -21,8 +21,19 @@
         'value' => Zo2Factory::get('body_font')
     ));
     ?>
+    <!-- Menu font-->
+    <?php
+    echo Zo2Html::field(
+        'font', array(
+        'label' => JText::_('ZO2_ADMIN_FONT_MENU'),
+    ), array(
+        'name' => 'menu_font',
+        'id' => 'menu_font',
+        'value' => Zo2Factory::get('menu_font')
+    ));
+    ?>
 
-    <!-- Body font-->
+    <!-- Heading line H1 font-->
     <?php
     echo Zo2Html::field(
         'font', array(
@@ -34,7 +45,7 @@
     ));
     ?>
 
-    <!-- Body font-->
+    <!-- Heading line H2 font-->
     <?php
     echo Zo2Html::field(
         'font', array(
@@ -46,7 +57,7 @@
     ));
     ?>
 
-    <!-- Body font-->
+    <!-- Heading line H3 font-->
     <?php
     echo Zo2Html::field(
         'font', array(
@@ -58,7 +69,7 @@
     ));
     ?>
 
-    <!-- Body font-->
+    <!-- Heading line H4 font-->
     <?php
     echo Zo2Html::field(
         'font', array(
@@ -70,7 +81,7 @@
     ));
     ?>
 
-    <!-- Body font-->
+    <!-- Heading line H5 font-->
     <?php
     echo Zo2Html::field(
         'font', array(
@@ -82,7 +93,7 @@
     ));
     ?>
 
-    <!-- Body font-->
+    <!-- Heading line H6 font-->
     <?php
     echo Zo2Html::field(
         'font', array(
