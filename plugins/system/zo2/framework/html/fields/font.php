@@ -32,11 +32,18 @@ if (!isset($data['font_line_height']))
     $data['font_line_height'] = '30';
 
 $standardFonts = array(
-    '\'Helvetica Neue\', Helvetica',
-    'Arial',
-    'Tahoma',
-    'Verdana',
-    '\'Myriad Pro\''
+    'Arial' => 'Arial',
+    'Courier New' => 'Courier New',
+    'Georgia' => 'Georgia',
+    'Helvetica' => 'Helvetica',
+    'Lucida Sans' => 'Lucida Sans',
+    'Lucida Sans Unicode' => 'Lucida Sans Unicode',
+    'Myriad Pro' => 'Myriad Pro',
+    'Palatino Linotype' => 'Palatino Linotype',
+    'Tahoma' => 'Tahoma',
+    'Times New Roman' => 'Times New Roman',
+    'Trebuchet MS' => 'Trebuchet MS',
+    'Verdana' => 'Verdana'
 );
 
 $fontStyles = array(

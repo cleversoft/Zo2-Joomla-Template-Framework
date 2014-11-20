@@ -306,6 +306,8 @@ if (!class_exists('Zo2Framework')) {
                 $style .= 'font-family:' . $data['family'] . ';';
             if (!empty($data['size']) && $data['size'] > 0)
                 $style .= 'font-size:' . $data['size'] . 'px;';
+            if (!empty($data['font_line_height']) && $data['font_line_height'] > 0)
+                $style .= 'line-height:' . $data['font_line_height'] . 'px;';
             if (!empty($data['color']))
                 $style .= 'color:' . $data['color'] . ';';
             if (!empty($data['style'])) {
