@@ -10,6 +10,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
 ?>
 <!-- Select profile -->
 <div class="control-group">
@@ -17,8 +18,11 @@ defined('_JEXEC') or die('Restricted access');
     <div class="control-label"><?php echo $this->label['label']; ?></div>
     <div class="controls">        
         <!-- Select profile -->        
+        <?php 
+        $juri = JUri::getInstance();
+        $juri->setVar('profile', $this->data['profile']->name); ?>
         <select class="form-control zo2-select-profile" onchange="zo2.admin.ajax.loadProfile(this.value);
-                return false;" name="jform[profile-select]">
+                return false;" name="jform[profile-select]" data-url="<?php echo $juri->toString(); ?>">
             <!-- Display list of profiles -->
             <?php foreach ($this->data['profiles'] as $profile): ?>
                 <option value="<?php echo trim($profile->name); ?>" 
@@ -33,7 +37,7 @@ defined('_JEXEC') or die('Restricted access');
                 <?php if ($this->data['profile']->authorise('add')) : ?>            
                     <div class="zo2-addProfile">            
                         <span class="input-group-btn">            
-                            <button class="btn btn-default" id="zo2-addProfile" onClick="jQuery('zo2-form-addProfile').toggle();
+                            <button class="btn btn-default" id="zo2-addProfile" onClick="jQuery('#zo2-form-addProfile').toggle();
                                         return false;">Create new profile</button> 
                         </span>            
                         <div class="zo2-form-addProfile" id="zo2-form-addProfile">
@@ -53,7 +57,7 @@ defined('_JEXEC') or die('Restricted access');
                 <?php if ($this->data['profile']->authorise('rename')) : ?>    
                     <div class="zo2-renameProfile">
                         <span class="input-group-btn">            
-                            <button class="btn btn-default" id="zo2-renameProfile" onClick="jQuery('zo2-form-renameProfile').toggle();
+                            <button class="btn btn-default" id="zo2-renameProfile" onClick="jQuery('#zo2-form-renameProfile').toggle();
                                         return false;">Rename</button> 
                         </span>  
                         <div class="zo2-form-newProfile" id="zo2-form-renameProfile" style="">
@@ -72,7 +76,7 @@ defined('_JEXEC') or die('Restricted access');
                 <?php if ($this->data['profile']->authorise('remove')) : ?>    
                     <div class="zo2-renameProfile">
                         <span class="input-group-btn">            
-                            <button class="btn btn-danger" id="zo2-renameProfile" onClick="zo2.admin.ajax.removeProfile();
+                            <button class="btn btn-danger" id="zo2-renameProfile" onClick="zo2.admin.profile.remove('<?php echo $this->data['profile']->name; ?>');
                                         return false;">Delete</button> 
                         </span>                  
                     </div>
