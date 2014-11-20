@@ -1081,10 +1081,4 @@ zo2.jQuery(document).ready(function ($) {
             }
         });
     });
-
-    SqueezeBox.initialize({});
-    SqueezeBox.assign($('a.modal').get(), {
-        parse: 'rel'
-    });
-
 });

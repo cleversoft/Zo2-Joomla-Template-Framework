@@ -10,6 +10,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die;
+JHtml::_('behavior.modal', 'a.modal');
 ?>
 <div class="control-group">
     <div class="control-label">
@@ -19,6 +20,9 @@ defined('_JEXEC') or die;
     </div>
     <div class="controls">
         <div class="input-prepend input-append">
+            <div class="media-preview add-on">
+                <span class="hasTipPreview" title=""><i class="icon-eye-open"></i></span>
+            </div>
             <input type="text" name="<?php echo $this->data['name']; ?>" id="<?php echo $this->data['name']; ?>" value="<?php echo $this->data['value'];?>" readonly="readonly" class="input-small">
             <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=zo2_background_image&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
                 <?php echo JText::_('ZO2_TEMPLATE_THEME_SELECT'); ?>
