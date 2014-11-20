@@ -503,8 +503,6 @@
                     });
                 });
 
-                $('.txtGoogleFontSelect').fontselect();
-
                 // listen to font options change
                 var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, ' +
                     '.ddlStandardFont';
@@ -900,8 +898,6 @@
             }
             $input.val(JSON.stringify(data));
         }
-
-
     };
     /* Init Zo2.admin */
     $(document).ready(function () {
@@ -911,7 +907,6 @@
 })(window, zo2, zo2.jQuery);
 
 zo2.jQuery(document).ready(function ($) {
-
     /*============For joomla 2.5==============*/
     function radio_button() {
         jQuery('.btn-group label:not(.active)').on("click", function () {
@@ -1085,6 +1080,11 @@ zo2.jQuery(document).ready(function ($) {
                 return false;
             }
         });
+    });
+
+    SqueezeBox.initialize({});
+    SqueezeBox.assign($('a.modal').get(), {
+        parse: 'rel'
     });
 
 });
