@@ -19,5 +19,13 @@ defined('_JEXEC') or die('Restricted access');
     <h2><?php echo JText::_('ZO2_ADMIN_LAYOUT_BUILDER'); ?></h2>
     <div class="zo2-divider"></div>
 
+    <?php
+    echo Zo2Html::field(
+        'description', null, array(
+            'text' => 'Short description about this page',
+            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+        ));
+    ?>
+
     <?php echo Zo2Html::_('admin', 'builder'); ?>   
 </div>

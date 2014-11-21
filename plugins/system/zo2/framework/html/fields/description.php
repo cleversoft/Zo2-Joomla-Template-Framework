@@ -11,7 +11,7 @@
  */
 defined('_JEXEC') or die;
 ?>
-<blockquote>
-    <p><?php echo $this->data['text']; ?></p>
+<p>
+    <?php echo $this->data['text']; ?><br />
     <small><?php echo $this->data['subtext']; ?></small>
-</blockquote>
+</p>

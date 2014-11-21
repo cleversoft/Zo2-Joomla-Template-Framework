@@ -6,6 +6,14 @@
         <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_GENERAL'); ?></h2>
         <div class="zo2-divider"></div>
 
+        <?php
+        echo Zo2Html::field(
+            'description', null, array(
+                'text' => 'These are the general options for the templates',
+                'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+            ));
+        ?>
+
         <!-- Site Name -->
         <?php
         echo Zo2Html::field(
