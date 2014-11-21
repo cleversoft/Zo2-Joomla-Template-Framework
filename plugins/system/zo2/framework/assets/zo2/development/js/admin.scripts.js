@@ -43,43 +43,6 @@
             this.font.init();
             this.layoutBuilder.init();
         },
-        profile: {
-            _elements: {
-                addNewProfileInput: '#zo2-profile-name',
-                renameProfileInput: '#zo2-new-profile-name'
-            },
-            add: function () {
-                Joomla.submitbutton('style.apply');
-            },
-            rename: function (currentProfile) {
-                var newProfileName = jQuery(this._elements.renameProfileInput).val();
-                $.ajax({
-                    /* Default URL */
-                    url: document.URL,
-                    /* Default method */
-                    type: 'POST',
-                    /* Default data type */
-                    dataType: 'json',
-                    /* Data format */
-                    data: {
-                        /* Force using raw */
-                        format: 'raw',
-                        zo2_ajax: 1,
-                        zo2_task: 'renameProfile',
-                        newProfileName: newProfileName,
-                        profile: currentProfile
-                    }
-
-                })
-                        .done(function (data) {
-                            zo2.admin.ajax.loadProfile(newProfileName);
-                        });
-            },
-            remove: function () {
-                zo2.document.redirect(jQuery('.form-control zo2-select-profile').data('url'));
-            }
-
-        },
         bindSortable: function () {
             jQuery('#droppable-container > .zo2-container').sortable({
                 items: '>.sortable-row',
