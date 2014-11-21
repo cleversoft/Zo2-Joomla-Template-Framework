@@ -43,26 +43,7 @@
             this.font.init();
             this.layoutBuilder.init();
         },
-        bindSortable: function () {
-            jQuery('#droppable-container > .zo2-container').sortable({
-                items: '>.sortable-row',
-                handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
-                containment: 'parent',
-                tolerance: 'pointer',
-                forcePlaceholderSize: true,
-                axis: 'y'
-            });
-
-            jQuery('.sortable-row').sortable({
-                items: '>.row-control>.col-container>.sortable-col',
-                connectWith: '>.sortable-row',
-                handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
-                containment: 'parent',
-                tolerance: "pointer",
-                helper: 'clone',
-                axis: 'x'
-            });
-        },
+        
         generateSlug: function (str) {
             str = str.replace(/^\s+|\s+$/g, '');
             var from = "ÁÀẠẢÃĂẮẰẶẲẴÂẤẦẬẨẪáàạảãăắằặẳẵâấầậẩẫóòọỏõÓÒỌỎÕôốồộổỗÔỐỒỘỔỖơớờợởỡƠỚỜỢỞỠéèẹẻẽÉÈẸẺẼêếềệểễÊẾỀỆỂỄúùụủũÚÙỤỦŨưứừựửữƯỨỪỰỬỮíìịỉĩÍÌỊỈĨýỳỵỷỹÝỲỴỶỸĐđÑñÇç·/_,:;";
