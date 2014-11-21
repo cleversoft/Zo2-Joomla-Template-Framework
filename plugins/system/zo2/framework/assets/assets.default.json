@@ -35,6 +35,7 @@
             "zo2\/js\/scripts.js",
             "zo2\/js\/admin.assets.js",
             "zo2\/js\/admin.scripts.js",
+            "zo2\/js\/admin.ajax.js",
             "zo2\/js\/admin.social.js",
             "zo2\/js\/admin.megamenu.js"
         ]

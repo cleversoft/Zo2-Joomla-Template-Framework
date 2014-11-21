@@ -306,6 +306,8 @@ if (!class_exists('Zo2Framework')) {
                 $style .= 'font-family:' . $data['family'] . ';';
             if (!empty($data['size']) && $data['size'] > 0)
                 $style .= 'font-size:' . $data['size'] . 'px;';
+            if (!empty($data['font_line_height']) && $data['font_line_height'] > 0)
+                $style .= 'line-height:' . $data['font_line_height'] . 'px;';
             if (!empty($data['color']))
                 $style .= 'color:' . $data['color'] . ';';
             if (!empty($data['style'])) {
@@ -379,9 +381,15 @@ if (!class_exists('Zo2Framework')) {
             $this->assets->addStyleSheetDeclaration($style);
 
             /* Prepare Fonts */
-            $selectors = array('body_font' => 'body', 'h1_font' => 'h1',
-                'h2_font' => 'h2', 'h3_font' => 'h3', 'h4_font' => 'h4',
-                'h5_font' => 'h5', 'h6_font' => 'h6'
+            $selectors = array(
+                'body_font' => 'body',
+                'menu_font' => 'nav, .sidebar-nav',
+                'h1_font' => 'h1',
+                'h2_font' => 'h2',
+                'h3_font' => 'h3',
+                'h4_font' => 'h4',
+                'h5_font' => 'h5',
+                'h6_font' => 'h6'
             );
 
             foreach ($selectors as $param => $selector) {

@@ -9,6 +9,7 @@
                 "admin.megamenu.js": "admin.megamenu.js",
                 "admin.assets.js": "admin.assets.js",
                 "admin.scripts.js": "admin.scripts.js",
+                "admin.ajax.js": "admin.ajax.js",
                 "admin.social.js": "admin.social.js",
                 "scripts.js": "scripts.js",
                 "site.megamenu.js": "site.megamenu.js",
