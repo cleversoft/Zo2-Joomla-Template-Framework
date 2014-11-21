@@ -11,17 +11,16 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	+ Component
 	+ Smoother drag drop
 	+ Advanced grid and responsive settings based on Twitter Bootstrap 3
-3. Mega Menu
+3. Menu
 	+ Menu builder from backend
-4. Support Twitter Bootstrap CSS framework
-	+ Integrate Twitter Bootstrap
-	+ Font Awesome Icons
+	+ Sticky Menu
+	+ Off-Canvas menu
+4. Support Bootstrap framework
+	+ Integrate Bootstrap
 	+ Responsive layout
 	+ Typography
 	+ Mobile supported
-5. Shortcode
-	+ Shortcode structure
-	+ OOP for shortcode
+5. Font Awesome Icons	
 6. Fonts Options
 	+ Choose from hundreds Google Web Fonts with live preview
 	+ Support FontDeck
