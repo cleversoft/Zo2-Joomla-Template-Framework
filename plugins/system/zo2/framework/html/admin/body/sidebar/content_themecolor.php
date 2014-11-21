@@ -8,10 +8,10 @@
 
         <?php
         echo Zo2Html::field(
-                'description', null, array(
-            'text' => 'Select which preset style the layout should load',
-            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
-        ));
+            'description', null, array(
+                'text' => 'Select which preset style the layout should load',
+                'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+            ));
         ?>
 
 

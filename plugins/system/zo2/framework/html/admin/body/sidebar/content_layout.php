@@ -18,13 +18,14 @@ defined('_JEXEC') or die('Restricted access');
 <div class="tab-pane" id="zo2-layout">
     <h2><?php echo JText::_('ZO2_ADMIN_LAYOUT_BUILDER'); ?></h2>
     <div class="zo2-divider"></div>
-    <!-- Description -->
+
     <?php
     echo Zo2Html::field(
-            'description', null, array(
-        'text' => 'Short description about this page',
-        'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
-    ));
+        'description', null, array(
+            'text' => 'Short description about this page',
+            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+        ));
     ?>
+
     <?php echo Zo2Html::_('admin', 'builder'); ?>   
 </div>
