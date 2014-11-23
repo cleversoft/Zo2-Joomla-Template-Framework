@@ -26,31 +26,20 @@ if (!class_exists('Zo2Factory')) {
     class Zo2Factory {
 
         /**
-         * Get singleton instance of Zo2 Framework
-         * @return Zo2Framework
-         */
-        public static function getFramework($template = null) {
-            static $instances = array();
-            if ($template === null) {
-                $template = self::getTemplate();
-            }
-            if ($template) {
-                if (!isset($instances[$template->id])) {
-                    $instances[$template->id] = Zo2Framework::getInstance($template);
-                }
-                return $instances[$template->id];
-            }
-            return false;
-        }
-
-        /**
          *
          * @staticvar array $instances
          * @param int $id
          * @return object
          */
         public static function getTemplate($id = null) {
+            /**
+             * Template instances
+             */
             static $instances;
+            /**
+             * Menu itemids
+             */
+            static $itemIds;
             /* Get specific template id */
             if ($id !== null) {
                 if (isset($instances[$id])) {
@@ -73,21 +62,34 @@ if (!class_exists('Zo2Factory')) {
                      * Somehow we can't use getActiveMenu here
                      * @todo Need to improve process
                      */
-                    $itemId = JFactory::getApplication()->input->get('Itemid');
-                    $db = JFactory::getDbo();
-                    $query = ' SELECT ' . $db->quoteName('template_style_id');
-                    $query .= ' FROM ' . $db->quoteName('#__menu');
-                    $query .= ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $itemId;
-                    $db->setQuery($query);
-                    $templateSiteId = $db->loadResult();
-                    if ($templateSiteId && $templateSiteId != 0) {
-                        /* Get request template record */
-                        $id = $templateSiteId;
-                        $template = self::getTemplate($templateSiteId);
-                    } else {
+                    $itemId = JFactory::getApplication()->input->getInt('Itemid');
+
+                    if (is_int($itemId)) {
+                        if (isset($itemIds[$itemId])) {
+                            $templateId = $itemIds[$itemId];
+                        } else {
+                            /* Get template id from database with Itemid */
+                            $db = JFactory::getDbo();
+                            $query = ' SELECT ' . $db->quoteName('template_style_id');
+                            $query .= ' FROM ' . $db->quoteName('#__menu');
+                            $query .= ' WHERE ' . $db->quoteName('id') . ' = ' . (int) $itemId;
+                            $db->setQuery($query);
+                            $templateId = $db->loadResult();
+                            $itemIds[$itemId] = $templateId;
+                        }
+                        if ($templateId && $templateId != 0) {
+                            $id = $templateId;
+                            $template = self::getTemplate($templateId);
+                        } else {
+                            $template = JFactory::getApplication()->getTemplate(true);
+                            $id = $template->id;
+                        }
+                    } else { /* Itemid is not exists than use Joomla! API to get current template */
                         $template = JFactory::getApplication()->getTemplate(true);
                         $id = $template->id;
                     }
+
+
                     $instances[$id] = $template;
                     return $instances[$id];
                 } else {
@@ -99,6 +101,24 @@ if (!class_exists('Zo2Factory')) {
                     }
                 }
             }
+        }
+
+        /**
+         * Get singleton instance of Zo2 Framework
+         * @return Zo2Framework
+         */
+        public static function getFramework($template = null) {
+            static $instances = array();
+            if ($template === null) {
+                $template = self::getTemplate();
+            }
+            if ($template) {
+                if (!isset($instances[$template->id])) {
+                    $instances[$template->id] = Zo2Framework::getInstance($template);
+                }
+                return $instances[$template->id];
+            }
+            return false;
         }
 
         /**
