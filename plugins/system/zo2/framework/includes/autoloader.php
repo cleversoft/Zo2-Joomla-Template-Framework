@@ -52,7 +52,3 @@ if (!class_exists('Zo2Autoloader')) {
     }
 
 }
-$autoloader = new Zo2Autoloader();
-spl_autoload_register(array(
-    $autoloader, 'autoloadByPsr2'
-));

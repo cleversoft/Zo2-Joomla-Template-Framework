@@ -18,6 +18,11 @@ require_once __DIR__ . '/autoloader.php';
 require_once __DIR__ . '/factory.php';
 require_once __DIR__ . '/framework.php';
 
+$autoloader = new Zo2Autoloader();
+spl_autoload_register(array(
+    $autoloader, 'autoloadByPsr2'
+));
+
 if (Zo2Factory::isZo2Template()) {
 
     $framework = Zo2Factory::getFramework();
