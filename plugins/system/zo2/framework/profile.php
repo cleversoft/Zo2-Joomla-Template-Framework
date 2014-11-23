@@ -127,10 +127,7 @@ if (!class_exists('Zo2Profile')) {
                 Zo2Factory::addLog('Invalid profile', 'Layout field is missed', 'error');
                 return false;
             }
-            if ($this->get('theme') == '') {
-                Zo2Factory::addLog('Invalid profile', 'Theme field is missed', 'error');
-                //return false;
-            }
+
             if ($this->get('menuConfig') == '') {
                 Zo2Factory::addLog('Invalid profile', 'menuConfig field is missed', 'error');
                 return false;
@@ -168,13 +165,15 @@ if (!class_exists('Zo2Profile')) {
          * @return bool
          */
         private function _save($profileFile) {
-            if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                $buffer = json_encode($this->toArray(), JSON_PRETTY_PRINT);
-            } else {
-                $buffer = json_encode($this->toArray());
+            if ($this->isValid()) {
+                if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+                    $buffer = json_encode($this->toArray(), JSON_PRETTY_PRINT);
+                } else {
+                    $buffer = json_encode($this->toArray());
+                }
+                return JFile::write($profileFile, $buffer);
             }
-            Zo2Factory::addLog('Save profile', $profileFile, 'info');
-            return JFile::write($profileFile, $buffer);
+            return false;
         }
 
         /**

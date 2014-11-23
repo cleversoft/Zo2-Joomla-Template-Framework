@@ -94,7 +94,7 @@ if (!class_exists('Zo2ModelTemplate')) {
             $table = JTable::getInstance('Style', 'TemplatesTable');
             $id = $jinput->get('id');
             $data = $jinput->post->get('jform', array(), 'array');
-
+            $application = JFactory::getApplication();
             /* Load table record */
             if ($table->load($jinput->get('id'))) {
                 $table->params = new JRegistry($table->params);
@@ -173,32 +173,31 @@ if (!class_exists('Zo2ModelTemplate')) {
 
                         $profile->menuConfig = $menu;
 
-                        $profile->save();
+                        if ($profile->save()) {
+                            /* Save Zo2 data */
+                            $zo2Data = $jinput->post->get('zo2', array(), 'array');
+                            $framework = Zo2Factory::getFramework();
+                            $templateDir = JPATH_ROOT . '/templates/' . $table->template;
+                            $customCssFile = $templateDir . '/assets/zo2/css/custom.css';
+                            $customCss = trim($zo2Data['custom_css']);
+                            JFile::write($customCssFile, $customCss);
+                            $customJsFile = $templateDir . '/assets/zo2/js/custom.js';
+                            $customJs = trim($zo2Data['custom_js']);
+                            JFile::write($customJsFile, $customJs);
 
-                        /* Save Zo2 data */
-                        $zo2Data = $jinput->post->get('zo2', array(), 'array');
-                        $framework = Zo2Factory::getFramework();
-                        $templateDir = JPATH_ROOT . '/templates/' . $table->template;
-                        $customCssFile = $templateDir . '/assets/zo2/css/custom.css';
-                        $customCss = trim($zo2Data['custom_css']);
-                        JFile::write($customCssFile, $customCss);
-                        $customJsFile = $templateDir . '/assets/zo2/js/custom.js';
-                        $customJs = trim($zo2Data['custom_js']);
-                        JFile::write($customJsFile, $customJs);
+                            $application->enqueueMessage('Style successfully saved');
 
-                        $application = JFactory::getApplication();
-                        $application->enqueueMessage('Style successfully saved');
-
-                        if ($jinput->get('task') == 'style.apply') {
-                            $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
-                        } else {
-                            $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
+                            if ($jinput->get('task') == 'style.apply') {
+                                $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
+                            } else {
+                                $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
+                            }
                         }
                     }
                 }
-            } else {
-                JFactory::getApplication()->enqueueMessage('Style save error');
             }
+            JFactory::getApplication()->enqueueMessage('Style save error', 'error');
+            $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
         }
 
         private function _redirect($url, $message = null) {
