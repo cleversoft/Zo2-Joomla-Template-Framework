@@ -273,6 +273,9 @@ if (!class_exists('Zo2Assets')) {
                 $buffer = file_get_contents($sourceFile);
                 $buffer = Zo2HelperCompiler::javascript($buffer);
                 return JFile::write($jsFilePath, $buffer);
+            }else {
+                /* Just copy if we don't use optimzie */
+                JFile::copy($sourceFile, $jsFilePath);
             }
             return false;
         }
