@@ -171,9 +171,8 @@ if (!class_exists('Zo2Assets')) {
                         $outputFile = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/zo2/' . $typePath . '/' . $outputName;
                     }
                     if ($inputFile) {
-                        //echo $outputFile . '<br />';
                         if ($type == 'less') {
-                            Zo2HelperCompiler::less($inputFile, $outputFile);
+                            $this->_compileLess($inputFile);
                         } elseif ($type == 'js') {
                             Zo2HelperCompiler::javascript($inputFile, $outputFile);
                         }
@@ -232,21 +231,28 @@ if (!class_exists('Zo2Assets')) {
             return $this;
         }
 
-        private function _buildLess($input, $output) {
-            $cleanProduction = Zo2Factory::getFramework()->get('clean_production', 1);
-            /* Do clean old files */
-            if (JFile::exists($output) && $cleanProduction)
-                JFile::delete($output);
-            if (!is_file($output) || filemtime($input) > filemtime($output)) {
-                if (Zo2HelperCompiler::less($input, $output)) {
-                    //JFactory::getApplication()->enqueueMessage('Success: ' . $cssFilePath);
+        /**
+         * Compile less to css
+         * @param type $lessFile
+         * @return boolean
+         */
+        private function _compileLess($lessFile) {
+            $pathinfo = pathinfo($lessFile);
+            $cssDir = realpath($pathinfo['dirname'] . '/../../css');
+            $cssFile = $pathinfo['filename'] . '.css';
+            $cssFilePath = $cssDir . '/' . $cssFile;
+            /* Complie */
+            if (Zo2HelperCompiler::less($lessFile, $cssFilePath)) {
+                /**
+                 * @todo Try to provide more minify options
+                 */
+                if (Zo2Factory::get('optimize_css', true)) {
+                    $buffer = file_get_contents($cssFilePath);
+                    $buffer = CssMinifier::minify($buffer);
+                    return JFile::write($cssFilePath, $buffer);
                 }
-            } else {
-                //JError::raiseNotice(100, 'File exists: ' . $cssFilePath);
             }
-            /**
-             * @todo css compress
-             */
+            return false;
         }
 
         private function _buildJs($input, $output) {
@@ -255,19 +261,6 @@ if (!class_exists('Zo2Assets')) {
                 JFile::delete($output);
             if (!is_file($output) || filemtime($input) > filemtime($output)) {
                 if (Zo2HelperCompiler::javascript($input, $output)) {
-                    //JFactory::getApplication()->enqueueMessage('Success: ' . $jsFilePathOutput);
-                }
-            } else {
-                //JError::raiseNotice(100, 'File exists: ' . $jsFilePathOutput);
-            }
-        }
-
-        private function _buildCss($input, $output) {
-            $cleanProduction = Zo2Factory::getFramework()->get('clean_production', 1);
-            if (JFile::exists($output) && $cleanProduction)
-                JFile::delete($output);
-            if (!is_file($output) || filemtime($input) > filemtime($output)) {
-                if (Zo2HelperCompiler::styleSheet($input, $output)) {
                     //JFactory::getApplication()->enqueueMessage('Success: ' . $jsFilePathOutput);
                 }
             } else {
