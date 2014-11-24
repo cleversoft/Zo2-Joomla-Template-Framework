@@ -174,7 +174,7 @@ if (!class_exists('Zo2Assets')) {
                         if ($type == 'less') {
                             $this->_compileLess($inputFile);
                         } elseif ($type == 'js') {
-                            Zo2HelperCompiler::javascript($inputFile, $outputFile);
+                            $this->_compileJs($inputFile);
                         }
                     }
                 }
@@ -255,17 +255,26 @@ if (!class_exists('Zo2Assets')) {
             return false;
         }
 
-        private function _buildJs($input, $output) {
-            $cleanProduction = Zo2Factory::getFramework()->get('clean_production', 1);
-            if (JFile::exists($output) && $cleanProduction)
-                JFile::delete($output);
-            if (!is_file($output) || filemtime($input) > filemtime($output)) {
-                if (Zo2HelperCompiler::javascript($input, $output)) {
-                    //JFactory::getApplication()->enqueueMessage('Success: ' . $jsFilePathOutput);
-                }
-            } else {
-                //JError::raiseNotice(100, 'File exists: ' . $jsFilePathOutput);
+        /**
+         * 
+         * @param string $jsFile
+         * @return boolean
+         */
+        private function _compileJs($jsFile) {
+            $sourceFile = $jsFile;
+            $pathinfo = pathinfo($jsFile);
+            $jsDir = realpath($pathinfo['dirname'] . '/../../js');
+            $jsFile = $pathinfo['filename'] . '.js';
+            $jsFilePath = $jsDir . '/' . $jsFile;
+            /**
+             * @todo Try to provide more minify options
+             */
+            if (Zo2Factory::get('optimize_js', true)) {
+                $buffer = file_get_contents($sourceFile);
+                $buffer = Zo2HelperCompiler::javascript($buffer);
+                return JFile::write($jsFilePath, $buffer);
             }
+            return false;
         }
 
         /**

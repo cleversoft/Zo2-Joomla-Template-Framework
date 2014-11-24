@@ -13,6 +13,7 @@
 defined('_JEXEC') or die;
 Zo2Factory::import('vendor.less.lessc');
 Zo2Factory::import('vendor.minify.css');
+Zo2Factory::import('vendor.minify.minifier');
 /**
  * Class exists checking
  */
@@ -50,15 +51,8 @@ if (!class_exists('Zo2HelperCompiler')) {
          * @todo Remove warnning
          * @return boolean
          */
-        public static function javascript($inputFile, $outputFile) {
-            if (JFile::exists($inputFile)) {
-                $content = JFile::read($inputFile);
-                /**
-                 * @todo apply javascript compress method here
-                 */
-                return JFile::write($outputFile, $content);
-            }
-            return false;
+        public static function javascript($js) {
+           return \JShrink\Minifier::minify($js);
         }
 
         /**
