@@ -1,33 +1,33 @@
 {
     "build": {
         "core": {
-            "less": {
-                "admin.styles.less": "admin.styles.css",
-                "site.styles.less": "site.styles.css"
-            },
-            "js": {
-                "admin.megamenu.js": "admin.megamenu.js",
-                "admin.assets.js": "admin.assets.js",
-                "admin.scripts.js": "admin.scripts.js",
-                "admin.ajax.js": "admin.ajax.js",
-                "admin.profile.js": "admin.profile.js",
-                "admin.layoutbuilder.js": "admin.layoutbuilder.js",
-                "admin.social.js": "admin.social.js",
-                "scripts.js": "scripts.js",
-                "site.megamenu.js": "site.megamenu.js",
-                "site.scripts.js": "site.scripts.js"
-            }
+            "less": [
+                "admin.styles.less",
+                "site.styles.less"
+            ],
+            "js": [
+                "admin.megamenu.js",
+                "admin.assets.js",
+                "admin.scripts.js",
+                "admin.ajax.js",
+                "admin.profile.js",
+                "admin.layoutbuilder.js",
+                "admin.social.js",
+                "scripts.js",
+                "site.megamenu.js",
+                "site.scripts.js"
+            ]
         },
         "template": {
-            "less": {
-                "template.less": "template.css",
-                "error.less": "error.css",
-                "presets\/green.less": "presets\/green.css",
-                "presets\/blue.less": "presets\/blue.css",
-                "presets\/orange.less": "presets\/orange.css"
-            },
-            "js": {
-            }
+            "less": [
+                "template.less",
+                "error.less",
+                "presets\/green.less",
+                "presets\/blue.less",
+                "presets\/orange.less"
+            ],
+            "js": [
+            ]
         }
     }
 }
