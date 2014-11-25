@@ -291,7 +291,7 @@ if (!class_exists('Zo2Assets')) {
                 $jsHtml = '';
                 /* Do compress */
                 if ($combineJs) {
-                    $jsFile = 'cache/zo2_' . md5(serialize($this->_assets)) . '.js';
+                    $jsFile = 'cache/zo2_' . md5(serialize($this->_javascripts)) . '.js';
                     $jsFilePath = JPATH_ROOT . '/' . $jsFile;
                     $jsContent = array();
                     /**
@@ -309,14 +309,14 @@ if (!class_exists('Zo2Assets')) {
                 }
                 $jsDeclarationHtml = '<script>jQuery(document).ready( function () {';
                 foreach ($this->_javascriptDeclarations as $javascriptDeclaration) {
-                    $jsDeclarationHtml .= $javascriptDeclaration;
+                    $jsDeclarationHtml .= Zo2HelperCompiler::javascript($javascriptDeclaration);
                 }
                 $jsDeclarationHtml .= ' }); </script>';
-                return $jsHtml . "\n" . $jsDeclarationHtml;
+                return $jsHtml . PHP_EOL . $jsDeclarationHtml;
             } else {
                 $cssHtml = '';
                 if ($combineCss) {
-                    $cssName = 'cache/zo2_' . md5(serialize($this->_assets)) . '.css';
+                    $cssName = 'cache/zo2_' . md5(serialize($this->_stylesheets)) . '.css';
                     $cssFilePath = JPATH_ROOT . '/' . $cssName;
                     $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssName;
                     $cssContent = array();
@@ -340,7 +340,7 @@ if (!class_exists('Zo2Assets')) {
                 }
                 $cssDeclarationHtml = '<style>';
                 foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration) {
-                    $cssDeclarationHtml .= $stylesheetDeclaration;
+                    $cssDeclarationHtml .= CssMinifier::minify($stylesheetDeclaration);
                 }
                 $cssDeclarationHtml .= '</style>';
 
