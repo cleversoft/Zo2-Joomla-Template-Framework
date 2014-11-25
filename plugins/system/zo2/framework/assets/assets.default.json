@@ -38,6 +38,8 @@
             "zo2\/js\/admin.ajax.js",
             "zo2\/js\/admin.profile.js",
             "zo2\/js\/admin.layoutbuilder.js",
+            "zo2\/js\/admin.font.js",
+            "zo2\/js\/admin.themecolor.js",
             "zo2\/js\/admin.social.js",
             "zo2\/js\/admin.megamenu.js"
         ]

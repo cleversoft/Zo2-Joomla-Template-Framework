@@ -1,6 +1,7 @@
 {
     "build": {
         "core": {
+<<<<<<< HEAD
             "less": [
                 "admin.styles.less",
                 "site.styles.less"
@@ -17,6 +18,26 @@
                 "site.megamenu.js",
                 "site.scripts.js"
             ]
+=======
+            "less": {
+                "admin.styles.less": "admin.styles.css",
+                "site.styles.less": "site.styles.css"
+            },
+            "js": {
+                "admin.megamenu.js": "admin.megamenu.js",
+                "admin.assets.js": "admin.assets.js",
+                "admin.scripts.js": "admin.scripts.js",
+                "admin.ajax.js": "admin.ajax.js",
+                "admin.profile.js": "admin.profile.js",
+                "admin.layoutbuilder.js": "admin.layoutbuilder.js",
+                "admin.font.js": "admin.font.js",
+                "admin.themecolor.js": "admin.themecolor.js",
+                "admin.social.js": "admin.social.js",
+                "scripts.js": "scripts.js",
+                "site.megamenu.js": "site.megamenu.js",
+                "site.scripts.js": "site.scripts.js"
+            }
+>>>>>>> 3920490501b8bbf61dfea907965829ebc9ad1b4b
         },
         "template": {
             "less": [
