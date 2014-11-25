@@ -12,6 +12,8 @@
                 "admin.ajax.js": "admin.ajax.js",
                 "admin.profile.js": "admin.profile.js",
                 "admin.layoutbuilder.js": "admin.layoutbuilder.js",
+                "admin.font.js": "admin.font.js",
+                "admin.themecolor.js": "admin.themecolor.js",
                 "admin.social.js": "admin.social.js",
                 "scripts.js": "scripts.js",
                 "site.megamenu.js": "site.megamenu.js",
