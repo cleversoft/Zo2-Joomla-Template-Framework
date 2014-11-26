@@ -19,39 +19,41 @@ defined('_JEXEC') or die;
         <?php echo $this->label['label'];
         ?>
     </label>
-<div class="controls">
-    <div class="field-logo-container">
-        <input class="logoInput" type="hidden" value="<?php echo $this->params->get('header_logo'); ?>" name="jform[params][header_logo]" id="header_logo" />
-        <div class="radio btn-group logo-type-switcher">
-            <button class="btn logo-type-none active btn-success"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
-            <button class="btn logo-type-image "><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
-            <button class="btn logo-type-text "><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
+    <div class="controls">
+        <div class="field-logo-container">
+            <input class="logoInput" type="hidden" value="<?php echo $this->params->get('header_logo'); ?>" name="jform[params][header_logo]" id="header_logo" />
+            <div class="radio btn-group logo-type-switcher" data-name="header_logo">
+                <button class="btn logo-type-none active btn-success"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
+                <button class="btn logo-type-image "><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
+                <button class="btn logo-type-text "><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
+            </div>
         </div>
     </div>
 </div>
-</div>
-<div class="control-group">
-    <label class="control-label">Header Logo Image</label>
-    <div class="logo-image ">
-        <input type="hidden" class="basePath" value="/hallo142">
-        <input type="hidden" class="logo-path" value="">
-        <div class="btn-group">
-            <a href="#" class="btn btn-primary btn-select-logo modal" rel=""><?php echo JText::_('ZO2_ADMIN_SELECT'); ?></a>
-            <!--                                    <a href="#" class="btn btn-danger btn-remove-preview"><i class="icon-remove"></i></a>-->
+<div class="header_logo_setting">
+    <div class="control-group">
+        <label class="control-label">Header Logo Image</label>
+        <div class="logo-image ">
+            <input type="hidden" class="basePath" value="/hallo142">
+            <input type="hidden" class="logo-path" value="">
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary btn-select-logo modal" rel=""><?php echo JText::_('ZO2_ADMIN_SELECT'); ?></a>
+                <!--                                    <a href="#" class="btn btn-danger btn-remove-preview"><i class="icon-remove"></i></a>-->
+            </div>
         </div>
     </div>
-</div>
-<div class="control-group">
-    <label class="control-label">Header Logo Width</label>
-    <input type="text" class="logo-width input-mini" value="">
-</div>
-<div class="control-group">
-    <label class="control-label">Header Logo Height</label>
-    <input type="text" class="logo-height input-mini" value="">
-</div>
-<div class="control-group">
-    <label class="control-label">Header Logo Text</label>
-    <div class="logo-text ">
-        <input type="text" class="logo-text-input" value="">
+    <div class="control-group">
+        <label class="control-label">Header Logo Width</label>
+        <input type="text" class="logo-width" value="">
+    </div>
+    <div class="control-group">
+        <label class="control-label">Header Logo Height</label>
+        <input type="text" class="logo-height" value="">
+    </div>
+    <div class="control-group">
+        <label class="control-label">Header Logo Text</label>
+        <div class="logo-text">
+            <input type="text" class="logo-text-input" value="">
+        </div>
     </div>
 </div>
