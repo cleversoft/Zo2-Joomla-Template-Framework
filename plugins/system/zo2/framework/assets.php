@@ -100,7 +100,7 @@ if (!class_exists('Zo2Assets')) {
         private function _loadJquery() {
             $document = JFactory::getDocument();
             $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
-            $document->addScript(ZO2URL_ASSETS. '/vendor/jqueryui/jquery-ui.min.js');
+            $document->addScript(ZO2URL_ASSETS . '/vendor/jqueryui/jquery-ui.min.js');
             $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
             $document->addStyleSheet(ZO2URL_ASSETS . '/vendor/jqueryui/jquery-ui.min.css');
         }
@@ -243,7 +243,7 @@ if (!class_exists('Zo2Assets')) {
                 /**
                  * @todo Try to provide more minify options
                  */
-                if (Zo2Factory::get('optimize_css', true)) {
+                if (Zo2Factory::get('optimize_css', false)) {
                     $buffer = file_get_contents($cssFilePath);
                     $buffer = CssMinifier::minify($buffer);
                     return JFile::write($cssFilePath, $buffer);
@@ -266,7 +266,7 @@ if (!class_exists('Zo2Assets')) {
             /**
              * @todo Try to provide more minify options
              */
-            if (Zo2Factory::get('optimize_js', true)) {
+            if (Zo2Factory::get('optimize_js', false)) {
                 $buffer = file_get_contents($sourceFile);
                 $buffer = Zo2HelperCompiler::javascript($buffer);
                 return JFile::write($jsFilePath, $buffer);
@@ -286,8 +286,8 @@ if (!class_exists('Zo2Assets')) {
             $zPath = Zo2Path::getInstance();
             /* Get Zo2Framework */
             $framework = Zo2Factory::getFramework();
-            $combineJs = $framework->get('combine_js', true);
-            $combineCss = $framework->get('combine_css', true);
+            $combineJs = $framework->get('combine_js', false);
+            $combineCss = $framework->get('combine_css', false);
             /* Generate javascript */
             if ($type == 'js') {
                 $jsHtml = '';
