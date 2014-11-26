@@ -100,7 +100,9 @@ if (!class_exists('Zo2Assets')) {
         private function _loadJquery() {
             $document = JFactory::getDocument();
             $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
+            $document->addScript(ZO2URL_ASSETS. '/vendor/jqueryui/jquery-ui.min.js');
             $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
+            $document->addStyleSheet(ZO2URL_ASSETS . '/vendor/jqueryui/jquery-ui.min.css');
         }
 
         /**

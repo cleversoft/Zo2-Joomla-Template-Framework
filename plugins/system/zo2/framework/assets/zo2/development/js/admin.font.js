@@ -30,13 +30,13 @@
 
         _init: function () {
             this.fontChange();
-            this.fontSizeSlider();
+            //this.fontSizeSlider();
             this.initFontActive();
         },
         /**
          * Event select font size
          * @returns {undefined}
-         */
+         *
         fontSizeSlider: function () {
             jQuery(".slider_font_size").slider({
                 min: 5,
@@ -106,7 +106,7 @@
         fontChange: function () {
             $('#font_chooser').on('font-change', '.font-container', function () {
                 var $this = $(this);
-                zo2.admin.font.generateFontOptions($this);
+                this.generateFontOptions($this);
             });
 
             $('.font-container').on('click', '.btnStandardFonts', function () {

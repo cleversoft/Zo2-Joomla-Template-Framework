@@ -31,38 +31,26 @@
             this.font._init();
             this.layoutbuilder._init();
         },
-        
-        generateSlug: function (str) {
-            str = str.replace(/^\s+|\s+$/g, '');
-            var from = "ÁÀẠẢÃĂẮẰẶẲẴÂẤẦẬẨẪáàạảãăắằặẳẵâấầậẩẫóòọỏõÓÒỌỎÕôốồộổỗÔỐỒỘỔỖơớờợởỡƠỚỜỢỞỠéèẹẻẽÉÈẸẺẼêếềệểễÊẾỀỆỂỄúùụủũÚÙỤỦŨưứừựửữƯỨỪỰỬỮíìịỉĩÍÌỊỈĨýỳỵỷỹÝỲỴỶỸĐđÑñÇç·/_,:;";
-            var to = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaooooooooooooooooooooooooooooooooooeeeeeeeeeeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuiiiiiiiiiiyyyyyyyyyyddnncc------";
 
-            for (var i = 0, l = from.length; i < l; i++) {
-                str = str.replace(new RegExp(from[i], "g"), to[i]);
-            }
-            str = str.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\s+/g, '-').toLowerCase();
-            str = str.replace(/(-){2,}/i, '-');
-            return str;
-        },
-
-        generateJson: function () {
+        generateZo2SettingJson: function () {
             var $rootParent = jQuery('#droppable-container .zo2-container');
             var json = [];
             /* Loop all rows */
             $rootParent.find('>[data-zo2-type="row"]').each(function () {
-                var itemJson = zo2.admin.generateItemJson(jQuery(this));
+                var itemJson = zo2.admin.generateLayoutJson(jQuery(this));
                 if (itemJson != null)
                     json.push(itemJson);
             });
 
             return JSON.stringify(json);
         },
+        
         /**
          *
          * @param {type} $item
-         * @returns {generateItemJson.result}
+         * @returns {generateLayoutJson.result}
          */
-        generateItemJson: function ($item) {
+        generateLayoutJson: function ($item) {
             var result = null;
             var $childrenContainer = null;
             /* Row */
@@ -85,7 +73,7 @@
                 $childrenContainer = $item.find('> .row-control > .col-container');
 
                 $childrenContainer.find('> [data-zo2-type]').each(function () {
-                    var childItem = zo2.admin.generateItemJson(jQuery(this));
+                    var childItem = zo2.admin.generateLayoutJson(jQuery(this));
                     result.children.push(childItem);
                 });
             }
@@ -113,7 +101,7 @@
                 $childrenContainer = $item.find('> .col-wrap > .row-container');
 
                 $childrenContainer.find('> [data-zo2-type]').each(function () {
-                    var childItem = zo2.admin.generateItemJson(jQuery(this));
+                    var childItem = zo2.admin.generateLayoutJson(jQuery(this));
                     result.children.push(childItem);
                 });
             }
@@ -163,61 +151,7 @@
 })(window, zo2, zo2.jQuery);
 
 zo2.jQuery(document).ready(function ($) {
-    /*============For joomla 2.5==============*/
-    function radio_button() {
-        jQuery('.btn-group label:not(.active)').on("click", function () {
-            var label = jQuery(this);
-            var input = label.prev();
 
-            if (!input.prop('checked')) {
-                label.closest('.btn-group').find('label').removeClass('btn-success').removeClass('btn-danger').removeClass('btn-primary');
-                if (input.val() == '') {
-                    label.addClass('active btn-primary');
-                } else if (input.val() == 0) {
-                    label.addClass('active btn-danger');
-                } else {
-                    label.addClass('active btn-success');
-                }
-                input.prop('checked', true);
-            }
-        });
-    }
-    // Turn radios into btn-group
-    $('.radio.btn-group input[type="radio"]').hide();
-
-    $('.radio.btn-group label').addClass('btn');
-    $('.radio.btn-group input[value="0"]').next().addClass('first');
-
-    radio_button();
-
-    $('.btn-group label').on("click", function () {
-        radio_button();
-    });
-
-    $('.btn-group input[checked=checked]').each(function () {
-        var label = $(this).next();
-        if ($(this).val() == '') {
-            label.addClass('active btn-primary');
-        } else if ($(this).val() == 0) {
-            label.addClass('active btn-danger');
-        } else {
-            label.addClass('active btn-success');
-        }
-    });
-
-
-    $('.btn-group-onoff > button').on('click', function (e) {
-        var $this = $(this);
-        var $container = $this.closest('.btn-group-onoff');
-
-        $container.find('button').removeClass('active btn-success btn-danger');
-        if ($this.hasClass('btn-on'))
-            $this.addClass('active btn-success');
-        else
-            $this.addClass('active btn-danger');
-
-        return false;
-    });
 
 
     // cause joomla does not have bootstrap tabs :|
@@ -315,7 +249,7 @@ zo2.jQuery(document).ready(function ($) {
         $('.field-logo-container').each(function () {
             zo2.admin.generateLogoJson($(this));
         });
-        $input.val(zo2.admin.generateJson());
+        $input.val(zo2.admin.generateZo2SettingJson());
 
         form.submit();
     };

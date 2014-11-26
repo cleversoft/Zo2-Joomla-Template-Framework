@@ -51,9 +51,6 @@ if (!class_exists('Zo2HtmlAdmin')) {
          */
         public function builder() {
             $assets = Zo2Assets::getInstance();
-            /* jQueryUI */
-            $assets->addScript('vendor/jqueryui/jquery-ui.min.js');
-            $assets->addStyleSheet('vendor/jqueryui/jquery-ui.min.css');
 
             $assets->addScript('vendor/bootbox-3.3.0.min.js');
             $assets->addScript('zo2/js/adminlayout.min.js');
