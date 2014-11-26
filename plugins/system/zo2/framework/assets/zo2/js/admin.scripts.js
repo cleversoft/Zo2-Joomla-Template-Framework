@@ -27,9 +27,7 @@
          * @returns {undefined}
          */
         _init: function () {
-            this.themecolor._init();
-            this.font._init();
-            this.layoutbuilder._init();
+
         },
 
         generateZo2SettingJson: function () {
