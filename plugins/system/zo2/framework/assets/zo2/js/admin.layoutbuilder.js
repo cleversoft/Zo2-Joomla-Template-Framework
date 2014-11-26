@@ -28,9 +28,6 @@
             container: "#droppable-container > .zo2-container",
             sortableRow: ".sortable-row"
         },
-        /**
-         * Default settings
-         */
         _settings: {
             strantegy: [
                 [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
@@ -40,14 +37,14 @@
             ],
             allColClass: 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12',
             allColOffset: 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
-                    'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12'
+                'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12'
         },
         /**
          * Init function
          * @returns {undefined}
          */
         _init: function () {
-            this._sortable();
+            this.sortable();
             this.duplicate();
             this.slipt();
             this.delete();
@@ -55,37 +52,13 @@
             this.setting();
             this.save();
         },
-        /**
-         * Init sortable for layout builder
-         * @returns {undefined}
-         */
-        _sortable: function () {
-            $(this._elements.container).sortable({
-                items: '>.sortable-row',
-                handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
-                containment: 'parent',
-                tolerance: 'pointer',
-                forcePlaceholderSize: true,
-                axis: 'y'
-            });
 
-            $(this._elements.sortableRow).sortable({
-                items: '>.row-control>.col-container>.sortable-col',
-                connectWith: '>.sortable-row',
-                handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
-                containment: 'parent',
-                tolerance: "pointer",
-                helper: 'clone',
-                axis: 'x'
-            });
+        sortable: function() {
+           
         },
-        /**
-         * 
-         * @param {type} container
-         * @returns {undefined}
-         */
-        rearrangeSpan: function (container) {
-            var $spans = container.find('>[data-zo2-type="span"]');
+        rearrangeSpan: function ($container) {
+            var $ = jQuery;
+            var $spans = $container.find('>[data-zo2-type="span"]');
             if ($spans.length > 0) {
                 var width = 0;
                 if ($spans.length == 1) {
@@ -117,8 +90,9 @@
         duplicate: function () {
             $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function () {
                 var $this = $(this);
-                var $parent = $this.closest('.zo2-row');                
-                var $row = $('<div />').addClass('zo2-row sortable-row').insertAfter($parent);
+                var $parent = $this.closest('.zo2-row');
+                var $container = $this.closest('.zo2-container, .sortable-col');
+                var $row = jQuery('<div />').addClass('zo2-row sortable-row').insertAfter($parent);
                 $row.attr('data-zo2-type', 'row');
                 $row.attr('data-zo2-customClass', '');
                 $row.attr('data-zo2-fullwidth', '0');
@@ -126,17 +100,17 @@
                     $row.attr(this._settings.visibilityAttributes[i], '1');
                 }
                 //$row.attr('data-zo2-layout', 'fixed');
-                var $meta = $('<div class="col-md-12 row-control">' +
-                        '<div class="row-control-container">' +
-                        '<div class="row-name">(unnamed row)</div>' +
-                        '<div class="row-control-buttons">' +
-                        '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-                        '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-                        '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-                        '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
-                        '</div></div>' +
-                        '<div class="col-container"></div></div>');
+                var $meta = jQuery('<div class="col-md-12 row-control">' +
+                    '<div class="row-control-container">' +
+                    '<div class="row-name">(unnamed row)</div>' +
+                    '<div class="row-control-buttons">' +
+                    '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
+                    '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                    '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
+                    '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
+                    '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+                    '</div></div>' +
+                    '<div class="col-container"></div></div>');
                 $meta.appendTo($row);
 
             });
@@ -154,7 +128,7 @@
                 else
                 {
                     var selectedStrategy = strategy[strategyNum];
-                    var $span = $('<div />').addClass('sortable-col');
+                    var $span = jQuery('<div />').addClass('sortable-col');
                     $span.attr('data-zo2-type', 'span');
                     $span.attr('data-zo2-position', '');
                     $span.attr('data-zo2-offset', 0);
@@ -163,23 +137,23 @@
                         $span.attr(this._settings.visibilityAttributes[i], '1');
                     }
                     var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                            '<div class="col-control-buttons">' +
-                            '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                            '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                            '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                            '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
-                            '</div><div class="row-container"></div></div></div>';
-                    var $meta = $(metaHtml);
+                        '<div class="col-control-buttons">' +
+                        '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
+                        '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
+                        '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
+                        '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
+                        '</div><div class="row-container"></div></div></div>';
+                    var $meta = jQuery(metaHtml);
                     $meta.appendTo($span);
                     /*
-                     var $spanContainer = $('<div />').addClass('row-container zo2-row sortable-row');
+                     var $spanContainer = jQuery('<div />').addClass('row-container zo2-row sortable-row');
                      $spanContainer.appendTo($meta);
                      */
                     $span.appendTo($colContainer);
 
                     // apply new span number
                     $colContainer.find('>[data-zo2-type="span"]').each(function (index) {
-                        var $this = $(this);
+                        var $this = jQuery(this);
                         $this.removeClass(this._settings.allColClass);
                         $this.addClass('col-md-' + selectedStrategy[index]);
                         $this.attr('data-zo2-span', selectedStrategy[index]);
@@ -207,7 +181,7 @@
                 var $this = $(this);
                 var $container = $this.parents('.col-wrap').find('>.row-container');
 
-                var $row = $('<div />').addClass('zo2-row sortable-row').appendTo($container);
+                var $row = jQuery('<div />').addClass('zo2-row sortable-row').appendTo($container);
                 $row.attr('data-zo2-type', 'row');
                 $row.attr('data-zo2-customClass', '');
                 $row.attr('data-zo2-fullwidth', '0');
@@ -215,14 +189,14 @@
                     $row.attr(this._settings.visibilityAttributes[i], '1');
                 }
                 //$row.attr('data-zo2-layout', 'fixed');
-                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-                        '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-                        '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-                        '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-                        '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+                var $meta = jQuery('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
+                    '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
+                    '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
+                    '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
+                    '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
+                    '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
                 $meta.appendTo($row);
-                var $colContainer = $('<div />').addClass('col-container row-fluid clearfix');
+                var $colContainer = jQuery('<div />').addClass('col-container row-fluid clearfix');
                 $colContainer.appendTo($meta);
 
             });
@@ -325,6 +299,8 @@
             str = str.replace(/(-){2,}/i, '-');
             return str;
         },
+
+
     };
     /**
      * Init plugin
