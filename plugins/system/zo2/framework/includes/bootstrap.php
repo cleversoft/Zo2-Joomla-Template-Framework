@@ -31,7 +31,7 @@ if (Zo2Factory::isZo2Template()) {
     if (Zo2Factory::isJoomla25()) {
         
     } else {
-        JHtml::_('jquery.ui');
+        JHtml::_('jquery.ui', array('core', 'sortable'));
         JHtml::_('bootstrap.framework');
         JFactory::getApplication()->loadLanguage();
     }

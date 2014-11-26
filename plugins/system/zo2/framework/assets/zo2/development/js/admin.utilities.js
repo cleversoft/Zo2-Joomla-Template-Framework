@@ -34,7 +34,43 @@
          * @returns {undefined}
          */
         _init: function () {
+            this.logoImage();
+            this.radioButton();
+            this.tabs();
+        },
 
+        logoImage: function() {
+            $('.logo-type-switcher').on('click', 'button', function () {
+                var $this = $(this);
+                var $container = $this.closest('.field-logo-container');
+                var $buttons = $this.closest('.logo-type-switcher').find('button');
+                $buttons.removeClass('active btn-success');
+                $this.addClass('active btn-success');
+
+                if ($this.hasClass('logo-type-none')) {
+                    $container.find('.logo-image').removeClass('show').fadeOut(300);
+                    $container.find('.logo-text').removeClass('show').fadeOut(300);
+                }
+                else if ($this.hasClass('logo-type-image')) {
+                    $container.find('.logo-image').removeClass('show').fadeIn(300);
+                    $container.find('.logo-text').removeClass('show').fadeOut(300);
+                }
+                else if ($this.hasClass('logo-type-text')) {
+                    $container.find('.logo-image').removeClass('show').fadeOut(300);
+                    $container.find('.logo-text').removeClass('show').fadeIn(300);
+                }
+                return false;
+            });
+
+            $('.field-logo-container').on('click', '.btn-remove-preview', function () {
+                var $this = $(this);
+                var $container = $this.closest('.field-logo-container');
+                var $preview = $container.find('.logo-preview');
+                var $input = $container.find('.logoInput');
+
+                $preview.empty();
+                return false;
+            });
         },
 
         radioButton: function() {
@@ -89,14 +125,28 @@
 
                 return false;
             });
+        },
+        tabs: function() {
+            // cause joomla does not have bootstrap tabs :|
+            $('.zo2-tabs').on('click', 'li a', function () {
+                var $this = $(this);
+                var $tabs = $this.closest('.zo2-tabs');
+                var $actives = $tabs.find('.active');
+                $actives.removeClass('active');
+                $actives.each(function () {
+                    var $activeTab = $('#' + $(this).attr('data-toggle'));
+                    $activeTab.removeClass('active');
+                });
+                $this.addClass('active');
+                $('#' + $this.attr('data-toggle')).addClass('active');
+            });
         }
-
     }
     /**
      * Init plugin
      * Put all of your init code into _init
      */
     $(document).ready(function () {
-        zo2.admin.themecolor._init();
+        zo2.admin.utilities._init();
     });
 })(window, zo2, zo2.jQuery);
