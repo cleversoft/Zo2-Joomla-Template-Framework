@@ -286,10 +286,8 @@ if (!class_exists('Zo2Profile')) {
                 case 'add':
                     return true;
                 case 'rename';
-                    return true;
                     return !$this->isDefault();
                 case 'remove';
-                    return true;
                     return !$this->isDefault();
                 default:
                     return true;
