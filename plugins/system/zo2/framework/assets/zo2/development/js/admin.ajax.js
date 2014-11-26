@@ -73,12 +73,18 @@
         loadProfile: function (value) {
             _settings = {
                 data: {
-                    zo2_task: 'renderAdmin'
+                    zo2_task: 'renderAdmin',
+                    profile: value
                 }
             };
             settings = $.extend(this._settings, _settings);
             $.ajax(settings)
-                    .done(function (data) {                        
+                    .done(function (data) {
+                        if ($.isArray(data)) {
+
+                        } else {
+                            data = $.parseJSON(data);
+                        }
                         jQuery('#zo2-framework').parent().html(data.html[0].html);
                         zo2.admin._init();
                     });
