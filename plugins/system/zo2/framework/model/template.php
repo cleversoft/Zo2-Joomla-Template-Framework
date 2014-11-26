@@ -87,23 +87,24 @@ if (!class_exists('Zo2ModelTemplate')) {
             $assets->buildAssets();
         }
 
+        /**
+         * 
+         */
         private function _save() {
-
+            $application = JFactory::getApplication();
             $jinput = JFactory::getApplication()->input;
             /* Get table */
             $table = JTable::getInstance('Style', 'TemplatesTable');
-            $id = $jinput->get('id');
+            /* Form data */
             $data = $jinput->post->get('jform', array(), 'array');
-            $application = JFactory::getApplication();
             /* Load table record */
             if ($table->load($jinput->get('id'))) {
+                /* Save to database */
                 $table->params = new JRegistry($table->params);
-                /* Do never use $_REQUEST */
                 $formData = $jinput->post->get('jform', array(), 'array');
                 /* Save template with data */
                 $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
                 $model->save($formData);
-
                 /* Request profileName */
                 $formData['profile-select'] = isset($formData['profile-select']) ? $formData['profile-select'] : 'default';
                 $profileName = $jinput->get('profile-name');
