@@ -10,7 +10,6 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-
 ?>
 <!-- Select profile -->
 <div class="control-group">
@@ -18,9 +17,10 @@ defined('_JEXEC') or die('Restricted access');
     <div class="control-label"><?php echo $this->label['label']; ?></div>
     <div class="controls">        
         <!-- Select profile -->        
-        <?php 
+        <?php
         $juri = JUri::getInstance();
-        $juri->setVar('profile', $this->data['profile']->name); ?>
+        $juri->setVar('profile', $this->data['profile']->name);
+        ?>
         <select class="form-control zo2-select-profile" onchange="zo2.admin.ajax.loadProfile(this.value);
                 return false;" name="jform[profile-select]" data-url="<?php echo $juri->toString(); ?>">
             <!-- Display list of profiles -->
@@ -76,7 +76,7 @@ defined('_JEXEC') or die('Restricted access');
                 <?php if ($this->data['profile']->authorise('remove')) : ?>    
                     <div class="zo2-renameProfile">
                         <span class="input-group-btn">            
-                            <button class="btn btn-danger" id="zo2-renameProfile" onClick="zo2.admin.profile.remove('<?php echo $this->data['profile']->name; ?>');
+                            <button class="btn btn-danger" id="zo2-renameProfile" onClick="zo2.admin.profile.remove('<?php echo $this->data['profile']->name; ?>', '<?php echo Zo2Factory::getFramework()->template->id; ?>');
                                         return false;">Delete</button> 
                         </span>                  
                     </div>

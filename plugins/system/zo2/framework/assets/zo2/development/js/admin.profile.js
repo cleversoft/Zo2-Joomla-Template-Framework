@@ -76,8 +76,27 @@
          * Delete current profile
          * @returns {undefined}
          */
-        remove: function () {
-            zo2.document.redirect(jQuery('.form-control zo2-select-profile').data('url'));
+        remove: function (profile, templateId) {
+            $.ajax({
+                /* Default URL */
+                url: document.URL,
+                /* Default method */
+                type: 'POST',
+                /* Default data type */
+                dataType: 'json',
+                /* Data format */
+                data: {
+                    /* Force using raw */
+                    format: 'raw',
+                    zo2_ajax: 1,
+                    zo2_task: 'removeProfile',
+                    profile: profile,
+                    templateId: templateId
+                }
+
+            }).done(function (data) {
+                zo2.admin.ajax.loadProfile('default');
+            });
         }
     };
     /**

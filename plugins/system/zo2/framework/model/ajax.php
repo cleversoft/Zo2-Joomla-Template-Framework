@@ -71,6 +71,16 @@ if (!class_exists('Zo2ModelAjax')) {
             $this->_ajax->response();
         }
 
+        public function removeProfile() {
+            $profile = JFactory::getApplication()->input->getString('profile');
+            $templateId = JFactory::getApplication()->input->getInt('templateId');
+            $template = Zo2Factory::getTemplate($templateId);
+            if ($template) {
+                $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
+                JFile::delete($profile);
+            }
+        }
+
         public function downloadBackup() {
             $attachment_location = $this->_getBackupProfiles();
             if (file_exists($attachment_location)) {
