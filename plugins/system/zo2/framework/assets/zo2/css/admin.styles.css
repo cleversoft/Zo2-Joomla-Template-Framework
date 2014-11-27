@@ -326,19 +326,20 @@
   margin-top: 20px;
 }
 #zo2-framework #zo2-messages {
-  line-height: 40px;
-  min-width: 300px;
+  width: 300px;
   position: fixed;
   right: 35px;
   top: 135px;
   z-index: 9;
+  max-width: 300px;
 }
 #zo2-framework #zo2-messages .sr-only {
   display: none;
 }
-#zo2-framework #zo2-messages .alert .close {
-  font-size: 30px;
-  margin-top: 9px;
+#zo2-framework #zo2-messages .close {
+  font-size: 27px;
+  margin-right: 10px;
+  margin-top: 12px;
 }
 #zo2-framework .zo2-top #zo2-form-addProfile,
 #zo2-framework .zo2-top #zo2-form-renameProfile {
@@ -423,7 +424,6 @@
   margin: 0;
   padding: 0;
   width: 245px;
-  border-right: 1px solid #ebebeb;
 }
 #zo2-framework .tab-pane {
   min-height: 402px;
@@ -1371,6 +1371,10 @@ body {
 }
 #myTabZo2SidebarContent {
   background-color: #fff;
+  border-left: 1px solid #ebebeb;
+}
+.btn-toolbar-wap {
+  margin: 10px 4px;
 }
 .form-horizontal #zo2-framework .control-label {
   min-width: 180px;
@@ -1413,7 +1417,7 @@ textarea {
   z-index: 9;
 }
 .zo2-overlay > span.zo2-overlay-loadding {
-  background: url("../images/zo2_loading.gif") no-repeat center center rgba(0,0,0,0.5);
+  background: url("../images/fancybox_loading.gif") no-repeat center center rgba(0,0,0,0.5);
   border-radius: 4px;
   height: 44px;
   left: 50%;

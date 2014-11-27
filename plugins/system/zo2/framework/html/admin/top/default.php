@@ -16,7 +16,21 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <div class="row-fluid">
     <div class="span12">
-        <div id="zo2-messages" class="zo2-messages wrapper"></div>
+
+        <!-- Zo2 Messsage -->
+        <div id="zo2-messages" class="zo2-messages wrapper hide">
+                <button data-dismiss="alert" class="close" type="button">×</button>
+                <div class="alert alert-success">
+                    <h4 class="alert-heading">Message</h4>
+                    <p>Style successfully saved</p>
+                </div>
+        </div>
+
+        <!-- Overlay -->
+        <div class="zo2-overlay hide">
+            <span class="zo2-overlay-loadding"></span>
+        </div>
+
         <section class="zo2-top">
             <div class="well well-small">
                 <div class="profiles-pane-inner">

@@ -26,7 +26,6 @@ defined('_JEXEC') or die('Restricted access');
         </div>
     </div>
     <!-- End Content -->
-
 </div>
 
 <style>

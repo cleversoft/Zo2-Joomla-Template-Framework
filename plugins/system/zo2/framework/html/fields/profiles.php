@@ -39,17 +39,7 @@ defined('_JEXEC') or die('Restricted access');
                         <span class="input-group-btn">            
                             <button class="btn btn-default" id="zo2-addProfile" onClick="jQuery('#zo2-form-addProfile').toggle();
                                         return false;">Create new profile</button> 
-                        </span>            
-                        <div class="zo2-form-addProfile" id="zo2-form-addProfile">
-                            <p>Please enter new profile name</p>
-                            <input type="text" id="zo2-profile-name" name="profile-name">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" id="zo2-save-profile" onclick="zo2.admin.profile.add();
-                                            return false;">Save</button>
-                                <button class="btn btn-default" id="zo2-cancel-profile" onclick="jQuery('zo2-form-addProfile').toggle();
-                                            return false;">Cancel</button>
-                            </span>
-                        </div>    
+                        </span>
                     </div>
                 <?php endif; ?>
 
@@ -59,16 +49,7 @@ defined('_JEXEC') or die('Restricted access');
                         <span class="input-group-btn">            
                             <button class="btn btn-default" id="zo2-renameProfile" onClick="jQuery('#zo2-form-renameProfile').toggle();
                                         return false;">Rename</button> 
-                        </span>  
-                        <div class="zo2-form-newProfile" id="zo2-form-renameProfile" style="">
-                            <p>Please enter layout profile name</p>
-                            <input type="text" id="zo2-new-profile-name" name="newProfileName">
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" id="zo2-rename-profile" onclick="zo2.admin.profile.rename('<?php echo $this->data['profile']->name; ?>');
-                                            return false;">Save</button>
-                                <button class="btn btn-default" id="zo2-cancel-rename-profile">Cancel</button>
-                            </span>
-                        </div>
+                        </span>
                     </div>
                 <?php endif; ?>
 
@@ -83,6 +64,41 @@ defined('_JEXEC') or die('Restricted access');
                 <?php endif; ?>
             </div>
 
+        </div>
+
+        <div class="btn-toolbar-wap">
+            <div>
+                <!-- Add new profile -->
+                <?php if ($this->data['profile']->authorise('add')) : ?>
+                    <div class="zo2-addProfile">
+                        <div class="zo2-form-addProfile" id="zo2-form-addProfile">
+                            <p>Please enter new profile name</p>
+                            <input type="text" id="zo2-profile-name" name="profile-name">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" id="zo2-save-profile" onclick="zo2.admin.profile.add();
+                                            return false;">Save</button>
+                                <button class="btn btn-default" id="zo2-cancel-profile" onclick="jQuery('zo2-form-addProfile').toggle();
+                                            return false;">Cancel</button>
+                            </span>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Rename profile -->
+                <?php if ($this->data['profile']->authorise('rename')) : ?>
+                    <div class="zo2-renameProfile">
+                        <div class="zo2-form-newProfile" id="zo2-form-renameProfile" style="">
+                            <p>Please enter layout profile name</p>
+                            <input type="text" id="zo2-new-profile-name" name="newProfileName">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" id="zo2-rename-profile" onclick="zo2.admin.profile.rename('<?php echo $this->data['profile']->name; ?>');
+                                    return false;">Save</button>
+                                <button class="btn btn-default" id="zo2-cancel-rename-profile">Cancel</button>
+                            </span>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
 
 
