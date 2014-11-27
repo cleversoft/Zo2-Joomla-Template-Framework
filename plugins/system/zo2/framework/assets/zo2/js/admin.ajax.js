@@ -50,7 +50,15 @@
                 }
             };
             settings = $.extend(this._settings, _settings);
-            $.ajax(settings);
+            $.ajax(settings)
+                .done(function (data) {
+                    if ($.isArray(data)) {
+
+                    } else {
+                        data = $.parseJSON(data);
+                    }
+                    zo2.document.message(data[0].args.message);
+                })
         },
         /**
          *
@@ -63,7 +71,15 @@
                 }
             };
             settings = $.extend(this._settings, _settings);
-            $.ajax(settings);
+            $.ajax(settings)
+                .done(function (data) {
+                    if ($.isArray(data)) {
+
+                    } else {
+                        data = $.parseJSON(data);
+                    }
+                    zo2.document.message(data[0].args.message);
+                })
         },
         /**
          * Ajax to load selected profile
@@ -79,15 +95,15 @@
             };
             settings = $.extend(this._settings, _settings);
             $.ajax(settings)
-                    .done(function (data) {
-                        if ($.isArray(data)) {
+                .done(function (data) {
+                    if ($.isArray(data)) {
 
-                        } else {
-                            data = $.parseJSON(data);
-                        }
-                        jQuery('#zo2-framework').parent().html(data.html[0].html);
-                        zo2.admin._init();
-                    });
+                    } else {
+                        data = $.parseJSON(data);
+                    }
+                    jQuery('#zo2-framework').parent().html(data.html[0].html);
+                    zo2.admin._init();
+                });
         }
     };
 })(window, zo2, zo2.jQuery);
