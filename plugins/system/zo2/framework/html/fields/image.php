@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.modal', 'a.modal');
 $element_id = str_replace(']_', '_',str_replace('[', '_',substr($this->data['name'],0, -1)));
 ?>
-<div class="control-group">
+<div class="control-group  <?php echo (isset($this->label['class_wrap'])) ? $this->label['class_wrap'] : ''; ?>">
     <div class="control-label">
         <label class="control-label zo2-label <?php echo (isset($this->label['class'])) ? $this->label['class'] : ''; ?>" for="<?php echo $this->data['name']; ?>">
             <?php echo $this->label['label'];?>

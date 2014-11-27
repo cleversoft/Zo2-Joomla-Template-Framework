@@ -763,11 +763,6 @@
   float: left;
   margin-right: 10px;
 }
-#zo2-framework .logo-image,
-#zo2-framework .logo-text {
-  float: left;
-  display: block;
-}
 .zo2-tabs-content #zo2-framework>div.active,
 .zo2-tabs-content #zo2-framework>section.active {
   display: block;
@@ -1275,14 +1270,6 @@
   -webkit-border-radius: 0 4px 4px 0;
   -o-border-radius: 0 4px 4px 0;
 }
-#zo2-framework.joomla-25 .logo-image input,
-#zo2-framework.joomla-25 .logo-image label {
-  float: none;
-}
-#zo2-framework.joomla-25 .logo-image .logo-preview img {
-  float: none;
-  margin: 0;
-}
 #zo2-framework.joomla-25 #general .modal {
   background-color: inherit;
   border: inherit;
@@ -1304,13 +1291,6 @@
 }
 #zo2-framework.joomla-25 #general .field-logo-container input {
   margin-top: 0;
-}
-#zo2-framework.joomla-25 #general .field-logo-container .logo-image .btn {
-  border: none;
-  color: #fff;
-}
-#zo2-framework.joomla-25 #general .field-logo-container .logo-image .btn:hover {
-  background-position: inherit;
 }
 #zo2-framework.joomla-25 #fonts .ddlFontStyle {
   margin-top: 0;

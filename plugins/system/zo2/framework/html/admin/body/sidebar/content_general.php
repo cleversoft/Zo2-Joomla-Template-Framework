@@ -82,11 +82,9 @@
                 'value' => Zo2Factory::get('header_logo')
             ));
             ?>
-            <div class="control-group  ">
+            <div class="control-group  logo-text ">
                 <label class="control-label">Header Logo Text</label>
-                <div class="logo-text ">
-                    <input type="text" class="logo-text-input" value="">
-                </div>
+                <input type="text" class="logo-text-input" value="">
             </div>
             <div class="control-group ">
                 <label class="control-label">Header Logo Width</label>
