@@ -53,10 +53,17 @@
 
     zo2.document = {
         _elements: {
-            message: '#zo2-messages'
+            message: '#zo2-messages',
+            overlay: '#zo2-overlay'
         },
         message: function (message) {
-            jQuery(this._elements.message).html(message);
+            $(this._elements.message).html(message);
+        },
+        showOverlay: function () {
+            $(this._elements.overlay).show();
+        },
+        hideOverlay: function () {
+            $(this._elements.overlay).hide();
         }
     }
 })(window, zo2, zo2.jQuery);
