@@ -107,7 +107,6 @@
 
             jQuery('.font-container').on('click', '.btnStandardFonts', function () {
                 var $container = $(this).closest('.font-container');
-                alert($container.attr('class'));
                 $container.find('.font-types').find('button').removeClass('btn-success');
                 $(this).addClass('btn-success');
                 $container.find('.font-options-google').stop().slideUp(300);
