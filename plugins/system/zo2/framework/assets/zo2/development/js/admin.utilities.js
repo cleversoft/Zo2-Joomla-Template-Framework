@@ -34,15 +34,18 @@
          * @returns {undefined}
          */
         _init: function () {
+            /*============For joomla 2.5==============*/
+            // Turn radios into btn-group
+            this._radioButton();
             this.logoImage();
             this.radioButton();
             this.tabs();
         },
 
         logoImage: function() {
-            $('.logo-type-switcher').on('click', 'button', function () {
+            jQuery('.logo-type-switcher').on('click', 'button', function () {
                 var $this = $(this);
-                var $container = $this.closest('.field-logo-container');
+                var $container = jQuery('.'+$this.closest('.field-logo-container').attr('data-name')+'_setting');
                 var $buttons = $this.closest('.logo-type-switcher').find('button');
                 $buttons.removeClass('active btn-success');
                 $this.addClass('active btn-success');
@@ -72,33 +75,30 @@
                 return false;
             });
         },
+        _radioButton: function() {
+            jQuery('.btn-group label:not(.active)').on("click", function () {
+                var label = jQuery(this);
+                var input = label.prev();
 
+                if (!input.prop('checked')) {
+                    label.closest('.btn-group').find('label').removeClass('btn-success').removeClass('btn-danger').removeClass('btn-primary');
+                    if (input.val() == '') {
+                        label.addClass('active btn-primary');
+                    } else if (input.val() == 0) {
+                        label.addClass('active btn-danger');
+                    } else {
+                        label.addClass('active btn-success');
+                    }
+                    input.prop('checked', true);
+                }
+            });
+        },
         radioButton: function() {
             /*============For joomla 2.5==============*/
-            function radio_button() {
-                jQuery('.btn-group label:not(.active)').on("click", function () {
-                    var label = jQuery(this);
-                    var input = label.prev();
-
-                    if (!input.prop('checked')) {
-                        label.closest('.btn-group').find('label').removeClass('btn-success').removeClass('btn-danger').removeClass('btn-primary');
-                        if (input.val() == '') {
-                            label.addClass('active btn-primary');
-                        } else if (input.val() == 0) {
-                            label.addClass('active btn-danger');
-                        } else {
-                            label.addClass('active btn-success');
-                        }
-                        input.prop('checked', true);
-                    }
-                });
-            }
             // Turn radios into btn-group
 
-            radio_button();
-
             $('.btn-group label').on("click", function () {
-                radio_button();
+                this._radioButton();
             });
 
             $('.btn-group input[checked=checked]').each(function () {

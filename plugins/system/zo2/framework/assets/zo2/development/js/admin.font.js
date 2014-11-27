@@ -104,55 +104,44 @@
          * @returns {undefined}
          */
         fontChange: function () {
-            $('#font_chooser').on('font-change', '.font-container', function () {
-                var $this = $(this);
-                this.generateFontOptions($this);
-            });
 
-            $('.font-container').on('click', '.btnStandardFonts', function () {
-                var $this = $(this);
-                var $container = $this.closest('.font-container');
+            jQuery('.font-container').on('click', '.btnStandardFonts', function () {
+                var $container = $(this).closest('.font-container');
                 $container.find('.font-types').find('button').removeClass('btn-success');
-                $this.addClass('btn-success');
+                $(this).addClass('btn-success');
                 $container.find('.font-options-google').stop().slideUp(300);
                 $container.find('.font-options-fontdeck').stop().slideUp(300);
-                $container.find('.font-options-standard').stop().slideDown(400, function () {
-                    $container.trigger('font-change');
-                });
+                $container.find('.font-options-standard').stop().slideDown(400);
+                this.generateFontOptions($container);
             });
 
-            $('.font-container').on('click', '.btnGoogleFonts', function () {
-                var $this = $(this);
-                var $container = $this.closest('.font-container');
+            jQuery('.font-container').on('click', '.btnGoogleFonts', function () {
+                var $container = $(this).closest('.font-container');
                 $container.find('.font-types').find('button').removeClass('btn-success');
-                $this.addClass('btn-success');
+                $(this).addClass('btn-success');
                 $container.find('.font-options-standard').stop().slideUp(300);
                 $container.find('.font-options-fontdeck').stop().slideUp(300);
-                $container.find('.font-options-google').stop().slideDown(400, function () {
-                    $container.trigger('font-change');
-                });
+                $container.find('.font-options-google').stop().slideDown(400);
+                this.generateFontOptions($container);
             });
 
-            $('.font-container').on('click', '.btnFontDeck', function () {
-                var $this = $(this);
-                var $container = $this.closest('.font-container');
+            jQuery('.font-container').on('click', '.btnFontDeck', function () {
+                var $container = $(this).closest('.font-container');
                 $container.find('.font-types').find('button').removeClass('btn-success');
-                $this.addClass('btn-success');
+                $(this).addClass('btn-success');
                 $container.find('.font-options-standard').stop().slideUp(300);
                 $container.find('.font-options-google').stop().slideUp(300);
-                $container.find('.font-options-fontdeck').stop().slideDown(400, function () {
-                    $container.trigger('font-change');
-                });
+                $container.find('.font-options-fontdeck').stop().slideDown(400);
+                this.generateFontOptions($container);
             });
 
             // listen to font options change
             var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, .txtFontLineHeight' +
                 '.ddlStandardFont';
 
-            $('.font-container').on('change', changeSelector, function () {
-                var $this = $(this);
-                var $container = $this.closest('.font-container');
-                $container.trigger('font-change');
+            jQuery('.font-container').on('change', changeSelector, function () {
+                var $container = $(this).closest('.font-container');
+                this.generateFontOptions($container);
             });
         },
         /**
@@ -160,7 +149,7 @@
          * @returns {undefined}
          */
         initFontActive: function () {
-            $('.cbEnableFont').each(function () {
+            jQuery('.cbEnableFont').each(function () {
                 var $this = $(this);
                 var $container = $this.closest('.font-container');
                 var $optionsContainer = $container.find('>.font_options');
@@ -171,7 +160,7 @@
                     $optionsContainer.hide();
             });
 
-            $('.cbEnableFont > button').on('click', function () {
+            jQuery('.cbEnableFont > button').on('click', function () {
                 var $this = $(this);
                 var $container = $this.closest('.font-container');
                 var $optionsContainer = $container.find('>.font_options');
@@ -190,6 +179,6 @@
      * Put all of your init code into _init
      */
     $(document).ready(function () {
-        zo2.admin.layoutbuilder._init();
+        zo2.admin.font._init();
     });
 })(window, zo2, zo2.jQuery);
