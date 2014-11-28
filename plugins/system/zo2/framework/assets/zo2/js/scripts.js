@@ -54,7 +54,7 @@
     zo2.document = {
         _elements: {
             message: '#zo2-messages',
-            overlay: '#zo2-overlayt'
+            overlay: '#zo2-overlay'
         },
         message: function (message) {
             $(this._elements.message).html(message);
