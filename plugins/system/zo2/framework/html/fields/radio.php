@@ -15,19 +15,21 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <?php
+$default_options = array(
+    array(
+        'value' => 1,
+        'label' => JText::_('ZO2_YES'),
+        'class' => ''
+    ),
+    array(
+        'value' => 0,
+        'label' => JText::_('ZO2_NO'),
+        'class' => ''
+    )
+);
+
 if(empty($this->data['options']))
-    $this->data['options'] = array(
-            array(
-                'value' => 1,
-                'label' => JText::_('ZO2_YES'),
-                'class' => 'btn-success'
-            ),
-            array(
-                'value' => 0,
-                'label' => JText::_('ZO2_NO'),
-                'class' => 'btn-danger'
-            )
-        );
+    $this->data['options'] = $default_options
 
 ?>
 <div class="control-group">
@@ -40,23 +42,27 @@ if(empty($this->data['options']))
             ?>
         </label>
     </div>
-<div class="controls">
-    <fieldset class="radio btn-group">
+    <div class="controls">
+        <fieldset class="radio btn-group">
 
-        <?php
-        foreach($this->data['options'] as $option) {
-            $active = $checked = $class = '';
-            if($this->data['value'] == $option['value']){
-                $active = 'active';
-                $checked = 'checked';
-                $class = $option['class'];
+            <?php
+            foreach($this->data['options'] as $key => $option) {
+                $active = $checked = $class = '';
+                $class = isset($option['class']) ? $option['class'] : $default_options[$key]['class'];
+                $value = isset($option['value']) ? $option['value'] : $default_options[$key]['value'];
+                $label = isset($option['label']) ? $option['label'] : $default_options[$key]['label'];
+
+                if($this->data['value'] == $value){
+                    $active = 'active';
+                    $checked = 'checked';
+                }
+
+                ?>
+                <input name="<?php echo $this->data['name'] ?>" checked="<?php echo $checked; ?>" type="radio" value="<?php echo $value?>" >
+                <label class="btn <?php echo $class; ?> <?php echo $active?>"><?php echo $label ?></label>
+            <?php
             }
             ?>
-            <input name="<?php echo $this->data['name'] ?>" checked="<?php echo $checked; ?>" type="radio" value="<?php echo $option['value']?>" >
-            <label class="btn <?php echo $class; ?> <?php echo $active?>"><?php echo $option['label']?></label>
-            <?php
-        }
-        ?>
-    </fieldset>
-</div>
+        </fieldset>
+    </div>
 </div>

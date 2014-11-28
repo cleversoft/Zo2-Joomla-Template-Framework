@@ -36,7 +36,6 @@
         _init: function () {
             /*============For joomla 2.5==============*/
             // Turn radios into btn-group
-            this._radioButton();
             this.logoImage();
             this.radioButton();
             this.tabs();
@@ -65,7 +64,7 @@
                 return false;
             });
 
-            $('.field-logo-container').on('click', '.btn-remove-preview', function () {
+            jQuery('.field-logo-container').on('click', '.btn-remove-preview', function () {
                 var $this = $(this);
                 var $container = $this.closest('.field-logo-container');
                 var $preview = $container.find('.logo-preview');
@@ -76,36 +75,33 @@
             });
         },
         _radioButton: function() {
-            jQuery('.btn-group label:not(.active)').on("click", function () {
+            jQuery('.btn-group label').on("click", function () {
                 var label = jQuery(this);
                 var input = label.prev();
-
-                if (!input.prop('checked')) {
-                    label.closest('.btn-group').find('label').removeClass('btn-success').removeClass('btn-danger').removeClass('btn-primary');
-                    if (input.val() == '') {
-                        label.addClass('active btn-primary');
-                    } else if (input.val() == 0) {
-                        label.addClass('active btn-danger');
-                    } else {
-                        label.addClass('active btn-success');
-                    }
-                    input.prop('checked', true);
+                label.closest('.btn-group').find('label').removeClass('btn-success').removeClass('btn-danger').removeClass('btn-primary').removeClass('active');
+                if (input.val() == '') {
+                    label.addClass('active btn-primary');
+                } else if (input.val() == 0) {
+                    label.addClass('active btn-danger');
+                } else {
+                    label.addClass('active btn-success');
                 }
+                input.prop('checked', true);
             });
         },
         radioButton: function() {
             /*============For joomla 2.5==============*/
             // Turn radios into btn-group
 
-            $('.btn-group label').on("click", function () {
+            jQuery('.btn-group label').on("click", function () {
                 this._radioButton();
             });
 
-            $('.btn-group input[checked=checked]').each(function () {
-                var label = $(this).next();
-                if ($(this).val() == '') {
+            jQuery('.btn-group input[checked=checked]').each(function () {
+                var label = jQuery(this).next();
+                if (jQuery(this).val() == '') {
                     label.addClass('active btn-primary');
-                } else if ($(this).val() == 0) {
+                } else if (jQuery(this).val() == 0) {
                     label.addClass('active btn-danger');
                 } else {
                     label.addClass('active btn-success');
@@ -113,8 +109,8 @@
             });
 
 
-            $('.btn-group-onoff > button').on('click', function (e) {
-                var $this = $(this);
+            jQuery('.btn-group-onoff > button').on('click', function (e) {
+                var $this = jQuery(this);
                 var $container = $this.closest('.btn-group-onoff');
 
                 $container.find('button').removeClass('active btn-success btn-danger');
@@ -128,17 +124,17 @@
         },
         tabs: function() {
             // cause joomla does not have bootstrap tabs :|
-            $('.zo2-tabs').on('click', 'li a', function () {
+            jQuery('.zo2-tabs').on('click', 'li a', function () {
                 var $this = $(this);
                 var $tabs = $this.closest('.zo2-tabs');
                 var $actives = $tabs.find('.active');
                 $actives.removeClass('active');
                 $actives.each(function () {
-                    var $activeTab = $('#' + $(this).attr('data-toggle'));
+                    var $activeTab = jQuery('#' + jQuery(this).attr('data-toggle'));
                     $activeTab.removeClass('active');
                 });
                 $this.addClass('active');
-                $('#' + $this.attr('data-toggle')).addClass('active');
+                jQuery('#' + $this.attr('data-toggle')).addClass('active');
             });
         }
     }
@@ -146,7 +142,7 @@
      * Init plugin
      * Put all of your init code into _init
      */
-    $(document).ready(function () {
+    jQuery(document).ready(function () {
         zo2.admin.utilities._init();
     });
 })(window, zo2, zo2.jQuery);
