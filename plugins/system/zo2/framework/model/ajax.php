@@ -32,92 +32,121 @@ if (!class_exists('Zo2ModelAjax')) {
          * 
          */
         public function clearCache() {
-            if (JFolder::exists(ZO2PATH_CACHE)) {
-                if (JFolder::delete(ZO2PATH_CACHE)) {
-                    $this->_ajax->addMessage('Clear cleared', 'success');
+            if ($this->_isAuthorized()) {
+                if (JFolder::exists(ZO2PATH_CACHE)) {
+                    if (JFolder::delete(ZO2PATH_CACHE)) {
+                        $this->_ajax->addMessage('Clear cleared', 'success');
+                    } else {
+                        $this->_ajax->addMessage('Something wrong', 'error');
+                    }
                 } else {
-                    $this->_ajax->addMessage('Something wrong', 'error');
+                    $this->_ajax->addMessage('No cached', 'info');
                 }
-            } else {
-                $this->_ajax->addMessage('No cached', 'info');
             }
             $this->_ajax->response();
         }
 
+        /**
+         * 
+         */
         public function buildAssets() {
-            $assets = Zo2Assets::getInstance();
-            $assets->buildAssets();
-            $this->_ajax->addMessage('Build success', 'success');
-            $this->_ajax->response();
-        }
-
-        public function renderAdmin() {
-            $this->_ajax->addHtml(Zo2Html::_('admin', 'config'));
-            $this->_ajax->response();
-        }
-
-        public function renameProfile() {
-            $jinput = JFactory::getApplication()->input;
-            $newProfileName = $jinput->get('newProfileName');
-            $profile = Zo2Factory::getProfile();
-
-            $framework = Zo2Factory::getFramework();
-
-            if ($profile->rename($newProfileName)) {
+            if ($this->_isAuthorized()) {
+                $assets = Zo2Assets::getInstance();
+                $assets->buildAssets();
                 $this->_ajax->addMessage('Build success', 'success');
-            } else {
-                
+            }
+
+            $this->_ajax->response();
+        }
+
+        /**
+         * 
+         */
+        public function renderAdmin() {
+            if ($this->_isAuthorized()) {
+                $this->_ajax->addHtml(Zo2Html::_('admin', 'config'));
+            }
+            $this->_ajax->response();
+        }
+
+        /**
+         * 
+         */
+        public function renameProfile() {
+            if ($this->_isAuthorized()) {
+                $jinput = JFactory::getApplication()->input;
+                $newProfileName = $jinput->get('newProfileName');
+                $profile = Zo2Factory::getProfile();
+
+                $framework = Zo2Factory::getFramework();
+
+                if ($profile->rename($newProfileName)) {
+                    $this->_ajax->addMessage('Build success', 'success');
+                } else {
+                    
+                }
             }
             $this->_ajax->response();
         }
 
         public function removeProfile() {
-            $profile = JFactory::getApplication()->input->getString('profile');
-            $templateId = JFactory::getApplication()->input->getInt('templateId');
-            $template = Zo2Factory::getTemplate($templateId);
-            if ($template) {
-                $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
-                JFile::delete($profile);
+            if ($this->_isAuthorized()) {
+                $profile = JFactory::getApplication()->input->getString('profile');
+                $templateId = JFactory::getApplication()->input->getInt('templateId');
+                $template = Zo2Factory::getTemplate($templateId);
+                if ($template) {
+                    $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
+                    JFile::delete($profile);
+                }
             }
         }
 
         public function downloadBackup() {
-            $attachment_location = $this->_getBackupProfiles();
-            if (file_exists($attachment_location)) {
-                header("Cache-Control: public"); // needed for i.e.
-                header("Content-Type: application/zip");
-                header("Content-Transfer-Encoding: Binary");
-                header("Content-Length:" . filesize($attachment_location));
-                header("Content-Disposition: attachment; filename=zo2_profiles.zip");
-                readfile($attachment_location);
-                die();
-            } else {
-                die("Error: File not found.");
+            if ($this->_isAuthorized()) {
+                $attachment_location = $this->_getBackupProfiles();
+                if (file_exists($attachment_location)) {
+                    header("Cache-Control: public"); // needed for i.e.
+                    header("Content-Type: application/zip");
+                    header("Content-Transfer-Encoding: Binary");
+                    header("Content-Length:" . filesize($attachment_location));
+                    header("Content-Disposition: attachment; filename=zo2_profiles.zip");
+                    readfile($attachment_location);
+                    die();
+                } else {
+                    die("Error: File not found.");
+                }
             }
         }
 
         private function _getBackupProfiles() {
-            $folder_path = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/profiles';
-            $new_folder_name_final = $folder_path . '/../backup.zip';
+            if ($this->_isAuthorized()) {
+                $folder_path = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/profiles';
+                $new_folder_name_final = $folder_path . '/../backup.zip';
 
-            $zip = new ZipArchive();
+                $zip = new ZipArchive();
 
-            if ($zip->open($new_folder_name_final, ZIPARCHIVE::CREATE) !== TRUE) {
-                return false;
-            }
+                if ($zip->open($new_folder_name_final, ZIPARCHIVE::CREATE) !== TRUE) {
+                    return false;
+                }
 
-            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folder_path));
+                $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folder_path));
 
-            foreach ($iterator as $key => $value) {
-                $key = str_replace('\\', '/', $key);
-                if (!is_dir($key)) {
-                    if (!$zip->addFile(realpath($key), substr($key, strlen($folder_path) - strlen(basename($folder_path))))) {
-                        return false;
+                foreach ($iterator as $key => $value) {
+                    $key = str_replace('\\', '/', $key);
+                    if (!is_dir($key)) {
+                        if (!$zip->addFile(realpath($key), substr($key, strlen($folder_path) - strlen(basename($folder_path))))) {
+                            return false;
+                        }
                     }
                 }
-            }
 
-            return $new_folder_name_final;
+                return $new_folder_name_final;
+            }
+        }
+
+        private function _isAuthorized() {
+            $app = JFactory::getApplication();
+            return ( $app->isAdmin());
         }
 
     }
