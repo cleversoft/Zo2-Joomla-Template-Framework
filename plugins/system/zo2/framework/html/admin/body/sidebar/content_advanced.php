@@ -49,9 +49,12 @@
     <div class="control-group no-margin no-label">
         <?php
         $value = Zo2Factory::getFramework()->getAssetsFile('zo2/css/custom.css');
-        if (strpos($value, '/* Here you can include your additional CSS Styles */') === false) {
-            $value = '/* Here you can include your additional CSS Styles */' . PHP_EOL . $value;
+        if ($value == '') {
+            if (strpos($value, '/* Here you can include your additional CSS Styles */') === false) {
+                $value = '/* Here you can include your additional CSS Styles */' . PHP_EOL . $value;
+            }
         }
+
         echo Zo2Html::field(
                 'textarea', array(
             'label' => 'Custom CSS Styles',
@@ -67,9 +70,12 @@
     <div class="control-group no-margin no-label">
         <?php
         $value = Zo2Factory::getFramework()->getAssetsFile('zo2/js/custom.js');
-        if (strpos($value, '/* Here you can include your additional Javascript code */') === false) {
-            $value = '/* Here you can include your additional Javascript code */' . PHP_EOL . $value;
+        if ($value == '') {
+            if (strpos($value, '/* Here you can include your additional Javascript code */') === false) {
+                $value = '/* Here you can include your additional Javascript code */' . PHP_EOL . $value;
+            }
         }
+
         echo Zo2Html::field(
                 'textarea', array(
             'label' => 'Custom Javascript code',
