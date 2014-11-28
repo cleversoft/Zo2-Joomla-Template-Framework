@@ -64,7 +64,7 @@
                 return false;
             });
 
-            jQuery('.field-logo-container').on('click', '.btn-remove-preview', function () {
+            $('.field-logo-container').on('click', '.btn-remove-preview', function () {
                 var $this = $(this);
                 var $container = $this.closest('.field-logo-container');
                 var $preview = $container.find('.logo-preview');
@@ -93,15 +93,15 @@
             /*============For joomla 2.5==============*/
             // Turn radios into btn-group
 
-            jQuery('.btn-group label').on("click", function () {
+            $('.btn-group label').on("click", function () {
                 this._radioButton();
             });
 
-            jQuery('.btn-group input[checked=checked]').each(function () {
-                var label = jQuery(this).next();
-                if (jQuery(this).val() == '') {
+            $('.btn-group input[checked=checked]').each(function () {
+                var label = $(this).next();
+                if ($(this).val() == '') {
                     label.addClass('active btn-primary');
-                } else if (jQuery(this).val() == 0) {
+                } else if ($(this).val() == 0) {
                     label.addClass('active btn-danger');
                 } else {
                     label.addClass('active btn-success');
@@ -109,8 +109,8 @@
             });
 
 
-            jQuery('.btn-group-onoff > button').on('click', function (e) {
-                var $this = jQuery(this);
+            $('.btn-group-onoff > button').on('click', function (e) {
+                var $this = $(this);
                 var $container = $this.closest('.btn-group-onoff');
 
                 $container.find('button').removeClass('active btn-success btn-danger');
@@ -124,17 +124,17 @@
         },
         tabs: function() {
             // cause joomla does not have bootstrap tabs :|
-            jQuery('.zo2-tabs').on('click', 'li a', function () {
+            $('.zo2-tabs').on('click', 'li a', function () {
                 var $this = $(this);
                 var $tabs = $this.closest('.zo2-tabs');
                 var $actives = $tabs.find('.active');
                 $actives.removeClass('active');
                 $actives.each(function () {
-                    var $activeTab = jQuery('#' + jQuery(this).attr('data-toggle'));
+                    var $activeTab = $('#' + $(this).attr('data-toggle'));
                     $activeTab.removeClass('active');
                 });
                 $this.addClass('active');
-                jQuery('#' + $this.attr('data-toggle')).addClass('active');
+                $('#' + $this.attr('data-toggle')).addClass('active');
             });
         }
     }
@@ -142,7 +142,7 @@
      * Init plugin
      * Put all of your init code into _init
      */
-    jQuery(document).ready(function () {
+    $(document).ready(function () {
         zo2.admin.utilities._init();
     });
 })(window, zo2, zo2.jQuery);
