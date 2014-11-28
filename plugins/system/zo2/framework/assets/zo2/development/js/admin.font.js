@@ -30,22 +30,22 @@
 
         _init: function () {
             this.fontChange();
-            //this.fontSizeSlider();
+            this.fontSizeSlider();
             this.initFontActive();
         },
-        /**
+         /**
          * Event select font size
          * @returns {undefined}
-         *
+         */
         fontSizeSlider: function () {
-            jQuery(".slider_font_size").slider({
-                min: 5,
-                max: 100,
-                value: jQuery(this).next().next().val(),
-                slide: function (event, ui) {
-                    jQuery(this).next().html(ui.value + ' px');
-                    jQuery(this).next().next().val(ui.value);
-                }
+            jQuery('.font_single_slider').jRange({
+                from: 1,
+                to: 100,
+                step: 1,
+                scale: [1,50,100],
+                format: '%s',
+                width: 300,
+                showLabels: true
             });
         },
         /**

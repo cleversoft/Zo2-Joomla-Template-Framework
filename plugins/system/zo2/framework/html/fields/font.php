@@ -106,9 +106,7 @@ $standardFonts = array(
                 <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_SIZE_DESC', $this->label['label']); ?></div>
             </div>
             <div class="controls clearfix">
-                <div class="slider_font_size"></div>
-                <label for="amount"><?php echo $data['size'] ?> px</label>
-                <input type="hidden" class="txtFontSize slider_font_size_value" value="<?php echo $data['size'] ?>">
+                <input type="hidden" class="txtFontSize font_single_slider" value="<?php echo $data['size'] ?>">
             </div>
         </div>
         <div class="control-group">
@@ -117,9 +115,7 @@ $standardFonts = array(
                 <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT_DESC'); ?></div>
             </div>
             <div class="controls clearfix">
-                <div class="slider_font_size"></div>
-                <label for="amount"><?php echo $data['font_line_height'] ?> px</label>
-                <input type="hidden" class="txtFontLineHeight" value="<?php echo $data['font_line_height'] ?>">
+                <input type="hidden" class="txtFontLineHeight font_single_slider" value="<?php echo $data['font_line_height'] ?>">
             </div>
         </div>
 

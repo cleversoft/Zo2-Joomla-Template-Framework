@@ -25,6 +25,7 @@
             "vendor\/fontselect\/fontselect.css",
             "vendor\/fontello\/css\/fontello.css",
             "vendor\/jqueryalert\/jquery.alerts.css",
+            "vendor\/jRange\/jquery.range.css",
             "zo2\/css\/admin.styles.css",
             "zo2\/css\/admin.megamenu.css"
         ],
@@ -32,6 +33,7 @@
             "vendor\/jqueryalert\/jquery.alerts.js",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
             "vendor\/fontselect\/jquery.fontselect.js",
+            "vendor\/jRange\/jquery.range-min.js",
             "zo2\/js\/scripts.js",
             "zo2\/js\/admin.assets.js",
             "zo2\/js\/admin.scripts.js",
