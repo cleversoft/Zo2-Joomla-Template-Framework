@@ -48,21 +48,21 @@
                 data: {
                     zo2_task: 'clearCache'
                 },
-                beforeSend: function( xhr ) {
+                beforeSend: function (xhr) {
                     zo2.document.showOverlay();
                 }
             };
             settings = $.extend(this._settings, _settings);
             $.ajax(settings)
-                .done(function (data) {
-                    if ($.isArray(data)) {
+                    .done(function (data) {
+                        if ($.isArray(data)) {
 
-                    } else {
-                        data = $.parseJSON(data);
-                    }
-                    zo2.document.hideOverlay();
-                    zo2.document.message(data[0].args.message);
-                })
+                        } else {
+                            data = $.parseJSON(data);
+                        }
+                        zo2.document.hideOverlay();
+                        zo2.document.message(data[0].args.message);
+                    });
         },
         /**
          *
@@ -73,21 +73,21 @@
                 data: {
                     zo2_task: 'buildAssets'
                 },
-                beforeSend: function( xhr ) {
+                beforeSend: function (xhr) {
                     zo2.document.showOverlay();
                 }
             };
             settings = $.extend(this._settings, _settings);
             $.ajax(settings)
-                .done(function (data) {
-                    if ($.isArray(data)) {
+                    .done(function (data) {
+                        if ($.isArray(data)) {
 
-                    } else {
-                        data = $.parseJSON(data);
-                    }
-                    zo2.document.hideOverlay();
-                    zo2.document.message(data[0].args.message);
-                })
+                        } else {
+                            data = $.parseJSON(data);
+                        }
+                        zo2.document.hideOverlay();
+                        zo2.document.message(data[0].args.message);
+                    });
         },
         /**
          * Ajax to load selected profile
@@ -99,19 +99,22 @@
                 data: {
                     zo2_task: 'renderAdmin',
                     profile: value
+                },
+                beforeSend: function (xhr) {
+                    zo2.document.showOverlay();
                 }
             };
             settings = $.extend(this._settings, _settings);
             $.ajax(settings)
-                .done(function (data) {
-                    if ($.isArray(data)) {
+                    .done(function (data) {
+                        if ($.isArray(data)) {
 
-                    } else {
-                        data = $.parseJSON(data);
-                    }
-                    jQuery('#zo2-framework').parent().html(data.html[0].html);
-                    zo2.admin._init();
-                });
+                        } else {
+                            data = $.parseJSON(data);
+                        }                        
+                        jQuery('#zo2-framework').parent().html(data.html[0].html);
+                        zo2.admin._init();
+                    });
         }
     };
 })(window, zo2, zo2.jQuery);
