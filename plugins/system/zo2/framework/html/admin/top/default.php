@@ -27,7 +27,7 @@ defined('_JEXEC') or die('Restricted access');
         </div>
 
         <!-- Overlay -->
-        <div id="zo2-overlay" class="hide">
+        <div id="zo2-overlay" class="zo2-overlay hide">
             <span class="zo2-overlay-loadding"></span>
         </div>
 
