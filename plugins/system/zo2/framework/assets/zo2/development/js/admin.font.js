@@ -112,7 +112,7 @@
                 $container.find('.font-options-google').stop().slideUp(300);
                 $container.find('.font-options-fontdeck').stop().slideUp(300);
                 $container.find('.font-options-standard').stop().slideDown(400);
-                this.generateFontOptions($container);
+                zo2.admin.font.generateFontOptions($container);
             });
 
             jQuery('.font-container').on('click', '.btnGoogleFonts', function () {
@@ -122,7 +122,7 @@
                 $container.find('.font-options-standard').stop().slideUp(300);
                 $container.find('.font-options-fontdeck').stop().slideUp(300);
                 $container.find('.font-options-google').stop().slideDown(400);
-                this.generateFontOptions($container);
+                zo2.admin.font.generateFontOptions($container);
             });
 
             jQuery('.font-container').on('click', '.btnFontDeck', function () {
@@ -132,7 +132,7 @@
                 $container.find('.font-options-standard').stop().slideUp(300);
                 $container.find('.font-options-google').stop().slideUp(300);
                 $container.find('.font-options-fontdeck').stop().slideDown(400);
-                this.generateFontOptions($container);
+                zo2.admin.font.generateFontOptions($container);
             });
 
             // listen to font options change
@@ -141,7 +141,7 @@
 
             jQuery('.font-container').on('change', changeSelector, function () {
                 var $container = $(this).closest('.font-container');
-                this.generateFontOptions($container);
+                zo2.admin.font.generateFontOptions($container);
             });
         },
         /**

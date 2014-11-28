@@ -94,7 +94,7 @@
             // Turn radios into btn-group
 
             $('.btn-group label').on("click", function () {
-                this._radioButton();
+                zo2.admin.utilities._radioButton();
             });
 
             $('.btn-group input[checked=checked]').each(function () {
