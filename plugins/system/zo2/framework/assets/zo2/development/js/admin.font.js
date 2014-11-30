@@ -105,6 +105,10 @@
          */
         fontChange: function () {
 
+            jQuery('.ddlStandardFont').change(function() {
+                jQuery(this).next().css('font-family', $(this).val());
+            });
+
             jQuery('.font-container').on('click', '.btnStandardFonts', function () {
                 var $container = $(this).closest('.font-container');
                 $container.find('.font-types').find('button').removeClass('btn-success');
