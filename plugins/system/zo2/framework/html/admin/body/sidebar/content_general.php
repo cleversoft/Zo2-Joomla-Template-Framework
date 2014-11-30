@@ -56,17 +56,19 @@
             'value' => Zo2Factory::get('favicon')
         ));
         ?>
-
+        <?php
+        $header_logo_setting = json_decode($this->params->get('header_logo'));
+        ?>
         <!-- Header logo -->
         <div class="control-group">
             <label class="control-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO'); ?></label>
             <div class="controls">
                 <div class="field-logo-container" data-name="header_logo">
-                    <input class="logoInput" type="hidden" value="<?php echo $this->params->get('header_logo'); ?>" name="jform[params][header_logo]" id="header_logo">
+                    <input class="logoInput" type="hidden" value="<?php echo htmlspecialchars($header_logo_setting); ?>" name="jform[params][header_logo]" id="jform_params_header_logo">
                     <div class="radio btn-group logo-type-switcher" >
-                        <button class="btn logo-type-none "><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
-                        <button class="btn logo-type-image active btn-success"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
-                        <button class="btn logo-type-text "><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
+                        <button class="btn logo-type-none <?php echo $header_logo_setting['type'] == 'none' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
+                        <button class="btn logo-type-image <?php echo $header_logo_setting['type'] == 'image' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
+                        <button class="btn logo-type-text <?php echo $header_logo_setting['type'] == 'text' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
                     </div>
                 </div>
             </div>
@@ -77,36 +79,40 @@
                 'image', array(
                 'label' => JText::_('ZO2_ADMIN_HEADER_LOGO'),
                 'class_wrap'=> 'logo-image',
+                'class' => 'logo-path'
             ), array(
-                'name' => 'jform[params][header_logo]',
-                'value' => Zo2Factory::get('header_logo')
+                'name' => '',
+                'value' => JUri::root(true) . '/' . $header_logo_setting['path']
             ));
             ?>
             <div class="control-group  logo-text ">
                 <label class="control-label">Header Logo Text</label>
-                <input type="text" class="logo-text-input" value="">
+                <input type="text" class="logo-text-input" value="<?php echo isset($header_logo_setting['text']) ? $header_logo_setting['text'] : '' ?>">
             </div>
             <div class="control-group ">
                 <label class="control-label">Header Logo Width</label>
-                <input type="text" class="logo-width" value="">
+                <input type="text" class="logo-width" value="<?php echo isset($header_logo_setting['width']) ? $header_logo_setting['width'] : '' ?>">
             </div>
             <div class="control-group">
                 <label class="control-label">Header Logo Height</label>
-                <input type="text" class="logo-height" value="">
+                <input type="text" class="logo-height" value="<?php echo isset($header_logo_setting['height']) ? $header_logo_setting['height'] : '' ?>">
             </div>
         </div>
         <div class="zo2-divider"></div>
         <!-- Header Retina logo -->
 
+        <?php
+        $header_logo_retina_setting = json_decode($this->params->get('header_logo'));
+        ?>
         <div class="control-group">
             <label class="control-label"><?php echo JText::_('ZO2_ADMIN_HEADER__RETINA_LOGO'); ?></label>
             <div class="controls">
                 <div class="field-logo-container" data-name="header_retina_logo">
-                    <input class="logoInput" type="hidden" value="<?php echo $this->params->get('header_retina_logo'); ?>" name="jform[params][header_retina_logo]" id="header_retina_logo">
+                    <input class="logoInput" type="hidden" value="<?php echo htmlspecialchars($header_logo_retina_setting); ?>" name="jform[params][header_retina_logo]" id="jform_params_header_retina_logo">
                     <div class="radio btn-group logo-type-switcher">
-                        <button class="btn logo-type-none "><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
-                        <button class="btn logo-type-image active btn-success"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
-                        <button class="btn logo-type-text "><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
+                        <button class="btn logo-type-none <?php echo $header_logo_retina_setting['type'] == 'none' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
+                        <button class="btn logo-type-image <?php echo $header_logo_retina_setting['type'] == 'image' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
+                        <button class="btn logo-type-text <?php echo $header_logo_retina_setting['type'] == 'text' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
                     </div>
                 </div>
             </div>
@@ -117,22 +123,23 @@
                 'image', array(
                 'label' => JText::_('ZO2_ADMIN_HEADER__RETINA_LOGO'),
                 'class_wrap'=> 'logo-image',
+                'class' => 'logo-path'
             ), array(
-                'name' => 'jform[params][header_retina_logo]',
-                'value' => Zo2Factory::get('header_retina_logo')
+                'name' => 'header_retina_logo',
+                'value' => JUri::root(true) . '/' . $header_logo_retina_setting['path']
             ));
             ?>
             <div class="control-group logo-text">
                 <label class="control-label">Header Retina Logo Text</label>
-                <input type="text" class="logo-text-input" value="">
+                <input type="text" class="logo-text-input" value="<?php echo isset($header_logo_setting['text']) ? $header_logo_setting['text'] : '' ?>">
             </div>
             <div class="control-group">
                 <label class="control-label">Header Retina Logo Width</label>
-                <input type="text" class="logo-width" value="424">
+                <input type="text" class="logo-width" value="<?php echo isset($header_logo_setting['width']) ? $header_logo_setting['width'] : '' ?>">
             </div>
             <div class="control-group">
                 <label class="control-label">Header Retina Logo Height</label>
-                <input type="text" class="logo-height" value="40">
+                <input type="text" class="logo-height" value="<?php echo isset($header_logo_setting['height']) ? $header_logo_setting['height'] : '' ?>">
             </div>
         </div>
 

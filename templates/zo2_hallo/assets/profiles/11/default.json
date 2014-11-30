@@ -548,20 +548,7 @@
             ]
         }
     ],
-    "theme": {
-        "name": "green",
-        "css": "presets\/green",
-        "less": "presets\/green",
-        "background": "#ffffff",
-        "header": "",
-        "header_top": "",
-        "text": "",
-        "link": "#7FBE54",
-        "link_hover": "#449d44",
-        "bottom1": "",
-        "bottom2": "",
-        "footer": ""
-    },
+    "theme": null,
     "menuConfig": {
         "hover_type": null,
         "nav_type": null,
