@@ -94,7 +94,7 @@ $standardFonts = array(
         <div class="font-options-fontdeck hide control-group" <?php echo $font_setting['type'] == 'fontdeck' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
                 <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK'); ?></div>
-                <div class="font-desc"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK_DESC '); ?></div>
+                <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK_DESCRIPTION'); ?></div>
             </div>
             <div class="controls">
                 <textarea class="txtFontDeckCss"><?php echo $font_setting['type'] == 'fontdeck' ? $font_setting['family'] : '' ?></textarea>

@@ -31,7 +31,6 @@
         _init: function () {
             this.fontChange();
             this.fontSizeSlider();
-            this.initFontActive();
         },
          /**
          * Event select font size
@@ -134,41 +133,12 @@
             });
 
             // listen to font options change
-            var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, .txtFontLineHeight,' +
+            var changeSelector = '.txtFontSize, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, .txtFontLineHeight,' +
                 ' .ddlStandardFont';
 
             jQuery('.font-container').on('change', changeSelector, function () {
                 var $container = $(this).closest('.font-container');
                 zo2.admin.font.generateFontOptions($container);
-            });
-        },
-        /**
-         * Init font container: show/hide depends on active
-         * @returns {undefined}
-         */
-        initFontActive: function () {
-            jQuery('.cbEnableFont').each(function () {
-                var $this = $(this);
-                var $container = $this.closest('.font-container');
-                var $optionsContainer = $container.find('>.font_options');
-
-                if ($this.find('.btn-on').hasClass('active'))
-                    $optionsContainer.show();
-                else
-                    $optionsContainer.hide();
-            });
-
-            jQuery('.cbEnableFont > button').on('click', function () {
-                var $this = $(this);
-                var $container = $this.closest('.font-container');
-                var $optionsContainer = $container.find('>.font_options');
-
-                if ($container.find('.btn-on').hasClass('active'))
-                    $optionsContainer.stop().slideDown();
-                else
-                    $optionsContainer.stop().slideUp();
-
-                $container.trigger('font-change');
             });
         }
     };
