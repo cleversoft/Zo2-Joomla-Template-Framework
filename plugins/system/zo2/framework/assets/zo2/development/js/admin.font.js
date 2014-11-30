@@ -54,26 +54,18 @@
          */
         generateFontOptions: function ($container) {
             var $result = $container.find(' > input:first');
-            var $enable = $container.find('.cbEnableFont');
-            if (!$enable.find('.btn-on').hasClass('active')) {
-                $result.val('');
-                return;
-            }
 
             var options = {};
 
             var size = parseInt($container.find('.txtFontSize').val());
-            if (isNaN(size))
-                size = 12;
-            if (size <= 0)
-                size = 12;
+            var font_line_height = parseInt($container.find('.txtFontLineHeight').val());
 
             if ($container.find('.btnStandardFonts').hasClass('active')) {
                 options = {
                     type: 'standard',
                     family: $container.find('.ddlStandardFont').val(),
                     size: size,
-                    font_line_height: parseInt($container.find('.txtFontLineHeight').val()),
+                    font_line_height: font_line_height,
                     color: $container.find('.txtColorPicker').val(),
                     style: $container.find('.ddlFontStyle').val()
                 };
@@ -83,6 +75,7 @@
                     type: 'googlefonts',
                     family: $container.find('.txtGoogleFontSelect').val(),
                     size: size,
+                    font_line_height: font_line_height,
                     color: $container.find('.txtColorPicker').val(),
                     style: $container.find('.ddlFontStyle').val()
                 };
@@ -92,6 +85,7 @@
                     type: 'fontdeck',
                     family: $container.find('.txtFontDeckCss').val(),
                     size: size,
+                    font_line_height: font_line_height,
                     color: $container.find('.txtColorPicker').val(),
                     style: $container.find('.ddlFontStyle').val()
                 };
@@ -140,8 +134,8 @@
             });
 
             // listen to font options change
-            var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, .txtFontLineHeight' +
-                '.ddlStandardFont';
+            var changeSelector = '.txtFontSize, .cbEnableFont, .txtColorPicker, .ddlFontStyle, .txtFontDeckCss, .txtGoogleFontSelect, .txtFontLineHeight,' +
+                ' .ddlStandardFont';
 
             jQuery('.font-container').on('change', changeSelector, function () {
                 var $container = $(this).closest('.font-container');
