@@ -88,83 +88,37 @@ if (!class_exists('Zo2Ajax')) {
         }
 
         /**
-         * Do process ajax request
+         * Add notice message
+         * @param type $message
+         * @param type $type
+         * @return \Zo2Ajax
          */
-        public function process() {
-            $jinput = JFactory::getApplication()->input;
-            $token = $jinput->get('token');
-            if (JFactory::getSession()->getFormToken() == $token) {
-                /* Is ajax request */
-                if ($jinput->get('zo2Ajax')) {
-                    $func = $jinput->get('func');
-                    /* Do process ajax request */
-                    if ($func) {
-                        if (strpos($func, '.') !== false)
-                            $parts = explode('.', $func);
-                        else
-                            $parts = explode(',', $func);
-                        $className = 'Zo2' . ucfirst($parts[0]);
-                        /* Make sure this class is registered before */
-                        if (isset($this->_registeredClass[$className])) {
-                            /* And also this function is registered before */
-                            if (isset($this->_registeredClass[$className][$parts[1]])) {
-                                /**
-                                 * Do declare class
-                                 * @todo Should we allow custom path use for class include
-                                 */
-                                /* This class allow singleton */
-                                if (method_exists($parts[0], 'getInstance')) {
-                                    $class = call_user_func(array($className, 'getInstance'));
-                                } else {
-                                    /* Declare new class instance */
-                                    $class = new $className;
-                                }
-                                /* Call method to execute */
-                                if (method_exists($class, $parts[1])) {
-                                    //$args = $jinput->get('args');                                
-                                    $response = call_user_func_array(array($class, $parts[1]), array());
-                                    self::addResponse($response);
-                                } else {
-                                    
-                                }
-                            }
-                        }
-                    }
-                    /**
-                     * Do response by json format
-                     * Javascript will do json_decode and process it
-                     */
-                    $this->response();
-                }
-            }
-        }
-
-        /**
-         * @todo Should we add some alias methods for some cases of responses ?
-         * @param mixed $data
-         */
-        public function addResponse($data) {
-            if (is_object($data)) {
-                $vars = get_object_vars($object);
-            } else {
-                if (is_array($data)) {
-                    $vars = $data;
-                }
-            }
-            if (isset($vars))
-                $this->_responses[] = $vars;
-        }
-
         public function addMessage($message, $type) {
-            $message = '<div class="alert alert-' . $type . ' alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  ' . $message . '
-</div>';
-            $data = array(
-                'func' => 'zo2.document.message',
-                'args' => array('message' => $message, 'type' => $type)
-            );
-            self::addResponse($data);
+            switch ($type) {
+                case 'error':
+                case 'danger':
+                case 'alert':
+                    $messageType = 'error';
+                    break;
+                case 'warning':
+                    $messageType = 'warning';
+                    break;
+                case 'success':
+                case 'message':
+                case '':
+                    $messageType = 'success';
+                    break;
+                default:
+                    $messageType = 'info';
+                    break;
+            }
+            $data = new stdClass();
+            $template = new Zo2Html();
+            $template->set('message', $message);
+            $template->set('type', $messageType);
+            $data->message = $template->fetch('zo2/message.php');
+            $this->add($data, 'message');
+            return $this;
         }
 
         /**
@@ -177,14 +131,13 @@ if (!class_exists('Zo2Ajax')) {
         }
 
         /**
-         * Do register class & func that will use for ajax
-         * @param type $class
-         * @param type $func
+         * Response empty object and exit
          */
-        public function register($class, $func) {
-            $this->_registeredClass[$class][$func] = 1;
+        public function breakResponse() {
+            echo CrexHelperEncode::jsonEncode(array());
+            exit();
         }
 
     }
 
-}
+}       
