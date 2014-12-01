@@ -299,6 +299,26 @@ if (!class_exists('Zo2Factory')) {
             Zo2Logs::getInstance()->add($title, $message, $type);
         }
 
+        public static function isRTL() {
+            return JFactory::getLanguage()->isRTL() && (Zo2Factory::get('enable_rtl') == 1);
+        }
+
+        /**
+         * @return bool
+         */
+        public static function isFrontPage() {
+
+            $app = JFactory::getApplication();
+            $menu = $app->getMenu();
+            $tag = JFactory::getLanguage()->getTag();
+
+            if ($menu->getActive() == $menu->getDefault($tag)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
     }
 
 }

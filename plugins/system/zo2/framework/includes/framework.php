@@ -21,7 +21,7 @@ jimport('joomla.filesystem.folder');
 if (!class_exists('Zo2Framework')) {
 
     /**
-     * Zo2 Framework object class
+     * Zo2 Framework object class     
      */
     class Zo2Framework {
 
@@ -47,7 +47,17 @@ if (!class_exists('Zo2Framework')) {
          * @var Zo2Profile
          */
         public $profile = null;
+
+        /**
+         *
+         * @var \Zo2Layout
+         */
         public $layout = null;
+
+        /**
+         *
+         * @var array 
+         */
         protected $_addons = array();
 
         /**
@@ -76,12 +86,14 @@ if (!class_exists('Zo2Framework')) {
          * Framework init
          */
         public function init() {
+            /* Load language */
             $language = JFactory::getLanguage();
             $language->load('plg_system_zo2', ZO2PATH_ROOT);
 
-            //if (!defined('ZO2_LOADED')) {
             $jinput = JFactory::getApplication()->input;
-            /* Init framework variables */
+            /**
+             * Init framework variables
+             */
             $this->path = Zo2Path::getInstance();
             /* Zo2 root dir */
             $this->path->registerNamespace('zo2', ZO2PATH_ROOT);
@@ -89,23 +101,31 @@ if (!class_exists('Zo2Framework')) {
             $this->path->registerNamespace('html', ZO2PATH_ROOT . '/html');
             /* Zo2 assets */
             $this->path->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
-            /* Zo2 profile dir */
-            $this->path->registerNamespace('cache', JPATH_ROOT . '/cache');
 
-            $templateName = $this->template->template;
             /**
              * Zo2 template
              */
+            $templateName = $this->template->template;
             $this->path->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
             /* Current */
             $this->path->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
             /* Override Zo2 html directory */
             $this->path->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
 
+            /**
+             * Init Zo2 objects
+             */
             $this->assets = Zo2Assets::getInstance();
-            $this->profile = Zo2Factory::getProfile($jinput->getWord('profile'));
+            $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
             $this->layout = new Zo2Layout($this->profile->layout);
 
+            $this->_loadAssets();
+        }
+
+        /**
+         * 
+         */
+        private function _loadAssets() {
             /* Get specific core assets */
             if (Zo2Factory::isJoomla25()) {
                 $assetsFile = 'assets.joomla25.json';
@@ -130,16 +150,11 @@ if (!class_exists('Zo2Framework')) {
                     /* Custom files */
                     $this->assets->addStyleSheet('zo2/css/custom.css');
                     $this->assets->addScript('zo2/js/custom.js');
-                    /* Template side */
-                    $templateAssets = $this->getAssets();
-                    if ($templateAssets && isset($templateAssets->assets)) {
-                        $this->assets->load($templateAssets->assets);
-                    }
                     /* Load bootstrap-rtl if needed */
-                    if (JFactory::getLanguage()->isRTL() && $this->get('enable_rtl') == 1) {
+                    if (Zo2Factory::isRTL()) {
                         $this->assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.min.css');
                     }
-                    $this->_loadProfile();
+                    $this->_loadTheme();
                 } else {
                     /* Backend loading */
                     if (Zo2Factory::isZo2Template()) {
@@ -148,10 +163,8 @@ if (!class_exists('Zo2Framework')) {
                     }
                 }
             } else {
-                JFactory::getApplication()->enqueueMessage('Zo2 assets file not found');
+                JFactory::getApplication()->enqueueMessage(JText::_('ZO2_ASSETS_NOT_FOUND'), 'error');
             }
-            //define('ZO2_LOADED',1);
-            //}
         }
 
         /**
@@ -167,23 +180,22 @@ if (!class_exists('Zo2Framework')) {
             return $default;
         }
 
+        /**
+         * 
+         * @param type $key
+         * @return type
+         */
         public function getPath($key) {
             return Zo2Factory::getPath('templates://' . $key);
         }
 
+        /**
+         * 
+         * @param type $key
+         * @return type
+         */
         public function getUrl($key) {
             return Zo2Factory::getUrl('templates://' . $key);
-        }
-
-        /**
-         * Get template assets object
-         * @return boolean
-         */
-        public function getAssets() {
-            $assetsFile = $this->getPath('assets/template.json');
-            if ($assetsFile) {
-                return json_decode(file_get_contents($assetsFile));
-            }
         }
 
         /**
@@ -334,7 +346,7 @@ if (!class_exists('Zo2Framework')) {
         /**
          *
          */
-        protected function _loadProfile() {
+        protected function _loadTheme() {
             $style = '';
             $zPath = Zo2Path::getInstance();
             if ($this->profile->theme) {
@@ -420,24 +432,6 @@ if (!class_exists('Zo2Framework')) {
             if (isset($this->profile->get('theme')->boxed) && $this->profile->get('theme')->boxed == 1)
                 return true;
             return false;
-        }
-
-        public function compileLess($lessPath, $templateName = '') {
-            $filename = md5($lessPath) . '.css';
-            $absPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName .
-                    DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $filename;
-            $relPath = 'assets/cache/' . $filename;
-            if (!file_exists($absPath)) {
-                if (!class_exists('lessc', false))
-                    Zo2Factory::import('vendor.less.lessc');
-                $absLessPath = JPATH_SITE . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . $templateName . $lessPath;
-
-                $compiler = new lessc();
-                $style = $compiler->compileFile($absLessPath);
-
-                Zo2HelperAssets::forcePutContent($absPath, $style);
-            }
-            return $relPath;
         }
 
         /**
@@ -579,22 +573,6 @@ if (!class_exists('Zo2Framework')) {
             }
             $menu = new Zo2Megamenu($config['menu_type'], $config);
             return $menu->renderOffCanvasMenu($config);
-        }
-
-        /**
-         * @return bool
-         */
-        public function isFrontPage() {
-
-            $app = JFactory::getApplication();
-            $menu = $app->getMenu();
-            $tag = JFactory::getLanguage()->getTag();
-
-            if ($menu->getActive() == $menu->getDefault($tag)) {
-                return true;
-            } else {
-                return false;
-            }
         }
 
         public function getAsset($name, $data = array()) {
