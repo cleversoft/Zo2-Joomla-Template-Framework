@@ -30,26 +30,20 @@ defined('_JEXEC') or die('Restricted access');
         <div class="navbar">
             <div class="navbar-inner">   
                 <div class="pull-left">
-                    <div class="zo2-profiles">
-                        <select class="form-control zo2-select-profile" onchange="zo2.admin.ajax.loadProfile(this.value);
-                                return false;" name="jform[profile-select]" data-url="http://localhost/cleversoft/zo2_j3/administrator/index.php?option=com_templates&amp;view=style&amp;layout=edit&amp;id=11&amp;profile=default" aria-invalid="false">
-                            <!-- Display list of profiles -->
-                            <option value="default" selected="selected">default                </option>
-                            <option value="default" selected="selected">default                </option>
-                            <option value="xxyyxx">xxyyxx                </option>
-                            <option value="xyx">xyx                </option>
-                            <option value="xyzxxx">xyzxxx                </option>
-                        </select>
-                        <div class="btn-group">
-                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Backup</a></li>
-                            </ul>
+                    <div class="zo2-profiles">                        
+                        <div class="navbar-form pull-left">                            
+                            <?php
+                            echo Zo2Html::field('profiles', array(
+                                'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
+                                    ), array(
+                                'profile' => Zo2Factory::getProfile(),
+                                'profiles' => Zo2Factory::getFramework()->getProfiles()
+                            ));
+                            ?>                           
                         </div>
+                        <button type="button" class="btn btn-primary">Save as copy</button>
+                        <button type="button" class="btn btn-default">Rename</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
                     </div>
 
                 </div>
