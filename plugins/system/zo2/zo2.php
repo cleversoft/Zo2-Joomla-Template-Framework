@@ -28,24 +28,7 @@ if (!class_exists('plgSystemZo2')) {
          */
         public function onAfterInitialise() {
             include_once __DIR__ . '/framework/includes/bootstrap.php';
-            /**
-             * Ajax catching
-             * @todo not good at all but until we have chance
-             */
-            $jinput = JFactory::getApplication()->input;
-            if ($jinput->get('zo2_task')) {
-                /**
-                 * @todo Provide better params to get different model for executing!
-                 */
-                $task = $jinput->get('zo2_task');
-                $model = new Zo2ModelAjax();
-                if (method_exists($model, $task)) {
-                    call_user_func(array($model, $task));
-                }
-                if ($jinput->get('zo2_ajax') == 1) {
-                    exit();
-                }
-            }
+            Zo2Factory::ajax();
         }
 
         /**

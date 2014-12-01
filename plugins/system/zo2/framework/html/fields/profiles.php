@@ -15,14 +15,9 @@ defined('_JEXEC') or die('Restricted access');
 <div class="control-group">
     <!-- Label -->
     <div class="control-label"><?php echo $this->label['label']; ?></div>
-    <div class="controls">        
-        <!-- Select profile -->        
-        <?php
-        $juri = JUri::getInstance();
-        $juri->setVar('profile', $this->data['profile']->name);
-        ?>
-        <select class="form-control zo2-select-profile" onchange="zo2.admin.ajax.loadProfile(this.value);
-                return false;" name="jform[profile-select]" data-url="<?php echo $juri->toString(); ?>">
+    <div class="controls">               
+        <select class="form-control zo2-select-profile" onchange="zo2.admin.profile.load(this.value);
+                return false;" name="jform[profile-select]">
             <!-- Display list of profiles -->
             <?php foreach ($this->data['profiles'] as $profile): ?>
                 <option value="<?php echo trim($profile->name); ?>" 
@@ -92,7 +87,7 @@ defined('_JEXEC') or die('Restricted access');
                             <input type="text" id="zo2-new-profile-name" name="newProfileName">
                             <span class="input-group-btn">
                                 <button class="btn btn-primary" id="zo2-rename-profile" onclick="zo2.admin.profile.rename('<?php echo $this->data['profile']->name; ?>');
-                                    return false;">Save</button>
+                                            return false;">Save</button>
                                 <button class="btn btn-default" id="zo2-cancel-rename-profile">Cancel</button>
                             </span>
                         </div>

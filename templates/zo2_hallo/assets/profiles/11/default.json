@@ -31,9 +31,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -51,9 +49,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -71,9 +67,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -106,9 +100,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -126,9 +118,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "megamenu",
@@ -146,9 +136,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -181,9 +169,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -216,9 +202,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -251,9 +235,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -286,9 +268,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -321,9 +301,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -341,9 +319,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -361,9 +337,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -396,9 +370,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -431,9 +403,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -466,9 +436,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -486,9 +454,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -506,9 +472,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -541,9 +505,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         }
@@ -556,6 +518,6 @@
         "duration": null,
         "show_submenu": null,
         "menu_type": "mainmenu",
-        "mega_config": "{\"mainmenu\":{\"item-435\":{\"submenu\":{\"rows\":[[{\"item\":547,\"width\":12}]]}},\"item-550\":{\"submenu\":{\"rows\":[[{\"item\":504,\"width\":12}]]}},\"item-468\":{\"submenu\":{\"width\":400,\"rows\":[[{\"item\":500,\"width\":6},{\"item\":509,\"width\":6}]]}},\"item-491\":{\"submenu\":{\"rows\":[[{\"item\":492,\"width\":12}]]}}}}"
+        "mega_config": "{\"mainmenu\":{\"item-435\":{\"submenu\":{\"rows\":[[{\"item\":547,\"width\":12}]]}},\"item-550\":{\"submenu\":{\"rows\":[[{\"item\":504,\"width\":12}]]}},\"item-468\":{\"submenu\":{\"rows\":[[{\"item\":500,\"width\":12}]]}},\"item-491\":{\"submenu\":{\"rows\":[[{\"item\":492,\"width\":12}]]}}}}"
     }
 }

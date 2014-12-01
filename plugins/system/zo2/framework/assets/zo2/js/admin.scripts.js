@@ -22,14 +22,25 @@
      * Only use for backend
      */
     zo2.admin = {
-        /**
-         * Init function
-         * @returns {undefined}
-         */
         _init: function () {
 
         },
-
+        clearCache: function () {
+            _settings = {
+                data: {
+                    zo2_task: 'admin.clearCache'
+                }
+            };
+            $jqXHR = zo2.ajax.execute(_settings);
+        },
+        buildAssets: function () {
+            _settings = {
+                data: {
+                    zo2_task: 'admin.buildAssets'
+                }
+            };
+            $jqXHR = zo2.ajax.execute(_settings);
+        },
         generateZo2SettingJson: function () {
             var $rootParent = jQuery('#droppable-container .zo2-container');
             var json = [];
@@ -42,7 +53,6 @@
 
             return JSON.stringify(json);
         },
-        
         /**
          *
          * @param {type} $item

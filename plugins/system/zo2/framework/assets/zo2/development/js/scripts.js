@@ -56,14 +56,81 @@
             message: '#zo2-messages',
             overlay: '#zo2-overlay'
         },
+        /**
+         * Display message
+         * @param {type} message
+         * @returns {undefined}
+         */
         message: function (message) {
             $(this._elements.message).html(message);
         },
+        /**
+         * Show waiting overlay
+         * @returns {undefined}
+         */
         showOverlay: function () {
             $(this._elements.overlay).show();
         },
+        /**
+         * Hide waiting overlayt
+         * @returns {undefined}
+         */
         hideOverlay: function () {
             $(this._elements.overlay).hide();
         }
-    }
+    };
+
+    zo2.ajax = {
+        _settings: {
+            ajax: {
+                /* Default URL */
+                url: document.URL,
+                /* Default method */
+                type: 'POST',
+                /* Default data type */
+                dataType: 'json',
+                /* Data format */
+                data: {
+                    /* Force using raw */
+                    format: 'raw',
+                    zo2_ajax: 1
+                },
+                /**
+                 * Display waiting overlay
+                 * @returns {undefined}
+                 */
+                beforeSend: function () {
+                    zo2.document.showOverlay();
+                }
+            }
+        },
+        /**
+         * Execute ajax
+         * @param {type} settings
+         * @returns {jqXHR|$jqXHR}
+         */
+        execute: function (settings) {
+            $mergedSettings = $.extend(true, this._settings.ajax, settings);
+            $jqXHR = $.ajax($mergedSettings);
+            $jqXHR.done(function (respond) {
+                $.each(respond, function (key, value) {
+                    switch (key) {
+                        /**
+                         * Display notice message
+                         */
+                        case 'message':
+                            $.each(respond[key], function (childKey, childValue) {
+                                zo2.document.message(childValue.html);
+                            });
+                            break;
+
+                    }
+                });
+            });
+            $jqXHR.always(function () {
+                zo2.document.hideOverlay();
+            });
+            return $jqXHR;
+        }
+    };
 })(window, zo2, zo2.jQuery);

@@ -87,6 +87,16 @@ if (!class_exists('Zo2Ajax')) {
             return $this->add($script, 'execute');
         }
 
+        public function addMessage($message, $type) {
+            $data = new stdClass();
+            $template = new Zo2Html();
+            $template->set('message',$message);
+            $template->set('type',$type);
+            $data->html = $template->fetch('zo2/message.php');
+            $this->add($data, 'message');
+            return $this;
+        }
+
         /**
          * Do process ajax request
          */
@@ -140,49 +150,12 @@ if (!class_exists('Zo2Ajax')) {
         }
 
         /**
-         * @todo Should we add some alias methods for some cases of responses ?
-         * @param mixed $data
-         */
-        public function addResponse($data) {
-            if (is_object($data)) {
-                $vars = get_object_vars($object);
-            } else {
-                if (is_array($data)) {
-                    $vars = $data;
-                }
-            }
-            if (isset($vars))
-                $this->_responses[] = $vars;
-        }
-
-        public function addMessage($message, $type) {
-            $message = '<div class="alert alert-' . $type . ' alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-  ' . $message . '
-</div>';
-            $data = array(
-                'func' => 'zo2.document.message',
-                'args' => array('message' => $message, 'type' => $type)
-            );
-            self::addResponse($data);
-        }
-
-        /**
          * Do response json data
          */
         public function response() {
             header('Content-type: text/html; charset=utf-8');
             echo json_encode($this->_responses);
             exit();
-        }
-
-        /**
-         * Do register class & func that will use for ajax
-         * @param type $class
-         * @param type $func
-         */
-        public function register($class, $func) {
-            $this->_registeredClass[$class][$func] = 1;
         }
 
     }

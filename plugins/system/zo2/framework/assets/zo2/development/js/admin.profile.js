@@ -103,6 +103,19 @@
             }).done(function (data) {
                 zo2.admin.ajax.loadProfile('default');
             });
+        },
+        /**
+         * Ajax to load selected profile
+         * @param {type} value
+         * @returns {undefined}
+         */
+        load: function (profileName) {
+            _settings = {
+                data: {
+                    zo2_task: 'admin.render',
+                    profile: profileName
+                }
+            };
         }
     };
     /**
