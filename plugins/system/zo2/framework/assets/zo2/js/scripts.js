@@ -10,7 +10,7 @@
         /* Local zo2 definition */
         var _zo2 = {
             /* Common settings */
-            settings: {
+            _settings: {
             },
             /* Internal jQuery */
             jQuery: $
@@ -51,6 +51,9 @@
         }
     };
 
+    /**
+     * Zo2 Document addon
+     */
     zo2.document = {
         _elements: {
             message: '#zo2-messages',
@@ -65,5 +68,5 @@
         hideOverlay: function () {
             $(this._elements.overlay).hide();
         }
-    }
+    };
 })(window, zo2, zo2.jQuery);

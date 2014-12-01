@@ -70,8 +70,12 @@ if (Zo2Factory::isZo2Template()) {
                 }
             }
         }
+    /**
+     * @todo Move to new Zo2 Ajax
+     */
     Zo2Factory::execController();
-    $script = 'zo2.settings.token = "' . JFactory::getSession()->getFormToken() . '";';
+    $script = 'zo2._settings.token = "' . JFactory::getSession()->getFormToken() . '";';
+    $script .= 'zo2._settings.url = "' . JUri::base() . '";';
     Zo2Assets::getInstance()->addScriptDeclaration($script);
 } else {
     
