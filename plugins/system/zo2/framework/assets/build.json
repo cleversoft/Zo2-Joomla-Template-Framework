@@ -1,36 +1,34 @@
 {
-    "build": {
-        "core": {
-            "less": [
-                "admin.styles.less",
-                "site.styles.less"
-            ],
-            "js": [
-                "admin.megamenu.js",
-                "admin.assets.js",
-                "admin.scripts.js",
-                "admin.ajax.js",
-                "admin.profile.js",
-                "admin.layoutbuilder.js",
-                "admin.font.js",
-                "admin.themecolor.js",
-                "admin.utilities.js",
-                "admin.social.js",
-                "scripts.js",
-                "site.megamenu.js",
-                "site.scripts.js"
-            ]
-        },
-        "template": {
-            "less": [
-                "template.less",
-                "error.less",
-                "presets\/green.less",
-                "presets\/blue.less",
-                "presets\/orange.less"
-            ],
-            "js": [
-            ]
-        }
+    "core": {
+        "less": [
+            "admin.styles.less",
+            "site.styles.less"
+        ],
+        "js": [
+            "admin.megamenu.js",
+            "admin.assets.js",
+            "admin.scripts.js",
+            "admin.ajax.js",
+            "admin.profile.js",
+            "admin.layoutbuilder.js",
+            "admin.font.js",
+            "admin.themecolor.js",
+            "admin.utilities.js",
+            "admin.social.js",
+            "scripts.js",
+            "site.megamenu.js",
+            "site.scripts.js"
+        ]
+    },
+    "template": {
+        "less": [
+            "template.less",
+            "error.less",
+            "presets\/green.less",
+            "presets\/blue.less",
+            "presets\/orange.less"
+        ],
+        "js": [
+        ]
     }
 }
