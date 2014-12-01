@@ -66,7 +66,6 @@
                 $('#color_bottom2').colorpicker('setValue', $this.attr('data-zo2-bottom2'));
                 $('#color_footer').colorpicker('setValue', $this.attr('data-zo2-footer'));
 
-
                 $('#color_background_preview').css('background-color', $this.attr('data-zo2-background'));
                 $('#color_header_preview').css('background-color', $this.attr('data-zo2-header'));
                 $('#color_header_top_preview').css('background-color', $this.attr('data-zo2-header-top'));
@@ -77,7 +76,7 @@
                 $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
                 $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
 
-                zo2.admin.themes.generatePresetData();
+                zo2.admin.themecolor.generatePresetData();
             });
         },
         /**
@@ -86,7 +85,7 @@
          */
         generatePresetData: function () {
             var currentPreset = jQuery('#zo2_themes').find('.active');
-            hiddenInput = jQuery('#zo2_themes_container').find('input:first');
+            var hiddenInput = jQuery('#zo2_themes_container').find('input:first');
             var data = {
                 name: currentPreset.attr('data-zo2-theme'),
                 css: currentPreset.attr('data-zo2-css'),
@@ -137,16 +136,16 @@
                     else
                         $preview.css('background-color', 'transparent');
 
-                    zo2.admin.themes.generatePresetData();
+                    zo2.admin.themecolor.generatePresetData();
                 });
 
                 $('.zo2_other_preset_element').on('change', function () {
-                    zo2.admin.themes.generatePresetData();
+                    zo2.admin.themecolor.generatePresetData();
                 });
 
                 $('.remove_preset').click(function () {
                     $(this).parent().parent().parent().parent().remove();
-                    zo2.admin.themes.generatePresetData();
+                    zo2.admin.themecolor.generatePresetData();
                 });
             });
         },
@@ -157,7 +156,7 @@
         removePreset: function () {
             $('.remove_preset').click(function () {
                 $(this).parent().parent().parent().parent().remove();
-                zo2.admin.themes.generatePresetData();
+                zo2.admin.themecolor.generatePresetData();
             });
         },
         /**
@@ -174,7 +173,7 @@
                 else
                     $preview.css('background-color', 'transparent');
 
-                zo2.admin.themes.generatePresetData();
+                zo2.admin.themecolor.generatePresetData();
             });
         },
         /**
@@ -189,7 +188,7 @@
                     jQuery(".background-select li").removeClass('selected');
                     jQuery(this).addClass('selected');
                 }
-                zo2.admin.themes.generatePresetData();
+                zo2.admin.themecolor.generatePresetData();
             });
         },
         /**
@@ -207,11 +206,11 @@
                     jQuery('input[name="zo2_boxed_style"]').val('0');
                     jQuery('.zo2_background_and_pattern').fadeOut(500);
                 }
-                generatePresetData();
+                zo2.admin.themecolor.generatePresetData();
             });
 
             jQuery('#zo2_background_image').change(function () {
-                generatePresetData();
+                zo2.admin.themecolor.generatePresetData();
             });
         }
     };

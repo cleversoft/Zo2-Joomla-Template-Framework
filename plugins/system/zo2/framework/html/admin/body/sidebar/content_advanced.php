@@ -126,10 +126,10 @@ echo Zo2Html::field(
     'value' => Zo2Factory::get('compile_less'),
     'options'=> array(
         array(
-            'label' => JText::_('ZO2_ADMIN_ADVANCED_OPTION')
+            'label' => JText::_('ZO2_YES')
         ),
         array(
-            'label' => JText::_('ZO2_ADMIN_NO_OPTIMIZE')
+            'label' => JText::_('ZO2_NO')
         )
     )
 ));
@@ -144,10 +144,10 @@ echo Zo2Html::field(
     'value' => Zo2Factory::get('compile_js'),
     'options'=> array(
         array(
-            'label' => JText::_('ZO2_ADMIN_ADVANCED_OPTION')
+            'label' => JText::_('ZO2_YES')
         ),
         array(
-            'label' => JText::_('ZO2_ADMIN_NO_OPTIMIZE')
+            'label' => JText::_('ZO2_NO')
         )
     )
 ));
@@ -162,10 +162,10 @@ echo Zo2Html::field(
     'value' => Zo2Factory::get('combine_css'),
     'options'=> array(
         array(
-            'label' => JText::_('ZO2_ADMIN_ADVANCED_OPTION')
+            'label' => JText::_('ZO2_YES')
         ),
         array(
-            'label' => JText::_('ZO2_ADMIN_NO_OPTIMIZE')
+            'label' => JText::_('ZO2_NO')
         )
     )
 ));
@@ -180,10 +180,10 @@ echo Zo2Html::field(
     'name' => 'jform[params][combine_js]',
     'options'=> array(
         array(
-            'label' => JText::_('ZO2_ADMIN_ADVANCED_OPTION')
+            'label' => JText::_('ZO2_YES')
         ),
         array(
-            'label' => JText::_('ZO2_ADMIN_NO_OPTIMIZE')
+            'label' => JText::_('ZO2_NO')
         )
     )
 ));
@@ -199,10 +199,10 @@ echo Zo2Html::field(
     'value' => Zo2Factory::get('load_jquery'),
     'options'=> array(
         array(
-            'label' => JText::_('ZO2_ADMIN_ADVANCED_OPTION')
+            'label' => JText::_('ZO2_YES')
         ),
         array(
-            'label' => JText::_('ZO2_ADMIN_NO_OPTIMIZE')
+            'label' => JText::_('ZO2_NO')
         )
     )
 ));

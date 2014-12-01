@@ -138,7 +138,9 @@
                     text: $container.find('.logo-text-input').val()
                 };
             }
+            //console.log(data);
             $input.val(JSON.stringify(data));
+
         }
     };
     /* Init Zo2.admin */
