@@ -16,7 +16,8 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <!-- Main layout for backend -->
 <!-- It's using Twitter Bootstrap 2 default. Provided by Joomla! -->
-<div id="zo2-framework" class="zo2-framwork" data-url="<?php echo JUri::getInstance()->toString(); ?>">
+<div id="zo2-framework" class="zo2-framwork">
+
     <!-- Begin Content -->
     <div class="row-fluid">
         <div class="span12">

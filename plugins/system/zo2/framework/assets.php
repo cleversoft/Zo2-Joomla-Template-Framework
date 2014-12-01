@@ -138,14 +138,43 @@ if (!class_exists('Zo2Assets')) {
             $assetsFile = $this->getAssetFile('build.json');
             if ($assetsFile) {
                 $assets = json_decode(file_get_contents($assetsFile));
-                if (isset($assets->core->less))
+                if (isset($assets->build->core->less))
                     $this->_buildAssets($assets->build->core->less, CORE, 'less');
-                if (isset($assets->core->js))
+                if (isset($assets->build->core->js))
                     $this->_buildAssets($assets->build->core->js, CORE, 'js');
-                if (isset($assets->template->less))
+                if (isset($assets->build->template->less))
                     $this->_buildAssets($assets->build->template->less, TEMPLATE, 'less');
-                if (isset($assets->template->js))
+                if (isset($assets->build->template->js))
                     $this->_buildAssets($assets->build->template->js, TEMPLATE, 'js');
+            }
+        }
+
+        /**
+         * Do build asset file
+         * @param type $assets
+         * @param type $position
+         * @param type $type
+         */
+        private function _buildAssets($assets, $position, $type) {
+            if (count($assets) > 0) {
+                foreach ($assets as $inputName) {
+                    $typePath = $type;
+                    if ($type == 'less') {
+                        $typePath = 'css';
+                    }
+                    if ($position == CORE) {
+                        $inputFile = Zo2Factory::getPath('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');
+                    } elseif ($position == TEMPLATE) {
+                        $inputFile = Zo2Factory::getPath('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
+                    }
+                    if ($inputFile) {
+                        if ($type == 'less') {
+                            $this->_compileLess($inputFile);
+                        } elseif ($type == 'js') {
+                            $this->_compileJs($inputFile);
+                        }
+                    }
+                }
             }
         }
 
@@ -200,67 +229,24 @@ if (!class_exists('Zo2Assets')) {
         }
 
         /**
-         * @todo Move all these process to backend. Frontend just load only
-         * @param type $type
-         * @return string
-         */
-        public function generateAssets($type) {
-            if ($type == 'css') {
-                return $this->_generateStylesheets();
-            } elseif ($type == 'js') {
-                return $this->_generateJavascripts();
-            }
-        }
-
-        /**
-         * Do build asset file
-         * @param type $assets
-         * @param type $position
-         * @param type $type
-         */
-        private function _buildAssets($assets, $position, $type) {
-            if (count($assets) > 0) {
-                foreach ($assets as $inputName) {
-                    /* Zo2 assets */
-
-                    if ($position == CORE) {
-                        $inputFile = Zo2Factory::getPath('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                    } elseif ($position == TEMPLATE) { /* Template assets */
-                        $inputFile = Zo2Factory::getPath('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                    } if ($inputFile) {
-                        if ($type == 'less') {
-                            $this->_compileLess($inputFile);
-                        } elseif ($type == 'js') {
-                            $this->_compileJs($inputFile);
-                        }
-                    }
-                }
-            }
-        }
-
-        /**
          * Compile less to css
          * @param type $lessFile
          * @return boolean
          */
         private function _compileLess($lessFile) {
-
             $pathinfo = pathinfo($lessFile);
             $cssDir = realpath($pathinfo['dirname'] . '/../../css');
             $cssFile = $pathinfo['filename'] . '.css';
             $cssFilePath = $cssDir . '/' . $cssFile;
             /* Complie */
             if (Zo2HelperCompiler::less($lessFile, $cssFilePath)) {
-                $optimizeMode = Zo2Factory::get('optimize_css', 0);
-                $developmentMode = Zo2Factory ::get('development_mode', 0);
                 /**
                  * @todo Try to provide more minify options
-                 */ if (($optimizeMode == 1) && ( $developmentMode == 0)) {
+                 */
+                if (Zo2Factory::get('optimize_css', false)) {
                     $buffer = file_get_contents($cssFilePath);
                     $buffer = CssMinifier::minify($buffer);
-                    if (is_writable($cssFilePath)) {
-                        return JFile::write($cssFilePath, $buffer);
-                    }
+                    return JFile::write($cssFilePath, $buffer);
                 }
             }
             return false;
@@ -272,7 +258,6 @@ if (!class_exists('Zo2Assets')) {
          * @return boolean
          */
         private function _compileJs($jsFile) {
-
             $sourceFile = $jsFile;
             $pathinfo = pathinfo($jsFile);
             $jsDir = realpath($pathinfo['dirname'] . '/../../js');
@@ -281,106 +266,90 @@ if (!class_exists('Zo2Assets')) {
             /**
              * @todo Try to provide more minify options
              */
-            $optimizeMode = Zo2Factory::get('optimize_js', 0);
-            $developmentMode = Zo2Factory::get('development_mode', 0);
-            if (($optimizeMode == 1) && ( $developmentMode == 0)) {
+            if (Zo2Factory::get('optimize_js', false)) {
                 $buffer = file_get_contents($sourceFile);
                 $buffer = Zo2HelperCompiler::javascript($buffer);
-                if (is_writable($jsFilePath)) {
-                    return JFile::write($jsFilePath, $buffer);
-                }
+                return JFile::write($jsFilePath, $buffer);
             } else {
                 /* Just copy if we don't use optimzie */
-                return JFile::copy($sourceFile, $jsFilePath);
+                JFile::copy($sourceFile, $jsFilePath);
             }
             return false;
         }
 
-        private function _generateStylesheets() {
-            $combineCss = Zo2Factory::get('combine_css', 0);
-            $developmentMode = Zo2Factory::get('development_mode', 0);
-            $cssHtml = '';
-            if (( $combineCss == 1) && ($developmentMode == 0)) {
-                $cssName = 'cache/zo2_' . md5(serialize($this->_stylesheets)) . '.css';
-                $cssFilePath = JPATH_ROOT . '/' . $cssName;
-                $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssName;
-                $cssContent = array();
-                foreach ($this->_stylesheets as $styleSheets => $path) {
-                    /* Do not combine vendor stylesheets */
-                    if (strpos($path, 'vendor') !== false) {
-                        $cssHtml .= '<link rel="stylesheet" href="' . Zo2Path::getInstance()->toUrl($styleSheets) . '">';
-                    } else { /* Combine Zo2 stylesheets */
-                        if (Zo2Factory::get('optimzie_css', 0) == 1) {
-                            $currentCssContent = CssMinifier::minify(file_get_contents($path));
-                        } else {
-                            $currentCssContent = file_get_contents($path);
-                        }
-                        $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri, '/' . $styleSheets);
-                        $cssContent[] = $currentCssContent;
-                    }
-                }
-                $cssContent = implode(PHP_EOL, $cssContent);
-                $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
-                /* Save to combined css file */
-                file_put_contents($cssFilePath, $cssContent);
-                $cssHtml .='<link rel="stylesheet" href="' . $cssUri . '"></script>';
-            } else {
-                foreach ($this->_stylesheets as $styleSheets => $path) {
-                    $cssHtml .= '<link rel="stylesheet" href="' . Zo2Path::getInstance()->toUrl($styleSheets) . '">';
-                }
-            }
-            /* Custom stylesheets */
-            $cssDeclarationHtml = '<style>';
-            foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration) {
-                if ((Zo2Factory::get('optimzie_css', 0) == 1) && ($developmentMode == 0)) {
-                    $cssDeclarationHtml .= CssMinifier::minify($stylesheetDeclaration) . PHP_EOL;
-                } else {
-                    $cssDeclarationHtml .= ($stylesheetDeclaration) . PHP_EOL;
-                }
-            }
-            $cssDeclarationHtml = trim($cssDeclarationHtml);
-            $cssDeclarationHtml .= '</style>';
-            return $cssHtml . PHP_EOL . $cssDeclarationHtml;
-        }
-
-        private function _generateJavascripts() {
-            $combineJs = Zo2Factory::get('combine_js', 0);
-            $developmentMode = Zo2Factory::get('development_mode', 0);
-            $jsHtml = '';
-            /* Do compress */
-            if (( $combineJs == 1 ) && ($developmentMode == 0)) {
-                $jsFile = 'cache/zo2_' . md5(serialize($this->_javascripts)) . '.js';
-                $jsFilePath = JPATH_ROOT . '/' . $jsFile;
-                $jsContent = array();
-                /**
-                 * @todo Cache combined file instead generate it everytimes
-                 */
-                foreach ($this->_javascripts as $javascript => $path) {
-                    if ((Zo2Factory::get('optimzie_js', 0) == 1) && ($developmentMode == 0)) {
+        /**
+         * @todo Move all these process to backend. Frontend just load only
+         * @param type $type
+         * @return string
+         */
+        public function generateAssets($type) {
+            $zPath = Zo2Path::getInstance();
+            /* Get Zo2Framework */
+            $framework = Zo2Factory::getFramework();
+            $combineJs = $framework->get('combine_js', false);
+            $combineCss = $framework->get('combine_css', false);
+            /* Generate javascript */
+            if ($type == 'js') {
+                $jsHtml = '';
+                /* Do compress */
+                if ($combineJs) {
+                    $jsFile = 'cache/zo2_' . md5(serialize($this->_javascripts)) . '.js';
+                    $jsFilePath = JPATH_ROOT . '/' . $jsFile;
+                    $jsContent = array();
+                    /**
+                     * @todo Cache combined file instead generate it everytimes
+                     */
+                    foreach ($this->_javascripts as $javascript => $path) {
                         $jsContent [] = Zo2HelperCompiler::javascript(file_get_contents($path));
-                    } else {
-                        $jsContent [] = file_get_contents($path);
+                    }
+                    file_put_contents($jsFilePath, implode(PHP_EOL, $jsContent));
+                    $jsHtml .='<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $jsFile . '"></script>';
+                } else {
+                    foreach ($this->_javascripts as $javascript => $path) {
+                        $jsHtml .='<script type="text/javascript" src="' . $zPath->toUrl($javascript) . '"></script>';
                     }
                 }
-                file_put_contents($jsFilePath, implode(PHP_EOL, $jsContent));
-                $jsHtml .= '<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $jsFile . '"></script>';
-            } else {
-                foreach ($this->_javascripts as $javascript => $path) {
-                    $jsHtml .='<script type="text/javascript" src="' . Zo2Path::getInstance()->toUrl($javascript) . '"></script>';
-                }
-            }
-            $jsDeclarationHtml = '<script>jQuery(document).ready( function () {';
-            foreach ($this->_javascriptDeclarations as $javascriptDeclaration) {
-                if ((Zo2Factory::get('optimzie_js', 0) == 1) && ($developmentMode == 0)) {
+                $jsDeclarationHtml = '<script>jQuery(document).ready( function () {';
+                foreach ($this->_javascriptDeclarations as $javascriptDeclaration) {
                     $jsDeclarationHtml .= Zo2HelperCompiler::javascript($javascriptDeclaration);
-                } else {
-                    $jsDeclarationHtml .= $javascriptDeclaration;
                 }
+                $jsDeclarationHtml .= ' }); </script>';
+                return $jsHtml . PHP_EOL . $jsDeclarationHtml;
+            } else {
+                $cssHtml = '';
+                if ($combineCss) {
+                    $cssName = 'cache/zo2_' . md5(serialize($this->_stylesheets)) . '.css';
+                    $cssFilePath = JPATH_ROOT . '/' . $cssName;
+                    $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssName;
+                    $cssContent = array();
+                    foreach ($this->_stylesheets as $styleSheets => $path) {
+                        if (strpos($path, 'vendor') !== false) {
+                            $cssHtml .= '<link rel="stylesheet" href="' . $zPath->toUrl($styleSheets) . '">';
+                        } else {
+                            $currentCssContent = CssMinifier::minify(file_get_contents($path));
+                            $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri, '/' . $styleSheets);
+                            $cssContent[] = $currentCssContent;
+                        }
+                    }
+                    $cssContent = implode(PHP_EOL, $cssContent);
+                    $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
+                    file_put_contents($cssFilePath, $cssContent);
+                    $cssHtml .='<link rel="stylesheet" href="' . $cssUri . '"></script>';
+                } else {
+                    foreach ($this->_stylesheets as $styleSheets => $path) {
+                        $cssHtml .= '<link rel="stylesheet" href="' . $zPath->toUrl($styleSheets) . '">';
+                    }
+                }
+                $cssDeclarationHtml = '<style>';
+                foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration) {
+                    $cssDeclarationHtml .= CssMinifier::minify($stylesheetDeclaration);
+                }
+                $cssDeclarationHtml .= '</style>';
+
+                return $cssHtml . "\n" . $cssDeclarationHtml;
             }
-            $jsDeclarationHtml .= ' }); </script>';
-            return $jsHtml . PHP_EOL . $jsDeclarationHtml;
         }
 
     }
 
-}    
+}

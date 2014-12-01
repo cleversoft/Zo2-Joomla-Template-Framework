@@ -117,7 +117,7 @@ if (!class_exists('Zo2Framework')) {
             if ($assetsFile) {
                 $assets = json_decode(file_get_contents($assetsFile));
                 /* Debug mode */
-                if ($this->get('development_mode', 0) == 1) {
+                if ($this->get('debug')) {
                     $this->assets->buildAssets();
                 }
                 /* Site loading */

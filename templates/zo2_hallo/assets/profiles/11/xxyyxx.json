@@ -1,6 +1,6 @@
 {
     "template": "zo2_hallo",
-    "name": "default",
+    "name": "xxyyxx",
     "layout": [
         {
             "type": "row",
@@ -14,68 +14,7 @@
                 "md": true,
                 "lg": true
             },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "top-menu",
-                    "position": "top-menu",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "zo2_menu",
-                    "id": "top-menu",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "search",
-                    "position": "search",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "zo2_xhtml",
-                    "id": "top-search",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "top-social",
-                    "position": "top-social",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                }
-            ]
+            "children": []
         },
         {
             "type": "row",
@@ -89,68 +28,7 @@
                 "md": true,
                 "lg": true
             },
-            "children": [
-                {
-                    "jdoc": "canvasmenu",
-                    "type": "col",
-                    "name": "mega_menu",
-                    "position": "mega_menu",
-                    "span": 1,
-                    "offset": 0,
-                    "customClass": "col-xs-1",
-                    "style": "",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "header_logo",
-                    "position": "header_logo",
-                    "span": 3,
-                    "offset": 0,
-                    "customClass": "col-sm-3 col-xs-10 mobile-logo",
-                    "style": "",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                },
-                {
-                    "jdoc": "megamenu",
-                    "type": "col",
-                    "name": "mega_menu",
-                    "position": "mega_menu",
-                    "span": 8,
-                    "offset": 0,
-                    "customClass": "col-sm-9 col-xs-2 mobile-menu",
-                    "style": "none",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                }
-            ]
+            "children": []
         },
         {
             "type": "row",
@@ -181,9 +59,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -216,9 +92,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -251,9 +125,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -286,9 +158,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -321,9 +191,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -341,9 +209,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -361,9 +227,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -396,9 +260,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -431,9 +293,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -466,9 +326,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -486,9 +344,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 },
                 {
                     "jdoc": "modules",
@@ -506,9 +362,7 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         },
@@ -541,14 +395,12 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": [
-
-                    ]
+                    "children": []
                 }
             ]
         }
     ],
-    "theme": null,
+    "theme": [],
     "menuConfig": {
         "hover_type": null,
         "nav_type": null,
@@ -556,6 +408,6 @@
         "duration": null,
         "show_submenu": null,
         "menu_type": "mainmenu",
-        "mega_config": "{\"mainmenu\":{\"item-435\":{\"submenu\":{\"rows\":[[{\"item\":547,\"width\":12}]]}},\"item-550\":{\"submenu\":{\"rows\":[[{\"item\":504,\"width\":12}]]}},\"item-468\":{\"submenu\":{\"width\":400,\"rows\":[[{\"item\":500,\"width\":6},{\"item\":509,\"width\":6}]]}},\"item-491\":{\"submenu\":{\"rows\":[[{\"item\":492,\"width\":12}]]}}}}"
+        "mega_config": null
     }
 }

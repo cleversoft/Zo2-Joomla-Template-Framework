@@ -102,10 +102,6 @@ if (!class_exists('Zo2ModelTemplate')) {
                 /* Save to database */
                 $table->params = new JRegistry($table->params);
                 $formData = $jinput->post->get('jform', array(), 'array');
-                echo '<pre>';
-                print_r ($formData);
-                echo '</pre>';
-                exit();
                 /* Save template with data */
                 $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
                 $model->save($formData);

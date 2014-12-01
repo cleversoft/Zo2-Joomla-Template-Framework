@@ -71,6 +71,8 @@ if (Zo2Factory::isZo2Template()) {
             }
         }
     Zo2Factory::execController();
+    $script = 'zo2.settings.token = "' . JFactory::getSession()->getFormToken() . '";';
+    Zo2Assets::getInstance()->addScriptDeclaration($script);
 } else {
     
 }

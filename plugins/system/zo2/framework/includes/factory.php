@@ -299,23 +299,6 @@ if (!class_exists('Zo2Factory')) {
             Zo2Logs::getInstance()->add($title, $message, $type);
         }
 
-        public static function ajax() {
-            /**
-             * Ajax catching
-             * @todo not good at all but until we have chance
-             */
-            $jinput = JFactory::getApplication()->input;
-            $task = $jinput->getCmd('zo2_task');
-            if ($task && ($jinput->get('zo2_ajax') == 1 )) {
-                $task = explode('.', $task);
-                $modelClass = 'Zo2Model' . ucfirst($task[0]);
-                $model = new $modelClass;
-                if (method_exists($model, $task[1])) {
-                    call_user_func(array($model, $task[1]));
-                }
-            }
-        }
-
     }
 
 }
