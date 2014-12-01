@@ -18,12 +18,7 @@ defined('_JEXEC') or die('Restricted access');
     <div class="span12">
 
         <!-- Zo2 Messsage -->
-        <div id="zo2-messages" class="zo2-messages wrapper hide">
-                <button data-dismiss="alert" class="close" type="button">×</button>
-                <div class="alert alert-success">
-                    <h4 class="alert-heading">Message</h4>
-                    <p>Style successfully saved</p>
-                </div>
+        <div id="zo2-messages" class="zo2-messages wrapper">           
         </div>
 
         <!-- Overlay -->
@@ -31,25 +26,42 @@ defined('_JEXEC') or die('Restricted access');
             <span class="zo2-overlay-loadding"></span>
         </div>
 
-        <section class="zo2-top">
-            <div class="well well-small">
-                <div class="profiles-pane-inner">
-                    <p>Store your modifications in a layout profile and assign it to different pages. The default layout will be used on pages without an assigned layout</p>
-                    <div class="row-fluid">
-                        <div class="span6">
-                            <?php
-                            echo Zo2Html::field('profiles', array(
-                                'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
-                                    ), array(
-                                'profile' => Zo2Factory::getProfile(),
-                                'profiles' => Zo2Factory::getFramework()->getProfiles()
-                            ));
-                            ?>
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="navbar-inner">   
+                <div class="pull-left">
+                    <div class="zo2-profiles">
+                        <select class="form-control zo2-select-profile" onchange="zo2.admin.ajax.loadProfile(this.value);
+                                return false;" name="jform[profile-select]" data-url="http://localhost/cleversoft/zo2_j3/administrator/index.php?option=com_templates&amp;view=style&amp;layout=edit&amp;id=11&amp;profile=default" aria-invalid="false">
+                            <!-- Display list of profiles -->
+                            <option value="default" selected="selected">default                </option>
+                            <option value="default" selected="selected">default                </option>
+                            <option value="xxyyxx">xxyyxx                </option>
+                            <option value="xyx">xyx                </option>
+                            <option value="xyzxxx">xyzxxx                </option>
+                        </select>
+                        <div class="btn-group">
+                            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Backup</a></li>
+                            </ul>
                         </div>
                     </div>
+
+                </div>
+                <div class="pull-right">
+                    <button type="button" class="btn btn-danger" onclick="zo2.admin.clearCache();
+                            return false;"><?php echo JText::_('ZO2_NAVBAR_CLEAR_CACHE'); ?></button>
+                    <button type="button" class="btn btn-primary" onclick="zo2.admin.buildAssets();
+                            return false;"><?php echo JText::_('ZO2_NAVBAR_COMPILE'); ?></button>
                 </div>
             </div>
-        </section>        
+        </div>
+        <br />
     </div>   
 </div>
 
