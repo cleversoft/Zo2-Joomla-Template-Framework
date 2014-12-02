@@ -24,9 +24,9 @@
         "less": [
             "template.less",
             "error.less",
-            "presets\/green.less",
-            "presets\/blue.less",
-            "presets\/orange.less"
+            "green.less",
+            "blue.less",
+            "orange.less"
         ],
         "js": [
         ]
