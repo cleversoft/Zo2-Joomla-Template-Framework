@@ -394,7 +394,7 @@
          */
         request: function(settings, showOverlay) {
             /* A we show the overlay ? */
-            showOverlay = (typeof showOverlay === 'undefined') ? false : showOverlay;
+            showOverlay = (typeof showOverlay === 'undefined') ? true : showOverlay;
             if (showOverlay === true) {
                 this.turnOnOverlay();
             }
