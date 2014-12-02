@@ -1,6 +1,5 @@
 /**
  * Zo2 JS framework define
- * @version <?php //echo CREX_VERSION; ?>
  * @param {object} w Window pointer
  * @param {object} $ jQuery pointer
  * @returns {undefined}
@@ -76,32 +75,6 @@
             } else {
                 $(target).hide(duration);
             }
-        },
-        /**
-         * Trigger animation on target
-         * @param {string} target
-         * @param {object} animation
-         * @param {mixed} duration
-         * @param {string} easing
-         * @param {function} complete
-         * @returns {undefined}
-         */
-        animation: {
-            /* jQuery animate wrapper */
-            animate: function(target, animation, duration, easing, complete) {
-                /**
-                 * @note: Default value if not valid
-                 * You can cast it simply
-                 * crex.ui.animation.animate('div', {opacity: 0});
-                 * Checkout for more information: <http://api.jquery.com/animate/>
-                 */
-                duration = (typeof duration === 'undefined') ? 400 : duration;
-                easing = (typeof easing === 'undefined') ? 'swing' : easing;
-                complete = (typeof complete === 'undefined') ? function() {
-                } : complete;
-                $(target).animate(animation, duration, easing, complete);
-            }
-
         }
     };
 
@@ -234,9 +207,9 @@
         raiseText: function(text, type) {
             /* Fix default settings is override */
             var settings = $.extend(true, {}, this._settings);
-            settings.options.childID = 'crex-ajax-message-rand' + Math.round(Math.random() * 100000);
+            settings.options.childID = 'zo2-ajax-message-rand' + Math.round(Math.random() * 100000);
             /* Render message */
-            settings.html += '<div class="crex-message" id="' + settings.options.childID + '">';
+            settings.html += '<div class="zo2-message" id="' + settings.options.childID + '">';
             settings.html += '<div class="alert alert-' + type + '">';
             settings.html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
             settings.html += '<h4>' + type.substr(0, 1).toUpperCase() + type.substr(1) + '</h4>';
@@ -284,7 +257,7 @@
         /* Clear text data */
         _text: {
             ZO2_AJAX_ERROR: 'Ajax error occurred',
-            ZO2_AJAX_IN_PROCESS: 'Crex ajax in process, do not try to reload this page'
+            ZO2_AJAX_IN_PROCESS: 'Ajax in process, do not try to reload this page'
         },
         /* Default ajax setting */
         _settings: {
