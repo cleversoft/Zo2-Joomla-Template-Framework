@@ -22,7 +22,7 @@
 
     }
 
-})(window, jQuery.noConflict(true));
+})(window, jQuery.noConflict());
 
 /**
  * Zo2 animate addon
