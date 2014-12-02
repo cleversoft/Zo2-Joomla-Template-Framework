@@ -148,7 +148,7 @@
         },
         /**
          * Add message
-         * @todo Replace with Raise message
+         * @todo Replace with raiseMessage()
          * @param {string} message
          * @returns {undefined}
          */
@@ -215,9 +215,9 @@
             data = $.extend(true, tempSettings, data);
             /* Append or override */
             if (data.options.append) {
-                z.document.append(this._selectors.message, data.html);
+                z.document.append(this._elements.message, data.html);
             } else {
-                z.document.append.replace(this._selectors.message, data.html);
+                z.document.append.replace(this._elements.message, data.html);
             }
             /* Hide message after a moment */
             if (data.options.delayClose >= 0 && data.childID !== '') {
@@ -244,9 +244,9 @@
             settings.html += '</div></div>';
             /* Append or override */
             if (settings.options.append) {
-                z.document.append(this._selectors.message, settings.html);
+                z.document.append(this._elements.message, settings.html);
             } else {
-                z.document.append.replace(this._selectors.message, settings.html);
+                z.document.append.replace(this._elements.message, settings.html);
             }
             /* Hide message after a moment */
             if (settings.options.delayClose >= 0 && settings.options.childID !== '') {
@@ -279,7 +279,7 @@
      */
     var _ajax = {
         /* List of selectors */
-        _selectors: {
+        _elements: {
         },
         /* Clear text data */
         _text: {
