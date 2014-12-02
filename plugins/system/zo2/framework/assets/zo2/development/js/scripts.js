@@ -48,14 +48,68 @@
             $(el).animate({
                 scrollTop: $(toEl).offset().top
             }, 1500);
+        },
+        /**
+         * Show target
+         * @param {type} target
+         * @param {mixed} duration
+         * @returns {undefined}
+         */
+        show: function(target, duration) {
+            duration = (typeof duration === 'undefined') ? null : duration;
+            if (duration === null) {
+                $(target).show();
+            } else {
+                $(target).show(duration);
+            }
+        },
+        /**
+         * Hide target
+         * @param {string} target
+         * @param {mixed} duration
+         * @returns {undefined}
+         */
+        hide: function(target, duration) {
+            duration = (typeof duration === 'undefined') ? null : duration;
+            if (duration === null) {
+                $(target).hide();
+            } else {
+                $(target).hide(duration);
+            }
+        },
+        /**
+         * Trigger animation on target
+         * @param {string} target
+         * @param {object} animation
+         * @param {mixed} duration
+         * @param {string} easing
+         * @param {function} complete
+         * @returns {undefined}
+         */
+        animation: {
+            /* jQuery animate wrapper */
+            animate: function(target, animation, duration, easing, complete) {
+                /**
+                 * @note: Default value if not valid
+                 * You can cast it simply
+                 * crex.ui.animation.animate('div', {opacity: 0});
+                 * Checkout for more information: <http://api.jquery.com/animate/>
+                 */
+                duration = (typeof duration === 'undefined') ? 400 : duration;
+                easing = (typeof easing === 'undefined') ? 'swing' : easing;
+                complete = (typeof complete === 'undefined') ? function() {
+                } : complete;
+                $(target).animate(animation, duration, easing, complete);
+            }
+
         }
     };
-    
+
     /**
      * Append to global Zo2
      */
     z.animate = _animate;
-    
+
 })(window, zo2, zo2.jQuery);
 
 /**
@@ -71,18 +125,135 @@
      * Document class
      */
     var _document = {
+        /* Default empty message */
+        _settings: {
+            /* HTML source */
+            html: '',
+            /* Options */
+            options: {
+                /* Append or create new */
+
+                append: true,
+                /* Delay after close */
+
+                delayClose: 10000,
+                /* Child message ID */
+                childID: ''
+            }
+        },
+        /* jQuery element selector */
         _elements: {
             message: '#zo2-messages',
             overlay: '#zo2-overlay'
         },
+        /**
+         * Add message
+         * @todo Replace with Raise message
+         * @param {string} message
+         * @returns {undefined}
+         */
         message: function(message) {
             $(this._elements.message).html(message);
         },
+        /**
+         * Show overlay
+         * @returns {undefined}
+         */
         showOverlay: function() {
-            $(this._elements.overlay).show();
+            z.animate.show(this._elements.overlay);
         },
+        /**
+         * Hide overlay
+         * @returns {undefined}
+         */
         hideOverlay: function() {
-            $(this._elements.overlay).hide();
+            z.animate.hide(this._elements.overlay);
+        },
+        /**
+         * Append HTML to target
+         * @param {string} target
+         * @param {string} html
+         * @returns {undefined}
+         */
+        append: function(target, html) {
+            $(target).append(html);
+        },
+        /**
+         * Replace HTML on target
+         * @param {type} target
+         * @param {type} html
+         * @returns {undefined}
+         */
+        replace: function(target, html) {
+            $(target).html(html);
+        },
+        /**
+         * 
+         * @param {string} target
+         * @param {boolean} animation
+         * @returns {undefined}
+         */
+        remove: function(target, animation) {
+            animation = (typeof animation === 'undefined') ? false : animation;
+            /* Is animation present ? */
+            if (animation) {
+                $(target).hide('slow', function() {
+                    $(this).remove();
+                });
+            } else {
+                $(target).remove();
+            }
+        },
+        /**
+         * Raise message
+         * @param {object} data
+         */
+        raiseMessage: function(data) {
+            /* Fix default settings is override */
+            var tempSettings = $.extend(true, {}, this._settings);
+            /* Merge setting with default setting */
+            data = $.extend(true, tempSettings, data);
+            /* Append or override */
+            if (data.options.append) {
+                z.document.append(this._selectors.message, data.html);
+            } else {
+                z.document.append.replace(this._selectors.message, data.html);
+            }
+            /* Hide message after a moment */
+            if (data.options.delayClose >= 0 && data.childID !== '') {
+                w.setTimeout(function() {
+                    z.document.remove('#' + data.options.childID, true);
+                }, data.options.delayClose);
+            }
+        },
+        /**
+         * Raise text
+         * @param {string} text Text content
+         * @param {string} type type type
+         */
+        raiseText: function(text, type) {
+            /* Fix default settings is override */
+            var settings = $.extend(true, {}, this._settings);
+            settings.options.childID = 'crex-ajax-message-rand' + Math.round(Math.random() * 100000);
+            /* Render message */
+            settings.html += '<div class="crex-message" id="' + settings.options.childID + '">';
+            settings.html += '<div class="alert alert-' + type + '">';
+            settings.html += '<a href="#" class="close" data-dismiss="alert">&times;</a>';
+            settings.html += '<h4>' + type.substr(0, 1).toUpperCase() + type.substr(1) + '</h4>';
+            settings.html += text;
+            settings.html += '</div></div>';
+            /* Append or override */
+            if (settings.options.append) {
+                z.document.append(this._selectors.message, settings.html);
+            } else {
+                z.document.append.replace(this._selectors.message, settings.html);
+            }
+            /* Hide message after a moment */
+            if (settings.options.delayClose >= 0 && settings.options.childID !== '') {
+                w.setTimeout(function() {
+                    z.document.remove('#' + settings.options.childID, true);
+                }, settings.options.delayClose);
+            }
         }
     };
 
@@ -90,7 +261,7 @@
      * Append to global Zo2
      */
     z.document = _document;
-     
+
 })(window, zo2, zo2.jQuery);
 
 /**
@@ -201,7 +372,8 @@
          * @returns {undefined}
          */
         ajaxUnLock: function() {
-            w.onbeforeunload = function() {};
+            w.onbeforeunload = function() {
+            };
         },
         /**
          * Turn on overlay
@@ -272,7 +444,7 @@
         }
 
     };
-    
+
     /**
      * Append to global Zo2
      */
