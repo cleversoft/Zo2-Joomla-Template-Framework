@@ -15,12 +15,12 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2ModelAjax')) {
+if (!class_exists('Zo2ModelAdmin')) {
 
     /**
      * 
      */
-    class Zo2ModelAjax {
+    class Zo2ModelAdmin {
 
         private $_ajax;
 
@@ -64,7 +64,7 @@ if (!class_exists('Zo2ModelAjax')) {
          */
         public function render() {
             if ($this->_isAuthorized()) {
-                $this->_ajax->addHtml(Zo2Html::_('admin', 'config'));
+                $this->_ajax->addHtml(Zo2Html::_('admin', 'config'), '#zo2-framework');
             }
             $this->_ajax->response();
         }

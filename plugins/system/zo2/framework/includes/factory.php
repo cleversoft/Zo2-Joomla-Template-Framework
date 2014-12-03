@@ -92,10 +92,10 @@ if (!class_exists('Zo2Factory')) {
 
                     $instances[$id] = $template;
                     return $instances[$id];
-                } else {
+                } else {                                        
                     $option = JFactory::getApplication()->input->get('option');
                     /* Get requesting template for backend only */
-                    $id = JFactory::getApplication()->input->get('id');
+                    $id = JFactory::getApplication()->input->get('id');                    
                     if ($id && $option == 'com_templates') {
                         return self::getTemplate($id);
                     }
@@ -214,6 +214,23 @@ if (!class_exists('Zo2Factory')) {
         public static function execController() {
             if ($zo2controller = JFactory::getApplication()->input->getCmd('zo2controller')) {
                 Zo2Controller::exec($zo2controller);
+            }
+        }
+
+        public static function ajax() {
+            /**
+             * Ajax catching
+             * @todo not good at all but until we have chance
+             */
+            $jinput = JFactory::getApplication()->input;
+            $task = $jinput->getCmd('zo2_task');
+            if ($task && ($jinput->get('zo2_ajax') == 1 )) {
+                $task = explode('.', $task);
+                $modelClass = 'Zo2Model' . ucfirst($task[0]);
+                $model = new $modelClass;
+                if (method_exists($model, $task[1])) {
+                    call_user_func(array($model, $task[1]));
+                }
             }
         }
 

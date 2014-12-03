@@ -70,8 +70,9 @@
          */
         load: function (profileName) {
             settings = {
+                url: zo2._settings.url,
                 data: {
-                    zo2_task: 'admin.render',
+                    zo2_task: 'admin.render',                    
                     profile: profileName
                 }
             };
