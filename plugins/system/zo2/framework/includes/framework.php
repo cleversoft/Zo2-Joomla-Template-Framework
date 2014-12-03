@@ -619,9 +619,14 @@ if (!class_exists('Zo2Framework')) {
             $templateProfiles = $this->_getProfiles(Zo2Factory::getPath('templates://assets/profiles/' . $this->template->id));
             $defaultProfiles = $this->_getProfiles(Zo2Factory::getPath('templates://assets/profiles'));
             $profiles = array_merge($defaultProfiles, $templateProfiles);
-            return $profiles;
+            return array_unique($profiles);
         }
 
+        /**
+         * 
+         * @param string $dir
+         * @return array Zo2Profile
+         */
         private function _getProfiles($dir) {
             $profiles = array();
             if (JFolder::exists($dir)) {
@@ -632,7 +637,7 @@ if (!class_exists('Zo2Framework')) {
                             $profile = new Zo2Profile();
                             $profile->load(JFile::stripExt($file));
                             if ($profile->isValid()) {
-                                $profiles[JFile::stripExt($file)] = $profile;
+                                $profiles[$profile->name] = $profile;
                             }
                         }
                     }

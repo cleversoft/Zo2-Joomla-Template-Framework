@@ -35,12 +35,12 @@ if (!class_exists('Zo2ModelAjax')) {
             if ($this->_isAuthorized()) {
                 if (JFolder::exists(ZO2PATH_CACHE)) {
                     if (JFolder::delete(ZO2PATH_CACHE)) {
-                        $this->_ajax->addMessage('Clear cleared', 'success');
+                        $this->_ajax->addMessage(JText::_('ZO2_ADMIN_CLEAR_CACHE_SUCCESS'), 'success');
                     } else {
-                        $this->_ajax->addMessage('Something wrong', 'error');
+                        $this->_ajax->addMessage(JText::_('ZO2_ADMIN_CLEAR_CACHE_FAILED'), 'error');
                     }
                 } else {
-                    $this->_ajax->addMessage('No cached', 'info');
+                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_NO_CACHED'), 'info');
                 }
             }
             $this->_ajax->response();
@@ -52,17 +52,17 @@ if (!class_exists('Zo2ModelAjax')) {
         public function buildAssets() {
             if ($this->_isAuthorized()) {
                 $assets = Zo2Assets::getInstance();
-                $assets->buildAssets();
-                $this->_ajax->addMessage('Build success', 'success');
+                if ($assets->buildAssets()) {
+                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_BUILD_ASSETS_SUCCESS'), 'success');
+                }
             }
-
             $this->_ajax->response();
         }
 
         /**
          * 
          */
-        public function renderAdmin() {
+        public function render() {
             if ($this->_isAuthorized()) {
                 $this->_ajax->addHtml(Zo2Html::_('admin', 'config'));
             }
@@ -77,9 +77,6 @@ if (!class_exists('Zo2ModelAjax')) {
                 $jinput = JFactory::getApplication()->input;
                 $newProfileName = $jinput->get('newProfileName');
                 $profile = Zo2Factory::getProfile();
-
-                $framework = Zo2Factory::getFramework();
-
                 if ($profile->rename($newProfileName)) {
                     $this->_ajax->addMessage('Build success', 'success');
                 } else {
