@@ -142,9 +142,22 @@ if (!class_exists('Zo2ModelAdmin')) {
         }
 
         public function modalCreateProfile() {
-            $html = new Zo2Html();
-            $this->_ajax->appendHtml($html->fetch('zo2/modal.php'), '#zo2-framework');
-            $this->_ajax->addExecute('jQuery(\'#myModal\').modal({})');
+            $modalId = Zo2Factory::getRandomId();
+            $modal = new Zo2HtmlModal(
+                    $modalId, 'Save as Copy', '<input type="text" name="newProfile"/>'
+            );
+            $modal->addButton(array(
+                'class' => 'btn',
+                'data-dismiss' => 'modal',
+                'aria-hidden' => 'hidden',
+                'text' => 'Close'
+            ));
+            $modal->addButton(array(
+                'class' => 'btn btn-primary',                
+                'text' => 'Ok'
+            ));
+            $this->_ajax->appendHtml($modal->render(), '#zo2-framework');
+            $this->_ajax->addExecute('jQuery(\'#' . $modalId . '\').modal({})');
             $this->_ajax->response();
         }
 
