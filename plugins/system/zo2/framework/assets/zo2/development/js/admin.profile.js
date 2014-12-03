@@ -81,7 +81,8 @@
             settings = {
                 url: zo2._settings.url,
                 data: {
-                    zo2_task: 'admin.modalCreateProfile',
+                    zo2_task: 'admin.render',
+                    profile: profileName
                 }
             };
             zo2.ajax.request(settings);
