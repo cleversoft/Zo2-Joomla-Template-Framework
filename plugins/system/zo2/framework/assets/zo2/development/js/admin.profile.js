@@ -17,7 +17,7 @@
  * @returns {undefined}
  */
 (function (window, zo2, $) {
-    
+
     /**
      * Admin profile
      * @todo Move to zo2.ajax
@@ -39,6 +39,15 @@
         _init: function () {
 
         },
+        modalCreateProfile: function () {
+            settings = {
+                url: zo2._settings.url,
+                data: {
+                    zo2_task: 'admin.modalCreateProfile'
+                }
+            };
+            zo2.ajax.request(settings);
+        },
         /**
          * Add new profile
          * @returns {undefined}
@@ -52,7 +61,7 @@
          * @returns {undefined}
          */
         rename: function (currentProfile) {
-           
+
         },
         /**
          * Delete current profile
@@ -61,7 +70,7 @@
          * @returns {undefined}
          */
         remove: function (profile, templateId) {
-          
+
         },
         /**
          * Load profile
@@ -72,19 +81,18 @@
             settings = {
                 url: zo2._settings.url,
                 data: {
-                    zo2_task: 'admin.render',                    
-                    profile: profileName
+                    zo2_task: 'admin.modalCreateProfile',
                 }
             };
             zo2.ajax.request(settings);
         }
     };
-    
+
     /**
      * Append to zo2.admin
      */
     zo2.admin.profile = _profile;
-    
+
     /**
      * Init plugin
      * Put all of your init code into _init

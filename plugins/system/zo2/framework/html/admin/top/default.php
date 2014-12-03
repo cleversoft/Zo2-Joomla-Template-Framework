@@ -41,7 +41,7 @@ defined('_JEXEC') or die('Restricted access');
                             ));
                             ?>                           
                         </div>
-                        <button type="button" class="btn btn-primary" onClick="admin.profile.create();
+                        <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalCreateProfile();
                                 return false;">Save as copy</button>
                         <button type="button" class="btn btn-default" onClick="admin.profile.rename();
                                 return false;">Rename</button>

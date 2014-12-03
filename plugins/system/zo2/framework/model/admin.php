@@ -141,6 +141,13 @@ if (!class_exists('Zo2ModelAdmin')) {
             }
         }
 
+        public function modalCreateProfile() {
+            $html = new Zo2Html();
+            $this->_ajax->appendHtml($html->fetch('zo2/modal.php'), '#zo2-framework');
+            $this->_ajax->addExecute('jQuery(\'#myModal\').modal({})');
+            $this->_ajax->response();
+        }
+
         private function _isAuthorized() {
             $app = JFactory::getApplication();
             return ( $app->isAdmin());

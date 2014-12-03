@@ -10,23 +10,26 @@
  */
 
 /**
- *
+ * Profile management
  * @param {type} window
  * @param {type} zo2
  * @param {type} $
  * @returns {undefined}
  */
 (function (window, zo2, $) {
+
     /**
-     * Admin ajax
+     * Admin profile
      * @todo Move to zo2.ajax
      */
-    zo2.admin.profile = {
+    var _profile = {
         /**
          * Element variables
          */
         _elements: {
+            /* Profile name selector */
             addNewProfileInput: '#zo2-profile-name',
+            /* New profile selector */
             renameProfileInput: '#zo2-new-profile-name'
         },
         /**
@@ -35,6 +38,15 @@
          */
         _init: function () {
 
+        },
+        modalCreateProfile: function () {
+            settings = {
+                url: zo2._settings.url,
+                data: {
+                    zo2_task: 'admin.modalCreateProfile'
+                }
+            };
+            zo2.ajax.request(settings);
         },
         /**
          * Add new profile
@@ -45,35 +57,42 @@
         },
         /**
          * Rename current profile
-         * @param {type} currentProfile
+         * @param {string} currentProfile
          * @returns {undefined}
          */
         rename: function (currentProfile) {
-           
+
         },
         /**
          * Delete current profile
+         * @param {string} profile
+         * @param {int} templateId
          * @returns {undefined}
          */
         remove: function (profile, templateId) {
-          
+
         },
         /**
-         * 
-         * @param {type} profileName
+         * Load profile
+         * @param {string} profileName
          * @returns {undefined}
          */
         load: function (profileName) {
             settings = {
                 url: zo2._settings.url,
                 data: {
-                    zo2_task: 'admin.render',                    
-                    profile: profileName
+                    zo2_task: 'admin.modalCreateProfile',
                 }
             };
             zo2.ajax.request(settings);
         }
     };
+
+    /**
+     * Append to zo2.admin
+     */
+    zo2.admin.profile = _profile;
+
     /**
      * Init plugin
      * Put all of your init code into _init
@@ -81,4 +100,5 @@
     $(document).ready(function () {
         zo2.admin.profile._init();
     });
+
 })(window, zo2, zo2.jQuery);
