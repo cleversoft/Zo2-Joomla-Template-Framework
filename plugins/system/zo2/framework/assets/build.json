@@ -5,7 +5,7 @@
             "site.styles.less"
         ],
         "js": [
-            "zo.js",
+            "zo2.js",
             "admin.megamenu.js",
             "admin.assets.js",            
             "admin.ajax.js",
