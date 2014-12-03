@@ -75,7 +75,7 @@ if (Zo2Factory::isZo2Template()) {
      */
     Zo2Factory::execController();
     $script = 'zo2._settings.token = "' . JFactory::getSession()->getFormToken() . '";';
-    $script .= 'zo2._settings.url = "' . JUri::base() . '";';
+    $script .= 'zo2._settings.url = "' . JUri::getInstance()->toString() . '";';
     Zo2Assets::getInstance()->addScriptDeclaration($script);
 } else {
     
