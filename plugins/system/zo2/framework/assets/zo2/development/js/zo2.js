@@ -391,7 +391,12 @@
                 this.turnOnOverlay();
             }
             /* Fix default settings is override */
-            var tempSettings = $.extend(true, {data: this.collectleData()}, this._settings);
+            /**
+             * @todo provide data collector automatically
+             * data: this.collectleData()
+             * @type @exp;$@call;extend
+             */
+            var tempSettings = $.extend(true, {}, this._settings);
             /* Include Joomla! token */
             settings.data[z._settings.token] = 1;
             /* Merge setting with default setting */
