@@ -41,9 +41,12 @@ defined('_JEXEC') or die('Restricted access');
                             ));
                             ?>                           
                         </div>
-                        <button type="button" class="btn btn-primary">Save as copy</button>
-                        <button type="button" class="btn btn-default">Rename</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-primary" onClick="admin.profile.create();
+                                return false;">Save as copy</button>
+                        <button type="button" class="btn btn-default" onClick="admin.profile.rename();
+                                return false;">Rename</button>
+                        <button type="button" class="btn btn-danger" onClick="admin.profile.delete();
+                                return false;">Delete</button>
                     </div>
 
                 </div>
