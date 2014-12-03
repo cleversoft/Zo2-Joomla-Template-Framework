@@ -49,60 +49,28 @@
          * @returns {undefined}
          */
         rename: function (currentProfile) {
-            var newProfileName = jQuery(this._elements.renameProfileInput).val();
-            $.ajax({
-                /* Default URL */
-                url: document.URL,
-                /* Default method */
-                type: 'POST',
-                /* Default data type */
-                dataType: 'json',
-                /* Data format */
-                data: {
-                    /* Force using raw */
-                    format: 'raw',
-                    zo2_ajax: 1,
-                    zo2_task: 'renameProfile',
-                    newProfileName: newProfileName,
-                    profile: currentProfile
-                },
-                beforeSend: function (xhr) {
-                    zo2.document.showOverlay();
-                }
-
-            })
-                    .done(function (data) {
-                        zo2.admin.ajax.loadProfile(newProfileName);
-                    });
+           
         },
         /**
          * Delete current profile
          * @returns {undefined}
          */
         remove: function (profile, templateId) {
-            $.ajax({
-                /* Default URL */
-                url: document.URL,
-                /* Default method */
-                type: 'POST',
-                /* Default data type */
-                dataType: 'json',
-                /* Data format */
+          
+        },
+        /**
+         * 
+         * @param {type} profileName
+         * @returns {undefined}
+         */
+        load: function (profileName) {
+            settings = {
                 data: {
-                    /* Force using raw */
-                    format: 'raw',
-                    zo2_ajax: 1,
-                    zo2_task: 'removeProfile',
-                    profile: profile,
-                    templateId: templateId
-                },
-                beforeSend: function (xhr) {
-                    zo2.document.showOverlay();
+                    zo2_task: 'admin.render',
+                    profile: profileName
                 }
-
-            }).done(function (data) {
-                zo2.admin.ajax.loadProfile('default');
-            });
+            };
+            zo2.ajax.request(settings);
         }
     };
     /**

@@ -29,7 +29,32 @@
         _init: function () {
 
         },
-
+        /**
+         * Clear Zo2 cache
+         * @returns {undefined}
+         * @todo Need display notice message when success or fail
+         */
+        clearCache: function () {
+            settings = {
+                data: {
+                    zo2_task: 'admin.clearCache'
+                }
+            };
+            zo2.ajax.request(settings);
+        },
+        /**
+         *
+         * @returns {undefined}
+         */
+        buildAssets: function () {           
+            settings = {
+                data: {
+                    zo2_task: 'admin.buildAssets'
+                }
+            };
+            zo2.ajax.request(settings);
+        },
+        
         generateZo2SettingJson: function () {
             var $rootParent = jQuery('#droppable-container .zo2-container');
             var json = [];
@@ -42,7 +67,6 @@
 
             return JSON.stringify(json);
         },
-        
         /**
          *
          * @param {type} $item

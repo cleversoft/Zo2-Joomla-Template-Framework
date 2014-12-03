@@ -5,9 +5,9 @@
             "site.styles.less"
         ],
         "js": [
+            "zo.js",
             "admin.megamenu.js",
-            "admin.assets.js",
-            "admin.scripts.js",
+            "admin.assets.js",            
             "admin.ajax.js",
             "admin.profile.js",
             "admin.layoutbuilder.js",
@@ -15,7 +15,6 @@
             "admin.themecolor.js",
             "admin.utilities.js",
             "admin.social.js",
-            "scripts.js",
             "site.megamenu.js",
             "site.scripts.js"
         ]
