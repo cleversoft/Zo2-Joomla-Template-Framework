@@ -13,21 +13,24 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+$profile = Zo2Factory::getProfile();
 ?>
 <!-- Main layout for backend -->
 <!-- It's using Twitter Bootstrap 2 default. Provided by Joomla! -->
-<div id="zo2-framework" class="zo2-framwork">
-
-    <!-- Begin Content -->
+<!-- Begin Content -->
+<div id="zo2-profile" 
+     data-zo2-template="<?php echo Zo2Factory::getTemplateName(); ?>" 
+     data-zo2-templateid="<?php echo Zo2Factory::getFramework()->template->id; ?>"
+     data-zo2-profile="<?php echo $profile->get('name'); ?>">
     <div class="row-fluid">
         <div class="span12">
             <?php $this->load('admin/top/default.php'); ?>
             <?php $this->load('admin/body/default.php'); ?>
         </div>
-    </div>
-    <!-- End Content -->
+    </div>    
 </div>
 
+<!-- End Content -->
 <style>
     #attrib-zo2 .controls {
         margin-left: 0px;
