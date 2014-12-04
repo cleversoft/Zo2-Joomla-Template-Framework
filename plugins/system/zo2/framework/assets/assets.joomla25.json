@@ -30,13 +30,19 @@
         ],
         "js": [
             "vendor\/bootstrap\/2.3.2\/js\/bootstrap.min.js",
+            "vendor\/jqueryalert\/jquery.alerts.js",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
             "vendor\/fontselect\/jquery.fontselect.js",
+            "vendor\/jRange\/jquery.range-min.js",
             "zo2\/js\/zo2.js",
-            "zo2\/js\/admin.megamenu.js",
+            "zo2\/js\/admin.scripts.js",
             "zo2\/js\/admin.assets.js",
-            "zo2\/js\/admin.social.js",
-            "zo2\/js\/admin.scripts.js"
+            "zo2\/js\/admin.profile.js",
+            "zo2\/js\/admin.layoutbuilder.js",
+            "zo2\/js\/admin.utilities.js",
+            "zo2\/js\/admin.font.js",
+            "zo2\/js\/admin.themecolor.js",
+            "zo2\/js\/admin.megamenu.js"
         ]
     }
 

@@ -6,6 +6,7 @@
         ],
         "js": [
             "zo2.js",
+            "admin.scripts.js",
             "admin.megamenu.js",
             "admin.assets.js",            
             "admin.ajax.js",
