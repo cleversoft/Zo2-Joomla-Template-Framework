@@ -15,7 +15,7 @@
  * @param {object} $ jQuery pointer
  * @returns {undefined}
  */
-(function (w, $) {
+(function(w, $) {
 
     if (typeof w.zo2 === 'undefined') {
 
@@ -42,7 +42,7 @@
  * @param {object} $ jQuery pointer
  * @returns {undefined}
  */
-(function (w, z, $) {
+(function(w, z, $) {
 
     /**
      * Animate class
@@ -54,7 +54,7 @@
          * @param {type} toEl
          * @returns {undefined}
          */
-        scrollTop: function (el, toEl) {
+        scrollTop: function(el, toEl) {
             $(el).animate({
                 scrollTop: $(toEl).offset().top
             }, 1500);
@@ -65,7 +65,7 @@
          * @param {mixed} duration
          * @returns {undefined}
          */
-        show: function (target, duration) {
+        show: function(target, duration) {
             duration = (typeof duration === 'undefined') ? null : duration;
             if (duration === null) {
                 $(target).show();
@@ -79,7 +79,7 @@
          * @param {mixed} duration
          * @returns {undefined}
          */
-        hide: function (target, duration) {
+        hide: function(target, duration) {
             duration = (typeof duration === 'undefined') ? null : duration;
             if (duration === null) {
                 $(target).hide();
@@ -103,7 +103,7 @@
  * @param {object} $ jQuery pointer
  * @returns {undefined}
  */
-(function (w, z, $) {
+(function(w, z, $) {
 
     /**
      * Document class
@@ -134,14 +134,14 @@
          * Show overlay
          * @returns {undefined}
          */
-        showOverlay: function () {
+        showOverlay: function() {
             z.animate.show(this._elements.overlay);
         },
         /**
          * Hide overlay
          * @returns {undefined}
          */
-        hideOverlay: function () {
+        hideOverlay: function() {
             z.animate.hide(this._elements.overlay);
         },
         /**
@@ -150,7 +150,7 @@
          * @param {string} html
          * @returns {undefined}
          */
-        append: function (target, html) {
+        append: function(target, html) {
             $(target).append(html);
         },
         /**
@@ -159,7 +159,7 @@
          * @param {type} html
          * @returns {undefined}
          */
-        replace: function (target, html) {
+        replace: function(target, html) {
             $(target).html(html);
         },
         /**
@@ -168,11 +168,11 @@
          * @param {boolean} animation
          * @returns {undefined}
          */
-        remove: function (target, animation) {
+        remove: function(target, animation) {
             animation = (typeof animation === 'undefined') ? false : animation;
             /* Is animation present ? */
             if (animation) {
-                $(target).hide('slow', function () {
+                $(target).hide('slow', function() {
                     $(this).remove();
                 });
             } else {
@@ -183,30 +183,15 @@
          * Raise message
          * @param {object} data
          */
-        raiseMessage: function (data) {
-            /* Fix default settings is override */
-            var tempSettings = $.extend(true, {}, this._settings);
-            /* Merge setting with default setting */
-            data = $.extend(true, tempSettings, data);
-            /* Append or override */
-            if (data.options.append) {
-                z.document.append(this._elements.messages, data.html);
-            } else {
-                z.document.append.replace(this._elements.messages, data.html);
-            }
-            /* Hide message after a moment */
-            if (data.options.delayClose >= 0 && data.childID !== '') {
-                w.setTimeout(function () {
-                    z.document.remove('#' + data.options.childID, true);
-                }, data.options.delayClose);
-            }
+        raiseMessage: function(message) {
+            this.append($(this._elements.messages), message);
         },
         /**
          * Raise text
          * @param {string} text Text content
          * @param {string} type type type
          */
-        raiseText: function (text, type) {
+        raiseText: function(text, type) {
             /* Fix default settings is override */
             var settings = $.extend(true, {}, this._settings);
             settings.options.childID = 'zo2-ajax-message-rand' + Math.round(Math.random() * 100000);
@@ -225,7 +210,7 @@
             }
             /* Hide message after a moment */
             if (settings.options.delayClose >= 0 && settings.options.childID !== '') {
-                w.setTimeout(function () {
+                w.setTimeout(function() {
                     z.document.remove('#' + settings.options.childID, true);
                 }, settings.options.delayClose);
             }
@@ -246,7 +231,7 @@
  * @param {object} $ jQuery pointer
  * @returns {undefined}
  */
-(function (w, z, $) {
+(function(w, z, $) {
 
     /**
      * Ajax addon
@@ -279,7 +264,7 @@
              * Before send ajax request
              * @returns {undefined}
              */
-            beforeSend: function () {
+            beforeSend: function() {
                 z.ajax.showOverlay();
             },
             /**
@@ -287,35 +272,39 @@
              * @param {object} data
              * @returns {undefined}
              */
-            success: function (data) {
-                $.each(data, function (key, value) {
+            success: function(data) {
+                $.each(data, function(key, value) {
                     switch (key) {
 
                         case 'html':
-                            $.each(data[key], function (childKey, childValue) {
+                            $.each(data[key], function(childKey, childValue) {
                                 z.document.replace(childValue.target, childValue.html);
                             });
                             break;
 
                         case 'appendHtml':
-                            $.each(data[key], function (childKey, childValue) {
+                            $.each(data[key], function(childKey, childValue) {
                                 z.document.append(childValue.target, childValue.html);
                             });
                             break;
 
                         case 'message':
-                            $.each(data[key], function (childKey, childValue) {
-                                z.document.raiseMessage(childValue);
+                            $.each(data[key], function(childKey, childValue) {
+                                if (typeof childValue === 'object') {
+                                    if (childValue.hasOwnProperty("message")) {
+                                        z.document.raiseMessage(childValue.message);
+                                    }
+                                }
                             });
                             break;
 
                     }
                 });
-                $.each(data, function (key, value) {
+                $.each(data, function(key, value) {
                     switch (key) {
                         case 'exec':
                         case 'execute':
-                            $.each(data[key], function (childKey, childValue) {
+                            $.each(data[key], function(childKey, childValue) {
                                 eval(childValue);
                             });
                             break;
@@ -326,7 +315,7 @@
              * After ajax complete error/success
              * @returns {undefined}
              */
-            complete: function () {
+            complete: function() {
                 z.ajax.hideOverlay();
             },
             /* Ajax overlay */
@@ -338,8 +327,8 @@
          * Lock page reload
          * @returns {undefined}
          */
-        ajaxLock: function () {
-            w.onbeforeunload = function () {
+        ajaxLock: function() {
+            w.onbeforeunload = function() {
                 return z.ajax._text.ZO2_AJAX_IN_PROCESS;
             };
         },
@@ -347,22 +336,22 @@
          * Unlock page reload
          * @returns {undefined}
          */
-        ajaxUnLock: function () {
-            w.onbeforeunload = function () {
+        ajaxUnLock: function() {
+            w.onbeforeunload = function() {
             };
         },
         /**
          * Turn on overlay
          * @returns {undefined}
          */
-        turnOnOverlay: function () {
+        turnOnOverlay: function() {
             this._settings.ajaxOverlay = true;
         },
         /**
          * Show overlay
          * @returns {undefined}
          */
-        showOverlay: function () {
+        showOverlay: function() {
             if (this._settings.ajaxOverlay === true) {
                 z.document.showOverlay();
             }
@@ -371,7 +360,7 @@
          * Hide overlay
          * @returns {undefined}
          */
-        hideOverlay: function () {
+        hideOverlay: function() {
             if (this._settings.ajaxOverlay === true) {
                 z.document.hideOverlay();
             }
@@ -382,9 +371,9 @@
          * Collect available data
          * @returns {undefined}
          */
-        collectleData: function () {
+        collectleData: function() {
             var data = {};
-            $('input').each(function () {
+            $('input').each(function() {
                 $.extend(true, data, $(this).data());
             });
             return data;
@@ -395,7 +384,7 @@
          * @param {boolean} showOverlay
          * @returns {jqXHR}
          */
-        request: function (settings, showOverlay) {
+        request: function(settings, showOverlay) {
             /* A we show the overlay ? */
             showOverlay = (typeof showOverlay === 'undefined') ? true : showOverlay;
             if (showOverlay === true) {
@@ -418,7 +407,7 @@
              * Ajax failed
              * @param {object} data
              */
-            response.fail(function (data) {
+            response.fail(function(data) {
                 z.document.raiseText(z.ajax._text.ZO2_AJAX_ERROR, 'error');
             });
             return response;
