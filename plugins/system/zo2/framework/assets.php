@@ -140,7 +140,9 @@ if (!class_exists('Zo2Assets')) {
                     $this->_buildAssets($assets->template->less, TEMPLATE, 'less');
                 if (isset($assets->template->js))
                     $this->_buildAssets($assets->template->js, TEMPLATE, 'js');
+                return true;
             }
+            return false;
         }
 
         /**
