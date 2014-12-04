@@ -79,21 +79,12 @@ if (!class_exists('Zo2Ajax')) {
         }
 
         /**
-         * Add execute script
-         * @param string $script
-         * @return \Zo2Ajax
-         */
-        public function addExecute($script) {
-            return $this->add($script, 'execute');
-        }
-
-        /**
          * Add notice message
          * @param type $message
          * @param type $type
          * @return \Zo2Ajax
          */
-        public function addMessage($message, $type) {
+        public function addMessage($message, $header = '', $type = 'info') {
             switch ($type) {
                 case 'error':
                 case 'danger':
@@ -112,13 +103,23 @@ if (!class_exists('Zo2Ajax')) {
                     $messageType = 'info';
                     break;
             }
-            $data = new stdClass();
             $template = new Zo2Html();
+            $template->set('header', $header);
             $template->set('message', $message);
             $template->set('type', $messageType);
+            $data = new stdClass();
             $data->message = $template->fetch('zo2/message.php');
             $this->add($data, 'message');
             return $this;
+        }
+
+        /**
+         * Add execute script
+         * @param string $script
+         * @return \Zo2Ajax
+         */
+        public function addExecute($script) {
+            return $this->add($script, 'execute');
         }
 
         /**
