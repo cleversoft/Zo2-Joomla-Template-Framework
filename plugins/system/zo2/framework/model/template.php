@@ -97,6 +97,9 @@ if (!class_exists('Zo2ModelTemplate')) {
             $table = JTable::getInstance('Style', 'TemplatesTable');
             /* Form data */
             $data = $jinput->post->get('jform', array(), 'array');
+            /* Zo2 data */
+            $zo2 = $jinput->post->get('zo2', array(), 'array');
+
             /* Load table record */
             if ($table->load($jinput->get('id'))) {
                 /* Save to database */
@@ -106,21 +109,15 @@ if (!class_exists('Zo2ModelTemplate')) {
                 $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
                 $model->save($formData);
                 /* Request profileName */
-                $formData['profile-select'] = isset($formData['profile-select']) ? $formData['profile-select'] : 'default';
-                $profileName = $jinput->get('profile-name');
-                if ($profileName == '') {
-                    $profileName = $formData['profile-select'];
-                } else {
+                $profileName = (isset($zo2['newProfile']) ? $zo2['newProfile'] : $zo2['profiles'] );
+                if ($profileName != $zo2['profiles']) {
                     JFactory::getApplication()->enqueueMessage('Added new profile: ' . $profileName, 'notice');
                 }
-
                 /* Update profile assign list */
                 $list = $table->params->get('profile', array());
-
                 if (count($list) == 0) {
                     $list = array();
                 }
-
                 if (is_object($list)) {
                     foreach ($list as $key => $value) {
                         $tList[$key] = $value;
@@ -154,7 +151,6 @@ if (!class_exists('Zo2ModelTemplate')) {
                 /* Save back into database */
                 if ($table->check()) {
                     if ($table->store()) {
-
                         /**
                          * Save profile
                          */

@@ -146,7 +146,7 @@ if (!class_exists('Zo2ModelAdmin')) {
         public function modalCreateProfile() {
             $modalId = Zo2Factory::getRandomId();
             $modal = new Zo2HtmlModal(
-                    $modalId, 'Save as Copy', '<input type="text" name="newProfile"/>'
+                    $modalId, 'Save as Copy', '<input type="text" name="zo2[newProfile]"/>'
             );
             $modal->addButton(array(
                 'class' => 'btn',
@@ -156,7 +156,8 @@ if (!class_exists('Zo2ModelAdmin')) {
             ));
             $modal->addButton(array(
                 'class' => 'btn btn-primary',
-                'text' => 'Ok'
+                'text' => 'Save',
+                'onClick' => 'Joomla.submitbutton(\'style.apply\')'
             ));
             $this->_ajax->appendHtml($modal->render(), '#zo2-framework');
             $this->_ajax->addExecute('jQuery(\'#' . $modalId . '\').modal({})');
