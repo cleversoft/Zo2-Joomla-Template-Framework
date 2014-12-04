@@ -29,7 +29,7 @@ if (!class_exists('Zo2ModelAdmin')) {
         }
 
         /**
-         * 
+         * Clear Zo2 cached files
          */
         public function clearCache() {
             if ($this->_isAuthorized()) {
@@ -54,6 +54,8 @@ if (!class_exists('Zo2ModelAdmin')) {
                 $assets = Zo2Assets::getInstance();
                 if ($assets->buildAssets()) {
                     $this->_ajax->addMessage(JText::_('ZO2_ADMIN_BUILD_ASSETS_SUCCESS'), 'success');
+                } else {
+                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_BUILD_ASSETS_FAILED'), 'error');
                 }
             }
             $this->_ajax->response();
@@ -153,7 +155,7 @@ if (!class_exists('Zo2ModelAdmin')) {
                 'text' => 'Close'
             ));
             $modal->addButton(array(
-                'class' => 'btn btn-primary',                
+                'class' => 'btn btn-primary',
                 'text' => 'Ok'
             ));
             $this->_ajax->appendHtml($modal->render(), '#zo2-framework');
