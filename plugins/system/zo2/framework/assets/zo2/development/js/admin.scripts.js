@@ -36,6 +36,7 @@
          */
         clearCache: function () {
             settings = {
+                url: zo2._settings.url,
                 data: {
                     zo2_task: 'admin.clearCache'
                 }
@@ -46,15 +47,15 @@
          *
          * @returns {undefined}
          */
-        buildAssets: function () {           
+        buildAssets: function () {
             settings = {
+                url: zo2._settings.url,
                 data: {
                     zo2_task: 'admin.buildAssets'
                 }
             };
             zo2.ajax.request(settings);
         },
-        
         generateZo2SettingJson: function () {
             var $rootParent = jQuery('#droppable-container .zo2-container');
             var json = [];
