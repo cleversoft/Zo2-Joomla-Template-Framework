@@ -9,95 +9,114 @@
  * @license     GPL v2
  */
 
-!function ($) {
-
-    var Assets = window.Assets = window.Assets || {
-
-        ajaxs: {},
+/**
+ * Admin assets
+ * @param {type} w Window pointer
+ * @param {type} $ jQuery pointer
+ * @returns {undefined}
+ */
+(function (w, $) {
+    var _assets = {
+        /* Ajax containner */
+        ajaxs: [],
+        /**
+         * Start trigger
+         * @returns {undefined}
+         */
         start: function () {
             var form = this;
             $.each(this.ajaxs, function (ctrl, elements) {
                 form.getElement(ctrl).trigger('change');
             });
-
         },
+        /**
+         * Activate progress bar
+         * @param {string} name
+         * @param {any} info
+         * @returns {undefined}
+         */
         ajax: function (name, info) {
-            var ajaxs = this;
+            var _self = this;
             info = $.extend({
-                url: Assets.url
+                url: _self.url
             }, info);
 
-            if (!ajaxs[name]) {
-                ajaxs[name] = {};
+            if (!_self[name]) {
+                _self[name] = {};
                 var inst = this;
-                ajaxs[name].indicator = this.getElement(name).on('change',function (e) {
+                _self[name].indicator = this.getElement(name).on('change',function (e) {
                     inst.callAjax(this);
                 }).after('' +
                         '<div class="progress progress-striped zo2-progress active">' +
                         '<div class="bar" style="width: 100%"></div>' +
                         '</div>').next().hide();
             }
-
-            ajaxs[name].info = info;
-            this.ajaxs[name] = ajaxs[name];
+            _self[name].info = info;
+            this.ajaxs = _self[name];
         },
-
+        /**
+         * Call Ajax
+         * @param {type} control
+         * @returns {Boolean}
+         */
         callAjax: function (control) {
-
             var ajaxs = this.ajaxs,
                 name = control.name,
                 el = ajaxs[name],
                 form = this;
-
             if (!el) {
                 el = ajaxs[name.substr(0, name.length - 2)];
             }
             if (!el) {
                 return false;
             }
-
             var info = el.info;
-
             if (el.indicator.next('.chzn-container').length) {
                 el.indicator.insertAfter(el.indicator.next('.chzn-container'));
             }
-
             el.indicator.show();
             $.get(info.url, { menutype: form.values(form.getElement(name))[0] }, function (response) {
                 el.indicator.hide();
-                ZO2AdminMegamenu.megamenu(form, control, el, response);
+                w.ZO2AdminMegamenu.megamenu(form, control, el, response);
             });
         },
+        /**
+         * Get elemet by name
+         * @param {string} name
+         * @returns {$}
+         */
         getElement: function (name) {
-
-            var el = document.adminForm[name];
+            var el = w.document.adminForm[name];
             if (!el) {
-                el = document.adminForm[name + '[]'];
+                el = w.document.adminForm[name + '[]'];
             }
-
             return $(el);
         },
+        /**
+         * Get array of values
+         * @param {type} name
+         * @returns {Array}
+         */
         values: function (name) {
             var vals = [];
-
             $(name).each(function () {
-                var type = this.type,
-                    val = $.makeArray(((type == 'radio' || type == 'checkbox') && !this.checked) ? null : $(this).val());
-
+                var type = this.type;
+                var val = [((type === 'radio' || type === 'checkbox') && !this.checked) ? null : $(this).val()];
                 for (var i = 0, l = val.length; i < l; i++) {
-                    if ($.inArray(val[i], vals) == -1) {
+                    if ($.inArray(val[i], vals) === -1) {
                         vals.push(val[i]);
                     }
                 }
             });
-
             return vals;
         }
-
     };
-
-    $(window).on('load', function () {
-        setTimeout($.proxy(Assets.start, Assets), 120);
+    
+    /* Provide global */
+    w.Assets = _assets;
+    
+    /* Init function */
+    $(w).on('load', function () {
+        setTimeout($.proxy(w.Assets.start, w.Assets), 120);
     });
-
-}(jQuery);
+})(window, jQuery);
