@@ -44,22 +44,6 @@ if (!class_exists('Zo2ModelTemplate')) {
         }
 
         /**
-         * Profile rename
-         */
-        public function rename() {
-            $jinput = JFactory::getApplication()->input;
-            $newProfileName = $jinput->get('newProfileName');
-            $profile = Zo2Factory::getProfile();
-            $framework = Zo2Factory::getFramework();
-            $id = $framework->template->id;
-            if ($profile->rename($newProfileName)) {
-                $this->_redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id . '&profile=' . $newProfileName, false), JText::_('PLG_ZO2_PROFILE_RENAME_SUCCESS'));
-            } else {
-                $this->_redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id, false), JText::_('PLG_ZO2_PROFILE_RENAME_FAILED'));
-            }
-        }
-
-        /**
          * Profile remove
          */
         public function remove() {
@@ -173,7 +157,6 @@ if (!class_exists('Zo2ModelTemplate')) {
                         if ($profile->save()) {
                             /* Save Zo2 data */
                             $zo2Data = $jinput->post->get('zo2', array(), 'array');
-                            $framework = Zo2Factory::getFramework();
                             $templateDir = JPATH_ROOT . '/templates/' . $table->template;
                             $customCssFile = $templateDir . '/assets/zo2/css/custom.css';
                             $customCss = trim($zo2Data['custom_css']);
