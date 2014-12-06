@@ -27,10 +27,8 @@
          * Element variables
          */
         _elements: {
-            /* Profile name selector */
-            addNewProfileInput: '#zo2-profile-name',
-            /* New profile selector */
-            renameProfileInput: '#zo2-new-profile-name'
+            profileData: '#zo2-profile',
+            newProfile: '#zo2-new-profile'
         },
         /**
          * Init function
@@ -39,7 +37,7 @@
         _init: function () {
 
         },
-        modalCreateProfile: function () {
+        modalSaveAs: function () {
             settings = {
                 url: zo2._settings.url,
                 data: {
@@ -48,20 +46,33 @@
             };
             zo2.ajax.request(settings);
         },
-        /**
-         * Add new profile
-         * @returns {undefined}
-         */
-        add: function () {
+        saveAs: function () {
             Joomla.submitbutton('style.apply');
+        },
+        modalRename: function () {
+            settings = {
+                url: zo2._settings.url,
+                data: {
+                    zo2_task: 'admin.modalRenameProfile'
+                }
+            };
+            zo2.ajax.request(settings);
         },
         /**
          * Rename current profile
          * @param {string} currentProfile
          * @returns {undefined}
          */
-        rename: function (currentProfile) {
-
+        rename: function () {
+            settings = {
+                url: zo2._settings.url,
+                data: {
+                    zo2_task: 'admin.renameProfile',
+                    newProfile: $(this._elements.newProfile).val(),
+                    profile: $(this._elements.profileData).data('zo2-profile')
+                }
+            };
+            zo2.ajax.request(settings);
         },
         /**
          * Delete current profile
@@ -69,8 +80,15 @@
          * @param {int} templateId
          * @returns {undefined}
          */
-        remove: function (profile, templateId) {
-
+        delete: function () {
+            settings = {
+                url: zo2._settings.url,
+                data: {
+                    zo2_task: 'admin.deleteProfile',                    
+                    profile: $(this._elements.profileData).data('zo2-profile')
+                }
+            };
+            zo2.ajax.request(settings);
         },
         /**
          * Load profile

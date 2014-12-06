@@ -22,8 +22,15 @@ if (!class_exists('Zo2ModelAdmin')) {
      */
     class Zo2ModelAdmin {
 
+        /**
+         *
+         * @var \Zo2Ajax
+         */
         private $_ajax;
 
+        /**
+         * 
+         */
         public function __construct() {
             $this->_ajax = Zo2Ajax::getInstance();
         }
@@ -71,35 +78,6 @@ if (!class_exists('Zo2ModelAdmin')) {
             $this->_ajax->response();
         }
 
-        /**
-         * 
-         */
-        public function renameProfile() {
-            if ($this->_isAuthorized()) {
-                $jinput = JFactory::getApplication()->input;
-                $newProfileName = $jinput->get('newProfileName');
-                $profile = Zo2Factory::getProfile();
-                if ($profile->rename($newProfileName)) {
-                    $this->_ajax->addMessage('Build success', 'success');
-                } else {
-                    
-                }
-            }
-            $this->_ajax->response();
-        }
-
-        public function removeProfile() {
-            if ($this->_isAuthorized()) {
-                $profile = JFactory::getApplication()->input->getString('profile');
-                $templateId = JFactory::getApplication()->input->getInt('templateId');
-                $template = Zo2Factory::getTemplate($templateId);
-                if ($template) {
-                    $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
-                    JFile::delete($profile);
-                }
-            }
-        }
-
         public function downloadBackup() {
             if ($this->_isAuthorized()) {
                 $attachment_location = $this->_getBackupProfiles();
@@ -143,10 +121,16 @@ if (!class_exists('Zo2ModelAdmin')) {
             }
         }
 
+        /**
+         * 
+         */
         public function modalCreateProfile() {
             $modalId = Zo2Factory::getRandomId();
             $modal = new Zo2HtmlModal(
-                    $modalId, 'Save as Copy', '<input type="text" name="zo2[newProfile]"/>'
+                    $modalId, 'Save as Copy', '<div class="input-prepend">
+  <span class="add-on">Profile name</span>
+  <input id="prependedInput" name="zo2[newProfile]" type="text" placeholder="Enter new profile name">
+</div>'
             );
             $modal->addButton(array(
                 'class' => 'btn',
@@ -157,10 +141,70 @@ if (!class_exists('Zo2ModelAdmin')) {
             $modal->addButton(array(
                 'class' => 'btn btn-primary',
                 'text' => 'Save',
-                'onClick' => 'Joomla.submitbutton(\'style.apply\')'
+                'onClick' => 'zo2.admin.profile.saveAs(); return false;'
             ));
             $this->_ajax->appendHtml($modal->render(), '#zo2-framework');
             $this->_ajax->addExecute('jQuery(\'#' . $modalId . '\').modal({})');
+            $this->_ajax->response();
+        }
+
+        public function modalRenameProfile() {
+            $modalId = Zo2Factory::getRandomId();
+            $modal = new Zo2HtmlModal(
+                    $modalId, 'Rename', '<div class="input-prepend">
+  <span class="add-on">Profile name</span>
+  <input id="zo2-new-profile" name="zo2[newProfile]" type="text" placeholder="Enter new profile name">
+</div>'
+            );
+            $modal->addButton(array(
+                'class' => 'btn',
+                'data-dismiss' => 'modal',
+                'aria-hidden' => 'hidden',
+                'text' => 'Close'
+            ));
+            $modal->addButton(array(
+                'class' => 'btn btn-primary',
+                'text' => 'Save',
+                'onClick' => 'zo2.admin.profile.rename(); return false;'
+            ));
+            $this->_ajax->appendHtml($modal->render(), '#zo2-framework');
+            $this->_ajax->addExecute('jQuery(\'#' . $modalId . '\').modal({})');
+            $this->_ajax->response();
+        }
+
+        /**
+         * 
+         */
+        public function renameProfile() {
+            if ($this->_isAuthorized()) {
+                /* Zo2 data */
+                $profile = JFactory::getApplication()->input->get('profile');
+                $newProfileName = JFactory::getApplication()->input->get('newProfile');
+                if ($profile != '' && $newProfileName != '') {
+                    $profile = Zo2Factory::getProfile($profile);
+
+                    if ($profile->rename($newProfileName)) {
+                        $this->_ajax->addExecute('zo2.admin.profile.load(\'' . $newProfileName . '\')');
+                    } else {
+                        
+                    }
+                }
+            }
+            $this->_ajax->response();
+        }
+
+        public function deleteProfile() {
+            if ($this->_isAuthorized()) {
+                $profile = JFactory::getApplication()->input->getString('profile');
+                $templateId = JFactory::getApplication()->input->getInt('id');
+                $template = Zo2Factory::getTemplate($templateId);
+                if ($template) {
+                    $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
+                    if ( JFile::delete($profile) ) {
+                        $this->_ajax->addExecute('location.reload();');
+                    }
+                }
+            }
             $this->_ajax->response();
         }
 
