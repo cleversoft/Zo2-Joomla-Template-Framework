@@ -80,8 +80,15 @@
          * @param {int} templateId
          * @returns {undefined}
          */
-        remove: function (profile, templateId) {
-
+        delete: function () {
+            settings = {
+                url: zo2._settings.url,
+                data: {
+                    zo2_task: 'admin.deleteProfile',                    
+                    profile: $(this._elements.profileData).data('zo2-profile')
+                }
+            };
+            zo2.ajax.request(settings);
         },
         /**
          * Load profile

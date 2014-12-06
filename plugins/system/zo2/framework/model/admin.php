@@ -78,18 +78,6 @@ if (!class_exists('Zo2ModelAdmin')) {
             $this->_ajax->response();
         }
 
-        public function removeProfile() {
-            if ($this->_isAuthorized()) {
-                $profile = JFactory::getApplication()->input->getString('profile');
-                $templateId = JFactory::getApplication()->input->getInt('templateId');
-                $template = Zo2Factory::getTemplate($templateId);
-                if ($template) {
-                    $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
-                    JFile::delete($profile);
-                }
-            }
-        }
-
         public function downloadBackup() {
             if ($this->_isAuthorized()) {
                 $attachment_location = $this->_getBackupProfiles();
@@ -196,9 +184,24 @@ if (!class_exists('Zo2ModelAdmin')) {
                     $profile = Zo2Factory::getProfile($profile);
 
                     if ($profile->rename($newProfileName)) {
-                        $this->_ajax->addExecute('zo2.admin.profile.load(\'' . $newProfileName . '\')');                        
+                        $this->_ajax->addExecute('zo2.admin.profile.load(\'' . $newProfileName . '\')');
                     } else {
                         
+                    }
+                }
+            }
+            $this->_ajax->response();
+        }
+
+        public function deleteProfile() {
+            if ($this->_isAuthorized()) {
+                $profile = JFactory::getApplication()->input->getString('profile');
+                $templateId = JFactory::getApplication()->input->getInt('id');
+                $template = Zo2Factory::getTemplate($templateId);
+                if ($template) {
+                    $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
+                    if ( JFile::delete($profile) ) {
+                        $this->_ajax->addExecute('location.reload();');
                     }
                 }
             }
