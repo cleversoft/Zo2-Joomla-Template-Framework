@@ -13,6 +13,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+$currentProfile = Zo2Factory::getProfile();
 ?>
 <div class="row-fluid">
     <div class="span12">
@@ -36,17 +37,21 @@ defined('_JEXEC') or die('Restricted access');
                             echo Zo2Html::field('profiles', array(
                                 'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
                                     ), array(
-                                'profile' => Zo2Factory::getProfile(),
+                                'profile' => $currentProfile,
                                 'profiles' => Zo2Factory::getFramework()->getProfiles()
                             ));
                             ?>                           
                         </div>
                         <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalSaveAs();
                                 return false;">Save as copy</button>
-                        <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
-                                return false;">Rename</button>
-                        <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
-                                return false;">Delete</button>
+                                <?php if ($currentProfile->authorise('rename')) : ?>
+                            <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
+                                        return false;">Rename</button>
+                                <?php endif; ?>
+                                <?php if ($currentProfile->authorise('delete')) : ?>
+                            <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
+                                        return false;">Delete</button>
+                                <?php endif; ?>
                     </div>
 
                 </div>

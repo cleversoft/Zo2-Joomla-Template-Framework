@@ -281,13 +281,18 @@ if (!class_exists('Zo2Profile')) {
             }
         }
 
+        /**
+         * 
+         * @param type $action
+         * @return boolean
+         */
         public function authorise($action) {
             switch ($action) {
-                case 'add':
+                case 'saveAs':
                     return true;
                 case 'rename';
                     return !$this->isDefault();
-                case 'remove';
+                case 'delete';
                     return !$this->isDefault();
                 default:
                     return true;
