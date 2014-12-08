@@ -1,38 +1,3 @@
-jQuery(document).ready(function ($) {
-    var googlefont = jQuery('.txtGoogleFontSelect').fontselect();
-
-    jQuery(".txtGoogleFontSelect").change(function() {
-        fontset(googlefont);
-    });
-
-    function fontset(googlefont) {
-        var relid = googlefont.attr('id');
-
-        // replace + signs with spaces for css
-        var font = googlefont.val().replace(/\+/g, ' ');
-
-        // split font into family and weight
-        font = font.split(':');
-
-        var style = "normal";
-        var weight = font[1];
-
-        if (font[1].indexOf("italic") >= 0) {
-            style = "italic";
-        }
-
-        // set family on example
-        jQuery('#' + relid + '.example').css('font-family', font[0]);
-        jQuery('#' + relid + '.example').css('font-weight', weight.replace('italic',''));
-        jQuery('#' + relid + '.example').css('font-style', style);
-
-        // set family on example
-        jQuery('#' + relid + '_example.example').css('font-family', font[0]);
-        jQuery('#' + relid + '_example.example').css('font-weight', weight.replace('italic',''));
-        jQuery('#' + relid + '_example.example').css('font-style', style);
-    }
-});
-
 /*!
  * jQuery.fontselect - A font selector for the Google Web Fonts api
  * Tom Moor, http://tommoor.com
