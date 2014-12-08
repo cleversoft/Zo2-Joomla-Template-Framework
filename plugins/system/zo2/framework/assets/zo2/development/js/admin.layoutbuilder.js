@@ -10,35 +10,42 @@
  */
 
 /**
- *
- * @param {type} window
- * @param {type} zo2
- * @param {type} $
+ * Zo2 layout builder
+ * @param {type} w Window pointer
+ * @param {type} z Zo2 pointer
+ * @param {type} $ jQuery pointer
  * @returns {undefined}
  */
-(function (window, zo2, $) {
+(function(w, z, $) {
+
     /**
-     * Admin
+     * Layout builder
      */
-    zo2.admin.layoutbuilder = {
+    var _layoutbuilder = {
         /**
-         * Element variables
+         * Element selector containner
          */
         _elements: {
+            /* Drop able childrend */
             container: "#droppable-container > .zo2-container",
+            /* Sortable row */
             sortableRow: ".sortable-row"
         },
         /**
          * Default settings
          */
         _settings: {
+            /* Default layout */
             strantegy: [
                 [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
             ],
+            /* Visibility attributes */
             visibilityAttributes: [
                 'data-zo2-visibility-xs', 'data-zo2-visibility-sm', 'data-zo2-visibility-md', 'data-zo2-visibility-lg'
             ],
+            /* Colum class */
             allColClass: 'col-md-1 col-md-2 col-md-3 col-md-4 col-md-5 col-md-6 col-md-7 col-md-8 col-md-9 col-md-10 col-md-11 col-md-12',
+            /* Colum offset */
             allColOffset: 'col-md-offset-0 col-md-offset-1 col-md-offset-2 col-md-offset-3 col-md-offset-4 col-md-offset-5 col-md-offset-6 ' +
                     'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12'
         },
@@ -46,7 +53,7 @@
          * Init function
          * @returns {undefined}
          */
-        _init: function () {
+        _init: function() {
             this._sortable();
             this.duplicate();
             this.slipt();
@@ -59,7 +66,7 @@
          * Init sortable for layout builder
          * @returns {undefined}
          */
-        _sortable: function () {
+        _sortable: function() {
             $(this._elements.container).sortable({
                 items: '>.sortable-row',
                 handle: '>.row-control>.row-control-container>.row-control-buttons>.row-control-icon.dragger',
@@ -80,18 +87,19 @@
             });
         },
         /**
-         * 
-         * @param {type} container
+         * Rearrange spans
+         * @param {jQuery object} $container
          * @returns {undefined}
          */
-        rearrangeSpan: function (container) {
-            var $spans = container.find('>[data-zo2-type="span"]');
+        rearrangeSpan: function($container) {
+            var $spans = $container.find('>[data-zo2-type="span"]');
+            var _self = this;
             if ($spans.length > 0) {
                 var width = 0;
-                if ($spans.length == 1) {
+                if ($spans.length === 1) {
                     width = 12 - parseInt($spans.attr('data-zo2-offset'));
                     if (width > 0) {
-                        $spans.removeClass(this._settings.allColClass);
+                        $spans.removeClass(_self._settings.allColClass);
                         $spans.addClass('col-md-' + width);
                         $spans.attr('data-zo2-span', width);
                     }
@@ -107,23 +115,28 @@
 
                     width = 12 - totalWidth;
                     if (width > 0) {
-                        $lastSpan.removeClass(this._settings.allColClass);
+                        $lastSpan.removeClass(_self._settings.allColClass);
                         $lastSpan.addClass('col-md-' + width);
                         $lastSpan.attr('data-zo2-span', width);
                     }
                 }
             }
         },
-        duplicate: function () {
-            $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function () {
+        /**
+         * Check for duplication
+         * @returns {undefined}
+         */
+        duplicate: function() {
+            var _self = this;
+            $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function() {
                 var $this = $(this);
-                var $parent = $this.closest('.zo2-row');                
+                var $parent = $this.closest('.zo2-row');
                 var $row = $('<div />').addClass('zo2-row sortable-row').insertAfter($parent);
                 $row.attr('data-zo2-type', 'row');
                 $row.attr('data-zo2-customClass', '');
                 $row.attr('data-zo2-fullwidth', '0');
-                for (var i = 0; i < this._settings.visibilityAttributes.length; i++) {
-                    $row.attr(this._settings.visibilityAttributes[i], '1');
+                for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
+                    $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
                 //$row.attr('data-zo2-layout', 'fixed');
                 var $meta = $('<div class="col-md-12 row-control">' +
@@ -141,8 +154,13 @@
 
             });
         },
-        slipt: function () {
-            $('#droppable-container').on('click', '.row-control-buttons > .split', function () {
+        /**
+         * Split row
+         * @returns {undefined}
+         */
+        slipt: function() {
+            var _self = this;
+            $('#droppable-container').on('click', '.row-control-buttons > .split', function() {
                 var $this = $(this);
                 var $container = $this.closest('[data-zo2-type="row"]');
                 var $colContainer = $container.find('>.col-md-12>.col-container');
@@ -153,14 +171,14 @@
                     return false;
                 else
                 {
-                    var selectedStrategy = strategy[strategyNum];
+                    var selectedStrategy = _self._settings.strategy[strategyNum];
                     var $span = $('<div />').addClass('sortable-col');
                     $span.attr('data-zo2-type', 'span');
                     $span.attr('data-zo2-position', '');
                     $span.attr('data-zo2-offset', 0);
                     $span.attr('data-zo2-customClass', '');
-                    for (var i = 0; i < this._settings.visibilityAttributes.length; i++) {
-                        $span.attr(this._settings.visibilityAttributes[i], '1');
+                    for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
+                        $span.attr(_self._settings.visibilityAttributes[i], '1');
                     }
                     var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
                             '<div class="col-control-buttons">' +
@@ -178,9 +196,9 @@
                     $span.appendTo($colContainer);
 
                     // apply new span number
-                    $colContainer.find('>[data-zo2-type="span"]').each(function (index) {
+                    $colContainer.find('>[data-zo2-type="span"]').each(function(index) {
                         var $this = $(this);
-                        $this.removeClass(this._settings.allColClass);
+                        $this.removeClass(_self._settings.allColClass);
                         $this.addClass('col-md-' + selectedStrategy[index]);
                         $this.attr('data-zo2-span', selectedStrategy[index]);
                     });
@@ -190,29 +208,36 @@
                 }
             });
         },
-        delete: function () {
-            $('#droppable-container').on('click', '.col-control-buttons > .delete', function () {
+        /**
+         * Delet child element
+         * @returns {undefined}
+         */
+        delete: function() {
+            $('#droppable-container').on('click', '.col-control-buttons > .delete', function() {
                 var $this = $(this);
-
-                bootbox.confirm('Are you sure want to delete this column?', function (result) {
+                w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
                     var $container = $this.closest('.col-container');
                     if (result)
                         $this.closest('.sortable-col').remove();
-                    zo2.admin.layoutBuilder.rearrangeSpan($container);
+                    z.admin.layoutBuilder.rearrangeSpan($container);
                 });
             });
         },
-        addRow: function () {
-            $('#droppable-container').on('click', '.col-control-buttons > .add-row', function () {
+        /**
+         * Add new row
+         * @returns {undefined}
+         */
+        addRow: function() {
+            var _self = this;
+            $('#droppable-container').on('click', '.col-control-buttons > .add-row', function() {
                 var $this = $(this);
                 var $container = $this.parents('.col-wrap').find('>.row-container');
-
                 var $row = $('<div />').addClass('zo2-row sortable-row').appendTo($container);
                 $row.attr('data-zo2-type', 'row');
                 $row.attr('data-zo2-customClass', '');
                 $row.attr('data-zo2-fullwidth', '0');
-                for (var i = 0; i < this._settings.visibilityAttributes.length; i++) {
-                    $row.attr(this._settings.visibilityAttributes[i], '1');
+                for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
+                    $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
                 //$row.attr('data-zo2-layout', 'fixed');
                 var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
@@ -227,14 +252,18 @@
 
             });
         },
-        setting: function () {
+        /**
+         * Show setting
+         * @returns {undefined}
+         */
+        setting: function() {
             //bind event to generate row id
-            $('#txtRowName').on('keyup', function (e) {
+            $('#txtRowName').on('keyup', function(e) {
                 var $this = $(this);
-                $('#txtRowId').val(zo2.admin.generateSlug($this.val()));
+                $('#txtRowId').val(z.admin.generateSlug($this.val()));
             });
 
-            $('#droppable-container').on('click', '.row-control-buttons > .settings', function () {
+            $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
                 var $this = $(this);
                 var $row = $this.closest('.sortable-row');
                 var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
@@ -276,7 +305,7 @@
                 else
                     $('#btgFullWidth').find('.btn-off').addClass('btn-danger active');
 
-                $.data(document.body, 'editingEl', $row);
+                $.data(w.document.body, 'editingEl', $row);
                 $('#txtRowName').val('').val(rowName);
                 $('#txtRowCss').val('').val(rowCustomClass);
                 $('#txtRowId').val(rowId);
@@ -289,9 +318,14 @@
                 $modal.modal('show');
             });
         },
-        save: function () {
-            $('#btnSaveColSettings').on('click', function () {
-                var $col = $.data(document.body, 'editingEl');
+        /**
+         * Save layout
+         * @returns {undefined}
+         */
+        save: function() {
+            var _self = this;
+            $('#btnSaveColSettings').on('click', function() {
+                var $col = $.data(w.document.body, 'editingEl');
                 $col.attr('data-zo2-jdoc', $('#dlColJDoc').val());
                 $col.attr('data-zo2-span', $('#dlColWidth').val());
                 $col.attr('data-zo2-offset', $('#ddlColOffset').val());
@@ -305,15 +339,20 @@
                 $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
 
                 var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
-                $col.removeClass(this._settings.allColClass).addClass('col-md-' + $('#dlColWidth').val());
-                $col.removeClass(this._settings.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
+                $col.removeClass(_self._settings.allColClass).addClass('col-md-' + $('#dlColWidth').val());
+                $col.removeClass(_self._settings.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
                 $col.attr('data-zo2-position', $('#dlColPosition').val());
                 $col.find('>.col-wrap>.col-name').text(colName);
                 $('#colSettingsModal').modal('hide');
                 return false;
             });
         },
-        generateSlug: function (str) {
+        /**
+         * Generate slug
+         * @param {type} str
+         * @returns {unresolved}
+         */
+        generateSlug: function(str) {
             str = str.replace(/^\s+|\s+$/g, '');
             var from = "ÁÀẠẢÃĂẮẰẶẲẴÂẤẦẬẨẪáàạảãăắằặẳẵâấầậẩẫóòọỏõÓÒỌỎÕôốồộổỗÔỐỒỘỔỖơớờợởỡƠỚỜỢỞỠéèẹẻẽÉÈẸẺẼêếềệểễÊẾỀỆỂỄúùụủũÚÙỤỦŨưứừựửữƯỨỪỰỬỮíìịỉĩÍÌỊỈĨýỳỵỷỹÝỲỴỶỸĐđÑñÇç·/_,:;";
             var to = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaooooooooooooooooooooooooooooooooooeeeeeeeeeeeeeeeeeeeeeeuuuuuuuuuuuuuuuuuuuuuuiiiiiiiiiiyyyyyyyyyyddnncc------";
@@ -324,13 +363,20 @@
             str = str.replace(/[^a-zA-Z0-9 -]/g, '').replace(/\s+/g, '-').toLowerCase();
             str = str.replace(/(-){2,}/i, '-');
             return str;
-        },
+        }
     };
+    
+    /**
+     * Append to Zo2 admin
+     */
+    z.admin.layoutbuilder = _layoutbuilder;
+
     /**
      * Init plugin
      * Put all of your init code into _init
      */
-    $(document).ready(function () {
-        zo2.admin.layoutbuilder._init();
+    $(w.document).ready(function() {
+        z.admin.layoutbuilder._init();
     });
+    
 })(window, zo2, zo2.jQuery);
