@@ -22,8 +22,8 @@ defined('_JEXEC') or die('Restricted access');
     <?php
     echo Zo2Html::field(
         'description', null, array(
-            'text' => 'Short description about this page',
-            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+            'text' => JText::_('ZO2_ADMIN_DESCRIPTION_LAYOUTS'),
+            'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/layout">Document</a>'
         ));
     ?>
 

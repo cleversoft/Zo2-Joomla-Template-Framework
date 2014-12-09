@@ -9,8 +9,8 @@
         <?php
         echo Zo2Html::field(
                 'description', null, array(
-            'text' => 'These are the general options for the templates',
-            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+            'text' => JText::_('ZO2_ADMIN_DESCRIPTION_GENERAL'),
+            'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/general">Document</a>'
         ));
         ?>
 
@@ -18,7 +18,8 @@
         <?php
         echo Zo2Html::field(
                 'text', array(
-            'label' => JText::_('ZO2_ADMIN_SITENAME'),
+                'label' => JText::_('ZO2_ADMIN_SITENAME'),
+                'description' => JText::_('ZO2_ADMIN_SITENAME_DESC')
                 ), array(
             'name' => 'jform[params][site_name]',
             'value' => Zo2Factory::get('site_name')
@@ -29,6 +30,7 @@
         echo Zo2Html::field(
                 'text', array(
             'label' => JText::_('ZO2_ADMIN_SLOGAN'),
+                    'description' => JText::_('ZO2_ADMIN_SLOGAN_DESC')
                 ), array(
             'name' => 'jform[params][site_slogan]',
             'value' => Zo2Factory::get('site_slogan')
@@ -39,6 +41,7 @@
         echo Zo2Html::field(
                 'textarea', array(
             'label' => JText::_('ZO2_ADMIN_COPYRIGHT'),
+                    'description' => JText::_('ZO2_ADMIN_COPYRIGHT_DESC')
                 ), array(
             'name' => 'jform[params][footer_copyright]',
             'rows' => 10,
@@ -51,6 +54,7 @@
         echo Zo2Html::field(
                 'image', array(
             'label' => JText::_('ZO2_ADMIN_FAVICON'),
+                    'description' => JText::_('ZO2_ADMIN_FAVICON_DESC')
                 ), array(
             'name' => 'jform[params][favicon]',
             'value' => Zo2Factory::get('favicon')
@@ -61,7 +65,10 @@
         ?>
         <!-- Header logo -->
         <div class="control-group">
-            <label class="control-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO'); ?></label>
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_DESC'); ?></div>
+            </div>
             <div class="controls">
                 <div class="field-logo-container" data-name="header_logo">
                     <div class="radio btn-group logo-type-switcher" >
@@ -72,68 +79,126 @@
                 </div>
             </div>
         </div>
-        <div class="header-logo-settings">
+        <div class="control-group header-logo-settings">
             <!-- Standard logo -->
-            <div id="header-logo">
-                <?php
-                $header_logo_setting_path = $this->params->get('header_logo_path');
-                echo Zo2Html::field(
-                        'image', array(
-                    'label' => JText::_('ZO2_ADMIN_HEADER_LOGO'),
+            <?php
+            $header_logo_setting_path = $this->params->get('header_logo_path');
+            echo Zo2Html::field(
+                'image', array(
+                    'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE'),
+                    'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE_DESC'),
                     'class_wrap' => 'logo-image',
                     'class' => 'logo-path'
-                        ), array(
+                ), array(
                     'name' => '',
                     'value' => JUri::root(true) . '/' . $header_logo_setting_path
                 ));
-                ?>
-                <div class="control-group  logo-text ">
-                    <label class="control-label">Header Logo Text</label>
-                    <input type="text" class="logo-text-input" value="<?php echo $this->params->get('header_logo_path'); ?>">
-                </div>
-                <div class="control-group ">
-                    <label class="control-label">Header Logo Width</label>
-                    <input type="text" class="logo-width" value="<?php echo $this->params->get('header_logo_width'); ?>">
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Header Logo Height</label>
-                    <input type="text" class="logo-height" value="<?php echo $this->params->get('header_logo_height'); ?>">
-                </div>
+            ?>
+        </div>
+        <!-- Logo Text -->
+        <div class="control-group logo-text">
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_TEXT'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_TEXT_DESC'); ?></div>
             </div>
-            <!-- Retina logo -->
-            <div id="header-logo-retina">
-                <?php
-                $header_logo_setting_path = $this->params->get('header_logo_retina_path');
-                echo Zo2Html::field(
-                        'image', array(
-                    'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA'),
-                    'class_wrap' => 'logo-image',
-                    'class' => 'logo-path'
-                        ), array(
-                    'name' => '',
-                    'value' => JUri::root(true) . '/' . $header_logo_setting_path
-                ));
-                ?>
-                <div class="control-group  logo-text ">
-                    <label class="control-label">Header Logo Text</label>
-                    <input type="text" class="logo-text-input" value="<?php echo $this->params->get('header_logo_retina_path'); ?>">
-                </div>
-                <div class="control-group ">
-                    <label class="control-label">Header Logo Width</label>
-                    <input type="text" class="logo-width" value="<?php echo $this->params->get('header_logo_retina_width'); ?>">
-                </div>
-                <div class="control-group">
-                    <label class="control-label">Header Logo Height</label>
-                    <input type="text" class="logo-height" value="<?php echo $this->params->get('header_logo_retina_height'); ?>">
+            <div class="controls">
+                <input type="text" class="logo-text-input" value="<?php echo $this->params->get('header_logo_path'); ?>">
+            </div>
+        </div>
+
+        <!-- Logo Image Width -->
+        <div class="control-group logo-width">
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_WIDTH'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_WIDTH_DESC'); ?></div>
+            </div>
+            <div class="controls">
+                <input type="text" class="logo-width" value="<?php echo $this->params->get('header_logo_width'); ?>">
+            </div>
+        </div>
+
+        <!-- Logo Image Height -->
+        <div class="control-group logo-height">
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_HEIGHT'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_HEIGHT_DESC'); ?></div>
+            </div>
+            <div class="controls">
+                <input type="text" class="logo-height" value="<?php echo $this->params->get('header_logo_height'); ?>">
+            </div>
+        </div>
+
+        <!-- Retina logo -->
+        <div class="control-group">
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_DESC'); ?></div>
+            </div>
+            <div class="controls">
+                <div class="field-logo-container" data-name="header_logo">
+                    <div class="radio btn-group logo-type-switcher" >
+                        <button class="btn logo-type-none <?php echo $this->params->get('header_logo_retina', 'none') == 'none' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
+                        <button class="btn logo-type-image <?php echo $this->params->get('header_logo_retina', 'none') == 'image' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
+                        <button class="btn logo-type-text <?php echo $this->params->get('header_logo_retina', 'none') == 'text' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <?php
+        $header_logo_setting_path = $this->params->get('header_logo_retina_path');
+        echo Zo2Html::field(
+                'image', array(
+            'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_IMAGE'),
+            'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_IMAGE_DESC'),
+            'class_wrap' => 'logo-retina-image',
+            'class' => 'logo-path'
+                ), array(
+            'name' => '',
+            'value' => JUri::root(true) . '/' . $header_logo_setting_path
+        ));
+        ?>
+
+        <!-- Logo Retina Text -->
+        <div class="control-group logo-text">
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_TEXT'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_TEXT_DESC'); ?></div>
+            </div>
+            <div class="controls">
+                <input type="text" class="logo-text-input" value="<?php echo $this->params->get('header_logo_retina_path'); ?>">
+            </div>
+        </div>
+
+        <!-- Logo Retina Image Width -->
+        <div class="control-group logo-width">
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_WIDTH'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_WIDTH_DESC'); ?></div>
+            </div>
+            <div class="controls">
+                <input type="text" class="logo-width" value="<?php echo $this->params->get('header_logo_retina_width'); ?>">
+            </div>
+        </div>
+
+        <!-- Logo Retina Image Height -->
+        <div class="control-group logo-height">
+            <div class="control-label">
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_HEIGHT'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_HEIGHT_DESC'); ?></div>
+            </div>
+            <div class="controls">
+                <input type="text" class="logo-height" value="<?php echo $this->params->get('header_logo_retina_height'); ?>">
+            </div>
+        </div>
+
         <div class="zo2-divider"></div>     
         <!-- Show "Go to top" -->
         <?php
         echo Zo2Html::field(
                 'radio', array(
             'label' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP'),
+                    'description' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP_DESC')
                 ), array(
             'name' => 'jform[params][footer_gototop]',
             'value' => Zo2Factory::get('footer_gototop')
@@ -144,6 +209,7 @@
         echo Zo2Html::field(
                 'radio', array(
             'label' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO'),
+                    'description' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO_DESC')
                 ), array(
             'name' => 'jform[params][footer_logo]',
             'value' => Zo2Factory::get('footer_logo')

@@ -21,6 +21,7 @@ defined('_JEXEC') or die;
             <?php echo $this->label['label'];
             ?>
         </label>
+        <div class="label-desc"><?php echo $this->label['description']; ?></div>
     </div>
     <div class="controls">
         <div class="colorpicker-container">

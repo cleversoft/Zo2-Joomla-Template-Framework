@@ -33,7 +33,8 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
 ?>
 <div class="control-group">
     <div class="control-label">
-        <label class="hasTooltip" title="" data-original-title="<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?>"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
+        <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE'); ?></label>
+        <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE_DESC'); ?></div>
     </div>
     <div class="controls">
         <?php echo implode("\n", $html); ?>

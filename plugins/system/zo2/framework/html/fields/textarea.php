@@ -39,6 +39,7 @@ if (isset($this->data['editor'])) {
         <label class="zo2-label <?php echo (isset($this->label['class'])) ? $this->label['class'] : ''; ?>" for="<?php echo $this->data['name']; ?>">
                 <?php echo $this->label['label']; ?>
         </label>
+        <div class="label-desc"><?php echo $this->label['description']; ?></div>
     </div>
     <div class="controls">
         <?php if (isset($this->data['editor'])) : ?>

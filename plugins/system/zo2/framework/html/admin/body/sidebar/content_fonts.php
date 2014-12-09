@@ -6,8 +6,8 @@
     <?php
     echo Zo2Html::field(
         'description', null, array(
-            'text' => 'These are the options for fonts used within the template',
-            'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+            'text' => JText::_('ZO2_ADMIN_DESCRIPTION_FONTS'),
+            'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/fonts">Document</a>'
         ));
     ?>
 

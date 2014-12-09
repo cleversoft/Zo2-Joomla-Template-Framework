@@ -53,8 +53,8 @@ $standardFonts = array(
     <div class="font_options" <?php echo $font_setting ? 'style="display:block"' : 'style="display:none"' ?>>
         <div class="control-group">
             <div class="control-label">
-                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_TYPE'); ?></div>
-                <div class="font-desc"><?php echo JText::_('ZO2_TEMPLATE_FONT_TYPE_DESC'); ?> <?php echo $this->label['label']; ?></div>
+                <label class="zo2-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_TYPE'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_TEMPLATE_FONT_TYPE_DESC'); ?> <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <div class="btn-group font-types" data-toggle="buttons-radio">
@@ -67,8 +67,8 @@ $standardFonts = array(
 
         <div class="font-options-standard control-group" <?php echo $font_setting['type'] == 'standard' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
-                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD'); ?></div>
-                <div class="font-desc"<?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD_DESC'); ?>> <?php echo $this->label['label']; ?></div>
+                <label class="zo2-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD'); ?></label>
+                <div class="label-desc"<?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD_DESC'); ?>> <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <select class="ddlStandardFont show">
@@ -82,8 +82,8 @@ $standardFonts = array(
 
         <div class="font-options-google hide control-group" <?php echo $font_setting['type'] == 'googlefonts' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
-                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE'); ?></div>
-                <div class="font-desc"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE_DESC'); ?> <?php echo $this->label['label']; ?></div>
+                <label class="zo2-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE_DESC'); ?> <?php echo $this->label['label']; ?></div>
             </div>
             <div class="controls">
                 <input type="text" id="<?php echo $this->data['name'] ?>_font_family" class="txtGoogleFontSelect" value="<?php echo $font_setting['type'] == 'googlefonts' ? $font_setting['family'] : '' ?>" />
@@ -93,8 +93,8 @@ $standardFonts = array(
 
         <div class="font-options-fontdeck hide control-group" <?php echo $font_setting['type'] == 'fontdeck' ? 'style="display:block"' : '' ?>>
             <div class="control-label">
-                <div class="font-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK'); ?></div>
-                <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK_DESCRIPTION'); ?></div>
+                <label class="zo2-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK_DESCRIPTION'); ?></div>
             </div>
             <div class="controls">
                 <textarea class="txtFontDeckCss"><?php echo $font_setting['type'] == 'fontdeck' ? $font_setting['family'] : '' ?></textarea>
@@ -103,8 +103,8 @@ $standardFonts = array(
 
         <div class="control-group">
             <div class="control-label">
-                <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_SIZE'); ?></div>
-                <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_SIZE_DESC', $this->label['label']); ?></div>
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_FONT_SIZE'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_FONT_SIZE_DESC', $this->label['label']); ?></div>
             </div>
             <div class="controls clearfix">
                 <input type="hidden" class="txtFontSize font_single_slider" value="<?php echo $font_setting['size'] ?>">
@@ -112,8 +112,8 @@ $standardFonts = array(
         </div>
         <div class="control-group">
             <div class="control-label">
-                <div class="font-label"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT'); ?></div>
-                <div class="font-desc"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT_DESC'); ?></div>
+                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT'); ?></label>
+                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT_DESC'); ?></div>
             </div>
             <div class="controls clearfix">
                 <input type="hidden" class="txtFontLineHeight font_single_slider" value="<?php echo $font_setting['font_line_height'] ?>">

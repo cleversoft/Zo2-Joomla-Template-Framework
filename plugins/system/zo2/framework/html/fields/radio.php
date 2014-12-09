@@ -41,6 +41,7 @@ if(empty($this->data['options']))
             <?php echo $this->label['label'];
             ?>
         </label>
+        <div class="label-desc"><?php echo $this->label['description']; ?></div>
     </div>
     <div class="controls">
         <fieldset class="radio btn-group">

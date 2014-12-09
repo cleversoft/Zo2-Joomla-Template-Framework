@@ -9,8 +9,8 @@
         <?php
         echo Zo2Html::field(
             'description', null, array(
-                'text' => 'Select which preset style the layout should load',
-                'subtext' => '<a href="http://www.zootemplate.com/blog">Document</a>'
+                'text' => JText::_('ZO2_ADMIN_DESCRIPTION_THEMECOLOR'),
+                'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/themecolor">Document</a>'
             ));
         ?>
 
@@ -95,6 +95,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_BACKGROUND'),
+                            'description' => JText::_('ZO2_TEMPLATE_THEME_BACKGROUND_DESC'),
                                 ), array(
                             'name' => 'color_background',
                             'id' => 'color_background',
@@ -107,6 +108,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_HEADER'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_HEADER_DESC'),
                                 ), array(
                             'name' => 'color_header',
                             'id' => 'color_header',
@@ -119,6 +121,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_HEADER_TOP'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_HEADER_TOP_DESC'),
                                 ), array(
                             'name' => 'color_header_top',
                             'id' => 'color_header_top',
@@ -131,6 +134,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_TEXT'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_TEXT_DESC'),
                                 ), array(
                             'name' => 'color_text',
                             'id' => 'color_text',
@@ -143,6 +147,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_LINK'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_LINK_DESC'),
                                 ), array(
                             'name' => 'color_link',
                             'id' => 'color_link',
@@ -155,6 +160,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_LINK_HOVER'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_LINK_HOVER_DESC'),
                                 ), array(
                             'name' => 'color_link_hover',
                             'id' => 'color_link_hover',
@@ -167,6 +173,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_BOTTOM'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_BOTTOM_DESC'),
                                 ), array(
                             'name' => 'color_bottom1',
                             'id' => 'color_bottom1',
@@ -179,6 +186,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_BOTTOM_2'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_BOTTOM_2_DESC'),
                                 ), array(
                             'name' => 'color_bottom2',
                             'id' => 'color_bottom2',
@@ -190,6 +198,7 @@
                         echo Zo2Html::field(
                                 'colorpicker', array(
                             'label' => JText::_('ZO2_TEMPLATE_THEME_FOOTER'),
+                                    'description' => JText::_('ZO2_TEMPLATE_THEME_FOOTER_DESC'),
                                 ), array(
                             'name' => 'color_footer',
                             'id' => 'color_footer',
