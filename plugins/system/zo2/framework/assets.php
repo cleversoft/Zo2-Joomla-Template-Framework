@@ -324,7 +324,7 @@ if (!class_exists('Zo2Assets')) {
                 $cssContent = Zo2HelperAssets::moveCssImportToBeginning($cssContent);
                 /* Save to combined css file */
                 file_put_contents($cssFilePath, $cssContent);
-                $cssHtml [] = '<link rel="stylesheet" href="' . $cssUri . '"></script>';
+                $cssHtml[] = '<link rel="stylesheet" href="' . $cssUri . '"></script>';
             } else {
                 foreach ($this->_stylesheets as $styleSheets => $path) {
                     $cssHtml[] = '<link rel="stylesheet" href="' . Zo2Path::getInstance()->toUrl($styleSheets) . '">';
