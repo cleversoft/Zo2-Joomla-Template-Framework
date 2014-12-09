@@ -308,7 +308,7 @@ if (!class_exists('Zo2Assets')) {
                 foreach ($this->_stylesheets as $styleSheets => $path) {
                     /* Do not combine vendor stylesheets */
                     if (strpos($path, 'vendor') !== false) {
-                        $cssHtml .= '<link rel="stylesheet" href="' . Zo2Path::getInstance()->toUrl($styleSheets) . '">';
+                        $cssHtml[] = '<link rel="stylesheet" href="' . Zo2Path::getInstance()->toUrl($styleSheets) . '">';
                     } else { /* Combine Zo2 stylesheets */
                         /* Optimize ouput css content */
                         if (Zo2Factory::get('optimzie_css', 0) == 1) {
