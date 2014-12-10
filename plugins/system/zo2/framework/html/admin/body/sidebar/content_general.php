@@ -60,7 +60,7 @@
                 ), array(
             'id' => 'jform_params_header_logo_path',
             'name' => 'jform[params][header_logo_path]',
-            'value' => JUri::root(true) . '/' . Zo2Factory::get('header_logo_path')
+            'value' => Zo2Factory::get('header_logo_path')
         ));
         ?>
         <!-- Standard logo Text -->
@@ -85,7 +85,7 @@
                 ), array(
             'id' => 'jform_params_header_retina_logo_path',
             'name' => 'jform[params][header_retina_logo_path]',
-            'value' => JUri::root(true) . '/' . Zo2Factory::get('header_retina_logo_path')
+            'value' => Zo2Factory::get('header_retina_logo_path')
         ));
         ?>
         <!-- Retina logo Text -->
