@@ -1,13 +1,4 @@
 /**
- * Zo2 (http://www.zootemplate.com/zo2)
- * A powerful Joomla template framework
- *
- * @link        http://www.zootemplate.com/zo2
- * @link        https://github.com/cleversoft/zo2
- * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
- * @license     GPL v2
- *
  *------------------------------------------------------------------------------
  * @package       T3 Framework for Joomla!
  *------------------------------------------------------------------------------
@@ -17,6 +8,9 @@
  *                & Google group to become co-author)
  * @Google group: https://groups.google.com/forum/#!forum/t3fw
  * @Link:         http://t3-framework.org
+ * ------------------------------------------------------------------------------
+ * @modifed & improve by : ZooTempalte
+ * @link        http://www.zootemplate.com/zo2
  *------------------------------------------------------------------------------
  */
 
