@@ -26,15 +26,17 @@ if (!class_exists('Zo2HtmlHeaderlogo')) {
 
         public function render() {
             $html = new Zo2Html();
-            $framework = Zo2Factory::getFramework();
+            
+            $logo['path'] = Zo2Factory::get('header_logo_path');
+            $logo['text'] = Zo2Factory::get('header_logo_text');
+            $retinaLogo['path'] = Zo2Factory::get('header_retina_logo_path');
+            $retinaLogo['text'] = Zo2Factory::get('header_retina_logo_text');
+            
+            $sitename = Zo2Factory::get('site_name', JFactory::getConfig()->get('sitename'));
+            $slogan = Zo2Factory::get('site_slogan');
 
-            $logo = $framework->get('header_logo');
-            $logoRetina = $framework->get('header_retina_logo');
-            $sitename = $framework->get('site_name');
-            $slogan = $framework->get('site_slogan');
-
-            $html->set('logo', json_decode($logo, true));
-            $html->set('logoRetine', json_decode($logoRetina, true));
+            $html->set('logo', $logo);
+            $html->set('retinaLogo', $retinaLogo);
             $html->set('sitename', $sitename);
             $html->set('slogan', $slogan);
 
