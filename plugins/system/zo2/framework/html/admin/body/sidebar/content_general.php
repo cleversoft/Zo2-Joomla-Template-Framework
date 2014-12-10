@@ -52,22 +52,6 @@
         <?php
         $header_logo_setting = json_decode($this->params->get('header_logo'));
         ?>
-        <!-- Header logo -->
-        <div class="control-group">
-            <div class="control-label">
-                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO'); ?></label>
-                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_DESC'); ?></div>
-            </div>
-            <div class="controls">
-                <div class="field-logo-container" data-name="header_logo">
-                    <div class="radio btn-group logo-type-switcher" >
-                        <button class="btn logo-type-none <?php echo $this->params->get('header_logo', 'none') == 'none' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
-                        <button class="btn logo-type-image <?php echo $this->params->get('header_logo', 'none') == 'image' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
-                        <button class="btn logo-type-text <?php echo $this->params->get('header_logo', 'none') == 'text' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="control-group header-logo-settings">
             <!-- Standard logo -->
             <?php
@@ -94,25 +78,7 @@
                 <input type="text" class="logo-text-input" value="<?php echo $this->params->get('header_logo_path'); ?>">
             </div>
         </div>
-
-
-        <!-- Retina logo -->
-        <div class="control-group">
-            <div class="control-label">
-                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA'); ?></label>
-                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_DESC'); ?></div>
-            </div>
-            <div class="controls">
-                <div class="field-logo-container" data-name="header_logo">
-                    <div class="radio btn-group logo-type-switcher" >
-                        <button class="btn logo-type-none <?php echo $this->params->get('header_logo_retina', 'none') == 'none' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_NONE'); ?></button>
-                        <button class="btn logo-type-image <?php echo $this->params->get('header_logo_retina', 'none') == 'image' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_IMAGE'); ?></button>
-                        <button class="btn logo-type-text <?php echo $this->params->get('header_logo_retina', 'none') == 'text' ? 'active btn-success' : '' ?>"><?php echo JText::_('ZO2_ADMIN_TEXT'); ?></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <!-- Retina logo -->       
         <?php
         $header_logo_setting_path = $this->params->get('header_logo_retina_path');
         echo Zo2Html::field(
