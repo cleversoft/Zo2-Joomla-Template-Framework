@@ -4,10 +4,8 @@
 .logo_normal {
     display:block
 }
-@media screen and (min-resolution: 2dppx), @media screen and (-webkit-min-device-pixel-ratio: 2) {
-    .logo_normal { display: none; }
-    .logo_retina { display: block; }
-}@media screen and (-webkit-min-device-pixel-ratio: 2){
-    .logo_normal { display: none; }
-    .logo_retina { display: block; }
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .logo_normal { display: none; }
+  .logo_retina { display: block; }
 }
