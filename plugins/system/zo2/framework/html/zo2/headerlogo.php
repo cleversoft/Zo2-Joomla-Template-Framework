@@ -16,26 +16,26 @@ defined('_JEXEC') or die('Restricted access');
 <!-- Standard logo -->
 <?php if (isset($logo['path']) && $logo['path'] != '') : ?>
     <header id="header-standard-logo">
-        <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $sitename; ?>"><img alt="<?php echo $logo['text']; ?>" src="<?php echo $logo['path']; ?>"/></a>
+        <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><img alt="<?php echo $logo['text']; ?>" src="<?php echo $logo['path']; ?>"/></a>
     </header>
 <?php else : ?>
     <!-- Without logo -->
     <?php if (isset($logo['text']) && $logo['text'] != '') : ?>
         <header id="header-logo-text">
-            <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $sitename; ?>"><h1><?php echo $logo['text']; ?></h1></a>
+            <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><h1><?php echo $logo['text']; ?></h1></a>
         </header>
     <?php endif; ?>
 <?php endif; ?>
 <!-- Retina logo -->
 <?php if (isset($retinaLogo['path']) && $retinaLogo['path'] != '') : ?>
     <header id="header-retina-logo">
-        <a class="retina-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $sitename; ?>"><img alt="<?php echo $retinaLogo['text']; ?>" src="<?php echo $retinaLogo['path']; ?>"/></a>
+        <a class="retina-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><img alt="<?php echo $retinaLogo['text']; ?>" src="<?php echo $retinaLogo['path']; ?>"/></a>
     </header>
 <?php else : ?>
     <!-- Without logo -->
     <?php if (isset($retinaLogo['text']) && $retinaLogo['text'] != '') : ?>
         <header id="header-retina-logo-text">
-            <a class="retina-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $sitename; ?>"><h1><?php echo $retinaLogo['text']; ?></h1></a>
+            <a class="retina-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><h3><?php echo $retinaLogo['text']; ?></h3></a>
         </header>
     <?php endif; ?>
 <?php endif; ?>
