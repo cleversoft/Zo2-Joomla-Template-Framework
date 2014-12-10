@@ -11,12 +11,12 @@
 
 /**
  * Profile management
- * @param {type} window
- * @param {type} zo2
- * @param {type} $
+ * @param {object} w Windows pointer
+ * @param {object} z Zo2 pointer
+ * @param {object} $ jQuery pointer
  * @returns {undefined}
  */
-(function (window, zo2, $) {
+(function (w, z, $) {
 
     /**
      * Admin profile
@@ -27,10 +27,8 @@
          * Element variables
          */
         _elements: {
-            /* Profile name selector */
-            addNewProfileInput: '#zo2-profile-name',
-            /* New profile selector */
-            renameProfileInput: '#zo2-new-profile-name'
+            profileData: '#zo2-profile',
+            newProfile: '#zo2-new-profile'
         },
         /**
          * Init function
@@ -39,38 +37,63 @@
         _init: function () {
 
         },
-        modalCreateProfile: function () {
-            settings = {
-                url: zo2._settings.url,
+        /**
+         * Trigger modal save as
+         * @returns {undefined}
+         */
+        modalSaveAs: function () {
+            z.ajax.request({
+                url: z._settings.url,
                 data: {
                     zo2_task: 'admin.modalCreateProfile'
                 }
-            };
-            zo2.ajax.request(settings);
+            });
         },
         /**
-         * Add new profile
+         * Save profile as
          * @returns {undefined}
          */
-        add: function () {
-            Joomla.submitbutton('style.apply');
+        saveAs: function () {
+            w.Joomla.submitbutton('style.apply');
         },
         /**
-         * Rename current profile
-         * @param {string} currentProfile
+         * Trigger modal rename
          * @returns {undefined}
          */
-        rename: function (currentProfile) {
-
+        modalRename: function () {
+            z.ajax.request({
+                url: z._settings.url,
+                data: {
+                    zo2_task: 'admin.modalRenameProfile'
+                }
+            });
         },
         /**
-         * Delete current profile
-         * @param {string} profile
-         * @param {int} templateId
+         * Rename a profile
          * @returns {undefined}
          */
-        remove: function (profile, templateId) {
-
+        rename: function () {
+            z.ajax.request({
+                url: z._settings.url,
+                data: {
+                    zo2_task: 'admin.renameProfile',
+                    newProfile: $(this._elements.newProfile).val(),
+                    profile: $(this._elements.profileData).data('zo2-profile')
+                }
+            });
+        },
+        /**
+         * Delete a profile
+         * @returns {undefined}
+         */
+        delete: function () {
+            z.ajax.request({
+                url: z._settings.url,
+                data: {
+                    zo2_task: 'admin.deleteProfile',                    
+                    profile: $(this._elements.profileData).data('zo2-profile')
+                }
+            });
         },
         /**
          * Load profile
@@ -78,27 +101,27 @@
          * @returns {undefined}
          */
         load: function (profileName) {
-            settings = {
-                url: zo2._settings.url,
+            z.ajax.request({
+                url: z._settings.url,
                 data: {
-                    zo2_task: 'admin.modalCreateProfile',
+                    zo2_task: 'admin.render',
+                    profile: profileName
                 }
-            };
-            zo2.ajax.request(settings);
+            });
         }
     };
 
     /**
      * Append to zo2.admin
      */
-    zo2.admin.profile = _profile;
+    z.admin.profile = _profile;
 
     /**
      * Init plugin
      * Put all of your init code into _init
      */
-    $(document).ready(function () {
-        zo2.admin.profile._init();
+    $(w.document).ready(function () {
+        z.admin.profile._init();
     });
 
 })(window, zo2, zo2.jQuery);
