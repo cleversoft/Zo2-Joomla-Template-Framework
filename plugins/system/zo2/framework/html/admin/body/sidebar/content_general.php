@@ -18,8 +18,8 @@
         <?php
         echo Zo2Html::field(
                 'text', array(
-                'label' => JText::_('ZO2_ADMIN_SITENAME'),
-                'description' => JText::_('ZO2_ADMIN_SITENAME_DESC')
+            'label' => JText::_('ZO2_ADMIN_SITENAME'),
+            'description' => JText::_('ZO2_ADMIN_SITENAME_DESC')
                 ), array(
             'name' => 'jform[params][site_name]',
             'value' => Zo2Factory::get('site_name')
@@ -30,7 +30,7 @@
         echo Zo2Html::field(
                 'text', array(
             'label' => JText::_('ZO2_ADMIN_SLOGAN'),
-                    'description' => JText::_('ZO2_ADMIN_SLOGAN_DESC')
+            'description' => JText::_('ZO2_ADMIN_SLOGAN_DESC')
                 ), array(
             'name' => 'jform[params][site_slogan]',
             'value' => Zo2Factory::get('site_slogan')
@@ -41,25 +41,14 @@
         echo Zo2Html::field(
                 'textarea', array(
             'label' => JText::_('ZO2_ADMIN_COPYRIGHT'),
-                    'description' => JText::_('ZO2_ADMIN_COPYRIGHT_DESC')
+            'description' => JText::_('ZO2_ADMIN_COPYRIGHT_DESC')
                 ), array(
             'name' => 'jform[params][footer_copyright]',
             'rows' => 10,
             'cols' => 20,
             'value' => Zo2Factory::get('footer_copyright')
         ));
-        ?>
-        <!-- Favicon -->
-        <?php
-        echo Zo2Html::field(
-                'image', array(
-            'label' => JText::_('ZO2_ADMIN_FAVICON'),
-                    'description' => JText::_('ZO2_ADMIN_FAVICON_DESC')
-                ), array(
-            'name' => 'jform[params][favicon]',
-            'value' => Zo2Factory::get('favicon')
-        ));
-        ?>
+        ?>        
         <?php
         $header_logo_setting = json_decode($this->params->get('header_logo'));
         ?>
@@ -84,15 +73,15 @@
             <?php
             $header_logo_setting_path = $this->params->get('header_logo_path');
             echo Zo2Html::field(
-                'image', array(
-                    'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE'),
-                    'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE_DESC'),
-                    'class_wrap' => 'logo-image',
-                    'class' => 'logo-path'
-                ), array(
-                    'name' => '',
-                    'value' => JUri::root(true) . '/' . $header_logo_setting_path
-                ));
+                    'image', array(
+                'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE'),
+                'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE_DESC'),
+                'class_wrap' => 'logo-image',
+                'class' => 'logo-path'
+                    ), array(
+                'name' => '',
+                'value' => JUri::root(true) . '/' . $header_logo_setting_path
+            ));
             ?>
         </div>
         <!-- Logo Text -->
@@ -106,27 +95,6 @@
             </div>
         </div>
 
-        <!-- Logo Image Width -->
-        <div class="control-group logo-width">
-            <div class="control-label">
-                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_WIDTH'); ?></label>
-                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_WIDTH_DESC'); ?></div>
-            </div>
-            <div class="controls">
-                <input type="text" class="logo-width" value="<?php echo $this->params->get('header_logo_width'); ?>">
-            </div>
-        </div>
-
-        <!-- Logo Image Height -->
-        <div class="control-group logo-height">
-            <div class="control-label">
-                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_HEIGHT'); ?></label>
-                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_HEIGHT_DESC'); ?></div>
-            </div>
-            <div class="controls">
-                <input type="text" class="logo-height" value="<?php echo $this->params->get('header_logo_height'); ?>">
-            </div>
-        </div>
 
         <!-- Retina logo -->
         <div class="control-group">
@@ -170,35 +138,13 @@
             </div>
         </div>
 
-        <!-- Logo Retina Image Width -->
-        <div class="control-group logo-width">
-            <div class="control-label">
-                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_WIDTH'); ?></label>
-                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_WIDTH_DESC'); ?></div>
-            </div>
-            <div class="controls">
-                <input type="text" class="logo-width" value="<?php echo $this->params->get('header_logo_retina_width'); ?>">
-            </div>
-        </div>
-
-        <!-- Logo Retina Image Height -->
-        <div class="control-group logo-height">
-            <div class="control-label">
-                <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_HEIGHT'); ?></label>
-                <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_HEIGHT_DESC'); ?></div>
-            </div>
-            <div class="controls">
-                <input type="text" class="logo-height" value="<?php echo $this->params->get('header_logo_retina_height'); ?>">
-            </div>
-        </div>
-
         <div class="zo2-divider"></div>     
         <!-- Show "Go to top" -->
         <?php
         echo Zo2Html::field(
                 'radio', array(
             'label' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP'),
-                    'description' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP_DESC')
+            'description' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP_DESC')
                 ), array(
             'name' => 'jform[params][footer_gototop]',
             'value' => Zo2Factory::get('footer_gototop')
@@ -209,7 +155,7 @@
         echo Zo2Html::field(
                 'radio', array(
             'label' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO'),
-                    'description' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO_DESC')
+            'description' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO_DESC')
                 ), array(
             'name' => 'jform[params][footer_logo]',
             'value' => Zo2Factory::get('footer_logo')
