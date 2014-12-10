@@ -58,6 +58,7 @@
             'class_wrap' => 'logo-image',
             'class' => 'logo-path'
                 ), array(
+            'id' => 'jform_params_header_logo_path',
             'name' => 'jform[params][header_logo_path]',
             'value' => JUri::root(true) . '/' . Zo2Factory::get('header_logo_path')
         ));
@@ -82,6 +83,7 @@
             'class_wrap' => 'logo-retina-image',
             'class' => 'logo-path'
                 ), array(
+            'id' => 'jform_params_header_retina_logo_path',
             'name' => 'jform[params][header_retina_logo_path]',
             'value' => JUri::root(true) . '/' . Zo2Factory::get('header_retina_logo_path')
         ));
