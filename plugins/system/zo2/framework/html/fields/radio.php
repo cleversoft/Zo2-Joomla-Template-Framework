@@ -55,11 +55,11 @@ if(empty($this->data['options']))
 
                 if($this->data['value'] == $value){
                     $active = 'active';
-                    $checked = 'checked';
+                    $checked = 'checked="checked"';
                 }
 
                 ?>
-                <input name="<?php echo $this->data['name'] ?>" checked="<?php echo $checked; ?>" type="radio" value="<?php echo $value?>" >
+                <input name="<?php echo $this->data['name'] ?>" <?php echo $checked; ?> type="radio" value="<?php echo $value?>" >
                 <label class="btn <?php echo $class; ?> <?php echo $active?>"><?php echo $label ?></label>
             <?php
             }

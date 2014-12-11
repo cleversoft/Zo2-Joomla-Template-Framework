@@ -86,16 +86,14 @@
                 } else {
                     label.addClass('active btn-success');
                 }
-                input.prop('checked', true);
+                jQuery(this).parent().find('input').removeAttr("checked")
+                input.attr("checked",true);
             });
         },
         radioButton: function() {
             /*============For joomla 2.5==============*/
             // Turn radios into btn-group
-
-            $('.btn-group label').on("click", function () {
-                zo2.admin.utilities._radioButton();
-            });
+            zo2.admin.utilities._radioButton();
 
             $('.btn-group input[checked=checked]').each(function () {
                 var label = $(this).next();
