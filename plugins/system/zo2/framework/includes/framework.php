@@ -147,9 +147,12 @@ if (!class_exists('Zo2Framework')) {
                 if (Zo2Factory::isSite()) {
                     /* Load core assets */
                     $this->assets->load($assets->frontend);
-                    /* Disable responsive */
+                    /**
+                     * Disable responsive
+                     * @link http://getbootstrap.com/getting-started/#disable-responsive
+                     */
                     if ($this->get('responsive_layout') == 0)
-                        $this->assets->addStyleSheet('zo2/css/non-responsive.css');
+                        $this->assets->addStyleSheet('vendor/bootstrap/addons/non-responsive.css');
                     /* Custom files */
                     $this->assets->addStyleSheet('zo2/css/custom.css');
                     $this->assets->addScript('zo2/js/custom.js');
