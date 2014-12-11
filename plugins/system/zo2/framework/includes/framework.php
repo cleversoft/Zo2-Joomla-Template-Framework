@@ -229,24 +229,15 @@ if (!class_exists('Zo2Framework')) {
             $assets = Zo2Assets::getInstance();
             $family = $data->get('family');
             $style = array();
+            /* Font family */
             if (!empty($family->standard))
                 $style [] = 'font-family:' . $family->standard;
+            /* Font size */
             if (!empty($data->get('size') > 0))
                 $style [] = 'font-size:' . $data->get('size') . 'px';
-            if (!empty($data->get('color')))
-                $style [] = 'color:' . $data->get('color');
-            switch ($data->get('style')) {
-                case 'b': $style [] = 'font-weight:bold';
-                    break;
-                case 'i': $style [] = 'font-style:italic';
-                    break;
-                case 'bi':
-                case 'ib':
-                    $style [] = 'font-weight:bold;font-style:italic';
-                    break;
-                default:
-                    break;
-            }
+            /* Font line height */
+            if ($data->get('font_line_height') > 0)
+                $style [] = 'line-height:' . $data->get('font_line_height') . 'px';
             $style = implode(';', $style);
             if (!empty($style)) {
                 $style = $selector . '{' . $style . '}';
@@ -263,32 +254,15 @@ if (!class_exists('Zo2Framework')) {
             $family = $data->get('family');
             $api[] = 'http://fonts.googleapis.com/css?family=';
             $style = array();
-
             if (!empty($family->googlefonts)) {
                 $style [] = 'font-family:' . $family->googlefonts;
                 $api [] = urlencode($family->googlefonts);
             }
             if ($data->get('size') > 0)
                 $style [] = 'font-size:' . $data->get('size') . 'px';
-            if (!empty($data->get('color')))
-                $style [] = 'color:' . $data->get('color');
-            switch ($data->get('style')) {
-                case 'b':
-                    $style [] = 'font-weight:bold;';
-                    $api [] = ':700';
-                    break;
-                case 'i':
-                    $style [] = 'font-style:italic;';
-                    $api[] = ':400italic';
-                    break;
-                case 'bi':
-                case 'ib':
-                    $style [] = 'font-weight:bold;font-style:italic;';
-                    $api [] = ':700italic';
-                    break;
-                default:
-                    break;
-            }
+            /* Font line height */
+            if ($data->get('font_line_height') > 0)
+                $style [] = 'line-height:' . $data->get('font_line_height') . 'px';
             $style = implode(';', $style);
             if (!empty($style)) {
                 $doc = JFactory::getDocument();
@@ -315,26 +289,12 @@ if (!class_exists('Zo2Framework')) {
             $style = array();
             if (!empty($family->fontdeck))
                 $style [] = 'font-family:' . $family->fontdeck;
-            if ($data->get('size') > 0)
+            /* Font size */
+            if (!empty($data->get('size') > 0))
                 $style [] = 'font-size:' . $data->get('size') . 'px';
+            /* Font line height */
             if ($data->get('font_line_height') > 0)
                 $style [] = 'line-height:' . $data->get('font_line_height') . 'px';
-            if (!empty($data->get('color')))
-                $style [] = 'color:' . $data->get('color');
-
-            switch ($data->get('style')) {
-                case 'b': $style [] = 'font-weight:bold';
-                    break;
-                case 'i': $style [] = 'font-style:italic';
-                    break;
-                case 'bi':
-                case 'ib':
-                    $style [] = 'font-weight:bold;font-style:italic;';
-                    break;
-                default:
-                    break;
-            }
-
             $style = implode(';', $style);
             if (!empty($style)) {
                 $style = $selector . '{' . $style . '}';
