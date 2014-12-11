@@ -66,9 +66,9 @@ $fontStyles = array(
             </div>
             <div class="controls">
                 <div class="btn-group font-types" data-toggle="buttons-radio">
-                    <button type="button" class="btn btnStandardFonts <?php echo $data['type'] == 'standard' ? 'active btn-success' : '' ?>">Standard Fonts</button>
-                    <button type="button" class="btn btnGoogleFonts <?php echo $data['type'] == 'googlefonts' ? 'active btn-success' : '' ?>">Google Fonts</button>
-                    <button type="button" class="btn btnFontDeck <?php echo $data['type'] == 'fontdeck' ? 'active btn-success' : '' ?>">FontDeck</button>
+                    <button type="button" class="btn btn-standard-fonts <?php echo $data['type'] == 'standard' ? 'active btn-success' : '' ?>">Standard Fonts</button>
+                    <button type="button" class="btn btn-google-fonts <?php echo $data['type'] == 'googlefonts' ? 'active btn-success' : '' ?>">Google Fonts</button>
+                    <button type="button" class="btn btn-font-deck <?php echo $data['type'] == 'fontdeck' ? 'active btn-success' : '' ?>">FontDeck</button>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@ $fontStyles = array(
                 <div class="font-desc">Choose the font face that is used for <?php echo strtolower($this->getLabel()) ?></div>
             </div>
             <div class="controls">
-                <select class="ddlStandardFont show">
+                <select class="ddl-standard-font show">
                     <?php foreach ($standardFonts as $font) : ?>
                         <option <?php echo $data['family'] == $font ? 'selected' : '' ?> value="<?php echo htmlspecialchars($font) ?>"><?php echo htmlspecialchars($font) ?></option>
                     <?php endforeach; ?>
@@ -93,7 +93,7 @@ $fontStyles = array(
                 <div class="font-desc">Choose the type of font you want to use for <?php echo strtolower($this->getLabel()) ?></div>
             </div>
             <div class="controls">
-                <input type="text" class="txtGoogleFontSelect" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
+                <input type="text" class="txt-googlefont-select" value="<?php echo $data['type'] == 'googlefonts' ? $data['family'] : '' ?>" />
             </div>
         </div>
 
@@ -103,7 +103,7 @@ $fontStyles = array(
                 <div class="font-desc">Paste the font family attribute from CSS code in Step 2 of FontDeck website here</div>
             </div>
             <div class="controls">
-                <textarea class="txtFontDeckCss"><?php echo $data['type'] == 'fontdeck' ? $data['family'] : '' ?></textarea>
+                <textarea class="txt-fontdeck-css"><?php echo $data['type'] == 'fontdeck' ? $data['family'] : '' ?></textarea>
             </div>
         </div>
 
@@ -113,7 +113,7 @@ $fontStyles = array(
                 <div class="font-desc">Specify the <?php echo strtolower($this->getLabel()) ?> font properties</div>
             </div>
             <div class="controls floatdiv clearfix">
-                <div><input type="text" class="txtFontSize" value="<?php echo $data['size'] ?>" /> px</div>
+                <div><input type="text" class="txt-font-size" value="<?php echo $data['size'] ?>" /> px</div>
 
                 <div class="colorpicker-container">
                     <input type="text" class="txtColorPicker" value="<?php echo $data['color'] ?>" />
@@ -121,7 +121,7 @@ $fontStyles = array(
                 </div>
 
                 <div>
-                    <select class="ddlFontStyle">
+                    <select class="ddl-font-style">
                         <?php foreach ($fontStyles as $style => $title) { ?>
                             <?php $selected = trim($data['style']) == trim($style); ?>
                             <option <?php echo ($selected) ? 'selected' : '' ?> value="<?php echo $style ?>"><?php echo $title ?></option>
