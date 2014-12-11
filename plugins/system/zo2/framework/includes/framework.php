@@ -353,46 +353,56 @@ if (!class_exists('Zo2Framework')) {
             $style = '';
             $zPath = Zo2Path::getInstance();
             if ($this->profile->theme) {
-                $presetData = get_object_vars($this->profile->theme);
 
-                if (!empty($presetData['background']))
-                    $style .= 'body{background-color:' . $presetData['background'] . '}';
-                if (!empty($presetData['header']))
-                    $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
-                if (!empty($presetData['header_top']))
-                    $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
-                if (!empty($presetData['text']))
-                    $style .= 'body{color:' . $presetData['text'] . '}';
-                if (!empty($presetData['link']))
-                    $style .= 'a{color:' . $presetData['link'] . '}';
-                if (!empty($presetData['link_hover']))
-                    $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
-                if (!empty($presetData['bottom1']))
-                    $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
-                if (!empty($presetData['bottom2']))
-                    $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
-                if (!empty($presetData['footer']))
-                    $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
-                if (!empty($presetData['extra'])) {
-                    $extra = json_decode($presetData['extra']);
+                $themeData = get_object_vars($this->profile->theme);
+                /* Background */
+                if (!empty($themeData['background']))
+                    $style [] = 'body{background-color:' . $themeData['background'] . '}';
+                /* Header */
+                if (!empty($themeData['header']))
+                    $style [] = '#zo2-header{background-color:' . $themeData['header'] . '}';
+                /* Header top */
+                if (!empty($themeData['header_top']))
+                    $style [] = '#zo2-header-top{background-color:' . $themeData['header_top'] . '}';
+                /* Text */
+                if (!empty($themeData['text']))
+                    $style [] = 'body{color:' . $themeData['text'] . '}';
+                /* Link */
+                if (!empty($themeData['link']))
+                    $style [] = 'a{color:' . $themeData['link'] . '}';
+                /* Link hover */
+                if (!empty($themeData['link_hover']))
+                    $style [] = 'a:hover{color:' . $themeData['link_hover'] . '}';
+                /* Bottom1 */
+                if (!empty($themeData['bottom1']))
+                    $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . '}';
+                /* Bottom2 */
+                if (!empty($themeData['bottom2']))
+                    $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . '}';
+                /* Footer */
+                if (!empty($themeData['footer']))
+                    $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . '}';
+                /* Extra */
+                if (!empty($themeData['extra'])) {
+                    $extra = json_decode($themeData['extra']);
                     if (count($extra) > 0) {
                         foreach ($extra as $element => $value) {
                             if (!empty($element))
-                                $style .= $element . '{background-color:' . $value . '}';
+                                $style [] = $element . '{background-color:' . $value . '}';
                         }
                     }
                 }
-
-                if (!empty($presetData['bg_image'])) {
-                    $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
-                } elseif (!empty($presetData['bg_pattern'])) {
-                    $style .= 'body.boxed {background-image: url("' . $zPath->toUrl($presetData['bg_pattern']) . '")}';
+                /* Background image */
+                if (!empty($themeData['bg_image'])) {
+                    $style [] = 'body.boxed {background-image: url("' . JUri::root() . $themeData['bg_image'] . '")}';
+                } elseif (!empty($themeData['bg_pattern'])) {
+                    $style [] = 'body.boxed {background-image: url("' . $zPath->toUrl($themeData['bg_pattern']) . '")}';
                 }
-
-                if (!empty($presetData['css']))
-                    $this->assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
+                /* Theme css file */
+                if (!empty($themeData['css']))
+                    $this->assets->addStyleSheet('zo2/css/' . $themeData['css'] . '.css');
             }
-
+            $style = implode(';' . PHP_EOL, $style);
             $this->assets->addStyleSheetDeclaration($style);
 
             /* Prepare Fonts */
@@ -407,28 +417,28 @@ if (!class_exists('Zo2Framework')) {
                 'h6_font' => 'h6'
             );
 
-            foreach ($selectors as $param => $selector) {
-                $value = $this->get($param);
-
-                if (!empty($value)) {
-                    $data = json_decode($value, true);
-                    if (isset($data['type']) && !empty($data['type'])) {
-                        switch ($data['type']) {
-                            case 'standard':
-                                $this->_buildStandardFontStyle($data, $selector);
-                                break;
-                            case 'googlefonts':
-                                $this->_buildGoogleFontsStyle($data, $selector);
-                                break;
-                            case 'fontdeck':
-                                $this->_buildFontDeckStyle($data, $selector);
-                                break;
-                            default:
-                                break;
-                        }
-                    }
-                }
-            }
+//            foreach ($selectors as $param => $selector) {
+//                $value = $this->get($param);
+//
+//                if (!empty($value)) {
+//                    $data = json_decode($value, true);
+//                    if (isset($data['type']) && !empty($data['type'])) {
+//                        switch ($data['type']) {
+//                            case 'standard':
+//                                $this->_buildStandardFontStyle($data, $selector);
+//                                break;
+//                            case 'googlefonts':
+//                                $this->_buildGoogleFontsStyle($data, $selector);
+//                                break;
+//                            case 'fontdeck':
+//                                $this->_buildFontDeckStyle($data, $selector);
+//                                break;
+//                            default:
+//                                break;
+//                        }
+//                    }
+//                }
+//            }
         }
 
         public function isBoxed() {

@@ -100,7 +100,6 @@ if (!class_exists('Zo2Profile')) {
                 /* Load profile data by use json file */
                 $this->loadFile($profileFile);
                 $this->_profileFile = $profileFile;
-                $this->set('theme', new JObject($this->get('theme')));
                 return $this->isValid();
             }
             return false;
