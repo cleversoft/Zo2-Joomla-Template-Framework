@@ -234,7 +234,7 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($data->get('size') > 0))
                 $style [] = 'font-size:' . $data->get('size') . 'px';
             if (!empty($data->get('color')))
-                $style [] = 'color:' . $data->get('size');
+                $style [] = 'color:' . $data->get('color');
             switch ($data->get('style')) {
                 case 'b': $style [] = 'font-weight:bold';
                     break;
