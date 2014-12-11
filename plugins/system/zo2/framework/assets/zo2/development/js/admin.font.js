@@ -57,54 +57,31 @@
          */
         fontChange: function() {
             var _self = this;
+
+            //update example text when standard font change
             jQuery('.ddl-standard-font').change(function() {
                 jQuery(this).next().css('font-family', $(this).val());
             });
 
+            //show the current font type
             jQuery('.zo2-font-container').each(function() {
                 jQuery(this).find('.zo2-font-options').hide();
                 jQuery(this).find('.zo2-font-options-'+jQuery(this).find('.zo2-font-type').val()).show();
             });
 
+            //select font type
             jQuery('.zo2-font-container .font-types button').click(function() {
                 var $fontype = $(this).closest('.font-types');
                 var $container = $(this).closest('.zo2-font-container');
                 $fontype.find('button').removeClass('btn-success');
                 $(this).addClass('btn-success');
                 $fontype.find('.zo2-font-type').val($(this).data('target'));
-                alert($fontype.find('.zo2-font-type').val());
                 $container.find('.zo2-font-options').hide();
                 $container.find('.zo2-font-options-'+$(this).data('target')).fadeIn(300);
 
             });
 
-            /*
-            jQuery('.font-container').on('click', '.btn-standard-fonts', function() {
-                var $container = $(this).closest('.font-container');
-                $container.find('.font-types').find('button').removeClass('btn-success');
-                $(this).addClass('btn-success');
-                $container.find('.font-options-google').stop().slideUp(300);
-                $container.find('.font-options-fontdeck').stop().slideUp(300);
-                $container.find('.font-options-standard').stop().slideDown(400);
-            });
-            jQuery('.font-container').on('click', '.btn-google-fonts', function() {
-                var $container = $(this).closest('.font-container');
-                $container.find('.font-types').find('button').removeClass('btn-success');
-                $(this).addClass('btn-success');
-                $container.find('.font-options-standard').stop().slideUp(300);
-                $container.find('.font-options-fontdeck').stop().slideUp(300);
-                $container.find('.font-options-google').stop().slideDown(400);
-            });
-            jQuery('.font-container').on('click', '.btn-font-deck', function() {
-                var $container = $(this).closest('.font-container');
-                $container.find('.font-types').find('button').removeClass('btn-success');
-                $(this).addClass('btn-success');
-                $container.find('.font-options-standard').stop().slideUp(300);
-                $container.find('.font-options-google').stop().slideUp(300);
-                $container.find('.font-options-fontdeck').stop().slideDown(400);
-            });
-            */
-
+            //google font select
             this.googleFont = $('.txt-googlefont-select').fontselect();
 
             $(".txt-googlefont-select").change(function() {
