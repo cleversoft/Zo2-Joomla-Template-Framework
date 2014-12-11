@@ -86,40 +86,43 @@ if (!class_exists('Zo2Framework')) {
          * Framework init
          */
         public function init() {
-            /* Load language */
-            $language = JFactory::getLanguage();
-            $language->load('plg_system_zo2', ZO2PATH_ROOT);
+            if (!defined('ZO2_LOADED')) {
+                /* Load language */
+                $language = JFactory::getLanguage();
+                $language->load('plg_system_zo2', ZO2PATH_ROOT);
 
-            $jinput = JFactory::getApplication()->input;
-            /**
-             * Init framework variables
-             */
-            $this->path = Zo2Path::getInstance();
-            /* Zo2 root dir */
-            $this->path->registerNamespace('zo2', ZO2PATH_ROOT);
-            /* Zo2 html */
-            $this->path->registerNamespace('html', ZO2PATH_ROOT . '/html');
-            /* Zo2 assets */
-            $this->path->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
+                $jinput = JFactory::getApplication()->input;
+                /**
+                 * Init framework variables
+                 */
+                $this->path = Zo2Path::getInstance();
+                /* Zo2 root dir */
+                $this->path->registerNamespace('zo2', ZO2PATH_ROOT);
+                /* Zo2 html */
+                $this->path->registerNamespace('html', ZO2PATH_ROOT . '/html');
+                /* Zo2 assets */
+                $this->path->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
 
-            /**
-             * Zo2 template
-             */
-            $templateName = $this->template->template;
-            $this->path->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
-            /* Current */
-            $this->path->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
-            /* Override Zo2 html directory */
-            $this->path->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
+                /**
+                 * Zo2 template
+                 */
+                $templateName = $this->template->template;
+                $this->path->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
+                /* Current */
+                $this->path->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
+                /* Override Zo2 html directory */
+                $this->path->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
 
-            /**
-             * Init Zo2 objects
-             */
-            $this->assets = Zo2Assets::getInstance();
-            $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
-            $this->layout = new Zo2Layout($this->profile->layout);
+                /**
+                 * Init Zo2 objects
+                 */
+                $this->assets = Zo2Assets::getInstance();
+                $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
+                $this->layout = new Zo2Layout($this->profile->layout);
 
-            $this->_loadAssets();
+                $this->_loadAssets();
+                define('ZO2_LOADED', 1);
+            }
         }
 
         /**
