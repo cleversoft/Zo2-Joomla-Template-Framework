@@ -227,31 +227,29 @@ if (!class_exists('Zo2Framework')) {
          */
         protected function _buildStandardFontStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
-            $style = '';
-            if (!empty($data['family']))
-                $style .= 'font-family:' . $data['family'] . ';';
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b': $style .= 'font-weight:bold;';
-                        break;
-                    case 'i': $style .= 'font-style:italic;';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        break;
-                    default:
-                        break;
-                }
+            $family = $data->get('family');
+            $style = array();
+            if (!empty($family->standard))
+                $style [] = 'font-family:' . $family->standard;
+            if (!empty($data->get('size') > 0))
+                $style [] = 'font-size:' . $data->get('size') . 'px';
+            if (!empty($data->get('color')))
+                $style [] = 'color:' . $data->get('size');
+            switch ($data->get('style')) {
+                case 'b': $style [] = 'font-weight:bold';
+                    break;
+                case 'i': $style [] = 'font-style:italic';
+                    break;
+                case 'bi':
+                case 'ib':
+                    $style [] = 'font-weight:bold;font-style:italic';
+                    break;
+                default:
+                    break;
             }
-
+            $style = implode(';', $style);
             if (!empty($style)) {
-                $style = $selector . '{' . $style . '}' . "\n";
-
+                $style = $selector . '{' . $style . '}';
                 $assets->addStyleSheetDeclaration($style);
             }
         }
@@ -262,42 +260,40 @@ if (!class_exists('Zo2Framework')) {
          */
         protected function _buildGoogleFontsStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
-            $api = 'http://fonts.googleapis.com/css?family=';
-            $url = '';
-            $style = '';
-            if (!empty($data['family'])) {
-                $style .= 'font-family:' . $data['family'] . ';';
-                $url = $api . urlencode($data['family']);
-            }
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b':
-                        $style .= 'font-weight:bold;';
-                        $url .= ':700';
-                        break;
-                    case 'i':
-                        $style .= 'font-style:italic;';
-                        $url .= ':400italic';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        $url .= ':700italic';
-                        break;
-                    default:
-                        break;
-                }
-            }
+            $family = $data->get('family');
+            $api[] = 'http://fonts.googleapis.com/css?family=';
+            $style = array();
 
+            if (!empty($family->googlefonts)) {
+                $style [] = 'font-family:' . $family->googlefonts;
+                $api [] = urlencode($family->googlefonts);
+            }
+            if ($data->get('size') > 0)
+                $style [] = 'font-size:' . $data->get('size') . 'px';
+            if (!empty($data->get('color')))
+                $style [] = 'color:' . $data->get('color');
+            switch ($data->get('style')) {
+                case 'b':
+                    $style [] = 'font-weight:bold;';
+                    $api [] = ':700';
+                    break;
+                case 'i':
+                    $style [] = 'font-style:italic;';
+                    $api[] = ':400italic';
+                    break;
+                case 'bi':
+                case 'ib':
+                    $style [] = 'font-weight:bold;font-style:italic;';
+                    $api [] = ':700italic';
+                    break;
+                default:
+                    break;
+            }
+            $style = implode(';', $style);
             if (!empty($style)) {
                 $doc = JFactory::getDocument();
-                $doc->addStyleSheet($url);
-                //$this->addStyleSheet($url);
-                $style = $selector . '{' . $style . '}' . "\n";
+                $doc->addStyleSheet(implode('', $api));
+                $style = $selector . '{' . $style . '}';
                 $assets->addStyleSheetDeclaration($style);
             }
         }
@@ -311,37 +307,37 @@ if (!class_exists('Zo2Framework')) {
         protected function _buildFontDeckStyle($data, $selector) {
             $fontdeckCode = $this->get('fontdeck_code');
             $assets = Zo2Assets::getInstance();
-
+            $family = $data->get('family');
             if (!empty($fontdeckCode)) {
                 $assets->addScriptDeclaration($fontdeckCode);
             }
 
-            $style = '';
-            if (!empty($data['family']))
-                $style .= 'font-family:' . $data['family'] . ';';
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['font_line_height']) && $data['font_line_height'] > 0)
-                $style .= 'line-height:' . $data['font_line_height'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b': $style .= 'font-weight:bold;';
-                        break;
-                    case 'i': $style .= 'font-style:italic;';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        break;
-                    default:
-                        break;
-                }
+            $style = array();
+            if (!empty($family->fontdeck))
+                $style [] = 'font-family:' . $family->fontdeck;
+            if ($data->get('size') > 0)
+                $style [] = 'font-size:' . $data->get('size') . 'px';
+            if ($data->get('font_line_height') > 0)
+                $style [] = 'line-height:' . $data->get('font_line_height') . 'px';
+            if (!empty($data->get('color')))
+                $style [] = 'color:' . $data->get('color');
+
+            switch ($data->get('style')) {
+                case 'b': $style [] = 'font-weight:bold';
+                    break;
+                case 'i': $style [] = 'font-style:italic';
+                    break;
+                case 'bi':
+                case 'ib':
+                    $style [] = 'font-weight:bold;font-style:italic;';
+                    break;
+                default:
+                    break;
             }
 
+            $style = implode(';', $style);
             if (!empty($style)) {
-                $style = $selector . '{' . $style . '}' . "\n";
+                $style = $selector . '{' . $style . '}';
                 $assets->addStyleSheetDeclaration($style);
             }
         }
@@ -416,29 +412,26 @@ if (!class_exists('Zo2Framework')) {
                 'h5_font' => 'h5',
                 'h6_font' => 'h6'
             );
-
-//            foreach ($selectors as $param => $selector) {
-//                $value = $this->get($param);
-//
-//                if (!empty($value)) {
-//                    $data = json_decode($value, true);
-//                    if (isset($data['type']) && !empty($data['type'])) {
-//                        switch ($data['type']) {
-//                            case 'standard':
-//                                $this->_buildStandardFontStyle($data, $selector);
-//                                break;
-//                            case 'googlefonts':
-//                                $this->_buildGoogleFontsStyle($data, $selector);
-//                                break;
-//                            case 'fontdeck':
-//                                $this->_buildFontDeckStyle($data, $selector);
-//                                break;
-//                            default:
-//                                break;
-//                        }
-//                    }
-//                }
-//            }
+            /* */
+            foreach ($selectors as $key => $selector) {
+                $value = $this->get($key);
+                if (!empty($value)) {
+                    $value = new JObject($value);
+                    switch ($value->get('type')) {
+                        case 'standard':
+                            $this->_buildStandardFontStyle($value, $selector);
+                            break;
+                        case 'googlefonts':
+                            $this->_buildGoogleFontsStyle($value, $selector);
+                            break;
+                        case 'fontdeck':
+                            $this->_buildFontDeckStyle($value, $selector);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
 
         public function isBoxed() {
