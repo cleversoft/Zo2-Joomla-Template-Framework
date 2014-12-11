@@ -54,7 +54,7 @@ if (!class_exists('Zo2ModelAdmin')) {
         }
 
         /**
-         * 
+         * Build assets data
          */
         public function buildAssets() {
             if ($this->_isAuthorized()) {
@@ -200,7 +200,7 @@ if (!class_exists('Zo2ModelAdmin')) {
                 $template = Zo2Factory::getTemplate($templateId);
                 if ($template) {
                     $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
-                    if ( JFile::delete($profile) ) {
+                    if (JFile::delete($profile)) {
                         $this->_ajax->addExecute('location.reload();');
                     }
                 }
@@ -208,9 +208,13 @@ if (!class_exists('Zo2ModelAdmin')) {
             $this->_ajax->response();
         }
 
+        /**
+         * Authorise request for administrator
+         * @return boolean
+         */
         private function _isAuthorized() {
             $app = JFactory::getApplication();
-            return ( $app->isAdmin());
+            return ( $app->isAdmin() && JFactory::getSession()->checkToken());
         }
 
     }
