@@ -54,7 +54,7 @@ $standardFonts = array(
                     <input type="hidden" class="zo2-font-type" name="jform[params][<?php echo $name; ?>][type]" value="<?php echo $fontType; ?>" />
                     <button type="button"
                             data-target="none"
-                            class="btn btn-none-fonts <?php echo ( $fontType == 'none' ) ? 'active btn-success' : '' ?>">
+                            class="btn btn-none-fonts <?php echo ( $fontType == 'none' ) ? 'active btn-default' : '' ?>">
                         <?php echo JText::_('ZO2_ADMIN_NONE'); ?>
                     </button>
                     <button type="button" 
@@ -76,7 +76,7 @@ $standardFonts = array(
             </div>
         </div>
         <!-- Standard font -->
-        <div class="zo2-font-options zo2-font-options-standard control-group">
+        <div class="zo2-font-options zo2-font-options-standard control-group hide">
             <div class="control-label">
                 <label class="zo2-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD'); ?></label>
                 <div class="label-desc"<?php echo JText::_('ZO2_TEMPLATE_FONT_STANDARD_DESC'); ?>> <?php echo $this->label['label']; ?></div>
@@ -95,7 +95,7 @@ $standardFonts = array(
             </div>
         </div>
         <!-- Google font -->
-        <div class="zo2-font-options zo2-font-options-googlefonts control-group">
+        <div class="zo2-font-options zo2-font-options-googlefonts control-group hide">
             <div class="control-label">
                 <label class="zo2-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE'); ?></label>
                 <div class="label-desc"><?php echo JText::_('ZO2_TEMPLATE_FONT_GOOGLE_DESC'); ?> <?php echo $this->label['label']; ?></div>
@@ -107,7 +107,7 @@ $standardFonts = array(
             </div>
         </div>
         <!-- Fontdeck -->
-        <div class="zo2-font-options zo2-font-options-fontdeck control-group">
+        <div class="zo2-font-options zo2-font-options-fontdeck control-group hide">
             <div class="control-label">
                 <label class="zo2-label"><?php echo JText::_('ZO2_TEMPLATE_FONT_FONTDECK'); ?></label>
                 <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_FONT_FONTDECK_DESCRIPTION'); ?></div>
@@ -117,7 +117,7 @@ $standardFonts = array(
             </div>
         </div>
         <!-- Font size -->
-        <div class="control-group">
+        <div class="control-group zo2-font-size-option hide">
             <div class="control-label">
                 <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_FONT_SIZE'); ?></label>
                 <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_FONT_SIZE_DESC', $this->label['label']); ?></div>
@@ -127,7 +127,7 @@ $standardFonts = array(
             </div>
         </div>
         <!-- Font line height -->
-        <div class="control-group">
+        <div class="control-group zo2-font-lineheight-option hide">
             <div class="control-label">
                 <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT'); ?></label>
                 <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_FONT_LINE_HEIGHT_DESC'); ?></div>
