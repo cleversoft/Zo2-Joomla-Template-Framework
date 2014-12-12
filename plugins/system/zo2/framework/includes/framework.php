@@ -237,6 +237,7 @@ if (!class_exists('Zo2Framework')) {
                 $style [] = 'font-family:' . $family->standard;
             /* Font size */
             exit("git php deploy at here");
+            
             if (!empty($data->get('size') > 0))
                 $style [] = 'font-size:' . $data->get('size') . 'px';
             /* Font line height */
