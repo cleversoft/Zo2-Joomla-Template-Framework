@@ -58,22 +58,11 @@
             'class_wrap' => 'logo-image',
             'class' => 'logo-path'
                 ), array(
-            'id' => 'jform_params_header_logo_path',
-            'name' => 'jform[params][header_logo_path]',
-            'value' => Zo2Factory::get('header_logo_path')
+            'id' => 'jform_params_standard_logo',
+            'name' => 'jform[params][standard_logo]',
+            'value' => Zo2Factory::get('standard_logo')
         ));
-        ?>
-        <!-- Standard logo Text -->
-        <?php
-        echo Zo2Html::field(
-                'text', array(
-            'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_TEXT'),
-            'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_TEXT_DESC')
-                ), array(
-            'name' => 'jform[params][header_logo_text]',
-            'value' => Zo2Factory::get('header_logo_text')
-        ));
-        ?>    
+        ?>  
         <!-- Retina logo -->       
         <?php
         echo Zo2Html::field(
@@ -83,22 +72,11 @@
             'class_wrap' => 'logo-retina-image',
             'class' => 'logo-path'
                 ), array(
-            'id' => 'jform_params_header_retina_logo_path',
-            'name' => 'jform[params][header_retina_logo_path]',
-            'value' => Zo2Factory::get('header_retina_logo_path')
+            'id' => 'jform_params_retina_logo',
+            'name' => 'jform[params][retina_logo]',
+            'value' => Zo2Factory::get('retina_logo')
         ));
-        ?>
-        <!-- Retina logo Text -->
-        <?php
-        echo Zo2Html::field(
-                'text', array(
-            'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_TEXT'),
-            'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_TEXT_DESC')
-                ), array(
-            'name' => 'jform[params][header_retina_logo_text]',
-            'value' => Zo2Factory::get('header_retina_logo_text')
-        ));
-        ?>            
+        ?>               
         <div class="zo2-divider"></div>     
         <!-- Show "Go to top" -->
         <?php

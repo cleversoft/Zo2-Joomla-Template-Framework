@@ -14,28 +14,33 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <!-- Standard logo -->
-<?php if (isset($logo['path']) && $logo['path'] != '') : ?>
-    <header id="header-standard-logo">
-        <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><img alt="<?php echo $logo['text']; ?>" src="<?php echo $logo['path']; ?>"/></a>
+<?php if ($logo['standard'] != '') : ?>
+    <header id="standard-logo">
+        <a class="standard-logo-link" 
+           href="<?php echo JUri::root(); ?>" 
+           title="<?php echo $slogan; ?>">
+            <img alt="<?php echo $slogan; ?>" src="<?php echo $logo['standard']; ?>"/>
+        </a>
     </header>
-<?php else : ?>
-    <!-- Without logo -->
-    <?php if (isset($logo['text']) && $logo['text'] != '') : ?>
-        <header id="header-logo-text">
-            <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><h3><?php echo $logo['text']; ?></h3></a>
-        </header>
-    <?php endif; ?>
 <?php endif; ?>
 <!-- Retina logo -->
-<?php if (isset($retinaLogo['path']) && $retinaLogo['path'] != '') : ?>
-    <header id="header-retina-logo">
-        <a class="retina-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><img alt="<?php echo $retinaLogo['text']; ?>" src="<?php echo $retinaLogo['path']; ?>"/></a>
-    </header>
-<?php else : ?>
-    <!-- Without logo -->
-    <?php if (isset($retinaLogo['text']) && $retinaLogo['text'] != '') : ?>
-        <header id="header-retina-logo-text">
-            <a class="retina-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><h3><?php echo $retinaLogo['text']; ?></h3></a>
+<?php if ($logo['retina'] != '') : ?>
+<?php endif; ?>
+<header id="retina-logo">
+    <a class="retina-logo-link" 
+       href="<?php echo JUri::root(); ?>" 
+       title="<?php echo $slogan; ?>">
+        <img alt="<?php echo $slogan; ?>" src="<?php echo $logo['standard']; ?>"/>
+    </a>
+</header>
+<!-- Without logo -->
+<?php if ($logo['standard'] == '' && $logo['retina'] == '') : ?>
+    <?php if ($slogan != '') : ?>
+        <header id="logo-text">
+            <a class="standard-logo-link" 
+               href="<?php echo JUri::root(); ?>" 
+               title="<?php echo $slogan; ?>">
+                <h3><?php echo $slogan; ?></h3></a>
         </header>
     <?php endif; ?>
 <?php endif; ?>
