@@ -56,7 +56,7 @@ $currentProfile = Zo2Factory::getProfile();
 
                 </div>
                 <div class="pull-right">
-                    <button type="button" class="btn btn-danger" onclick="zo2.admin.clearCache();
+                    <button type="button" class="btn btn-default" onclick="zo2.admin.clearCache();
                             return false;"><?php echo JText::_('ZO2_NAVBAR_CLEAR_CACHE'); ?></button>
                     <button type="button" class="btn btn-primary" onclick="zo2.admin.buildAssets();
                             return false;"><?php echo JText::_('ZO2_NAVBAR_COMPILE'); ?></button>

@@ -74,10 +74,22 @@
                 var $fontype = $(this).closest('.font-types');
                 var $container = $(this).closest('.zo2-font-container');
                 $fontype.find('button').removeClass('btn-success');
-                $(this).addClass('btn-success');
+                if($(this).data('target') != 'none'){
+                    $(this).addClass('btn-success');
+                } else {
+                    $(this).addClass('btn-default');
+                }
+
                 $fontype.find('.zo2-font-type').val($(this).data('target'));
                 $container.find('.zo2-font-options').hide();
                 $container.find('.zo2-font-options-'+$(this).data('target')).fadeIn(300);
+                if($(this).data('target') != 'none'){
+                    $container.find('.zo2-font-size-option').fadeIn(300);
+                    $container.find('.zo2-font-lineheight-option').fadeIn(300);
+                } else if($(this).data('target') == 'none'){
+                    $container.find('.zo2-font-size-option').hide();
+                    $container.find('.zo2-font-lineheight-option').hide();
+                }
 
             });
 
