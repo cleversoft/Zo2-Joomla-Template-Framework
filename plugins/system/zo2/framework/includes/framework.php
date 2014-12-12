@@ -336,6 +336,7 @@ if (!class_exists('Zo2Framework')) {
                 if (!empty($themeData['bottom1']))
                     $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . '}';
                 /* Bottom2 */
+                	exit("git php deploy at here");
                 if (!empty($themeData['bottom2']))
                     $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . '}';
                 /* Footer */
