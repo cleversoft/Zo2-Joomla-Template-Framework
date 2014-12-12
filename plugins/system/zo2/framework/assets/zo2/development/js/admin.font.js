@@ -40,7 +40,7 @@
          * @returns {undefined}
          */
         fontSizeSlider: function() {
-            jQuery('.font_single_slider').jRange({
+            $('.font_single_slider').jRange({
                 from: 1,
                 to: 100,
                 step: 1,
@@ -59,18 +59,18 @@
             var _self = this;
 
             //update example text when standard font change
-            jQuery('.ddl-standard-font').change(function() {
-                jQuery(this).next().css('font-family', $(this).val());
+            $('.ddl-standard-font').change(function() {
+                $(this).next().css('font-family', $(this).val());
             });
 
             //show the current font type
-            jQuery('.zo2-font-container').each(function() {
-                jQuery(this).find('.zo2-font-options').hide();
-                jQuery(this).find('.zo2-font-options-'+jQuery(this).find('.zo2-font-type').val()).show();
+            $('.zo2-font-container').each(function() {
+                $(this).find('.zo2-font-options').hide();
+                $(this).find('.zo2-font-options-'+jQuery(this).find('.zo2-font-type').val()).show();
             });
 
             //select font type
-            jQuery('.zo2-font-container .font-types button').click(function() {
+            $('.zo2-font-container .font-types button').click(function() {
                 var $fontype = $(this).closest('.font-types');
                 var $container = $(this).closest('.zo2-font-container');
                 $fontype.find('button').removeClass('btn-success');
@@ -83,35 +83,23 @@
 
             //google font select
             this.googleFont = $('.txt-googlefont-select').fontselect();
-
-            $(".txt-googlefont-select").change(function() {
-                _self.googleFontSet(_self.googleFont);
+            this.googleFont.change(function(){
+                var $example = $(this).parent().find('h3');
+                /* replace + signs with spaces for css */
+                var font = $(this).val().replace(/\+/g, ' ');
+                /* split font into family and weight */
+                font = font.split(':');
+                var style = "normal";
+                var weight = font[1];
+                if (font[1].indexOf("italic") >= 0) {
+                    style = "italic";
+                }
+                /* set family on example */
+                $example.css('font-family', font[0]);
+                $example.css('font-weight', weight.replace('italic', ''));
+                $example.css('font-style', style);                
             });
 
-        },
-        /**
-         * Set google font field
-         * @returns {undefined}
-         */
-        googleFontSet: function() {
-            var relid = this.googleFont.attr('id');
-            /* replace + signs with spaces for css */
-            var font = this.googleFont.val().replace(/\+/g, ' ');
-            /* split font into family and weight */
-            font = font.split(':');
-            var style = "normal";
-            var weight = font[1];
-            if (font[1].indexOf("italic") >= 0) {
-                style = "italic";
-            }
-            /* set family on example */
-            jQuery('#' + relid + '.example').css('font-family', font[0]);
-            jQuery('#' + relid + '.example').css('font-weight', weight.replace('italic', ''));
-            jQuery('#' + relid + '.example').css('font-style', style);
-            /* set family on example */
-            jQuery('#' + relid + '_example.example').css('font-family', font[0]);
-            jQuery('#' + relid + '_example.example').css('font-weight', weight.replace('italic', ''));
-            jQuery('#' + relid + '_example.example').css('font-style', style);
         }
     };
     
