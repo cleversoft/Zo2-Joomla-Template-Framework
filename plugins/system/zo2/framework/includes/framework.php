@@ -309,7 +309,7 @@ if (!class_exists('Zo2Framework')) {
          *
          */
         protected function _loadTheme() {
-            $style = '';
+            $style = array();
             $zPath = Zo2Path::getInstance();
             if ($this->profile->theme) {
 
