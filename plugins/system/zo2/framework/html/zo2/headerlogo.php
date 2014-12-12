@@ -15,7 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <!-- Standard logo -->
 <?php if ($logo['standard'] != '') : ?>
-    <header id="standard-logo">
+    <header id="standard-logo" class="zo2-logo">
         <a class="standard-logo-link" 
            href="<?php echo JUri::root(); ?>" 
            title="<?php echo $slogan; ?>">
@@ -26,7 +26,7 @@ defined('_JEXEC') or die('Restricted access');
 <!-- Retina logo -->
 <?php if ($logo['retina'] != '') : ?>
 <?php endif; ?>
-<header id="retina-logo">
+<header id="retina-logo" class="zo2-logo">
     <a class="retina-logo-link" 
        href="<?php echo JUri::root(); ?>" 
        title="<?php echo $slogan; ?>">
