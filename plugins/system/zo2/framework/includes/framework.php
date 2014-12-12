@@ -238,7 +238,7 @@ if (!class_exists('Zo2Framework')) {
             /* Font size */
             exit("git php deploy at here");
             
-            if (!empty($data->get('size') > 0))
+            if (!empty($data->get('size')) > 0)
                 $style [] = 'font-size:' . $data->get('size') . 'px';
             /* Font line height */
             if ($data->get('font_line_height') > 0)
