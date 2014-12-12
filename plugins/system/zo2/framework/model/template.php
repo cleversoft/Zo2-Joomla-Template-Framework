@@ -63,15 +63,6 @@ if (!class_exists('Zo2ModelTemplate')) {
         }
 
         /**
-         * Build template
-         */
-        public function build() {
-            /* Do build process when template update */
-            $assets = Zo2Assets::getInstance();
-            $assets->buildAssets();
-        }
-
-        /**
          * 
          */
         private function _save() {

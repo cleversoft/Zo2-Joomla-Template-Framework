@@ -86,40 +86,43 @@ if (!class_exists('Zo2Framework')) {
          * Framework init
          */
         public function init() {
-            /* Load language */
-            $language = JFactory::getLanguage();
-            $language->load('plg_system_zo2', ZO2PATH_ROOT);
+            if (!defined('ZO2_LOADED')) {
+                /* Load language */
+                $language = JFactory::getLanguage();
+                $language->load('plg_system_zo2', ZO2PATH_ROOT);
 
-            $jinput = JFactory::getApplication()->input;
-            /**
-             * Init framework variables
-             */
-            $this->path = Zo2Path::getInstance();
-            /* Zo2 root dir */
-            $this->path->registerNamespace('zo2', ZO2PATH_ROOT);
-            /* Zo2 html */
-            $this->path->registerNamespace('html', ZO2PATH_ROOT . '/html');
-            /* Zo2 assets */
-            $this->path->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
+                $jinput = JFactory::getApplication()->input;
+                /**
+                 * Init framework variables
+                 */
+                $this->path = Zo2Path::getInstance();
+                /* Zo2 root dir */
+                $this->path->registerNamespace('zo2', ZO2PATH_ROOT);
+                /* Zo2 html */
+                $this->path->registerNamespace('html', ZO2PATH_ROOT . '/html');
+                /* Zo2 assets */
+                $this->path->registerNamespace('assets', ZO2PATH_ROOT . '/assets');
 
-            /**
-             * Zo2 template
-             */
-            $templateName = $this->template->template;
-            $this->path->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
-            /* Current */
-            $this->path->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
-            /* Override Zo2 html directory */
-            $this->path->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
+                /**
+                 * Zo2 template
+                 */
+                $templateName = $this->template->template;
+                $this->path->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
+                /* Current */
+                $this->path->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
+                /* Override Zo2 html directory */
+                $this->path->registerNamespace('html', JPATH_ROOT . '/templates/' . $templateName . '/html');
 
-            /**
-             * Init Zo2 objects
-             */
-            $this->assets = Zo2Assets::getInstance();
-            $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
-            $this->layout = new Zo2Layout($this->profile->layout);
+                /**
+                 * Init Zo2 objects
+                 */
+                $this->assets = Zo2Assets::getInstance();
+                $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
+                $this->layout = new Zo2Layout($this->profile->layout);
 
-            $this->_loadAssets();
+                $this->_loadAssets();
+                define('ZO2_LOADED', 1);
+            }
         }
 
         /**
@@ -144,9 +147,12 @@ if (!class_exists('Zo2Framework')) {
                 if (Zo2Factory::isSite()) {
                     /* Load core assets */
                     $this->assets->load($assets->frontend);
-                    /* Disable responsive */
+                    /**
+                     * Disable responsive
+                     * @link http://getbootstrap.com/getting-started/#disable-responsive
+                     */
                     if ($this->get('responsive_layout') == 0)
-                        $this->assets->addStyleSheet('zo2/css/non-responsive.css');
+                        $this->assets->addStyleSheet('vendor/bootstrap/addons/non-responsive.css');
                     /* Custom files */
                     $this->assets->addStyleSheet('zo2/css/custom.css');
                     $this->assets->addScript('zo2/js/custom.js');
@@ -224,31 +230,20 @@ if (!class_exists('Zo2Framework')) {
          */
         protected function _buildStandardFontStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
-            $style = '';
-            if (!empty($data['family']))
-                $style .= 'font-family:' . $data['family'] . ';';
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b': $style .= 'font-weight:bold;';
-                        break;
-                    case 'i': $style .= 'font-style:italic;';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        break;
-                    default:
-                        break;
-                }
-            }
-
+            $family = $data->get('family');
+            $style = array();
+            /* Font family */
+            if (!empty($family->standard))
+                $style [] = 'font-family:' . $family->standard;
+            /* Font size */
+            if ($data->get('size') > 0)
+                $style [] = 'font-size:' . $data->get('size') . 'px';
+            /* Font line height */
+            if ($data->get('font_line_height') > 0)
+                $style [] = 'line-height:' . $data->get('font_line_height') . 'px';
+            $style = implode(';', $style);
             if (!empty($style)) {
-                $style = $selector . '{' . $style . '}' . "\n";
-
+                $style = $selector . '{' . $style . '}';
                 $assets->addStyleSheetDeclaration($style);
             }
         }
@@ -259,42 +254,23 @@ if (!class_exists('Zo2Framework')) {
          */
         protected function _buildGoogleFontsStyle($data, $selector) {
             $assets = Zo2Assets::getInstance();
-            $api = 'http://fonts.googleapis.com/css?family=';
-            $url = '';
-            $style = '';
-            if (!empty($data['family'])) {
-                $style .= 'font-family:' . $data['family'] . ';';
-                $url = $api . urlencode($data['family']);
+            $family = $data->get('family');
+            $api[] = 'http://fonts.googleapis.com/css?family=';
+            $style = array();
+            if (!empty($family->googlefonts)) {
+                $style [] = 'font-family:' . $family->googlefonts;
+                $api [] = urlencode($family->googlefonts);
             }
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b':
-                        $style .= 'font-weight:bold;';
-                        $url .= ':700';
-                        break;
-                    case 'i':
-                        $style .= 'font-style:italic;';
-                        $url .= ':400italic';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        $url .= ':700italic';
-                        break;
-                    default:
-                        break;
-                }
-            }
-
+            if ($data->get('size') > 0)
+                $style [] = 'font-size:' . $data->get('size') . 'px';
+            /* Font line height */
+            if ($data->get('font_line_height') > 0)
+                $style [] = 'line-height:' . $data->get('font_line_height') . 'px';
+            $style = implode(';', $style);
             if (!empty($style)) {
                 $doc = JFactory::getDocument();
-                $doc->addStyleSheet($url);
-                //$this->addStyleSheet($url);
-                $style = $selector . '{' . $style . '}' . "\n";
+                $doc->addStyleSheet(implode('', $api));
+                $style = $selector . '{' . $style . '}';
                 $assets->addStyleSheetDeclaration($style);
             }
         }
@@ -308,37 +284,23 @@ if (!class_exists('Zo2Framework')) {
         protected function _buildFontDeckStyle($data, $selector) {
             $fontdeckCode = $this->get('fontdeck_code');
             $assets = Zo2Assets::getInstance();
-
+            $family = $data->get('family');
             if (!empty($fontdeckCode)) {
                 $assets->addScriptDeclaration($fontdeckCode);
             }
 
-            $style = '';
-            if (!empty($data['family']))
-                $style .= 'font-family:' . $data['family'] . ';';
-            if (!empty($data['size']) && $data['size'] > 0)
-                $style .= 'font-size:' . $data['size'] . 'px;';
-            if (!empty($data['font_line_height']) && $data['font_line_height'] > 0)
-                $style .= 'line-height:' . $data['font_line_height'] . 'px;';
-            if (!empty($data['color']))
-                $style .= 'color:' . $data['color'] . ';';
-            if (!empty($data['style'])) {
-                switch ($data['style']) {
-                    case 'b': $style .= 'font-weight:bold;';
-                        break;
-                    case 'i': $style .= 'font-style:italic;';
-                        break;
-                    case 'bi':
-                    case 'ib':
-                        $style .= 'font-weight:bold;font-style:italic;';
-                        break;
-                    default:
-                        break;
-                }
-            }
-
+            $style = array();
+            if (!empty($family->fontdeck))
+                $style [] = 'font-family:' . $family->fontdeck;
+            /* Font size */
+            if ($data->get('size') > 0)
+                $style [] = 'font-size:' . $data->get('size') . 'px';
+            /* Font line height */
+            if ($data->get('font_line_height') > 0)
+                $style [] = 'line-height:' . $data->get('font_line_height') . 'px';
+            $style = implode(';', $style);
             if (!empty($style)) {
-                $style = $selector . '{' . $style . '}' . "\n";
+                $style = $selector . '{' . $style . '}';
                 $assets->addStyleSheetDeclaration($style);
             }
         }
@@ -350,46 +312,56 @@ if (!class_exists('Zo2Framework')) {
             $style = '';
             $zPath = Zo2Path::getInstance();
             if ($this->profile->theme) {
-                $presetData = get_object_vars($this->profile->theme);
 
-                if (!empty($presetData['background']))
-                    $style .= 'body{background-color:' . $presetData['background'] . '}';
-                if (!empty($presetData['header']))
-                    $style .= '#zo2-header{background-color:' . $presetData['header'] . '}';
-                if (!empty($presetData['header_top']))
-                    $style .= '#zo2-header-top{background-color:' . $presetData['header_top'] . '}';
-                if (!empty($presetData['text']))
-                    $style .= 'body{color:' . $presetData['text'] . '}';
-                if (!empty($presetData['link']))
-                    $style .= 'a{color:' . $presetData['link'] . '}';
-                if (!empty($presetData['link_hover']))
-                    $style .= 'a:hover{color:' . $presetData['link_hover'] . '}';
-                if (!empty($presetData['bottom1']))
-                    $style .= '#zo2-bottom1{background-color:' . $presetData['bottom1'] . '}';
-                if (!empty($presetData['bottom2']))
-                    $style .= '#zo2-bottom2{background-color:' . $presetData['bottom2'] . '}';
-                if (!empty($presetData['footer']))
-                    $style .= '#zo2-footer{background-color:' . $presetData['footer'] . '}';
-                if (!empty($presetData['extra'])) {
-                    $extra = json_decode($presetData['extra']);
+                $themeData = get_object_vars($this->profile->theme);
+                /* Background */
+                if (!empty($themeData['background']))
+                    $style [] = 'body{background-color:' . $themeData['background'] . '}';
+                /* Header */
+                if (!empty($themeData['header']))
+                    $style [] = '#zo2-header{background-color:' . $themeData['header'] . '}';
+                /* Header top */
+                if (!empty($themeData['header_top']))
+                    $style [] = '#zo2-header-top{background-color:' . $themeData['header_top'] . '}';
+                /* Text */
+                if (!empty($themeData['text']))
+                    $style [] = 'body{color:' . $themeData['text'] . '}';
+                /* Link */
+                if (!empty($themeData['link']))
+                    $style [] = 'a{color:' . $themeData['link'] . '}';
+                /* Link hover */
+                if (!empty($themeData['link_hover']))
+                    $style [] = 'a:hover{color:' . $themeData['link_hover'] . '}';
+                /* Bottom1 */
+                if (!empty($themeData['bottom1']))
+                    $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . '}';
+                /* Bottom2 */
+                if (!empty($themeData['bottom2']))
+                    $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . '}';
+                /* Footer */
+                if (!empty($themeData['footer']))
+                    $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . '}';
+                /* Extra */
+                if (!empty($themeData['extra'])) {
+                    $extra = json_decode($themeData['extra']);
                     if (count($extra) > 0) {
                         foreach ($extra as $element => $value) {
                             if (!empty($element))
-                                $style .= $element . '{background-color:' . $value . '}';
+                                $style [] = $element . '{background-color:' . $value . '}';
                         }
                     }
                 }
-
-                if (!empty($presetData['bg_image'])) {
-                    $style .= 'body.boxed {background-image: url("' . JUri::root() . $presetData['bg_image'] . '")}';
-                } elseif (!empty($presetData['bg_pattern'])) {
-                    $style .= 'body.boxed {background-image: url("' . $zPath->toUrl($presetData['bg_pattern']) . '")}';
+                /* Background image */
+                if (!empty($themeData['bg_image'])) {
+                    $style [] = 'body.boxed {background-image: url("' . JUri::root() . $themeData['bg_image'] . '")}';
+                } elseif (!empty($themeData['bg_pattern'])) {
+                    $style [] = 'body.boxed {background-image: url("' . $zPath->toUrl($themeData['bg_pattern']) . '")}';
                 }
-
-                if (!empty($presetData['css']))
-                    $this->assets->addStyleSheet('zo2/css/' . $presetData['css'] . '.css');
+                /* Theme css file */
+                if (!empty($themeData['css']))
+                    $this->assets->addStyleSheet('zo2/css/' . $themeData['css'] . '.css');
             }
-
+            $style = implode(';' . PHP_EOL, $style);
             $this->assets->addStyleSheetDeclaration($style);
 
             /* Prepare Fonts */
@@ -403,26 +375,23 @@ if (!class_exists('Zo2Framework')) {
                 'h5_font' => 'h5',
                 'h6_font' => 'h6'
             );
-
-            foreach ($selectors as $param => $selector) {
-                $value = $this->get($param);
-
+            /* */
+            foreach ($selectors as $key => $selector) {
+                $value = $this->get($key);
                 if (!empty($value)) {
-                    $data = json_decode($value, true);
-                    if (isset($data['type']) && !empty($data['type'])) {
-                        switch ($data['type']) {
-                            case 'standard':
-                                $this->_buildStandardFontStyle($data, $selector);
-                                break;
-                            case 'googlefonts':
-                                $this->_buildGoogleFontsStyle($data, $selector);
-                                break;
-                            case 'fontdeck':
-                                $this->_buildFontDeckStyle($data, $selector);
-                                break;
-                            default:
-                                break;
-                        }
+                    $value = new JObject($value);
+                    switch ($value->get('type')) {
+                        case 'standard':
+                            $this->_buildStandardFontStyle($value, $selector);
+                            break;
+                        case 'googlefonts':
+                            $this->_buildGoogleFontsStyle($value, $selector);
+                            break;
+                        case 'fontdeck':
+                            $this->_buildFontDeckStyle($value, $selector);
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
