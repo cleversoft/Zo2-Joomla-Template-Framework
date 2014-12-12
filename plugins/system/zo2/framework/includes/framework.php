@@ -236,7 +236,7 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($family->standard))
                 $style [] = 'font-family:' . $family->standard;
             /* Font size */
-            if (!empty($data->get('size') > 0))
+            if ($data->get('size') > 0)
                 $style [] = 'font-size:' . $data->get('size') . 'px';
             /* Font line height */
             if ($data->get('font_line_height') > 0)
@@ -293,7 +293,7 @@ if (!class_exists('Zo2Framework')) {
             if (!empty($family->fontdeck))
                 $style [] = 'font-family:' . $family->fontdeck;
             /* Font size */
-            if (!empty($data->get('size') > 0))
+            if ($data->get('size') > 0)
                 $style [] = 'font-size:' . $data->get('size') . 'px';
             /* Font line height */
             if ($data->get('font_line_height') > 0)
