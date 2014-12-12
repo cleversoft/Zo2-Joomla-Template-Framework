@@ -22,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Without logo -->
     <?php if (isset($logo['text']) && $logo['text'] != '') : ?>
         <header id="header-logo-text">
-            <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><h1><?php echo $logo['text']; ?></h1></a>
+            <a class="standard-logo" href="<?php echo JUri::root(); ?>" title="<?php echo $logo['text']; ?>"><h3><?php echo $logo['text']; ?></h3></a>
         </header>
     <?php endif; ?>
 <?php endif; ?>
