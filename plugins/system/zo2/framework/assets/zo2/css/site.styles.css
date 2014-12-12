@@ -1,5 +1,3 @@
-@import "shortcodes";
-@import "socialshare";
 .zo2-megamenu .mega-group-content:before,
 .zo2-megamenu .mega-group-content:after {
   display: table;
@@ -277,6 +275,20 @@
   .zo2-megamenu .sub-hidden-collapse >a:after,
   .zo2-megamenu .always-show .dropdown-submenu >a:after {
     display: none !important;
+  }
+}
+.retina-logo {
+  display: none;
+}
+.standard-logo {
+  display: block;
+}
+@media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
+  .standard-logo {
+    display: none;
+  }
+  .retina-logo {
+    display: block;
   }
 }
 .style-switcher {

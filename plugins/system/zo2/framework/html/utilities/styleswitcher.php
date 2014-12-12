@@ -8,7 +8,7 @@ $backgroundsDir = Zo2Factory::getPath('templates://assets/zo2/images/background-
 $presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
 
 $profile = Zo2Factory::getProfile();
-$theme = $profile->get('theme');
+$theme = new JObject($profile->get('theme'));
 ?>
 <div class="style-switcher" id="style-switcher" style="left: -230px;">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>
@@ -58,7 +58,7 @@ $theme = $profile->get('theme');
 </div>
 <script>
     if (typeof document.createStyleSheet === 'undefined') {
-        document.createStyleSheet = (function() {
+        document.createStyleSheet = (function () {
             function createStyleSheet(href) {
                 if (typeof href !== 'undefined') {
                     var element = document.createElement('link');
@@ -104,9 +104,9 @@ $theme = $profile->get('theme');
         jQuery('body').css({'color': presets[style_number].variables.text});
         jQuery('a').css({'color': presets[style_number].variables.link});
 
-        jQuery("a").mouseenter(function() {
+        jQuery("a").mouseenter(function () {
             jQuery(this).css({'color': presets[style_number].variables.link_hover});
-        }).mouseleave(function() {
+        }).mouseleave(function () {
             jQuery(this).css({'color': presets[style_number].variables.link});
         });
 
@@ -117,7 +117,7 @@ $theme = $profile->get('theme');
         document.createStyleSheet('<?php echo $zPath->toUrl($presetDir); ?>' + style_name + '.css');
     }
 
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
 
         //style switcher
         if (jQuery('body').hasClass('boxed')) {
@@ -127,7 +127,7 @@ $theme = $profile->get('theme');
             jQuery('#fullwidth-layout').addClass('selected');
         }
 
-        jQuery(".style-switcher-icon").click(function() {
+        jQuery(".style-switcher-icon").click(function () {
             if (jQuery('#ss_position').val() == 'hide') {
                 jQuery('#style-switcher').animate({'left': '0px'}, 600);
                 jQuery('#ss_position').val('show');
@@ -137,7 +137,7 @@ $theme = $profile->get('theme');
             }
         });
 
-        jQuery(document).mouseup(function(e) {
+        jQuery(document).mouseup(function (e) {
             var container = jQuery("#style-switcher");
             if (!container.is(e.target) // if the target of the click isn't the container...
                     && container.has(e.target).length === 0) { // ... nor a descendant of the container
@@ -146,7 +146,7 @@ $theme = $profile->get('theme');
             }
         });
 
-        jQuery('.layout-select li').click(function() {
+        jQuery('.layout-select li').click(function () {
             jQuery('.layout-select li').removeClass('selected');
             jQuery(this).addClass('selected');
             var color = jQuery('.color-select li.selected a').attr('data-color');
@@ -161,7 +161,7 @@ $theme = $profile->get('theme');
             }
         });
 
-        jQuery('.color-select li').click(function() {
+        jQuery('.color-select li').click(function () {
 
             jQuery('.color-select li').removeClass('selected');
             jQuery(this).addClass('selected');
@@ -169,7 +169,7 @@ $theme = $profile->get('theme');
             set_presets(jQuery(this).find('a').attr('data-color'), jQuery(this).find('a').attr('data-layout'), presetjson);
         });
 
-        jQuery('.background-select li').click(function() {
+        jQuery('.background-select li').click(function () {
 
             jQuery('.background-select li').removeClass('selected');
             jQuery(this).addClass('selected');

@@ -12,11 +12,12 @@
 defined('_JEXEC') or die('Restricted access');
 $name = $this->data['name'];
 $dataValue = new JObject($this->data['value']);
-$dataValue->def('type', 'standard');
+$dataValue->def('type', 'none');
 $dataValue->def('size', 14);
 $dataValue->def('font_line_height', 30);
 $fontFamily = new JObject($dataValue->get('family'));
 $fontType = $dataValue->get('type');
+$noneFont = $fontFamily->get('none');
 $standardFont = $fontFamily->get('standard');
 $googleFont = $fontFamily->get('googlefont');
 $fontdeckFont = $fontFamily->get('fontdeck');
@@ -51,6 +52,11 @@ $standardFonts = array(
             <div class="controls">
                 <div class="btn-group font-types" data-toggle="buttons-radio">
                     <input type="hidden" class="zo2-font-type" name="jform[params][<?php echo $name; ?>][type]" value="<?php echo $fontType; ?>" />
+                    <button type="button"
+                            data-target="none"
+                            class="btn btn-none-fonts <?php echo ( $fontType == 'none' ) ? 'active btn-success' : '' ?>">
+                        <?php echo JText::_('ZO2_ADMIN_NONE'); ?>
+                    </button>
                     <button type="button" 
                             data-target="standard" 
                             class="btn btn-standard-fonts <?php echo ( $fontType == 'standard' ) ? 'active btn-success' : '' ?>">
