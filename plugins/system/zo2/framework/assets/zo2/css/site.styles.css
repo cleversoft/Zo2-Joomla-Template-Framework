@@ -277,17 +277,17 @@
     display: none !important;
   }
 }
-.retina-logo {
-  display: none;
-}
-.standard-logo {
+header#standard-logo {
   display: block;
 }
+header#retina-logo {
+  display: none;
+}
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
-  .standard-logo {
+  #standard-logo {
     display: none;
   }
-  .retina-logo {
+  #retina-logo {
     display: block;
   }
 }
@@ -300,13 +300,18 @@
   font-size: 14px;
   font-weight: bold;
   height: auto;
-  left: -230px;
   line-height: 30px;
   margin-bottom: 0;
   position: fixed;
   top: 80px;
   width: 230px;
   z-index: 9999;
+}
+.style-switcher.switcher-left {
+  left: -230px;
+}
+.style-switcher.switcher-right {
+  right: -230px;
 }
 .style-switcher .switch-container {
   background-color: #fff;
@@ -404,4 +409,12 @@
   text-decoration: none;
   display: block;
   cursor: pointer;
+}
+.style-switcher.switcher-right h4 {
+  float: right;
+  text-align: right;
+  margin-right: 0;
+}
+.style-switcher.switcher-right h4 .style-switcher-icon {
+  float: left;
 }
