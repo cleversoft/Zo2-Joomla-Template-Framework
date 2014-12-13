@@ -1407,6 +1407,11 @@ textarea {
   min-width: 500px;
   width: 50%;
 }
+.btn-group > .btn:first-child,
+.btn-group .btn-none-fonts {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
 .zo2-overlay {
   background-color: rgba(0,0,0,0.6);
   height: 100%;

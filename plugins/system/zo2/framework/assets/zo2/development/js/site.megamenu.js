@@ -94,13 +94,6 @@
             $body.addClass('overflow-hidden');
             $wrapper.addClass('offcanvas-push');
 
-            var $overlay = $('<div />').addClass('offcanvas-overlay').appendTo('body');
-            $overlay.css({
-                top:0,
-                right:0,
-                bottom:0
-            }).fadeIn();
-
             $overlay.click(function() {
                 $body.removeClass('overflow-hidden');
                 $wrapper.removeClass('offcanvas-push');

@@ -10,7 +10,7 @@ $presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
 $profile = Zo2Factory::getProfile();
 $theme = new JObject($profile->get('theme'));
 ?>
-<div class="style-switcher" id="style-switcher" style="left: -230px;">
+<div class="style-switcher switcher-left" id="style-switcher">
     <h4>Style Switcher<span class="style-switcher-icon glyphicon glyphicon-cog"></span></h4>
     <input type="hidden" id="ss_position" value="hide" >
     <div class="switch-container">
@@ -127,23 +127,29 @@ $theme = new JObject($profile->get('theme'));
             jQuery('#fullwidth-layout').addClass('selected');
         }
 
+        if(jQuery('body').hasClass('rtl')){
+            jQuery('body').find('.style-switcher').removeClass('switcher-left').addClass('switcher-right');
+        }
+
         jQuery(".style-switcher-icon").click(function () {
-            if (jQuery('#ss_position').val() == 'hide') {
-                jQuery('#style-switcher').animate({'left': '0px'}, 600);
-                jQuery('#ss_position').val('show');
+            if(jQuery('.style-switcher').hasClass('switcher-right')){
+                if (jQuery('#ss_position').val() == 'hide') {
+                    jQuery('#style-switcher').animate({'right': '0px'}, 600);
+                    jQuery('#ss_position').val('show');
+                } else {
+                    jQuery('#style-switcher').animate({'right': '-230px'}, 600);
+                    jQuery('#ss_position').val('hide');
+                }
             } else {
-                jQuery('#style-switcher').animate({'left': '-230px'}, 600);
-                jQuery('#ss_position').val('hide');
+                if (jQuery('#ss_position').val() == 'hide') {
+                    jQuery('#style-switcher').animate({'left': '0px'}, 600);
+                    jQuery('#ss_position').val('show');
+                } else {
+                    jQuery('#style-switcher').animate({'left': '-230px'}, 600);
+                    jQuery('#ss_position').val('hide');
+                }
             }
-        });
 
-        jQuery(document).mouseup(function (e) {
-            var container = jQuery("#style-switcher");
-            if (!container.is(e.target) // if the target of the click isn't the container...
-                    && container.has(e.target).length === 0) { // ... nor a descendant of the container
-
-                container.animate({'left': '-230px'}, 600);
-            }
         });
 
         jQuery('.layout-select li').click(function () {
