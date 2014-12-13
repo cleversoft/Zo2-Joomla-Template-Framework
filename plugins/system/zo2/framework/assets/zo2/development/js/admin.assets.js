@@ -24,9 +24,8 @@
          * @returns {undefined}
          */
         start: function () {
-            var form = this;
             $.each(this.ajaxs, function (ctrl, elements) {
-                form.getElement(ctrl).trigger('change');
+                $('[name=' +ctrl + ']').trigger('change');
             });
         },
         /**
@@ -41,18 +40,17 @@
                 url: _self.url
             }, info);
 
-            if (!_self[name]) {
-                _self[name] = {};
+            if (!this.ajaxs[name]) {
+                this.ajaxs[name] = {};
                 var inst = this;
-                _self[name].indicator = this.getElement(name).on('change',function (e) {
+                this.ajaxs[name].indicator = this.getElement(name).on('change',function (e) {
                     inst.callAjax(this);
                 }).after('' +
                         '<div class="progress progress-striped zo2-progress active">' +
                         '<div class="bar" style="width: 100%"></div>' +
                         '</div>').next().hide();
             }
-            _self[name].info = info;
-            this.ajaxs = _self[name];
+            this.ajaxs[name].info = info;
         },
         /**
          * Call Ajax
@@ -117,6 +115,10 @@
     
     /* Init function */
     $(w).on('load', function () {
-        setTimeout($.proxy(w.Assets.start, w.Assets), 120);
+        setTimeout(function(){
+            $.proxy(w.Assets.start, w.Assets);
+            $('#jform_params_menu_type').trigger('change');
+        }, 120);
     });
+
 })(window, jQuery);
