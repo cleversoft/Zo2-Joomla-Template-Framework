@@ -19,7 +19,7 @@ $fontFamily = new JObject($dataValue->get('family'));
 $fontType = $dataValue->get('type');
 $noneFont = $fontFamily->get('none');
 $standardFont = $fontFamily->get('standard');
-$googleFont = $fontFamily->get('googlefont');
+$googleFont = $fontFamily->get('googlefonts');
 $fontdeckFont = $fontFamily->get('fontdeck');
 
 /**
@@ -55,7 +55,7 @@ $standardFonts = array(
                     <button type="button"
                             data-target="none"
                             class="btn btn-none-fonts <?php echo ( $fontType == 'none' ) ? 'active btn-default' : '' ?>">
-                        <?php echo JText::_('ZO2_ADMIN_NONE'); ?>
+                                <?php echo JText::_('ZO2_ADMIN_NONE'); ?>
                     </button>
                     <button type="button" 
                             data-target="standard" 
