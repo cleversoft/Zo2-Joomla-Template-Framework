@@ -1,15 +1,14 @@
 <!-- Tab Panel General -->
 <div class="tab-pane active" id="zo2-general">
     <div class="tab-content">
-        <!-- Global -->
-        <!-- Description -->
-        <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_GENERAL'); ?></h2>
+        <!-- Global -->        
+        <h2><?php echo JText::_('ZO2_ADMIN_HEADER_GENERAL'); ?></h2>     
         <div class="zo2-divider"></div>
-
+        <!-- Description -->
         <?php
         echo Zo2Html::field(
                 'description', null, array(
-            'text' => JText::_('ZO2_ADMIN_DESCRIPTION_GENERAL'),
+            'text' => JText::_('ZO2_ADMIN_GENERAL_DESC'),
             'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/general">Document</a>'
         ));
         ?>
@@ -18,30 +17,35 @@
         <?php
         echo Zo2Html::field(
                 'text', array(
-            'label' => JText::_('ZO2_ADMIN_SITENAME'),
-            'description' => JText::_('ZO2_ADMIN_SITENAME_DESC')
+            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_SITENAME'),
+            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_SITENAME')
                 ), array(
             'name' => 'jform[params][site_name]',
-            'value' => Zo2Factory::get('site_name')
+            'value' => Zo2Factory::get('site_name'),
+            'placeholder' => JFactory::getConfig()->get('sitename')
         ));
         ?>
         <!-- Site Slogan -->
         <?php
         echo Zo2Html::field(
                 'text', array(
-            'label' => JText::_('ZO2_ADMIN_SLOGAN'),
-            'description' => JText::_('ZO2_ADMIN_SLOGAN_DESC')
+            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_SLOGAN'),
+            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_SLOGAN')
                 ), array(
             'name' => 'jform[params][site_slogan]',
-            'value' => Zo2Factory::get('site_slogan')
+            'value' => Zo2Factory::get('site_slogan'),
+            'placeholder' => 'Zo2 Framework'
         ));
         ?>
-        <!-- Copyright -->
+        <!-- Copyright -->        
         <?php
+        /**
+         * @todo Use JEditor
+         */
         echo Zo2Html::field(
                 'textarea', array(
-            'label' => JText::_('ZO2_ADMIN_COPYRIGHT'),
-            'description' => JText::_('ZO2_ADMIN_COPYRIGHT_DESC')
+            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_COPYRIGHT'),
+            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_COPYRIGHT')
                 ), array(
             'name' => 'jform[params][footer_copyright]',
             'rows' => 10,
@@ -53,8 +57,8 @@
         <?php
         echo Zo2Html::field(
                 'image', array(
-            'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE'),
-            'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_IMAGE_DESC'),
+            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_STANDARD_LOGO'),
+            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_STANDARD_LOGO'),
             'class_wrap' => 'logo-image',
             'class' => 'logo-path'
                 ), array(
@@ -67,8 +71,8 @@
         <?php
         echo Zo2Html::field(
                 'image', array(
-            'label' => JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_IMAGE'),
-            'description' => JText::_('ZO2_ADMIN_HEADER_LOGO_RETINA_IMAGE_DESC'),
+            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_RETINA_LOGO'),
+            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_RETINA_LOGO'),
             'class_wrap' => 'logo-retina-image',
             'class' => 'logo-path'
                 ), array(
@@ -82,8 +86,8 @@
         <?php
         echo Zo2Html::field(
                 'radio', array(
-            'label' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP'),
-            'description' => JText::_('ZO2_ADMIN_SHOW_GO_TO_TOP_DESC')
+            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_ENABLE_GOTOTOP'),
+            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_ENABLE_GOTOTOP')
                 ), array(
             'name' => 'jform[params][footer_gototop]',
             'value' => Zo2Factory::get('footer_gototop')
@@ -93,8 +97,8 @@
         <?php
         echo Zo2Html::field(
                 'radio', array(
-            'label' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO'),
-            'description' => JText::_('ZO2_ADMIN_SHOW_FOOTER_LOGO_DESC')
+            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_ENABLE_FOOTER_LOGO'),
+            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_ENABLE_FOOTER_LOGO')
                 ), array(
             'name' => 'jform[params][footer_logo]',
             'value' => Zo2Factory::get('footer_logo')

@@ -20,31 +20,31 @@ defined('_JEXEC') or die('Restricted access');
     <!-- General: Default active tab -->
     <li class="active">
         <a href="#zo2-general" role="tab" data-toggle="tab">
-            <i class="fa fa-cog fa-lg"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_GENERAL'); ?>
+            <i class="fa fa-cog fa-lg"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_GENERAL'); ?>
         </a>
     </li>
     <!-- Fonts -->
     <li class="">
         <a href="#zo2-fonts" role="tab" data-toggle="tab">
-            <i class="fa fa-font"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_FONTS'); ?>
+            <i class="fa fa-font"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_FONTS'); ?>
         </a>
     </li>
     <!-- Layout -->
     <li class="">
         <a href="#zo2-layout" role="tab" data-toggle="tab">
-            <i class="fa fa-align-justify"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_LAYOUT'); ?>
+            <i class="fa fa-align-justify"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_LAYOUT'); ?>
         </a>
     </li>
     <!-- Layout -->
     <li class="">
         <a href="#zo2-themecolor" role="tab" data-toggle="tab">
-            <i class="fa fa-sitemap"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_THEMECOLOR'); ?>
+            <i class="fa fa-sitemap"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_THEMECOLOR'); ?>
         </a>
     </li>
     <!-- Menu -->
     <li class="">
         <a href="#zo2-menu" role="tab" data-toggle="tab">
-            <i class="fa fa-indent"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?>
+            <i class="fa fa-indent"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_MENU'); ?>
         </a>
     </li>
     <!-- Profile Assignment -->
@@ -56,10 +56,10 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Advanced -->
     <li class="">
         <a href="#zo2-advanced" role="tab" data-toggle="tab">
-            <i class="fa fa-wrench"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_ADVANCED'); ?>
+            <i class="fa fa-wrench"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_ADVANCED'); ?>
         </a>
     </li>  
     <div class="logo-framework">
-        <img src="<?php echo ZO2URL_ASSETS . '/zo2/images/logo-framework.png'; ?>" alt="Zo2 Hallo">
+        <img src="<?php echo ZO2URL_ASSETS . '/zo2/images/logo-framework.png'; ?>" alt="Zo2 Framework">
     </div>
 </ul>

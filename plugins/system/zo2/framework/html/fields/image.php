@@ -77,7 +77,7 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
             </div>
             <input type="text" name="<?php echo $this->data['name']; ?>" id="<?php echo $elementId; ?>" value="<?php echo $this->data['value']; ?>" readonly="readonly" class="input-small">
             <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=<?php echo $elementId; ?>&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
-                <?php echo JText::_('ZO2_TEMPLATE_THEME_SELECT'); ?>
+                <?php echo JText::_('ZO2_SELECT'); ?>
             </a>
             <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', '<?php echo $elementId; ?>');
                     return false;" data-original-title="Clear">

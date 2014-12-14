@@ -17,20 +17,18 @@ $currentProfile = Zo2Factory::getProfile();
 ?>
 <div class="row-fluid">
     <div class="span12">
-
         <!-- Zo2 Messsage -->
         <div id="zo2-messages" class="zo2-messages wrapper">           
         </div>
-
         <!-- Overlay -->
         <div id="zo2-overlay" class="zo2-overlay hide">
             <span class="zo2-overlay-loadding"></span>
         </div>
-
         <!-- Navbar -->
         <div class="navbar">
-            <div class="navbar-inner">   
+            <div class="navbar-inner">                 
                 <div class="pull-left">
+                    <!-- Profiles -->
                     <div class="zo2-profiles">                        
                         <div class="navbar-form pull-left">                            
                             <?php
@@ -43,27 +41,35 @@ $currentProfile = Zo2Factory::getProfile();
                             ?>                           
                         </div>
                         <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalSaveAs();
-                                return false;">Save as copy</button>
-                                <?php if ($currentProfile->authorise('rename')) : ?>
+                                return false;">                                   
+                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_SAVE_AS'); ?>
+                        </button>
+                        <?php if ($currentProfile->authorise('rename')) : ?>
                             <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
-                                        return false;">Rename</button>
-                                <?php endif; ?>
-                                <?php if ($currentProfile->authorise('delete')) : ?>
+                                    return false;">
+                                        <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_RENAME'); ?>
+                            </button>
+                        <?php endif; ?>
+                        <?php if ($currentProfile->authorise('delete')) : ?>
                             <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
-                                        return false;">Delete</button>
-                                <?php endif; ?>
+                                    return false;">
+                                        <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DELETE'); ?>
+                            </button>
+                        <?php endif; ?>
                     </div>
-
                 </div>
                 <div class="pull-right">
                     <button type="button" class="btn btn-default" onclick="zo2.admin.clearCache();
-                            return false;"><?php echo JText::_('ZO2_NAVBAR_CLEAR_CACHE'); ?></button>
+                            return false;">
+                                <?php echo JText::_('ZO2_ADMIN_BUTTON_CLEAR_CACHE'); ?>
+                    </button>
                     <button type="button" class="btn btn-primary" onclick="zo2.admin.buildAssets();
-                            return false;"><?php echo JText::_('ZO2_NAVBAR_COMPILE'); ?></button>
+                            return false;">
+                            <?php echo JText::_('ZO2_ADMIN_BUTTON_COMPILE'); ?>
+                    </button>
                 </div>
             </div>
         </div>
         <br />
     </div>   
 </div>
-

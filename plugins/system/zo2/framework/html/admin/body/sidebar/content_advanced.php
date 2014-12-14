@@ -179,8 +179,8 @@
     <?php
     echo Zo2Html::field(
             'radio', array(
-        'label' => JText::_('ZO2_ADMIN_LABEL_DEVELOPMENT_MODE'),
-        'description' => JText::_('ZO2_ADMIN_DESC_DEVELOPMENT_MODE')
+        'label' => JText::_('ZO2_ADMIN_ADVANCED_LABEL_DEVELOPMENT_MODE'),
+        'description' => JText::_('ZO2_ADMIN_ADVANCED_DESC_DEVELOPMENT_MODE')
             ), array(
         'name' => 'jform[params][development_mode]',
         'value' => Zo2Factory::get('development_mode')

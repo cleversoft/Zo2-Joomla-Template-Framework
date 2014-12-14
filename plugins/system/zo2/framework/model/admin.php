@@ -42,12 +42,12 @@ if (!class_exists('Zo2ModelAdmin')) {
             if ($this->_isAuthorized()) {
                 if (JFolder::exists(ZO2PATH_CACHE)) {
                     if (JFolder::delete(ZO2PATH_CACHE)) {
-                        $this->_ajax->addMessage(JText::_('ZO2_ADMIN_CLEAR_CACHE_SUCCESS'), 'success');
+                        $this->_ajax->addMessage(JText::_('ZO2_ADMIN_MESSAGE_CLEAR_CACHE_SUCCESS'), 'success');
                     } else {
-                        $this->_ajax->addMessage(JText::_('ZO2_ADMIN_CLEAR_CACHE_FAILED'), 'error');
+                        $this->_ajax->addMessage(JText::_('ZO2_ADMIN_MESSAGE_CLEAR_CACHE_FAILED'), 'error');
                     }
                 } else {
-                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_NO_CACHED'), 'info');
+                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_MESSAGE_NO_CACHED'), 'info');
                 }
             }
             $this->_ajax->response();
@@ -60,9 +60,9 @@ if (!class_exists('Zo2ModelAdmin')) {
             if ($this->_isAuthorized()) {
                 $assets = Zo2Assets::getInstance();
                 if ($assets->buildAssets()) {
-                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_BUILD_ASSETS_SUCCESS'), 'success');
+                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_MESSAGE_BUILD_ASSETS_SUCCESS'), 'success');
                 } else {
-                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_BUILD_ASSETS_FAILED'), 'error');
+                    $this->_ajax->addMessage(JText::_('ZO2_ADMIN_MESSAGE_BUILD_ASSETS_FAILED'), 'error');
                 }
             }
             $this->_ajax->response();
