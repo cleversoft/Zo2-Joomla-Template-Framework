@@ -4,7 +4,7 @@
     <div class="zo2-divider"></div>
 
     <div class="profiles-pane">
-        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');          ?><!--</h3>-->
+        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');             ?><!--</h3>-->
 
         <?php
         echo Zo2Html::field(
@@ -17,7 +17,7 @@
 
         <div id="theme">
             <div id="zo2_themes_container" class="profiles-pane-inner">
-                <input type="hidden" value="" name="jform[params][theme]" id="jform_params_theme">
+
                 <?php
                 $presetPath = Zo2Factory::getPath('templates://assets/presets.json');
                 $presets = array();
@@ -57,8 +57,9 @@
                     $preset_data['boxed'] = 1;
                 if (!isset($preset_data['bg_image']))
                     $preset_data['bg_image'] = '';
+                $themeJson = htmlspecialchars(json_encode($profile->get('theme')), ENT_QUOTES, 'UTF-8');
                 ?>
-
+                <input type="hidden" name="jform[params][theme]" id="jform_params_theme" value='<?php echo $themeJson; ?>'>
                 <div class="zo2_themes_row clearfix">
                     <div class="zo2_themes_form">
                         <ul id="zo2_themes">
