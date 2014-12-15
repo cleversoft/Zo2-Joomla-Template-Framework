@@ -25,7 +25,6 @@ if (!class_exists('Zo2HtmlCopyright')) {
     class Zo2HtmlCopyright {
 
         public function render() {
-            echo (int)Zo2Factory::get('footer_logo');
             $html = new Zo2Html();
             $html->set('showLogo', Zo2Factory::get('footer_logo'));
             $html->set('logoUrl', JUri::root(true) . '/plugins/system/zo2/assets/zo2/images/zo2logo.png');
