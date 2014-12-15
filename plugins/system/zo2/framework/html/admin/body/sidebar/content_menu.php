@@ -1,3 +1,6 @@
+<?php
+$menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
+?>
 <!-- Mega Menu Tab Pane -->
 <div class="tab-pane" id="zo2-menu">
     <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?></h2>
@@ -12,23 +15,26 @@
     ?>
 
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');           ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                    ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
             <div class="control-group">
                 <div class="control-label">
-                    <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_HOVER_TYPE'); ?></label>
-                    <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_HOVER_TYPE_DESC'); ?></div>
+                    <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_LABEL_MEGA_MENU_HOVER_TYPE'); ?></label>
+                    <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_DESC_MEGA_MENU_HOVER_TYPE_DESC'); ?></div>
                 </div>
                 <div class="controls">
                     <select name="jform[params][menu_hover_type]" id="jform_params_menu_hover_type">
-                        <option value="hover" selected="selected"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
-                        <option value="click"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
+                        <option value="hover" 
+                                <?php echo ($menuHoverType == 'hover') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
+                        <option value="click"
+                                <?php echo ($menuHoverType == 'click') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
                     </select>
                 </div>
-            </div>
-
+            </div>           
             <!-- Animation -->
             <div class="control-group">
                 <div class="control-label">
