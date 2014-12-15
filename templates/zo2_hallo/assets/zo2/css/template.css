@@ -1503,7 +1503,7 @@ html {
   position: relative;
 }
 .offcanvas {
-  background: none repeat scroll 0 0 #465158;
+  background-color: #1f1f1f;
   position: absolute;
   height: 100%;
   transition: all 0.5s ease 0s;
@@ -1606,36 +1606,34 @@ body.overflow-hidden {
   left: 0;
   top: 0;
   z-index: 1000;
-  width: 250px;
-  -webkit-transform: translateX(-250px);
-  -moz-transform: translateX(-250px);
-  -o-transform: translateX(-250px);
-  transform: translateX(-250px);
+  width: 350px;
+  -webkit-transform: translateX(-350px);
+  -moz-transform: translateX(-350px);
+  -o-transform: translateX(-350px);
+  transform: translateX(-350px);
 }
 .offcanvas .sidebar-nav {
   margin: 0;
   position: absolute;
-  left: 0;
+  left: 50px;
   top: 30px;
   width: 250px;
 }
 .offcanvas .sidebar-nav ul li a {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  color: rgba(255,255,255,0.5);
+  border-bottom: 1px dotted #4b4b4b;
+  color: #939393;
   display: block;
   text-decoration: none;
-  padding: 15px;
+  padding: 18px 0;
   -webkit-transition: color 0.3s ease-in-out 0s;
   -moz-transition: color 0.3s ease-in-out 0s;
   -o-transition: color 0.3s ease-in-out 0s;
   transition: color 0.3s ease-in-out 0s;
 }
 .offcanvas .sidebar-nav ul.nav-sub {
-  background: none repeat scroll 0 0 #525E66;
+    margin-left: 20px;
 }
 .offcanvas .sidebar-nav >ul >li.nav-active > a {
-  background: none repeat scroll 0 0 #7FBE54;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
   color: #fff;
 }
 .offcanvas.active {
@@ -1659,21 +1657,24 @@ body.overflow-hidden {
   transition: transform 0.5s;
 }
 body.overflow-hidden > * {
-  -webkit-transform: translateX(250px);
-  -moz-transform: translateX(250px);
-  -o-transform: translateX(250px);
-  transform: translateX(250px);
+  -webkit-transform: translateX(350px);
+  -moz-transform: translateX(350px);
+  -o-transform: translateX(350px);
+  transform: translateX(350px);
 }
 .nav-parent {
   position: relative;
 }
 .nav-parent > .nav-oc-toggle {
-  position: absolute;
-  right: 5px;
-  top: 4px;
-  border: none !important;
-  font-size: 18px;
-  height: 8px;
+    border: none !important;
+    font-size: 15px;
+    height: 20px;
+    padding: 0 !important;
+    position: absolute;
+    right: 5px;
+    text-align: center;
+    top: 18px;
+    width: 20px;
 }
 .dropdown-menu {
   z-index: 2000;
@@ -1682,7 +1683,7 @@ body.overflow-hidden > * {
   font-family: FontAwesome;
 }
 .nav-parent > .nav-oc-toggle:before {
-  content: "\f0d7";
+  content: "\f107";
 }
 .offcanvas .sidebar-close {
   font-family: FontAweSome;
@@ -1690,6 +1691,10 @@ body.overflow-hidden > * {
   font-size: 14px;
   color: #ccc;
   padding: 5px 15px;
+    visibility: hidden;
+}
+.offcanvas:hover .sidebar-close{
+    visibility: visible;
 }
 .offcanvas .sidebar-close::before {
   content: "\f00d";
@@ -1702,13 +1707,13 @@ body.overflow-hidden > * {
 .rtl .offcanvas {
   right: 0;
   left: inherit;
-  transform: translateX(250px);
+  transform: translateX(350px);
 }
 .rtl .offcanvas.active {
   transform: translateX(0);
 }
 .rtl .wrapper.offcanvas-push {
-  transform: translate3d(-250px,0px,0px);
+  transform: translate3d(-350px,0px,0px);
   transition: transform 0.5s ease 0s;
 }
 h3.moduletitle {

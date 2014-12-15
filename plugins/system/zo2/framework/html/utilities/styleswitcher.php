@@ -16,8 +16,8 @@ $theme = new JObject($profile->get('theme'));
     <div class="switch-container">
         <h5>Layout options</h5>
         <ul class="options layout-select">
-            <li class="boxed-layout" id="boxed-layout"><a class="boxed" href="#"><img src="<?php echo JUri::root() ?>plugins/system/zo2/assets/zo2/images/page-bordered.png" alt="Boxed Layout"></a></li>
-            <li class="fullwidth-layout" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="<?php echo JUri::root() ?>plugins/system/zo2/assets/zo2/images/page-fullwidth.png" alt="Full Width Layout"></a></li>
+            <li class="boxed-layout" id="boxed-layout"><a class="boxed" href="#"><img src="<?php echo JUri::root() ?>plugins/system/zo2/framework/assets/zo2/images/page-bordered.png" alt="Boxed Layout"></a></li>
+            <li class="fullwidth-layout" id="fullwidth-layout"><a class="fullwidth" href="#"><img src="<?php echo JUri::root() ?>plugins/system/zo2/framework/assets/zo2/images/page-fullwidth.png" alt="Full Width Layout"></a></li>
         </ul>
 
         <h5>Primary Color</h5>
