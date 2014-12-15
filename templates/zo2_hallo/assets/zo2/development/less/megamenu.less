@@ -382,7 +382,7 @@
       top: 0;
       z-index: 999;
       &:hover{
-        color: @black;
+        color: @white;
       }
     }
   }
@@ -468,6 +468,9 @@
             text-decoration: none;
             padding: 18px 0;
             .transition(color 0.3s ease-in-out 0s);
+            &:hover{
+              color: @white;
+            }
           }
         }
         &.nav-sub{
@@ -531,9 +534,9 @@
 .offcanvas .sidebar-close {
   font-family: FontAweSome;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 32px;
   color: #ccc;
-  padding: 5px 15px;
+  padding: 20px;
   visibility: hidden;
   &::before {
     content: "\f00d";
