@@ -234,7 +234,7 @@ if (!class_exists('Zo2Framework')) {
             $style = array();
             /* Font family */
             if (!empty($family->standard))
-                $style [] = 'font-family:' . $family->standard;
+                $style [] = 'font-family:"' . $family->standard . '"';
             /* Font size */
             if ($data->get('size') > 0)
                 $style [] = 'font-size:' . $data->get('size') . 'px';
@@ -258,7 +258,7 @@ if (!class_exists('Zo2Framework')) {
             $api[] = 'http://fonts.googleapis.com/css?family=';
             $style = array();
             if (!empty($family->googlefonts)) {
-                $style [] = 'font-family:' . $family->googlefonts;
+                $style [] = 'font-family:"' . $family->googlefonts . '"';
                 $api [] = urlencode($family->googlefonts);
             }
             if ($data->get('size') > 0)
@@ -291,7 +291,7 @@ if (!class_exists('Zo2Framework')) {
 
             $style = array();
             if (!empty($family->fontdeck))
-                $style [] = 'font-family:' . $family->fontdeck;
+                $style [] = 'font-family:"' . $family->fontdeck . '"';
             /* Font size */
             if ($data->get('size') > 0)
                 $style [] = 'font-size:' . $data->get('size') . 'px';
