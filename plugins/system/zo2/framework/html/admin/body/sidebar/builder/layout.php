@@ -40,7 +40,7 @@ $addons = $framework->getRegisteredAddons();
     </div>
 
     <!-- Modal: Row settings -->
-    <div id="rowSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="rowSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="rowSettingsModal" aria-hidden="true">
         <!-- Modal header -->
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -166,7 +166,7 @@ $addons = $framework->getRegisteredAddons();
     </div>
 
     <!-- Model: Column settings -->
-    <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="colSettingsModal" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_COLUMN_SETTINGS'); ?></h3>
