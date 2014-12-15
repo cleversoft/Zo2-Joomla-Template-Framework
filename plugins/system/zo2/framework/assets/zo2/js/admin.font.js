@@ -16,7 +16,7 @@
  * @param {type} $ jQuery pointer
  * @returns {undefined}
  */
-(function(w, z, $) {
+(function (w, z, $) {
     /**
      * Font class
      */
@@ -31,7 +31,7 @@
          * Init function
          * @returns {undefined}
          */
-        _init: function() {
+        _init: function () {
             this.fontChange();
             this.fontSizeSlider();
         },
@@ -39,7 +39,7 @@
          * Event select font size
          * @returns {undefined}
          */
-        fontSizeSlider: function() {
+        fontSizeSlider: function () {
             $('.font_single_slider').jRange({
                 from: 1,
                 to: 100,
@@ -50,31 +50,30 @@
                 showLabels: true
             });
         },
-
         /**
          * Add event when value change
          * @returns {undefined}
          */
-        fontChange: function() {
+        fontChange: function () {
             var _self = this;
 
             //update example text when standard font change
-            $('.ddl-standard-font').change(function() {
+            $('.ddl-standard-font').change(function () {
                 $(this).next().css('font-family', $(this).val());
             });
 
             //show the current font type
-            $('.zo2-font-container').each(function() {
+            $('.zo2-font-container').each(function () {
                 $(this).find('.zo2-font-options').hide();
-                $(this).find('.zo2-font-options-'+jQuery(this).find('.zo2-font-type').val()).show();
+                $(this).find('.zo2-font-options-' + jQuery(this).find('.zo2-font-type').val()).show();
             });
 
             //select font type
-            $('.zo2-font-container .font-types button').click(function() {
+            $('.zo2-font-container .font-types button').click(function () {
                 var $fontype = $(this).closest('.font-types');
                 var $container = $(this).closest('.zo2-font-container');
                 $fontype.find('button').removeClass('btn-success');
-                if($(this).data('target') != 'none'){
+                if ($(this).data('target') != 'none') {
                     $(this).addClass('btn-success');
                 } else {
                     $(this).addClass('btn-default');
@@ -82,11 +81,11 @@
 
                 $fontype.find('.zo2-font-type').val($(this).data('target'));
                 $container.find('.zo2-font-options').hide();
-                $container.find('.zo2-font-options-'+$(this).data('target')).fadeIn(300);
-                if($(this).data('target') != 'none'){
+                $container.find('.zo2-font-options-' + $(this).data('target')).fadeIn(300);
+                if ($(this).data('target') != 'none') {
                     $container.find('.zo2-font-size-option').fadeIn(300);
                     $container.find('.zo2-font-lineheight-option').fadeIn(300);
-                } else if($(this).data('target') == 'none'){
+                } else if ($(this).data('target') == 'none') {
                     $container.find('.zo2-font-size-option').hide();
                     $container.find('.zo2-font-lineheight-option').hide();
                 }
@@ -95,26 +94,29 @@
 
             //google font select
             this.googleFont = $('.txt-googlefont-select').fontselect();
-            this.googleFont.change(function(){
+            this.googleFont.change(function () {
                 var $example = $(this).parent().find('h3');
                 /* replace + signs with spaces for css */
                 var font = $(this).val().replace(/\+/g, ' ');
                 /* split font into family and weight */
                 font = font.split(':');
-                var style = "normal";
-                var weight = font[1];
-                if (font[1].indexOf("italic") >= 0) {
-                    style = "italic";
+                if (font.length >= 2) {
+                    var style = "normal";
+                    var weight = font[1];
+                    if (font[1].indexOf("italic") >= 0) {
+                        style = "italic";
+                    }
+               
+                    /* set family on example */
+                    $example.css('font-family', font[0]);
+                    $example.css('font-weight', weight.replace('italic', ''));
+                    $example.css('font-style', style);
                 }
-                /* set family on example */
-                $example.css('font-family', font[0]);
-                $example.css('font-weight', weight.replace('italic', ''));
-                $example.css('font-style', style);                
             });
             this.googleFont.trigger('change');
         }
     };
-    
+
     /**
      * Append to Zo2 admin
      */
@@ -124,7 +126,7 @@
      * Init plugin
      * Put all of your init code into _init
      */
-    $(w.document).ready(function() {
+    $(w.document).ready(function () {
         z.admin.font._init();
     });
 

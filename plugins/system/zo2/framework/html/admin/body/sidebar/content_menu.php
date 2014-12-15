@@ -10,7 +10,7 @@ $menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
     echo Zo2Html::field(
             'description', null, array(
         'text' => JText::_('ZO2_ADMIN_DESCRIPTION_MENU'),
-        'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/menu">Document</a>'
+        'subtext' => '<a href="http://docs.zootemplate.com/post/mega-menu-setting">Document</a>'
     ));
     ?>
 
