@@ -14,8 +14,8 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <footer>
-    <section class="zo2-copyright"><?php echo $copyright; ?></section>
-    <?php if ($logoUrl !== null) : ?>
+    <section class="zo2-copyright"><?php echo $copyright; ?></section>    
+    <?php if ($showLogo) : ?>
         <a 
             title="<?php echo $title; ?>" 
             class="zo2-copyright-logo" 
@@ -23,11 +23,13 @@ defined('_JEXEC') or die('Restricted access');
             <img src="<?php echo $logoUrl; ?>" />
         </a>
     <?php endif; ?>
-    <a href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>
-    <script>
-        jQuery("#gototop").click(function () {
-            jQuery("body, html").animate({scrollTop: 0});
-            return false;
-        });
-    </script>
+    <?php if ($gototop): ?>
+        <a href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>
+        <script>
+            jQuery("#gototop").click(function () {
+                jQuery("body, html").animate({scrollTop: 0});
+                return false;
+            });
+        </script>
+    <?php endif; ?>
 </footer>
