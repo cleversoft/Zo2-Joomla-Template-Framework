@@ -281,7 +281,9 @@ if (!class_exists('Zo2Megamenu')) {
             $menuConfig = Zo2Factory::getProfile()->getMenuConfig();
             $hover = ' data-hover="' . $menuConfig->get('hover_type') . '"';
             $animation = $menuConfig->get('animation');
-            $duration = $menuConfig->get('duration');
+            $duration = $menuConfig->get('duration', 300);
+            if ((int) $duration <= 0)
+                $duration = 300;
             $class = 'class="zo2-megamenu' . ($animation ? ' animate ' . $animation : '') . '"';
             $data = $animation && $duration ? ' data-duration="' . $duration . '"' : '';
 
