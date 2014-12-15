@@ -113,7 +113,13 @@
                     $example.css('font-style', style);
                 }
             });
+            /* Init font & fontsize option */
             this.googleFont.trigger('change');
+            $('.zo2-font-container .font-types button').each(function(){
+                if($(this).hasClass('active') && $(this).hasClass('btn-success')){
+                    $(this).trigger('click');
+                }
+            });
         }
     };
 
