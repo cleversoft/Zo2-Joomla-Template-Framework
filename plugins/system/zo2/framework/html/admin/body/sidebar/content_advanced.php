@@ -106,10 +106,10 @@
             'label' => JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE'),
             'description' => JText::_('ZO2_ADMIN_GOOGLE_TRACKING_CODE_DESC')
                 ), array(
-            'name' => 'jform[params][footer_copyright]',
+            'name' => 'jform[params][tracking_code]',
             'rows' => 10,
             'cols' => 20,
-            'value' => Zo2Factory::get('footer_copyright')
+            'value' => Zo2Factory::get('tracking_code')
         ));
         ?>
         <span>Paste your Google Analytics (or other) tracking code here.<br /> This will be added before the closing body tag in the template. <br/> This should be something like<br /> &#60;script&#62;<br />....<br />&#60;/script&#62;</span>

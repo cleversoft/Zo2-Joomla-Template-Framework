@@ -22,7 +22,7 @@ if($framework->get('enable_sticky_menu', 1) == 1) {
 }
 
 //Google analytics code
-$ga_code = $framework->get('ga_code', null);
+$ga_code = $framework->get('tracking_code', null);
 if(!empty($ga_code)) {
     echo $ga_code;
 }
