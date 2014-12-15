@@ -1,3 +1,6 @@
+<?php
+$menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
+?>
 <!-- Mega Menu Tab Pane -->
 <div class="tab-pane" id="zo2-menu">
     <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?></h2>
@@ -5,43 +8,33 @@
 
     <?php
     echo Zo2Html::field(
-        'description', null, array(
-            'text' => JText::_('ZO2_ADMIN_DESCRIPTION_MENU'),
-            'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/menu">Document</a>'
-        ));
+            'description', null, array(
+        'text' => JText::_('ZO2_ADMIN_DESCRIPTION_MENU'),
+        'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/menu">Document</a>'
+    ));
     ?>
 
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');          ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                    ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
             <div class="control-group">
                 <div class="control-label">
-                    <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_HOVER_TYPE'); ?></label>
-                    <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_HOVER_TYPE_DESC'); ?></div>
+                    <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_LABEL_MEGA_MENU_HOVER_TYPE'); ?></label>
+                    <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_DESC_MEGA_MENU_HOVER_TYPE_DESC'); ?></div>
                 </div>
                 <div class="controls">
                     <select name="jform[params][menu_hover_type]" id="jform_params_menu_hover_type">
-                        <option value="hover" selected="selected"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
-                        <option value="click"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
+                        <option value="hover" 
+                                <?php echo ($menuHoverType == 'hover') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
+                        <option value="click"
+                                <?php echo ($menuHoverType == 'click') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
                     </select>
                 </div>
-            </div>
-
-            <!-- Navigation type -->
-            <div class="control-group">
-                <div class="control-label">
-                    <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_NAVIGATION_TYPE'); ?></label>
-                    <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_NAVIGATION_TYPE_DESC'); ?></div>
-                </div>
-                <div class="controls">
-                    <select name="jform[params][menu_nav_type]" id="jform_params_menu_nav_type">
-                        <option value="megamenu" selected="selected"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU'); ?></option>
-                    </select>
-                </div>
-            </div>
-
+            </div>           
             <!-- Animation -->
             <div class="control-group">
                 <div class="control-label">
@@ -62,36 +55,36 @@
             <!-- Duration -->
             <?php
             echo Zo2Html::field(
-                'text', array(
-                    'label' => JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'),
-                    'description' => JText::_('ZO2_ADMIN_MEGA_MENU_DURATION_DESC')
-                ), array(
-                    'name' => 'jform[params][menu_duration]',
-                    'value' => Zo2Factory::get('menu_duration')
-                ));
+                    'text', array(
+                'label' => JText::_('ZO2_ADMIN_MEGA_MENU_DURATION'),
+                'description' => JText::_('ZO2_ADMIN_MEGA_MENU_DURATION_DESC')
+                    ), array(
+                'name' => 'jform[params][menu_duration]',
+                'value' => Zo2Factory::get('menu_duration')
+            ));
             ?>
 
             <!-- Show submenu -->
             <?php
             echo Zo2Html::field(
-                'radio', array(
-                    'label' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU'),
-                    'description' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU_DESC')
-                ), array(
-                    'name' => 'jform[params][menu_show_submenu]',
-                    'value' => Zo2Factory::get('menu_show_submenu')
-                ));
+                    'radio', array(
+                'label' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU'),
+                'description' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU_DESC')
+                    ), array(
+                'name' => 'jform[params][menu_show_submenu]',
+                'value' => Zo2Factory::get('menu_show_submenu')
+            ));
             ?>
 
             <!-- Menu type -->
 
             <?php
             echo Zo2Html::field(
-                'megamenu', array(), array(
-                    'id' => 'jform_params_menu_type',
-                    'name' => 'jform[params][menu_type]',
-                    'value' => Zo2Factory::get('menu_type')
-                ));
+                    'megamenu', array(), array(
+                'id' => 'jform_params_menu_type',
+                'name' => 'jform[params][menu_type]',
+                'value' => Zo2Factory::get('menu_type')
+            ));
             ?>
 
         </div>

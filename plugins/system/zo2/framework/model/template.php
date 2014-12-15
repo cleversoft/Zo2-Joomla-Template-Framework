@@ -135,11 +135,11 @@ if (!class_exists('Zo2ModelTemplate')) {
                         $profile->layout = json_decode($params->get('layout'));
                         $profile->theme = json_decode($params->get('theme'));
 
-                        $menu['hover_type'] = $params->get('hover_type');
-                        $menu['nav_type'] = $params->get('nav_type');
-                        $menu['animation'] = $params->get('animation');
-                        $menu['duration'] = $params->get('duration');
-                        $menu['show_submenu'] = $params->get('show_submenu');
+                        $menu['hover_type'] = $params->get('menu_hover_type');
+                        $menu['nav_type'] = $params->get('menu_nav_type');
+                        $menu['animation'] = $params->get('menu_animation');
+                        $menu['duration'] = $params->get('menu_duration');
+                        $menu['show_submenu'] = $params->get('menu_show_submenu');
                         $menu['menu_type'] = $params->get('menu_type');
                         $menu['mega_config'] = $params->get('menu_config');
 
