@@ -1,10 +1,9 @@
 {
     "frontend": {
         "css": [
-            "vendor\/bootstrap\/3.3.0\/css\/bootstrap.min.css",
+            "vendor\/bootstrap\/3.3.1\/css\/bootstrap.min.css",
             "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
-            "zo2\/css\/site.styles.css",
-            "zo2\/css\/site.shortcodes.css",
+            "zo2\/css\/site.styles.css",            
             "zo2\/css\/template.css"
         ],
         "js": [
