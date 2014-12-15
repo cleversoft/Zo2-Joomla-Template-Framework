@@ -258,10 +258,10 @@ if (!class_exists('Zo2Framework')) {
             $api[] = 'http://fonts.googleapis.com/css?family=';
             $style = array();
             if (!empty($family->googlefonts)) {
-                if (strpos($family->googlefonts, ':') !== false ) {
-                    $googlefonts = explode(':',$family->googlefonts);
+                if (strpos($family->googlefonts, ':') !== false) {
+                    $googlefonts = explode(':', $family->googlefonts);
                     $googlefonts = $googlefonts[0];
-                }else {
+                } else {
                     $googlefonts = $family->googlefonts;
                 }
                 $family->googlefonts = $googlefonts;
@@ -317,59 +317,13 @@ if (!class_exists('Zo2Framework')) {
          */
         protected function _loadTheme() {
             $style = array();
-            $zPath = Zo2Path::getInstance();
             if ($this->profile->theme) {
-
-                $themeData = get_object_vars($this->profile->theme);
-                /* Background */
-                if (!empty($themeData['background']))
-                    $style [] = 'body{background-color:' . $themeData['background'] . '}';
-                /* Header */
-                if (!empty($themeData['header']))
-                    $style [] = '#zo2-header{background-color:' . $themeData['header'] . '}';
-                /* Header top */
-                if (!empty($themeData['header_top']))
-                    $style [] = '#zo2-header-top{background-color:' . $themeData['header_top'] . '}';
-                /* Text */
-                if (!empty($themeData['text']))
-                    $style [] = 'body{color:' . $themeData['text'] . '}';
-                /* Link */
-                if (!empty($themeData['link']))
-                    $style [] = 'a{color:' . $themeData['link'] . '}';
-                /* Link hover */
-                if (!empty($themeData['link_hover']))
-                    $style [] = 'a:hover{color:' . $themeData['link_hover'] . '}';
-                /* Bottom1 */
-                if (!empty($themeData['bottom1']))
-                    $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . '}';
-                /* Bottom2 */
-                if (!empty($themeData['bottom2']))
-                    $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . '}';
-                /* Footer */
-                if (!empty($themeData['footer']))
-                    $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . '}';
-                /* Extra */
-                if (!empty($themeData['extra'])) {
-                    $extra = json_decode($themeData['extra']);
-                    if (count($extra) > 0) {
-                        foreach ($extra as $element => $value) {
-                            if (!empty($element))
-                                $style [] = $element . '{background-color:' . $value . '}';
-                        }
-                    }
+                $style = $this->profile->getThemeStylesheet();
+                $this->assets->addStyleSheetDeclaration($style);
+                if (isset($this->profile->theme->css) && $this->profile->theme->css != '') {
+                    $this->assets->addStyleSheet('zo2/css/' . $this->profile->theme->css . '.css');
                 }
-                /* Background image */
-                if (!empty($themeData['bg_image'])) {
-                    $style [] = 'body.boxed {background-image: url("' . JUri::root() . $themeData['bg_image'] . '")}';
-                } elseif (!empty($themeData['bg_pattern'])) {
-                    $style [] = 'body.boxed {background-image: url("' . $zPath->toUrl($themeData['bg_pattern']) . '")}';
-                }
-                /* Theme css file */
-                if (!empty($themeData['css']))
-                    $this->assets->addStyleSheet('zo2/css/' . $themeData['css'] . '.css');
             }
-            $style = implode(';' . PHP_EOL, $style);
-            $this->assets->addStyleSheetDeclaration($style);
 
             /* Prepare Fonts */
             $selectors = array(

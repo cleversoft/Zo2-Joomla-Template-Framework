@@ -274,6 +274,50 @@ if (!class_exists('Zo2Profile')) {
             return false;
         }
 
+        public function getThemeStylesheet() {
+            $style = array();
+            $themeData = get_object_vars($this->theme);
+            /* Background */
+            if (!empty($themeData['background']))
+                $style [] = 'body{background-color:' . $themeData['background'] . '}';
+            /* Header */
+            if (!empty($themeData['header']))
+                $style [] = '#zo2-header{background-color:' . $themeData['header'] . '}';
+            /* Header top */
+            if (!empty($themeData['header_top']))
+                $style [] = '#zo2-header-top{background-color:' . $themeData['header_top'] . '}';
+            /* Text */
+            if (!empty($themeData['text']))
+                $style [] = 'body{color:' . $themeData['text'] . '}';
+            /* Link */
+            if (!empty($themeData['link']))
+                $style [] = 'a{color:' . $themeData['link'] . '}';
+            /* Link hover */
+            if (!empty($themeData['link_hover']))
+                $style [] = 'a:hover{color:' . $themeData['link_hover'] . '}';
+            /* Bottom1 */
+            if (!empty($themeData['bottom1']))
+                $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . '}';
+            /* Bottom2 */
+            if (!empty($themeData['bottom2']))
+                $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . '}';
+            /* Footer */
+            if (!empty($themeData['footer']))
+                $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . '}';
+
+            /* Extra */
+            if (!empty($themeData['extra'])) {
+                $extra = json_decode($themeData['extra']);
+                if (count($extra) > 0) {
+                    foreach ($extra as $element => $value) {
+                        if (!empty($element))
+                            $style [] = $element . '{background-color:' . $value . '}';
+                    }
+                }
+            }
+            return implode(';' . PHP_EOL, $style);
+        }
+
         public function isDefault() {
             if ($this->get('name') == 'default') {
                 return true;
