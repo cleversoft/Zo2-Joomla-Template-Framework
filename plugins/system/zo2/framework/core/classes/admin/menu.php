@@ -21,7 +21,9 @@ class AdminMenu {
     public static function display() {
         $input = JFactory::getApplication()->input;
         $menutype = $input->get('menutype', 'mainmenu');
-        return Zo2Factory::getFramework()->displayMegaMenu($menutype, true);
+        $ajax = Zo2Ajax::getInstance();
+        $ajax->addHtml(Zo2Factory::getFramework()->displayMegaMenu($menutype, true), '#zo2-admin-mm-container');
+        $ajax->response();
     }
 
     public static function save() {
