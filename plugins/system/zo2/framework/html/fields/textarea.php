@@ -19,10 +19,10 @@ if (isset($this->data['editor'])) {
             'table' => '0',
             'clear_entities' => '0'
         ),
-        'width' => 200,
-        'height' => 200,
-        'col' => 20,
-        'row' => 20,
+        'width' => 100,
+        'height' => 100,
+        'col' => 10,
+        'row' => 10,
         'buttons' => false,
         'id' => null,
         'asset' => null,
@@ -31,13 +31,13 @@ if (isset($this->data['editor'])) {
     $editor = JFactory::getEditor();
     $this->data['editor'] = array_merge_recursive($default, $this->data['editor']);
     $html = $editor->display(
-            $this->data['name'], $this->data['value'], $this->data['editor']['width'], $this->data['editor']['height'], $this->data['row'], $this->data['editor']['col'], $this->data['editor']['buttons'], $this->data['editor']['id'], $this->data['editor']['asset'], $this->data['editor']['author'], $this->data['editor']['params']);
+            $this->data['name'], $this->data['value'], $this->data['editor']['width'], $this->data['editor']['height'], $this->data['editor']['row'], $this->data['editor']['col'], $this->data['editor']['buttons'], $this->data['editor']['id'], $this->data['editor']['asset'], $this->data['editor']['author'], $this->data['editor']['params']);
 }
 ?>
 <div class="control-group">
     <div class="control-label">
         <label class="zo2-label <?php echo (isset($this->label['class'])) ? $this->label['class'] : ''; ?>" for="<?php echo $this->data['name']; ?>">
-                <?php echo $this->label['label']; ?>
+            <?php echo $this->label['label']; ?>
         </label>
         <div class="label-desc"><?php echo $this->label['description']; ?></div>
     </div>
