@@ -258,6 +258,13 @@ if (!class_exists('Zo2Framework')) {
             $api[] = 'http://fonts.googleapis.com/css?family=';
             $style = array();
             if (!empty($family->googlefonts)) {
+                if (strpos($family->googlefonts, ':') !== false ) {
+                    $googlefonts = explode(':',$family->googlefonts);
+                    $googlefonts = $googlefonts[0];
+                }else {
+                    $googlefonts = $family->googlefonts;
+                }
+                $family->googlefonts = $googlefonts;
                 $style [] = 'font-family:"' . $family->googlefonts . '"';
                 $api [] = urlencode($family->googlefonts);
             }
