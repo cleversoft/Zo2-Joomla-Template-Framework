@@ -1615,7 +1615,7 @@ body.overflow-hidden {
 .offcanvas .sidebar-nav {
   margin: 0;
   position: absolute;
-  left: 50px;
+  left: 0;
   top: 30px;
   width: 250px;
 }
