@@ -112,7 +112,7 @@ if (!class_exists('Zo2Megamenu')) {
                     $item->show_group = true;
                 } else {
                     // if this item is a parent then setting up the status is dropdown
-                    if (Zo2Factory::getProfile()->getMenuConfig()->get('show_submenu', 1) && (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit)))) {
+                    if (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit))) {
                         $item->isdropdown = true;
                     }
                 }
@@ -675,10 +675,6 @@ if (!class_exists('Zo2Megamenu')) {
             }
         }
 
-
-
-
-
         public static function getModules() {
 
             $app = JFactory::getApplication();
@@ -689,20 +685,20 @@ if (!class_exists('Zo2Megamenu')) {
             $db = JFactory::getDbo();
 
             $query = $db->getQuery(true)
-                ->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params, mm.menuid')
-                ->from('#__modules AS m')
-                ->join('LEFT', '#__modules_menu AS mm ON mm.moduleid = m.id')
-                ->where('m.published = 1')
-                ->join('LEFT', '#__extensions AS e ON e.element = m.module AND e.client_id = m.client_id')
-                ->where('e.enabled = 1');
+                    ->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params, mm.menuid')
+                    ->from('#__modules AS m')
+                    ->join('LEFT', '#__modules_menu AS mm ON mm.moduleid = m.id')
+                    ->where('m.published = 1')
+                    ->join('LEFT', '#__extensions AS e ON e.element = m.module AND e.client_id = m.client_id')
+                    ->where('e.enabled = 1');
 
             $date = JFactory::getDate();
             $now = $date->toSql();
             $nullDate = $db->getNullDate();
             $query->where('(m.publish_up = ' . $db->quote($nullDate) . ' OR m.publish_up <= ' . $db->quote($now) . ')')
-                ->where('(m.publish_down = ' . $db->quote($nullDate) . ' OR m.publish_down >= ' . $db->quote($now) . ')')
-                ->where('m.access IN (' . $groups . ')')
-                ->where('m.client_id = 0');
+                    ->where('(m.publish_down = ' . $db->quote($nullDate) . ' OR m.publish_down >= ' . $db->quote($now) . ')')
+                    ->where('m.access IN (' . $groups . ')')
+                    ->where('m.client_id = 0');
 
             // Filter by language
             if ($app->isSite() && $app->getLanguageFilter()) {
@@ -720,11 +716,13 @@ if (!class_exists('Zo2Megamenu')) {
         public static function getMenuTypes() {
             $db = JFactory::getDbo();
             $query = $db->getQuery(true)
-                ->select('a.menutype, a.title')
-                ->from('#__menu_types AS a');
+                    ->select('a.menutype, a.title')
+                    ->from('#__menu_types AS a');
             $db->setQuery($query);
 
             return $db->loadObjectList();
         }
+
     }
+
 }

@@ -15,7 +15,7 @@ $menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
     ?>
 
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                    ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                     ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -61,18 +61,6 @@ $menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
                     ), array(
                 'name' => 'jform[params][menu_duration]',
                 'value' => Zo2Factory::get('menu_duration')
-            ));
-            ?>
-
-            <!-- Show submenu -->
-            <?php
-            echo Zo2Html::field(
-                    'radio', array(
-                'label' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU'),
-                'description' => JText::_('ZO2_ADMIN_MEGA_MENU_SHOW_SUBMENU_DESC')
-                    ), array(
-                'name' => 'jform[params][menu_show_submenu]',
-                'value' => Zo2Factory::get('menu_show_submenu')
             ));
             ?>
 
