@@ -74,7 +74,7 @@ if (Zo2Factory::isZo2Template()) {
      * @todo Move to new Zo2 Ajax
      */
     Zo2Factory::execController();
-    $script = '/**
+    JFactory::getDocument()->addScriptDeclaration('/**
  * Zo2 JS framework define
  * @param {object} w Window pointer
  * @param {object} $ jQuery pointer
@@ -88,6 +88,9 @@ if (Zo2Factory::isZo2Template()) {
         var _zo2 = {
             /* Common settings */
             _settings: {
+                token: "' . JFactory::getSession()->getFormToken() . '",
+                url: "' . JUri::getInstance()->toString() . '",
+                frontEndUrl: "' . JUri::getInstance()->root(false) . '"
             },
             /* Internal jQuery */
             jQuery: $
@@ -98,10 +101,7 @@ if (Zo2Factory::isZo2Template()) {
 
     }
 
-})(window, jQuery.noConflict());';
-    $script .= 'zo2._settings.token = "' . JFactory::getSession()->getFormToken() . '";';
-    $script .= 'zo2._settings.url = "' . JUri::getInstance()->toString() . '";';
-    JFactory::getDocument()->addScriptDeclaration($script);
+})(window, jQuery.noConflict());');
 } else {
     
 }
