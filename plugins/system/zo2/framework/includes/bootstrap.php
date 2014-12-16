@@ -74,9 +74,34 @@ if (Zo2Factory::isZo2Template()) {
      * @todo Move to new Zo2 Ajax
      */
     Zo2Factory::execController();
-    $script = 'zo2._settings.token = "' . JFactory::getSession()->getFormToken() . '";';
+    $script = '/**
+ * Zo2 JS framework define
+ * @param {object} w Window pointer
+ * @param {object} $ jQuery pointer
+ * @returns {undefined}
+ */
+(function(w, $) {
+
+    if (typeof w.zo2 === \'undefined\') {
+
+        /* Local zo2 definition */
+        var _zo2 = {
+            /* Common settings */
+            _settings: {
+            },
+            /* Internal jQuery */
+            jQuery: $
+        };
+
+        /* Provide global zo2 object */
+        w.zo2 = _zo2;
+
+    }
+
+})(window, jQuery.noConflict());';
+    $script .= 'zo2._settings.token = "' . JFactory::getSession()->getFormToken() . '";';
     $script .= 'zo2._settings.url = "' . JUri::getInstance()->toString() . '";';
-    Zo2Assets::getInstance()->addScriptDeclaration($script);
+    JFactory::getDocument()->addScriptDeclaration($script);
 } else {
     
 }
