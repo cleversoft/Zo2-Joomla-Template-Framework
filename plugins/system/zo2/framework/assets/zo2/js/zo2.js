@@ -1,28 +1,13 @@
 /**
- * Zo2 JS framework define
- * @param {object} w Window pointer
- * @param {object} $ jQuery pointer
- * @returns {undefined}
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
  */
-(function (w, $) {
-
-    if (typeof w.zo2 === 'undefined') {
-
-        /* Local zo2 definition */
-        var _zo2 = {
-            /* Common settings */
-            _settings: {
-            },
-            /* Internal jQuery */
-            jQuery: $
-        };
-
-        /* Provide global zo2 object */
-        w.zo2 = _zo2;
-
-    }
-
-})(window, jQuery.noConflict());
 
 /**
  * Zo2 animate addon
@@ -172,23 +157,8 @@
          * Raise message
          * @param {object} data
          */
-        raiseMessage: function (data) {
-            /* Fix default settings is override */
-            var tempSettings = $.extend(true, {}, this._settings);
-            /* Merge setting with default setting */
-            data = $.extend(true, tempSettings, data);
-            /* Append or override */
-            if (data.options.append) {
-                z.document.append(this._elements.messages, data.html);
-            } else {
-                z.document.append.replace(this._elements.messages, data.html);
-            }
-            /* Hide message after a moment */
-            if (data.options.delayClose >= 0 && data.childID !== '') {
-                w.setTimeout(function () {
-                    z.document.remove('#' + data.options.childID, true);
-                }, data.options.delayClose);
-            }
+        raiseMessage: function (message) {
+            this.append($(this._elements.messages), message);
         },
         /**
          * Raise text
@@ -294,7 +264,11 @@
 
                         case 'message':
                             $.each(data[key], function (childKey, childValue) {
-                                z.document.raiseMessage(childValue);
+                                if (typeof childValue === 'object') {
+                                    if (childValue.hasOwnProperty("message")) {
+                                        z.document.raiseMessage(childValue.message);
+                                    }
+                                }
                             });
                             break;
 

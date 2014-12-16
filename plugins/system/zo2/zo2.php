@@ -42,7 +42,6 @@ if (!class_exists('plgSystemZo2')) {
                 $jinput = JFactory::getApplication()->input;
                 $framework = Zo2Factory::getFramework();
 
-
                 $assets = Zo2Assets::getInstance();
                 $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
                 $body = str_replace('</head>', $assets->generateAssets('css') . '</head>', $body);
@@ -75,17 +74,6 @@ if (!class_exists('plgSystemZo2')) {
                         $gplus = '<a href="' . $config->get('google_profile_url', '') . '/?rel=' . $rel . '"';
                         $gplus .= ' title="Google Plus Profile for ' . $author_name . '" plugin="Google Plus Authorship">' . $author_name . '</a>';
                         $article->text = $gplus . $article->text;
-                    }
-                    /* Comments System */
-                    if ($config->get('enable_comments', 0) && !$framework->isFrontPage()) {
-                        if (JFactory::getApplication()->input->getCmd('option') != 'com_k2') {
-                            $view = JFactory::getApplication()->input->get('view');
-                            if ($view == 'article') {
-                                Zo2Factory::import('addons.comments.Zo2Comments');
-                                $comment = new Zo2Comments($article);
-                                $article->text = $article->text . $comment->renderHtml();
-                            }
-                        }
                     }
                 }
             }
