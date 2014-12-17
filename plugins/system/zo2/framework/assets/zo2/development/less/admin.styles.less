@@ -343,8 +343,6 @@
             margin: 0;
         }
         .col-control-buttons {
-            -webkit-transition: opacity 300ms;
-            opacity: 0;
             i.icon-move {
                 cursor: move;
             }
@@ -726,8 +724,11 @@
             margin-right: 5px;
         }
     }
-    #layoutbuilder-container .sortable-row .col-container >[class*="col"]:hover >.col-wrap >.col-control-buttons,
-        #layoutbuilder-container .sortable-row .col-container >[class*="col"]:focus >.col-wrap >.col-control-buttons {
+    .col-wrap .col-control-buttons{
+      -webkit-transition: opacity 300ms;
+      opacity: 0;
+    }
+    .col-wrap:hover .col-control-buttons{
         opacity: 1;
     }
     .ui-sortable {
