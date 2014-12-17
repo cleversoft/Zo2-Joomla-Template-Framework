@@ -400,7 +400,10 @@ if (!class_exists('Zo2Megamenu')) {
             $caption = '';
             $linktype = '';
             $icon = '';
-            $caret = '<b class="caret"></b>';
+            $caret = '';
+            if ($menu->isdropdown) {
+                $caret = '<b class="caret"></b>';
+            }
             if ($menu->isdropdown && $menu->level < 2) {
                 $class .= 'dropdown-toggle';
                 $dropdown = ' data-toggle="dropdown" ';
