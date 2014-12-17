@@ -208,15 +208,6 @@ if (!class_exists('Zo2Factory')) {
             return false;
         }
 
-        /**
-         * Execute an action of the controller
-         */
-        public static function execController() {
-            if ($zo2controller = JFactory::getApplication()->input->getCmd('zo2controller')) {
-                Zo2Controller::exec($zo2controller);
-            }
-        }
-
         public static function ajax() {
             /**
              * Ajax catching
