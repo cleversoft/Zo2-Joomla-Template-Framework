@@ -778,7 +778,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             /* Add event listent on menutpe change */
             $('#jform_params_menu_type').on('change', function(e) {
                 /* Send ajax request to update */
-                z.ajax.request({url: z._settings.frontEndUrl, data: {zo2controller: "menu", task: 'display', menutype: $(this).val()}})
+                z.ajax.request({url: z._settings.url, data: {zo2controller: "menu", task: 'display', menutype: $(this).val()}})
                     .done(function(){
                         $('#zo2-admin-mm-container').megamenuAdmin().find(':input').removeAttr('name');
                     });
