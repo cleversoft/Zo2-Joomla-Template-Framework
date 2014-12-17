@@ -41,9 +41,10 @@ if (!class_exists('Zo2Megamenu')) {
         }
 
         function loadMegaMenu() {
+            $model = new Zo2ModelJoomla();
             $lang = JFactory::getLanguage();
             $menu = JFactory::getApplication()->getMenu();
-            $items = Zo2Factory::getFramework()->getMenuItems($this->_menuType);
+            $items = $model->getMenuItemsByType($this->_menuType);
 
             /* Get active menu */
             $defMenu = $menu->getDefault($lang->getTag());

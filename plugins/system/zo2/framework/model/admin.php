@@ -209,11 +209,10 @@ if (!class_exists('Zo2ModelAdmin')) {
         }
 
         public function renderMegamenu() {
-
             $input = JFactory::getApplication()->input;
             $menutype = $input->get('menutype', 'mainmenu');
-            $html = Zo2Factory::getFramework()->displayMegaMenu($menutype, true);
-            $this->_ajax->addHtml($html, '#zo2-admin-mm-container');
+            $megamenu = new Zo2Megamenu($menutype);
+            $this->_ajax->addHtml($megamenu->renderMenu(true), '#zo2-admin-mm-container');
             $this->_ajax->response();
         }
 
