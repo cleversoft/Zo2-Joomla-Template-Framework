@@ -11,17 +11,17 @@
 
 /**
  *
- * @param {type} window
- * @param {type} zo2
- * @param {type} $
+ * @param {type} w Window pointer
+ * @param {type} z Zo2 pointer
+ * @param {type} $ jQuery pointer
  * @returns {undefined}
  */
-(function (window, zo2, $) {
+(function (w, z, $) {
+    
     /**
-     * Admin preset theme color
+     * Ultilities class
      */
-    zo2.admin.utilities = {
-
+    var _utilities = {
         /**
          * Element variables
          */
@@ -40,11 +40,15 @@
             this.radioButton();
             this.tabs();
         },
-
+        /**
+         * Logo image event listener
+         * @todo Remove this code
+         * @returns {undefined}
+         */
         logoImage: function() {
-            jQuery('.logo-type-switcher').on('click', 'button', function () {
+            $('.logo-type-switcher').on('click', 'button', function () {
                 var $this = $(this);
-                var $container = jQuery('.'+$this.closest('.field-logo-container').attr('data-name')+'_setting');
+                var $container = $('.'+$this.closest('.field-logo-container').attr('data-name')+'_setting');
                 var $buttons = $this.closest('.logo-type-switcher').find('button');
                 $buttons.removeClass('active btn-success');
                 $this.addClass('active btn-success');
@@ -74,6 +78,10 @@
                 return false;
             });
         },
+        /**
+         * Radio button
+         * @returns {undefined}
+         */
         _radioButton: function() {
             jQuery('.btn-group label').on("click", function () {
                 var label = jQuery(this);
@@ -86,16 +94,18 @@
                 } else {
                     label.addClass('active btn-success');
                 }
-                input.prop('checked', true);
+                jQuery(this).parent().find('input').removeAttr("checked");
+                input.attr("checked",true);
             });
         },
+        /**
+         * Grouping radio buttons
+         * @returns {undefined}
+         */
         radioButton: function() {
             /*============For joomla 2.5==============*/
             // Turn radios into btn-group
-
-            $('.btn-group label').on("click", function () {
-                zo2.admin.utilities._radioButton();
-            });
+            z.admin.utilities._radioButton();
 
             $('.btn-group input[checked=checked]').each(function () {
                 var label = $(this).next();
@@ -107,7 +117,6 @@
                     label.addClass('active btn-success');
                 }
             });
-
 
             $('.btn-group-onoff > button').on('click', function (e) {
                 var $this = $(this);
@@ -122,6 +131,11 @@
                 return false;
             });
         },
+        /**
+         * Zo2 tab managerment
+         * @todo Remove this
+         * @returns {undefined}
+         */
         tabs: function() {
             // cause joomla does not have bootstrap tabs :|
             $('.zo2-tabs').on('click', 'li a', function () {
@@ -137,12 +151,19 @@
                 $('#' + $this.attr('data-toggle')).addClass('active');
             });
         }
-    }
+    };
+    
+    /**
+     * Append  to Zo2 admin
+     */
+    z.admin.utilities = _utilities;
+    
     /**
      * Init plugin
      * Put all of your init code into _init
      */
-    $(document).ready(function () {
-        zo2.admin.utilities._init();
+    $(w.document).ready(function () {
+        z.admin.utilities._init();
     });
+
 })(window, zo2, zo2.jQuery);
