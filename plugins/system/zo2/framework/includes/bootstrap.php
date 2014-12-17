@@ -70,10 +70,6 @@ if (Zo2Factory::isZo2Template()) {
                 }
             }
         }
-    /**
-     * @todo Move to new Zo2 Ajax
-     */
-    Zo2Factory::execController();
     JFactory::getDocument()->addScriptDeclaration('/**
  * Zo2 JS framework define
  * @param {object} w Window pointer
