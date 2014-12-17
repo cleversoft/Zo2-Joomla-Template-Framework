@@ -240,13 +240,12 @@
                     $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
                 //$row.attr('data-zo2-layout', 'fixed');
-                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-                        '</div><div class="row-control-buttons">' +
+                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="col-name">(unnamed row)' +
+                        '</div><div class="col-control-buttons">' +
                         '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
                         '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
                         '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
-                        '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
-                        '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+                        '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i></div></div></div>');
                 $meta.appendTo($row);
                 var $colContainer = $('<div />').addClass('col-container row-fluid clearfix');
                 $colContainer.appendTo($meta);
