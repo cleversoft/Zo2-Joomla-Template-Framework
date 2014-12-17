@@ -779,7 +779,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             $('#jform_params_menu_type').on('change', function(e) {
                 /* Send ajax request to update */
                 z.ajax.request({
-                    url: z._settings.url,
+                    url: z._settings.frontEndUrl,
                     data: {
                         zo2_task: 'admin.renderMegamenu',
                         menutype: $(this).val()
