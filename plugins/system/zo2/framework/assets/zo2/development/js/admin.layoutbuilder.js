@@ -50,6 +50,10 @@
                     'col-md-offset-7 col-md-offset-8 col-md-offset-9 col-md-offset-10 col-md-offset-11 col-md-offset-12'
         },
         /**
+         * Element which is editing
+         */
+        editingElement: null,
+        /**
          * Init function
          * @returns {undefined}
          */
@@ -257,6 +261,7 @@
          * @returns {undefined}
          */
         setting: function() {
+            var _self = this;
             //bind event to generate row id
             $('#txtRowName').on('keyup', function(e) {
                 var $this = $(this);
@@ -266,6 +271,8 @@
             $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
                 var $this = $(this);
                 var $row = $this.closest('.sortable-row');
+                _self.editingElement = $row;
+
                 var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
                 var rowCustomClass = $row.attr('data-zo2-customClass');
                 //var rowLayout = $row.attr('data-zo2-layout');
@@ -317,6 +324,58 @@
                 $modal.find('.zo2-tabs-content').find('> div:first').addClass('active');
                 $modal.modal('show');
             });
+
+            $('#droppable-container').on('click', '.col-control-buttons > .settings', function() {
+                var $col = $(this).closest('.sortable-col');
+                _self.editingElement = $col;
+
+                var jdoc = $col.attr('data-zo2-jdoc');
+                var spanWidth = $col.attr('data-zo2-span');
+                var spanPosition = $col.attr('data-zo2-position');
+                var spanOffset = $col.attr('data-zo2-offset');
+                var spanStyle = $col.attr('data-zo2-style');
+                var customCss = $col.attr('data-zo2-customClass');
+                var spanId = $col.attr('data-zo2-id');
+
+                //$('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
+                $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-xs') == '1')
+                    $('#btgColPhone').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
+                //$('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
+                $('#btgColTablet').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-sm') == '1')
+                    $('#btgColTablet').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
+                //$('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
+                $('#btgColDesktop').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-md') == '1')
+                    $('#btgColDesktop').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
+                //$('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
+                $('#btgColLargeDesktop').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-lg') == '1')
+                    $('#btgColLargeDesktop').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
+
+                $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
+                $('#dlColJDoc').val(jdoc).trigger("liszt:updated");
+                $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
+                $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
+                $('#ddlColStyle').val(spanStyle).trigger("liszt:updated");
+                $('#txtColCss').val(customCss);
+                $('#txtColId').val(spanId);
+                var $modal = $('#colSettingsModal');
+                $modal.find('.zo2-tabs').find('li a').removeClass('active');
+                $modal.find('.zo2-tabs-content').find('> div').removeClass('active');
+                $modal.find('.zo2-tabs').find('li a:first').addClass('active');
+                $modal.find('.zo2-tabs-content').find('> div:first').addClass('active');
+                $modal.modal('show');
+            });
         },
         /**
          * Save layout
@@ -325,7 +384,7 @@
         save: function() {
             var _self = this;
             $('#btnSaveColSettings').on('click', function() {
-                var $col = $.data(w.document.body, 'editingEl');
+                var $col = _self.editingElement;
                 $col.attr('data-zo2-jdoc', $('#dlColJDoc').val());
                 $col.attr('data-zo2-span', $('#dlColWidth').val());
                 $col.attr('data-zo2-offset', $('#ddlColOffset').val());
@@ -337,13 +396,31 @@
                 $col.attr('data-zo2-visibility-sm', $('#btgColTablet').find('.btn-on').hasClass('active') ? '1' : '0');
                 $col.attr('data-zo2-visibility-md', $('#btgColDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
                 $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
-
-                var colName = $('#dlColPosition').val().length > 0 ? $('#dlColPosition').val() : '(none)';
+                
+                var position = $('#dlColPosition').val(); 
+                if(position === null){
+                    position = '';
+                }
+                var colName = position.length > 0 ? position : '(none)';
                 $col.removeClass(_self._settings.allColClass).addClass('col-md-' + $('#dlColWidth').val());
                 $col.removeClass(_self._settings.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
-                $col.attr('data-zo2-position', $('#dlColPosition').val());
+                $col.attr('data-zo2-position', position);
                 $col.find('>.col-wrap>.col-name').text(colName);
                 $('#colSettingsModal').modal('hide');
+                return false;
+            });
+            $('#btnSaveRowSettings').on('click', function() {
+                var $row = _self.editingElement;
+                $row.find('>.row-control>.row-control-container>.row-name').text($('#txtRowName').val());
+                $row.attr('data-zo2-customClass', $('#txtRowCss').val());
+                $row.attr('data-zo2-visibility-xs', $('#btgRowPhone').find('.btn-on').hasClass('active') ? '1' : '0');
+                $row.attr('data-zo2-visibility-sm', $('#btgRowTablet').find('.btn-on').hasClass('active') ? '1' : '0');
+                $row.attr('data-zo2-visibility-md', $('#btgRowDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
+                $row.attr('data-zo2-visibility-lg', $('#btgRowLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
+                $row.attr('data-zo2-fullwidth', $('#btgFullWidth').find('.btn-on').hasClass('active') ? '1' : '0');
+                //$row.attr('data-zo2-layout', $('#ddlRowLayout').val());
+                $row.attr('data-zo2-id', $('#txtRowId').val());
+                $('#rowSettingsModal').modal('hide');
                 return false;
             });
         },
@@ -365,7 +442,7 @@
             return str;
         }
     };
-    
+
     /**
      * Append to Zo2 admin
      */
@@ -378,5 +455,5 @@
     $(w.document).ready(function() {
         z.admin.layoutbuilder._init();
     });
-    
+
 })(window, zo2, zo2.jQuery);
