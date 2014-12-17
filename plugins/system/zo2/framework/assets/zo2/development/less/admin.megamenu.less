@@ -134,6 +134,34 @@
             display: block;
         }
     }
+    .dropdown{
+      &.mega-align-right{
+        > .dropdown-menu{
+          left: auto;
+          right: 0;
+        }
+      }
+      &.mega-align-center{
+        > .dropdown-menu{
+          left: 50%;
+          transform: translate(-50%);
+          -webkit-transform: translate(-50%);
+          -ms-transform: translate(-50%);
+          -o-transform: translate(-50%);
+        }
+      }
+      &.mega-align-justify{
+        position: static;
+        > .dropdown-menu{
+          left: 0;
+          margin-left: 0;
+          top: auto;
+          &.span12{
+            width: 1170px;
+          }
+        }
+      }
+    }
 }
 .zo2-megamenu [class*="span"].hover .zo2-module:after,.zo2-megamenu [class*="span"].selected .zo2-module:after {
     border-style: solid;
