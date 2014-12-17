@@ -208,6 +208,15 @@ if (!class_exists('Zo2ModelAdmin')) {
             $this->_ajax->response();
         }
 
+        public function renderMegamenu() {
+
+            $input = JFactory::getApplication()->input;
+            $menutype = $input->get('menutype', 'mainmenu');
+            $html = Zo2Factory::getFramework()->displayMegaMenu($menutype, true);
+            $this->_ajax->addHtml($html, '#zo2-admin-mm-container');
+            $this->_ajax->response();
+        }
+
         /**
          * Authorise request for administrator
          * @return boolean
