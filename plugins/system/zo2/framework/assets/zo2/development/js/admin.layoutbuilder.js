@@ -143,11 +143,11 @@
                         '<div class="row-control-container">' +
                         '<div class="row-name">(unnamed row)</div>' +
                         '<div class="row-control-buttons">' +
-                        '<i title="Drag row" class="icon-move row-control-icon dragger hasTooltip"></i>' +
-                        '<i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify"></i>' +
-                        '<i title="Split row" class="row-control-icon split icon-columns hasTooltip"></i>' +
-                        '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i>' +
+                        '<i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
+                        '<i title="Row\'s settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
+                        '<i title="Duplicate row" class="row-control-icon duplicate fa fa-th-list"></i>' +
+                        '<i title="Split row" class="row-control-icon split fa fa-align-justify hasTooltip"></i>' +
+                        '<i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
                         '</div></div>' +
                         '<div class="col-container"></div></div>');
                 $meta.appendTo($row);
@@ -182,10 +182,10 @@
                     }
                     var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
                             '<div class="col-control-buttons">' +
-                            '<i title="Drag column" class="col-control-icon dragger icon-move hasTooltip"></i>' +
-                            '<i title="Column\'s settings" class="icon-cogs col-control-icon settings hasTooltip"></i>' +
-                            '<i title="Append new row" class="col-control-icon add-row icon-align-justify hasTooltip"></i>' +
-                            '<i title="Remove column" class="icon-remove col-control-icon delete hasTooltip"></i>' +
+                            '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                            '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                            '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
+                            '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
                             '</div><div class="row-container"></div></div></div>';
                     var $meta = $(metaHtml);
                     $meta.appendTo($span);
@@ -240,12 +240,12 @@
                     $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
                 //$row.attr('data-zo2-layout', 'fixed');
-                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="row-name">(unnamed row)' +
-                        '</div><div class="row-control-buttons"><i title="Drag row" class="icon-move row-control-icon dragger hasTooltip">' +
-                        '</i><i title="Row\'s settings" class="icon-cogs row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Duplicate row" class="row-control-icon duplicate icon-align-justify hasTooltip">' +
-                        '</i><i title="Split row" class="row-control-icon split icon-columns hasTooltip" />' +
-                        '<i title="Remove row" class="row-control-icon delete icon-remove hasTooltip"></i></div></div></div>');
+                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="col-name">(unnamed row)' +
+                        '</div><div class="col-control-buttons">' +
+                        '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                        '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                        '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
+                        '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i></div></div></div>');
                 $meta.appendTo($row);
                 var $colContainer = $('<div />').addClass('col-container row-fluid clearfix');
                 $colContainer.appendTo($meta);
