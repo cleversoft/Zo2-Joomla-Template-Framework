@@ -13,6 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 
 $framework = Zo2Factory::getFramework();
 $addons = $framework->getRegisteredAddons();
+$positions = Zo2Factory::getFramework()->getTemplatePositions();
 ?>
 <div id="layoutbuilder-container">
     <!-- Hidden fields -->
