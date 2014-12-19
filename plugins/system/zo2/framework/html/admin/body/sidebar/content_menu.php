@@ -1,5 +1,6 @@
 <?php
 $menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
+$menuAnimation = trim(Zo2Factory::get('menu_animation'));
 ?>
 <!-- Mega Menu Tab Pane -->
 <div class="tab-pane" id="zo2-menu">
@@ -15,7 +16,7 @@ $menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
     ?>
 
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                        ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                               ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -41,13 +42,24 @@ $menuHoverType = trim(Zo2Factory::get('menu_hover_type'));
                     <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION'); ?></label>
                     <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_DESC'); ?></div>
                 </div>
-                <div class="controls">
+                <div class="controls">                    
                     <select  name="jform[params][menu_animation]" id="jform_params_menu_animation">
-                        <option value=""><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_NONE'); ?></option>
-                        <option value="fading"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_FADING'); ?></option>
-                        <option value="slide"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_SLIDE'); ?></option>
-                        <option value="zoom" selected="selected"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ZOOM'); ?></option>
-                        <option value="elastic"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ELASTIC'); ?></option>
+                        <option value=""
+                                <?php echo ($menuAnimation == '') ? 'selected="selected"' : ''; ?> >
+                                    <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_NONE'); ?>
+                        </option>
+                        <option value="fading"
+                                <?php echo ($menuAnimation == 'fading') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_FADING'); ?></option>
+                        <option value="slide"
+                                <?php echo ($menuAnimation == 'slide') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_SLIDE'); ?></option>
+                        <option value="zoom" 
+                                <?php echo ($menuAnimation == 'zoom') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ZOOM'); ?></option>                        
+                        <option value="elastic"
+                                <?php echo ($menuAnimation == 'elastic') ? 'selected="selected"' : ''; ?> >
+                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ELASTIC'); ?></option>
                     </select>
                 </div>
             </div>

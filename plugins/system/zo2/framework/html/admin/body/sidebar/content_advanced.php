@@ -25,11 +25,11 @@
     <?php
     echo Zo2Html::field(
             'radio', array(
-        'label' => JText::_('ZO2_ADMIN_RESPONSIVE_LAYOUT'),
-        'description' => JText::_('ZO2_ADMIN_RESPONSIVE_LAYOUT_DESC')
+        'label' => JText::_('ZO2_ADMIN_LABEL_DISABLE_RESPONSIVE_LAYOUT'),
+        'description' => JText::_('ZO2_ADMIN_DESC_DISABLE_RESPONSIVE_LAYOUT')
             ), array(
-        'name' => 'jform[params][responsive_layout]',
-        'value' => Zo2Factory::get('responsive_layout')
+        'name' => 'jform[params][none_responsive_layout]',
+        'value' => Zo2Factory::get('none_responsive_layout', 0)
     ));
     ?>
     <!-- Enable Style Switcher -->
