@@ -15,21 +15,17 @@
  */
 
 var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
-
 !function($) {
     var currentSelected = null,
             megamenu, nav_items, nav_subs, nav_cols, nav_all;
-
     $.fn.megamenuAdmin = function(options) {
         var defaultOptions = {
         };
-
         var options = $.extend(defaultOptions, options);
         megamenu = $(this).find('.zo2-megamenu');
         nav_items = megamenu.find('ul[class*="level"]>li>:first-child');
         nav_subs = megamenu.find('.menu-child');
         nav_cols = megamenu.find('[class*="span"]');
-
         nav_all = nav_items.add(nav_subs).add(nav_cols);
         // hide sub
         nav_items.each(function() {
@@ -47,10 +43,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         hide_toolbox(true);
         // bind events for all selectable elements
         bindEvents(nav_all);
-
         // unbind all events for toolbox actions & inputs
         $('.toolbox-action, .toolbox-toggle, .toolbox-input').unbind("focus blur click change keydown");
-
         // stop popup event when click in toolbox area
         $('.zo2-admin-mm-row').click(function(event) {
             event.stopPropagation();
@@ -61,11 +55,9 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             hide_toolbox(true);
             //event.stopPropagation();
         });
-
         // bind event for action
         $('.toolbox-action').click(function(event) {
             var action = $(this).data('action');
-
             if (action) {
                 actions.datas = $(this).data();
                 actions[action]();
@@ -93,20 +85,16 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 event.preventDefault();
             }
         });
-
         $('.toolbox-input').change(function(event) {
             apply_toolbox(this);
             event.stopPropagation();
             return false;
         });
-
         return this;
     };
-
     // Actions
     var actions = {};
     actions.data = {};
-
     actions.toggleSub = function() {
         if (!currentSelected)
             return;
@@ -296,7 +284,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         var $cols = currentSelected.parent().children('[class*="span"]'),
                 colcount = $cols.length + 1,
                 colwidths = defaultColumnsWidth(colcount);
-
         // add new column
         var $col = $('<div><div class="mega-inner"></div></div>');
         if (actions.datas.addfirst)
@@ -334,7 +321,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 colcount = $cols.length - 1,
                 colwidths = defaultColumnsWidth(colcount),
                 type_menu = $col.data('module_id') ? false : true;
-
         if ((type_menu && ((!$haspos && $allmenucols.length == 1) || ($haspos && $allmenucols.length == 0)))
                 || $allcols.length == 1) {
             // if this is the only one column left
@@ -346,13 +332,11 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (type_menu) {
             var colidx = $allmenucols.index($col),
                     tocol = colidx == 0 ? $allmenucols[1] : $allmenucols[colidx - 1];
-
             $col.find('ul:first > li').appendTo($(tocol).find('ul:first'));
         }
 
         var colidx = $allcols.index($col),
                 nextActiveCol = colidx == 0 ? $allcols[1] : $allcols[colidx - 1];
-
         if (colcount < 1) {
             $row.remove();
         } else {
@@ -403,7 +387,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             if ($this.hasClass('mega')) {
                 var $sub = $this.find('.menu-child:first');
                 item['submenu'] = {};
-
                 for (var d in $sub.data()) {
                     if (d != 'id' && d != 'level' && $sub.data(d))
                         item['submenu'][d] = $sub.data(d);
@@ -412,7 +395,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 var $rows = $sub.find('[class*="row"]:first').parent().children('[class*="row"]'),
                         rows = [],
                         i = 0;
-
                 $rows.each(function() {
                     var row = [],
                             $cols = $(this).children('[class*="span"]'),
@@ -452,11 +434,9 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             if (Object.keys(item).length)
                 config[id] = item;
         });
-
         var menutype = $('#jform_params_menu_type').val(),
                 jmmconfig = $('#jform_params_menu_config'),
                 curconfig = null;
-
         try {
             curconfig = jmmconfig.val() ? $.parseJSON(jmmconfig.val()) : {};
         } catch (e) {
@@ -498,14 +478,12 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             else
                 $(this).addClass('open');
         });
-
         // set selected
         megamenu.data('nav_all').removeClass('selected');
         currentSelected.addClass('selected');
         var type = toolbox_type();
         $('#zo2-admin-mm-tool' + type).show();
         update_toolbox(type);
-
         $('#zo2-admin-mm-tb').show();
     }
 
@@ -521,7 +499,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 var liitem = currentSelected.closest('li'),
                         liparent = liitem.parent().closest('li'),
                         sub = liitem.find('.menu-child:first');
-
                 $('.toolitem-exclass').attr('value', liitem.data('class') || '');
                 $('.toolitem-xicon').attr('value', liitem.data('xicon') || '');
                 $('.toolitem-caption').attr('value', liitem.data('caption') || '');
@@ -559,11 +536,9 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 }
 
                 break;
-
             case 'sub':
                 var liitem = currentSelected.closest('li');
                 $('.toolsub-exclass').attr('value', currentSelected.data('class') || '');
-
                 if (liitem.data('group')) {
                     $('.toolsub-width').attr('value', '').addClass('disabled');
                     // disable alignment
@@ -597,7 +572,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 }
 
                 break;
-
             case 'col':
                 $('.toolcol-exclass').attr('value', currentSelected.data('class') || '');
                 //$('.toolcol-module').attr('value', currentSelected.data ('module_id') || '');
@@ -648,7 +622,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 }
                 currentSelected.data(name, value);
                 break;
-
             case 'class':
                 if (type == 'item') {
                     var item = currentSelected.closest('li');
@@ -658,7 +631,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 item.removeClass(item.data(name) || '').addClass(value);
                 item.data(name, value);
                 break;
-
             case 'xicon':
                 if (type == 'item') {
                     currentSelected.closest('li').data(name, value);
@@ -667,7 +639,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                         currentSelected.prepend($('<i class="' + value + '"></i>'));
                 }
                 break;
-
             case 'caption':
                 if (type == 'item') {
                     currentSelected.closest('li').data(name, value);
@@ -676,17 +647,50 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                         currentSelected.append($('<span class="mega-caption">' + value + '</span>'));
                 }
                 break;
-
             case 'module_id':
                 // replace content if this is not menu-items type
                 if (currentSelected.find('ul[class*="level"]').length == 0) {
                     // get module content
                     if (value) {
                         zo2.ajax.request({
-                            url: zo2._settings.url,
+                            url: zo2._settings.fontEndUrl,
                             data: {
                                 zo2_task: 'admin.megamenuGetModule',
                                 module_id: value
+                            },
+                            success: function(data) {
+                                $.each(data, function(key, value) {
+                                    switch (key) {
+
+                                        case 'html':
+                                            $.each(data[key], function(childKey, childValue) {
+                                                if(childValue.target === '$currentActiveElement'){
+                                                    z.document.replace(currentSelected.find('.mega-inner'), childValue.html);
+                                                }else{
+                                                    z.document.replace(childValue.target, childValue.html);
+                                                }
+                                            });
+                                            break;
+                                        case 'appendHtml':
+                                            $.each(data[key], function(childKey, childValue) {
+                                                if(childValue.target === '$currentActiveElement'){
+                                                    z.document.replace(currentSelected.find('.mega-inner'), childValue.html);
+                                                }else{
+                                                    z.document.replace(childValue.target, childValue.html);
+                                                }
+                                            });
+                                            break;
+                                        case 'message':
+                                            $.each(data[key], function(childKey, childValue) {
+                                                if (typeof childValue === 'object') {
+                                                    if (childValue.hasOwnProperty("message")) {
+                                                        z.document.raiseMessage(childValue.message);
+                                                    }
+                                                }
+                                            });
+                                            break;
+                                    }
+                                });
                             }
                         }).done(function(data) {
                             currentSelected.find('.mega-inner').html(data).find(':input').removeAttr('name');
@@ -718,7 +722,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             megamenu.data('nav_all', megamenu.data('nav_all').add(els));
         else
             megamenu.data('nav_all', els);
-
         els.mouseover(function(event) {
             megamenu.data('nav_all').removeClass('hover');
             $this = $(this);
@@ -730,7 +733,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             clearTimeout(megamenu.data('hovertimeout'));
             $(this).removeClass('hover');
         });
-
         els.click(function(event) {
             show_toolbox($(this));
             event.stopPropagation();
@@ -748,7 +750,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         bindEvents(els);
     }
 }(jQuery);
-
 /**
  * Zo2 Megamenu event handler
  * @param {object} w Window pointer
@@ -763,7 +764,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             // var panel = $('#jform_params_mm_panel-lbl').closest ('.control-group').find('.controls');
             var panel = $('#jform_params_mm_type').closest('.controls');
             panel.append($('#zo2-admin-megamenu').removeClass('hidden'));
-
             // first load
             if ($('#jform_params_nav_type').val() == 'megamenu') {
                 setTimeout(function() { //wait for page ready
@@ -806,7 +806,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             }
 
             var onsubmit = form.onsubmit;
-
             form.onsubmit = function(e) {
                 $('.toolbox-saveConfig').trigger('click');
                 if ($.isFunction(onsubmit)) {
@@ -821,23 +820,18 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             }
 
             var zo2_admin = $('.zo2-admin-megamenu');
-
             zo2_admin.find('.radio.btn-group label').addClass('btn');
             zo2_admin.find('.btn-group label').unbind('click').click(function() {
                 var label = $(this),
                         input = $('#' + label.attr('for'));
-
                 if (!input.prop('checked')) {
                     label.closest('.btn-group')
                             .find('label')
                             .removeClass('active btn-success btn-danger btn-primary');
-
                     label.addClass('active ' + (input.val() == '' ? 'btn-primary' : (input.val() == 0 ? 'btn-danger' : 'btn-success')));
-
                     input.prop('checked', true).trigger('change');
                 }
             });
-
             zo2_admin.on('update', 'input[type=radio]', function() {
                 if (this.checked) {
                     $(this)
@@ -847,7 +841,6 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                             .addClass('active ' + ($(this).val() == '' ? 'btn-primary' : ($(this).val() == 0 ? 'btn-danger' : 'btn-success')));
                 }
             });
-
             zo2_admin.find('.btn-group input[checked=checked]').each(function() {
                 if ($(this).val() == '') {
                     $('label[for=' + $(this).attr('id') + ']').addClass('active btn-primary');
@@ -859,15 +852,12 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             });
         }
     });
-
     $(window).load(function() {
         ZO2AdminMegamenu.prepare();
     });
-
     $(document).ready(function() {
         ZO2AdminMegamenu.initPanel();
         ZO2AdminMegamenu.initPreSubmit();
         ZO2AdminMegamenu.initRadioGroup();
     });
-
 })(window, zo2, jQuery);
