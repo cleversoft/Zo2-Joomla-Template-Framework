@@ -653,7 +653,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                     // get module content
                     if (value) {
                         zo2.ajax.request({
-                            url: zo2._settings.fontEndUrl,
+                            url: zo2._settings.frontEndUrl,
                             data: {
                                 zo2_task: 'admin.megamenuGetModule',
                                 module_id: value
@@ -665,18 +665,18 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                                         case 'html':
                                             $.each(data[key], function(childKey, childValue) {
                                                 if(childValue.target === '$currentActiveElement'){
-                                                    z.document.replace(currentSelected.find('.mega-inner'), childValue.html);
+                                                    zo2.document.replace(currentSelected.find('.mega-inner'), childValue.html);
                                                 }else{
-                                                    z.document.replace(childValue.target, childValue.html);
+                                                    zo2.document.replace(childValue.target, childValue.html);
                                                 }
                                             });
                                             break;
                                         case 'appendHtml':
                                             $.each(data[key], function(childKey, childValue) {
                                                 if(childValue.target === '$currentActiveElement'){
-                                                    z.document.replace(currentSelected.find('.mega-inner'), childValue.html);
+                                                    zo2.document.replace(currentSelected.find('.mega-inner'), childValue.html);
                                                 }else{
-                                                    z.document.replace(childValue.target, childValue.html);
+                                                    zo2.document.replace(childValue.target, childValue.html);
                                                 }
                                             });
                                             break;
@@ -684,7 +684,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                                             $.each(data[key], function(childKey, childValue) {
                                                 if (typeof childValue === 'object') {
                                                     if (childValue.hasOwnProperty("message")) {
-                                                        z.document.raiseMessage(childValue.message);
+                                                        zo2.document.raiseMessage(childValue.message);
                                                     }
                                                 }
                                             });
@@ -693,7 +693,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                                 });
                             }
                         }).done(function(data) {
-                            currentSelected.find('.mega-inner').html(data).find(':input').removeAttr('name');
+                            currentSelected.find('.mega-inner').find(':input').removeAttr('name');
                         });
                     } else {
                         currentSelected.find('.mega-inner').html('');
