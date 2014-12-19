@@ -129,6 +129,28 @@
 #zo2-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
   display: block;
 }
+#zo2-admin-megamenu .dropdown.mega-align-right > .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+#zo2-admin-megamenu .dropdown.mega-align-center > .dropdown-menu {
+  left: 50%;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+}
+#zo2-admin-megamenu .dropdown.mega-align-justify {
+  position: static;
+}
+#zo2-admin-megamenu .dropdown.mega-align-justify > .dropdown-menu {
+  left: 0;
+  margin-left: 0;
+  top: auto;
+}
+#zo2-admin-megamenu .dropdown.mega-align-justify > .dropdown-menu.span12 {
+  width: 1170px;
+}
 .zo2-megamenu [class*="span"].hover .zo2-module:after,
 .zo2-megamenu [class*="span"].selected .zo2-module:after {
   border-style: solid;
@@ -230,18 +252,19 @@
   padding: 10px;
   margin-top: 10px;
   border-radius: 3px;
-  transition: all 0.1s ease 0s;
-  -webkit-transition: all 0.1s ease 0s;
-  -moz-transition: all 0.1s ease 0s;
   min-width: 500px;
   width: auto;
   background: #f2f2f2;
   box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+  display: none;
   z-index: 99;
 }
 .zo2-megamenu .dropdown-menu .dropdown-menu {
   margin-top: 0;
   margin-left: 11px;
+}
+.zo2-megamenu .open > .dropdown-menu {
+  display: block;
 }
 .zo2-megamenu .mega-nav li:last-child {
   margin-bottom: 0;
@@ -615,10 +638,6 @@
 #zo2-framework #layoutbuilder-container ul {
   margin: 0;
 }
-#zo2-framework #layoutbuilder-container .col-control-buttons {
-  -webkit-transition: opacity 300ms;
-  opacity: 0;
-}
 #zo2-framework #layoutbuilder-container .col-control-buttons i.icon-move {
   cursor: move;
 }
@@ -948,7 +967,6 @@
   font-size: 30px;
   font-weight: bold;
   line-height: 60px;
-  width: auto;
 }
 #zo2-framework #attributes-container .controls {
   margin-left: 110px;
@@ -986,8 +1004,11 @@
   float: left;
   margin-right: 5px;
 }
-#zo2-framework #layoutbuilder-container .sortable-row .col-container >[class*="col"]:hover >.col-wrap >.col-control-buttons,
-#zo2-framework #layoutbuilder-container .sortable-row .col-container >[class*="col"]:focus >.col-wrap >.col-control-buttons {
+#zo2-framework .col-wrap .col-control-buttons {
+  -webkit-transition: opacity 300ms;
+  opacity: 0;
+}
+#zo2-framework .col-wrap:hover .col-control-buttons {
   opacity: 1;
 }
 #zo2-framework .ui-sortable > tr {
