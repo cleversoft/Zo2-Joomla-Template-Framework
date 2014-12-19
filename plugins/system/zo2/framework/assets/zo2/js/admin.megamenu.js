@@ -266,7 +266,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
     actions.addRow = function() {
         if (!currentSelected)
             return;
-        var $row = $('<div class="row-fluid"><div class="span12"><div class="mega-inner"></div></div></div>').appendTo(currentSelected.find('.mega-dropdown-inner')),
+        var $row = $('<div class="row-fluid"><div class="span12"><div class="mega-inner"></div></div></div>').appendTo(currentSelected.find('.mega-dropdown-inner:first')),
                 $col = $row.children();
         // bind event
         bindEvents($col);
@@ -682,9 +682,12 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 if (currentSelected.find('ul[class*="level"]').length == 0) {
                     // get module content
                     if (value) {
-                        $.ajax({
+                        zo2.ajax.request({
                             url: zo2._settings.url,
-                            data: {'zo2controller': 'module', 'module_id': value}
+                            data: {
+                                zo2_task: 'admin.megamenuGetModule',
+                                module_id: value
+                            }
                         }).done(function(data) {
                             currentSelected.find('.mega-inner').html(data).find(':input').removeAttr('name');
                         });
