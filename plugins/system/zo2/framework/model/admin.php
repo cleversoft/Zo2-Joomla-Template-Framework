@@ -236,7 +236,7 @@ if (!class_exists('Zo2ModelAdmin')) {
             if (!empty($module)) {
                 $style = $input->getCmd('style', 'ZO2Xhtml');
                 $html = JModuleHelper::renderModule($module, array('style' => $style));
-                $this->_ajax->addHtml($html);
+                $this->_ajax->addHtml($html, '$currentActiveElement');
             }
             $this->_ajax->response();
         }
