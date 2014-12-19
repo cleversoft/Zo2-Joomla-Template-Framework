@@ -94,19 +94,4 @@ class Zo2Controller {
         }
     }
 
-    public static function clearCache() {
-        $layoutDir = Zo2Factory::getPath('templates://layouts/cache');
-        $rootCacheDir =  Zo2Factory::getPath('cache://');
-        $files = glob($layoutDir . '/*');
-        $cacheFiles = glob($rootCacheDir . '/*');
-        foreach ($files as $file) {
-            if (is_file($file))
-                unlink($file);
-        }
-        foreach ($cacheFiles as $file) {
-            if (is_file($file))
-                unlink($file);
-        }
-    }
-
 }
