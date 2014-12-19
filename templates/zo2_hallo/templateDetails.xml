@@ -68,10 +68,7 @@
         <fields name="params" addfieldpath="/plugins/system/zo2/formfields">            
             <fieldset name="zo2">
                 <field name="zo2" type="zo2" layout="config" />               
-            </fieldset>                                   
-            <fieldset name="about">
-                <field name="zo2" type="zo2" layout="about"/>               
-            </fieldset>                                     
+            </fieldset>                                                                                  
         </fields>
     </config>
 </extension>

@@ -50,7 +50,7 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Profile Assignment -->
     <li class="">
         <a href="#zo2-profile-assignment" role="tab" data-toggle="tab">
-            <i class="fa fa-chain-broken"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_PROFILE_ASSIGNMENT'); ?>
+            <i class="fa fa-chain-broken"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_PROFILE_ASSIGNMENT'); ?>
         </a>
     </li>
     <!-- Advanced -->
@@ -59,6 +59,12 @@ defined('_JEXEC') or die('Restricted access');
             <i class="fa fa-wrench"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_ADVANCED'); ?>
         </a>
     </li>  
+    <!-- Advanced -->
+    <li class="zo2-about">
+        <a href="#zo2-about" role="tab" data-toggle="tab">
+            <i class="fa fa-info-circle"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_ABOUT'); ?>
+        </a>
+    </li>
     <div class="logo-framework">
         <img src="<?php echo ZO2URL_ASSETS . '/zo2/images/logo-framework.png'; ?>" alt="Zo2 Framework">
     </div>
