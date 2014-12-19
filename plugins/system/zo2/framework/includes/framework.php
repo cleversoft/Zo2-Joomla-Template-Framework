@@ -151,7 +151,7 @@ if (!class_exists('Zo2Framework')) {
                      * Disable responsive
                      * @link http://getbootstrap.com/getting-started/#disable-responsive
                      */
-                    if ($this->get('responsive_layout') == 0)
+                    if ($this->get('none_responsive_layout'))
                         $this->assets->addStyleSheet('vendor/bootstrap/addons/non-responsive.css');
                     /* Custom files */
                     $this->assets->addStyleSheet('zo2/css/custom.css');
