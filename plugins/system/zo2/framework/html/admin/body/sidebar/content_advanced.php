@@ -28,8 +28,8 @@
         'label' => JText::_('ZO2_ADMIN_LABEL_DISABLE_RESPONSIVE_LAYOUT'),
         'description' => JText::_('ZO2_ADMIN_DESC_DISABLE_RESPONSIVE_LAYOUT')
             ), array(
-        'name' => 'jform[params][none_responsive_layout]',
-        'value' => Zo2Factory::get('none_responsive_layout', 0)
+        'name' => 'jform[params][non_responsive_layout]',
+        'value' => Zo2Factory::get('non_responsive_layout', 0)
     ));
     ?>
     <!-- Enable Style Switcher -->

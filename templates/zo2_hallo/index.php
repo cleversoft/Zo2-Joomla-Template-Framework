@@ -26,7 +26,8 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <?php unset($this->_scripts[JURI::root(true) . '/media/jui/js/bootstrap.min.js']); ?>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <?php if($this->zo2->framework->get('responsive_layout')) :  ?>
+        <!-- Enable responsive -->
+        <?php if(!$this->zo2->framework->get('non_responsive_layout')) :  ?>
             <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php endif; ?>
 

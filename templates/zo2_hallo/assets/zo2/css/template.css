@@ -1527,7 +1527,7 @@ html {
   z-index: 999;
 }
 .offcanvas .sidebar-close:hover {
-  color: #000;
+  color: #fff;
 }
 .offcanvas.active {
   left: 0;
@@ -1563,8 +1563,8 @@ html {
   -moz-transition: transform 0.5s ease 0s;
   -o-transition: transform 0.5s ease 0s;
   transition: transform 0.5s ease 0s;
-  -webkit-transform: translate3d(250px,0,0);
-  transform: translate3d(250px,0,0);
+  -webkit-transform: translate3d(350px,0,0);
+  transform: translate3d(350px,0,0);
   overflow: hidden;
 }
 .wrapper.offcanvas-push:after {
@@ -1615,7 +1615,7 @@ body.overflow-hidden {
 .offcanvas .sidebar-nav {
   margin: 0;
   position: absolute;
-  left: 0;
+  left: 50px;
   top: 30px;
   width: 250px;
 }
@@ -1630,8 +1630,11 @@ body.overflow-hidden {
   -o-transition: color 0.3s ease-in-out 0s;
   transition: color 0.3s ease-in-out 0s;
 }
+.offcanvas .sidebar-nav ul li a:hover {
+  color: #fff;
+}
 .offcanvas .sidebar-nav ul.nav-sub {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 .offcanvas .sidebar-nav >ul >li.nav-active > a {
   color: #fff;
@@ -1666,15 +1669,15 @@ body.overflow-hidden > * {
   position: relative;
 }
 .nav-parent > .nav-oc-toggle {
-    border: none !important;
-    font-size: 15px;
-    height: 20px;
-    padding: 0 !important;
-    position: absolute;
-    right: 5px;
-    text-align: center;
-    top: 18px;
-    width: 20px;
+  border: none !important;
+  font-size: 15px;
+  height: 20px;
+  padding: 0 !important;
+  position: absolute;
+  right: 5px;
+  text-align: center;
+  top: 18px;
+  width: 20px;
 }
 .dropdown-menu {
   z-index: 2000;
@@ -1688,13 +1691,9 @@ body.overflow-hidden > * {
 .offcanvas .sidebar-close {
   font-family: FontAweSome;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 32px;
   color: #ccc;
-  padding: 5px 15px;
-    visibility: hidden;
-}
-.offcanvas:hover .sidebar-close{
-    visibility: visible;
+  padding: 20px;
 }
 .offcanvas .sidebar-close::before {
   content: "\f00d";
