@@ -216,6 +216,31 @@ if (!class_exists('Zo2ModelAdmin')) {
             $this->_ajax->response();
         }
 
+        public function megamenuGetModule() {
+            $input = JFactory::getApplication()->input;
+            $module_id = $input->getInt('module_id');
+            $module = null;
+            if ($module_id) {
+
+                $db = JFactory::getDbo();
+                $query = $db->getQuery(true);
+                $query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params');
+                $query->from('#__modules AS m');
+                $query->where('m.id = ' . $module_id);
+                $query->where('m.client_id = 0'); /* Frontend module only */
+                $query->where('m.published = 1');
+                $db->setQuery($query);
+                $module = $db->loadObject();
+            }
+
+            if (!empty($module)) {
+                $style = $input->getCmd('style', 'ZO2Xhtml');
+                $html = JModuleHelper::renderModule($module, array('style' => $style));
+                $this->_ajax->addHtml($html);
+            }
+            $this->_ajax->response();
+        }
+
         /**
          * Authorise request for administrator
          * @return boolean

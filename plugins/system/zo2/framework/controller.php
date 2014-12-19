@@ -33,25 +33,7 @@ class Zo2Controller {
 
     public static function module() {
 
-        $input = JFactory::getApplication()->input;
-        $module_id = $input->getInt('module_id');
-        $module = null;
-        if ($module_id) {
-
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true);
-            $query->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params');
-            $query->from('#__modules AS m');
-            $query->where('m.id = ' . $module_id);
-            $query->where('m.published = 1');
-            $db->setQuery($query);
-            $module = $db->loadObject();
-        }
-
-        if (!empty($module)) {
-            $style = $input->getCmd('style', 'ZO2Xhtml');
-            echo JModuleHelper::renderModule($module, array('style' => $style));
-        }
+     
     }
 
     public static function saveLayout() {
