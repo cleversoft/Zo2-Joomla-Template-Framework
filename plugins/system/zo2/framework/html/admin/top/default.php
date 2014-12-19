@@ -29,8 +29,11 @@ $currentProfile = Zo2Factory::getProfile();
             <div class="navbar-inner">                 
                 <div class="pull-left">
                     <!-- Profiles -->
-                    <div class="zo2-profiles">                        
+                    <div class="zo2-profiles">                                
                         <div class="navbar-form pull-left">                            
+                            <span class="zo2-profiles-description">
+                                Store your modifications in a layout profile and assign it to different pages. The default layout will be used on pages without an assigned layout
+                            </span>
                             <?php
                             echo Zo2Html::field('profiles', array(
                                 'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
@@ -46,13 +49,13 @@ $currentProfile = Zo2Factory::getProfile();
                         </button>
                         <?php if ($currentProfile->authorise('rename')) : ?>
                             <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
-                                    return false;">
+                                        return false;">
                                         <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_RENAME'); ?>
                             </button>
                         <?php endif; ?>
                         <?php if ($currentProfile->authorise('delete')) : ?>
                             <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
-                                    return false;">
+                                        return false;">
                                         <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DELETE'); ?>
                             </button>
                         <?php endif; ?>
