@@ -305,16 +305,7 @@ if (!class_exists('Zo2Profile')) {
             if (!empty($themeData['footer']))
                 $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . '}';
 
-            /* Extra */
-            if (!empty($themeData['extra'])) {
-                $extra = json_decode($themeData['extra']);
-                if (count($extra) > 0) {
-                    foreach ($extra as $element => $value) {
-                        if (!empty($element))
-                            $style [] = $element . '{background-color:' . $value . '}';
-                    }
-                }
-            }
+
             return implode(';' . PHP_EOL, $style);
         }
 

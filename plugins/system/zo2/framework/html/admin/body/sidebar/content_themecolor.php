@@ -4,7 +4,7 @@
     <div class="zo2-divider"></div>
 
     <div class="profiles-pane">
-        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');             ?><!--</h3>-->
+        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');              ?><!--</h3>-->
 
         <?php
         echo Zo2Html::field(
@@ -44,7 +44,6 @@
                     'bottom1' => $presetTheme->get('bottom1'),
                     'bottom2' => $presetTheme->get('bottom2'),
                     'footer' => $presetTheme->get('footer'),
-                    'extra' => $presetTheme->get('extra'),
                     'bg_image' => $presetTheme->get('bg_image'),
                     'bg_pattern' => $presetTheme->get('bg_pattern'),
                     'background' => $presetTheme->get('background'),
@@ -212,42 +211,7 @@
                     </div>
 
                 </div>
-                <div class="zo2_themes_row clearfix">
-                    <div class="zo2_themes_label">
-                        <?php echo JText::_('ZO2_TEMPLATE_THEME_OTHER_SETTINGS'); ?>
-                    </div>
-                    <div class="zo2_themes_form_container preset-setting">
-                        <?php
-                        if (!empty($preset_data['extra'])) {
-                            $extra = json_decode($preset_data['extra']);
-                            if (count($extra) > 0) {
-                                foreach ($extra as $element => $color) {
-                                    ?>
-                                    <div class="zo2_themes_form zo2-preset-form">
-                                        <div class="control-group">
-                                            <div class="control-label">
-                                                <label><input type="text" value="<?php echo $element; ?>" class="zo2_other_preset_element zo2_other_preset"></label>
-                                            </div>
-                                            <div class="controls">
-                                                <div class="colorpicker-container">
-                                                    <input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="<?php echo $color ?>">
-                                                    <span id="extra_element_preview" class="color-preview" style="background-color: <?php echo empty($color) ? 'transparent' : $color ?>"></span>
-                                                    <input type="button" class="btn remove_preset" value="<?php echo JText::_('ZO2_ADMIN_EDITPROFILE_REMOVE'); ?>" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php
-                                }
-                            }
-                        }
-                        ?>
-                        <div class="zo2_themes_form">
-                            <input type="button" class="btn add_more_preset" value="<?php echo JText::_('ZO2_ADMIN_EDITPROFILE_ADDMORE'); ?>" />
-                        </div>
-                    </div>
-                    <br />
-                </div>
+
             </div>
         </div>
     </div>
