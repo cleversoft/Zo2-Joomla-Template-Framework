@@ -271,14 +271,18 @@
         margin-top: 10px;
         border-radius: 3px;
         min-width: 500px;
-      width: auto;
+        width: auto;
         background: #f2f2f2;
         box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+        display: none;
         z-index: 99;
         .dropdown-menu {
             margin-top: 0;
             margin-left: 11px;
         }
+    }
+    .open > .dropdown-menu{
+      display: block;
     }
     .mega-nav {
         li:last-child {
