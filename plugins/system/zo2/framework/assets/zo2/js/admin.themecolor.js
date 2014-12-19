@@ -34,8 +34,6 @@
          */
         _init: function () {
             this.selectPreset();
-            this.addMorePreset();
-            this.removePreset();
             this.colorPresetChange();
             this.selectBackgroundImage();
             this.selectLayoutType();
@@ -102,60 +100,6 @@
                 bg_pattern: jQuery('.background-select li.selected img').attr('rel')
             };
             jQuery(hiddenInput).val(w.JSON.stringify(data));
-        },
-        /**
-         * Add more other preset setting
-         * @returns {undefined}
-         */
-        addMorePreset: function () {
-            $('.add_more_preset').click(function () {
-                $(this).parent().before(
-                    '<div class="zo2_themes_form">' +
-                        '<div class="control-group">' +
-                        '<div class="control-label">' +
-                        '<label><input placeholder="ID or class of element" value="" class="zo2_other_preset zo2_other_preset_element"></label>' +
-                        '</div>' +
-                        '<div class="controls">' +
-                        '<div class="colorpicker-container">' +
-                        '<input id="extra_element_value" type="text" class="txtColorPicker zo2_other_preset zo2_other_preset_value" value="">' +
-                        '<span id="extra_element_preview" class="color-preview" style="background-color: transparent"></span>' +
-                        '<input type="button" class="btn remove_preset" value="Remove" />' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>'
-                );
-                $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
-                    var $this = $(this);
-                    var $parent = $this.parent();
-                    var $preview = $parent.find('.color-preview');
-                    if ($this.val().length > 0)
-                        $preview.css('background-color', $this.val());
-                    else
-                        $preview.css('background-color', 'transparent');
-
-                    z.admin.themecolor.generatePresetData();
-                });
-
-                $('.zo2_other_preset_element').on('change', function () {
-                    z.admin.themecolor.generatePresetData();
-                });
-
-                $('.remove_preset').click(function () {
-                    $(this).parent().parent().parent().parent().remove();
-                    z.admin.themecolor.generatePresetData();
-                });
-            });
-        },
-        /**
-         * Remove preset added in addMorePreset
-         * @returns {undefined}
-         */
-        removePreset: function () {
-            $('.remove_preset').click(function () {
-                $(this).parent().parent().parent().parent().remove();
-                z.admin.themecolor.generatePresetData();
-            });
         },
         /**
          * Color preset change
