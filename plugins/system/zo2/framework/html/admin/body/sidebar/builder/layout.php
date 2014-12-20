@@ -49,7 +49,6 @@ $positions = Zo2Factory::getFramework()->getTemplatePositions();
             <!-- Tab titles -->
             <ul class="zo2-tabs">
                 <li><a class="active" href="#row-basic" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_BASIC'); ?></a></li>
-                <li><a href="#row-responsive" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_RESPONSIVE'); ?></a></li>
             </ul>
         </div>
         <!-- Modal body -->
@@ -86,73 +85,27 @@ $positions = Zo2Factory::getFramework()->getTemplatePositions();
                                 <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
                             </div>
                         </div>
-                    </div>
-                    <!-- Responsive -->
-                    <div id="row-responsive">
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Phone</span>
-                            <label class="switch_wrap" for="cbRowPhoneVisibility">
-                                <input id="cbRowPhoneVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_PHONE'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgRowPhone">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Tablet</span>
-                            <label class="switch_wrap" for="cbRowTabletVisibility">
-                                <input id="cbRowTabletVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_TABLET'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgRowTablet">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Desktop</span>
-                            <label class="switch_wrap" for="cbRowDesktopVisibility">
-                                <input id="cbRowDesktopVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_DESKTOP'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgRowDesktop">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Large desktop</span>
-                            <label class="switch_wrap" for="cbRowLargeDesktopVisibility">
-                                <input id="cbRowLargeDesktopVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_LARGE_DESKTOP'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgRowLargeDesktop">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                        <div id="column-responsive">
+                            <div class="control-group">
+                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_RESPONSIVE'); ?></div>
+                                <div class="controls">
+                                    <div class="control btn-group btn-group-onoff" id="btgColPhone">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                    <div class="control btn-group btn-group-onoff" id="btgColTablet">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                    <div class="control btn-group btn-group-onoff" id="btgColDesktop">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                    <div class="control btn-group btn-group-onoff" id="btgColLargeDesktop">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -173,7 +126,6 @@ $positions = Zo2Factory::getFramework()->getTemplatePositions();
             <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_COLUMN_SETTINGS'); ?></h3>
             <ul class="zo2-tabs">
                 <li><a class="active" href="#column-basic" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_BASIC'); ?></a></li>
-                <li><a href="#column-responsive" data-toggle="tab"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_RESPONSIVE'); ?></a></li>
             </ul>
         </div>
         <div class="modal-body">
@@ -287,73 +239,30 @@ $positions = Zo2Factory::getFramework()->getTemplatePositions();
                                 <input type="text" id="txtColCss" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_COLCSS'); ?>">
                             </div>
                         </div>
+                        <div id="column-responsive">
+                            <div class="control-group">
+                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_RESPONSIVE'); ?></div>
+                                <div class="controls">
+                                    <div class="control btn-group btn-group-onoff" id="btgColPhone">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                    <div class="control btn-group btn-group-onoff" id="btgColTablet">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                    <div class="control btn-group btn-group-onoff" id="btgColDesktop">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php // JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                    <div class="control btn-group btn-group-onoff" id="btgColLargeDesktop">
+                                        <button class="btn btn-on active"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
+                                        <button class="btn btn-off"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- end -->
-                    </div>
-                    <div id="column-responsive">
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Phone</span>
-                            <label class="switch_wrap" for="cbColumnPhoneVisibility">
-                                <input id="cbColumnPhoneVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_PHONE'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgColPhone">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Tablet</span>
-                            <label class="switch_wrap" for="cbColumnTabletVisibility">
-                                <input id="cbColumnTabletVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_TABLET'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgColTablet">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Desktop</span>
-                            <label class="switch_wrap" for="cbColumnDesktopVisibility">
-                                <input id="cbColumnDesktopVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_DESKTOP'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgColDesktop">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <!--
-                            <span class="switch_title">Large desktop</span>
-                            <label class="switch_wrap" for="cbColumnLargeDesktopVisibility">
-                                <input id="cbColumnLargeDesktopVisibility" type="checkbox" value="1" />
-                                <div class="switch"><span class="bullet"></span></div>
-                            </label>
-                            -->
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_LARGE_DESKTOP'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgColLargeDesktop">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

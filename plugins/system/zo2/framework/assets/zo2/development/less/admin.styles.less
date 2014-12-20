@@ -912,6 +912,14 @@
         }
     }
 
+  /* Proile Description */
+  .navbar-profiles{
+    background-image: none;
+    padding: 20px;
+    border: none;
+    border-radius: 0;
+  }
+
     /* =============== Joomla 2.5 ===================== */
 
     &.zo2_j25{
@@ -979,8 +987,6 @@
         top: 0;
         z-index: 99999;
     }
-    #column-basic, #column-responsive, #row-basic, #row-responsive{display: none}
-    #column-basic.active, #column-responsive.active, #row-basic.active, #row-responsive.active{display: block}
 
     /*Joomla 2.5 style*/
     &.joomla-25{
@@ -1231,6 +1237,47 @@ textarea{
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
 }
+
+/* Style For Config Responsive */
+#column-responsive .btn-group-onoff{
+  float: left;
+}
+#column-responsive .btn-group-onoff > button{
+  background-color: transparent;
+  background-image: none;
+  border: medium none;
+  box-shadow: none;
+  height: 40px;
+  min-width: 18px;
+  padding: 0;
+  position: relative;
+  width: 25px;
+}
+#column-responsive .btn-group-onoff > button:before{
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 25px;
+}
+#column-responsive .btn-group-onoff > button:before{
+  font-family: 'FontAwesome';
+}
+#column-responsive #btgColPhone.btn-group-onoff > button:before{
+  content: "\f10b";
+}
+#column-responsive #btgColTablet.btn-group-onoff > button:before{
+  content: "\f10a";
+}
+#column-responsive #btgColDesktop.btn-group-onoff > button:before{
+  content: "\f108";
+}
+#column-responsive #btgColLargeDesktop.btn-group-onoff > button:before{
+  content: "\f108";
+}
+#column-responsive .btn-group-onoff > button.btn-off{
+  left: -24px;
+}
+
 
 /* =====================================
   Zo2 Overlay
