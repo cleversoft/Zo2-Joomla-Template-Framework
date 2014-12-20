@@ -36,7 +36,7 @@
          */
         _settings: {
             /* Default layout */
-            strantegy: [
+            strategy: [
                 [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
             ],
             /* Visibility attributes */
