@@ -1446,6 +1446,13 @@ textarea {
   position: relative;
   width: 25px;
 }
+#column-responsive .btn-group-onoff > button.btn-on {
+  opacity: 0.3;
+}
+#column-responsive .btn-group-onoff > button.active {
+  opacity: 0;
+  visibility: hidden;
+}
 #column-responsive .btn-group-onoff > button:before {
   position: absolute;
   top: 0;
