@@ -241,7 +241,7 @@
     margin-top: -100%;
   }
   .zo2-megamenu.animate.slide .mega.open > .mega-dropdown-menu > div {
-    margin-top: 0%;
+    margin-top: 58px;
   }
 }
 @media (max-width: 767px) {

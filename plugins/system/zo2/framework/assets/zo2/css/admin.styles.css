@@ -415,7 +415,8 @@
 }
 #zo2-framework .zo2-body .logo-framework {
   display: block;
-  padding: 40px 0 40px 25px;
+  padding: 40px 0 40px 0;
+  text-align: center;
 }
 #zo2-framework #logo {
   background: url('../images/zo2logo.png') no-repeat 0 0;

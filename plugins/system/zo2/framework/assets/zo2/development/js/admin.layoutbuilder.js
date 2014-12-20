@@ -149,8 +149,8 @@
                         '<div class="row-control-buttons">' +
                         '<i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
                         '<i title="Row\'s settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Duplicate row" class="row-control-icon duplicate fa fa-th-list"></i>' +
-                        '<i title="Split row" class="row-control-icon split fa fa-align-justify hasTooltip"></i>' +
+                        '<i title="Duplicate row" class="row-control-icon duplicate fa fa-align-justify"></i>' +
+                        '<i title="Split row" class="row-control-icon split fa fa-columns hasTooltip"></i>' +
                         '<i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
                         '</div></div>' +
                         '<div class="col-container"></div></div>');

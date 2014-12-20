@@ -33,7 +33,7 @@
       clear: both;
     }
   }
-  .row + .row {
+  .row + .row > div > div {
     padding-top: 10px;
     border-top: 1px solid #eeeeee;
   }
@@ -76,6 +76,9 @@
         }
       }
     }
+  }
+  &.slide .mega > .mega-dropdown-menu{
+    overflow: hidden;
   }
   .mega.open > .mega-dropdown-menu,
   .mega.dropdown-submenu:hover > .mega-dropdown-menu {

@@ -1166,7 +1166,7 @@ div.tags:before {
 .zo2-megamenu .mega-inner::after {
   clear: both;
 }
-.zo2-megamenu .row + .row {
+.zo2-megamenu .row + .row > div > div {
   padding-top: 10px;
   border-top: 1px solid #eeeeee;
 }
@@ -1209,6 +1209,9 @@ div.tags:before {
 .zo2-megamenu .mega > .mega-dropdown-menu .mega-dropdown-inner .module ul li a:active,
 .zo2-megamenu .mega > .mega-dropdown-menu .mega-dropdown-inner .module ul li a:focus {
   color: #7FBE54;
+}
+.zo2-megamenu.slide .mega > .mega-dropdown-menu {
+  overflow: hidden;
 }
 .zo2-megamenu .mega.open > .mega-dropdown-menu,
 .zo2-megamenu .mega.dropdown-submenu:hover > .mega-dropdown-menu {
@@ -2770,7 +2773,7 @@ footer section {
 footer .copyright {
   float: left;
 }
-footer .footer_zo2_logo img {
+footer .zo2-copyright-logo img {
   float: right;
 }
 .highslide-gallery ul {

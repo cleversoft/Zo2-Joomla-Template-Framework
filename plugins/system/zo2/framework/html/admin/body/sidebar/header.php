@@ -50,7 +50,7 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Profile Assignment -->
     <li class="">
         <a href="#zo2-profile-assignment" role="tab" data-toggle="tab">
-            <i class="fa fa-chain-broken"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_PROFILE_ASSIGNMENT'); ?>
+            <i class="fa fa-link"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_PROFILE_ASSIGNMENT'); ?>
         </a>
     </li>
     <!-- Advanced -->
@@ -66,6 +66,6 @@ defined('_JEXEC') or die('Restricted access');
         </a>
     </li>
     <div class="logo-framework">
-        <img src="<?php echo ZO2URL_ASSETS . '/zo2/images/logo-framework.png'; ?>" alt="Zo2 Framework">
+        <img src="<?php echo ZO2URL_ASSETS . '/zo2/images/zo2_logo_64x64.png'; ?>" alt="Zo2 Framework">
     </div>
 </ul>
