@@ -36,7 +36,7 @@
          */
         _settings: {
             /* Default layout */
-            strantegy: [
+            strategy: [
                 [12], [6, 6], [4, 4, 4], [3, 3, 3, 3], [3, 3, 2, 2, 2], [2, 2, 2, 2, 2, 2]
             ],
             /* Visibility attributes */
@@ -223,7 +223,16 @@
                     var $container = $this.closest('.col-container');
                     if (result)
                         $this.closest('.sortable-col').remove();
-                    z.admin.layoutBuilder.rearrangeSpan($container);
+                    z.admin.layoutbuilder.rearrangeSpan($container);
+                });
+            });
+            $('#droppable-container').on('click', '.row-control-buttons > .delete', function() {
+                var $this = $(this);
+                w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
+                    var $container = $this.closest('.row-container');
+                    if (result)
+                        $this.closest('.sortable-row').remove();
+                    z.admin.layoutbuilder.rearrangeSpan($container);
                 });
             });
         },

@@ -170,8 +170,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 $col = $item.closest('[class*="span"]'),
                 $items = $col.find('ul:first > li'),
                 itemidx = $items.index($item),
-                $moveitems = $items.slice(0, itemidx + 1),
-                itemleft = $items.length - $moveitems.length,
+                $moveitem = $items.slice(0, itemidx + 1).last(),
+                itemleft = $items.length - $moveitem.length,
                 $rows = $col.parent().parent().children('[class*="row"]'),
                 $cols = $rows.children('[class*="span"]').filter(function() {
             return !$(this).data('module_id');
@@ -199,7 +199,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!$ul.length) {
             $ul = $('<ul class="mega-nav level' + level + '">').appendTo($tocol.children('.mega-inner'));
         }
-        $moveitems.appendTo($ul);
+        $moveitem.appendTo($ul);
         if (itemleft === 0) {
             $col.find('ul:first').remove();
         }
@@ -216,8 +216,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                 $col = $item.closest('[class*="span"]'),
                 $items = $col.find('ul:first > li'),
                 itemidx = $items.index($item),
-                $moveitems = $items.slice(itemidx),
-                itemleft = $items.length - $moveitems.length,
+                $moveitem = $items.slice(itemidx).first(),
+                itemleft = $items.length - $moveitem.length,
                 $rows = $col.parent().parent().children('[class*="row"]'),
                 $cols = $rows.children('[class*="span"]').filter(function() {
             return !$(this).data('module_id');
@@ -243,7 +243,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!$ul.length) {
             $ul = $('<ul class="mega-nav level' + level + '">').appendTo($tocol.children('.mega-inner'));
         }
-        $moveitems.prependTo($ul);
+        $moveitem.prependTo($ul);
         if (itemleft === 0) {
             $col.find('ul:first').remove();
         }
