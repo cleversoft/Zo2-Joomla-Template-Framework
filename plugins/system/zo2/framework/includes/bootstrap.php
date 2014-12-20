@@ -68,15 +68,18 @@ if (Zo2Factory::isZo2Template()) {
                         $model->rename();
                         break;
                 };
-                $zo2Task = $jinput->get('zo2_task');
-                if ($zo2Task) {
-                    $zo2Task = explode('.', $zo2Task);
-                    $modelClass = 'Zo2Model' . ucfirst($zo2Task[0]);
-                    $model = new $modelClass;
-                    if (method_exists($model, $zo2Task[1])) {
-                        call_user_func(array($model, $zo2Task[1]));
-                    }
-                }
+                /*
+                  $zo2Task = $jinput->get('zo2_task');
+                  if ($zo2Task) {
+                  $zo2Task = explode('.', $zo2Task);
+                  $modelClass = 'Zo2Model' . ucfirst($zo2Task[0]);
+                  $model = new $modelClass;
+                  if (method_exists($model, $zo2Task[1])) {
+                  call_user_func(array($model, $zo2Task[1]));
+                  }
+                  }
+                 * 
+                 */
             }
         }
     JFactory::getDocument()->addScriptDeclaration('/**
