@@ -14,6 +14,9 @@
  */
 defined('_JEXEC') or die('Restricted access');
 $currentProfile = Zo2Factory::getProfile();
+$url = JUri::getInstance();
+$url->setVar('zo2_task', 'admin.downloadBackup');
+$downloadProfileUrl = $url->toString();
 ?>
 <div class="row-fluid">
     <div class="span12">
@@ -43,21 +46,25 @@ $currentProfile = Zo2Factory::getProfile();
                             ));
                             ?>
                             <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalSaveAs();
-                                return false;">
-                                <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_SAVE_AS'); ?>
+                                    return false;">
+                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_SAVE_AS'); ?>
                             </button>
                             <?php if ($currentProfile->authorise('rename')) : ?>
                                 <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
-                                        return false;">
-                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_RENAME'); ?>
+                                            return false;">
+                                        <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_RENAME'); ?>
                                 </button>
                             <?php endif; ?>
                             <?php if ($currentProfile->authorise('delete')) : ?>
                                 <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
-                                        return false;">
-                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DELETE'); ?>
+                                            return false;">
+                                        <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DELETE'); ?>
                                 </button>
                             <?php endif; ?>
+                            <button type="button" class="btn btn-info" onClick="window.open('<?php echo $downloadProfileUrl; ?>', '_blank');
+                                    return false;">
+                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILES_DOWNLOAD'); ?>
+                            </button>
                         </div>
 
                     </div>
@@ -65,7 +72,7 @@ $currentProfile = Zo2Factory::getProfile();
                 <div class="pull-right">
                     <button type="button" class="btn btn-default" onclick="zo2.admin.clearCache();
                             return false;">
-                                <?php echo JText::_('ZO2_ADMIN_BUTTON_CLEAR_CACHE'); ?>
+                            <?php echo JText::_('ZO2_ADMIN_BUTTON_CLEAR_CACHE'); ?>
                     </button>
                     <button type="button" class="btn btn-primary" onclick="zo2.admin.buildAssets();
                             return false;">
