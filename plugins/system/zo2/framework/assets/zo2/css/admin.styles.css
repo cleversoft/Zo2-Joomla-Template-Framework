@@ -415,8 +415,8 @@
 }
 #zo2-framework .zo2-body .logo-framework {
   display: block;
-  padding: 40px 0 40px 0;
-  text-align: center;
+  padding: 40px 0 40px 25px;
+  text-align: left;
 }
 #zo2-framework #logo {
   background: url('../images/zo2logo.png') no-repeat 0 0;
@@ -1428,15 +1428,19 @@ textarea {
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
 }
+.form-horizontal #column-responsive .control-group {
+  margin-bottom: 0;
+}
 #column-responsive .btn-group-onoff {
   float: left;
+  margin-top: 10px;
 }
 #column-responsive .btn-group-onoff > button {
   background-color: transparent;
   background-image: none;
   border: medium none;
   box-shadow: none;
-  height: 40px;
+  height: 33px;
   min-width: 18px;
   padding: 0;
   position: relative;

@@ -27,7 +27,7 @@ if (!class_exists('Zo2HtmlCopyright')) {
         public function render() {
             $html = new Zo2Html();
             $html->set('showLogo', Zo2Factory::get('footer_logo'));
-            $html->set('logoUrl', JUri::root(true) . '/plugins/system/zo2/assets/zo2/images/zo2logo.png');
+            $html->set('logoUrl', JUri::root(true) . '/plugins/system/zo2/framework/assets/zo2/images/zo2_logo_32x32.png');
             $html->set('copyright', Zo2Factory::get('footer_copyright'));
             $html->set('title', 'Zo2 Framework');
             $html->set('link', 'http://zo2framework.org');
