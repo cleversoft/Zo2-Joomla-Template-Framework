@@ -14,7 +14,7 @@
  *------------------------------------------------------------------------------
  */
 
-var ZO2AdminMegamenu = {};
+var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
 !function($) {
     var currentSelected = null,
             megamenu, nav_items, nav_subs, nav_cols, nav_all;
@@ -815,10 +815,6 @@ var ZO2AdminMegamenu = {};
             };
         },
         initRadioGroup: function() {
-
-//            if (typeof ZO2Admin !== 'undefined') {
-//                return true;
-//            }
 
             var zo2_admin = $('.zo2-admin-megamenu');
             zo2_admin.find('.radio.btn-group label').addClass('btn');

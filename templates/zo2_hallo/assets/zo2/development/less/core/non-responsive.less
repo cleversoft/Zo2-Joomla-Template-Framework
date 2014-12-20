@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : Dec 19, 2014, 10:05:22 PM
+    Created on : Dec 19, 2014, 9:52:52 PM
     Author     : Viet
 */
 
@@ -18,23 +18,23 @@ body {
 }
 .page-header {
   margin-bottom: 30px;
-  .lead {
-    margin-bottom: 10px;
-  }
+}
+.page-header .lead {
+  margin-bottom: 10px;
 }
 .container {
   max-width: none !important;
   width: 970px;
-  .navbar-header, .navbar-collapse {
-    margin-left: 0;
-    margin-right: 0;
-  }
 }
 .col-xs-4 {
   background-color: rgba(86, 61, 124, 0.15);
   border: 1px solid rgba(86, 61, 124, 0.2);
   padding-bottom: 15px;
   padding-top: 15px;
+}
+.container .navbar-header, .container .navbar-collapse {
+  margin-left: 0;
+  margin-right: 0;
 }
 .navbar-header {
   float: left;
@@ -45,10 +45,12 @@ body {
   overflow: visible !important;
   padding-bottom: 0;
   visibility: visible;
-  border-top: 0 none;
 }
 .navbar-toggle {
   display: none;
+}
+.navbar-collapse {
+  border-top: 0 none;
 }
 .navbar-brand {
   margin-left: -15px;
@@ -56,54 +58,33 @@ body {
 .navbar-nav {
   float: left;
   margin: 0;
-  > li {
-    float: left;
-    > a {
-      padding: 15px;
-    }
-  }
-  .navbar-right {
-    float: right;
-  }
 }
-.navbar{
-  .navbar-nav {
-    .open {
-      .dropdown-menu {
-        border-radius: 0 0 4px 4px;
-        float: left;
-        position: absolute;
-        > li > a:hover,
-        > li > a:focus,
-        > .active > a,
-        > .active > a:hover,
-        > .active > a:focus {
-          background-color: #428bca !important;
-          color: #fff !important;
-        }
-        > .disabled > a,
-        > .disabled > a:hover,
-        > .disabled > a:focus {
-          background-color: transparent !important;
-          color: #999 !important;
-        }
-      }
-    }
-  }
+.navbar-nav > li {
+  float: left;
 }
-.navbar-default{
-  .navbar-nav {
-    .open {
-      .dropdown-menu {
-        > li {
-          > a {
-            color: #333;
-          }
-        }
-      }
-    }
-  }
+.navbar-nav > li > a {
+  padding: 15px;
 }
+.navbar-nav.navbar-right {
+  float: right;
+}
+.navbar .navbar-nav .open .dropdown-menu {
+  border-radius: 0 0 4px 4px;
+  float: left;
+  position: absolute;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+  color: #333;
+}
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .navbar-nav .open .dropdown-menu > li > a:focus, .navbar .navbar-nav .open .dropdown-menu > .active > a, .navbar .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+  background-color: #428bca !important;
+  color: #fff !important;
+}
+.navbar .navbar-nav .open .dropdown-menu > .disabled > a, .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+  background-color: transparent !important;
+  color: #999 !important;
+}
+
 /* Custom Class Bootstrap */
 
 /* Custom class [col-md] */

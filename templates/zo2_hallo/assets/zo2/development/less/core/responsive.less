@@ -1,4 +1,18 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 19, 2014, 9:52:41 PM
+    Author     : Viet
+*/
+
+/* ----------- Style for only screen 991px - 1200px ------------- */
+
 @media (min-width: 992px) and (max-width: 1200px) {
+
+  /* Social */
   .social a {
     height: 30px;
     margin: 0 2px;
@@ -9,6 +23,8 @@
     line-height: 30px;
     width: 30px;
   }
+
+  /* Search */
   #top-search form {
     padding: 0 10px;
   }
@@ -16,20 +32,29 @@
     padding: 0 !important;
   }
 }
+
+/* ----------- Style for only screen 768px - 991px ------------- */
+
 @media (min-width: 768px) and (max-width: 991px) {
+
+  /* Menu */
   .zo2-menu {
     margin-left: 30px !important;
   }
-  .zo2-menu > .container {
+  .zo2-menu >.container {
     padding: 0 !important;
   }
   nav.zo2-menu .navbar-nav > li > a {
     font-size: 13px;
     padding: 0 10px;
   }
+
+  /* Search */
   #top-search form {
     padding: 0 15px;
   }
+
+  /* Social */
   .social a {
     height: 30px;
     margin: 0 2px;
@@ -40,6 +65,8 @@
     line-height: 30px;
     width: 30px;
   }
+
+  /* Carousel */
   .carousel-caption {
     top: 0;
   }
@@ -53,7 +80,12 @@
     float: none;
   }
 }
+
+/* ----------- Style for only max width 767px ------------- */
+
 @media (max-width: 767px) {
+
+  /* Error */
   .zo2-error #errorboxheader {
     font-size: 35px;
   }
@@ -64,16 +96,18 @@
   .zo2-error #outline {
     width: 100%;
   }
+
+  /* Mobile logo and menu */
   .mobile-logo {
     float: right;
   }
   .mobile-menu {
     float: left;
   }
-  nav .zo2-menu {
+  nav.zo2-menu {
     margin: 0;
   }
-  nav .zo2-menu .navbar-toggle {
+  nav.zo2-menu .navbar-toggle {
     border: none;
     padding: 0;
     -webkit-border-radius: 0;
@@ -81,7 +115,7 @@
     border-radius: 0;
     margin: 11px 0 0 0;
   }
-  nav .zo2-menu .navbar-toggle .icon-bar {
+  nav.zo2-menu .navbar-toggle .icon-bar {
     background-color: #525252;
     display: block;
     height: 4px;
@@ -90,16 +124,11 @@
     transition: all 0.3s ease 0s;
     width: 30px;
   }
-  nav .zo2-menu .navbar-toggle:hover {
+  nav.zo2-menu .navbar-toggle:hover {
     background: none;
   }
-  nav .zo2-menu .navbar-toggle:hover .icon-bar {
+  nav.zo2-menu .navbar-toggle:hover .icon-bar {
     background-color: #7FBE54;
-  }
-  nav .zo2-menu .navbar-nav > li {
-    height: 35px;
-    line-height: 35px;
-    border-bottom: 1px solid #eaeaea;
   }
   .navbar-nav {
     margin: 0;
@@ -107,12 +136,19 @@
   .navbar-header {
     float: left;
   }
+  nav.zo2-menu .navbar-nav > li {
+    height: 35px;
+    line-height: 35px;
+    border-bottom: 1px solid #eaeaea;
+  }
   #top-menu {
     text-align: center;
   }
+
   #zo2-header-top {
     padding-bottom: 20px;
   }
+
   .zo2-megamenu .mega-inner {
     padding: 10px 20px;
   }
@@ -131,7 +167,7 @@
   }
   .zo2-megamenu .row-fluid + .row-fluid {
     padding-top: 10px;
-    border-top: 1px solid #999;
+    border-top: 1px solid #eee;
   }
   .zo2-megamenu .hidden-collapse,
   .zo2-megamenu .always-show  .caret,
@@ -144,6 +180,12 @@
   .zo2-megamenu .mega-caption {
     display: none !important;
   }
+  .zo2-megamenu .mega-inner {
+    padding: 10px 20px;
+  }
+  .zo2-megamenu .row-fluid + .row-fluid {
+    border-top: 1px solid #999;
+  }
   .zo2-megamenu .span12.mega-col-nav .mega-inner {
     padding: 0;
   }
@@ -154,29 +196,69 @@
   .zo2-megamenu .dropdown-menu .mega-nav > li a {
     padding: 5px 20px;
   }
+
+  .zo2-megamenu .row-fluid,
+  .zo2-megamenu .mega-dropdown-menu,
+  .zo2-megamenu .row-fluid [class*="span"] {
+    width: 100% !important;
+    min-width: 100% !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -ms-transform: none !important;
+    -o-transform: none !important;
+  }
+  .zo2-megamenu .row-fluid +div .row-fluid {
+    padding-top: 10px;
+    border-top: 1px solid #eeeeee;
+  }
+  .zo2-megamenu .mega-inner {
+    padding: 10px 20px;
+  }
+  .zo2-megamenu .mega-caption {
+    display: none !important;
+  }
+  .zo2-megamenu .hidden-collapse,
+  .zo2-megamenu .always-show .caret,
+  .zo2-megamenu .sub-hidden-collapse >.menu-child,
+  .zo2-megamenu .sub-hidden-collapse .caret,
+  .zo2-megamenu .sub-hidden-collapse >a:after,
+  .zo2-megamenu .always-show .dropdown-submenu >a:after {
+    display: none !important;
+  }
+
+  /* Feature and News */
   .zo2-feature {
     margin-bottom: 30px;
   }
   #news .mod-news img {
     float: none;
   }
+
+  /* Search and social */
   #top-search form {
     padding: 0 15px;
-    text-align: center;
-    border: none;
-    float: none;
   }
   .social a {
     height: 35px;
     margin: 0 3px;
     width: 35px;
   }
-  .social.header-social {
-    text-align: center;
-  }
   #zo2-header {
     padding: 30px 0;
   }
+  #top-search form {
+    text-align: center;
+    border: none;
+    float: none;
+  }
+  .social.header-social {
+    text-align: center;
+  }
+
+  /* Footer */
   .copyright {
     text-align: center;
     float: none;
@@ -188,6 +270,8 @@
   .footer_zo2_logo img {
     float: none;
   }
+
+  /* Content Bottom */
   #zo2-bottom1 .btn {
     font-size: 9px;
   }
