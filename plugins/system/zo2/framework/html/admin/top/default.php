@@ -37,10 +37,12 @@ $downloadProfileUrl = $url->toString();
                     <!-- Profiles -->
                     <div class="zo2-profiles">                                
                         <div class="navbar-form pull-left">
+                            <!-- temporary hidden 
                             <button type="button" class="btn btn-info" onClick="window.open('<?php echo $downloadProfileUrl; ?>', '_blank');
                                      return false;">
-                                        <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILES_DOWNLOAD'); ?>
+                            <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILES_DOWNLOAD'); ?>
                             </button>
+                            -->
                             <?php
                             echo Zo2Html::field('profiles', array(
                                 'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
