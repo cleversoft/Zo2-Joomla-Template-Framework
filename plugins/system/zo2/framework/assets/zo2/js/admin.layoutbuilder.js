@@ -226,6 +226,15 @@
                     z.admin.layoutbuilder.rearrangeSpan($container);
                 });
             });
+            $('#droppable-container').on('click', '.row-control-buttons > .delete', function() {
+                var $this = $(this);
+                w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
+                    var $container = $this.closest('.row-container');
+                    if (result)
+                        $this.closest('.sortable-row').remove();
+                    z.admin.layoutbuilder.rearrangeSpan($container);
+                });
+            });
         },
         /**
          * Add new row
