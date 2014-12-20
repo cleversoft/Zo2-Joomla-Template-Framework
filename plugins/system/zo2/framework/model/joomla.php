@@ -110,6 +110,22 @@ if (!class_exists('Zo2ModelJoomla')) {
             return $items;
         }
 
+        public function getAvaiablePositions() {
+            $templatePositions = Zo2Factory::getFramework()->getTemplatePositions();
+
+            $db = JFactory::getDbo();
+            $query = $db->getQuery(true)
+                    ->select('m.position')
+                    ->from('#__modules AS m')
+                    ->where('m.published = 1')
+                    ->where('m.client_id = 0');
+            $db->setQuery($query);
+            $positions = $db->loadColumn();            
+            $positions = array_merge($templatePositions, $positions);
+            $positions = array_unique($positions);
+            return $positions;
+        }
+
     }
 
 }
