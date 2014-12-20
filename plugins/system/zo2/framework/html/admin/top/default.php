@@ -26,14 +26,14 @@ $currentProfile = Zo2Factory::getProfile();
         </div>
         <!-- Navbar -->
         <div class="navbar">
-            <div class="navbar-inner">                 
+            <div class="navbar-inner navbar-profiles">
+                <div class="zo2-profiles-description">
+                    <span><?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DESCRIPTION'); ?></span>
+                </div>
                 <div class="pull-left">
                     <!-- Profiles -->
                     <div class="zo2-profiles">                                
-                        <div class="navbar-form pull-left">                            
-                            <span class="zo2-profiles-description">
-                                Store your modifications in a layout profile and assign it to different pages. The default layout will be used on pages without an assigned layout
-                            </span>
+                        <div class="navbar-form pull-left">
                             <?php
                             echo Zo2Html::field('profiles', array(
                                 'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
@@ -41,24 +41,25 @@ $currentProfile = Zo2Factory::getProfile();
                                 'profile' => $currentProfile,
                                 'profiles' => Zo2Factory::getFramework()->getProfiles()
                             ));
-                            ?>                           
+                            ?>
+                            <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalSaveAs();
+                                return false;">
+                                <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_SAVE_AS'); ?>
+                            </button>
+                            <?php if ($currentProfile->authorise('rename')) : ?>
+                                <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
+                                        return false;">
+                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_RENAME'); ?>
+                                </button>
+                            <?php endif; ?>
+                            <?php if ($currentProfile->authorise('delete')) : ?>
+                                <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
+                                        return false;">
+                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DELETE'); ?>
+                                </button>
+                            <?php endif; ?>
                         </div>
-                        <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalSaveAs();
-                                return false;">                                   
-                                    <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_SAVE_AS'); ?>
-                        </button>
-                        <?php if ($currentProfile->authorise('rename')) : ?>
-                            <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
-                                        return false;">
-                                        <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_RENAME'); ?>
-                            </button>
-                        <?php endif; ?>
-                        <?php if ($currentProfile->authorise('delete')) : ?>
-                            <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
-                                        return false;">
-                                        <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DELETE'); ?>
-                            </button>
-                        <?php endif; ?>
+
                     </div>
                 </div>
                 <div class="pull-right">
