@@ -223,7 +223,7 @@
                     var $container = $this.closest('.col-container');
                     if (result)
                         $this.closest('.sortable-col').remove();
-                    z.admin.layoutBuilder.rearrangeSpan($container);
+                    z.admin.layoutbuilder.rearrangeSpan($container);
                 });
             });
         },
