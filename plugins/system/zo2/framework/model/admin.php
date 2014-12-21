@@ -69,54 +69,13 @@ if (!class_exists('Zo2ModelAdmin')) {
         }
 
         /**
-         * 
+         * Render backend
          */
         public function render() {
             if ($this->_isAuthorized()) {
                 $this->_ajax->addHtml(Zo2Html::_('admin', 'config'), '#zo2-framework');
             }
             $this->_ajax->response();
-        }
-
-        public function downloadBackup() {
-
-            $attachment_location = $this->_getBackupProfiles();
-            if (file_exists($attachment_location)) {
-                header("Cache-Control: public"); // needed for i.e.
-                header("Content-Type: application/zip");
-                header("Content-Transfer-Encoding: Binary");
-                header("Content-Length:" . filesize($attachment_location));
-                header("Content-Disposition: attachment; filename=zo2_profiles.zip");
-                readfile($attachment_location);
-                die();
-            } else {
-                die("Error: File not found.");
-            }
-        }
-
-        private function _getBackupProfiles() {
-
-            $folder_path = JPATH_ROOT . '/templates/' . Zo2Factory::getTemplateName() . '/assets/profiles';
-            $new_folder_name_final = $folder_path . '/../backup.zip';
-
-            $zip = new ZipArchive();
-
-            if ($zip->open($new_folder_name_final, ZIPARCHIVE::CREATE) !== TRUE) {
-                return false;
-            }
-
-            $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folder_path));
-
-            foreach ($iterator as $key => $value) {
-                $key = str_replace('\\', '/', $key);
-                if (!is_dir($key)) {
-                    if (!$zip->addFile(realpath($key), substr($key, strlen($folder_path) - strlen(basename($folder_path))))) {
-                        return false;
-                    }
-                }
-            }
-
-            return $new_folder_name_final;
         }
 
         /**
