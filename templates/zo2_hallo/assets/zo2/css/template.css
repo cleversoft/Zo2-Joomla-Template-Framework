@@ -3052,6 +3052,12 @@ code {
   left: inherit;
   right: 0;
 }
+.rtl footer section {
+  float: right;
+}
+.rtl footer .zo2-copyright-logo img {
+  float: left;
+}
 .zo2-row-wrapper .custom > div {
   height: auto !important;
 }
