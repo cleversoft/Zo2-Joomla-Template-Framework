@@ -45,10 +45,13 @@ $theme = new JObject($profile->get('theme'));
                     foreach ($bgPatterns as $pattern) {
                         $selected = '';
                         $pattern_src = $zPath->toUrl($pattern);
-                        if ($pattern_src == $theme->get('bg_pattern'))
-                            $selected = 'selected';
+                        if(is_array(getimagesize($pattern))){
+                            if ($pattern_src == $theme->get('bg_pattern'))
+                                $selected = 'selected';
 
-                        echo '<li class="' . $selected . '"><img alt="Pattern background image" src="' . $pattern_src . '" /></li>';
+                            echo '<li class="' . $selected . '"><img alt="Pattern background image" src="' . $pattern_src . '" /></li>';
+                        }
+
                     }
                 }
                 ?>
