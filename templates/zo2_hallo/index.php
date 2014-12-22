@@ -30,9 +30,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <?php if(!$this->zo2->framework->get('non_responsive_layout')) :  ?>
             <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php endif; ?>
-
-        <?php echo $this->zo2->template->fetch('html://layouts/head.response.php'); ?>
-        <?php echo $this->zo2->template->fetch('html://layouts/head.favicon.php'); ?>
+        
         <!--[if !IE 8]> -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
         <!-- <![endif]-->
