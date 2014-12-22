@@ -23,7 +23,7 @@ $positions = $model->getAvaiablePositions();
         <input type="text" 
                name="jform[params][layout]"
                id="jform_params_layout"
-               value="<?php echo json_encode($layoutData, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE); ?>" 
+               value="<?php echo json_encode($layoutData, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>" 
                style="display: none" 
                class="hfLayoutHtml" />
         <input type="hidden" id="hfTemplateName" value="<?php echo Zo2Factory::getTemplateName() ?>" />
@@ -86,19 +86,19 @@ $positions = $model->getAvaiablePositions();
                             <div class="control-group">
                                 <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_RESPONSIVE'); ?></div>
                                 <div class="controls">
-                                    <div class="control btn-group btn-group-onoff" id="btgColPhone">
+                                    <div class="control btn-group btn-group-onoff" id="btgRowPhone">
                                         <button class="btn btn-on active" data-toggle="tooltip" data-placement="left" title="Enable On Mobile"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON');    ?></button>
                                         <button class="btn btn-off" data-toggle="tooltip" data-placement="left" title="Disable On Mobile"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF');    ?></button>
                                     </div>
-                                    <div class="control btn-group btn-group-onoff" id="btgColTablet">
+                                    <div class="control btn-group btn-group-onoff" id="btgRowTablet">
                                         <button class="btn btn-on active" data-toggle="tooltip" data-placement="left" title="Enable On Tablet"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON');    ?></button>
                                         <button class="btn btn-off" data-toggle="tooltip" data-placement="left" title="Disable On Tablet"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF');    ?></button>
                                     </div>
-                                    <div class="control btn-group btn-group-onoff" id="btgColDesktop">
+                                    <div class="control btn-group btn-group-onoff" id="btgRowDesktop">
                                         <button class="btn btn-on active" data-toggle="tooltip" data-placement="left" title="Enable On Destop"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON');    ?></button>
                                         <button class="btn btn-off" data-toggle="tooltip" data-placement="left" title="Disable On Destop"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF');    ?></button>
                                     </div>
-                                    <div class="control btn-group btn-group-onoff" id="btgColLargeDesktop">
+                                    <div class="control btn-group btn-group-onoff" id="btgRowLargeDesktop">
                                         <button class="btn btn-on active" data-toggle="tooltip" data-placement="left" title="Enable On Large Destop"><?php //echo JText::_('ZO2_ADMIN_COMMON_ON');    ?></button>
                                         <button class="btn btn-off" data-toggle="tooltip" data-placement="left" title="Disable On Large Destop"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF');    ?></button>
                                     </div>
