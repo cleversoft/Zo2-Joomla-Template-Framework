@@ -24,7 +24,7 @@
 
         <div class="row-container">
             <?php foreach ($column->get('children')as $row) { ?>
-                <?php require 'formfield.layout.row.php'; ?>
+                <?php require 'layout.row.php'; ?>
             <?php } ?>              
         </div>
     </div>
