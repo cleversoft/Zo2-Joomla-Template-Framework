@@ -304,7 +304,15 @@ if (!class_exists('Zo2Profile')) {
             /* Footer */
             if (!empty($themeData['footer']))
                 $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . '}';
-
+            if (!empty($themeData['boxed']) && $themeData['boxed'] == 1) {
+                if (!empty($themeData['bg_image']) || !empty($themeData['bg_pattern'])) {
+                    $backgroundImage = !empty($themeData['bg_image']) ? $themeData['bg_image'] : $themeData['bg_pattern'];
+                    $backgroundImage = JUri::root() . '/' . $backgroundImage;
+                    $backgroundImage = str_replace('\\', '/', $backgroundImage);
+                }
+                if (!empty($backgroundImage))
+                    $style [] = 'body.boxed{background-image:url("' . $backgroundImage . '")}';
+            }
 
             return implode(';' . PHP_EOL, $style);
         }

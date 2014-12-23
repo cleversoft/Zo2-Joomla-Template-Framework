@@ -4,7 +4,7 @@
     <div class="zo2-divider"></div>
 
     <div class="profiles-pane">
-        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');                      ?><!--</h3>-->
+        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');                       ?><!--</h3>-->
 
         <?php
         echo Zo2Html::field(
