@@ -4,7 +4,7 @@
     <div class="zo2-divider"></div>
 
     <div class="profiles-pane">
-        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');              ?><!--</h3>-->
+        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');                    ?><!--</h3>-->
 
         <?php
         echo Zo2Html::field(
@@ -206,8 +206,43 @@
                             'value' => $preset_data['footer']
                         ));
                         ?>
+                        <!-- Retina logo -->       
+                        <?php
+                        echo Zo2Html::field(
+                                'radio', array(
+                            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_CHOOSE_LAYOUT'),
+                            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_CHOOSE_LAYOUT'),
+                                ), array(
+                            'id' => 'zo2_boxed_style',
+                            'name' => 'zo2_boxed_style',
+                            'options' => array(
+                                array(
+                                    'value' => 1,
+                                    'label' => JText::_('Boxed layout'),
+                                    'class' => ''
+                                ),
+                                array(
+                                    'value' => 0,
+                                    'label' => JText::_('Full width layout'),
+                                    'class' => ''
+                                )),
+                            'value' => $preset_data['boxed']
+                        ));
+                        ?>  
 
-
+                        <?php
+                        echo Zo2Html::field(
+                                'image', array(
+                            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_BACKGROUND_IMAGE'),
+                            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_BACKGROUND_IMAGE'),
+                            'class_wrap' => 'zo2-background-image',
+                            'class' => 'zo2-background-image'
+                                ), array(
+                            'id' => 'zo2_background_image',
+                            'name' => 'zo2_background_image',
+                            'value' => $preset_data['bg_image']
+                        ));
+                        ?>  
                     </div>
 
                 </div>
