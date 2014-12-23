@@ -16,7 +16,7 @@
  * @param {type} $ jQuery pointer
  * @returns {undefined}
  */
-(function (w, z, $) {
+(function(w, z, $) {
 
     /**
      * Admin preset theme color
@@ -26,13 +26,12 @@
          * Element variables
          */
         _elements: {
-
         },
         /**
          *  Initial events for preset theme
          * @returns {undefined}
          */
-        _init: function () {
+        _init: function() {
             this.selectPreset();
             this.colorPresetChange();
             this.selectBackgroundImage();
@@ -42,8 +41,8 @@
          * Select preset
          * @returns {undefined}
          */
-        selectPreset: function () {
-            jQuery('#zo2_themes').on('click', '> li', function () {
+        selectPreset: function() {
+            jQuery('#zo2_themes').on('click', '> li', function() {
                 var $this = $(this);
                 var $container = $('#zo2_themes_container');
                 var $list = $('#zo2_themes');
@@ -71,7 +70,6 @@
                 $('#color_bottom1_preview').css('background-color', $this.attr('data-zo2-bottom1'));
                 $('#color_bottom2_preview').css('background-color', $this.attr('data-zo2-bottom2'));
                 $('#color_footer_preview').css('background-color', $this.attr('data-zo2-footer'));
-
                 z.admin.themecolor.generatePresetData();
             });
         },
@@ -79,14 +77,14 @@
          * Generate data from preset box
          * @returns {undefined}
          */
-        generatePresetData: function () {
+        generatePresetData: function() {
             var currentPreset = jQuery('#zo2_themes').find('.active');
             var hiddenInput = jQuery('#zo2_themes_container').find('input:first');
             var data = {
                 name: currentPreset.attr('data-zo2-theme'),
                 css: currentPreset.attr('data-zo2-css'),
                 less: currentPreset.attr('data-zo2-less'),
-                boxed: jQuery('#zo2_boxed_style').val(),
+                boxed: jQuery('#background_image_wrapper .btn-group').find(':checked').val(),
                 background: jQuery('#color_background').val(),
                 header: jQuery('#color_header').val(),
                 header_top: jQuery('#color_header_top').val(),
@@ -105,8 +103,8 @@
          * Color preset change
          * @returns {undefined}
          */
-        colorPresetChange: function () {
-            $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function () {
+        colorPresetChange: function() {
+            $('#zo2_themes_container').find('.txtColorPicker').colorpicker().on('change', function() {
                 var $this = $(this);
                 var $parent = $this.parent();
                 var $preview = $parent.find('.color-preview');
@@ -122,8 +120,8 @@
          * Select background image
          * @returns {undefined}
          */
-        selectBackgroundImage: function () {
-            jQuery('.background-select li').click(function () {
+        selectBackgroundImage: function() {
+            jQuery('.background-select li').click(function() {
                 if (jQuery(this).hasClass('selected')) {
                     jQuery(this).removeClass('selected');
                 } else {
@@ -137,37 +135,32 @@
          * Select layout type
          * @returns {undefined}
          */
-        selectLayoutType: function () {
-            jQuery('.layout_style_choose').click(function () {
-                jQuery('.layout_style_choose').removeClass('btn-success');
-                jQuery(this).addClass('btn-success');
-                if (jQuery(this).hasClass('boxed')) {
-                    jQuery('input[name="zo2_boxed_style"]').val('1');
-                    jQuery('.zo2_background_and_pattern').fadeIn(500);
+        selectLayoutType: function() {
+            $('#background_image_wrapper .btn-group').on('click', function() {
+                if ($(this).find(':checked').val() === '0') {
+                    $('#background_image_wrapper #background_image_selector').hide('slow');
                 } else {
-                    jQuery('input[name="zo2_boxed_style"]').val('0');
-                    jQuery('.zo2_background_and_pattern').fadeOut(500);
+                    $('#background_image_wrapper #background_image_selector').show('slow');
                 }
                 z.admin.themecolor.generatePresetData();
             });
-
-            jQuery('#zo2_background_image').change(function () {
+            jQuery('#zo2_background_image').change(function() {
                 z.admin.themecolor.generatePresetData();
             });
         }
     };
-    
+
     /**
      * Append to Zo2 admin
      */
     z.admin.themecolor = _themecolor;
-    
+
     /**
      * Init plugin
      * Put all of your init code into _init
      */
-    $(w.document).ready(function () {
+    $(w.document).ready(function() {
         z.admin.themecolor._init();
     });
-    
+
 })(window, zo2, zo2.jQuery);

@@ -4,7 +4,7 @@
     <div class="zo2-divider"></div>
 
     <div class="profiles-pane">
-        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');                     ?><!--</h3>-->
+        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');                      ?><!--</h3>-->
 
         <?php
         echo Zo2Html::field(
@@ -207,94 +207,63 @@
                         ));
                         ?>
 
-                </div>
-                <div class="zo2_themes_row clearfix">
-
-                    <div class="zo2_themes_label">
-                        <?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_BACKGROUND'); ?>
                     </div>
-                    <!--div class="control-group">
-                        <div class="control-label">
-                            <label class="hasTooltip"><?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_CHOOSE_LAYOUT'); ?></label>
+                    <div class="zo2_themes_row clearfix" id="background_image_wrapper">
+
+                        <div class="zo2_themes_label">
+                            <?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_BACKGROUND'); ?>
                         </div>
-                        <div class="controls">
-                            <fieldset class="radio btn-group">
-                                <input type="hidden" value="<?php echo $preset_data['boxed']; ?>" name="zo2_boxed_style" id="zo2_boxed_style" />
-                                <label class="btn layout_style_choose <?php if ($preset_data['boxed'] == 0) echo 'btn-success'; ?>">Full width layout</label>
-                                <label class="btn layout_style_choose boxed <?php if ($preset_data['boxed'] == 1) echo 'btn-success'; ?>">Boxed layout</label>
-                            </fieldset>
-                        </div>
-                    </div-->
-                    <?php
-                    echo Zo2Html::field(
-                        'radio', array(
-                        'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_CHOOSE_LAYOUT'),
-                        'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_CHOOSE_LAYOUT'),
-                    ), array(
-                        'id' => 'zo2_boxed_style',
-                        'name' => 'zo2_boxed_style',
-                        'value' => $preset_data['boxed']
-                    ));
-                    ?>
-                    <!--div class="zo2_background_and_pattern" <?php if ($preset_data['boxed'] == 0) echo 'style="display:none"'; ?>>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <label class=""><?php echo JText::_('ZO2_TEMPLATE_THEME_BACKGROUND_IMAGE'); ?></label>
-                            </div>
-                            <div class="controls">
-                                <div class="input-prepend input-append">
-                                    <div class="media-preview add-on">
-                                        <span class="hasTipPreview" title=""><i class="fa fa-eye"></i></span>
-                                    </div>
-                                    <input type="text" name="zo2_background_image" id="zo2_background_image" value="<?php echo $preset_data['bg_image']; ?>" readonly="readonly" class="input-small">
-                                    <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=zo2_background_image&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
-                                        <?php echo JText::_('ZO2_TEMPLATE_THEME_SELECT'); ?>
-                                    </a>
-                                    <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', 'zo2_background_image');
-                                    return false;" data-original-title="Clear">
-                                        <i class="fa fa-remove"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div-->
                         <?php
                         echo Zo2Html::field(
-                            'image', array(
-                            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_BACKGROUND_IMAGE'),
-                            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_BACKGROUND_IMAGE'),
-                            'class_wrap' => 'zo2-background-image',
-                            'class' => 'zo2-background-image'
-                        ), array(
-                            'id' => 'zo2_background_image',
-                            'name' => 'zo2_background_image',
-                            'value' => $preset_data['bg_image']
+                                'radio', array(
+                            'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_CHOOSE_LAYOUT'),
+                            'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_CHOOSE_LAYOUT'),
+                                ), array(
+                            'id' => 'zo2_boxed_style',
+                            'name' => 'zo2_boxed_style',
+                            'value' => $preset_data['boxed']
                         ));
                         ?>
-                        <hr />
-                        <div class="zo2_themes_label">
-                            <?php echo JText::_('ZO2_TEMPLATE_THEME_PATTERN_BACKGROUND'); ?>
-                        </div>
-                        <div class="zo2_themes_form">
-                            <ul class="options background-select">
-                                <?php
-                                $zPath = Zo2Path::getInstance();
-                                $backgroundsDir = Zo2Factory::getPath("templates://assets/zo2/images/background-patterns");
-                                $bgPatterns = glob($backgroundsDir . '/*.*');
-                                if (count($bgPatterns) > 0) {
-                                    foreach ($bgPatterns as $pattern) {
-                                        if(is_array(getimagesize($pattern))){
-                                            $selected = '';
-                                            $pattern_src = $zPath->toUrl($pattern);
-                                            $pattern_path = str_replace(JPATH_ROOT . DIRECTORY_SEPARATOR, '', $pattern);
-                                            if (isset($preset_data['bg_pattern']) && ($pattern_path == $preset_data['bg_pattern']))
-                                                $selected = 'selected';
-                                            echo '<li class="' . $selected . '"><img rel="' . $pattern_path . '" src="' . $pattern_src . '" /></li>';
+                        <div id="background_image_selector" class="zo2_background_and_pattern" <?php if ($preset_data['boxed'] == 0) echo 'style="display:none"'; ?>>
+                            <?php
+                            echo Zo2Html::field(
+                                    'image', array(
+                                'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_BACKGROUND_IMAGE'),
+                                'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_BACKGROUND_IMAGE'),
+                                'class_wrap' => 'zo2-background-image',
+                                'class' => 'zo2-background-image'
+                                    ), array(
+                                'id' => 'zo2_background_image',
+                                'name' => 'zo2_background_image',
+                                'value' => $preset_data['bg_image']
+                            ));
+                            ?>
+                            <hr />
+                            <div class="zo2_themes_label">
+                                <?php echo JText::_('ZO2_TEMPLATE_THEME_PATTERN_BACKGROUND'); ?>
+                            </div>
+                            <div class="zo2_themes_for">
+                                <ul class="options background-select">
+                                    <?php
+                                    $zPath = Zo2Path::getInstance();
+                                    $backgroundsDir = Zo2Factory::getPath("templates://assets/zo2/images/background-patterns");
+                                    $bgPatterns = glob($backgroundsDir . '/*.*');
+                                    if (count($bgPatterns) > 0) {
+                                        foreach ($bgPatterns as $pattern) {
+                                            if (is_array(getimagesize($pattern))) {
+                                                $selected = '';
+                                                $pattern_src = $zPath->toUrl($pattern);
+                                                $pattern_path = str_replace(JPATH_ROOT . DIRECTORY_SEPARATOR, '', $pattern);
+                                                if (isset($preset_data['bg_pattern']) && ($pattern_path == $preset_data['bg_pattern']))
+                                                    $selected = 'selected';
+                                                echo '<li class="' . $selected . '"><img rel="' . $pattern_path . '" src="' . $pattern_src . '" /></li>';
+                                            }
                                         }
                                     }
-                                }
-                                ?>
+                                    ?>
 
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
