@@ -1150,7 +1150,10 @@ div.tags:before {
   color: #3c763d;
 }
 .breadcrumb {
-  margin-bottom: 30px;
+  margin-bottom: 0;
+  background-color: transparent;
+  border-bottom: 1px solid #404141;
+  padding-left: 0;
 }
 .blog-featured #zo2-features {
   clear: both;
@@ -2585,11 +2588,6 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 #zo2-bottom1 {
   background-color: #2a2a2a;
   color: #fff;
-}
-#zo2-bottom1 .container {
-  border-bottom: 1px solid #404141;
-  padding-bottom: 50px;
-  padding-top: 50px;
 }
 #zo2-bottom1 .zo2-mail {
   border: 1px solid #4c4c4c;

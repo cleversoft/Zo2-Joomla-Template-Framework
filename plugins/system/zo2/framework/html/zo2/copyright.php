@@ -20,7 +20,7 @@ defined('_JEXEC') or die('Restricted access');
             title="<?php echo $title; ?>" 
             class="zo2-copyright-logo" 
             href="<?php echo $link; ?>">
-            <img src="<?php echo $logoUrl; ?>" />
+            <img src="<?php echo $logoUrl; ?>" alt="<?php echo $title; ?>" />
         </a>
     <?php endif; ?>
     <?php if ($gototop): ?>
