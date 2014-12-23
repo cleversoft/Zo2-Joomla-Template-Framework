@@ -5,8 +5,9 @@
                 <div class="span12">
                     <h2>Information Zo2 Framework</h2>
                     <div class="zo2-divider"></div>
-                    <p><br />Zo2 Framework is a Joomla template framework, built from scratch, and heavily support Bootstrap framework and LESS. Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.</p>
-                    <p><a class="btn btn-primary btn-large" href="http://www.zootemplate.com/zo2" target="_blank">Learn more</a></p>
+                    <p>Zo2 Framework is a Joomla template framework, built from scratch, and heavily support Bootstrap framework and LESS.</p>
+                    <p>Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.</p>
+                    <p><a class="btn btn-primary btn-large" href="http://www.zootemplate.com/zo2" target="_blank">Learn more Zo2Framework</a></p>
                     <div class="zo2-divider"></div>
                     <h3>Version</h3>
                     <?php
@@ -104,7 +105,9 @@
                     <h3>License</h3>
                     <p>Zo2Framework is licensed under GNU General Public License (GPL), version 2 or later. <br /> <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">http://www.gnu.org/licenses/gpl-2.0.html</a></p>
                     <h3>Usage</h3>
-                    <p>You are free to use Zo2 Framework for your personal and commercial projects. You do not have to keep the Zo2 or Zootemplate links and logos in the front end, however, you must ensure that all copyright notices in the code are retained. Also, if you intend to use the Zo2 Framework in a commercial project, or a template you intend to redistribute in any form, please retain a "Powered by Zo2" logo and link in the backend administrative interface.</p>
+                    <p>You are free to use Zo2 Framework for your personal and commercial projects.</p>
+                    <p>You do not have to keep the Zo2 or Zootemplate links and logos in the front end, however, you must ensure that all copyright notices in the code are retained. </p>
+                    <p>Also, if you intend to use the Zo2 Framework in a commercial project, or a template you intend to redistribute in any form, please retain a "Powered by Zo2" logo and link in the backend administrative interface.</p>
                     <h3>Credits</h3>
                     <ul class="task-list">
                         <li><a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome Icons</a></li>
