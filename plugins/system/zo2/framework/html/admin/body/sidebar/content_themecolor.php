@@ -4,7 +4,7 @@
     <div class="zo2-divider"></div>
 
     <div class="profiles-pane">
-        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');                    ?><!--</h3>-->
+        <!--<h3 class="title-profile">--><?php //echo JText::_('ZO2_TEMPLATE_THEME_LAYOUT');                     ?><!--</h3>-->
 
         <?php
         echo Zo2Html::field(
@@ -215,17 +215,6 @@
                                 ), array(
                             'id' => 'zo2_boxed_style',
                             'name' => 'zo2_boxed_style',
-                            'options' => array(
-                                array(
-                                    'value' => 1,
-                                    'label' => JText::_('Boxed layout'),
-                                    'class' => ''
-                                ),
-                                array(
-                                    'value' => 0,
-                                    'label' => JText::_('Full width layout'),
-                                    'class' => ''
-                                )),
                             'value' => $preset_data['boxed']
                         ));
                         ?>  
