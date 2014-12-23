@@ -107,6 +107,7 @@ if (!class_exists('Zo2Framework')) {
                  * Zo2 template
                  */
                 $templateName = $this->template->template;
+                $this->path->registerNamespace('zo2', JPATH_ROOT . '/templates/' . $templateName);
                 $this->path->registerNamespace('assets', JPATH_ROOT . '/templates/' . $templateName . '/assets');
                 /* Current */
                 $this->path->registerNamespace('templates', JPATH_ROOT . '/templates/' . $templateName);
@@ -154,7 +155,7 @@ if (!class_exists('Zo2Framework')) {
                     if ($this->get('non_responsive_layout')) {
                         $this->assets->addStyleSheet('vendor/bootstrap/addons/non-responsive.css');
                         $this->assets->addStyleSheet('zo2/css/non-responsive.css');
-                    } else {                        
+                    } else {
                         $this->assets->addStyleSheet('zo2/css/responsive.css');
                     }
 
@@ -321,6 +322,11 @@ if (!class_exists('Zo2Framework')) {
          *
          */
         protected function _loadTheme() {
+            /* Template side */
+            $templateAssets = json_decode($this->getAssetsFile('template.json'));
+            if ($templateAssets && isset($templateAssets->assets)) {
+                $this->assets->load($templateAssets->assets);
+            }
             $style = array();
             if ($this->profile->theme) {
                 $style = $this->profile->getThemeStylesheet();
