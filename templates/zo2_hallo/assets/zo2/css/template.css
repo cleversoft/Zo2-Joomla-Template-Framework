@@ -25,6 +25,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
 .form-horizontal .control-label {
   text-align: left !important;
 }
@@ -1001,6 +1006,7 @@ body.contentpane form table tbody tr td.key {
   -webkit-border-radius: 50%;
   -o-border-radius: 50%;
   -ms-border-radius: 50%;
+  display: none;
 }
 .blog .article_content h3 {
   font-size: 200%;
@@ -2308,9 +2314,6 @@ a:active {
   color: #000;
   text-decoration: none;
 }
-img {
-  max-width: 100%;
-}
 p {
   margin: 12px 0;
 }
@@ -2358,6 +2361,9 @@ body.boxed .wrapper .is-sticky #zo2-header {
 }
 #top-menu .mod-wrapper-menu ul li:last-child a {
   border: none;
+}
+#top-menu .mod-languages li {
+  float: left;
 }
 #top-menu .mod-languages li a {
   border: none !important;
@@ -2703,6 +2709,9 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 .social.footer-social a {
   background-color: #393939;
+}
+#zo2-mainframe {
+  margin-top: 30px;
 }
 #news {
   margin: 50px 0 120px;
