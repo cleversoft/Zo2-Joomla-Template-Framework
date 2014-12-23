@@ -266,6 +266,7 @@ if (!class_exists('Zo2Factory')) {
         public static function getProfile($profile = null) {
             static $profiles = array();
             $profileName = 'default';
+
             if ($profile === null) {
                 $requestProfile = JFactory::getApplication()->input->get('profile');
                 /* Get requested profile via url parameter */
@@ -274,14 +275,12 @@ if (!class_exists('Zo2Factory')) {
                 } else {
                     /* Get request profile base on assigned menu */
                     $itemId = JFactory::getApplication()->input->get('Itemid');
+
                     /* Get profiles list */
                     $list = self::getFramework()->get('profile', 'default');
-                    if (is_object($list)) {
-                        if (isset($list->$itemId)) {
-                            $profileName = $list->$itemId;
-                        } else {
-                            $profileName = 'default';
-                        }
+                    if (is_object($list)) {                        
+                        $list = new JObject($list);
+                        $profileName = $list->get($itemId, 'default');                        
                     } else {
                         if (is_array($profiles)) {
                             $profileName = 'default';

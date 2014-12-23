@@ -26,7 +26,7 @@ if (!class_exists('plgSystemZo2')) {
         /**
          * Init our framework
          */
-        public function onAfterInitialise() {
+        public function onAfterRoute() {
             include_once __DIR__ . '/framework/includes/bootstrap.php';
             Zo2Factory::ajax();
         }

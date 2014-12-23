@@ -118,7 +118,13 @@ if (!class_exists('Zo2Framework')) {
                  * Init Zo2 objects
                  */
                 $this->assets = Zo2Assets::getInstance();
-                $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
+                if (JFactory::getApplication()->isAdmin()) {
+                    $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
+                } else {
+                    $this->profile = Zo2Factory::getProfile();
+                }
+
+
                 $this->layout = new Zo2Layout($this->profile->layout);
 
                 $this->_loadAssets();
