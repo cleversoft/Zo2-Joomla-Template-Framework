@@ -107,8 +107,7 @@
 }
 #zo2-admin-megamenu {
   min-height: 800px;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAHCAYAAADEUlfTAAAAG0lEQVQIW2OMq7zlw4ADMIIkF7WrbcEmP+gkAarWGgXyq5CNAAAAAElFTkSuQmCC) repeat;
-  margin: 0 -20px;
+  margin: 0 -15px;
 }
 #zo2-admin-megamenu .row-fluid [class*="span"] {
   margin-left: 2.12766%;
@@ -468,8 +467,7 @@
   text-transform: uppercase;
 }
 #zo2-framework .profiles-pane .profiles-pane-inner {
-  padding: 15px;
-  padding-left: 0;
+  padding: 15px 0;
 }
 #zo2-framework #myTabAdvance {
   margin-top: 20px;
