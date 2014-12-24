@@ -279,31 +279,31 @@ if (!class_exists('Zo2Profile')) {
             $themeData = get_object_vars($this->theme);
             /* Background */
             if (!empty($themeData['background']))
-                $style [] = 'body{background-color:' . $themeData['background'] . '}';
+                $style [] = 'body{background-color:' . $themeData['background'] . ';}';
             /* Header */
             if (!empty($themeData['header']))
-                $style [] = '#zo2-header{background-color:' . $themeData['header'] . '}';
+                $style [] = '#zo2-header{background-color:' . $themeData['header'] . ';}';
             /* Header top */
             if (!empty($themeData['header_top']))
-                $style [] = '#zo2-header-top{background-color:' . $themeData['header_top'] . '}';
+                $style [] = '#zo2-header-top{background-color:' . $themeData['header_top'] . ';}';
             /* Text */
             if (!empty($themeData['text']))
-                $style [] = 'body{color:' . $themeData['text'] . '}';
+                $style [] = 'body{color:' . $themeData['text'] . ';}';
             /* Link */
             if (!empty($themeData['link']))
-                $style [] = 'a{color:' . $themeData['link'] . '}';
+                $style [] = 'a{color:' . $themeData['link'] . ';}';
             /* Link hover */
             if (!empty($themeData['link_hover']))
-                $style [] = 'a:hover{color:' . $themeData['link_hover'] . '}';
+                $style [] = 'a:hover{color:' . $themeData['link_hover'] . ';}';
             /* Bottom1 */
             if (!empty($themeData['bottom1']))
-                $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . '}';
+                $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . ';}';
             /* Bottom2 */
             if (!empty($themeData['bottom2']))
-                $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . '}';
+                $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . ';}';
             /* Footer */
             if (!empty($themeData['footer']))
-                $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . '}';
+                $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . ';}';
             if (!empty($themeData['boxed']) && $themeData['boxed'] == 1) {
                 if (!empty($themeData['bg_image']) || !empty($themeData['bg_pattern'])) {
                     $backgroundImage = !empty($themeData['bg_image']) ? $themeData['bg_image'] : $themeData['bg_pattern'];
@@ -311,10 +311,10 @@ if (!class_exists('Zo2Profile')) {
                     $backgroundImage = str_replace('\\', '/', $backgroundImage);
                 }
                 if (!empty($backgroundImage))
-                    $style [] = 'body.boxed{background-image:url("' . $backgroundImage . '")}';
+                    $style [] = 'body.boxed{background-image:url("' . $backgroundImage . '");}';
             }
 
-            return implode(';' . PHP_EOL, $style);
+            return implode( PHP_EOL, $style);
         }
 
         public function isDefault() {
