@@ -30,6 +30,20 @@
         _init: function() {
 
         },
+         /**
+         * @todo Remove reinit
+         * @returns {undefined}
+         */
+        reInit: function() {
+            z.admin.utilities._init();
+            z.admin.themecolor._init();
+            z.admin.layoutbuilder._init();
+            z.admin.font._init();
+            ZO2AdminMegamenu.prepare();
+            ZO2AdminMegamenu.initPanel();
+            ZO2AdminMegamenu.initPreSubmit();
+            ZO2AdminMegamenu.initRadioGroup();
+        },
         /**
          * Clear Zo2 cache
          * @returns {undefined}

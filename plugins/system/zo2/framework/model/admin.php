@@ -74,6 +74,7 @@ if (!class_exists('Zo2ModelAdmin')) {
         public function render() {
             if ($this->_isAuthorized()) {
                 $this->_ajax->addHtml(Zo2Html::_('admin', 'config'), '#zo2-framework');
+                $this->_ajax->addExecute('zo2.admin.reInit();');
             }
             $this->_ajax->response();
         }
