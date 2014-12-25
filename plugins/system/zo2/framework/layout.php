@@ -173,7 +173,7 @@ if (!class_exists('Zo2Layout')) {
                 /* START ROW WRAPPER */
                 $customClass = $item->getCustomClass();
                 $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name'))));
-                $html .= '<section id="zo2-' . $id . '" class="' . $customClass . '">';
+                $html .= '<section id="zo2-' . $id . '-wrap" class="' . $customClass . '">';
 
                 /* START CONTAINER */
 
