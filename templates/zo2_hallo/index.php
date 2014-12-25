@@ -39,7 +39,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
 <body class="<?php echo $this->zo2->layout->getBodyClass(); ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
     <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>        
     <!-- Main wrapper -->
-    <section class="zo2 wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">
+    <section class="zo2-wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">
         <?php //echo $this->zo2->utilities->socialshares->render('floatbar');  ?>
         <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
         <?php echo $this->zo2->layout->render(); ?>               

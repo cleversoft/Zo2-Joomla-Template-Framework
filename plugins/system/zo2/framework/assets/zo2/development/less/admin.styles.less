@@ -345,8 +345,9 @@
     font-size: @baseFontSize;
     font-weight: 400;
     height: 50px;
-    line-height: (@baseLineHeight * 2) + 10;
+    line-height: (@baseLineHeight * 2) + 8;
     padding-left: 15px;
+    text-align: center;
   }
 
   /* ================= Layout Builder Container ===================== */
@@ -457,6 +458,19 @@
         }
       }
     }
+    .col-grid-button{
+      color: #979797;
+      font-size: @baseFontSize;
+      line-height: normal;
+      span{
+        font-weight: 300;
+        font-size: @baseFontSize - 1;
+      }
+      i{
+        margin: 0 2px;
+        cursor: pointer;
+      }
+    }
 
     /* Row Fluid Control */
     .row-fluid {
@@ -540,12 +554,18 @@
       border-radius: 2px;
       position: relative;
     }
-    .col-wrap .col-control-buttons {
-      -webkit-transition: opacity 300ms;
-      opacity: 0;
+    .col-wrap{
+      .col-control-buttons, .col-grid-button {
+        -webkit-transition: opacity 300ms;
+        opacity: 0;
+      }
     }
-    .col-wrap:hover .col-control-buttons {
-      opacity: 1;
+    .col-wrap{
+      &:hover{
+        .col-control-buttons, .col-grid-button {
+          opacity: 1;
+        }
+      }
     }
     .ui-sortable {
       & > tr {
@@ -618,10 +638,14 @@
       line-height: @baseLineHeight * 2;
       margin: 7px 0 0 10px;
     }
-    .col-control-buttons {
+    .col-control-buttons, .col-grid-button {
       position: absolute;
       right: 20px;
-      top: 19px;
+      top: 24px;
+    }
+    .col-grid-button{
+      left: 24px;
+      right: inherit;
     }
     .row-container {
       overflow: hidden;

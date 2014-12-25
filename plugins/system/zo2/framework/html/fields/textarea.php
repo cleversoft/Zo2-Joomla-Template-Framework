@@ -48,7 +48,7 @@ if (isset($this->data['editor'])) {
             <textarea         
                 id="<?php echo $this->data['name']; ?>"        
                 <?php foreach ($this->data as $key => $value) : ?>
-                    <?php if (!empty($value)) : ?>
+                    <?php if (!empty($value) && $key != 'value') : ?>
                         <?php echo $key . '="' . $value . '"'; ?>
                     <?php endif; ?>
                 <?php endforeach; ?>

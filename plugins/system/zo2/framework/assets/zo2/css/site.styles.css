@@ -385,7 +385,7 @@ header#retina-logo {
   color: #000000;
 }
 .style-switcher h4 {
-  background: none repeat scroll 0 0 ;
+  background-color: #fff;
   border-radius: 0 3px 3px 0;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   font-size: 14px;

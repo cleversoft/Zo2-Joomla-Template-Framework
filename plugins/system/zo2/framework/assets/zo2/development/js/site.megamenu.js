@@ -89,7 +89,7 @@
         var showOffCanvasMenu = function () {
             var $offcanvas = $('.offcanvas');
             var $body = $('body');
-            var $wrapper = $('.wrapper');
+            var $wrapper = $('.zo2-wrapper');
 
             $body.addClass('overflow-hidden');
             $wrapper.addClass('offcanvas-push');
@@ -103,7 +103,7 @@
         };
         var hideOffCanvasMenu = function () {
             var $body = $('body');
-            var $wrapper = $('.wrapper');
+            var $wrapper = $('.zo2-wrapper');
             var $offcanvas = $('.offcanvas');
 
             $body.removeClass('overflow-hidden');

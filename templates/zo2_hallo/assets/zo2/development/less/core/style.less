@@ -83,12 +83,12 @@ body.form.body-overlayed{
    ============================= */
 body.boxed{
   //  background: url("../images/pattern1.png") repeat;
-  .wrapper{
+  .zo2-wrapper{
     margin: 0 auto;
     background-color: @white;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
     padding: 0;
-    .is-sticky #zo2-header{
+    .is-sticky #zo2-header-wrap{
       width: auto;
     }
   }
@@ -101,8 +101,8 @@ body.boxed{
   margin: 0;
 }
 /*Top Menu*/
-#top-menu{
-  margin: 8px 0 0;
+#zo2-top-menu{
+  margin: 23px 0 0;
   .mod-wrapper-menu{
     ul{
       li{
@@ -111,7 +111,6 @@ body.boxed{
           background: none;
           border-right: 1px solid #ececec;
           color: #707070;
-          padding: 0 15px;
           &:hover,
           &:focus{
             background: none;
@@ -137,7 +136,7 @@ body.boxed{
 }
 
 /*Top Search*/
-#top-search{
+#zo2-search{
   form{
     &:before{
       color: #555555;
@@ -224,8 +223,8 @@ nav.zo2-menu{
     }
   }
 }
-/*Slideshow*/
 
+/*Slideshow*/
 .slider-show{
   background-color: #516f8d;
   color: #fff;
@@ -243,7 +242,7 @@ nav.zo2-menu{
 }
 
 /*Zo2 Hello*/
-#zo2-hello{
+#zo2-feature-wrap{
   background-color: #fafafa;
   border-bottom: 1px solid #f0f0f0;
   padding: 50px 0;
@@ -260,8 +259,7 @@ nav.zo2-menu{
 }
 
 /*Features*/
-#zo2-features{
-  text-align: center;
+#zo2-body-wrap{
   .top-features{
     padding-top: 50px;
     .zo2-feature{
@@ -340,16 +338,16 @@ nav.zo2-menu{
 }
 
 /*Header*/
-#zo2-header-top{
+#zo2-top-wrap{
   border-bottom: 1px solid #ebebeb;
 }
-#zo2-header{
+#zo2-header-wrap{
   padding: 45px 0;
 }
 .is-sticky{
   position: relative;
   z-index: 999;
-  #zo2-header{
+  #zo2-header-wrap{
     background-color: @white;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
     max-width: none;
@@ -362,7 +360,7 @@ nav.zo2-menu{
 }
 
 /*Bottom*/
-#zo2-bottom1{
+#zo2-bottom-1-wrap{
   background-color: #2a2a2a;
   color: @white;
   .zo2-mail{
@@ -402,7 +400,7 @@ nav.zo2-menu{
     margin: 0;
   }
 }
-#zo2-bottom2{
+#zo2-bottom-2-wrap{
   background-color: #2a2a2a;
   color: @white;
   padding: 50px 0;
@@ -494,12 +492,12 @@ nav.zo2-menu{
 }
 
 /* Main Frame */
-#zo2-mainframe{
+#zo2-body-wrap{
   margin-top: 30px;
 }
 
 /*Recent from Blog*/
-#news {
+#zo2-news-wrap {
   margin: 50px 0 120px;
   .mod-news{
     img{
@@ -794,13 +792,16 @@ code{
 }
 /*** Right to left language style ***/
 .rtl{
-  #top-search{
+  #zo2-search{
     form{
       &:before{
         left: 25px;
         right: auto;
       }
     }
+  }
+  #zo2-top-menu .mod-languages li{
+    float: right;
   }
   .zo2-megamenu .dropdown-menu .mega-nav > li a:before {
     right: 0;
@@ -849,7 +850,7 @@ code{
     left: 0;
     float: left;
   }
-  #zo2-bottom2 address i{padding: 0 0 0 15px;}
+  #zo2-bottom-2-wrap address i{padding: 0 0 0 15px;}
   h3.moduletitle:after{
     left: inherit;
     right: 0;

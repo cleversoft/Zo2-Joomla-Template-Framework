@@ -621,8 +621,9 @@
   font-size: 14px;
   font-weight: 400;
   height: 50px;
-  line-height: 50px;
+  line-height: 48px;
   padding-left: 15px;
+  text-align: center;
 }
 #zo2-framework #layoutbuilder-container {
   min-height: 500px;
@@ -719,6 +720,19 @@
 #zo2-framework #layoutbuilder-container .col-control-buttons i.delete {
   color: #e30004;
 }
+#zo2-framework #layoutbuilder-container .col-grid-button {
+  color: #979797;
+  font-size: 14px;
+  line-height: normal;
+}
+#zo2-framework #layoutbuilder-container .col-grid-button span {
+  font-weight: 300;
+  font-size: 13px;
+}
+#zo2-framework #layoutbuilder-container .col-grid-button i {
+  margin: 0 2px;
+  cursor: pointer;
+}
 #zo2-framework #layoutbuilder-container .row-fluid {
   width: auto;
 }
@@ -791,11 +805,13 @@
   border-radius: 2px;
   position: relative;
 }
-#zo2-framework #layoutbuilder-container .col-wrap .col-control-buttons {
+#zo2-framework #layoutbuilder-container .col-wrap .col-control-buttons,
+#zo2-framework #layoutbuilder-container .col-wrap .col-grid-button {
   -webkit-transition: opacity 300ms;
   opacity: 0;
 }
-#zo2-framework #layoutbuilder-container .col-wrap:hover .col-control-buttons {
+#zo2-framework #layoutbuilder-container .col-wrap:hover .col-control-buttons,
+#zo2-framework #layoutbuilder-container .col-wrap:hover .col-grid-button {
   opacity: 1;
 }
 #zo2-framework #layoutbuilder-container .ui-sortable > tr {
@@ -873,10 +889,15 @@
   line-height: 40px;
   margin: 7px 0 0 10px;
 }
-#zo2-framework #layoutbuilder-container .col-control-buttons {
+#zo2-framework #layoutbuilder-container .col-control-buttons,
+#zo2-framework #layoutbuilder-container .col-grid-button {
   position: absolute;
   right: 20px;
-  top: 19px;
+  top: 24px;
+}
+#zo2-framework #layoutbuilder-container .col-grid-button {
+  left: 24px;
+  right: inherit;
 }
 #zo2-framework #layoutbuilder-container .row-container {
   overflow: hidden;
