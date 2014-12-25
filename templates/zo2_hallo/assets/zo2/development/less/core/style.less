@@ -102,7 +102,7 @@ body.boxed{
 }
 /*Top Menu*/
 #top-menu{
-  margin: 18px 0;
+  margin: 8px 0 0;
   .mod-wrapper-menu{
     ul{
       li{
@@ -225,30 +225,21 @@ nav.zo2-menu{
   }
 }
 /*Slideshow*/
-.carousel-inner{
-  z-index: 0;
-  .slide-button{
-    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
-    border: 1px solid @white;
-    .border-radius(0);
-    color: @white;
-    font-size: 13px;
-    margin-top: 15px;
-    padding: 10px 28px;
-    text-transform: uppercase;
-    .transition(all 0.4s ease 0s);
-    &:hover,
-    &:active,
-    &:focus{
-      background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
-      color: @white;
-      .box-shadow(0 0 0 26px rgba(0, 0, 0, 0.1) inset);
-    }
+
+.slider-show{
+  background-color: #516f8d;
+  color: #fff;
+  text-align: center;
+  font-size: 150%;
+  font-weight: 300;
+  h2{
+    font-size: 223%;
+    padding-top: 30px;
   }
-}
-.carousel-control.left,
-.carousel-control.right{
-  background: none;
+  .slider-image img{
+    display: inline-block;
+    padding: 35px 0 0;
+  }
 }
 
 /*Zo2 Hello*/
@@ -264,7 +255,7 @@ nav.zo2-menu{
     margin: 0;
   }
   .btn{
-    margin-top: 0;
+    margin-top: 5px;
   }
 }
 

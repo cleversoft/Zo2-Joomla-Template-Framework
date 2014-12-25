@@ -347,7 +347,7 @@ header#retina-logo {
   background: #8DC63F;
 }
 .style-switcher ul.options.layout-select li a {
-  color: #FFFFFF;
+  color: ;
   display: block;
   padding: 4px;
   text-decoration: none;
@@ -385,7 +385,7 @@ header#retina-logo {
   color: #000000;
 }
 .style-switcher h4 {
-  background: none repeat scroll 0 0 #FFFFFF;
+  background: none repeat scroll 0 0 ;
   border-radius: 0 3px 3px 0;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   font-size: 14px;
