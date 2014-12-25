@@ -73,15 +73,7 @@ $positions = $model->getAvaiablePositions();
                                 <input type="text" id="txtRowCss" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_ROWCSS'); ?>">
                             </div>
                         </div>
-                        <div class="control-group">
-                            <div class="control-label">
-                                <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_FULLWDITH'); ?></div>
-                            </div>
-                            <div class="controls btn-group btn-group-onoff" id="btgFullWidth">
-                                <button class="btn btn-on"><?php echo JText::_('ZO2_ADMIN_COMMON_ON'); ?></button>
-                                <button class="btn btn-off"><?php echo JText::_('ZO2_ADMIN_COMMON_OFF'); ?></button>
-                            </div>
-                        </div>
+
                         <div id="column-responsive">
                             <div class="control-group">
                                 <div class="control-label"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_RESPONSIVE'); ?></div>
