@@ -120,10 +120,21 @@ if (!class_exists('Zo2ModelJoomla')) {
                     ->where('m.published = 1')
                     ->where('m.client_id = 0');
             $db->setQuery($query);
-            $positions = $db->loadColumn();            
-            $positions = array_merge($templatePositions, $positions);
-            $positions = array_unique($positions);
-            return $positions;
+            $modulePositions = $db->loadColumn();
+
+            $list = array_merge($templatePositions, $modulePositions);
+            $list = array_unique($list);
+            foreach ($list as $key => $item) {
+                $suffix = array();
+                if (in_array($item, $templatePositions)) {
+                    $suffix [] = 'template';
+                }
+                if (in_array($item, $modulePositions)) {
+                    $suffix [] = 'module';
+                }
+                $list[$key] = $item . ' ( ' . implode(' - ', $suffix) . ' )';
+            }
+            return $list;
         }
 
     }
