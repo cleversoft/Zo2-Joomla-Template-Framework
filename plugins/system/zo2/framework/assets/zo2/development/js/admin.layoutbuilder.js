@@ -149,7 +149,7 @@
                         '<div class="row-control-buttons">' +
                         '<i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
                         '<i title="Row\'s settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Duplicate row" class="row-control-icon duplicate fa fa-align-justify"></i>' +
+                        '<i title="Duplicate row" class="row-control-icon duplicate fa fa-align-justify1"></i>' +
                         '<i title="Split row" class="row-control-icon split fa fa-columns hasTooltip"></i>' +
                         '<i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
                         '</div></div>' +
@@ -185,6 +185,11 @@
                         $span.attr(_self._settings.visibilityAttributes[i], '1');
                     }
                     var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
+                            '<div class="col-grid-button">' +
+                            '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
+                            '<span class="col-size">4/12</span>' +
+                            '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
+                            '</div>' +
                             '<div class="col-control-buttons">' +
                             '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
                             '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
@@ -253,8 +258,13 @@
                     $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
                 //$row.attr('data-zo2-layout', 'fixed');
-                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="col-name">(unnamed row)' +
-                        '</div><div class="col-control-buttons">' +
+                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="col-name">(unnamed row)</div>' +
+                        '<div class="col-grid-button">' +
+                        '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
+                        '<span class="col-size">4/12</span>' +
+                        '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
+                        '</div>' +
+                        '<div class="col-control-buttons">' +
                         '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
                         '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
                         '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
