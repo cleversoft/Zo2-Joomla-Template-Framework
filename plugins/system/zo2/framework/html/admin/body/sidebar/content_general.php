@@ -46,8 +46,7 @@
                 'textarea', array(
             'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_COPYRIGHT'),
             'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_COPYRIGHT')
-                ), array(
-            'editor' => array(),
+                ), array(            
             'name' => 'jform[params][footer_copyright]',
             'rows' => 10,
             'cols' => 20,
