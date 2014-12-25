@@ -253,10 +253,11 @@ p.img_caption {
   font-size: 12px;
   font-family: Helvetica, Arial, Serif;
 }
-.homepage h2.item-title{
+.homepage h2.item-title,
+.featured h2.item-title{
   text-align: center;
   color: #525252;
-  font-size: 32px;
+  font-size: 26px;
 }
 .readmore {
   background-color: #f3f3f3;
@@ -975,6 +976,9 @@ body.contentpane form table tbody tr td.key {
   .page-header {
     padding: 0;
   }
+  h2{
+    margin: 0 0 30px 0;
+  }
   .article_content{
     clear: both;
     margin: 0 12px;
@@ -1173,6 +1177,12 @@ div.tags {
   background-color: transparent;
   border-bottom: 1px solid #404141;
   padding-left: 0;
+  a{
+    color: @white;
+  }
+  .divider{
+    display: none;
+  }
 }
 .blog-featured{
   #zo2-features{

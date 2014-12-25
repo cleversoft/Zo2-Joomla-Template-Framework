@@ -161,11 +161,11 @@ $theme = new JObject($profile->get('theme'));
             var color = jQuery('.color-select li.selected a').attr('data-color');
             if (jQuery(this).attr('id') == 'boxed-layout') {
                 jQuery('body').addClass('boxed');
-                jQuery('body .wrapper').addClass('boxed').addClass('container');
+                jQuery('body .zo2-wrapper').addClass('boxed').addClass('container');
                 jQuery('.background-select-wrap').fadeIn(500);
             } else {
                 jQuery('body').removeClass('boxed');
-                jQuery('body .wrapper').removeClass('boxed').removeClass('container');
+                jQuery('body .zo2-wrapper').removeClass('boxed').removeClass('container');
                 jQuery('.background-select-wrap').fadeOut(500);
             }
         });
