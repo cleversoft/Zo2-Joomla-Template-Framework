@@ -172,10 +172,8 @@ if (!class_exists('Zo2Layout')) {
 
                 /* START ROW WRAPPER */
                 $customClass = $item->getCustomClass();
-                if (trim((string) $item->get('id')) != '')
-                    $html .= '<section id="' . trim($item->get('id')) . '" class="zo2-row-wrapper ' . $customClass . '">';
-                else
-                    $html .= '<section class="zo2-row-wrapper ' . $customClass . '">';
+                $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name'))));
+                $html .= '<section id="zo2-' . $id . '" class="' . $customClass . '">';
 
                 /* START CONTAINER */
 
