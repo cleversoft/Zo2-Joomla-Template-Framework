@@ -476,7 +476,7 @@ if (!class_exists('Zo2LayoutItem')) {
             return false;
         }
 
-        public function getCustomClass($default = 'zo2-no-class') {
+        public function getCustomClass($default = '') {
             if (trim($this->get('customClass')) == '') {
                 return $default;
             } else {
