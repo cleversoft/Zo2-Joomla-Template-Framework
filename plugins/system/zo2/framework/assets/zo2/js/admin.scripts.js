@@ -43,6 +43,10 @@
             ZO2AdminMegamenu.initPanel();
             ZO2AdminMegamenu.initPreSubmit();
             ZO2AdminMegamenu.initRadioGroup();
+            SqueezeBox.initialize({});
+            SqueezeBox.assign($('a.modal').get(), {
+                    parse: 'rel'
+            });
         },
         /**
          * Clear Zo2 cache
