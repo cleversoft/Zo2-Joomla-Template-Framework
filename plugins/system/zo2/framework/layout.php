@@ -323,7 +323,7 @@ if (!class_exists('Zo2Layout')) {
 
                 /* BEGIN COL */
                 $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name', $item->get('position')))));
-                $html .= '<div id="' .$id . '" class="' . $customClass . $class . '">';
+                $html .= '<div id="zo2-' .$id . '" class="' . $customClass . $class . '">';
 
                 switch ($jdoc) {
                     case 'component':
