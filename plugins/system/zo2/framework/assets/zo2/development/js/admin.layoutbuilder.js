@@ -60,7 +60,7 @@
         _init: function() {
             this._sortable();
             this.duplicate();
-            this.slipt();
+            this.addColumn();
             this.delete();
             this.addRow();
             this.setting();
@@ -163,7 +163,7 @@
                         '<i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
                         '<i title="Row\'s settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
                         '<i title="Duplicate row" class="row-control-icon duplicate fa fa-align-justify1"></i>' +
-                        '<i title="Split row" class="row-control-icon split fa fa-columns hasTooltip"></i>' +
+                        '<i title="Add new column" class="row-control-icon add-column fa fa-columns hasTooltip"></i>' +
                         '<i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
                         '</div></div>' +
                         '<div class="col-container"></div></div>');
@@ -172,63 +172,44 @@
             });
         },
         /**
-         * Split row
+         * Add column
          * @returns {undefined}
          */
-        slipt: function() {
+        addColumn: function() {
             var _self = this;
-            $('#droppable-container').on('click', '.row-control-buttons > .split', function() {
+            $('#droppable-container').on('click', '.row-control-buttons > .add-column', function() {
                 var $this = $(this);
                 var $container = $this.closest('[data-zo2-type="row"]');
                 var $colContainer = $container.find('>.col-md-12>.col-container');
-                var $spans = $colContainer.find('>[data-zo2-type="span"]');
-                var strategyNum = $spans.length;
+                var $span = $('<div />').addClass('sortable-col');
+                $span.attr('data-zo2-type', 'span');
+                $span.attr('data-zo2-span', 12);
+                $span.removeClass(_self._settings.allColClass);
+                $span.addClass('col-md-12');
+                $span.attr('data-zo2-position', '');
+                $span.attr('data-zo2-offset', 0);
+                $span.attr('data-zo2-customClass', '');
+                var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
+                        '<div class="col-grid-button">' +
+                        '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
+                        '<span class="col-size">12/12</span>' +
+                        '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
+                        '</div>' +
+                        '<div class="col-control-buttons">' +
+                        '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                        '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                        '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
+                        '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                        '</div><div class="row-container"></div></div></div>';
+                var $meta = $(metaHtml);
+                $meta.appendTo($span);
+                /*
+                 var $spanContainer = $('<div />').addClass('row-container zo2-row sortable-row');
+                 $spanContainer.appendTo($meta);
+                 */
+                $span.appendTo($colContainer);
 
-                if ($spans.length > 5)
-                    return false;
-                else
-                {
-                    var selectedStrategy = _self._settings.strategy[strategyNum];
-                    var $span = $('<div />').addClass('sortable-col');
-                    $span.attr('data-zo2-type', 'span');
-                    $span.attr('data-zo2-position', '');
-                    $span.attr('data-zo2-offset', 0);
-                    $span.attr('data-zo2-customClass', '');
-                    for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
-                        $span.attr(_self._settings.visibilityAttributes[i], '1');
-                    }
-                    var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                            '<div class="col-grid-button">' +
-                            '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
-                            '<span class="col-size">(default)</span>' +
-                            '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
-                            '</div>' +
-                            '<div class="col-control-buttons">' +
-                            '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                            '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                            '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
-                            '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
-                            '</div><div class="row-container"></div></div></div>';
-                    var $meta = $(metaHtml);
-                    $meta.appendTo($span);
-                    /*
-                     var $spanContainer = $('<div />').addClass('row-container zo2-row sortable-row');
-                     $spanContainer.appendTo($meta);
-                     */
-                    $span.appendTo($colContainer);
 
-                    // apply new span number
-                    $colContainer.find('>[data-zo2-type="span"]').each(function(index) {
-                        var $this = $(this);
-                        $this.removeClass(_self._settings.allColClass);
-                        $this.addClass('col-md-' + selectedStrategy[index]);
-                        $this.attr('data-zo2-span', selectedStrategy[index]);
-                    });
-
-                    _self._updateSpanSize($colContainer);
-                    //bindSortable();
-
-                }
             });
         },
         /**
