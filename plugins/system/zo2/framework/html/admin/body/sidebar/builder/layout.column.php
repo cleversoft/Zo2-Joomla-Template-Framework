@@ -17,7 +17,7 @@
         <div class="col-name"><?php echo $column->get('name'); ?></div>
         <div class="col-grid-button">
             <i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>
-            <span class="col-size">4/12</span>
+            <span class="col-size"><?php echo $column->get('span'); ?>/12</span>
             <i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>
         </div>
         <div class="col-control-buttons">
