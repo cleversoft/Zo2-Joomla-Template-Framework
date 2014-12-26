@@ -10,6 +10,7 @@
                     <p><a class="btn btn-primary btn-large" href="http://www.zootemplate.com/zo2" target="_blank">Learn more Zo2Framework</a></p>
                     <div class="zo2-divider"></div>
                     <h3>Version</h3>
+                    <p>Current version: <?php echo Zo2Factory::getFramework()->getManifest()->version; ?></p>
                     <?php
                     $version = Zo2Factory::getFramework()->checkVersion();
                     switch ($version['compare']) {
@@ -23,7 +24,7 @@
                     }
                     ?>
                     <strong>Latest version: 1.4.3</strong>
-                    <small>Current version: <?php echo Zo2Factory::getFramework()->getManifest()->version; ?></small>
+                    <p><strong>Attention:</strong> Before upgrade Zo2Framework, please make sure your templates is compatible with the latest version of Zo2Framework</p>
                     <div class="zo2-divider"></div>
                     <h3>Features</h3>
                     <ol class="task-list">
