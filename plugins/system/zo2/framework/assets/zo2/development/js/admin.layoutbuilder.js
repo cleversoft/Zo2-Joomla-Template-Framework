@@ -286,7 +286,7 @@
                 var $col = $(this).closest('.sortable-col');
                 $col.removeClass(_self._settings.allColClass);
                 var width = parseInt($col.attr('data-zo2-span'));
-                width -= (width > 0) ? 1 : 0;
+                width -= (width > 1) ? 1 : 0;
                 $col.addClass('col-md-' + width);
                 $col.attr('data-zo2-span', width);
                 $col.find('.col-grid-button > .col-size').html(width + '/12');
