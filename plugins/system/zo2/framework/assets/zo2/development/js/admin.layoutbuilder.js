@@ -125,6 +125,19 @@
                     }
                 }
             }
+            this._updateSpanSize($container);
+        },
+        /**
+         * Update span size on col control
+         * @param {type} $container
+         * @returns {undefined}
+         */
+        _updateSpanSize: function($container) {
+            var $spans = $container.find('>[data-zo2-type="span"]');
+            $spans.each(function() {
+                var _currentSpan = $(this);
+                _currentSpan.find('.col-grid-button > .col-size').html(_currentSpan.attr('data-zo2-span') + '/12');
+            });
         },
         /**
          * Check for duplication
@@ -187,7 +200,7 @@
                     var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
                             '<div class="col-grid-button">' +
                             '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
-                            '<span class="col-size">4/12</span>' +
+                            '<span class="col-size">(default)</span>' +
                             '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
                             '</div>' +
                             '<div class="col-control-buttons">' +
@@ -212,6 +225,7 @@
                         $this.attr('data-zo2-span', selectedStrategy[index]);
                     });
 
+                    _self._updateSpanSize($colContainer);
                     //bindSortable();
 
                 }
@@ -257,11 +271,12 @@
                 for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
                     $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
+                _self.editingElement = $(this).closest('.sortable-col');
                 //$row.attr('data-zo2-layout', 'fixed');
                 var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="col-name">(unnamed row)</div>' +
                         '<div class="col-grid-button">' +
                         '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
-                        '<span class="col-size">4/12</span>' +
+                        '<span class="col-size">(default)</span>' +
                         '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
                         '</div>' +
                         '<div class="col-control-buttons">' +
@@ -272,7 +287,7 @@
                 $meta.appendTo($row);
                 var $colContainer = $('<div />').addClass('col-container row-fluid clearfix');
                 $colContainer.appendTo($meta);
-
+                _self._updateSpanSize($colContainer);
             });
         },
         /**
@@ -286,7 +301,24 @@
                 var $this = $(this);
                 $('#txtRowId').val(z.admin.generateSlug($this.val()));
             });
-
+            $('#droppable-container').on('click', '.col-grid-button > .col-decrease', function() {
+                var $col = $(this).closest('.sortable-col');
+                $col.removeClass(_self._settings.allColClass);
+                var width = parseInt($col.attr('data-zo2-span'));
+                width -= (width > 0) ? 1 : 0;
+                $col.addClass('col-md-' + width);
+                $col.attr('data-zo2-span', width);
+                $col.find('.col-grid-button > .col-size').html(width + '/12');
+            });
+            $('#droppable-container').on('click', '.col-grid-button > .col-increase', function() {
+                var $col = $(this).closest('.sortable-col');
+                $col.removeClass(_self._settings.allColClass);
+                var width = parseInt($col.attr('data-zo2-span'));
+                width += (width < 12) ? 1 : 0;
+                $col.addClass('col-md-' + width);
+                $col.attr('data-zo2-span', width);
+                $col.find('.col-grid-button > .col-size').html(width + '/12');
+            });
             $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
                 var $this = $(this);
                 var $row = $this.closest('.sortable-row');
@@ -415,9 +447,9 @@
                 $col.attr('data-zo2-visibility-sm', $('#btgColTablet').find('.btn-on').hasClass('active') ? '1' : '0');
                 $col.attr('data-zo2-visibility-md', $('#btgColDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
                 $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
-                
-                var position = $('#dlColPosition').val(); 
-                if(position === null){
+
+                var position = $('#dlColPosition').val();
+                if (position === null) {
                     position = '';
                 }
                 var colName = position.length > 0 ? position : '(none)';
