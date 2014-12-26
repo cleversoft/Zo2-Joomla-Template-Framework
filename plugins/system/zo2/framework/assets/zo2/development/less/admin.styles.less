@@ -346,7 +346,6 @@
     font-weight: 400;
     height: 50px;
     line-height: (@baseLineHeight * 2) + 8;
-    padding-left: 15px;
     text-align: center;
   }
 
@@ -646,6 +645,47 @@
     .col-grid-button{
       left: 24px;
       right: inherit;
+    }
+    .col-md-1, .col-sm-1{
+      .col-control-buttons{
+        right: -34px;
+        top: -19px;
+      }
+      .col-grid-button{
+        left: 11px;
+        top: -19px;
+      }
+      .col-control-buttons, .col-grid-button{
+        &:before{
+          background-color: #fff;
+          box-shadow: 0 0 4px 0 #ccc;
+          content: "";
+          height: 24px;
+          left: -2px;
+          position: absolute;
+          top: -4px;
+          width: 107%;
+          z-index: 1;
+        }
+        &:after{
+          border-color: #ccc transparent transparent;
+          border-style: solid;
+          border-width: 7px;
+          bottom: -14px;
+          content: "";
+          left: 0;
+          position: absolute;
+          z-index: 9;
+        }
+        * {
+          position: relative;
+          z-index: 9;
+        }
+      }
+      .col-grid-button:after{
+        left: 20px;
+        bottom: -16px;
+      }
     }
     .row-container {
       overflow: hidden;
