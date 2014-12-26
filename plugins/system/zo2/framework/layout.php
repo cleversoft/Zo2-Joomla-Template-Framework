@@ -318,12 +318,12 @@ if (!class_exists('Zo2Layout')) {
                     $class .= ' col-md-offset-' . $item->get('offset');
                 }
                 $class .= ' ' . $item->getVisibilityClass();
-                $customClass = ($item->get('customClass') == '') ? 'zo2-no-class' : $item->get('customClass');
-                $customClass .= ' ';
+                $class = trim($class);
+                $customClass = $item->get('customClass');
 
                 /* BEGIN COL */
                 $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name', $item->get('position')))));
-                $html .= '<div id="zo2-' .$id . '" class="' . $customClass . $class . '">';
+                $html .= '<div id="zo2-' . $id . '" class="' . trim($class . $customClass) . '">';
 
                 switch ($jdoc) {
                     case 'component':
