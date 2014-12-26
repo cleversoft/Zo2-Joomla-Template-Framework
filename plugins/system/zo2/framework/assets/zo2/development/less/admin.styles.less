@@ -12,6 +12,7 @@
 
 /* Global variables */
 @import "variables.less";
+@import "mixins.less";
 /* Admin menu styles */
 @import "admin.megamenu.less";
 @import "admin/styles.less";
@@ -35,10 +36,9 @@
     background-color: #ccc;
     bottom: 0;
     content: "";
-    height: 1px;
     left: 0;
     position: absolute;
-    width: 100%;
+    .size(100%, 1px);
   }
 }
 
@@ -101,9 +101,9 @@
       }
       .nav-pills > .active > a, .nav-pills > .active > a:hover, .nav-pills > .active > a:focus {
         background: @white;
+        .border-radius(5px 5px 0 0);
         border-color: #dddddd #dddddd transparent #dddddd;
         border-image: none;
-        border-radius: 5px 5px 0 0;
         border-style: solid solid none;
         border-width: 1px 1px medium;
         color: @black;
@@ -127,7 +127,7 @@
   #updater.alert {
     background-color: #8CC152;
     border: medium none;
-    border-radius: 0;
+    .border-radius(0);
     color: @white;
     text-shadow: none;
     small {
@@ -146,7 +146,7 @@
       &.nav-tabs {
         background: #fafafa;
         border: medium none;
-        box-sizing: border-box;
+        .box-sizing(border-box);
         float: left;
         margin: 0;
         padding: 0;
@@ -154,16 +154,12 @@
       }
     }
     &.tab-content {
-      -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, .07);
-      -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, .07);
+      .box-shadow(0 1px 5px rgba(0, 0, 0, .07));
       border-left: solid 1px #EBECF1;
       background: @white;
       margin-left: 249px;
       padding-top: 30px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -ms-box-sizing: border-box;
+      .box-sizing(border-box);
     }
   }
   .tab-pane {
@@ -206,7 +202,7 @@
       padding: 0;
       & > a {
         border: none;
-        border-radius: 0;
+        .border-radius(0);
         color: #555555;
         font-size: @baseFontSize;
         margin: 0;
@@ -215,12 +211,11 @@
         i {
           font-size: @baseFontSize + 2;
           font-weight: normal;
-          height: 20px;
           line-height: normal;
           padding-right: 5px;
           text-align: center;
           vertical-align: 0;
-          width: 20px;
+          .size(20px, 20px);
         }
       }
     }
@@ -289,9 +284,8 @@
     .zo2-draggable {
       img {
         display: block;
-        height: 66px;
         margin: 0 auto;
-        width: 120px;
+        .size(120px, 66px);
       }
     }
   }
@@ -363,9 +357,8 @@
       padding: 0;
       hr {
         background-color: #5193AD;
-        height: 1px;
         margin: 0 0 20px;
-        width: 100%;
+        .size(100%, 1px);
       }
       .row-name, .position-name{
         color: #717171;
@@ -533,36 +526,32 @@
     }
     .row-control-container {
       float: left;
-      width: 100%;
-      height: 57px;
+      .size(100%, 57px);
       line-height: (@baseLineHeight * 2) + 11;
       border-bottom: 1px solid #dddddd;
       margin-bottom: 15px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -ms-box-sizing: border-box;
+      .box-sizing(border-box);
     }
     .col-wrap {
       border: 1px solid #e9e9e9;
       margin: 5px 0;
-      border-radius: 3px;
+      .border-radius(3px);
       background: @white;
     }
     .sortable-row, .sortable-col {
-      border-radius: 2px;
+      .border-radius(2px);
       position: relative;
     }
     .col-wrap{
       .col-control-buttons, .col-grid-button {
-        -webkit-transition: opacity 300ms;
-        opacity: 0;
+        .transition(opacity 300ms);
+        .opacity(0);
       }
     }
     .col-wrap{
       &:hover{
         .col-control-buttons, .col-grid-button {
-          opacity: 1;
+          .opacity(100);
         }
       }
     }
@@ -593,12 +582,10 @@
     }
     .zo2-label {
       padding: 0;
-      border-radius: 3px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
+      .border-radius(3px);
     }
     #layoutbuilder-toolbar:hover {
-      opacity: 1;
+      .opacity(100);
     }
     #layoutbuilder-container .row-tools a.icon-remove, #layoutbuilder-container .col-control-buttons i.icon-remove {
       color: #e52626;
@@ -607,12 +594,11 @@
       display: none;
     }
     #layoutbuilder-droppable {
-      height: 5000px;
       left: 0;
       position: absolute;
       top: 0;
-      width: 100%;
       z-index: 2;
+      .size(100%, 5000px);
     }
     .sortable-row, .sortable-col {
       border: none;
@@ -626,9 +612,8 @@
       color: #A6A4A5;
       cursor: pointer;
       font-size: @baseFontSize + 6;
-      height: 20px;
       margin: 0;
-      width: 20px;
+      .size(20px, 20px);
       display: block;
       float: left;
     }
@@ -646,47 +631,7 @@
       left: 24px;
       right: inherit;
     }
-    .col-md-1, .col-sm-1{
-      .col-control-buttons{
-        right: -34px;
-        top: -19px;
-      }
-      .col-grid-button{
-        left: 11px;
-        top: -19px;
-      }
-      .col-control-buttons, .col-grid-button{
-        &:before{
-          background-color: #fff;
-          box-shadow: 0 0 4px 0 #ccc;
-          content: "";
-          height: 24px;
-          left: -2px;
-          position: absolute;
-          top: -4px;
-          width: 107%;
-          z-index: 1;
-        }
-        &:after{
-          border-color: #ccc transparent transparent;
-          border-style: solid;
-          border-width: 7px;
-          bottom: -14px;
-          content: "";
-          left: 0;
-          position: absolute;
-          z-index: 9;
-        }
-        * {
-          position: relative;
-          z-index: 9;
-        }
-      }
-      .col-grid-button:after{
-        left: 20px;
-        bottom: -16px;
-      }
-    }
+
     .row-container {
       overflow: hidden;
     }
@@ -699,7 +644,7 @@
   }
   .disabled {
     cursor: default;
-    opacity: .3;
+    .opacity(30);
     pointer-events: none;
   }
   #attributes-container{
@@ -712,10 +657,7 @@
     background: #eee;
     border-bottom: 1px solid #e6e6e6;
     border-top: 1px solid #e6e6e6;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box;
+    .box-sizing(border-box);
     margin: 15px 0 20px;
     ul {
       margin: 0 5px 10px 0;
@@ -747,7 +689,7 @@
       }
       .theme_thumbnail {
         padding: 5px;
-        border-radius: 3px;
+        .border-radius(3px);
       }
       &:hover, &.active {
         background-color: #F9F9F9;
@@ -760,12 +702,11 @@
   .color-preview {
     background-color: transparent;
     border: 1px solid #ccc;
-    border-radius: 0 3px 3px 0;
+    .border-radius(0 3px 3px 0);
     display: block;
     float: left;
-    height: 26px;
     margin-left: -2px;
-    width: 25px;
+    .size(25px, 26px);
   }
 
   /* ============= Font ==================== */
@@ -774,8 +715,7 @@
   }
   .font-deck-code {
     textarea {
-      width: 500px;
-      height: 150px;
+      .size(500px, 150px);
       margin-bottom: 20px;
     }
   }
@@ -803,19 +743,17 @@
   /* Zo2 Progress */
   .zo2-progress {
     display: inline-block;
-    height: 27px;
     margin: 0 0 0 6px;
     vertical-align: top;
-    width: 44px;
+    .size(44px, 27px);
     .bar {
-      border-radius: 2px;
+      .border-radius(2px);
     }
   }
   .zo2-draggable {
     float: left;
-    height: 80px;
     text-align: center;
-    width: 120px;
+    .size(120px, 80px);
     z-index: 9999;
   }
   #zo2-config {
@@ -837,8 +775,7 @@
     float: left;
   }
   #jform_params_footer_copyright {
-    height: 150px;
-    width: 76%;
+    .size(76%, 150px);
     max-width: 702px;
   }
   #top-controls {
@@ -863,10 +800,7 @@
     .zo2_themes_label {
       font-size: @baseFontSize + 3;
       padding-bottom: 30px;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -ms-box-sizing: border-box;
+      .box-sizing(border-box);
     }
     .background-select li {
       display: inline-block;
@@ -875,8 +809,7 @@
       cursor: pointer;
       border: 3px solid #ddd;
       img {
-        width: 50px;
-        height: 50px;
+        .size(50px, 50px);
       }
       &.selected {
         border-color: #5BB75B;
@@ -894,8 +827,8 @@
       input.zo2_other_preset_element {
         background-color: @white;
         border: 1px solid #ccc;
-        border-radius: 3px;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        .border-radius(3px);
+        .box-shadow(0 1px 1px rgba(0, 0, 0, 0.075) inset);
         margin-top: -5px;
         padding: 4px 6px;
       }
@@ -984,9 +917,7 @@
     padding: 9px;
     background-color: #F7F7F7;
     border: 1px solid #E0E0E0;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    .border-radius(4px);
     & > ul {
       & > li {
         list-style: none !important;
@@ -1006,10 +937,10 @@
   }
   #layoutbuilder-toolbar {
     background-color: @white;
-    border-radius: 4px;
+    .border-radius(4px);
     display: none;
     height: 16px;
-    opacity: 0.7;
+    .opacity(70);
     padding: 5px;
     position: absolute;
     right: 0;
@@ -1017,19 +948,16 @@
     .icon {
       display: block;
       float: left;
-      height: 16px;
-      width: 16px;
+      .size(16px, 16px);
     }
   }
-
-
 
   /* Proile Description */
   .navbar-profiles {
     background-image: none;
     padding: 20px;
     border: none;
-    border-radius: 0;
+    .border-radius(0);
   }
 
   /* =============== Joomla 2.5 ===================== */
@@ -1038,8 +966,8 @@
     .modal {
       background-color: inherit;
       border: none;
-      border-radius: 0;
-      box-shadow: none;
+      .border-radius(0);
+      .box-shadow(none);
       margin-left: inherit;
       outline: 0 none;
       position: static;
@@ -1085,7 +1013,7 @@
     cursor: wait;
     display: none;
     left: 0;
-    opacity: 0.5;
+    .opacity(50);
     position: absolute;
     right: 0;
     top: 0;
@@ -1117,10 +1045,7 @@
         }
         a.modal {
           position: static;
-          position: static;
-          box-shadow: none;
-          -moz-box-shadow: none;
-          -webkit-box-shadow: none;
+          .box-shadow(none);
           width: auto;
         }
       }
@@ -1138,23 +1063,13 @@
         margin: 0;
         clear: inherit;
         &.first {
-          border-radius: 4px 0 0 4px;
-          -moz-border-radius: 4px 0 0 4px;
-          -webkit-border-radius: 4px 0 0 4px;
-          -o-border-radius: 4px 0 0 4px;
+          .border-radius(4px 0 0 4px);
         }
       }
       .layout_style_choose {
-        border-radius: 4px 0 0 4px;
-        -moz-border-radius: 4px 0 0 4px;
-        -webkit-border-radius: 4px 0 0 4px;
-        -o-border-radius: 4px 0 0 4px;
+        .border-radius(4px 0 0 4px);
         &:last-child {
-          border-radius: 0 4px 4px 0;
-          -moz-border-radius: 0 4px 4px 0;
-          -webkit-border-radius: 0 4px 4px 0;
-          -o-border-radius: 0 4px 4px 0;
-          .borderRadius
+          .border-radius(0 4px 4px 0);
         }
       }
     }
@@ -1162,8 +1077,8 @@
       .modal {
         background-color: inherit;
         border: inherit;
-        border-radius: inherit;
-        box-shadow: inherit;
+        .border-radius(inherit);
+        .box-shadow(inherit);
         position: inherit;
         margin: 0;
         width: inherit;
@@ -1362,20 +1277,19 @@ textarea {
       background-color: transparent;
       background-image: none;
       border: medium none;
-      box-shadow: none;
-      height: 33px;
+      .box-shadow(none);
       min-width: 18px;
       padding: 0;
       position: relative;
-      width: 25px;
+      .size(25px, 33px);
       &.btn-on {
-        opacity: 0.3;
+        .opacity(30);
       }
       &.btn-off {
         left: -24px;
       }
       &.active {
-        opacity: 0;
+        .opacity(0);
         visibility: hidden;
       }
       &:before {
@@ -1428,21 +1342,19 @@ textarea {
 /* ================ Zo2 Overlay =================== */
 .zo2-overlay {
   background-color: rgba(0, 0, 0, 0.6);
-  height: 100%;
   left: 0;
   position: fixed;
   top: 0;
-  width: 100%;
   z-index: 9;
+  .size(100%, 100%);
 }
 
 .zo2-overlay > span.zo2-overlay-loadding {
   background: url("../images/fancybox_loading.gif") no-repeat center center rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
-  height: 44px;
+  .border-radius(4px);
   left: 50%;
   margin: -17px 0 0 -17px;
   position: absolute;
   top: 50%;
-  width: 44px;
+  .size(44px, 44px);
 }

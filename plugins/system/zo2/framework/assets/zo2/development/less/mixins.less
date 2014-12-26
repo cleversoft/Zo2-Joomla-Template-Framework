@@ -43,6 +43,12 @@
   margin-right: auto;
 }
 
+.displayTable(){
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
 // IE7 inline-block
 // ----------------
 .ie7-inline-block() {
@@ -70,7 +76,7 @@
 
 // Sizing shortcuts
 // -------------------------
-.size(@height, @width) {
+.size(@width, @height) {
   width: @width;
   height: @height;
 }
@@ -296,6 +302,18 @@
      -moz-transform: translate3d(@x, @y, @z);
        -o-transform: translate3d(@x, @y, @z);
           transform: translate3d(@x, @y, @z);
+}
+.transform(@transform){
+  transform: @transform;
+  -webkit-transform: @transform;
+  -ms-transform: @transform;
+  -o-transform: @transform;
+}
+.transformOrigin(@origin){
+  transform-origin: @origin;
+  -webkit-transform-origin: @origin;
+  -ms-transform-origin: @origin;
+  -o-transform-origin: @origin;
 }
 
 // Backface visibility

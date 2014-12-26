@@ -10,27 +10,28 @@
 */
 /* Global variables */
 @import "variables";
+@import "mixins";
 /* Mega menu */
 @import "megamenu";
 @import "megamenu-responsive";
 @import "site/styles.less";
 
+/* ============== Style For Front-end ================ */
 
-
+/* Style Switcher */
 .style-switcher {
-  -moz-box-sizing: content-box;
+  .box-sizing(content-box);
   background: #738E96;
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
+  .box-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
   display: block;
   float: left;
-  font-size: 14px;
+  font-size: @baseFontSize;
   font-weight: bold;
-  height: auto;
-  line-height: 30px;
+  line-height: @baseLineHeight + 10;
   margin-bottom: 0;
   position: fixed;
   top: 80px;
-  width: 230px;
+  .size(230px, auto);
   z-index: 9999;
   &.switcher-left{
     left: -230px;
@@ -39,9 +40,8 @@
     right: -230px;
   }
   .switch-container{
-    background-color: #fff;
-    height: auto;
-    width: 230px;
+    background-color: @white;
+    .size(230px, auto);
     padding: 7px 15px;
   }
   ul {
@@ -70,13 +70,12 @@
             background: #8DC63F;
           }
           a{
-            color: @color_white;
+            color: @white;
             display: block;
             padding: 4px;
             text-decoration: none;
             img {
-              width: auto;
-              height: 50px;
+              .size(auto, 50px);
             }
           }
         }
@@ -86,19 +85,13 @@
           padding: 2px;
           width: 27px;
           margin: 4px;
-          border: solid #808080 1px;
+          border: 1px solid #808080;
           &.selected{
             background: #8DC63F;
           }
-          a{
+          a, img{
             display: block;
-            height: 27px;
-            width: 100%;
-          }
-          img{
-            display: block;
-            height: 27px;
-            width: 100%;
+            .size(100%, 27px);
           }
         }
       }
@@ -107,29 +100,28 @@
 
   h5{
     display: inline-block;
-    font-size: 12px;
-    color: #000000;
+    font-size: @baseFontSize - 2;
+    color: @black;
   }
   h4{
     background-color: @white;
-    border-radius: 0 3px 3px 0;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
+    .border-radius(0 3px 3px 0);
+    .box-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+    font-size: @baseFontSize;
     font-weight: bold;
     float: left;
-    height: auto;
-    line-height: 30px;
+    line-height: @baseLineHeight + 10;
     margin: 0 -40px 15px 0;
     padding: 7px 10px;
     position: relative;
     text-align: left;
     text-transform: uppercase;
-    width: 270px;
+    .size(270px, auto);
     display: inline-block;
-    color: #000000;
+    color: @black;
     .style-switcher-icon{
       float: right;
-      font-size: 26px;
+      font-size: @baseFontSize + 12;
       text-align: right;
       text-decoration: none;
       display: block;
