@@ -23,7 +23,7 @@
                             echo '<span class="label label-info">Your Zo2 version newer than us.</span><br />';
                     }
                     ?>
-                    <strong>Latest version: 1.4.3</strong>
+                    <p><strong>Latest version: <?php echo $version['latestVersion'];?></strong></p>
                     <p><strong>Attention:</strong> Before you start updating, please refer to <a href="http://www.zootemplate.com/blog" target="_blank">important changes</a> to check if there are any additional instructions for the version which you want to install.</p>
                     <p>Do not omit this step: in case you have made any changes directly in the theme files, backup all your changes. You can restore those changes after upgrade.</p>
                     <div class="zo2-divider"></div>
