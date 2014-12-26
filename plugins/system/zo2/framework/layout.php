@@ -177,10 +177,11 @@ if (!class_exists('Zo2Layout')) {
 
                 /* START CONTAINER */
 
-                $containerClass = $item->get('fullwidth') ? '' : 'container';
-                $containerClass .= ' ' . $item->getVisibilityClass();
-                if (trim($containerClass) != '') {
-                    $html .= '<div class="' . trim($containerClass) . '">';
+                $containerClass [] = $item->get('fullwidth') ? '' : 'container';
+                $containerClass = array_merge($containerClass, $item->getVisibilityClass());
+                $containerClass = trim(implode(' ', $containerClass));
+                if ($containerClass != '') {
+                    $html .= '<div class="' . $containerClass . '">';
                 } else {
                     $html .= '<div>';
                 }
@@ -313,17 +314,35 @@ if (!class_exists('Zo2Layout')) {
                 $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
                 $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
 
-                $class = 'col-md-' . $item->get('span') . ' col-sm-' . $item->get('span');
+                $class[] = 'col-md-' . $item->get('span');
+                $class[] = 'col-sm-' . $item->get('span');
                 if ($item->get('offset') != 0) {
-                    $class .= ' col-md-offset-' . $item->get('offset');
+                    $class [] = ' col-md-offset-' . $item->get('offset');
                 }
-                $class .= ' ' . $item->getVisibilityClass();
-                $class = trim($class);
-                $customClass = $item->get('customClass');
+                $class = array_merge($class, $item->getVisibilityClass());
+                $customClass = explode(' ', $item->get('customClass'));
+                $class = array_merge($class, $customClass);
+                $class = array_unique($class);
+                $gridClass = array();
+                /* Find grid core class */
+                foreach ($class as $key => $value) {
+                    if (
+                            strpos($value, 'col-xs-') !== false || strpos($value, 'col-sm-') !== false || strpos($value, 'col-md-') !== false || strpos($value, 'col-lg-') !== false) {
+                        $subs = explode('-', $value);
+                        if (count($subs) == 3) {
+                            $gridClass[$subs[0] . '-' . $subs[1]] = $subs[2];
+                        }
+                        unset($class[$key]);
+                    }
+                }
+                foreach ($gridClass as $key => $value) {
+                    $class [] = $key . '-' . $value;
+                }
+                $class = array_unique($class);
 
                 /* BEGIN COL */
                 $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name', $item->get('position')))));
-                $html .= '<div id="zo2-' . $id . '" class="' . trim($class . $customClass) . '">';
+                $html .= '<div id="zo2-' . $id . '" class="' . trim(implode(' ', $class)) . '">';
 
                 switch ($jdoc) {
                     case 'component':
@@ -458,11 +477,15 @@ if (!class_exists('Zo2LayoutItem')) {
         public function getVisibilityClass() {
             $visibility = new JObject($this->get('visibility'));
             $classes = array();
-            $classes[] = ($visibility->get('xs', 0) == 1) ? '' : 'hidden-xs';
-            $classes[] = ($visibility->get('sm', 0) == 1) ? '' : 'hidden-sm';
-            $classes[] = ($visibility->get('md', 0) == 1) ? '' : 'hidden-md';
-            $classes[] = ($visibility->get('lg', 0) == 1) ? '' : 'hidden-lg';
-            return implode(' ', $classes);
+            if (!$visibility->get('xs', 0))
+                $classes[] = 'hidden-xs';
+            if (!$visibility->get('sm', 0))
+                $classes[] = 'hidden-sm';
+            if (!$visibility->get('md', 0))
+                $classes[] = 'hidden-md';
+            if (!$visibility->get('lg', 0))
+                $classes[] = 'hidden-lg';
+            return $classes;
         }
 
         /**

@@ -152,26 +152,7 @@ $positions = $model->getAvaiablePositions();
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="dlColWidth"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_WIDTH'); ?></label>
-                            <div class="controls">
-                                <select id="dlColWidth">
-                                    <option value="1"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>1</option>
-                                    <option value="2"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>2</option>
-                                    <option value="3"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>3</option>
-                                    <option value="4"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>4</option>
-                                    <option value="5"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>5</option>
-                                    <option value="6"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>6</option>
-                                    <option value="7"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>7</option>
-                                    <option value="8"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>8</option>
-                                    <option value="9"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>9</option>
-                                    <option value="10"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>10</option>
-                                    <option value="11"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>11</option>
-                                    <option value="12"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_SPAN'); ?>12</option>
-                                </select>
-                            </div>
-                        </div>
+                        </div>                      
                         <div class="control-group">
                             <label class="control-label" for="ddlColOffset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                             <div class="controls">

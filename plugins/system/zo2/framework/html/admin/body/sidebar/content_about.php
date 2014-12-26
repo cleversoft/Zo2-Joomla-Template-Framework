@@ -10,6 +10,7 @@
                     <p><a class="btn btn-primary btn-large" href="http://www.zootemplate.com/zo2" target="_blank">Learn more Zo2Framework</a></p>
                     <div class="zo2-divider"></div>
                     <h3>Version</h3>
+                    <p>Current version: <?php echo Zo2Factory::getFramework()->getManifest()->version; ?></p>
                     <?php
                     $version = Zo2Factory::getFramework()->checkVersion();
                     switch ($version['compare']) {
@@ -23,7 +24,8 @@
                     }
                     ?>
                     <strong>Latest version: 1.4.3</strong>
-                    <small>Current version: <?php echo Zo2Factory::getFramework()->getManifest()->version; ?></small>
+                    <p><strong>Attention:</strong> Before you start updating, please refer to <a href="http://www.zootemplate.com/blog" target="_blank">important changes</a> to check if there are any additional instructions for the version which you want to install.</p>
+                    <p>Do not omit this step: in case you have made any changes directly in the theme files, backup all your changes. You can restore those changes after upgrade.</p>
                     <div class="zo2-divider"></div>
                     <h3>Features</h3>
                     <ol class="task-list">
