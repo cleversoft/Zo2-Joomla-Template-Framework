@@ -145,7 +145,7 @@
          */
         duplicate: function() {
             var _self = this;
-            $('#droppable-container').on('click', '.row-control-buttons > .duplicate', function() {
+            $('#droppable-container').on('click', '.row-control-buttons > .add-row', function() {
                 var $this = $(this);
                 var $parent = $this.closest('.zo2-row');
                 var $row = $('<div />').addClass('zo2-row sortable-row').insertAfter($parent);
