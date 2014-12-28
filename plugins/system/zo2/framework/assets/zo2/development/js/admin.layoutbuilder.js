@@ -23,7 +23,7 @@
      */
     var _layoutbuilder = {
         /**
-         * Element selector containner
+         * Element selector container
          */
         _elements: {
             /* Drop able childrend */
@@ -182,13 +182,13 @@
             });
         },
         /**
-         * Add child column to containner
-         * @param {type} $rowContainner
+         * Add child column to container
+         * @param {type} $rowContainer
          * @returns {undefined}
          */
-        _addChildColumn: function($rowContainner) {
+        _addChildColumn: function($rowContainer) {
             var _self = this;
-            var $container = $rowContainner.closest('[data-zo2-type="row"]');
+            var $container = $rowContainer.closest('[data-zo2-type="row"]');
             var $colContainer = $container.find('>.col-md-12>.col-container');
             var $span = $('<div />').addClass('sortable-col');
             $span.attr('data-zo2-type', 'span');
@@ -338,7 +338,7 @@
                 var spanStyle = $col.attr('data-zo2-style');
                 var customCss = $col.attr('data-zo2-customClass');
                 var spanId = $col.attr('data-zo2-id');
-
+                
                 //$('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
                 $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
                 if ($col.attr('data-zo2-visibility-xs') == '1')
@@ -409,6 +409,7 @@
                 $col.attr('data-zo2-position', position);
                 $col.find('>.col-wrap>.col-name').text(colName);
                 $('#colSettingsModal').modal('hide');
+                _self._updateSpanSize($col.closest('.col-container'));
                 return false;
             });
             $('#btnSaveRowSettings').on('click', function() {
