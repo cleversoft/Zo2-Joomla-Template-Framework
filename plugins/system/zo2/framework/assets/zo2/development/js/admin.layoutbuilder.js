@@ -167,6 +167,7 @@
                         '</div></div>' +
                         '<div class="col-container"></div></div>');
                 $meta.appendTo($row);
+                _self._addChildColumn($row);
 
             });
         },
@@ -177,38 +178,44 @@
         addColumn: function() {
             var _self = this;
             $('#droppable-container').on('click', '.row-control-buttons > .add-column', function() {
-                var $this = $(this);
-                var $container = $this.closest('[data-zo2-type="row"]');
-                var $colContainer = $container.find('>.col-md-12>.col-container');
-                var $span = $('<div />').addClass('sortable-col');
-                $span.attr('data-zo2-type', 'span');
-                $span.attr('data-zo2-span', 12);
-                $span.removeClass(_self._settings.allColClass);
-                $span.addClass('col-md-12');
-                $span.attr('data-zo2-position', '');
-                $span.attr('data-zo2-offset', 0);
-                $span.attr('data-zo2-customClass', '');
-                var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                        '<div class="col-grid-button">' +
-                        '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
-                        '<span class="col-size">12/12</span>' +
-                        '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
-                        '</div>' +
-                        '<div class="col-control-buttons">' +
-                        '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                        '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                        '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
-                        '</div><div class="row-container"></div></div></div>';
-                var $meta = $(metaHtml);
-                $meta.appendTo($span);
-                /*
-                 var $spanContainer = $('<div />').addClass('row-container zo2-row sortable-row');
-                 $spanContainer.appendTo($meta);
-                 */
-                $span.appendTo($colContainer);
-
-
+                _self._addChildColumn($(this));
             });
+        },
+        /**
+         * Add child column to containner
+         * @param {type} $rowContainner
+         * @returns {undefined}
+         */
+        _addChildColumn: function($rowContainner) {
+            var _self = this;
+            var $container = $rowContainner.closest('[data-zo2-type="row"]');
+            var $colContainer = $container.find('>.col-md-12>.col-container');
+            var $span = $('<div />').addClass('sortable-col');
+            $span.attr('data-zo2-type', 'span');
+            $span.attr('data-zo2-span', 12);
+            $span.removeClass(_self._settings.allColClass);
+            $span.addClass('col-md-12');
+            $span.attr('data-zo2-position', '');
+            $span.attr('data-zo2-offset', 0);
+            $span.attr('data-zo2-customClass', '');
+            var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
+                    '<div class="col-grid-button">' +
+                    '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
+                    '<span class="col-size">12/12</span>' +
+                    '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
+                    '</div>' +
+                    '<div class="col-control-buttons">' +
+                    '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                    '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div></div></div>';
+            var $meta = $(metaHtml);
+            $meta.appendTo($span);
+            /*
+             var $spanContainer = $('<div />').addClass('row-container zo2-row sortable-row');
+             $spanContainer.appendTo($meta);
+             */
+            $span.appendTo($colContainer);
         },
         /**
          * Delet child element
