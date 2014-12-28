@@ -59,10 +59,9 @@
          */
         _init: function() {
             this._sortable();
-            this.duplicate();
+            this.addNewRow();
             this.addColumn();
             this.delete();
-            this.addRow();
             this.setting();
             this.save();
         },
@@ -140,10 +139,10 @@
             });
         },
         /**
-         * Check for duplication
+         * Add new parent row
          * @returns {undefined}
          */
-        duplicate: function() {
+        addNewRow: function() {
             var _self = this;
             $('#droppable-container').on('click', '.row-control-buttons > .add-row', function() {
                 var $this = $(this);
@@ -162,7 +161,7 @@
                         '<div class="row-control-buttons">' +
                         '<i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
                         '<i title="Row\'s settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Duplicate row" class="row-control-icon duplicate fa fa-align-justify1"></i>' +
+                        '<i title="Add new row" class="row-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
                         '<i title="Add new column" class="row-control-icon add-column fa fa-columns hasTooltip"></i>' +
                         '<i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
                         '</div></div>' +
@@ -198,7 +197,6 @@
                         '<div class="col-control-buttons">' +
                         '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
                         '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                        '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
                         '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
                         '</div><div class="row-container"></div></div></div>';
                 var $meta = $(metaHtml);
@@ -234,41 +232,6 @@
                         $this.closest('.sortable-row').remove();
                     z.admin.layoutbuilder.rearrangeSpan($container);
                 });
-            });
-        },
-        /**
-         * Add new row
-         * @returns {undefined}
-         */
-        addRow: function() {
-            var _self = this;
-            $('#droppable-container').on('click', '.col-control-buttons > .add-row', function() {
-                var $this = $(this);
-                var $container = $this.parents('.col-wrap').find('>.row-container');
-                var $row = $('<div />').addClass('zo2-row sortable-row').appendTo($container);
-                $row.attr('data-zo2-type', 'row');
-                $row.attr('data-zo2-customClass', '');
-                $row.attr('data-zo2-fullwidth', '0');
-                for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
-                    $row.attr(_self._settings.visibilityAttributes[i], '1');
-                }
-                _self.editingElement = $(this).closest('.sortable-col');
-                //$row.attr('data-zo2-layout', 'fixed');
-                var $meta = $('<div class="col-md-12 row-control"><div class="row-control-container"><div class="col-name">(unnamed row)</div>' +
-                        '<div class="col-grid-button">' +
-                        '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
-                        '<span class="col-size">(default)</span>' +
-                        '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
-                        '</div>' +
-                        '<div class="col-control-buttons">' +
-                        '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                        '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                        '<i title="Append new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
-                        '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i></div></div></div>');
-                $meta.appendTo($row);
-                var $colContainer = $('<div />').addClass('col-container row-fluid clearfix');
-                $colContainer.appendTo($meta);
-                _self._updateSpanSize($colContainer);
             });
         },
         /**
