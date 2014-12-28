@@ -103,12 +103,12 @@ if (!class_exists('Zo2Ajax')) {
                     $messageType = 'info';
                     break;
             }
-            $template = new Zo2Html();
-            $template->set('header', $header);
-            $template->set('message', $message);
-            $template->set('type', $messageType);
+            $html = new Zo2Html();
+            $html->set('header', $header);
+            $html->set('message', $message);
+            $html->set('type', $messageType);
             $data = new stdClass();
-            $data->message = $template->fetch('zo2/message.php');
+            $data->message = $html->fetch('Zo2://html/message.php');
             $this->add($data, 'message');
             return $this;
         }

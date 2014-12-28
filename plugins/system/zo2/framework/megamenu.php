@@ -1,734 +1,642 @@
 <?php
 
-/**
- * Zo2 (http://www.zootemplate.com/zo2)
- * A powerful Joomla template framework
- *
- * @link        http://www.zootemplate.com/zo2
- * @link        https://github.com/cleversoft/zo2
- * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
- * @license     GPL v2
- */
-//no direct accees
-defined('_JEXEC') or die('resticted aceess');
-
-/**
- * Class exists checking
- */
-if (!class_exists('Zo2Megamenu')) {
+class Zo2Megamenu {
 
     /**
-     * Zo2 Megamenu
-     * @todo This class must be extends from JObject and init with themself default properties
+     * Internal variables
      */
-    class Zo2Megamenu {
+    protected $_items = array();
+    protected $children = array();
+    protected $settings = null;
+    protected $params = null;
+    protected $menu = '';
+    protected $active_id = 0;
+    protected $active_tree = array();
+    protected $top_level_caption = false;
 
-        private $_menuType = 'mainmenu';
-        protected $_configs = null;
-        protected $children = null;
-        protected $_items = null;
-        protected $edit = false;
-        protected $isAdmin = false;
-        private $_activeMenuId = -1;
+    /**
+     * @param  string  $menutype  menu type to render
+     * @param  array   $settings  settings information
+     * @param  null    $params    other parameters
+     */
+    public function __construct($menutype = 'mainmenu', $settings = array(), $params = null) {
+        $app = JFactory::getApplication();
+        $menu = $app->getMenu('site');
 
-        public function __construct($menuType = 'mainmenu', $configs = array()) {
-            $this->_menuType = $menuType;
-            $this->_configs = Zo2Factory::getProfile()->getMegaMenuConfig($menuType);
-            $this->edit = isset($configs['edit']) ? $configs['edit'] : false;
+        $attributes = array('menutype');
+        $values = array($menutype);
 
-            $this->loadMegaMenu();
+        if (isset($settings['access'])) {
+            $attributes[] = 'access';
+            $values[] = $settings['access'];
+        } else {
+            $settings['access'] = array(1);
         }
 
-        function loadMegaMenu() {
-            $model = new Zo2ModelJoomla();
-            $lang = JFactory::getLanguage();
-            $menu = JFactory::getApplication()->getMenu();
-            $items = $model->getMenuItemsByType($this->_menuType);
+        if (isset($settings['language'])) {
+            $attributes[] = 'language';
+            $values[] = $settings['language'];
+        }
 
-            /* Get active menu */
-            $defMenu = $menu->getDefault($lang->getTag());
-            $active_menu = $menu->getActive() ? $menu->getActive() : $defMenu;
-            $menu_id = $active_menu ? $active_menu->id : 0;
-            $this->_activeMenuId = $menu_id;
+        $items = $menu->getItems($attributes, $values);
 
-            $menu_tree = $active_menu->tree ? $active_menu->tree : array();
-            if ($menu->getActive() == $defMenu) {
-                $menu_tree[] = $menu->getDefault()->id; /* Menu tree should be include Default home menu & Default home with language menu */
+        $active = ($menu->getActive()) ? $menu->getActive() : $menu->getDefault();
+        $this->active_id = $active ? $active->id : 0;
+        $this->active_tree = $active->tree;
+
+        $this->settings = $settings;
+        $this->params = $params;
+        $this->editmode = isset($settings['editmode']);
+        foreach ($items as &$item) {
+            //remove all non-parent item (the parent has access higher access level)
+            if ($item->level >= 2 && !isset($this->_items[$item->parent_id])) {
+                continue;
             }
 
-            // Get all child menus for a parent menu
-            foreach ($items as &$item) {
+            $parent = isset($this->children[$item->parent_id]) ? $this->children[$item->parent_id] : array();
+            $parent[] = $item;
+            $this->children[$item->parent_id] = $parent;
+            $this->_items[$item->id] = $item;
+        }
 
-                $parent_id = $item->parent_id;
-                if (isset($this->children[$parent_id])) {
-                    $menus = $this->children[$parent_id];
-                } else {
-                    $menus = array();
-                }
-                // push a item into $menus array
-                array_push($menus, $item);
-                $this->children[$parent_id] = $menus;
+        foreach ($items as &$item) {
+            // bind setting for this item
+            $key = 'item-' . $item->id;
+            $setting = isset($this->settings[$key]) ? $this->settings[$key] : array();
+
+            // decode html tag
+            if (isset($setting['caption']) && $setting['caption'])
+                $setting['caption'] = str_replace(array('[lt]', '[gt]'), array('<', '>'), $setting['caption']);
+            if ($item->level == 1 && isset($setting['caption']) && $setting['caption'])
+                $this->top_level_caption = true;
+
+            // active - current
+            $class = '';
+            if ($item->id == $this->active_id) {
+                $class .= ' current';
             }
-
-            foreach ($items as &$item) {
-                $itemid = 'item-' . $item->id;
-                if (!Zo2Factory::isJoomla25()) {
-                    if (!isset($this->_configs[$itemid])) {
-                        $asso = JLanguageAssociations::getAssociations('', '#__menu', 'com_menus.item', $item->id, 'id', '', '');
-                        reset($asso);
-                        $assokey = key($asso);
-                        if ($assokey != null)
-                            $itemid = 'item-' . $asso[$assokey]->id;
-                    }
-                }
-
-                $config = isset($this->_configs[$itemid]) ? $this->_configs[$itemid] : array();
-
-
-                if (isset($config['caption']) && $config['caption'])
-                    $config['caption'] = str_replace(array('[lt]', '[gt]'), array('<', '>'), $config['caption']);
-                if ($item->level == 1 && isset($config['caption']) && $config['caption']) {
-                    $item->top_level_caption = true;
-                }
-                // active - current
-                $class = '';
-                if ($item->id == $menu_id) {
-                    $class .= ' current';
-                }
-                if (in_array($item->id, $menu_tree)) {
+            if (in_array($item->id, $this->active_tree)) {
+                $class .= ' active';
+            } elseif ($item->type == 'alias') {
+                $aliasToId = $item->params->get('aliasoptions');
+                if (count($this->active_tree) > 0 && $aliasToId == $this->active_tree[count($this->active_tree) - 1]) {
                     $class .= ' active';
-                } elseif ($item->type == 'alias') {
-                    if (count($menu_tree) > 0 && $item->params->get('aliasoptions') == $menu_tree[count($menu_tree) - 1]) {
-                        $class .= ' active';
-                    } elseif (in_array($item->params->get('aliasoptions'), $menu_tree)) {
-                        $class .= ' alias-parent-active';
-                    }
+                } elseif (in_array($aliasToId, $this->active_tree)) {
+                    $class .= ' alias-parent-active';
                 }
-
-                $item->class = $class;
-                $item->show_group = false;
-                $item->isdropdown = false;
-                if (isset($config['group'])) {
-                    $item->show_group = true;
-                } else {
-                    // if this item is a parent then setting up the status is dropdown
-                    if (isset($config['submenu']) || (isset($this->children[$item->id]) && (!isset($config['hidesub']) || $this->edit))) {
-                        $item->isdropdown = true;
-                    }
-                }
-                $item->megamenu = $item->isdropdown || $item->show_group;
-
-                if ($item->megamenu && !isset($config['submenu'])) {
-                    $firstChild = $this->children[$item->id][0]->id;
-                    $config['submenu'] = array('rows' => array(array(array('width' => 12, 'item' => $firstChild))));
-                }
-
-                $item->config = $config;
-
-
-                $item->flink = $item->link;
-
-                // Reverted back for CMS version 2.5.6
-                switch ($item->type) {
-                    case 'separator':
-                    case 'heading':
-                        // No further action needed.
-                        continue;
-
-                    case 'url':
-                        if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
-                            // If this is an internal Joomla link, ensure the Itemid is set.
-                            $item->flink = $item->link . '&Itemid=' . $item->id;
-                        }
-
-                        break;
-
-                    case 'alias':
-                        // If this is an alias use the item id stored in the parameters to make the link.
-                        $item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
-                        break;
-
-                    default:
-                        $router = JSite::getRouter();
-                        if ($router->getMode() == JROUTER_MODE_SEF) {
-                            $item->flink = 'index.php?Itemid=' . $item->id;
-                        } else {
-                            $item->flink .= '&Itemid=' . $item->id;
-                        }
-                        break;
-                }
-
-                if (strcasecmp(substr($item->flink, 0, 4), 'http') && (strpos($item->flink, 'index.php?') !== false)) {
-
-                    $item->flink = JRoute::_($item->flink, true, $item->params->get('secure'));
-                } else {
-                    $item->flink = JRoute::_($item->flink);
-                }
-
-                // We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
-                // when the cause of that is found the argument should be removed
-                $item->title = htmlspecialchars($item->title, ENT_COMPAT, 'UTF-8', false);
-                $item->anchor_css = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
-                $item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
-                $item->menu_image = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
-                $this->_items[$item->id] = $item;
             }
-        }
 
-        public function renderOffCanvasMenu($config) {
-            $this->isAdmin = $config['isAdmin'];
-            $html = '<div class="offcanvas offcanvas-left ' . implode(' ', $config['item']->getVisibilityClass()) . '">' .
-                    '<a href="#" class="sidebar-close"></a>' .
-                    '<div class="sidebar-nav">';
-
-            $keys = array_keys($this->_items);
-            $html .= $this->getOffCanvasMenu(null, $keys[0]);
-            $html .= '</div></div>';
-            return $html;
-        }
-
-        function getOffCanvasMenu($parent = null, $start = 0, $end = 0) {
-            $html = '';
-            if ($start > 0) {
-                if (!isset($this->_items[$start]))
-                    return;
-                $parent_id = $this->_items[$start]->parent_id;
-                $menus = array();
-                $started = false;
-                foreach ($this->children[$parent_id] as $item) {
-
-                    if ($started) {
-                        if ($item->id == $end)
-                            break;
-                        array_push($menus, $item);
-                    } else {
-                        if ($item->id == $start) {
-                            $started = true;
-                            array_push($menus, $item);
-                        }
-                    }
-                }
-
-                if (!count($menus))
-                    return;
-            } else if ($start === 0) {
-                $pid = $parent->id;
-                if (!isset($this->children[$pid]))
-                    return;
-                $menus = $this->children[$pid];
+            $item->class = $class;
+            $item->mega = 0;
+            $item->group = 0;
+            $item->dropdown = 0;
+            if (isset($setting['group']) && $item->level > 1) {
+                $item->group = 1;
             } else {
-                return;
-            }
-
-
-            $class = '';
-            if (!$parent) {
-                $class .= ''; //additional class here
-            } else {
-                if (!$this->isAdmin)
-                    $class .= 'nav';
-                $class .= ' level' . $parent->level;
-            }
-
-            if ($class)
-                $class = 'class="' . trim($class) . '"';
-
-            $html .= '<ul ' . $class . '>';
-
-            foreach ($menus as $menu) {
-                $html .= $this->generateOffCanvasHtml($menu);
-            }
-            $html .= '</ul>';
-
-            return $html;
-        }
-
-        private function generateOffCanvasHtml($menu) {
-            $submenuHtml = '';
-            $menus = isset($this->children[$menu->id]) ? $this->children[$menu->id] : array();
-            if (!empty($menus)) {
-                $submenuHtml = '<ul class="submenu nav-sub collapse" id="ocSub-' . $menu->id . '">';
-                foreach ($menus as $submenu) {
-                    $submenuHtml .= $this->generateOffCanvasHtml($submenu);
-                }
-                $submenuHtml .= '</ul>';
-            }
-            $liClass = array();
-            if (!empty($submenuHtml))
-                $liClass[] = 'nav-parent';
-            if ($this->_activeMenuId == $menu->id)
-                $liClass[] = 'nav-active';
-            $html = '<li class="' . implode(' ', $liClass) . '">';
-            $html .= '<a href="' . $menu->flink . '">' . $menu->title . '</a>';
-            if (!empty($submenuHtml))
-                $html .= '<a href="#" class="nav-oc-toggle icon-caret-down" data-toggle="collapse" data-target="#ocSub-' . $menu->id . '"></a>';
-            $html .= $submenuHtml;
-            $html .= '</li>';
-            return $html;
-        }
-
-        /**
-         * 
-         * @param type $isAdmin
-         * @return string
-         */
-        function renderMenu($isAdmin = false) {
-            $this->isAdmin = $isAdmin;
-            $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">
-                    <div class="navbar-collapse collapse">';
-            $suffix = '</div></nav>';
-            $html = '';
-            $menuConfig = Zo2Factory::getProfile()->getMenuConfig();
-            $hover = ' data-hover="' . $menuConfig->get('hover_type') . '"';
-            $animation = $menuConfig->get('animation');
-            $duration = $menuConfig->get('duration', 300);
-            if ((int) $duration <= 0)
-                $duration = 300;
-            $class = 'class="zo2-megamenu' . ($animation ? ' animate ' . $animation : '') . '"';
-            $data = $animation && $duration ? ' data-duration="' . $duration . '"' : '';
-
-            if (isset($this->_items)) {
-                if (count($this->_items)) {
-                    $keys = array_keys($this->_items);
-                    $html .= "<div $class$data$hover>";
-                    $html .= $this->getMenu(null, $keys[0]);
-                    $html .= "</div>";
-                    if ($isAdmin == true) {
-                        return $html;
-                    } elseif ($isAdmin == false) {
-                        return $prefix . $html . $suffix;
-                    }
+                if ((isset($this->children[$item->id]) && ($this->editmode || !isset($setting['hidesub']))) || isset($setting['sub'])) {
+                    $item->dropdown = 1;
                 }
             }
-
-            return '';
-        }
-
-        /**
-         * Get child menus for parent menu
-         * @param null $parent
-         * @param int $start
-         * @param int $end
-         * @return string
-         */
-        function getMenu($parent = null, $start = 0, $end = 0) {
-
-            $html = '';
-
-            if ($start > 0) {
-                if (!isset($this->_items[$start]))
-                    return;
-                $parent_id = $this->_items[$start]->parent_id;
-                $menus = array();
-                $started = false;
-                foreach ($this->children[$parent_id] as $item) {
-
-                    if ($started) {
-                        if ($item->id == $end)
-                            break;
-                        array_push($menus, $item);
-                    } else {
-                        if ($item->id == $start) {
-                            $started = true;
-                            array_push($menus, $item);
-                        }
-                    }
+            $item->mega = $item->group || $item->dropdown;
+            // set default sub if not exists
+            if ($item->mega) {
+                if (!isset($setting['sub']))
+                    $setting['sub'] = array();
+                if (isset($this->children[$item->id]) && (!isset($setting['sub']['rows']) || !count($setting['sub']['rows']))) {
+                    $c = $this->children[$item->id][0]->id;
+                    $setting['sub'] = array('rows' => array(array(array('width' => 12, 'item' => $c))));
                 }
-
-                if (!count($menus))
-                    return;
-            } else if ($start === 0) {
-                $pid = $parent->id;
-                if (!isset($this->children[$pid]))
-                    return;
-                $menus = $this->children[$pid];
-            } else {
-                return;
             }
-            $class = '';
-            if (!$parent) {
-                $class .= 'nav navbar-nav level-top';
-            } else {
-                if (!$this->isAdmin)
-                    $class .= 'nav';
-                $class .= ' mega-nav';
-                $class .= ' level' . $parent->level;
-            }
+            $item->setting = $setting;
 
-            if ($class)
-                $class = 'class="' . trim($class) . '"';
+            $item->flink = $item->link;
 
-            $html .= '<ul ' . $class . '>';
-
-            foreach ($menus as $menu) {
-                $html .= $this->getLiTag($menu);
-            }
-            $html .= '</ul>';
-
-            return $html;
-        }
-
-        /**
-         * Get content of Li tag
-         * @param $menu
-         * @return string
-         */
-        function getLiTag($menu) {
-            $html = '';
-            $html .= $this->beginLi($menu);
-            $html .= $this->getLinkTitle($menu);
-            if ($menu->megamenu) {
-                $html .= $this->getSubMenu($menu);
-            }
-            $html .= $this->endLi($menu);
-            return $html;
-        }
-
-        /**
-         * Get link type
-         * @param $menu
-         * @return string
-         */
-        function getLinkTitle($menu) {
-
-            $config = $menu->config;
-
-            $class = $menu->anchor_css ? $menu->anchor_css : '';
-            $title = $menu->anchor_title ? 'title="' . $menu->anchor_title . '"' : '';
-            $dropdown = '';
-            $caption = '';
-            $linktype = '';
-            $icon = '';
-            $caret = '';
-            if ($menu->isdropdown) {
-                $caret = '<b class="caret"></b>';
-            }
-            if ($menu->isdropdown && $menu->level < 2) {
-                $class .= 'dropdown-toggle';
-                $dropdown = ' data-toggle="dropdown" ';
-            }
-
-            if ($menu->show_group) {
-                $class .= ' group-title';
-            }
-
-            if ($menu->menu_image) {
-                if ($menu->params->get('menu_text', 1)) {
-                    $linktype = '<img src="' . $menu->menu_image . '" alt="' . $menu->title . '" /><span class="image-title">' . $menu->title . '</span>';
-                } else {
-                    $linktype = '<img src="' . $menu->menu_image . '" alt="' . $menu->title . '" />';
-                }
-            } else {
-                $linktype = $menu->title;
-            }
-
-            if (isset($config['xicon']) && $config['xicon']) {
-                $icon = '<i class="' . $config['xicon'] . '"></i>';
-            }
-
-            if (isset($config['caption']) && $config['caption']) {
-                $caption = '<span class="mega-caption">' . $config['caption'] . '</span>';
-            } else if ($menu->level == 1 && isset($menu->top_level_caption) && $menu->top_level_caption) {
-                $caption = '<span class="mega-caption mega-caption-empty"></span>';
-            }
-
-            $html = '';
-
-            switch ($menu->type) {
+            // Reverted back for CMS version 2.5.6
+            switch ($item->type) {
                 case 'separator':
-                    $class .= " separator";
-                    $html = "<span class=\"$class\">$icon$title $linktype$caption</span>";
-                    break;
-                case 'component':
+                case 'heading':
+                    // No further action needed.
+                    continue;
 
-                    switch ($menu->browserNav) {
-                        default:
-                        case 0:
-                            $html = "<a class=\"$class\" href=\"{$menu->flink}\" $title $dropdown>$icon$linktype$caret$caption</a>";
-                            break;
-                        case 1:
-                            // _blank
-                            $html = "<a class=\"$class\" href=\"{$menu->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
-                            break;
-                        case 2:
-                            // window.open
-                            $html = "<a class=\"$class\" href=\"{$menu->flink}\" onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\" $title $dropdown>$linktype $caret$caption</a>";
-                            break;
-                    }
-                    break;
                 case 'url':
-                    $flink = $menu->flink;
-                    $flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
-                    switch ($menu->browserNav) {
-
-                        default:
-                        case 0:
-                            $html = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
-                            break;
-                        case 1:
-                            // _blank
-                            $html = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
-                            break;
-                        case 2:
-                            // window.open
-                            $options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,' . $menu->params->get('window_open');
-                            $html = "<a class=\"$class\" href=\"$flink\" onclick=\"window.open(this.href,'targetWindow','$options');return false;\" $title $dropdown>$icon$linktype$caret$caption</a>";
-                            break;
+                    if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false)) {
+                        // If this is an internal Joomla link, ensure the Itemid is set.
+                        $item->flink = $item->link . '&Itemid=' . $item->id;
                     }
-
                     break;
+
+                case 'alias':
+                    // If this is an alias use the item id stored in the parameters to make the link.
+                    $item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
+                    break;
+
                 default:
-                    $flink = $menu->flink;
-                    $flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
-                    $html = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
+                    $router = JSite::getRouter();
+                    if ($router->getMode() == JROUTER_MODE_SEF) {
+                        $item->flink = 'index.php?Itemid=' . $item->id;
+                    } else {
+                        $item->flink .= '&Itemid=' . $item->id;
+                    }
+                    break;
             }
 
-            return $html;
-        }
-
-        /**
-         * @param $menu
-         * @return string
-         */
-        function beginLi($menu) {
-
-            $config = $menu->config;
-            $class = $menu->class;
-
-            if ($menu->isdropdown) {
-                $class .= $menu->level == 1 ? ' dropdown' : ' dropdown-submenu';
-            }
-
-            if ($menu->megamenu)
-                $class .= ' mega';
-            if ($menu->show_group)
-                $class .= ' mega-group';
-
-            $data = "data-id=\"{$menu->id}\" data-level=\"{$menu->level}\"";
-            if ($menu->show_group)
-                $data .= " data-group=\"1\"";
-            if (isset($config['class'])) {
-                $data .= " data-class=\"{$config['class']}\"";
-                $class .= " {$config['class']}";
-            }
-
-            if (isset($config['alignsub'])) {
-                $data .= " data-alignsub=\"{$config['alignsub']}\"";
-                $class .= " mega-align-{$config['alignsub']}";
-            }
-            if (isset($config['hidesub']))
-                $data .= " data-hidesub=\"1\"";
-            if (isset($config['xicon']))
-                $data .= " data-xicon=\"{$config['xicon']}\"";
-            if (isset($config['caption']))
-                $data .= " data-caption=\"" . htmlspecialchars($config['caption']) . "\"";
-
-            if (isset($config['hidesub']))
-                $data .= " data-hidesub=\"1\"";
-            if (isset($config['caption']))
-                $data .= " data-caption=\"" . htmlspecialchars($config['caption']) . "\"";
-            if (isset($config['hidewcol'])) {
-                $data .= " data-hidewcol=\"1\"";
-                $class .= " sub-hidden-collapse";
-            }
-            $class = 'class="' . $class . '"';
-            return "<li $class $data>";
-        }
-
-        /**
-         * @param $menu
-         * @return string
-         */
-        function endLi($menu) {
-            return "</li>";
-        }
-
-        /**
-         * Get sub menus for parent menu
-         * @param $parent
-         * @return string
-         */
-        function getSubMenu($parent) {
-
-            $html = '';
-            $config = $parent->config;
-            $submenu = $config['submenu'];
-            $menus = isset($this->children[$parent->id]) ? $this->children[$parent->id] : array();
-            //default first item
-            $fitem = count($menus) ? $menus[0]->id : 0;
-
-            $class = 'menu-child  ' . ($parent->isdropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-content');
-            $data = '';
-            $style = '';
-
-            if (isset($config['class']))
-                $data .= " data-class=\"{$config['class']}\"";
-            if (isset($config['alignsub']) && $config['alignsub'] == 'justify') {
-                if ($this->isAdmin) {
-                    $class .= " span12";
-                } else {
-                    $class .= " col-md-12";
-                }
+            if (strcasecmp(substr($item->flink, 0, 4), 'http') && (strpos($item->flink, 'index.php?') !== false)) {
+                $item->flink = JRoute::_($item->flink, true, $item->params->get('secure'));
             } else {
-                if (isset($submenu['width'])) {
-                    if ($parent->isdropdown) {
-                        $style = " style=\"width:{$submenu['width']}px\"";
+                $item->flink = JRoute::_($item->flink);
+            }
+
+            // We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
+            // when the cause of that is found the argument should be removed
+            $item->title = htmlspecialchars($item->title, ENT_COMPAT, 'UTF-8', false);
+            $item->anchor_css = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
+            $item->anchor_title = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
+            $item->menu_image = $item->params->get('menu_image', '') ? htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
+        }
+    }
+
+    public function render($return = false) {
+        $this->menu = '';
+
+        $this->_('beginmenu');
+        $keys = array_keys($this->_items);
+        if (count($keys)) { //in case the keys is empty array
+            $this->nav(null, $keys[0]);
+        }
+        $this->_('endmenu');
+
+        if ($return) {
+            return $this->menu;
+        } else {
+            echo $this->menu;
+        }
+    }
+
+    public function nav($pitem, $start = 0, $end = 0) {
+        if ($start > 0) {
+            if (!isset($this->_items[$start]))
+                return;
+            $pid = $this->_items[$start]->parent_id;
+            $items = array();
+            $started = false;
+            foreach ($this->children[$pid] as $item) {
+                if ($started) {
+                    if ($item->id == $end)
+                        break;
+                    $items[] = $item;
+                } else {
+                    if ($item->id == $start) {
+                        $started = true;
+                        $items[] = $item;
                     }
-                    $data .= " data-width=\"{$submenu['width']}\"";
                 }
             }
+            if (!count($items))
+                return;
+        } else if ($start === 0) {
+            $pid = $pitem->id;
+            if (!isset($this->children[$pid]))
+                return;
+            $items = $this->children[$pid];
+        } else {
+            //empty menu
+            return;
+        }
 
-            if ($class)
-                $class = 'class="' . trim($class) . '"';
+        $this->_('beginnav', array(
+            'item' => $pitem
+        ));
 
-            $html .= "<div $style $class $data><div class=\"mega-dropdown-inner\">";
+        foreach ($items as $item) {
+            $this->item($item);
+        }
 
-            $endItems = array();
-            $key1 = 0;
-            $key2 = 0;
-            foreach ($submenu['rows'] as $row) {
+        $this->_('endnav', array(
+            'item' => $pitem
+        ));
+    }
 
-                foreach ($row as $column) {
-                    if (!isset($column['module_id'])) {
-                        if ($key1) {
-                            $key2 = $column['item'];
-                            if (!isset($this->_items[$key2]) || $this->_items[$key2]->parent_id != $parent->id)
-                                break;
-                            $endItems[$key1] = $key2;
-                        }
-                        $key1 = $column['item'];
+    public function item($item) {
+        // item content
+        $setting = $item->setting;
+
+        $this->_('beginitem', array(
+            'item' => $item,
+            'setting' => $setting,
+            'menu' => $this
+        ));
+
+        $this->menu .= $this->_('item', array(
+            'item' => $item,
+            'setting' => $setting,
+            'menu' => $this
+        ));
+
+        if ($item->mega) {
+            $this->mega($item);
+        }
+        $this->_('enditem', array(
+            'item' => $item
+        ));
+    }
+
+    public function mega($item) {
+        $setting = $item->setting;
+        $sub = $setting['sub'];
+        $items = isset($this->children[$item->id]) ? $this->children[$item->id] : array();
+        $firstitem = count($items) ? $items[0]->id : 0;
+
+        $this->_('beginmega', array(
+            'item' => $item
+        ));
+        $endItems = array();
+        $k1 = $k2 = 0;
+        foreach ($sub['rows'] as $row) {
+            foreach ($row as $col) {
+                if (!isset($col['position'])) {
+                    if ($k1) {
+                        $k2 = $col['item'];
+                        if (!isset($this->_items[$k2]) || $this->_items[$k2]->parent_id != $item->id)
+                            break;
+                        $endItems[$k1] = $k2;
                     }
+                    $k1 = $col['item'];
                 }
             }
+        }
+        $endItems[$k1] = 0;
 
-            $endItems[$key1] = 0;
-            $firstitem = true;
-            $rowClass = 'row-fluid';
-            $colClass = 'span';
-            if (!$this->isAdmin) {
-                $rowClass = 'row';
-                $colClass = 'col-md-';
-            }
-            foreach ($submenu['rows'] as $key => $row) {
-                //start row
-                $html .= '<div class="' . $rowClass . '">';
-                foreach ($row as $column) {
-                    $width = isset($column['width']) ? $column['width'] : '12';
-                    $data = "data-width=\"$width\"";
-                    $class = "$colClass$width";
-                    if (isset($column['module_id'])) {
-                        $class .= " mega-col-module";
-                        $data .= " data-module_id=\"{$column['module_id']}\"";
-                    } else {
-                        $class .= " mega-col-nav";
-                    }
-                    if (isset($column['class'])) {
-                        $class .= " {$column['class']}";
-                        $data .= " data-class=\"{$column['class']}\"";
-                    }
-                    if (isset($column['hidewcol'])) {
-                        $data .= " data-hidewcol=\"1\"";
-                        $class .= " hidden-collapse";
-                    }
-                    // start column
-                    $html .= "<div class=\"$class\" $data><div class=\"mega-inner\">";
+        $firstitemscol = true;
+        foreach ($sub['rows'] as $row) {
+            $this->_('beginrow', array(
+                'menu' => $this
+            ));
 
-                    if (isset($column['module_id'])) {
-                        $html .= $this->getModule($column['module_id']);
-                    } else {
-                        if (!isset($endItems[$column['item']]))
-                            continue;
-                        $endId = $endItems[$column['item']];
-                        $startId = $firstitem ? $fitem : $column['item'];
-                        $html .= $this->getMenu($parent, (int) $startId, (int) $endId);
-                        $firstitem = false;
-                    }
-
-                    $html .= "</div></div>"; // end column
+            foreach ($row as $col) {
+                $this->_('begincol', array(
+                    'setting' => $col,
+                    'menu' => $this
+                ));
+                if (isset($col['position'])) {
+                    $this->module($col['position']);
+                } else {
+                    if (!isset($endItems[$col['item']]))
+                        continue;
+                    $toitem = $endItems[$col['item']];
+                    $startitem = $firstitemscol ? $firstitem : $col['item'];
+                    $this->nav($item, $startitem, $toitem);
+                    $firstitemscol = false;
                 }
-
-                $html .= "</div>"; //end row
+                $this->_('endcol');
             }
+            $this->_('endrow');
+        }
+        $this->_('endmega');
+    }
 
-            $html .= "</div></div>";
-            return $html;
+    public function module($module) {
+        // load module
+        $id = intval($module);
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query
+                ->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params')
+                ->from('#__modules AS m')
+                ->where('m.id = ' . $id)
+                ->where('m.published = 1')
+                ->where('m.access IN (' . implode(',', $this->settings['access']) . ')');
+        $db->setQuery($query);
+        $module = $db->loadObject();
+
+        //check in case the module is unpublish or deleted
+        if ($module && $module->id) {
+            $style = 'T3Xhtml';
+            $content = JModuleHelper::renderModule($module, array(
+                        'style' => $style
+            ));
+
+            $this->menu .= $content . "\n";
+        }
+    }
+
+    public function _($tmpl, $vars = array()) {
+        $vars['menu'] = $this;
+        $this->menu .= Zo2MegamenuTpl::_($tmpl, $vars);
+    }
+
+    public function get($prop) {
+        if (isset($this->$prop))
+            return $this->$prop;
+        return null;
+    }
+
+    public function getParam($name, $default = null) {
+        if (!$this->params)
+            return $default;
+        return $this->params->get($name, $default);
+    }
+
+}
+
+class Zo2MegamenuTpl {
+
+    static function beginmenu($vars) {
+        $menu = $vars['menu'];
+        $animation = $menu->getParam('navigation_animation', 'zoom');
+        $trigger = $menu->getParam('navigation_trigger', 'hover');
+        $responsive = $menu->getParam('responsive', 1);
+        $anim_duration = $menu->getParam('navigation_animation_duration', 100);
+        if ($trigger == 'hover' && !empty($animation)) {
+            $cls = ' class="t3-megamenu hover animate ' . $animation . '"';
+        } else {
+            $cls = ' class="t3-megamenu';
         }
 
-        /**
-         *
-         * @param $id
-         * @return string
-         */
-        function getModule($id) {
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true);
-            $query->select('m.*');
-            $query->from('#__modules AS m');
-            $query->where('m.published = 1');
-            if (is_numeric($id)) {
-                $query->where('m.id = ' . $id);
-            }
-            $query->where('m.client_id = 0');
-            $query->order('position, ordering');
-            $db->setQuery($query);
-            $module = $db->loadObject();
+        $data = $animation && $anim_duration ? ' data-duration="' . $anim_duration . '"' : '';
+        $data = $data . ($responsive ? ' data-responsive="true"' : '');
 
-            if ($module && $module->id) {
-                $style = 'ZO2Xhtml';
-                $content = JModuleHelper::renderModule($module, array('style' => $style));
-                return $content . "\n";
+        return "<div $cls $data>";
+    }
+
+    static function endmenu($vars) {
+        return '</div>';
+    }
+
+    static function beginnav($vars) {
+        $item = $vars['item'];
+        $cls = '';
+        if (!$item) {
+            // first nav
+            $cls = 'nav navbar-nav level0';
+        } else {
+            $cls .= ' mega-nav';
+            $cls .= ' level' . $item->level;
+        }
+        if ($cls)
+            $cls = 'class="' . trim($cls) . '"';
+
+        return '<ul ' . $cls . '>';
+    }
+
+    static function endnav($vars) {
+        return '</ul>';
+    }
+
+    static function beginmega($vars) {
+        $item = $vars['item'];
+        $setting = $item->setting;
+        $sub = $setting['sub'];
+        $cls = 'nav-child ' . ($item->dropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-ct');
+        $style = '';
+        $data = '';
+        if (isset($sub['class'])) {
+            $data .= " data-class=\"{$sub['class']}\"";
+            $cls .= " {$sub['class']}";
+        }
+        if (isset($setting['alignsub']) && $setting['alignsub'] == 'justify') {
+            $cls .= ' ' . ($vars['menu']->editmode ? 'span' : T3_BASE_NONRSP_WIDTH_PREFIX) . '12';
+        } else {
+            if (isset($sub['width'])) {
+                if ($item->dropdown)
+                    $style = ' style="width: ' . str_replace('px', '', $sub['width']) . 'px"';
+                $data .= ' data-width="' . str_replace('px', '', $sub['width']) . '"';
             }
         }
 
-        public static function getModules() {
+        if ($cls)
+            $cls = 'class="' . trim($cls) . '"';
 
-            $app = JFactory::getApplication();
-            $user = JFactory::getUser();
-            $groups = implode(',', $user->getAuthorisedViewLevels());
-            $lang = JFactory::getLanguage()->getTag();
+        return "<div $cls $style $data><div class=\"mega-dropdown-inner\">";
+    }
 
-            $db = JFactory::getDbo();
+    static function endmega($vars) {
+        return '</div></div>';
+    }
 
-            $query = $db->getQuery(true)
-                    ->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params, mm.menuid')
-                    ->from('#__modules AS m')
-                    ->join('LEFT', '#__modules_menu AS mm ON mm.moduleid = m.id')
-                    ->where('m.published = 1')
-                    ->join('LEFT', '#__extensions AS e ON e.element = m.module AND e.client_id = m.client_id')
-                    ->where('e.enabled = 1');
+    static function beginrow($vars) {
+        return '<div class="' . ($vars['menu']->editmode ? 'row-fluid' : 'row') . '">';
+    }
 
-            $date = JFactory::getDate();
-            $now = $date->toSql();
-            $nullDate = $db->getNullDate();
-            $query->where('(m.publish_up = ' . $db->quote($nullDate) . ' OR m.publish_up <= ' . $db->quote($now) . ')')
-                    ->where('(m.publish_down = ' . $db->quote($nullDate) . ' OR m.publish_down >= ' . $db->quote($now) . ')')
-                    ->where('m.access IN (' . $groups . ')')
-                    ->where('m.client_id = 0');
+    static function endrow($vars) {
+        return '</div>';
+    }
 
-            // Filter by language
-            if ($app->isSite() && $app->getLanguageFilter()) {
-                $query->where('m.language IN (' . $db->quote($lang) . ',' . $db->quote('*') . ')');
-            }
+    static function begincol($vars) {
+        $setting = isset($vars['setting']) ? $vars['setting'] : array();
+        $width = isset($setting['width']) ? $setting['width'] : 12;
+        $data = "data-width=\"$width\"";
+        $cls = ($vars['menu']->editmode ? 'span' : 'col-xs-') . $width;
 
-            $query->order('m.position, m.ordering');
-
-            // Set the query
-            $db->setQuery($query);
-
-            return $db->loadObjectList();
+        if (isset($setting['position'])) {
+            $cls .= " mega-col-module";
+            $data .= " data-position=\"{$setting['position']}\"";
+        } else {
+            $cls .= " mega-col-nav";
+        }
+        if (isset($setting['class'])) {
+            $cls .= " {$setting['class']}";
+            $data .= " data-class=\"{$setting['class']}\"";
+        }
+        if (isset($setting['hidewcol'])) {
+            $cls .= " hidden-collapse";
+            $data .= " data-hidewcol=\"1\"";
         }
 
-        public static function getMenuTypes() {
-            $db = JFactory::getDbo();
-            $query = $db->getQuery(true)
-                    ->select('a.menutype, a.title')
-                    ->from('#__menu_types AS a');
-            $db->setQuery($query);
+        return "<div class=\"$cls\" $data><div class=\"mega-inner\">";
+    }
 
-            return $db->loadObjectList();
+    static function endcol($vars) {
+        return '</div></div>';
+    }
+
+    static function beginitem($vars) {
+        $item = $vars['item'];
+        $setting = $item->setting;
+        $cls = $item->class;
+
+        if ($item->dropdown) {
+            $cls .= $item->level == 1 ? ' dropdown' : ' dropdown-submenu';
         }
 
+        if ($item->mega)
+            $cls .= ' mega';
+        if ($item->group)
+            $cls .= ' mega-group';
+        if ($item->type == 'separator' && !$item->group && !$item->mega)
+            $cls .= ' divider';
+
+        $data = "data-id=\"{$item->id}\" data-level=\"{$item->level}\"";
+        if ($item->group)
+            $data .= " data-group=\"1\"";
+        if (isset($setting['class'])) {
+            $cls .= " {$setting['class']}";
+            $data .= " data-class=\"{$setting['class']}\"";
+        }
+        if (isset($setting['alignsub'])) {
+            $cls .= " mega-align-{$setting['alignsub']}";
+            $data .= " data-alignsub=\"{$setting['alignsub']}\"";
+        }
+        if (isset($setting['hidesub']))
+            $data .= " data-hidesub=\"1\"";
+        if (isset($setting['xicon']))
+            $data .= " data-xicon=\"{$setting['xicon']}\"";
+        if (isset($setting['caption']))
+            $data .= " data-caption=\"" . htmlspecialchars($setting['caption']) . "\"";
+        if (isset($setting['hidewcol'])) {
+            $data .= " data-hidewcol=\"1\"";
+            $cls .= " sub-hidden-collapse";
+        }
+
+        if ($cls)
+            $cls = 'class="' . trim($cls) . '"';
+
+        return "<li $cls $data>";
+    }
+
+    static function enditem($vars) {
+        return '</li>';
+    }
+
+    static function item($vars) {
+        $item = $vars['item'];
+        $setting = $item->setting;
+
+        // Note. It is important to remove spaces between elements.
+        $vars['class'] = $item->anchor_css ? $item->anchor_css : '';
+        $vars['title'] = $item->anchor_title ? ' title="' . $item->anchor_title . '" ' : '';
+        $vars['dropdown'] = ' data-target="#"';
+        $vars['caret'] = '';
+        $vars['icon'] = '';
+        $vars['caption'] = '';
+
+        if ($item->dropdown && $item->level < 2) {
+            $vars['class'] .= ' dropdown-toggle';
+            $vars['dropdown'] .= ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
+            $vars['caret'] = '<b class="caret"></b>';
+        }
+
+        if ($item->group) {
+            $vars['class'] .= ' dropdown-header mega-group-title';
+        }
+
+        if ($item->menu_image) {
+            $item->params->get('menu_text', 1) ?
+                            $vars['linktype'] = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" /><span class="image-title">' . $item->title . '</span> ' :
+                            $vars['linktype'] = '<img src="' . $item->menu_image . '" alt="' . $item->title . '" />';
+        } else {
+            $vars['linktype'] = $item->title;
+        }
+
+        if (isset($setting['xicon']) && $setting['xicon']) {
+            $vars['icon'] = '<i class="' . $setting['xicon'] . '"></i>';
+        }
+        if (isset($setting['caption']) && $setting['caption']) {
+            $vars['caption'] = '<span class="mega-caption">' . $setting['caption'] . '</span>';
+        } else if ($item->level == 1 && $vars['menu']->get('top_level_caption')) {
+            $vars['caption'] = '<span class="mega-caption mega-caption-empty">&nbsp;</span>';
+        }
+
+        switch ($item->type) {
+            case 'separator':
+            case 'heading':
+                $html = self::_('item_separator', $vars);
+                break;
+            case 'component':
+                $html = self::_('item_component', $vars);
+                break;
+            case 'url':
+            default:
+                $html = self::_('item_url', $vars);
+        }
+
+        return $html;
+    }
+
+    static function item_url($vars) {
+        $item = $vars['item'];
+        $class = $vars['class'];
+        $title = $vars['title'];
+        $dropdown = $vars['dropdown'];
+        $caret = $vars['caret'];
+        $linktype = $vars['linktype'];
+        $icon = $vars['icon'];
+        $caption = $vars['caption'];
+
+        $flink = $item->flink;
+        $flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
+
+        switch ($item->browserNav) :
+            default:
+            case 0:
+                $link = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
+                break;
+            case 1:
+                // _blank
+                $link = "<a class=\"$class\" href=\"$flink\" target=\"_blank\" $title $dropdown>$icon$linktype$caret$caption</a>";
+                break;
+            case 2:
+                // window.open
+                $options = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+                $link = "<a class=\"$class\" href=\"$flink\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','$options');return false;\"" : "") . " $title $dropdown>$icon$linktype$caret$caption</a>";
+                break;
+        endswitch;
+
+        return $link;
+    }
+
+    static function item_separator($vars) {
+        $item = $vars['item'];
+        $class = $vars['class'];
+        $title = $vars['title'];
+        $dropdown = $vars['dropdown'];
+        $caret = $vars['caret'];
+        $linktype = $vars['linktype'];
+        $icon = $vars['icon'];
+        $caption = $vars['caption'];
+        // Note. It is important to remove spaces between elements.
+
+        $class .= " separator";
+
+        return "<span class=\"$class\" $title $dropdown>$icon$title $linktype$caret$caption</span>";
+    }
+
+    static function item_component($vars) {
+        $item = $vars['item'];
+        $class = $vars['class'];
+        $title = $vars['title'];
+        $dropdown = $vars['dropdown'];
+        $caret = $vars['caret'];
+        $linktype = $vars['linktype'];
+        $icon = $vars['icon'];
+        $caption = $vars['caption'];
+        // Note. It is important to remove spaces between elements.
+
+        switch ($item->browserNav) :
+            default:
+            case 0:
+                $link = "<a class=\"$class\" href=\"{$item->flink}\" $title $dropdown>$icon$linktype $caret$caption</a>";
+                break;
+            case 1:
+                // _blank
+                $link = "<a class=\"$class\" href=\"{$item->flink}\" target=\"_blank\" $title $dropdown>$icon$linktype $caret$caption</a>";
+                break;
+            case 2:
+                // window.open
+                $link = "<a class=\"$class\" href=\"{$item->flink}\"" . (!$vars['menu']->editmode ? " onclick=\"window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes');return false;\"" : "") . " $title $dropdown>$icon$linktype $caret$caption</a>";
+                break;
+        endswitch;
+
+        return $link;
+    }
+
+    static function _($tmpl, $vars) {
+        if (function_exists($func = 'Zo2MegamenuTpl_' . $tmpl)) {
+            return $func($vars) . "\n";
+        } else if (method_exists('Zo2MegamenuTpl', $tmpl)) {
+            return Zo2MegamenuTpl::$tmpl($vars) . "\n";
+        } else {
+            return "$tmpl\n";
+        }
     }
 
 }

@@ -1,0 +1,109 @@
+{
+    "name": "default",   
+    "layout": [
+        {
+            "name": "message",
+            "jdoc": {
+                "type": "message"
+            }
+        },
+        {
+            "name": "top-header",
+            "jdoc": {
+                "type": "modules",
+                "name": "top-header"
+            }
+        },
+        {
+            "name": "top",
+            "class": "",
+            "grid": {
+                "xs": 12,
+                "sm": 12,
+                "md": 12,
+                "lg": 12
+            },
+            "children": [
+                {                 
+                    "name": "megamenu",
+                    "jdoc": {
+                        "type": "megamenu",
+                        "name": "megamenu"
+                    },
+                    "grid": {
+                        "xs": 12,
+                        "sm": 12,
+                        "md": 12,
+                        "lg": 12
+                    }
+                },
+                {                 
+                    "name": "breadcrumb",
+                    "jdoc": {
+                        "type": "modules",
+                        "name": "breadcrumb"
+                    },
+                    "grid": {
+                        "xs": 12,
+                        "sm": 12,
+                        "md": 12,
+                        "lg": 12
+                    }
+                }
+            ]
+        },
+        {
+            "type": "row",
+            "name": "content",
+            "children": [
+                {                   
+                    "name": "left",
+                    "jdoc": {
+                        "type": "modules",
+                        "name": "left"
+                    },
+                    "grid": {
+                        "xs": 2,
+                        "sm": 2,
+                        "md": 2,
+                        "lg": 2
+                    }
+                },
+                {                   
+                    "name": "component",
+                    "jdoc": {
+                        "type": "component"
+                    },
+                    "grid": {
+                        "xs": 8,
+                        "sm": 8,
+                        "md": 8,
+                        "lg": 8
+                    }
+                },
+                {                   
+                    "name": "right",
+                    "jdoc": {
+                        "type": "modules",
+                        "name": "right"
+                    },
+                    "grid": {
+                        "xs": 2,
+                        "sm": 2,
+                        "md": 2,
+                        "lg": 2
+                    }
+                }
+            ]
+        },
+        {
+            "name": "brandname",
+            "jdoc": {
+                "type": "brandname"
+            }
+        }
+    ],
+    "menu": {
+        "menu_type": "mainmenu"
+    }
+}

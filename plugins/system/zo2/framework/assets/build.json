@@ -1,36 +1,5 @@
 {
-    "core": {
-        "less": [
-            "admin.styles.less",
-            "site.styles.less"
-        ],
-        "js": [
-            "zo2.js",
-            "admin.scripts.js",
-            "admin.megamenu.js",
-            "admin.assets.js",            
-            "admin.ajax.js",
-            "admin.profile.js",
-            "admin.layoutbuilder.js",
-            "admin.font.js",
-            "admin.themecolor.js",
-            "admin.utilities.js",
-            "admin.social.js",
-            "site.megamenu.js",
-            "site.scripts.js"
-        ]
-    },
-    "template": {
-        "less": [
-            "template.less",
-            "responsive.less",
-            "non-responsive.less",
-            "error.less",
-            "green.less",
-            "blue.less",
-            "orange.less"
-        ],
-        "js": [
-        ]
-    }
+    "less": [
+        "Zo2://assets/less/admin.less"
+    ]
 }

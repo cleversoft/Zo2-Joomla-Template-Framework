@@ -32,12 +32,6 @@ if (!class_exists('Zo2Html')) {
         private $_path;
 
         /**
-         *
-         * @var string
-         */
-        private $_namespace = 'zo2://html';
-
-        /**
          * Constructor
          * @param object|array $properties
          */
@@ -48,39 +42,12 @@ if (!class_exists('Zo2Html')) {
         }
 
         /**
-         * 
-         * @return string
-         */
-        public static function _() {
-            $args = func_get_args();
-            $prefix = array_shift($args);
-            $method = array_shift($args);
-            $className = 'Zo2Html' . ucfirst($prefix);
-            $class = new $className();
-            return call_user_func_array(array($class, (string) $method), $args);
-        }
-
-        public static function field() {
-            $args = func_get_args();
-            $type = array_shift($args);
-            $label = array_shift($args);
-            $data = array_shift($args);
-            if (!isset($data['value'])) {
-                $data['value'] = isset($data['default']) ? $data['default'] : '';
-            }
-            $html = new Zo2Html();
-            $html->set('label', $label);
-            $html->set('data', $data);
-            return $html->fetch('fields/' . $type . '.php');
-        }
-
-        /**
          * Fetch template file
          * @param string $key
          * @return string
          */
         public function fetch($key) {
-            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);
+            $tplFile = $this->_path->getPath($key);
             /* Make sure this template file is exists */
             if ($tplFile) {
                 $properties = $this->getProperties();
@@ -98,13 +65,27 @@ if (!class_exists('Zo2Html')) {
          * @return \Zo2Html
          */
         public function load($key) {
-            $tplFile = $this->_path->getPath($this->_namespace . '/' . $key);
+            $tplFile = $this->_path->getPath($key);
             if ($tplFile) {
                 $properties = $this->getProperties();
                 extract($properties, EXTR_REFS);
                 include($tplFile);
             }
             return $this;
+        }
+
+        public function toDataAttributes() {
+            $attributes = $this->getProperties();
+            $data = array();
+            foreach ($attributes as $key => $value) {
+                if (!is_array($value) && !is_object($value)) {
+                    $data[] = 'zo2-data-' . $key . '="' . htmlentities($value) . '"';
+                } else {
+                    $data[] = 'zo2-data-' . $key . '="' . htmlentities(Zo2HelperEncode::json($value)) . '"';
+                }
+            }
+
+            return implode(' ', $data);
         }
 
     }

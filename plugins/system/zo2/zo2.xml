@@ -7,7 +7,7 @@
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <authorEmail>hello@cleversoft.co</authorEmail>
     <authorUrl>https://github.com/cleversoft</authorUrl>
-    <version>1.4.1</version>
+    <version>2.0.0</version>
     <description>Zo2 Framework - Template Framework for Joomla 3</description>
 
     <languages>
@@ -16,19 +16,10 @@
 
     <files>        
         <folder>addons</folder>
-        <folder>assets</folder>
-        <folder>core</folder>
         <folder>formfields</folder>
-        <folder>helpers</folder>
-        <folder>html</folder>        
-        <folder>includes</folder>        
-        <folder>language</folder>        
-        <folder>libraries</folder>        
-        <folder>templates</folder>
-        <folder>vendor</folder>
+        <folder>framework</folder>
         <filename plugin="zo2">zo2.php</filename>
     </files>
-    <fieldset addfieldpath="/plugins/system/zo2/formfields"></fieldset>
     <updateservers>		
         <server type="extension" name="Zo2 Framework's Updates">http://update.zo2framework.org/zo2/extension.xml</server>
     </updateservers>
