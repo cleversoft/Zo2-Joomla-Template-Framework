@@ -12,7 +12,7 @@
 *.ipr
 *.iws
 
-# Ignore 
+# Ignore itself
 
 /.gitignore
 

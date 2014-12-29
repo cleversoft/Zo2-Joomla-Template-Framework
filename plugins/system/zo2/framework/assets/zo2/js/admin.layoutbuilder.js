@@ -332,7 +332,6 @@
                 _self.editingElement = $col;
 
                 var jdoc = $col.attr('data-zo2-jdoc');
-                var spanWidth = $col.attr('data-zo2-span');
                 var spanPosition = $col.attr('data-zo2-position');
                 var spanOffset = $col.attr('data-zo2-offset');
                 var spanStyle = $col.attr('data-zo2-style');
@@ -364,7 +363,6 @@
                 else
                     $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
 
-                $('#dlColWidth').val(spanWidth).trigger("liszt:updated"); // trigger chosen to update its selected value, stupid old version
                 $('#dlColJDoc').val(jdoc).trigger("liszt:updated");
                 $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
                 $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
@@ -388,7 +386,6 @@
             $('#btnSaveColSettings').on('click', function() {
                 var $col = _self.editingElement;
                 $col.attr('data-zo2-jdoc', $('#dlColJDoc').val());
-                $col.attr('data-zo2-span', $('#dlColWidth').val());
                 $col.attr('data-zo2-offset', $('#ddlColOffset').val());
                 $col.attr('data-zo2-style', $('#ddlColStyle').val());
                 $col.attr('data-zo2-customClass', $('#txtColCss').val());
@@ -404,7 +401,7 @@
                     position = '';
                 }
                 var colName = position.length > 0 ? position : '(none)';
-                $col.removeClass(_self._settings.allColClass).addClass('col-md-' + $('#dlColWidth').val());
+                $col.removeClass(_self._settings.allColClass).addClass('col-md-' + $col.attr('data-zo2-span'));
                 $col.removeClass(_self._settings.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
                 $col.attr('data-zo2-position', position);
                 $col.find('>.col-wrap>.col-name').text(colName);
