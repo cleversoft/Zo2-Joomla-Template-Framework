@@ -112,22 +112,6 @@ $positions = $model->getAvaiablePositions();
             <div class="form-horizontal">
                 <div class="zo2-tabs-content">
                     <div class="active" id="column-basic">
-<!-- begin -->
-                        <div class="control-group">
-                            <label class="control-label" for="dlColWidth"><?php echo JText::_('ZO2_ADMIN_COMMON_COL_WIDTH'); ?></label>
-                            <div class="controls">
-                                <!-- http://docs.joomla.org/Jdoc_statements -->
-                                <select id="dlColWidth">
-                                    <?php
-                                        for($count = 1; $count < 12; $count++){
-                                    ?>
-                                       <option value="<?php echo($count);?>">span<?php echo($count); ?></option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                        </div>
                         <!-- begin -->
                         <div class="control-group">
                             <label class="control-label" for="dlColJDoc"><?php echo JText::_('ZO2_ADMIN_COMMON_JDOC'); ?></label>
