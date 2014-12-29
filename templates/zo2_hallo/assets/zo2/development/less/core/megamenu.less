@@ -361,18 +361,20 @@ body.overflow-hidden{
             color: @white;
           }
         }
-        &:first-child{
-          border-top: 1px solid rgba(0, 0, 0, 0.15);
-        }
       }
       &.nav-sub{
         margin-left: 20px;
       }
     }
-    >ul{
-      >li.nav-active {
-        > a {
-          color: @white;
+    > ul{
+      > li{
+        &.nav-active {
+          > a {
+            color: @white;
+          }
+        }
+        &:first-child{
+          border-top: 1px solid rgba(0, 0, 0, 0.15);
         }
       }
     }
