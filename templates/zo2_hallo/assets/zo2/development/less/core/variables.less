@@ -41,12 +41,22 @@
 @linkColor:             #08c;
 @linkColorHover:        darken(@linkColor, 15%);
 
+// Function
+// -------------------------
+borderRadius(@value1, @value2, @value3, @value4){
+  border-radius: @value1 @value2 @value3, @value4;
+  -moz-border-radius: @value1 @value2 @value3, @value4;
+  -webkit-border-radius: @value1 @value2 @value3, @value4;
+  -o-border-radius: @value1 @value2 @value3, @value4;
+}
+
 
 // Typography
 // -------------------------
 @sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Monaco, Menlo, Consolas, "Courier New", monospace;
+@awesomeFontFamily:     'FontAwesome';
 
 @baseFontSize:          14px;
 @baseFontFamily:        @sansFontFamily;
