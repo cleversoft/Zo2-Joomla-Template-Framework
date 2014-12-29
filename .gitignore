@@ -12,7 +12,7 @@
 *.ipr
 *.iws
 
-# Ignore .gitinore 
+# Ignore 
 
 /.gitignore
 
@@ -27,6 +27,7 @@
 /images/*
 /includes/*
 /installation/*
+/language/ar-AA/*
 /language/en-GB/en-GB.com_contact.ini
 /language/en-GB/en-GB.com_content.ini
 /language/en-GB/en-GB.com_mailto.ini
@@ -114,6 +115,7 @@
 /plugins/editors-xtd/*
 /plugins/extension/*
 /plugins/finder/*
+/plugins/installer/*
 /plugins/quickicon/*
 /plugins/search/*
 /plugins/system/cache/*
@@ -128,11 +130,11 @@
 /plugins/system/remember/*
 /plugins/system/sef/*
 /plugins/system/index.html
+/plugins/twofactorauth/*
 /plugins/user/*
 /plugins/index.html
-/templates/atomic/*
-/templates/beez_20/*
-/templates/beez5/*
+/templates/beez3/*
+/templates/protostar/*
 /templates/system/*
 /templates/index.html
 /tmp/*
