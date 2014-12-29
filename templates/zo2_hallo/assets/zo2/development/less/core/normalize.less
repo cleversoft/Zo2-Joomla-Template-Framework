@@ -17,9 +17,11 @@ canvas,
 video {
   display: inline-block;
 }
-audio:not([controls]) {
-  display: none;
-  height: 0;
+audio{
+  &:not([controls]) {
+    display: none;
+    height: 0;
+  }
 }
 [hidden],
 template {
@@ -35,13 +37,12 @@ body {
 }
 a {
   background: transparent;
-}
-a:focus {
-  outline: thin dotted;
-}
-a:active,
-a:hover {
-  outline: 0;
+  &:focus {
+    outline: thin dotted;
+  }
+  &:active, :hover {
+    outline: 0;
+  }
 }
 abbr[title] {
   border-bottom: 1px dotted;
