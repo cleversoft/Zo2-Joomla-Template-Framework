@@ -55,11 +55,11 @@ if (Zo2Factory::isZo2Template()) {
                 switch ($task) {
                     case 'style.save':
                         $model->save();
-                        $model->build();
+                        
                         break;
                     case 'style.apply':
                         $model->save();
-                        $model->build();
+                        
                         break;
                     case 'remove':
                         $model->remove();
