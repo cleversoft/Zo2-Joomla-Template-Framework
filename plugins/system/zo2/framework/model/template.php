@@ -15,17 +15,20 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2ModelTemplate')) {
+if (!class_exists('Zo2ModelTemplate'))
+{
 
     /**
      * 
      */
-    class Zo2ModelTemplate {
+    class Zo2ModelTemplate
+    {
 
         /**
          * Do not allow create new instance directly
          */
-        protected function __construct() {
+        protected function __construct()
+        {
             JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/models');
             JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
         }
@@ -35,9 +38,11 @@ if (!class_exists('Zo2ModelTemplate')) {
          * @staticvar Zo2ModelTemplate $instance
          * @return \Zo2ModelTemplate
          */
-        public static function getInstance() {
+        public static function getInstance()
+        {
             static $instance;
-            if (empty($instance)) {
+            if (empty($instance))
+            {
                 $instance = new Zo2ModelTemplate();
             }
             return $instance;
@@ -46,11 +51,13 @@ if (!class_exists('Zo2ModelTemplate')) {
         /**
          * Profile remove
          */
-        public function remove() {
+        public function remove()
+        {
             $framework = Zo2Factory::getFramework();
             $id = $framework->template->id;
             $profile = Zo2Factory::getProfile();
-            if ($profile->delete()) {
+            if ($profile->delete())
+            {
                 $this->_redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $id, false), JText::_('PLG_ZO2_PROFILE_DELETED'));
             }
         }
@@ -58,43 +65,49 @@ if (!class_exists('Zo2ModelTemplate')) {
         /**
          * Save template
          */
-        public function save() {
+        public function save()
+        {
             $this->_save();
         }
 
         /**
          * 
          */
-        private function _save() {
+        private function _save()
+        {
             $application = JFactory::getApplication();
             $jinput = JFactory::getApplication()->input;
             /* Get table */
             $table = JTable::getInstance('Style', 'TemplatesTable');
-            /* Form data */
-            $data = $jinput->post->get('jform', array(), 'array');
             /* Zo2 data */
             $zo2 = $jinput->post->get('zo2', array(), 'array');
 
             /* Load table record */
-            if ($table->load($jinput->get('id'))) {
+            if ($table->load($jinput->get('id')))
+            {
                 /* Save to database */
                 $table->params = new JRegistry($table->params);
                 $formData = $jinput->post->get('jform', array(), 'array');
                 /* Save template with data */
                 $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
                 $model->save($formData);
+
                 /* Request profileName */
                 $profileName = (isset($zo2['newProfile']) ? $zo2['newProfile'] : $zo2['profiles'] );
-                if ($profileName != $zo2['profiles']) {
+                if ($profileName != $zo2['profiles'])
+                {
                     JFactory::getApplication()->enqueueMessage('Added new profile: ' . $profileName, 'notice');
                 }
                 /* Update profile assign list */
                 $list = $table->params->get('profile', array());
-                if (count($list) == 0) {
+                if (count($list) == 0)
+                {
                     $list = array();
                 }
-                if (is_object($list)) {
-                    foreach ($list as $key => $value) {
+                if (is_object($list))
+                {
+                    foreach ($list as $key => $value)
+                    {
                         $tList[$key] = $value;
                     }
                     $list = $tList;
@@ -103,18 +116,24 @@ if (!class_exists('Zo2ModelTemplate')) {
                 /**
                  * @todo Code is not optimized need improve
                  */
-                if (is_array($list)) {
-                    foreach ($list as $index => $value) {
-                        if ($value == $profileName) {
-                            if (!isset($formData['profile-menu'][$value])) {
+                if (is_array($list))
+                {
+                    foreach ($list as $index => $value)
+                    {
+                        if ($value == $profileName)
+                        {
+                            if (!isset($formData['profile-menu'][$value]))
+                            {
                                 unset($list[$index]);
                             }
                         }
                     }
                 }
 
-                if (isset($formData['profile-menu'])) {
-                    foreach ($formData['profile-menu'] as $menuId) {
+                if (isset($formData['profile-menu']))
+                {
+                    foreach ($formData['profile-menu'] as $menuId)
+                    {
                         $list[$menuId] = $profileName;
                     }
                 }
@@ -122,10 +141,14 @@ if (!class_exists('Zo2ModelTemplate')) {
                 /* Store assigned menu and profile name for each one */
                 $formData['params']['profile'] = $list;
                 $params = new JRegistry($formData['params']);
+                $table->bind($formData);
                 $table->params = $params->toString();
+
                 /* Save back into database */
-                if ($table->check()) {
-                    if ($table->store()) {
+                if ($table->check())
+                {
+                    if ($table->store())
+                    {
                         /**
                          * Save profile
                          */
@@ -145,7 +168,8 @@ if (!class_exists('Zo2ModelTemplate')) {
 
                         $profile->menuConfig = $menu;
 
-                        if ($profile->save()) {
+                        if ($profile->save())
+                        {
                             /* Save Zo2 data */
                             $zo2Data = $jinput->post->get('zo2', array(), 'array');
                             $templateDir = JPATH_ROOT . '/templates/' . $table->template;
@@ -158,9 +182,11 @@ if (!class_exists('Zo2ModelTemplate')) {
 
                             $application->enqueueMessage('Style successfully saved');
 
-                            if ($jinput->get('task') == 'style.apply') {
+                            if ($jinput->get('task') == 'style.apply')
+                            {
                                 $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
-                            } else {
+                            } else
+                            {
                                 $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
                             }
                         }
@@ -171,8 +197,10 @@ if (!class_exists('Zo2ModelTemplate')) {
             $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
         }
 
-        private function _redirect($url, $message = null) {
-            if ($message !== NULL) {
+        private function _redirect($url, $message = null)
+        {
+            if ($message !== NULL)
+            {
                 JFactory::getApplication()->enqueueMessage($message);
             }
             JFactory::getApplication()->redirect($url);
@@ -182,7 +210,8 @@ if (!class_exists('Zo2ModelTemplate')) {
          * Get template_styles table
          * @return JTable
          */
-        private function _getTable() {
+        private function _getTable()
+        {
             return JTable::getInstance('Style', 'TemplatesTable');
         }
 
