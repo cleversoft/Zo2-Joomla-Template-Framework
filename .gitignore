@@ -12,6 +12,10 @@
 *.ipr
 *.iws
 
+# Ignore .gitinore 
+
+/.gitignore
+
 # Joomla Directory
 
 /.htaccess
