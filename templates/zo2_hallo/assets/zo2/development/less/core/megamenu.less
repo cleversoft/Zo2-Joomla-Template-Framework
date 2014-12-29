@@ -18,6 +18,7 @@
  *------------------------------------------------------------------------------
  */
 @import 'mixins';
+@import "variables";
 
 .zo2-megamenu{
   .mega-inner{
@@ -237,7 +238,7 @@
 * --------------------------------------------------
 */
 .offcanvas {
-  background-color: #1f1f1f;
+  background-color: #333333;
   position: absolute;
   height: 100%;
   transition: all 0.5s ease 0s;
@@ -249,15 +250,24 @@
   left:-50%;
   width: 49%;
   .sidebar-close{
-    color: rgba(0, 0, 0, 0.4);
+    color: #ccc;
     display: block;
     float: right;
-    font-size: 2em;
-    padding: 12px;
+    font-family: FontAweSome;
+    font-size: 18px;
+    height: 42px;
+    line-height: 42px;
+    padding: 0;
     position: relative;
     right: 0;
+    text-align: center;
+    text-decoration: none;
     top: 0;
+    width: 42px;
     z-index: 999;
+    &::before {
+      content: "\f00d";
+    }
     &:hover{
       color: @white;
     }
@@ -331,23 +341,28 @@ body.overflow-hidden{
   -o-transform: translateX(-350px);
   transform: translateX(-350px);
   .sidebar-nav{
+    left: 0;
     margin: 0;
+    padding-left: 20px;
     position: absolute;
-    left: 50px;
-    top: 30px;
-    width: 250px;
+    top: 42px;
+    width: 100%;
     ul{
       li{
         a{
-          border-bottom: 1px dotted #4b4b4b;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.15);
           color: #939393;
           display: block;
           text-decoration: none;
-          padding: 18px 0;
+          padding: 11px 0;
+          font-size: @baseFontSize - 1;
           .transition(color 0.3s ease-in-out 0s);
           &:hover{
             color: @white;
           }
+        }
+        &:first-child{
+          border-top: 1px solid rgba(0, 0, 0, 0.15);
         }
       }
       &.nav-sub{
@@ -389,15 +404,17 @@ body.overflow-hidden > * {
 }
 
 .nav-parent > .nav-oc-toggle {
-  border: none !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
   font-size: 15px;
-  height: 20px;
+  height: 42px;
+  line-height: 42px;
   padding: 0 !important;
   position: absolute;
-  right: 5px;
+  right: 0;
   text-align: center;
-  top: 18px;
-  width: 20px;
+  top: 0;
+  .transform(rotate(-90deg));
+  width: 42px;
 }
 .dropdown-menu{
   z-index: 2000;
@@ -406,16 +423,6 @@ body.overflow-hidden > * {
   font-family: FontAwesome;
   &:before {
     content: "\f107";
-  }
-}
-.offcanvas .sidebar-close {
-  font-family: FontAweSome;
-  text-decoration: none;
-  font-size: 32px;
-  color: #ccc;
-  padding: 20px;
-  &::before {
-    content: "\f00d";
   }
 }
 .button-canvas {
