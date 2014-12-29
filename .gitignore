@@ -129,12 +129,8 @@ Desktop.ini
 /logs/*
 /media/*
 /modules/*
-/plugins/authentication/example/*
-/plugins/authentication/gmail/*
-/plugins/authentication/joomla/*
-/plugins/authentication/ldap/*
-/plugins/authentication/index.html
-/plugins/captcha/recaptcha/*
+/plugins/authentication/*
+/plugins/captcha/*
 /plugins/content/*
 /plugins/editors/*
 /plugins/editors-xtd/*
