@@ -1,5 +1,22 @@
 <?php
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
+
+$framework = Zo2Framework::getInstance();
+$browser = Zo2EnvironmentBrowser::getInstance();
+$bodyClasses [] = 'language-' . $framework->document->getLanguage();
 $bodyClasses [] = 'direction-' . $framework->document->getDirection();
+$bodyClasses[] = 'browser-' . strtolower($browser->getBrowser());
+$bodyClasses[] = 'platform-' . strtolower($browser->getPlatform());
 $bodyClasses = trim(implode(' ', $bodyClasses));
 ?>
 <!DOCTYPE html>
@@ -15,8 +32,7 @@ $bodyClasses = trim(implode(' ', $bodyClasses));
     </head>
     <body id="zo2-framework-wrapper" class="<?php echo $bodyClasses; ?>"
           j-option="<?php echo JFactory::getApplication()->input->getCmd('option'); ?>"
-          j-view="<?php echo JFactory::getApplication()->input->getCmd('view'); ?>"
-          j-task="<?php echo JFactory::getApplication()->input->getCmd('task'); ?>"
+          j-view="<?php echo JFactory::getApplication()->input->getCmd('view'); ?>"       
           j-itemid="<?php echo JFactory::getApplication()->input->getInt('Itemid'); ?>"
           zo2-template="<?php echo $framework->template->get('template'); ?>"
           zo2-profile="<?php echo $framework->profile->get('name'); ?>"

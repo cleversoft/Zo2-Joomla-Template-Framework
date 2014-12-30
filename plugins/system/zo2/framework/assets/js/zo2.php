@@ -17,11 +17,7 @@
                     frontendUrl: "<?php echo JUri::root(); ?>",
                     backendUrl: "<?php echo rtrim(JUri::root(), '/') . '/administrator'; ?>",
                     /* Joomla! security torken */
-                    token: "<?php echo JSession::getFormToken(); ?>",
-                    /* Temporary directory */
-                    tmp_directory: "<?php echo addslashes(JPATH_ROOT . '/tmp'); ?>",
-                    /* Joomla! root */
-                    jRoot: "<?php echo addslashes(JPATH_ROOT); ?>"                    
+                    token: "<?php echo JSession::getFormToken(); ?>"
                 },
                 /* Internal jQuery */
                 jQuery: $

@@ -12,20 +12,24 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2LayoutbuilderAbstract')) {
+if (!class_exists('Zo2LayoutbuilderAbstract'))
+{
 
-    abstract class Zo2LayoutbuilderAbstract extends JObject {
+    abstract class Zo2LayoutbuilderAbstract extends JObject
+    {
 
         abstract public function render();
 
         /**
-         * 
+         * Render layout of rows
          * @param array $rows
          * @return html
          */
-        protected function _render($rows) {
+        protected function _render($rows)
+        {
             $html = array();
-            foreach ($rows as $row) {
+            foreach ($rows as $row)
+            {
                 $row = new Zo2LayoutbuilderRow($row);
                 $html [] = $row->render();
             }
@@ -37,24 +41,29 @@ if (!class_exists('Zo2LayoutbuilderAbstract')) {
          * @param type $position
          * @return type
          */
-        public function countModules($position) {
+        public function countModules($position)
+        {
             return count(JModuleHelper::getModules($position));
         }
 
         /**
-         * 
+         * Check if module is avaiable to render
          * @staticvar type $modules
          * @param type $modName
          * @return boolean
          */
-        public function isModuleAvaiable($modName) {
+        public function isModuleAvaiable($modName)
+        {
             static $modules;
-            if (!isset($modules[$modName])) {
+            if (!isset($modules[$modName]))
+            {
                 $modules[$modName] = JModuleHelper::getModule($modName);
             }
-            if ($modules[$modName]->id != 0) {
+            if ($modules[$modName]->id != 0)
+            {
                 return true;
-            } else {
+            } else
+            {
                 return false;
             }
         }

@@ -15,14 +15,16 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Assets')) {
+if (!class_exists('Zo2Assets'))
+{
 
     /**
      * @uses This class used for managed ALL asset stuffs
      * @rule
      * All asset stuffs must be save under <core>|<template>/assets directory
      */
-    class Zo2Assets {
+    class Zo2Assets
+    {
 
         /**
          * Singleton instance
@@ -58,11 +60,14 @@ if (!class_exists('Zo2Assets')) {
          * Get instance of Zo2Assets
          * @return \Zo2Assets
          */
-        public static function getInstance() {
-            if (!isset(self::$instance)) {
+        public static function getInstance()
+        {
+            if (!isset(self::$instance))
+            {
                 self::$instance = new Zo2Assets();
             }
-            if (isset(self::$instance)) {
+            if (isset(self::$instance))
+            {
                 return self::$instance;
             }
         }
@@ -71,14 +76,19 @@ if (!class_exists('Zo2Assets')) {
          * Load assets file
          * @param type $assets
          */
-        public function load($assets) {
-            if (isset($assets->css)) {
-                foreach ($assets->css as $css) {
+        public function load($assets)
+        {
+            if (isset($assets->css))
+            {
+                foreach ($assets->css as $css)
+                {
                     $this->addStyleSheet($css);
                 }
             }
-            if (isset($assets->js)) {
-                foreach ($assets->js as $js) {
+            if (isset($assets->js))
+            {
+                foreach ($assets->js as $js)
+                {
                     $this->addScript($js);
                 }
             }
@@ -89,9 +99,11 @@ if (!class_exists('Zo2Assets')) {
          * @param type $file
          * @return \Zo2Assets
          */
-        public function addStyleSheet($key) {
+        public function addStyleSheet($key)
+        {
             $assetFile = Zo2Path::getInstance()->getPath($key);
-            if ($assetFile) {
+            if ($assetFile)
+            {
                 $this->_stylesheets[$assetFile] = Zo2Path::getInstance()->getUrl($key);
             }
             return $this;
@@ -103,7 +115,8 @@ if (!class_exists('Zo2Assets')) {
          * @param bool $less
          * @return \Zo2Assets
          */
-        public function addStyleSheetDeclaration($style) {
+        public function addStyleSheetDeclaration($style)
+        {
             $this->_stylesheetDeclarations[] = $style;
             return $this;
         }
@@ -113,9 +126,11 @@ if (!class_exists('Zo2Assets')) {
          *
          * @return \Zo2Assets
          */
-        public function addScript($key) {
+        public function addScript($key)
+        {
             $assetFile = Zo2Path::getInstance()->getPath($key);
-            if ($assetFile != false) {
+            if ($assetFile != false)
+            {
                 $this->_javascripts[$assetFile] = Zo2Path::getInstance()->getUrl($key);
             }
             return $this;
@@ -126,26 +141,37 @@ if (!class_exists('Zo2Assets')) {
          * @param type $script
          * @return \Zo2Assets
          */
-        public function addScriptDeclaration($script) {
+        public function addScriptDeclaration($script)
+        {
             $this->_javascriptDeclarations[] = $script;
             return $this;
         }
 
-        private function _prepareRender() {
-            if (Zo2Framework::getInstance()->template->params->get('enable_scripts_minify')) {
-                foreach ($this->_stylesheets as $path => $url) {
+        private function _prepareRender()
+        {
+            if (Zo2Framework::getInstance()->template->params->get('enable_scripts_minify'))
+            {
+                foreach ($this->_stylesheets as $path => $url)
+                {
                     $assets[] = '<link rel="stylesheet" href="' . $url . '" type="text/css" />';
                 }
-                foreach ($this->_javascripts as $path => $url) {
+                foreach ($this->_javascripts as $path => $url)
+                {
                     $assets[] = '';
                 }
             }
         }
 
-        public function render() {
+        /**
+         * Generate assets code
+         * @return type
+         */
+        public function render()
+        {
             $optimze = Zo2Framework::getInstance()->profile->get('enable_scripts_optimize', 'none');
             $assets = array();
-            switch ($optimze) {
+            switch ($optimze)
+            {
                 case 'gzip':
                     $assets[] = '<link rel="stylesheet" href="' . Zo2Path::getInstance()->getUrl('Template://css/gzip.php') . '" type="text/css" />';
                     $assets[] = '<script src="' . Zo2Path::getInstance()->getUrl('Template://js/gzip.php') . '" type="text/javascript"></script>';
@@ -156,10 +182,12 @@ if (!class_exists('Zo2Assets')) {
                     break;
                 case 'none':
                 default:
-                    foreach ($this->_stylesheets as $path => $url) {
+                    foreach ($this->_stylesheets as $path => $url)
+                    {
                         $assets[] = '<link rel="stylesheet" href="' . $url . '" type="text/css" />';
                     }
-                    foreach ($this->_javascripts as $path => $url) {
+                    foreach ($this->_javascripts as $path => $url)
+                    {
                         $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
                     }
             }

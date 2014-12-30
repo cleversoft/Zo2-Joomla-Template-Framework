@@ -12,11 +12,18 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2LayoutbuilderSite')) {
+if (!class_exists('Zo2LayoutbuilderSite'))
+{
 
-    class Zo2LayoutbuilderSite extends Zo2LayoutbuilderAbstract {
+    class Zo2LayoutbuilderSite extends Zo2LayoutbuilderAbstract
+    {
 
-        public function render() {
+        /**
+         * Render all rows
+         * @return type
+         */
+        public function render()
+        {
             return $this->_render($this->getProperties());
         }
 

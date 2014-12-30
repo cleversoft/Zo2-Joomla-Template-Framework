@@ -12,16 +12,24 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2LayoutbuilderRow')) {
+if (!class_exists('Zo2LayoutbuilderRow'))
+{
 
-    class Zo2LayoutbuilderRow extends Zo2LayoutbuilderAbstract {
+    /**
+     * Class object for each row
+     */
+    class Zo2LayoutbuilderRow extends Zo2LayoutbuilderAbstract
+    {
 
         /**
          * Render layout of this row
          * @return string
          */
-        public function render() {
-            if ($this->hasData()) {
+        public function render()
+        {
+            // Only render row if this row have data
+            if ($this->hasData())
+            {
                 $html = new Zo2Html();
                 $html->set('row', $this);
                 $ret[] = '<!-- BEGIN row: ' . $this->get('name') . ' -->';
@@ -31,7 +39,12 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
             }
         }
 
-        public function hasData() {
+        /**
+         * 
+         * @return type
+         */
+        public function hasData()
+        {
             $jDoc = $this->getJdoc();
             /* Check if this row using jDoc and this jDoc has data */
             $hasData = $this->_hasData($jDoc);
@@ -42,7 +55,8 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
          * Render children rows
          * @return string
          */
-        public function renderChildren() {
+        public function renderChildren()
+        {
             $children = $this->get('children', array());
             return $this->_render($children);
         }
@@ -51,9 +65,11 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
          * Check if this row has children to render
          * @return boolean
          */
-        public function hasChildren() {
+        public function hasChildren()
+        {
             $children = $this->get('children', array());
-            foreach ($children as $child) {
+            foreach ($children as $child)
+            {
                 $child = new Zo2LayoutbuilderRow($child);
                 $jDoc = $child->getJdoc();
                 return $this->_hasData($jDoc);
@@ -66,13 +82,18 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
          * @param type $jDoc
          * @return boolean
          */
-        protected function _hasData($jDoc) {
-            switch ($jDoc->get('type')) {
+        protected function _hasData($jDoc)
+        {
+            switch ($jDoc->get('type'))
+            {
+                // Check if modules position have any modules to render
                 case 'modules':
                     $hasChildren = $this->countModules($jDoc->get('name')) > 0;
                     return $hasChildren;
+                // Check if this module avaiable to render
                 case 'module':
                     return $this->isModuleAvaiable($jDoc->get('name'));
+                // For anything else by default is TRUE
                 case 'message':
                 case 'component':
                     return true;
@@ -81,13 +102,12 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
             }
         }
 
-    
-
         /**
          * @link https://docs.joomla.org/Jdoc_statements
          * @return \JObject
          */
-        public function getJdoc() {
+        public function getJdoc()
+        {
             return new JObject($this->get('jdoc'));
         }
 
@@ -95,7 +115,8 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
          * 
          * @return type
          */
-        public function getGridClass() {
+        public function getGridClass()
+        {
             $grid = new JObject($this->get('grid'));
             $grid->def('xs', 12);
             $grid->def('sm', 12);
@@ -103,7 +124,8 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
             $grid->def('lg', 12);
             $gridProperties = $grid->getProperties();
             $class = array();
-            foreach ($gridProperties as $key => $value) {
+            foreach ($gridProperties as $key => $value)
+            {
                 $class [] = 'col-' . $key . '-' . $value;
             }
             return trim(implode(' ', $class));
@@ -114,7 +136,8 @@ if (!class_exists('Zo2LayoutbuilderRow')) {
          * @param type $default
          * @return string
          */
-        public function getClass($default = array()) {
+        public function getClass($default = array())
+        {
             $class = $default;
             $class [] = 'row';
             if ($this->get('class') != '')
