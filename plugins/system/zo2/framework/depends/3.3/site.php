@@ -12,10 +12,13 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+// Load jQuery Framework core
 JHtml::_('jquery.framework');
 
+// Init assets
 $zo2Assets = Zo2Path::getInstance()->getPath('Zo2://assets/site.json');
-if ($zo2Assets) {
+if ($zo2Assets)
+{
     $assets = Zo2Assets::getInstance();
     $zoAssets = json_decode(file_get_contents($zo2Assets));
     $assets->load($zoAssets);
