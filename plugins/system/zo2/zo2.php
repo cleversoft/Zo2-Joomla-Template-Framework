@@ -36,6 +36,17 @@ if (!class_exists('plgSystemZo2'))
             $language->load('plg_system_zo2', __DIR__ . '/framework');
         }
 
+        public function onAfterRoute()
+        {
+            $jinput = JFactory::getApplication()->input;
+
+            if ($jinput->get('zo2', array(), 'array'))
+            {
+                require_once (JPATH_ROOT . '/plugins/system/zo2/framework/bootstrap.php');
+                Zo2Framework::joomlaHook();
+            }
+        }
+
     }
 
 }

@@ -49,7 +49,8 @@ if (!class_exists('Zo2Framework'))
 
         public static function getGlobalParam($name, $default = null)
         {
-            return self::getInstance()->template->params->get($name, $default);
+            return self::getInstance()->profile->get($name, $default);
+            //return self::getInstance()->template->params->get($name, $default);
         }
 
         public static function getProfileParams($name, $default = null)
@@ -116,6 +117,24 @@ if (!class_exists('Zo2Framework'))
         public static function isDevelopmentMode()
         {
             return self::getInstance()->template->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
+        }
+
+        public static function joomlaHook()
+        {
+            $jinput = JFactory::getApplication()->input;
+            if ($jinput->get('option') == 'com_templates')
+            {
+                $task = $jinput->get('task');
+                $zo2Data = $jinput->get('zo2', array(), 'array');
+                switch ($task)
+                {
+                    case 'style.apply':
+                        $admin = new Zo2Admin();
+                        $profile = Zo2Framework::getInstance()->profile;
+                        $profile->loadArray($zo2Data);
+                        $profile->save();
+                }
+            }
         }
 
     }
