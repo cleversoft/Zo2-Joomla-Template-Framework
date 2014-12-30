@@ -2,12 +2,12 @@
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>zo2_hallo</name>
     <creationDate>Dec 30, 2014</creationDate>
-    <author>ZooTemplate.com</author>
+    <version>1.4.3</version>    
+    <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>
-    <copyright>Copyright (c) 2008 - 2015 ZooTemplate.com</copyright>
+    <copyright>Copyright (c) 2008 - 2015 ZooTemplate.Com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPL v2 or later</license>
-    <version>1.4.3</version>
     <description>
         <![CDATA[
       			<img src="http://www.zootemplate.com/wp-content/uploads/zo2_framework.png" />
