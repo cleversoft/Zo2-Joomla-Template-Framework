@@ -15,19 +15,22 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('plgSystemZo2')) {
+if (!class_exists('plgSystemZo2'))
+{
 
     /**
      * Zo2 Framework entrypoint plugin
      */
-    class plgSystemZo2 extends JPlugin {
+    class plgSystemZo2 extends JPlugin
+    {
 
         /**
          * 
          * @param type $subject
          * @param type $config
          */
-        public function __construct(& $subject, $config) {
+        public function __construct(& $subject, $config)
+        {
             parent::__construct($subject, $config);
             $language = JFactory::getLanguage();
             $language->load('plg_system_zo2', __DIR__ . '/framework');
@@ -36,4 +39,3 @@ if (!class_exists('plgSystemZo2')) {
     }
 
 }
-
