@@ -37,6 +37,9 @@ if (!class_exists('Zo2Profile'))
             }
         }
 
+        /**
+         * Save profile
+         */
         public function save()
         {
             $buffer = $this->toString();

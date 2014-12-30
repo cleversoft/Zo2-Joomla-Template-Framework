@@ -119,6 +119,9 @@ if (!class_exists('Zo2Framework'))
             return self::getInstance()->template->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
         }
 
+        /**
+         * This func will hook into Joomla process before it's dispatched to component
+         */
         public static function joomlaHook()
         {
             $jinput = JFactory::getApplication()->input;
@@ -126,8 +129,11 @@ if (!class_exists('Zo2Framework'))
             {
                 $task = $jinput->get('task');
                 $zo2Data = $jinput->get('zo2', array(), 'array');
+                $joomlaModel = new Zo2ModelJoomla();
+                $joomlaModel->bindTemplateParams();
                 switch ($task)
                 {
+                    // Save data to current profile
                     case 'style.apply':
                         $admin = new Zo2Admin();
                         $profile = Zo2Framework::getInstance()->profile;

@@ -36,10 +36,17 @@ if (!class_exists('plgSystemZo2'))
             $language->load('plg_system_zo2', __DIR__ . '/framework');
         }
 
+        /**
+         * @link https://docs.joomla.org/Plugin/Events/System#onAfterDispatch
+         * This event is triggered after the framework has loaded and initialised and the router has routed the client request.
+         */
         public function onAfterRoute()
         {
             $jinput = JFactory::getApplication()->input;
 
+            /**
+             * Zo2 form submit
+             */
             if ($jinput->get('zo2', array(), 'array'))
             {
                 require_once (JPATH_ROOT . '/plugins/system/zo2/framework/bootstrap.php');
