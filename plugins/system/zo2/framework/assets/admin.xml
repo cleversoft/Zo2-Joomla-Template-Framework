@@ -5,6 +5,8 @@
             <field name="site_name" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_SITENAME" description="" size="10" />
             <field name="slogan" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_SLOGAN" description="" size="10" />
             <field name="copyright" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_COPYRIGHT" description="" rows="10" cols="10" filter="raw" />
+            <field name="standard_logo" type="selectimage" default="" label="ZO2_ADMIN_FIELD_LABEL_STANDARD_LOGO" description="" />
+            <field name="retina_logo" type="selectimage" default="" label="ZO2_ADMIN_FIELD_LABEL_RETINA_LOGO" description="" />
             <field type="spacer" name="myspacer" hr="true" />
             <field name="enable_gototop" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_GOTOTOP" description="">
                 <option value="0">JNO</option>
@@ -15,8 +17,32 @@
                 <option value="1">JYES</option>
             </field>
         </fieldset>
+        <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_THEME_CUSTOMIZER">
+            <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_RESPONSIVE" />
+            <field name="enable_responsive" type="radio" default="1" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RESPONSIVE" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="non_responsive_site_width" type="text" default="980" label="ZO2_ADMIN_FIELD_LABEL_NON_RESPONSIVE_SITE_WIDTH" description="" size="10" />
+            <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_THEME_CUSTOMIZER" />
+            <field type="themecustomizer" name="theme_customizer" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_THEME_CUSTOMIZER" />
+        </fieldset> 
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_LAYOUT_BUILDER">
             <field name="layoutbuilder" type="layoutbuilder" />
-        </fieldset>       
+        </fieldset>   
+        <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_MEGAMENU">
+            <field name="menu" type="megamenu" />
+        </fieldset>     
+        <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_ADVANCED">
+            <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_SOCIAL_NETWORK" />
+            <field name="socialnetwork_facebook" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_FACEBOOK" description="" size="10" />
+            <field name="socialnetwork_googleplus" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_GOOGLEPLUS" description="" size="10" />
+            <field name="socialnetwork_twitter" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_TWITTER" description="" size="10" />
+            <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_DEVELOPER" />
+            <field name="enable_development_mode" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_DEVELOPMENT_MODE" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+        </fieldset> 
     </fields>
 </form>

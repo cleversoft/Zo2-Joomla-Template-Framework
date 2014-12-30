@@ -16,7 +16,8 @@ defined('JPATH_BASE') or die;
 /**
  * Class exists checking
  */
-if (!class_exists('JFormFieldZo2')) {
+if (!class_exists('JFormFieldZo2'))
+{
     jimport('joomla.form.formfield');
     require_once (JPATH_ROOT . '/plugins/system/zo2/framework/bootstrap.php');
 
@@ -25,9 +26,11 @@ if (!class_exists('JFormFieldZo2')) {
      * @since 2.0.0
      * @link http://docs.joomla.org/Creating_a_custom_form_field_type
      */
-    class JFormFieldZo2 extends JFormField {
+    class JFormFieldZo2 extends JFormField
+    {
 
-        public function getLabel() {
+        public function getLabel()
+        {
             return '';
         }
 
@@ -36,7 +39,8 @@ if (!class_exists('JFormFieldZo2')) {
          *
          * @return string
          */
-        public function getInput() {
+        public function getInput()
+        {
             $admin = new Zo2Admin();
             echo $admin->render($this);
         }
