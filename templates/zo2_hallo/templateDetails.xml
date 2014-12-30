@@ -10,11 +10,9 @@
     <version>1.4.3</version>
     <description>
         <![CDATA[
-        	<html>
       			<img src="http://www.zootemplate.com/wp-content/uploads/zo2_framework.png" />
                 <p>The Zo2 Hallo is a clean modern responsive design that is a great place to start when building your custom Zo2 powered template.</p>
                 <p class="alert "><strong>Note:</strong> Zo2 Hallo requires Zo2 plugin to be installed and enabled.</p>	            
-        	</html>
      	]]>
     </description>
 

@@ -13,8 +13,8 @@
     
     <description>
     <![CDATA[
+    	<a href="http://www.zootemplate.com/zo2"><img src="http://www.zootemplate.com/wp-content/uploads/zo2_framework.png" style="max-width:323px;"></a>
     	<div class="alert alert-success">
-    		<a href="http://www.zootemplate.com/zo2"><img src="http://www.zootemplate.com/wp-content/uploads/zo2_framework.png" style="max-width:323px;"></a>
     		<p>Zo2 package includes Zo2 Hallo template and Zo2 Framework plugin (all in one) so when you install Zo2 package, Zo2 plugin and Zo2 Hallo template are installed</p>
     		<p>Copyright 2004 - 2015 <a href='http://www.zootemplate.com/' title='Visit ZooTemplate.com'>ZooTemplate.com</a>.</p>
     	</div>
