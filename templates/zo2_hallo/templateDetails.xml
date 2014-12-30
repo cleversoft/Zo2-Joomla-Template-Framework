@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>Zo2_hallo</name>
-    <creationDate>10 March 2014</creationDate>
-    <author>CleverSoft</author>
-    <authorEmail>hello@cleversoft.co</authorEmail>
-    <authorUrl>https://github.com/cleversoft</authorUrl>
-    <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
+    <creationDate>Dec 30, 2014</creationDate>
+    <author>ZooTemplate.com</author>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <authorUrl>https://github.com/cleversoft/Zo2-Joomla-Template-Framework</authorUrl>
+    <copyright>Copyright (c) 2008 - 2015 CleverSoft</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
-    <version>1.4.1</version>
+    <version>1.4.3</version>
     <description>
         <![CDATA[<html>
       <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
@@ -21,32 +21,29 @@
     </languages>
 
     <positions>
+        <position>bottom1</position>
+        <position>bottom2</position>
+        <position>bottom3</position>
+        <position>bottom4</position>   
+        <position>breadcrumb</position>  
+        <position>feature</position>   
+        <position>footer1</position>
+        <position>footer2</position>
+        <position>footer_copyright</position>   
+        <position>footer_logo</position>             
+        <position>header_logo</position>             
+        <position>left</position>
+        <position>menu</position>           
+        <position>right</position>  
+        <position>search</position>
+        <position>slide</position>                     
         <position>top</position>
-        <position>header_logo</position>
+        <position>top-menu</position>        
         <position>top-social</position>
-        <position>top-menu</position>
-        <position>search</position>
-        <position>logo</position>
-        <position>header_logo</position>
-        <position>menu</position>
-        <position>breadcrumb</position>
-        <position>search</position>
-        <position>slide</position>
         <position>user1</position>
         <position>user2</position>
         <position>user3</position>
         <position>user4</position>
-        <position>left</position>
-        <position>right</position>
-        <position>feature</position>
-        <position>bottom1</position>
-        <position>bottom2</position>
-        <position>bottom3</position>
-        <position>bottom4</position>
-        <position>footer_logo</position>
-        <position>footer1</position>
-        <position>footer2</position>
-        <position>footer_copyright</position>
     </positions>
 
     <files>

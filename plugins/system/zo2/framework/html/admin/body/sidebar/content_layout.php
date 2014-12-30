@@ -23,7 +23,7 @@ defined('_JEXEC') or die('Restricted access');
     echo Zo2Html::field(
         'description', null, array(
             'text' => JText::_('ZO2_ADMIN_DESCRIPTION_LAYOUTS'),
-            'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/layout">Document</a>'
+            'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/layoutbuilder">Document</a>'
         ));
     ?>
 

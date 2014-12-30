@@ -103,7 +103,7 @@
                     <p>Use the <a href="http://www.zootemplate.com/zo2-support" target="_blank">Zo2 Support</a> to ask questions and get support.</p>
                     <div class="zo2-divider"></div>
                     <h2>Copyright, License &amp; Usage</h2>
-                    <p>Copyright (c) 2008 - 2014 <a href="http://cleversoft.co" target="_blank">CleverSoft Solutions</a></p>
+                    <p>Copyright (c) 2008 - 2015 <a href="http://cleversoft.co" target="_blank">CleverSoft Solutions</a></p>
                     <h3>License</h3>
                     <p>Zo2Framework is licensed under GNU General Public License (GPL), version 2 or later. <br /> <a href="http://www.gnu.org/licenses/gpl-2.0.html" target="_blank">http://www.gnu.org/licenses/gpl-2.0.html</a></p>
                     <h3>Usage</h3>
