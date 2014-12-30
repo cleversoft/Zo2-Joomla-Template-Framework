@@ -9,8 +9,7 @@
         "js": [
             "vendor\/bootstrap\/3.3.0\/js\/bootstrap.min.js",
             "vendor\/ekko-lightbox.js",
-            "vendor\/jquery.sticky.js",
-            "vendor\/colorbox\/js\/jquery.colorbox-min.js",
+            "vendor\/jquery.sticky.js",         
             "zo2\/js\/zo2.js",
             "zo2\/js\/site.megamenu.js",
             "zo2\/js\/site.scripts.js"

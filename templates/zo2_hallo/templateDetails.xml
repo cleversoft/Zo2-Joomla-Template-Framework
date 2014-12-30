@@ -4,17 +4,16 @@
     <creationDate>Dec 30, 2014</creationDate>
     <author>ZooTemplate.com</author>
     <authorEmail>support@zootemplate.com</authorEmail>
-    <authorUrl>https://github.com/cleversoft/Zo2-Joomla-Template-Framework</authorUrl>
-    <copyright>Copyright (c) 2008 - 2015 CleverSoft</copyright>
-    <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
+    <authorUrl>https://www.zootemplate.com/zo2</authorUrl>
+    <copyright>Copyright (c) 2008 - 2015 ZooTemplate.com</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPL v2 or later</license>
     <version>1.4.3</version>
     <description>
-        <![CDATA[<html>
-      <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
+        <![CDATA[
+      			<img src="http://www.zootemplate.com/wp-content/uploads/zo2_framework.png" />
                 <p>The Zo2 Hallo is a clean modern responsive design that is a great place to start when building your custom Zo2 powered template.</p>
                 <p class="alert "><strong>Note:</strong> Zo2 Hallo requires Zo2 plugin to be installed and enabled.</p>	            
-        </html>
-     ]]>
+     	]]>
     </description>
 
     <languages>

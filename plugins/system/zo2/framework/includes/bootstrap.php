@@ -23,43 +23,38 @@ spl_autoload_register(array(
     $autoloader, 'autoloadByPsr2'
 ));
 
-if (Zo2Factory::isZo2Template()) {
+if (Zo2Factory::isZo2Template())
+{
 
     $framework = Zo2Factory::getFramework();
     $framework->init();
 
-    if (Zo2Factory::isJoomla25()) {
-        
-    } else {
-        JHtml::_('jquery.ui', array('core', 'sortable'));
-        JHtml::_('bootstrap.framework');
-        JFactory::getApplication()->loadLanguage();
-    }
+
 
     /**
      * @todo remove this core hacking
      */
     if (!class_exists('JViewLegacy', false))
     //Zo2Factory::import('core.classes.legacy');
-        if (Zo2Factory::isSite()) {
-            /**
-             * @todo remove this core hacking
-             */
-            if (!class_exists('JModuleHelper', false))
-                Zo2Factory::import('core.classes.helper');
-        } else {
+        if (Zo2Factory::isSite())
+        {
+            
+        } else
+        {
             $jinput = JFactory::getApplication()->input;
-            if ($jinput->get('option') == 'com_templates') {
+            if ($jinput->get('option') == 'com_templates')
+            {
                 $task = $jinput->get('task');
                 $model = Zo2ModelTemplate::getInstance();
-                switch ($task) {
+                switch ($task)
+                {
                     case 'style.save':
                         $model->save();
-                        
+
                         break;
                     case 'style.apply':
                         $model->save();
-                        
+
                         break;
                     case 'remove':
                         $model->remove();
@@ -110,6 +105,7 @@ if (Zo2Factory::isZo2Template()) {
     }
 
 })(window, jQuery.noConflict());');
-} else {
+} else
+{
     
 }

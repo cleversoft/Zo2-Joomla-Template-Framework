@@ -15,14 +15,16 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Assets')) {
+if (!class_exists('Zo2Assets'))
+{
 
     /**
      * @uses This class used for managed ALL asset stuffs
      * @rule
      * All asset stuffs must be save under <core>|<template>/assets directory
      */
-    class Zo2Assets {
+    class Zo2Assets
+    {
 
         /**
          * Singleton instance
@@ -58,59 +60,44 @@ if (!class_exists('Zo2Assets')) {
          * Constructor method
          * We do not allow create new instance directly. Must go via getInstance
          */
-        protected function __construct() {
-            $application = JFactory::getApplication();
-            /* Dynamic load by backend options */
-            if ($application->isAdmin()) {
-                if (Zo2Factory::isJoomla25()) {
-                    /* For Joomla! 2.5 we need add jQuery into head */
-                    $this->_loadJquery();
-                }
-            } else {
-                /* Allow user turn of jQuery if needed */
-                if (Zo2Factory::isJoomla25() && Zo2Factory::get('enable_jquery', 1) == 1) {
-                    /* For Joomla! 2.5 we need add jQuery into head */
-                    $this->_loadJquery();
-                }
-            }
+        protected function __construct()
+        {
+            
         }
 
         /**
          * Get instance of Zo2Assets
          * @return \Zo2Assets
          */
-        public static function getInstance() {
-            if (!isset(self::$instance)) {
+        public static function getInstance()
+        {
+            if (!isset(self::$instance))
+            {
                 self::$instance = new Zo2Assets();
             }
-            if (isset(self::$instance)) {
+            if (isset(self::$instance))
+            {
                 return self::$instance;
             }
-        }
-
-        /**
-         * Load jQuery
-         */
-        private function _loadJquery() {
-            $document = JFactory::getDocument();
-            $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery-1.10.2.min.js');
-            $document->addScript(ZO2URL_ASSETS . '/vendor/jqueryui/jquery-ui.min.js');
-            $document->addScript(Juri::root() . '/plugins/system/zo2/assets/vendor/jquery/jquery.noConflict.js');
-            $document->addStyleSheet(ZO2URL_ASSETS . '/vendor/jqueryui/jquery-ui.min.css');
         }
 
         /**
          * Load assets file
          * @param type $assets
          */
-        public function load($assets) {
-            if (isset($assets->css)) {
-                foreach ($assets->css as $css) {
+        public function load($assets)
+        {
+            if (isset($assets->css))
+            {
+                foreach ($assets->css as $css)
+                {
                     $this->addStyleSheet($css);
                 }
             }
-            if (isset($assets->js)) {
-                foreach ($assets->js as $js) {
+            if (isset($assets->js))
+            {
+                foreach ($assets->js as $js)
+                {
                     $this->addScript($js);
                 }
             }
@@ -121,16 +108,19 @@ if (!class_exists('Zo2Assets')) {
          * @param string $key File location    
          * @return boolean|string
          */
-        public function getAssetFile($key) {
+        public function getAssetFile($key)
+        {
             return Zo2Factory::getPath('assets://' . $key);
         }
 
         /**
          * Function build all development assets file into Zo2Assets class
          */
-        public function buildAssets() {
+        public function buildAssets()
+        {
             $assetsFile = $this->getAssetFile('build.json');
-            if ($assetsFile) {
+            if ($assetsFile)
+            {
                 $assets = json_decode(file_get_contents($assetsFile));
                 if (isset($assets->core->less))
                     $this->_buildAssets($assets->core->less, CORE, 'less');
@@ -150,9 +140,11 @@ if (!class_exists('Zo2Assets')) {
          * @param type $file
          * @return \Zo2Assets
          */
-        public function addStyleSheet($file) {
+        public function addStyleSheet($file)
+        {
             $assetFile = $this->getAssetFile($file);
-            if ($assetFile) {
+            if ($assetFile)
+            {
                 $this->_stylesheets[$assetFile] = $assetFile;
             }
             return $this;
@@ -164,8 +156,10 @@ if (!class_exists('Zo2Assets')) {
          * @param bool $less
          * @return \Zo2Assets
          */
-        public function addStyleSheetDeclaration($style, $less = false) {
-            if ($less) {
+        public function addStyleSheetDeclaration($style, $less = false)
+        {
+            if ($less)
+            {
                 $style = Zo2HelperCompiler::lessStyle($style);
             }
             $this->_stylesheetDeclarations[] = $style;
@@ -177,9 +171,11 @@ if (!class_exists('Zo2Assets')) {
          *
          * @return \Zo2Assets
          */
-        public function addScript($file) {
+        public function addScript($file)
+        {
             $assetFile = $this->getAssetFile($file);
-            if ($assetFile != false) {
+            if ($assetFile != false)
+            {
                 $this->_javascripts[$assetFile] = $assetFile;
             }
             return $this;
@@ -190,7 +186,8 @@ if (!class_exists('Zo2Assets')) {
          * @param type $script
          * @return \Zo2Assets
          */
-        public function addScriptDeclaration($script) {
+        public function addScriptDeclaration($script)
+        {
             $this->_javascriptDeclarations[] = $script;
             return $this;
         }
@@ -200,10 +197,13 @@ if (!class_exists('Zo2Assets')) {
          * @param type $type
          * @return string
          */
-        public function generateAssets($type) {
-            if ($type == 'css') {
+        public function generateAssets($type)
+        {
+            if ($type == 'css')
+            {
                 return $this->_generateStylesheets();
-            } elseif ($type == 'js') {
+            } elseif ($type == 'js')
+            {
                 return $this->_generateJavascripts();
             }
         }
@@ -214,18 +214,26 @@ if (!class_exists('Zo2Assets')) {
          * @param type $position
          * @param type $type
          */
-        private function _buildAssets($assets, $position, $type) {
-            if (count($assets) > 0) {
-                foreach ($assets as $inputName) {
+        private function _buildAssets($assets, $position, $type)
+        {
+            if (count($assets) > 0)
+            {
+                foreach ($assets as $inputName)
+                {
                     /* Zo2 assets */
-                    if ($position == CORE) {
+                    if ($position == CORE)
+                    {
                         $inputFile = Zo2Factory::getPath('zo2://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                    } elseif ($position == TEMPLATE) { /* Template assets */
+                    } elseif ($position == TEMPLATE)
+                    { /* Template assets */
                         $inputFile = Zo2Factory::getPath('templates://assets/zo2/development/' . $type . '/' . $inputName, 'path');
-                    } if ($inputFile) {
-                        if ($type == 'less') {
+                    } if ($inputFile)
+                    {
+                        if ($type == 'less')
+                        {
                             $this->_compileLess($inputFile);
-                        } elseif ($type == 'js') {
+                        } elseif ($type == 'js')
+                        {
                             $this->_compileJs($inputFile);
                         }
                     }
@@ -238,21 +246,25 @@ if (!class_exists('Zo2Assets')) {
          * @param type $lessFile
          * @return boolean
          */
-        private function _compileLess($lessFile) {
+        private function _compileLess($lessFile)
+        {
             $pathinfo = pathinfo($lessFile);
             $cssDir = realpath($pathinfo['dirname'] . '/../../css');
             $cssFile = $pathinfo['filename'] . '.css';
             $cssFilePath = $cssDir . '/' . $cssFile;
             /* Complie */
-            if (Zo2HelperCompiler::less($lessFile, $cssFilePath)) {
+            if (Zo2HelperCompiler::less($lessFile, $cssFilePath))
+            {
                 $optimizeMode = Zo2Factory::get('optimize_css', 0);
                 $developmentMode = Zo2Factory ::get('development_mode', 0);
                 /**
                  * @todo Try to provide more minify options
-                 */ if (($optimizeMode == 1) && ( $developmentMode == 0)) {
+                 */ if (($optimizeMode == 1) && ( $developmentMode == 0))
+                {
                     $buffer = file_get_contents($cssFilePath);
                     $buffer = CssMinifier::minify($buffer);
-                    if (is_writable($cssFilePath)) {
+                    if (is_writable($cssFilePath))
+                    {
                         return JFile::write($cssFilePath, $buffer);
                     }
                 }
@@ -265,7 +277,8 @@ if (!class_exists('Zo2Assets')) {
          * @param string $jsFile
          * @return boolean
          */
-        private function _compileJs($jsFile) {
+        private function _compileJs($jsFile)
+        {
             $sourceFile = $jsFile;
             $pathinfo = pathinfo($jsFile);
             $jsDir = realpath($pathinfo['dirname'] . '/../../js');
@@ -276,13 +289,16 @@ if (!class_exists('Zo2Assets')) {
              */
             $optimizeMode = Zo2Factory::get('optimize_js', 0);
             $developmentMode = Zo2Factory::get('development_mode', 0);
-            if (($optimizeMode == 1) && ( $developmentMode == 0)) {
+            if (($optimizeMode == 1) && ( $developmentMode == 0))
+            {
                 $buffer = file_get_contents($sourceFile);
                 $buffer = Zo2HelperCompiler::javascript($buffer);
-                if (is_writable($jsFilePath)) {
+                if (is_writable($jsFilePath))
+                {
                     return JFile::write($jsFilePath, $buffer);
                 }
-            } else {
+            } else
+            {
                 /* Just copy if we don't use optimzie */
                 return JFile::copy($sourceFile, $jsFilePath);
             }
@@ -293,27 +309,34 @@ if (!class_exists('Zo2Assets')) {
          * 
          * @return string
          */
-        private function _generateStylesheets() {
+        private function _generateStylesheets()
+        {
             $combineCss = Zo2Factory::get('combine_css', 0);
             $developmentMode = Zo2Factory::get('development_mode', 0);
             $cssHtml = array();
             /**
              * Only do combine when asked and not in development mode
              */
-            if (( $combineCss == 1) && ($developmentMode == 0)) {
+            if (( $combineCss == 1) && ($developmentMode == 0))
+            {
                 $cssName = 'cache/zo2_' . md5(serialize($this->_stylesheets)) . '.css';
                 $cssFilePath = JPATH_ROOT . '/' . $cssName;
                 $cssUri = rtrim(JUri::root(true), '/') . '/' . $cssName;
                 $cssContent = array();
-                foreach ($this->_stylesheets as $styleSheets => $path) {
+                foreach ($this->_stylesheets as $styleSheets => $path)
+                {
                     /* Do not combine vendor stylesheets */
-                    if (strpos($path, 'vendor') !== false) {
+                    if (strpos($path, 'vendor') !== false)
+                    {
                         $cssHtml[] = '<link rel="stylesheet" href="' . Zo2Path::getInstance()->toUrl($styleSheets) . '">';
-                    } else { /* Combine Zo2 stylesheets */
+                    } else
+                    { /* Combine Zo2 stylesheets */
                         /* Optimize ouput css content */
-                        if (Zo2Factory::get('optimzie_css', 0) == 1) {
+                        if (Zo2Factory::get('optimzie_css', 0) == 1)
+                        {
                             $currentCssContent = CssMinifier::minify(file_get_contents($path));
-                        } else {
+                        } else
+                        {
                             $currentCssContent = file_get_contents($path);
                         }
                         $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri, '/' . $styleSheets);
@@ -325,17 +348,22 @@ if (!class_exists('Zo2Assets')) {
                 /* Save to combined css file */
                 file_put_contents($cssFilePath, $cssContent);
                 $cssHtml[] = '<link rel="stylesheet" href="' . $cssUri . '"></script>';
-            } else {
-                foreach ($this->_stylesheets as $styleSheets => $path) {
+            } else
+            {
+                foreach ($this->_stylesheets as $styleSheets => $path)
+                {
                     $cssHtml[] = '<link rel="stylesheet" href="' . Zo2Path::getInstance()->toUrl($styleSheets) . '">';
                 }
             }
             /* Custom stylesheets */
             $cssDeclarationHtml [] = '<style>';
-            foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration) {
-                if ((Zo2Factory::get('optimzie_css', 0) == 1 ) && ($developmentMode == 0)) {
+            foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration)
+            {
+                if ((Zo2Factory::get('optimzie_css', 0) == 1 ) && ($developmentMode == 0))
+                {
                     $cssDeclarationHtml [] = CssMinifier::minify($stylesheetDeclaration) . PHP_EOL;
-                } else {
+                } else
+                {
                     $cssDeclarationHtml [] = ($stylesheetDeclaration ) . PHP_EOL;
                 }
             }
@@ -347,25 +375,30 @@ if (!class_exists('Zo2Assets')) {
          * 
          * @return string
          */
-        private function _generateJavascripts() {
+        private function _generateJavascripts()
+        {
             $combineJs = Zo2Factory::get('combine_js', 0);
             $developmentMode = Zo2Factory::get('development_mode', 0);
             $jsHtml = array();
             /**
              * Only do combine when asked and not in development mode
              */
-            if (( $combineJs == 1 ) && ($developmentMode == 0)) {
+            if (( $combineJs == 1 ) && ($developmentMode == 0))
+            {
                 $jsFile = 'cache/zo2_' . md5(serialize($this->_javascripts)) . '.js';
                 $jsFilePath = JPATH_ROOT . '/' . $jsFile;
                 $jsContent = array();
                 /**
                  * @todo Cache combined file instead generate it everytimes
                  */
-                foreach ($this->_javascripts as $javascript => $path) {
+                foreach ($this->_javascripts as $javascript => $path)
+                {
                     /* Optimize output javascripts content */
-                    if ((Zo2Factory::get('optimzie_js', 0) == 1)) {
+                    if ((Zo2Factory::get('optimzie_js', 0) == 1))
+                    {
                         $jsContent [] = Zo2HelperCompiler::javascript(file_get_contents($path));
-                    } else {
+                    } else
+                    {
                         $jsContent [] = file_get_contents($path);
                     }
                 }
@@ -373,19 +406,24 @@ if (!class_exists('Zo2Assets')) {
                 file_put_contents($jsFilePath, implode(PHP_EOL, $jsContent));
                 /* Generate HTML to load it */
                 $jsHtml[] = '<script type="text/javascript" src="' . rtrim(JUri::root(true), '/') . '/' . $jsFile . '"></script>';
-            } else {
+            } else
+            {
                 /* Just load js files without touching */
-                foreach ($this->_javascripts as $javascript => $path) {
+                foreach ($this->_javascripts as $javascript => $path)
+                {
                     $jsHtml[] = '<script type="text/javascript" src="' . Zo2Path::getInstance()->toUrl($javascript) . '"></script>';
                 }
             }
             /* Custom javascripts code */
             $jsDeclarationHtml [] = '<script>jQuery(document).ready( function () {';
-            foreach ($this->_javascriptDeclarations as $javascriptDeclaration) {
+            foreach ($this->_javascriptDeclarations as $javascriptDeclaration)
+            {
                 /* Optimize output javascripts content */
-                if ((Zo2Factory::get('optimzie_js', 0) == 1)) {
+                if ((Zo2Factory::get('optimzie_js', 0) == 1))
+                {
                     $jsDeclarationHtml[] = Zo2HelperCompiler::javascript($javascriptDeclaration);
-                } else {
+                } else
+                {
                     $jsDeclarationHtml[] = $javascriptDeclaration;
                 }
             }
