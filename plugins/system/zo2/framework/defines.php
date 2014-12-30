@@ -14,3 +14,4 @@ defined('_JEXEC') or die('Restricted access');
 
 define('ZO2VERSION', '2.0.0');
 define('ZO2PATH_ROOT', __DIR__);
+define('ZO2DEVELOPMENT_MODE',true);
