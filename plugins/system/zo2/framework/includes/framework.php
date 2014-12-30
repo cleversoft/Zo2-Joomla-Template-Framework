@@ -129,6 +129,7 @@ if (!class_exists('Zo2Framework'))
                 $this->assets = Zo2Assets::getInstance();
                 if (JFactory::getApplication()->isAdmin())
                 {
+                    JHtml::_('jquery.ui', array('core', 'sortable'));
                     $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
                 } else
                 {
