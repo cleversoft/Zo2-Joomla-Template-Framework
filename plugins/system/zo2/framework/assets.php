@@ -62,24 +62,7 @@ if (!class_exists('Zo2Assets'))
          */
         protected function __construct()
         {
-            $application = JFactory::getApplication();
-            /* Dynamic load by backend options */
-            if ($application->isAdmin())
-            {
-                if (Zo2Factory::isJoomla25())
-                {
-                    /* For Joomla! 2.5 we need add jQuery into head */
-                    $this->_loadJquery();
-                }
-            } else
-            {
-                /* Allow user turn of jQuery if needed */
-                if (Zo2Factory::isJoomla25() && Zo2Factory::get('enable_jquery', 1) == 1)
-                {
-                    /* For Joomla! 2.5 we need add jQuery into head */
-                    $this->_loadJquery();
-                }
-            }
+            
         }
 
         /**
@@ -96,18 +79,6 @@ if (!class_exists('Zo2Assets'))
             {
                 return self::$instance;
             }
-        }
-
-        /**
-         * Load jQuery
-         */
-        private function _loadJquery()
-        {
-            $document = JFactory::getDocument();
-            $document->addScript(ZO2URL_ASSETS . '/vendor/jquery/jquery-1.10.2.min.js');
-            $document->addScript(ZO2URL_ASSETS . '/vendor/jqueryui/jquery-ui.min.js');
-            $document->addScript(ZO2URL_ASSETS . '/vendor/jquery/jquery.noConflict.js');
-            $document->addStyleSheet(ZO2URL_ASSETS . '/vendor/jqueryui/jquery-ui.min.css');
         }
 
         /**
