@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" version="3.0" method="upgrade">
+	<name>Zo2 Framework</name>
+    <creationDate>Dec 30, 2014</creationDate>
+    <author>ZooTemplate.com</author>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <authorUrl>https://github.com/cleversoft/Zo2-Joomla-Template-Framework</authorUrl>
+    <copyright>Copyright (c) 2008 - 2015 CleverSoft</copyright>
+    <license>GPLv2 or later</license>
+    <version>1.4.3</version>
+	
+	<scriptfile>script.php</scriptfile>
+	<files folder="plugins/system/zo2">
+		<file plugin="zo2">zo2.php</file>
+		<file>zo2.xml</file>
+        <folder>formfields</folder>
+        <folder>framework</folder>
+    </files>
+    
+    <languages folder="admin">
+	    <language tag="en-GB">language/en-GB/en-GB.plg_system_zo2.ini</language>
+    </languages>
+</extension>
