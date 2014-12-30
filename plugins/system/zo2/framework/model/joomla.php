@@ -15,14 +15,17 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2ModelJoomla')) {
+if (!class_exists('Zo2ModelJoomla'))
+{
 
     /**
      * 
      */
-    class Zo2ModelJoomla {
+    class Zo2ModelJoomla
+    {
 
-        public function getModules() {
+        public function getModules()
+        {
             $app = JFactory::getApplication();
             $user = JFactory::getUser();
             $groups = implode(',', $user->getAuthorisedViewLevels());
@@ -31,25 +34,12 @@ if (!class_exists('Zo2ModelJoomla')) {
             $db = JFactory::getDbo();
 
             $query = $db->getQuery(true)
-                    ->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params, mm.menuid')
+                    ->select('m.id, m.title, m.module, m.position, m.content, m.showtitle, m.params')
                     ->from('#__modules AS m')
-                    ->join('LEFT', '#__modules_menu AS mm ON mm.moduleid = m.id')
                     ->where('m.published = 1')
                     ->join('LEFT', '#__extensions AS e ON e.element = m.module AND e.client_id = m.client_id')
                     ->where('e.enabled = 1');
 
-            $date = JFactory::getDate();
-            $now = $date->toSql();
-            $nullDate = $db->getNullDate();
-            $query->where('(m.publish_up = ' . $db->quote($nullDate) . ' OR m.publish_up <= ' . $db->quote($now) . ')')
-                    ->where('(m.publish_down = ' . $db->quote($nullDate) . ' OR m.publish_down >= ' . $db->quote($now) . ')')
-                    ->where('m.access IN (' . $groups . ')')
-                    ->where('m.client_id = 0');
-
-            // Filter by language
-            if ($app->isSite() && $app->getLanguageFilter()) {
-                $query->where('m.language IN (' . $db->quote($lang) . ',' . $db->quote('*') . ')');
-            }
 
             $query->order('m.position, m.ordering');
 
@@ -64,7 +54,8 @@ if (!class_exists('Zo2ModelJoomla')) {
          * @param type $type
          * @return boolean
          */
-        public function getMenuItemsByType($type) {
+        public function getMenuItemsByType($type)
+        {
             $db = JFactory::getDbo();
             $query = $db->getQuery(true)
                     ->select('m.id, m.menutype, m.title, m.alias, m.note, m.path AS route, m.link, m.type, m.level, m.language')
@@ -81,19 +72,23 @@ if (!class_exists('Zo2ModelJoomla')) {
             // Set the query
             $db->setQuery($query);
             $items = array();
-            try {
+            try
+            {
                 $items = $db->loadObjectList('id');
-            } catch (RuntimeException $e) {
+            } catch (RuntimeException $e)
+            {
                 JError::raiseWarning(500, JText::sprintf('JERROR_LOADING_MENUS', $e->getMessage()));
                 return false;
             }
 
-            foreach ($items as &$item) {
+            foreach ($items as &$item)
+            {
                 $item->params = new JRegistry($item->params);
                 // Get parent information.
                 $parent_tree = array();
 
-                if (isset($items[$item->parent_id])) {
+                if (isset($items[$item->parent_id]))
+                {
                     $parent_tree = $items[$item->parent_id]->tree;
                 }
 
@@ -110,7 +105,8 @@ if (!class_exists('Zo2ModelJoomla')) {
             return $items;
         }
 
-        public function getAvaiablePositions() {
+        public function getAvaiablePositions()
+        {
             $templatePositions = Zo2Factory::getFramework()->getTemplatePositions();
 
             $db = JFactory::getDbo();
@@ -124,7 +120,7 @@ if (!class_exists('Zo2ModelJoomla')) {
 
             $list = array_merge($templatePositions, $modulePositions);
             $list = array_unique($list);
-           
+
             return $list;
         }
 
