@@ -113,6 +113,25 @@
   #zo2-header-top {
     padding-bottom: 20px;
   }
+  #zo2-top-menu,
+  #zo2-search {
+    text-align: center;
+  }
+  #zo2-top-menu .mod-languages li {
+    display: inline-block;
+    float: none;
+  }
+  #zo2-search form {
+    display: inline-block;
+    float: none;
+    border: none;
+  }
+  #zo2-feature {
+    text-align: center;
+  }
+  #zo2-feature a.btn {
+    display: inline-block;
+  }
   .zo2-megamenu .mega-inner {
     padding: 10px 20px;
   }
