@@ -13,17 +13,23 @@
 defined('_JEXEC') or die('Restricted access');
 
 /**
- * 
+ * Class exists checking
  */
-if (!class_exists('Zo2Framework')) {
+if (!class_exists('Zo2Framework'))
+{
 
-    class Zo2Framework {
+    /**
+     * Zo2 Framework class
+     */
+    class Zo2Framework
+    {
 
         /**
          *
          * @var Zo2Template
          */
         public $template;
+        private $_vars = array();
 
         /**
          *
@@ -31,42 +37,85 @@ if (!class_exists('Zo2Framework')) {
          */
         public $profile;
 
-        public static function getInstance() {
+        public static function getInstance()
+        {
             static $instance;
-            if (!isset($instance)) {
+            if (!isset($instance))
+            {
                 $instance = new Zo2Framework();
             }
             return $instance;
         }
 
-        public static function importVendor($name) {
+        public static function getGlobalParam($name, $default = null)
+        {
+            return self::getInstance()->template->params->get($name, $default);
+        }
+
+        public static function getProfileParams($name, $default = null)
+        {
+            return self::getInstance()->profile->get($name, $default);
+        }
+
+        /**
+         * 
+         * @param type $message
+         * @param type $type
+         */
+        public static function message($message, $type = 'message')
+        {
+            JFactory::getApplication()->enqueueMessage($message, $type);
+        }
+
+        public static function importVendor($name)
+        {
             $path = Zo2Path::getInstance()->getPath('Zo2://vendor/' . $name . '/autoloader.php');
-            if ($path) {
+            if ($path)
+            {
                 require_once $path;
             }
         }
 
-        public static function execute() {
+        public static function execute()
+        {
             $jinput = JFactory::getApplication()->input;
             $task = $jinput->getCmd('zo2_task');
             $task = explode('.', $task);
-            if (count($task) == 2) {
+            if (count($task) == 2)
+            {
                 $modelClass = 'Zo2Model' . ucfirst($task[0]);
                 $model = new $modelClass ();
                 $func = $task[1];
                 $respond = call_user_func_array(array($model, $func), array());
             }
-            if ($jinput->getInt('zo2_ajax')) {
+            if ($jinput->getInt('zo2_ajax'))
+            {
                 echo Zo2Ajax::getInstance()->response();
             }
         }
-        
+
+        public static function set($name, $value)
+        {
+            self::getInstance()->_vars[$name] = $value;
+        }
+
+        public static function get($name, $default = null)
+        {
+            $framework = self::getInstance();
+            if (isset($framework->_vars[$name]))
+            {
+                return $framework->_vars[$name];
+            }
+            return $default;
+        }
+
         /**
          * 
          * @return boolean
          */
-        public static function isDevelopmentMode () {
-            return self::getInstance()->template->get('enable_development_mode');
+        public static function isDevelopmentMode()
+        {
+            return self::getInstance()->template->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
         }
 
     }
