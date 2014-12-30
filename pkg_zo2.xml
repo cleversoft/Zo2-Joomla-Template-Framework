@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<extension type="package" version="3.0" method="install">
+	<name>Zo2 Framework Package</name>
+	<packagename>zo2</packagename>
+	<creationDate>Dec 30, 2014</creationDate>	
+    <version>1.4.3</version>	
+	<author>ZooTemplate.com</author>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <packager>Zo2 Framework</packager>    
+    <authorUrl>https://github.com/cleversoft/Zo2-Joomla-Template-Framework</authorUrl>
+    <license>GPL v2 or later</license>
+    <copyright>Copyright (c) 2008 - 2015 ZooTemplate.Com</copyright>
+    
+    <description>
+    <![CDATA[
+    	<div class="alert alert-success">
+    		<p>Zo2 package includes Zo2 Hallo template and Zo2 Framework plugin (all in one) so when you install Zo2 package, Zo2 plugin and Zo2 Hallo template are installed</p>
+    		<p>Copyright 2004 - 2015 <a href='http://www.zootemplate.com/' title='Visit ZooTemplate.com'>ZooTemplate.com</a>.</p>
+    	</div>
+    	]]>		
+	</description>    	
+    
+	<scriptfile>pkg_zo2.script.php</scriptfile>
+	<files folder="source">
+   		<file type="plugin" id="zo2" group="system">plg_system_zo2</file>
+   		<file type="template" id="zo2_hallo" client="site">tpl_zo2_hallo</file>
+ 	</files>
+ 	
+ 	<updateservers>
+        <server type="extension" priority="1" name="Zo2 Framework Update"><![CDATA[http://update.zo2framework.org/zo2/extension.xml]]></server>
+    </updateservers>
+</extension>
