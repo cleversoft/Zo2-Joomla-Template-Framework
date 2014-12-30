@@ -12,15 +12,24 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2Loader')) {
+if (!class_exists('Zo2Loader'))
+{
 
-    class Zo2Loader {
+    class Zo2Loader
+    {
 
-        public static function autoloadZo2Psr2($className) {
-            if (substr($className, 0, 1) != 'J') {
+        /**
+         * 
+         * @param string $className
+         */
+        public static function autoloadZo2Psr2($className)
+        {
+            if (substr($className, 0, 1) != 'J')
+            {
                 $path = Zo2Path::getInstance();
                 $filePath = $path->getPathByClassname($className);
-                if ($filePath) {
+                if ($filePath)
+                {
                     require_once $filePath;
                 }
             }
