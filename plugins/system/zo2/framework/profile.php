@@ -15,13 +15,25 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Profile')) {
+if (!class_exists('Zo2Profile'))
+{
 
     /**
      * Zo2 profile object
      */
-    class Zo2Profile extends JRegistry {
-        
+    class Zo2Profile extends JRegistry
+    {
+
+        public function loadFile($file, $format = 'JSON', $options = array())
+        {
+            parent::loadFile($file, $format = 'JSON', $options = array());
+            // Display message to know which profile file was loaded
+            if (Zo2Framework::isDevelopmentMode())
+            {
+                Zo2Framework::message('Loaded profile :' . $file);
+            }
+        }
+
     }
 
 }
