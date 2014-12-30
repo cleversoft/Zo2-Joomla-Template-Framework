@@ -12,15 +12,18 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2Admin')) {
+if (!class_exists('Zo2Admin'))
+{
 
-    class Zo2Admin {
+    class Zo2Admin
+    {
 
         public $template;
 
         const ZO2DEFAULT_PROFILE = 'default';
 
-        public function __construct() {
+        public function __construct()
+        {
             $jVersion = new JVersion();
             require_once __DIR__ . '/depends/' . $jVersion->RELEASE . '/admin.php';
 
@@ -32,24 +35,33 @@ if (!class_exists('Zo2Admin')) {
             $framework->profile->loadFile($this->getRequestProfile());
         }
 
-        public function render() {
+        public function render()
+        {
             // get the JForm object
             $form = JForm::getInstance('zo2form', ZO2PATH_ROOT . '/assets/admin.xml');
+            // Prepare saved data to form
+            $data = array(
+                'zo2' => Zo2Framework::getInstance()->profile->toArray()
+            );
+            $form->bind($data);
             $html = new Zo2Html();
             $html->set('admin', $this);
             $html->set('form', $form);
             return $html->fetch('Zo2://html/admin/layout/default.php');
         }
 
-        public function getRequestProfile() {
+        public function getRequestProfile()
+        {
             $profileName = JFactory::getApplication()->input->getWord('profile');
             $profileName = self::ZO2DEFAULT_PROFILE;
             $framework = Zo2Framework::getInstance();
 
             $profileFile[] = $framework->template->getPath() . '/profiles/' . $framework->template->get('id') . '/' . $profileName . '.json';
             $profileFile[] = $framework->template->getPath() . '/profiles/' . $profileName . '.json';
-            foreach ($profileFile as $value) {
-                if (JFile::exists($value)) {
+            foreach ($profileFile as $value)
+            {
+                if (JFile::exists($value))
+                {
                     return $value;
                 }
             }
