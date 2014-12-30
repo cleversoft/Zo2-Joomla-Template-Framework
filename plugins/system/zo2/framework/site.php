@@ -44,11 +44,10 @@ if (!class_exists('Zo2Site'))
          */
         public function render()
         {
-            // Get memory usage before process
-            $memoryStart = memory_get_usage(true);
-            // Assign document to Framework
-            $framework = Zo2Framework::getInstance();
 
+            $framework = Zo2Framework::getInstance();
+            // Get memory usage before process
+            $framework->set('memory_start', memory_get_usage(true));
             // Init layout builder with current profile
             $layoutBuilder = new Zo2LayoutbuilderSite($framework->profile->get('layout'));
             // Prepare properties for html to render
@@ -64,7 +63,7 @@ if (!class_exists('Zo2Site'))
                 $buffer = $dom;
             }
             // Get memory useage after processed
-            $memoryEnd = memory_get_usage(true);
+            $framework->set('memory_end', memory_get_usage(true));
             return $buffer;
         }
 
@@ -74,24 +73,26 @@ if (!class_exists('Zo2Site'))
          */
         public function getRequestProfile()
         {
+            // Get request Itemid to use for profile assignment
             $itemId = JFactory::getApplication()->input->getInt('Itemid');
             $profileName = self::ZO2DEFAULT_PROFILE;
             $framework = Zo2Framework::getInstance();
+            // Get list of profile assignmented
             $profileAssignments = Zo2Framework::getGlobalParam('profile_assignment', array());
+            // Check if this Itemid have profile assigned
             if (isset($profileAssignments[$itemId]))
             {
                 $profileName = $profileAssignments[$itemId];
             }
-            $profileFile[] = $framework->template->getPath() . '/profiles/' . $framework->template->get('id') . '/' . $profileName . '.json';
-            $profileFile[] = $framework->template->getPath() . '/profiles/' . $profileName . '.json';
-            foreach ($profileFile as $value)
+            $profileFile = $framework->template->getPath() . '/profiles/' . $framework->template->get('id') . '/' . $profileName . '.json';
+            if (JFile::exists($profileFile))
             {
-                if (JFile::exists($value))
-                {
-                    return $value;
-                }
+                return $profileFile;
+            } else
+            {
+                // Return default profile
+                return $framework->template->getPath() . '/profiles/' . self::ZO2DEFAULT_PROFILE . '.json';
             }
-            return $framework->template->getPath() . '/profiles/' . self::ZO2DEFAULT_PROFILE . '.json';
         }
 
     }
