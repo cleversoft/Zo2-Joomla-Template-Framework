@@ -1,0 +1,4 @@
+- admin: Template layout files for backend
+- site: Template layout files for frontend. Also used for Joomla! override will be called by Joomla!
+- zo2: Can use for both frontend & backend. It likes Zo2 core layout
+<file>.php : Used as wrapped to render template layout file

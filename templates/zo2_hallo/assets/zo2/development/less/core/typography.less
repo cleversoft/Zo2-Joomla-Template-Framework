@@ -1,0 +1,224 @@
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      Duc Nguyen <ducntv@gmail.com>
+ * @author      Hiepvu <vqhiep2010@gmail.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
+
+/* ================== Global variables ================== */
+@import "mixins";
+@import "variables";
+
+/* ================== COMMONS =========================== */
+
+.clearfix{ clear: both;}
+.zt-typo-boxes{ border-bottom:1px solid #e2e3e5; margin: 0; padding:20px 0; width: 100%; }
+.zt-typo-boxes-inside{ padding: 0 10px; }
+
+/* ================== Paragraphs ======================== */
+p {
+  margin: 1em 0;
+}
+
+/* ================== HEADINGS ========================== */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.1;
+}
+h1 {font-size: 350%;}
+h2 {font-size: 275%;}
+h3 {font-size: 240%;}
+h4 {font-size: 200%;}
+h5 {font-size: 175%;}
+h6 {font-size: 150%;}
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small, .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+h1, h2, h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+h4, h5, h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* ================== PRE CODE ========================== */
+pre, .zt-code1, .zt-code2, .zt-code3 {
+  .border-radius(0);
+  border: none;
+  color:@grayDarker;
+  font: normal .92em/32px 'Curier New', monospace!important;
+  margin: 0;
+  padding: 20px;
+}
+pre, .zt-code1 {background: #d3d9f5; }
+.zt-code2{ background: #d6edd5; }
+
+.zt-code3 {
+  border: 1px solid #eee;
+  background-color: #fefefe;
+  color: #363636;
+  padding-left: 82px!important
+}
+.zt-code3 h4 {
+  background: none repeat scroll 0 0 #A8B4EF;
+  color: @white;
+  margin: 0 0 0 -64px !important;
+  padding: 3px 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  width: 55px;
+}
+
+/* ================== HIGHLIGHT ======================== */
+.zt-highlight1,
+.zt-highlight2,
+.zt-highlight3,
+.zt-highlight4 {
+  cursor: default;
+  padding: 1px 5px;
+  text-shadow: none
+}
+.zt-highlight1 {
+  background: #e5e5e5;
+  color:#2f2f2f;
+}
+.zt-highlight2{
+  background: #7fb2ff;
+  color: @white
+}
+.zt-highlight3{
+  background: #ff7f7f;
+  color: @white
+}
+.zt-highlight4 {
+  background: #ffe400;
+  color: #2f2f2f
+}
+
+/* ================= UNORDERED LIST ==================== */
+.zt-unordered-lists{
+  li{
+    padding: 2px 0;
+    i, [class*="fa-"]{
+      font-size: @baseFontSize;
+      width: 20px;
+    }
+  }
+}
+
+/* ================== BLOCKQUOTE ==================== */
+.zt-typo-inside{
+  blockquote {
+    border: none;
+    font-style: italic;
+    margin: 20px 0;
+    p{
+      font-size: 100%;
+    }
+    small:before{
+      content: "";
+    }
+    div{
+      display:block;
+      &.zt-blockquote1 {
+        div{
+          padding: 0 22px;
+        }
+        i{
+          color: #CACACA;
+          font-size: @baseFontSize;
+          &.fa-quote-left{
+            bottom: 30px;
+            left: 30px;
+          }
+          &.fa-quote-right{
+            top: 30px;
+            right: 30px;
+          }
+        }
+      }
+      &.zt-blockquote2 {
+        div{
+          padding: 0 22px
+        }
+        i{
+          color: #CACACA;
+          font-size: @baseFontSize;
+          &.fa-quote-left{
+            top: 30px;
+            left: 30px;
+          }
+          &.fa-quote-right{
+            top: 30px;
+            right: 30px;
+          }
+        }
+      }
+      &.zt-blockquote3 {
+        padding-bottom: 1px;
+        div{
+          padding: 5px 48px 0
+        }
+        i{
+          &.fa-quote-left{
+            bottom: 30px;
+            left: 50px;
+          }
+          &.fa-quote-right{
+            top: 30px;
+            right: 50px;
+          }
+        }
+      }
+      &.zt-blockquote4 {
+        div {
+          padding: 0 48px
+        }
+        i{
+          &.fa-quote-left{
+            top: 30px;
+            left: 50px;
+          }
+          &.fa-quote-right{
+            top: 30px;
+            right: 50px;
+          }
+        }
+      }
+      i{
+        position: absolute;
+      }
+    }
+  }
+}
+
+
+/* ================= WARNING ========================== */
+.zt-typo-boxes-inside{
+  > p{
+    color: #353535;
+    padding: 15px;
+    text-shadow: 0 1px 0 rgba(255,255,255,.99);
+    i{
+      font-size: @baseFontSize + 5;
+      width: 30px;
+      text-align: center;
+    }
+  }
+}
+.zt-box-info {background: #e5f4f9;}
+.zt-box-warning {background: #f8e7e5; }
+.zt-box-stickynote {background: #f6f2e1; }
+.zt-box-upload {background: #e4f7d3; }
+.zt-box-download {background: #e7ebfb; }

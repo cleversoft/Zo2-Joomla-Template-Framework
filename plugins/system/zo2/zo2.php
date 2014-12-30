@@ -4,6 +4,7 @@
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
+ * @version     1.4.3
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
@@ -23,21 +24,11 @@ if (!class_exists('plgSystemZo2')) {
     class plgSystemZo2 extends JPlugin {
 
         /**
-         * 
-         * @param type $subject
-         * @param type $config
-         */
-        public function __construct(& $subject, $config) {
-            parent::__construct($subject, $config);
-            $language = JFactory::getLanguage();
-            $language->load('plg_system_zo2', JPATH_ADMINISTRATOR);
-        }
-
-        /**
          * Init our framework
          */
-        public function onAfterInitialise() {
+        public function onAfterRoute() {
             include_once __DIR__ . '/framework/includes/bootstrap.php';
+            Zo2Factory::ajax();
         }
 
         /**
@@ -47,19 +38,9 @@ if (!class_exists('plgSystemZo2')) {
             if (Zo2Factory::isZo2Template()) {
                 $app = JFactory::getApplication();
                 $body = JResponse::getBody();
-                $shortcodes = Zo2Shortcodes::getInstance();
+
                 $jinput = JFactory::getApplication()->input;
                 $framework = Zo2Factory::getFramework();
-
-                if ($app->isAdmin()) {
-                    
-                } else {
-                    /* Make sure shortcodes enabled and we are not in any "edit" tasking ! */
-                    if ($framework->get('enable_shortcodes', 1) == 1 && ( $jinput->get('task') != 'edit' )) {
-                        /* Do shortcodes process */
-                        $body = $shortcodes->execute($body);
-                    }
-                }
 
                 $assets = Zo2Assets::getInstance();
                 $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
@@ -93,17 +74,6 @@ if (!class_exists('plgSystemZo2')) {
                         $gplus = '<a href="' . $config->get('google_profile_url', '') . '/?rel=' . $rel . '"';
                         $gplus .= ' title="Google Plus Profile for ' . $author_name . '" plugin="Google Plus Authorship">' . $author_name . '</a>';
                         $article->text = $gplus . $article->text;
-                    }
-                    /* Comments System */
-                    if ($config->get('enable_comments', 0) && !$framework->isFrontPage()) {
-                        if (JFactory::getApplication()->input->getCmd('option') != 'com_k2') {
-                            $view = JFactory::getApplication()->input->get('view');
-                            if ($view == 'article') {
-                                Zo2Factory::import('addons.comments.Zo2Comments');
-                                $comment = new Zo2Comments($article);
-                                $article->text = $article->text . $comment->renderHtml();
-                            }
-                        }
                     }
                 }
             }

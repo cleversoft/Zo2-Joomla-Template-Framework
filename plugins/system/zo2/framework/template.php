@@ -65,8 +65,8 @@ if (!class_exists('Zo2Template')) {
          * @return type
          */
         public function fetch($key) {
-            $tplFile = $this->path->getFile($key);
-            if ($tplFile) {
+            $tplFile = $this->path->getPath($key);
+            if ($tplFile) {                
                 $properties = $this->getProperties();
                 ob_start();
                 extract($properties, EXTR_REFS);
@@ -83,7 +83,7 @@ if (!class_exists('Zo2Template')) {
          * @return \CsTemplate
          */
         public function load($key) {
-            $tplFile = $this->path->getFile($key);
+            $tplFile = $this->path->getPath($key);
             if (JFile::exists($tplFile)) {
                 $properties = $this->getProperties();
                 extract($properties, EXTR_REFS);

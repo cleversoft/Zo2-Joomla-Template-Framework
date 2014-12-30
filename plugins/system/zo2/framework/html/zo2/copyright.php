@@ -1,24 +1,35 @@
 <?php
-
-$assets = Zo2Assets::getInstance();
-$logo = Zo2Factory::get('footer_logo');
-$copyright = Zo2Factory::get('footer_copyright');
-$gototop = Zo2Factory::get('footer_gototop');
-
-$html = '<footer>';
-$html .= '<section class="copyright" style="text-align:center">' . $copyright . '</section>';
-if ($logo == 1) {
-    $html .= '<a title="Powered by Zo2Framework" class="footer_zo2_logo" href="http://zo2framework.org" style="display:block;">';
-    $html .= '<img src="' . ZO2URL_ROOT . '/assets/zo2/images/zo2logo.png" />';
-    $html .= '</a>';
-}
-if ($gototop) {
-    $html .= '<a href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>';
-
-    $script = 'jQuery("#gototop").click(function(){jQuery("body, html").animate({scrollTop: 0}); return false;});';
-
-    $assets->addScriptDeclaration($script);
-}
-$html .= '</footer>';
-echo $html;
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @version     1.4.3
+ * @since       1.4.3
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
 ?>
+<footer>
+    <section class="zo2-copyright"><?php echo $copyright; ?></section>    
+    <?php if ($showLogo) : ?>
+        <a 
+            title="<?php echo $title; ?>" 
+            class="zo2-copyright-logo" 
+            href="<?php echo $link; ?>">
+            <img src="<?php echo $logoUrl; ?>" alt="<?php echo $title; ?>" />
+        </a>
+    <?php endif; ?>
+    <?php if ($gototop): ?>
+        <a href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>
+        <script>
+            jQuery("#gototop").click(function () {
+                jQuery("body, html").animate({scrollTop: 0});
+                return false;
+            });
+        </script>
+    <?php endif; ?>
+</footer>

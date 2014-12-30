@@ -40,7 +40,7 @@ if (!class_exists('Zo2Autoloader')) {
             $prefix = array_shift($parts);
             /* Joomla prefix */
             if ($prefix != 'J') {
-                $key = strtolower($prefix . '://' . implode(DIRECTORY_SEPARATOR, $parts)) . '.php';
+                $key = strtolower($prefix . '://' . implode('/', $parts)) . '.php';
                 $path = Zo2Path::getInstance();
                 $filePath = $path->getPath($key);
                 if ($filePath) {
@@ -52,7 +52,3 @@ if (!class_exists('Zo2Autoloader')) {
     }
 
 }
-$autoloader = new Zo2Autoloader();
-spl_autoload_register(array(
-    $autoloader, 'autoloadByPsr2'
-));

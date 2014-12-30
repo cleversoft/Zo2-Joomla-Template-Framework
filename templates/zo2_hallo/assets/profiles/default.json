@@ -548,31 +548,14 @@
             ]
         }
     ],
-    "theme": {
-        "name": "green",
-        "css": "presets\/green",
-        "less": "presets\/green",
-        "boxed": "0",
-        "background": "#ffffff",
-        "header": "",
-        "header_top": "",
-        "text": "",
-        "link": "#7FBE54",
-        "link_hover": "#449d44",
-        "bottom1": "#416941",
-        "bottom2": "#416941",
-        "footer": "",
-        "extra": "{}",
-        "bg_image": "",
-        "bg_pattern": "templates\/zo2_hallo\/assets\/zo2\/images\/background-patterns\/congruent_pentagon.png"
-    },
+    "theme": null,
     "menuConfig": {
-        "hover_type": "hover",
-        "nav_type": "megamenu",
-        "animation": "zoom",
-        "duration": "400",
-        "show_submenu": "1",
+        "hover_type": null,
+        "nav_type": null,
+        "animation": null,
+        "duration": null,
+        "show_submenu": null,
         "menu_type": "mainmenu",
-        "mega_config": "{\"mainmenu\":{\"item-435\":{\"submenu\":{\"rows\":[[{\"item\":547,\"width\":12}]]}},\"item-468\":{\"submenu\":{\"width\":\"400\",\"rows\":[[{\"item\":500,\"width\":6},{\"item\":509,\"width\":6}]]}},\"item-491\":{\"submenu\":{\"rows\":[[{\"item\":492,\"width\":12}]]}}}}"
+        "mega_config": "{\"mainmenu\":{\"item-435\":{\"submenu\":{\"rows\":[[{\"item\":547,\"width\":12}]]}},\"item-550\":{\"submenu\":{\"rows\":[[{\"item\":504,\"width\":12}]]}},\"item-468\":{\"submenu\":{\"width\":400,\"rows\":[[{\"item\":500,\"width\":6},{\"item\":509,\"width\":6}]]}},\"item-491\":{\"submenu\":{\"rows\":[[{\"item\":492,\"width\":12}]]}}}}"
     }
 }

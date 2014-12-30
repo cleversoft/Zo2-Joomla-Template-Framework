@@ -36,9 +36,9 @@ if (!class_exists('Zo2Layout')) {
         public function render() {
             $html = '';
             $document = JFactory::getDocument();
-            $document->addCustomTag('<!— built with zo2 framework: http://www.zootemplate.com/zo2 —>');
+            $document->addCustomTag('<!-- built with zo2 framework: http://www.zootemplate.com/zo2 -->');
 
-            $canCache = (bool) Zo2Factory::get('debug_visibility', 0) == 1;
+            $canCache = (bool) Zo2Factory::get('debug', 0) == 1;
             /* Must follow Joomla! global config */
             $canCache = $canCache && ( JFactory::getConfig()->get('caching') != 0 );
             $cacheLoaded = false;
@@ -172,17 +172,16 @@ if (!class_exists('Zo2Layout')) {
 
                 /* START ROW WRAPPER */
                 $customClass = $item->getCustomClass();
-                if (trim((string) $item->get('id')) != '')
-                    $html .= '<section id="' . trim($item->get('id')) . '" class="zo2-row-wrapper ' . $customClass . '">';
-                else
-                    $html .= '<section class="zo2-row-wrapper ' . $customClass . '">';
+                $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name'))));
+                $html .= '<section id="zo2-' . $id . '-wrap" class="' . $customClass . '">';
 
                 /* START CONTAINER */
 
-                $containerClass = $item->get('fullwidth') ? '' : 'container';
-                $containerClass .= ' ' . $item->getVisibilityClass();
-                if (trim($containerClass) != '') {
-                    $html .= '<div class="' . trim($containerClass) . '">';
+                $containerClass [] = $item->get('fullwidth') ? '' : 'container';
+                $containerClass = array_merge($containerClass, $item->getVisibilityClass());
+                $containerClass = trim(implode(' ', $containerClass));
+                if ($containerClass != '') {
+                    $html .= '<div class="' . $containerClass . '">';
                 } else {
                     $html .= '<div>';
                 }
@@ -315,19 +314,35 @@ if (!class_exists('Zo2Layout')) {
                 $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
                 $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
 
-                $class = 'col-md-' . $item->get('span') . ' col-sm-' . $item->get('span');
+                $class[] = 'col-md-' . $item->get('span');
+                $class[] = 'col-sm-' . $item->get('span');
                 if ($item->get('offset') != 0) {
-                    $class .= ' col-md-offset-' . $item->get('offset');
+                    $class [] = ' col-md-offset-' . $item->get('offset');
                 }
-                $class .= ' ' . $item->getVisibilityClass();
-                $customClass = ($item->get('customClass') == '') ? 'zo2-no-class' : $item->get('customClass');
-                $customClass .= ' ';
+                $class = array_merge($class, $item->getVisibilityClass());
+                $customClass = explode(' ', $item->get('customClass'));
+                $class = array_merge($class, $customClass);
+                $class = array_unique($class);
+                $gridClass = array();
+                /* Find grid core class */
+                foreach ($class as $key => $value) {
+                    if (
+                            strpos($value, 'col-xs-') !== false || strpos($value, 'col-sm-') !== false || strpos($value, 'col-md-') !== false || strpos($value, 'col-lg-') !== false) {
+                        $subs = explode('-', $value);
+                        if (count($subs) == 3) {
+                            $gridClass[$subs[0] . '-' . $subs[1]] = $subs[2];
+                        }
+                        unset($class[$key]);
+                    }
+                }
+                foreach ($gridClass as $key => $value) {
+                    $class [] = $key . '-' . $value;
+                }
+                $class = array_unique($class);
 
                 /* BEGIN COL */
-                if ($item->get('id'))
-                    $html .= '<div id="' . $item->get('id') . '" class="zo2-col ' . $customClass . $class . '">';
-                else
-                    $html .= '<div class="zo2-col ' . $customClass . $class . '">';
+                $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name', $item->get('position')))));
+                $html .= '<div id="zo2-' . $id . '" class="' . trim(implode(' ', $class)) . '">';
 
                 switch ($jdoc) {
                     case 'component':
@@ -354,15 +369,10 @@ if (!class_exists('Zo2Layout')) {
                         $template = new Zo2Template();
                         switch ($item->get('position')) {
                             case 'footer_copyright':
-                                $html .= $template->fetch('html://zo2/copyright.php');
+                                $html .= Zo2Html::_('copyright', 'render');
                                 break;
                             case 'header_logo':
-                                require_once ZO2PATH_ROOT . '/html/zo2/header_logo.php';
-                                /**
-                                 * @todo move to correct html layout instead dump class here
-                                 */
-                                $headerLogo = new Zo2Component_header_logo();
-                                $html .= $headerLogo->render();
+                                $html .= Zo2Html::_('headerlogo', 'render');
                                 break;
                             case 'mega_menu':
                                 /* Display frontend megamenu */
@@ -467,11 +477,15 @@ if (!class_exists('Zo2LayoutItem')) {
         public function getVisibilityClass() {
             $visibility = new JObject($this->get('visibility'));
             $classes = array();
-            $classes[] = ($visibility->get('xs', 0) == 1) ? '' : 'hidden-xs';
-            $classes[] = ($visibility->get('sm', 0) == 1) ? '' : 'hidden-sm';
-            $classes[] = ($visibility->get('md', 0) == 1) ? '' : 'hidden-md';
-            $classes[] = ($visibility->get('lg', 0) == 1) ? '' : 'hidden-lg';
-            return implode(' ', $classes);
+            if (!$visibility->get('xs', 0))
+                $classes[] = 'hidden-xs';
+            if (!$visibility->get('sm', 0))
+                $classes[] = 'hidden-sm';
+            if (!$visibility->get('md', 0))
+                $classes[] = 'hidden-md';
+            if (!$visibility->get('lg', 0))
+                $classes[] = 'hidden-lg';
+            return $classes;
         }
 
         /**
@@ -485,7 +499,7 @@ if (!class_exists('Zo2LayoutItem')) {
             return false;
         }
 
-        public function getCustomClass($default = 'zo2-no-class') {
+        public function getCustomClass($default = '') {
             if (trim($this->get('customClass')) == '') {
                 return $default;
             } else {

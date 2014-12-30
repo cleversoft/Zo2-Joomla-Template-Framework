@@ -99,6 +99,10 @@
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+    box-sizing: border-box;
+    -wwebkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
 }
 .col-xs-1,
 .col-xs-2,
@@ -163,7 +167,8 @@
   .col-sm-8,
   .col-sm-9,
   .col-sm-10,
-  .col-sm-11 {
+  .col-sm-11,
+  .col-sm-12{
     float: left;
   }
   .col-sm-1 {
@@ -316,7 +321,8 @@
   .col-md-8,
   .col-md-9,
   .col-md-10,
-  .col-md-11 {
+  .col-md-11,
+  .col-md-12{
     float: left;
   }
   .col-md-1 {

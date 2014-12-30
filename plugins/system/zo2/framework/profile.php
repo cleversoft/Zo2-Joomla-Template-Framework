@@ -99,65 +99,14 @@ if (!class_exists('Zo2Profile')) {
                 Zo2Factory::addLog('Loading profile', $profileFile);
                 /* Load profile data by use json file */
                 $this->loadFile($profileFile);
-                /* Profile exists but this's old format */
-                if (!$this->_check()) {
-                    /* Load and migrate into new format */
-                    $this->_loadFromOldProfile($profileFile);
-                    $this->_profileFile = $this->_profileDir . '/' . self::DEFAULT_PROFILE_NAME . '.json';
-                    $this->_profileName = self::DEFAULT_PROFILE_NAME;
-                    return $this->_save($this->_profileFile);
-                } else {
-                    /* Load profile corrected */
-                    $this->_profileFile = $profileFile;
-                    $this->_profileName = $name;
-                    return true;
-                }
-            } else { /* Profile file is not existed */
-                $this->_loadFromDatabase();
-                $this->_profileFile = $this->_profileDir . '/' . self::DEFAULT_PROFILE_NAME . '.json';
-                $this->_profileName = self::DEFAULT_PROFILE_NAME;
-                return $this->_save($this->_profileFile);
+                $this->_profileFile = $profileFile;
+                return $this->isValid();
             }
             return false;
         }
 
-        /**
-         * Load profile from old profile format
-         * @param string $profileFile
-         */
-        private function _loadFromOldProfile($profileFile) {
-            Zo2Factory::addLog('Load old profile', $profileFile, 'notice');
-            $framework = Zo2Factory::getFramework();
-            $this->template = $framework->template->template;
-            $this->name = self::DEFAULT_PROFILE_NAME;
-            $this->layout = json_decode(file_get_contents($profileFile));
-            $this->theme = new JObject(json_decode($framework->template->params->get('theme')));
-            $this->menuConfig = new JObject();
-            $this->menuConfig->hover_type = $framework->template->params->get('hover_type');
-            $this->menuConfig->nav_type = $framework->template->params->get('nav_type');
-            $this->menuConfig->animation = $framework->template->params->get('animation');
-            $this->menuConfig->duration = $framework->template->params->get('duration');
-            $this->menuConfig->menu_type = $framework->template->params->get('menu_type');
-            $this->menuConfig->mega_config = $framework->template->params->get('menu_config');
-        }
-
-        /**
-         * Load profile from database
-         */
-        private function _loadFromDatabase() {
-            Zo2Factory::addLog('Load database profile', '', 'notice');
-            $framework = Zo2Factory::getFramework();
-            $this->template = $framework->template->template;
-            $this->name = self::DEFAULT_PROFILE_NAME;
-            $this->layout = json_decode($framework->template->params->get('layout'));
-            $this->theme = new JObject(json_decode($framework->template->params->get('theme')));
-            $this->menuConfig = new JObject();
-            $this->menuConfig->hover_type = $framework->template->params->get('hover_type');
-            $this->menuConfig->nav_type = $framework->template->params->get('nav_type');
-            $this->menuConfig->animation = $framework->template->params->get('animation');
-            $this->menuConfig->duration = $framework->template->params->get('duration');
-            $this->menuConfig->menu_type = $framework->template->params->get('menu_type');
-            $this->menuConfig->mega_config = $framework->template->params->get('menu_config');
+        public function isValid() {
+            return $this->_check();
         }
 
         /**
@@ -177,15 +126,11 @@ if (!class_exists('Zo2Profile')) {
                 Zo2Factory::addLog('Invalid profile', 'Layout field is missed', 'error');
                 return false;
             }
-            if ($this->get('theme') == '') {
-                Zo2Factory::addLog('Invalid profile', 'Theme field is missed', 'error');
-                return false;
-            }
+
             if ($this->get('menuConfig') == '') {
                 Zo2Factory::addLog('Invalid profile', 'menuConfig field is missed', 'error');
                 return false;
             }
-            $this->set('theme', new JObject($this->get('theme')));
             return true;
         }
 
@@ -219,13 +164,15 @@ if (!class_exists('Zo2Profile')) {
          * @return bool
          */
         private function _save($profileFile) {
-            if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-                $buffer = json_encode($this->toArray(), JSON_PRETTY_PRINT);
-            } else {
-                $buffer = json_encode($this->toArray());
+            if ($this->isValid()) {
+                if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+                    $buffer = json_encode($this->toArray(), JSON_PRETTY_PRINT);
+                } else {
+                    $buffer = json_encode($this->toArray());
+                }
+                return JFile::write($profileFile, $buffer);
             }
-            Zo2Factory::addLog('Save profile', $profileFile, 'info');
-            return JFile::write($profileFile, $buffer);
+            return false;
         }
 
         /**
@@ -290,7 +237,13 @@ if (!class_exists('Zo2Profile')) {
             if (JFile::exists($newFilePath)) {
                 JFactory::getApplication()->enqueueMessage('Profile file existed', 'error');
             } else {
-                JFile::move($this->_profileFile, $newFilePath);
+                $this->name = $newName;
+                $this->save();
+                /* delete old file */
+                $this->delete();
+                /* reload */
+                $this->load($newName);
+                //JFile::move($this->_profileFile, $newFilePath);
                 /* Database update */
 
                 /* Get table */ $table = JTable::getInstance('Style', 'TemplatesTable');
@@ -319,6 +272,73 @@ if (!class_exists('Zo2Profile')) {
                 }
             }
             return false;
+        }
+
+        public function getThemeStylesheet() {
+            $style = array();
+            $themeData = get_object_vars($this->theme);
+            /* Background */
+            if (!empty($themeData['background']))
+                $style [] = 'body{background-color:' . $themeData['background'] . ';}';
+            /* Header */
+            if (!empty($themeData['header']))
+                $style [] = '#zo2-header{background-color:' . $themeData['header'] . ';}';
+            /* Header top */
+            if (!empty($themeData['header_top']))
+                $style [] = '#zo2-header-top{background-color:' . $themeData['header_top'] . ';}';
+            /* Text */
+            if (!empty($themeData['text']))
+                $style [] = 'body{color:' . $themeData['text'] . ';}';
+            /* Link */
+            if (!empty($themeData['link']))
+                $style [] = 'a{color:' . $themeData['link'] . ';}';
+            /* Link hover */
+            if (!empty($themeData['link_hover']))
+                $style [] = 'a:hover{color:' . $themeData['link_hover'] . ';}';
+            /* Bottom1 */
+            if (!empty($themeData['bottom1']))
+                $style [] = '#zo2-bottom1{background-color:' . $themeData['bottom1'] . ';}';
+            /* Bottom2 */
+            if (!empty($themeData['bottom2']))
+                $style [] = '#zo2-bottom2{background-color:' . $themeData['bottom2'] . ';}';
+            /* Footer */
+            if (!empty($themeData['footer']))
+                $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . ';}';
+            if (!empty($themeData['boxed']) && $themeData['boxed'] == 1) {
+                if (!empty($themeData['bg_image']) || !empty($themeData['bg_pattern'])) {
+                    $backgroundImage = !empty($themeData['bg_image']) ? $themeData['bg_image'] : $themeData['bg_pattern'];
+                    $backgroundImage = JUri::root() . '/' . $backgroundImage;
+                    $backgroundImage = str_replace('\\', '/', $backgroundImage);
+                }
+                if (!empty($backgroundImage))
+                    $style [] = 'body.boxed{background-image:url("' . $backgroundImage . '");}';
+            }
+
+            return implode( PHP_EOL, $style);
+        }
+
+        public function isDefault() {
+            if ($this->get('name') == 'default') {
+                return true;
+            }
+        }
+
+        /**
+         * 
+         * @param type $action
+         * @return boolean
+         */
+        public function authorise($action) {
+            switch ($action) {
+                case 'saveAs':
+                    return true;
+                case 'rename';
+                    return !$this->isDefault();
+                case 'delete';
+                    return !$this->isDefault();
+                default:
+                    return true;
+            }
         }
 
     }

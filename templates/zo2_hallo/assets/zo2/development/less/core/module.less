@@ -1,0 +1,152 @@
+/* ================== Global variables ================== */
+@import "mixins";
+@import "variables";
+
+/* ================== Module ==================== */
+h3.moduletitle{
+  font-size: @baseFontSize + 6;
+  font-weight: 300;
+  line-height: normal;
+  margin: 0 0 20px;
+  padding-bottom: 25px;
+  color: #2d3d51;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  position: relative;
+  &:after{
+    position: absolute;
+    content: "";
+    .size(50px, 1px);
+    bottom: -1px;
+    left: 0;
+    background-color: rgba(0,0,0,0.9);
+  }
+}
+#zo2-bottom-2-wrap{
+  h3{
+    &.moduletitle{
+      border-bottom-color: rgba(255,255,255,0.1);
+      &:after{
+        background-color: rgba(255,255,255,0.9);
+      }
+    }
+  }
+}
+#zo2-bottom-2-wrap{
+  h3{
+    &.moduletitle{
+      color: @white;
+      font-size: @baseFontSize + 8;
+    }
+  }
+}
+.no-line h3.moduletitle{
+  background: none;
+}
+
+/* ==================== Breadcrumb ==================== */
+.breadcrumb{
+  .border-radius(0px);
+}
+
+/* ==================== Category ====================== */
+ul.categories-module{
+  li  {
+    border-bottom: 1px solid #eaeaea;
+    color: #333;
+    padding: 10px 5px;
+    display: block;
+    line-height: @baseLineHeight * 2;
+    i{
+      float: left;
+      padding-right: 10px;
+    }
+    h2, h3, h4, h5, h6{
+      margin: 0;
+      text-transform: none;
+    }
+    a{
+      color: #4f4f4f;
+      display: block;
+      font-size: @baseFontSize - 1;
+    }
+    &:hover,
+    &.active{
+      color: #7fbe54;
+      a{
+        color: #7fbe54;
+      }
+    }
+  }
+}
+
+/* ==================== Archive module ================= */
+ul.archive-module{
+  li  {
+    padding: 10px 5px;
+    display: block;
+    .box-shadow(0px 1px 0px 0px rgba(0,0,0,0.07));
+    a {
+      display: block;
+    }
+    &:hover, &.active{
+      color: #333;
+      background: #f8f8f8;
+      a {
+        color: #333;
+        background: #f8f8f8;
+      }
+    }
+  }
+}
+
+/* ================= Popular tags ===================== */
+.tagspopular{
+  ul{
+    li {
+      float: left;
+      display: inline-block;
+      padding-right: 6px;
+      margin: 3px 0;
+      a {
+        display: block;
+        padding: 4px 15px;
+        background-color: #f2f2f2;
+        background-repeat: no-repeat;
+        background-position: 0 50%;
+        color: #666;
+        font-size: @baseFontSize - 3;
+        &:hover{
+          background-color: #333333;
+          color: @white;
+        }
+      }
+    }
+  }
+}
+
+/* ================= Most read ===================== */
+ul.mostread{
+  li {
+    float: left;
+    display: inline-block;
+    padding-right: 6px;
+    margin: 3px 0;
+    a {
+      display: block;
+      padding: 4px 15px;
+      border: 1px solid #e8e8e8;
+      color: #666;
+      font-size: @baseFontSize - 3;
+      &:hover {
+        background-color: #333333;
+        padding: 4px 17px 4px 15px;
+        color: @white;
+      }
+    }
+  }
+}
+
+
+
+
+

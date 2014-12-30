@@ -1,7 +1,7 @@
 #Zo2 Framework
 Zo2 Framework is a Joomla template framework, built from scratch, and heavily support Bootstrap framework and LESS. Zo2 Framework comes with Drag & drop layout builder which allows you to create any number of stunning and unique layouts up to 5x faster than traditional way.
 
-##Features
+## Features
 
 1. Layout Profiles Manager
 	+ Add/Rename/Delete Layout Profile
@@ -11,17 +11,16 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	+ Component
 	+ Smoother drag drop
 	+ Advanced grid and responsive settings based on Twitter Bootstrap 3
-3. Mega Menu
+3. Menu
 	+ Menu builder from backend
-4. Support Twitter Bootstrap CSS framework
-	+ Integrate Twitter Bootstrap
-	+ Font Awesome Icons
+	+ Sticky Menu
+	+ Off-Canvas menu
+4. Support Bootstrap framework
+	+ Integrate Bootstrap
 	+ Responsive layout
 	+ Typography
 	+ Mobile supported
-5. Shortcode
-	+ Shortcode structure
-	+ OOP for shortcode
+5. Font Awesome Icons	
 6. Fonts Options
 	+ Choose from hundreds Google Web Fonts with live preview
 	+ Support FontDeck
@@ -33,14 +32,14 @@ Zo2 Framework is a Joomla template framework, built from scratch, and heavily su
 	+ Integrate LESS compiler
 
 
-##Download
-
-The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
-
-##Demo
+## Demo
 [http://demo.zo2framework.org](http://demo.zo2framework.org)
 
-##Release
+## Download
+
+The latest version (v1.4.3): [ZO2 Framework](http://www.zootemplate.com/zo2)
+
+## Release
 
 1. Version 1.0.0: released on December 07th, 2013
 2. Version 1.1.0: released on December 24th, 2013
@@ -58,59 +57,34 @@ The latest version (v1.4.1): [ZO2 Framework](http://www.zootemplate.com/zo2)
 14. Version 1.3.9: released on May 31, 2014
 15. Version 1.4.0: released on August 20, 2014
 16. Version 1.4.1: released on Sep 06, 2014
+17. Version 1.4.2: released on Sep 26, 2014
+18. Version 1.4.3: released on Dec 30, 2014
 
 ## Roadmap
 
-**1.2.1: Dec 30, 2013 - Jan 06, 2014**
+**2.0: Jan, 2015 - Feb, 2015**
 
-     + socialshare
-     + shortcodes update with adding layout
-     + bugs fix
-     + move googlefont json into assets/vendor/
-     + Keep cleanup all formfields to use Zo2Assets intead JDocument
-     + remove timthumb.php
-     
-**1.3.x: Jan 06, 2024 - Mar 31, 2014**
 
-     + allow extend json config in template
-     + refactor for json config file structure / format
-          + assets.json: list of assets files will be load          
-     + improve loadAssets via json config file
-     + improve Zo2Framework
-          + remove compileLess
-          + remove getSystemPluginPath
-          + remove getPluginPath          
-     + force all assets follow structure (plugin & template)
-     + bring shortcodes into standard package
-     + bugs fix
-     
-**1.4:**
+##Contributing
 
-     + refactor ajax
-          + complete of twitter styles
-          + allow enter without params (use default)
-          + button:
-               + provide as form to input value than generate everything
-     + bugs fix
-     
-**1.5:**
+Everyone is welcome to help contribute and improve this project. There are several ways you can contribute:
 
-     + backend ajax
+* Reporting issues (please read [issue guidelines](https://github.com/necolas/issue-guidelines))
+* Suggesting new features
+* Writing or refactoring code
+* Fixing [issues](https://github.com/cleversoft/zo2/issues)
+* Replying to questions on [the forum](http://www.zootemplate.com/zo2-support)
 
-##Bug tracking
+##Support
 
-Found a bug or have a feature request? Feel free to open an issue via this link:
-
-[https://github.com/cleversoft/zo2/issues](https://github.com/cleversoft/zo2/issues)
+Use the [Zo2 Support](http://www.zootemplate.com/zo2-support) to ask questions and get support.
 
 
 ##Documents
 
-[http://docs.zootemplate.com/category/zo2](http://docs.zootemplate.com/category/zo2)
+[Zo2 Documents](http://docs.zootemplate.com/category/zo2)
 
-## All Questions
 
-[http://www.zootemplate.com/zo2-support](http://www.zootemplate.com/zo2-support)
 ##Copyright, License & Usage
 
 Copyright (c) 2008 - 2014 [CleverSoft Solutions](http://cleversoft.co)

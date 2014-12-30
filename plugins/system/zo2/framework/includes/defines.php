@@ -13,6 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 define('ZO2', 'zo2');
+define('ZO2_VERSION', '1.4.3');
 
 define('JURL_ROOT', rtrim(JUri::root(), '/'));
 /**
