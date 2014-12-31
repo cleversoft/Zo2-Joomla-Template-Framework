@@ -406,7 +406,6 @@
                 $col.attr('data-zo2-position', position);
                 $col.find('>.col-wrap>.col-name').text(colName);
                 $('#colSettingsModal').modal('hide');
-                _self._updateSpanSize($col.closest('.col-container'));
                 return false;
             });
             $('#btnSaveRowSettings').on('click', function() {
