@@ -2,6 +2,7 @@
 $jDoc = $row->getJdoc();
 $blockName = $row->get('name');
 $jDocName = $jDoc->get('name');
+$children = $row->get('children', array());
 ?>
 <div class="sortable-row <?php echo $row->getClass(); ?> <?php echo $child ? 'child' : 'parent'; ?>"
      id="zo2-<?php echo $blockName; ?>"
@@ -12,25 +13,23 @@ $jDocName = $jDoc->get('name');
             <div class="row-name pull-left"><span class="label label-default"><?php echo $row->get('name'); ?></span></div>
             <hr />
             <div class="row-controls pull-right">
-                <i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>
-                <i title="Row's settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>
-                <i title="Add new row" class="row-control-icon duplicate fa fa-align-justify hasTooltip"></i>
-                <i title="Add new col" class="row-control-icon add-column fa fa-columns hasTooltip"></i>
-                <i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>
+                <?php echo $row->getControls(); ?>
             </div>
         </div>
 
-        <div class="children-container sortable-row connectedSortable">
-            <?php
-            $children = $row->get('children');
-            if (count($children) > 0) {
-                foreach ($children as $child) {
-                    $this->set('child', true);
-                    $this->set('row', new Zo2LayoutbuilderRow($child));
-                    $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
+        <?php if (count($children) > 0) : ?>
+            <div class="children-container sortable-row connectedSortable">
+                <?php
+                {
+                    foreach ($children as $child)
+                    {
+                        $this->set('child', true);
+                        $this->set('row', new Zo2LayoutbuilderRow($child));
+                        $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
+                    }
                 }
-            }
-            ?>
-        </div>
+                ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>

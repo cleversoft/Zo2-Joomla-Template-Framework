@@ -146,6 +146,27 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             return implode(' ', $class);
         }
 
+        /**
+         * 
+         * @param array $controls
+         * @return string
+         */
+        public function getControls($controls = array())
+        {
+            $default = array(
+                'drag' => 'fa fa-arrows row-control-icon dragger hasTooltip',
+                'settings' => 'fa fa-cog row-control-icon settings hasTooltip',
+                'remove' => 'row-control-icon delete fa fa-remove hasTooltip'
+            );
+            $controls = array_merge($default, $controls);
+            $html = array();
+            foreach ($controls as $title => $class)
+            {
+                $html [] = '<i title="' . $title . '" class="' . $class . '"></i>';
+            }
+            return implode(PHP_EOL, $html);
+        }
+
     }
 
 }
