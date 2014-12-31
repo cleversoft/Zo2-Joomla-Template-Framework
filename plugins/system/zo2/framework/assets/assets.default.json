@@ -2,7 +2,7 @@
     "frontend": {
         "css": [
             "vendor\/bootstrap\/3.3.1\/css\/bootstrap.min.css",
-            "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
+            "vendor\/font-awesome\/css\/font-awesome.min.css",
             "zo2\/css\/site.styles.css",
             "zo2\/css\/template.css"
         ],
@@ -17,7 +17,7 @@
     },
     "backend": {
         "css": [
-            "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
+            "vendor\/font-awesome\/css\/font-awesome.min.css",
             "vendor\/bootstrap\/addons\/gridsystem\/bootstrap.gridsystem.css",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/css\/bootstrap-colorpicker.css",
             "vendor\/fontselect\/fontselect.css",
