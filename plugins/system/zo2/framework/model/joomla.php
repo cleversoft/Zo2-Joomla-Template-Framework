@@ -19,17 +19,18 @@ if (!class_exists('Zo2ModelJoomla'))
     {
 
         /**
-         * Bind some zo2 params to jform params
+         * Save zo2 data into template params and exclude it in zo2
+         * @param type $zo2Data
+         * @param type $joomlaData
+         * @return boolean
          */
-        public function bindTemplateParams()
+        public function saveTemplateParams(&$zo2Data, $joomlaData)
         {
             $joomlaFile = Zo2Path::getInstance()->getPath('Zo2://assets/joomla.json');
             if ($joomlaFile)
             {
                 $data = json_decode(file_get_contents($joomlaFile));
                 $jinput = JFactory::getApplication()->input;
-                $zo2Data = $jinput->get('zo2', array(), 'array');
-                $joomlaData = $jinput->get('jform', array(), 'array');
                 $params = array();
                 foreach ($zo2Data as $key => $value)
                 {
