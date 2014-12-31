@@ -33,12 +33,47 @@
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_MEGAMENU">
             <field name="menu" type="megamenu" />
         </fieldset>     
-        <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_ADVANCED">
+        <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_ADVANCED">            
+            <field name="enable_rtl" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RTL" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="enable_styleswitcher" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_STYLESWITCHER" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="enable_stickymenu" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_STICKYMENU" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_OPTIMIZE" />
+            <field name="enable_minify_css" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_MINIFY_CSS" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="enable_minify_js" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_MINIFY_JS" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="enable_combine_css" type="list" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_COMBINE_CSS" description="">
+                <option value="0">JNO</option>
+                <option value="file">ZO2_ADMIN_FIELD_LABEL_COMBINE_CSS_FILES</option>
+                <option value="gzip">ZO2_ADMIN_FIELD_LABEL_GZIP_CSS_FILE</option>
+            </field>
+            <field name="enable_combine_js" type="list" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_COMBINE_JS" description="">
+                <option value="0">JNO</option>
+                <option value="file">ZO2_ADMIN_FIELD_LABEL_COMBINE_JS_FILES</option>
+                <option value="gzip">ZO2_ADMIN_FIELD_LABEL_GZIP_JS_FILE</option>
+            </field>
             <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_SOCIAL_NETWORK" />
             <field name="socialnetwork_facebook" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_FACEBOOK" description="" size="10" />
             <field name="socialnetwork_googleplus" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_GOOGLEPLUS" description="" size="10" />
             <field name="socialnetwork_twitter" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_TWITTER" description="" size="10" />
             <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_DEVELOPER" />
+            <field name="custom_code_after_open_head" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_CUSTOM_CODE_AFTER_HEAD" description="" rows="10" cols="10" filter="raw" />
+            <field name="custom_code_before_close_head" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_CUSTOM_CODE_BEFORE_HEAD" description="" rows="10" cols="10" filter="raw" />
+            <field name="custom_code_after_open_body" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_CUSTOM_CODE_AFTER_BODY" description="" rows="10" cols="10" filter="raw" />
+            <field name="custom_code_before_close_body" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_CUSTOM_CODE_BEFORE_BODY" description="" rows="10" cols="10" filter="raw" />
             <field name="enable_development_mode" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_DEVELOPMENT_MODE" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
