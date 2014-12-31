@@ -39,9 +39,12 @@ if (!class_exists('Zo2Admin'))
         {
             // get the JForm object
             $form = JForm::getInstance('zo2form', ZO2PATH_ROOT . '/assets/admin.xml');
+            $profileData = Zo2Framework::getInstance()->profile->toArray();
+            $templateData = Zo2Framework::getInstance()->template->params->toArray();
+            $data = array_merge($templateData, $profileData);
             // Prepare saved data to form
             $data = array(
-                'zo2' => Zo2Framework::getInstance()->profile->toArray()
+                'zo2' => $data
             );
             $form->bind($data);
             $html = new Zo2Html();

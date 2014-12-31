@@ -49,8 +49,8 @@ if (!class_exists('Zo2Framework'))
 
         public static function getGlobalParam($name, $default = null)
         {
-            return self::getInstance()->profile->get($name, $default);
-            //return self::getInstance()->template->params->get($name, $default);
+
+            return self::getInstance()->template->params->get($name, $default);
         }
 
         public static function getProfileParams($name, $default = null)
@@ -116,7 +116,7 @@ if (!class_exists('Zo2Framework'))
          */
         public static function isDevelopmentMode()
         {
-            return self::getInstance()->template->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
+            return self::getInstance()->template->params->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
         }
 
         /**
@@ -128,9 +128,10 @@ if (!class_exists('Zo2Framework'))
             if ($jinput->get('option') == 'com_templates')
             {
                 $task = $jinput->get('task');
-                $zo2Data = $jinput->get('zo2', array(), 'array');
                 $joomlaModel = new Zo2ModelJoomla();
                 $joomlaModel->bindTemplateParams();
+                // Get Zo2 data. It's already modified after bindTemplateParams above
+                $zo2Data = $jinput->post->get('zo2', array(), 'array');
                 switch ($task)
                 {
                     // Save data to current profile
