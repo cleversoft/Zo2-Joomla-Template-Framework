@@ -53,7 +53,7 @@ if (!class_exists('Zo2Framework'))
             return self::getInstance()->template->params->get($name, $default);
         }
 
-        public static function getProfileParams($name, $default = null)
+        public static function getProfileParam($name, $default = null)
         {
             return self::getInstance()->profile->get($name, $default);
         }
@@ -128,7 +128,7 @@ if (!class_exists('Zo2Framework'))
             if ($jinput->get('option') == 'com_templates')
             {
                 $task = $jinput->get('task');
-                $zo2Data = $jinput->get('zo2', array(), 'array');
+                $zo2Data = $jinput->get('zo2', array(), 'array');              
                 $joomlaData = $jinput->get('jform', array(), 'array');
                 $joomlaModel = new Zo2ModelJoomla();
                 $joomlaModel->saveTemplateParams($zo2Data, $joomlaData);
