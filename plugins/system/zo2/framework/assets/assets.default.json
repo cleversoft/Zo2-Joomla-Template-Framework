@@ -3,13 +3,13 @@
         "css": [
             "vendor\/bootstrap\/3.3.1\/css\/bootstrap.min.css",
             "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
-            "zo2\/css\/site.styles.css",            
+            "zo2\/css\/site.styles.css",
             "zo2\/css\/template.css"
         ],
         "js": [
             "vendor\/bootstrap\/3.3.1\/js\/bootstrap.min.js",
             "vendor\/ekko-lightbox.js",
-            "vendor\/jquery.sticky.js",         
+            "vendor\/jquery.sticky.js",
             "zo2\/js\/zo2.js",
             "zo2\/js\/site.megamenu.js",
             "zo2\/js\/site.scripts.js"
@@ -17,8 +17,8 @@
     },
     "backend": {
         "css": [
-            "vendor\/bootstrap\/3.3.1\/css\/bootstrap.min.css",
             "vendor\/bootstrap\/addons\/font-awesome\/css\/font-awesome.min.css",
+            "vendor\/bootstrap\/addons\/gridsystem\/bootstrap.gridsystem.css",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/css\/bootstrap-colorpicker.css",
             "vendor\/fontselect\/fontselect.css",
             "vendor\/fontello\/css\/fontello.css",
