@@ -1,6 +1,19 @@
 <?php
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
+
 $jDoc = $row->getJdoc();
 $jDocName = $jDoc->get('name');
+$jDocStyle = $jDoc->get('style', 'xhtml');
 $rowName = $row->get('name');
 ?>
 <section 
@@ -13,12 +26,12 @@ $rowName = $row->get('name');
         /* Modules position */
         case 'modules':
             echo '<div id="position-' . $jDocName . '" class="modules-' . $row->countModules($jDocName) . '">';
-            echo '<jdoc:include type="modules" name="' . $jDocName . '" />';
+            echo '<jdoc:include type="modules" name="' . $jDocName . '" style="' . $jDocStyle . '" />';
             echo '</div>';
             break;
         case 'module':
             echo '<div id="mod-' . $jDocName . '" >';
-            echo '<jdoc:include type="module" name="' . $jDocName . '" />';
+            echo '<jdoc:include type="module" name="' . $jDocName . '" style="' . $jDocStyle . '" />';
             echo '</div>';
             break;
         case 'component':
