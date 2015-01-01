@@ -3,9 +3,8 @@
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
- *
- * @version     1.4.3
- * @since       1.4.3
+ * 
+ * @since       2.0.0
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
@@ -14,12 +13,20 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2HelperClasses'))
 {
 
     class Zo2HelperClasses
     {
 
+        /**
+         * 
+         * @param type $class
+         * @return array
+         */
         public static function extract($class)
         {
             $classes = explode(' ', $class);
@@ -29,7 +36,8 @@ if (!class_exists('Zo2HelperClasses'))
                 if (strpos($class, '-') !== false)
                 {
                     $parts = explode('-', $class);
-                    $array[$parts[0]] = $parts[1];
+                    $type = array_shift($parts);
+                    $array[$type] = implode('-', $parts);
                 } else
                 {
                     $array['classes'][] = $class;
