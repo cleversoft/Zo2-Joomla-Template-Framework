@@ -41,3 +41,14 @@
 /plugins/captcha/*
 /plugins/extension/*
 /plugins/system/*
+tmp/
+logs/
+LICENSE.txt
+administrator/index.php
+configuration.php
+htaccess.txt
+index.php
+plugins/index.html
+robots.txt
+templates/index.html
+web.config.txt
