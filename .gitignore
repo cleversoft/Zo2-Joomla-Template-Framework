@@ -10,7 +10,7 @@
 /language/*
 /modules/*
 /images/*
-*cli/*
+*/cli/*
 /templates/beez3/*
 /templates/protostar/*
 /templates/rt_afterburner2/*
@@ -40,9 +40,9 @@
 /plugins/system/languagecode/*
 /plugins/captcha/*
 /plugins/extension/*
-/plugins/system/*
-tmp/
-logs/
+
+/tmp/*
+/logs/*
 LICENSE.txt
 administrator/index.php
 configuration.php
@@ -52,3 +52,9 @@ plugins/index.html
 robots.txt
 templates/index.html
 web.config.txt
+plugins/system/cache/
+plugins/system/debug/
+cli/
+plugins/system/sef/
+plugins/system/rokextender/
+plugins/system/highlight/
