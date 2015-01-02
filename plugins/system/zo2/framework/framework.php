@@ -29,6 +29,11 @@ if (!class_exists('Zo2Framework'))
          * @var Zo2Template
          */
         public $template;
+
+        /**
+         * Global variables
+         * @var array
+         */
         private $_vars = array();
 
         /**
@@ -37,6 +42,11 @@ if (!class_exists('Zo2Framework'))
          */
         public $profile;
 
+        /**
+         * 
+         * @staticvar Zo2Framework $instance
+         * @return \Zo2Framework
+         */
         public static function getInstance()
         {
             static $instance;
@@ -47,12 +57,24 @@ if (!class_exists('Zo2Framework'))
             return $instance;
         }
 
+        /**
+         * 
+         * @param type $name
+         * @param type $default
+         * @return type
+         */
         public static function getGlobalParam($name, $default = null)
         {
 
             return self::getInstance()->template->params->get($name, $default);
         }
 
+        /**
+         * 
+         * @param type $name
+         * @param type $default
+         * @return type
+         */
         public static function getProfileParam($name, $default = null)
         {
             return self::getInstance()->profile->get($name, $default);
@@ -65,7 +87,14 @@ if (!class_exists('Zo2Framework'))
          */
         public static function message($message, $type = 'message')
         {
-            JFactory::getApplication()->enqueueMessage($message, $type);
+            if (self::isAjax())
+            {
+                $ajax = Zo2Ajax::getInstance();
+                $ajax->addMessage($message, '', $type);
+            } else
+            {
+                JFactory::getApplication()->enqueueMessage($message, $type);
+            }
         }
 
         public static function importVendor($name)
@@ -89,7 +118,7 @@ if (!class_exists('Zo2Framework'))
                 $func = $task[1];
                 $respond = call_user_func_array(array($model, $func), array());
             }
-            if ($jinput->getInt('zo2_ajax'))
+            if (self::isAjax())
             {
                 echo Zo2Ajax::getInstance()->response();
             }
@@ -119,6 +148,12 @@ if (!class_exists('Zo2Framework'))
             return self::getInstance()->template->params->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
         }
 
+        public static function isAjax()
+        {
+            $jinput = JFactory::getApplication()->input;
+            return (bool) $jinput->getInt('zo2_ajax');
+        }
+
         /**
          * This func will hook into Joomla process before it's dispatched to component
          */
@@ -128,7 +163,7 @@ if (!class_exists('Zo2Framework'))
             if ($jinput->get('option') == 'com_templates')
             {
                 $task = $jinput->get('task');
-                $zo2Data = $jinput->get('zo2', array(), 'array');              
+                $zo2Data = $jinput->get('zo2', array(), 'array');
                 $joomlaData = $jinput->get('jform', array(), 'array');
                 $joomlaModel = new Zo2ModelJoomla();
                 $joomlaModel->saveTemplateParams($zo2Data, $joomlaData);
