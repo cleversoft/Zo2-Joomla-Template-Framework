@@ -33,6 +33,10 @@ if (!class_exists('Zo2Admin'))
             $framework->template = new Zo2Template($model->getTemplate(JFactory::getApplication()->input->getInt('id')));
             $framework->profile = new Zo2Profile();
             $framework->profile->loadFile($this->getRequestProfile());
+            if (Zo2Framework::isDevelopmentMode())
+            {
+                Zo2Assets::getInstance()->build();
+            }
         }
 
         public function render()

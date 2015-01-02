@@ -1,5 +1,8 @@
 {
     "less": [
         "Zo2://assets/less/admin.less"
+    ],
+    "js": [
+        "Zo2://assets/js/menu.js"
     ]
 }

@@ -1,0 +1,5 @@
+<?php
+
+use MatthiasMullie\Minify;
+
+?>

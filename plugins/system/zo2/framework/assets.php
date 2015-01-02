@@ -147,6 +147,12 @@ if (!class_exists('Zo2Assets'))
             return $this;
         }
 
+        public function build()
+        {
+            $model = new Zo2ModelAssets();
+            $model->build();
+        }
+
         private function _prepareRender()
         {
 

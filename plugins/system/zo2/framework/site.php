@@ -35,6 +35,10 @@ if (!class_exists('Zo2Site'))
             $framework->template = new Zo2Template(JFactory::getApplication()->getTemplate(true));
             $framework->profile = new Zo2Profile();
             $framework->profile->loadFile($this->getRequestProfile());
+            if (Zo2Framework::isDevelopmentMode())
+            {
+                Zo2Assets::getInstance()->build();
+            }
         }
 
         /**
