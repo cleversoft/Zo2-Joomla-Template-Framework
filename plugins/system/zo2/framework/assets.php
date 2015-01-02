@@ -149,16 +149,68 @@ if (!class_exists('Zo2Assets'))
 
         private function _prepareRender()
         {
-            if (Zo2Framework::getInstance()->template->params->get('enable_scripts_minify'))
+
+            switch (Zo2Framework::getGlobalParam('enable_combine_css'))
             {
-                foreach ($this->_stylesheets as $path => $url)
-                {
-                    $assets[] = '<link rel="stylesheet" href="' . $url . '" type="text/css" />';
-                }
-                foreach ($this->_javascripts as $path => $url)
-                {
-                    $assets[] = '';
-                }
+                // Combine to one css file
+                case 'file':
+                    // Generate hash file based on configured
+                    $cssData[] = JFactory::getApplication()->isSite();
+                    $cssData[] = Zo2Framework::getGlobalParam('enable_minify_css');
+                    $cssData[] = $this->_stylesheets;
+                    $cssFileName = Zo2HelperEncode::md5($cssData) . '.css';
+                    $jsData[] = JFactory::getApplication()->isSite();
+                    $jsData[] = Zo2Framework::getGlobalParam('enable_minify_js');
+                    $jsData[] = $this->_javascripts;
+                    $jsFileName = Zo2HelperEncode::md5($jsData) . '.js';
+
+                    $cssFile = ZO2PATH_CACHE . '/' . $cssFileName;
+                    $jsFile = ZO2PATH_CACHE . '/' . $jsFileName;
+
+                    $flag = !JFile::exists($cssFile) || Zo2Framework::isDevelopmentMode();
+                    if ($flag)
+                    {
+                        // Combine css
+                        foreach ($this->_stylesheets as $cssKey => $stylesheet)
+                        {
+                            if (JFile::exists($cssKey))
+                            {
+                                $cssBuffer [] = file_get_contents($cssKey);
+                            }
+                        }
+                        if (!empty($cssBuffer))
+                        {
+                            $cssBuffer = implode(PHP_EOL, $cssBuffer);
+                            if (Zo2Framework::getGlobalParam('enable_minify_css'))
+                            {
+                                $cssBuffer = Zo2HelperMinify::css($cssBuffer);
+                            }
+                            JFile::write($cssFile, $cssBuffer);
+                        }
+                        // Combine js
+                        foreach ($this->_javascripts as $jsKey => $js)
+                        {
+                            if (JFile::exists($jsKey))
+                            {
+                                $jsBuffer [] = file_get_contents($jsKey);
+                            }
+                        }
+                        if (!empty($jsBuffer))
+                        {
+                            $jsBuffer = implode(PHP_EOL, $jsBuffer);
+                            if (Zo2Framework::getGlobalParam('enable_minify_js'))
+                            {
+                                $jsBuffer = Zo2HelperMinify::css($jsBuffer);
+                            }
+                            JFile::write($jsFile, $jsBuffer);
+                        }
+                    }
+// Reset all old stylesheet and replace by combined file 
+                    $this->_stylesheets = array();
+                    $this->_stylesheets[] = ZO2URL_CACHE . '/' . $cssFileName;
+                    $this->_javascripts = array();
+                    $this->_javascripts[] = ZO2URL_CACHE . '/' . $jsFileName;
+                    break;
             }
         }
 
@@ -168,30 +220,20 @@ if (!class_exists('Zo2Assets'))
          */
         public function render()
         {
-            $optimze = Zo2Framework::getInstance()->profile->get('enable_scripts_optimize', 'none');
-            $assets = array();
-            switch ($optimze)
+            $this->_prepareRender();
             {
-                case 'gzip':
-                    $assets[] = '<link rel="stylesheet" href="' . Zo2Path::getInstance()->getUrl('Template://css/gzip.php') . '" type="text/css" />';
-                    $assets[] = '<script src="' . Zo2Path::getInstance()->getUrl('Template://js/gzip.php') . '" type="text/javascript"></script>';
-                    break;
-                case 'files_combie':
-                    $assets[] = '<link rel="stylesheet" href="' . Zo2Path::getInstance()->getUrl('Template://css/combined.css') . '" type="text/css" />';
-                    $assets[] = '<script src="' . Zo2Path::getInstance()->getUrl('Template://js/combined.js') . '" type="text/javascript"></script>';
-                    break;
-                case 'none':
-                default:
-                    foreach ($this->_stylesheets as $path => $url)
-                    {
-                        $assets[] = '<link rel="stylesheet" href="' . $url . '" type="text/css" />';
-                    }
-                    foreach ($this->_javascripts as $path => $url)
-                    {
-                        $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
-                    }
+
+                foreach ($this->_stylesheets as $url)
+                {
+                    $assets[] = '<link rel="stylesheet" href="' . $url . '" type="text/css" />';
+                }
+                foreach ($this->_javascripts as $url)
+                {
+                    $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
+                }
+
+                return implode(PHP_EOL, $assets);
             }
-            return implode(PHP_EOL, $assets);
         }
 
     }
