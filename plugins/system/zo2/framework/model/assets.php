@@ -39,6 +39,93 @@ if (!class_exists('Zo2ModelAssets'))
 
         /**
          * 
+         * @param type $cssFiles
+         * @return boolean|string
+         */
+        public function combineCss($cssFiles)
+        {
+            // Generate hash file based on configured
+            $cssData[] = JFactory::getApplication()->isSite();
+            $cssData[] = Zo2Framework::getGlobalParam('enable_minify_css');
+            $cssData[] = $cssFiles;
+            $cssFileName = Zo2HelperEncode::md5($cssData) . '.css';
+
+            $cssFile = ZO2PATH_CACHE . '/' . $cssFileName;
+
+            $flag = !JFile::exists($cssFile) || Zo2Framework::isDevelopmentMode();
+            if ($flag)
+            {
+                // Combine css
+                foreach ($cssFiles as $cssKey => $stylesheet)
+                {
+                    if (JFile::exists($cssKey))
+                    {
+                        $cssBuffer [] = file_get_contents($cssKey);
+                    }
+                }
+                if (!empty($cssBuffer))
+                {
+                    $cssBuffer = implode(PHP_EOL, $cssBuffer);
+                    // Minify buffer if needed
+                    if (Zo2Framework::getGlobalParam('enable_minify_css'))
+                    {
+                        $cssBuffer = Zo2HelperMinify::css($cssBuffer);
+                    }
+                    JFile::write($cssFile, $cssBuffer);
+                }
+            }
+            if (JFile::exists($cssFile))
+            {
+                return $cssFileName;
+            }
+            return false;
+        }
+
+        /**
+         * 
+         * @param type $jsFiles
+         * @return boolean|string
+         */
+        public function combineJs($jsFiles)
+        {
+            $jsData[] = JFactory::getApplication()->isSite();
+            $jsData[] = Zo2Framework::getGlobalParam('enable_minify_js');
+            $jsData[] = $jsFiles;
+            $jsFileName = Zo2HelperEncode::md5($jsData) . '.js';
+
+            $jsFile = ZO2PATH_CACHE . '/' . $jsFileName;
+
+            $flag = !JFile::exists($jsFile) || Zo2Framework::isDevelopmentMode();
+            if ($flag)
+            {
+                // Combine js
+                foreach ($jsFiles as $jsKey => $js)
+                {
+                    if (JFile::exists($jsKey))
+                    {
+                        $jsBuffer [] = file_get_contents($jsKey);
+                    }
+                }
+                if (!empty($jsBuffer))
+                {
+                    $jsBuffer = implode(PHP_EOL, $jsBuffer);
+                    // Minify buffer if needed
+                    if (Zo2Framework::getGlobalParam('enable_minify_js'))
+                    {
+                        $jsBuffer = Zo2HelperMinify::js($jsBuffer);
+                    }
+                    JFile::write($jsFile, $jsBuffer);
+                }
+            }
+            if (JFile::exists($jsFile))
+            {
+                return $jsFileName;
+            }
+            return false;
+        }
+
+        /**
+         * 
          * @param type $assets
          * @return boolean
          */

@@ -163,79 +163,49 @@ if (!class_exists('Zo2Assets'))
             {
                 // Combine to one css file
                 case 'file':
-                    // Generate hash file based on configured
-                    $cssData[] = JFactory::getApplication()->isSite();
-                    $cssData[] = Zo2Framework::getGlobalParam('enable_minify_css');
-                    $cssData[] = $this->_stylesheets;
-                    $cssFileName = Zo2HelperEncode::md5($cssData) . '.css';
-
-                    $cssFile = ZO2PATH_CACHE . '/' . $cssFileName;
-
-                    $flag = !JFile::exists($cssFile) || Zo2Framework::isDevelopmentMode();
-                    if ($flag)
+                    $model = new Zo2ModelAssets();
+                    $cssFileName = $model->combineCss($this->_stylesheets);
+                    if ($cssFileName)
                     {
-                        // Combine css
-                        foreach ($this->_stylesheets as $cssKey => $stylesheet)
-                        {
-                            if (JFile::exists($cssKey))
-                            {
-                                $cssBuffer [] = file_get_contents($cssKey);
-                            }
-                        }
-                        if (!empty($cssBuffer))
-                        {
-                            $cssBuffer = implode(PHP_EOL, $cssBuffer);
-                            if (Zo2Framework::getGlobalParam('enable_minify_css'))
-                            {
-                                $cssBuffer = Zo2HelperMinify::css($cssBuffer);
-                            }
-                            JFile::write($cssFile, $cssBuffer);
-                        }
                         // Reset all old stylesheet and replace by combined file 
-                        if (JFile::exists($cssFile))
-                        {
-                            $this->_stylesheets = array();
-                            $this->_stylesheets[] = ZO2URL_CACHE . '/' . $cssFileName;
-                        }
+
+                        $this->_stylesheets = array();
+                        $this->_stylesheets[] = ZO2URL_CACHE . '/' . $cssFileName;
+                    }
+
+                    break;
+                case 'gzip':
+                    $model = new Zo2ModelAssets();
+                    $cssFileName = $model->combineCss($this->_stylesheets);
+                    // Reset all old stylesheet and replace by combined file 
+                    if ($cssFileName)
+                    {
+                        $this->_stylesheets = array();
+                        $this->_stylesheets[] = ZO2URL_ROOT . '/framework/assets/css/gzip.php?cssFile=' . $cssFileName;
                     }
                     break;
             }
             switch (Zo2Framework::getGlobalParam('enable_combine_js'))
             {
                 case 'file':
-                    $jsData[] = JFactory::getApplication()->isSite();
-                    $jsData[] = Zo2Framework::getGlobalParam('enable_minify_js');
-                    $jsData[] = $this->_javascripts;
-                    $jsFileName = Zo2HelperEncode::md5($jsData) . '.js';
 
-                    $jsFile = ZO2PATH_CACHE . '/' . $jsFileName;
-
-                    $flag = !JFile::exists($jsFile) || Zo2Framework::isDevelopmentMode();
-                    if ($flag)
+                    $model = new Zo2ModelAssets();
+                    $jsFileName = $model->combineJs($this->_javascripts);
+                    if ($jsFileName)
                     {
-                        // Combine js
-                        foreach ($this->_javascripts as $jsKey => $js)
-                        {
-                            if (JFile::exists($jsKey))
-                            {
-                                $jsBuffer [] = file_get_contents($jsKey);
-                            }
-                        }
-                        if (!empty($jsBuffer))
-                        {
-                            $jsBuffer = implode(PHP_EOL, $jsBuffer);
-                            if (Zo2Framework::getGlobalParam('enable_minify_js'))
-                            {
-                                $jsBuffer = Zo2HelperMinify::js($jsBuffer);
-                            }
-                            JFile::write($jsFile, $jsBuffer);
-                        }
                         // Reset all old scripts and replace by combined file 
-                        if (JFile::exists($jsFile))
-                        {
-                            $this->_javascripts = array();
-                            $this->_javascripts[] = ZO2URL_CACHE . '/' . $jsFileName;
-                        }
+                        $this->_javascripts = array();
+                        $this->_javascripts[] = ZO2URL_CACHE . '/' . $jsFileName;
+                    }
+                    break;
+                case 'gzip':
+                    $model = new Zo2ModelAssets();
+                    $jsFileName = $model->combineJs($this->_javascripts);
+                    // Reset all old stylesheet and replace by combined file 
+                    if ($jsFileName)
+                    {
+                        $this->_javascripts = array();
+                        $this->_javascripts[] = ZO2URL_ROOT . '/framework/assets/js/gzip.php?jsFile=' . $jsFileName;
                     }
                     break;
             }
