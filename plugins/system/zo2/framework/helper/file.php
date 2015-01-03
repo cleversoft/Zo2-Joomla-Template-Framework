@@ -39,7 +39,7 @@ if (!class_exists('Zo2HelperFile'))
                 return new JObject(Zo2HelperEncode::jsonDecode($buffer));
             } else
             {
-                Zo2HelperEncode::jsonDecode($buffer);
+                return Zo2HelperEncode::jsonDecode($buffer);
             }
         }
 
