@@ -57,6 +57,23 @@ if (!class_exists('Zo2Framework'))
             return $instance;
         }
 
+        public static function getParam($name, $default = null)
+        {
+            static $admin;
+            if (empty($admin))
+            {
+                $joomlaFile = Zo2Path::getInstance()->getPath('Zo2://assets/joomla.json');
+                $admin = Zo2HelperFile::loadJsonFile($joomlaFile);
+            }
+            if (in_array($name, $admin))
+            {
+                self::getGlobalParam($name);
+            } else
+            {
+                self::getProfileParam($name);
+            }
+        }
+
         /**
          * 
          * @param type $name

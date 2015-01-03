@@ -4,6 +4,8 @@
     "copyright",
     "standard_logo",
     "retina_logo",
+    "enable_responsive",
+    "enable_rtl",
     "enable_minify_css",
     "enable_minify_js",
     "enable_combine_css",
