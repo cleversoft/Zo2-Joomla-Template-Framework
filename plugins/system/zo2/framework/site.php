@@ -59,7 +59,7 @@ if (!class_exists('Zo2Site'))
             $html->set('layout', $layoutBuilder);
             $buffer = $html->fetch('Zo2://html/site/layout/default.php');
             // Optimize buffer
-            if (Zo2Framework::getGlobalParam('enable_optimize_html', 1))
+            if (Zo2Framework::getGlobalParam('enable_optimize_html'))
             {
                 Zo2Framework::importVendor('ganon');
                 $dom = str_get_dom($buffer);
