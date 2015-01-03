@@ -31,6 +31,9 @@ if (!class_exists('Zo2HelperEncode')) {
             }
         }
 
+        public static function jsonDecode($jsonString) {
+            return json_decode($jsonString);
+        }
         /**
          * 
          * @param type $data

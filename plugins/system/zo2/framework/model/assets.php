@@ -27,12 +27,13 @@ if (!class_exists('Zo2ModelAssets'))
     {
 
         /**
-         * Build all assets
+         * 
+         * @param type $assetsFile
          */
-        public function build()
+        public function build($assetsFile = 'Zo2://assets/build.json')
         {
-            $assets = Zo2Path::getInstance()->getPath('Zo2://assets/build.json');
-            $assets = json_decode(file_get_contents($assets));
+            $assetsFilePath = Zo2Path::getInstance()->getPath($assetsFile);
+            $assets = Zo2HelperFile::loadJsonFile($assetsFilePath);
             $this->_buildLess($assets);
             $this->_minifyJs($assets);
         }
@@ -46,7 +47,6 @@ if (!class_exists('Zo2ModelAssets'))
         {
             // Generate hash file based on configured
             $cssData[] = JFactory::getApplication()->isSite();
-            $cssData[] = Zo2Framework::getGlobalParam('enable_minify_css');
             $cssData[] = $cssFiles;
             $cssFileName = Zo2HelperEncode::md5($cssData) . '.css';
 
@@ -66,11 +66,8 @@ if (!class_exists('Zo2ModelAssets'))
                 if (!empty($cssBuffer))
                 {
                     $cssBuffer = implode(PHP_EOL, $cssBuffer);
-                    // Minify buffer if needed
-                    if (Zo2Framework::getGlobalParam('enable_minify_css'))
-                    {
-                        $cssBuffer = Zo2HelperMinify::css($cssBuffer);
-                    }
+                    // Minify buffer
+                    $cssBuffer = Zo2HelperMinify::css($cssBuffer);
                     JFile::write($cssFile, $cssBuffer);
                 }
             }
@@ -89,7 +86,6 @@ if (!class_exists('Zo2ModelAssets'))
         public function combineJs($jsFiles)
         {
             $jsData[] = JFactory::getApplication()->isSite();
-            $jsData[] = Zo2Framework::getGlobalParam('enable_minify_js');
             $jsData[] = $jsFiles;
             $jsFileName = Zo2HelperEncode::md5($jsData) . '.js';
 
@@ -109,11 +105,8 @@ if (!class_exists('Zo2ModelAssets'))
                 if (!empty($jsBuffer))
                 {
                     $jsBuffer = implode(PHP_EOL, $jsBuffer);
-                    // Minify buffer if needed
-                    if (Zo2Framework::getGlobalParam('enable_minify_js'))
-                    {
-                        $jsBuffer = Zo2HelperMinify::js($jsBuffer);
-                    }
+                    // Minify buffer
+                    $jsBuffer = Zo2HelperMinify::js($jsBuffer);
                     JFile::write($jsFile, $jsBuffer);
                 }
             }
