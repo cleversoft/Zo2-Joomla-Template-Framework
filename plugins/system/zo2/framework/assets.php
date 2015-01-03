@@ -153,6 +153,9 @@ if (!class_exists('Zo2Assets'))
             $model->build();
         }
 
+        /**
+         * 
+         */
         private function _prepareRender()
         {
 
@@ -165,13 +168,8 @@ if (!class_exists('Zo2Assets'))
                     $cssData[] = Zo2Framework::getGlobalParam('enable_minify_css');
                     $cssData[] = $this->_stylesheets;
                     $cssFileName = Zo2HelperEncode::md5($cssData) . '.css';
-                    $jsData[] = JFactory::getApplication()->isSite();
-                    $jsData[] = Zo2Framework::getGlobalParam('enable_minify_js');
-                    $jsData[] = $this->_javascripts;
-                    $jsFileName = Zo2HelperEncode::md5($jsData) . '.js';
 
                     $cssFile = ZO2PATH_CACHE . '/' . $cssFileName;
-                    $jsFile = ZO2PATH_CACHE . '/' . $jsFileName;
 
                     $flag = !JFile::exists($cssFile) || Zo2Framework::isDevelopmentMode();
                     if ($flag)
@@ -193,6 +191,28 @@ if (!class_exists('Zo2Assets'))
                             }
                             JFile::write($cssFile, $cssBuffer);
                         }
+                        // Reset all old stylesheet and replace by combined file 
+                        if (JFile::exists($cssFile))
+                        {
+                            $this->_stylesheets = array();
+                            $this->_stylesheets[] = ZO2URL_CACHE . '/' . $cssFileName;
+                        }
+                    }
+                    break;
+            }
+            switch (Zo2Framework::getGlobalParam('enable_combine_js'))
+            {
+                case 'file':
+                    $jsData[] = JFactory::getApplication()->isSite();
+                    $jsData[] = Zo2Framework::getGlobalParam('enable_minify_js');
+                    $jsData[] = $this->_javascripts;
+                    $jsFileName = Zo2HelperEncode::md5($jsData) . '.js';
+
+                    $jsFile = ZO2PATH_CACHE . '/' . $jsFileName;
+
+                    $flag = !JFile::exists($jsFile) || Zo2Framework::isDevelopmentMode();
+                    if ($flag)
+                    {
                         // Combine js
                         foreach ($this->_javascripts as $jsKey => $js)
                         {
@@ -206,16 +226,17 @@ if (!class_exists('Zo2Assets'))
                             $jsBuffer = implode(PHP_EOL, $jsBuffer);
                             if (Zo2Framework::getGlobalParam('enable_minify_js'))
                             {
-                                $jsBuffer = Zo2HelperMinify::css($jsBuffer);
+                                $jsBuffer = Zo2HelperMinify::js($jsBuffer);
                             }
                             JFile::write($jsFile, $jsBuffer);
                         }
+                        // Reset all old scripts and replace by combined file 
+                        if (JFile::exists($jsFile))
+                        {
+                            $this->_javascripts = array();
+                            $this->_javascripts[] = ZO2URL_CACHE . '/' . $jsFileName;
+                        }
                     }
-// Reset all old stylesheet and replace by combined file 
-                    $this->_stylesheets = array();
-                    $this->_stylesheets[] = ZO2URL_CACHE . '/' . $cssFileName;
-                    $this->_javascripts = array();
-                    $this->_javascripts[] = ZO2URL_CACHE . '/' . $jsFileName;
                     break;
             }
         }

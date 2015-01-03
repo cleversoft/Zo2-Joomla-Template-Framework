@@ -64,7 +64,14 @@ if (!class_exists('Zo2ModelAssets'))
                         /* Generate min file */
                         $cssMin = new CSSmin();
                         $buffer = $cssMin->run(file_get_contents($cssFilePath));
-                        return JFile::write($cssMinFilePath, $buffer);
+                        if (JFile::write($cssMinFilePath, $buffer))
+                        {
+                            if (Zo2Framework::isDevelopmentMode())
+                            {
+                                Zo2Framework::message('Minifed file: ' . $jsMinFilePath);
+                            }
+                            return true;
+                        }
                     }
                 }
             }
@@ -93,6 +100,7 @@ if (!class_exists('Zo2ModelAssets'))
                         {
                             Zo2Framework::message('Minifed file: ' . $jsMinFilePath);
                         }
+                        return true;
                     }
                 }
             }
