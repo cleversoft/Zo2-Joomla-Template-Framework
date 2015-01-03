@@ -35,6 +35,15 @@ if (!class_exists('Zo2Profile'))
             {
                 Zo2Framework::message('Loaded profile :' . $file);
             }
+            $assets = Zo2Assets::getInstance();
+            if (!Zo2Framework::getParam('enable_responsive'))
+            {
+                $assets->addStyleSheet('Zo2://assets/css/non.responsive.css');
+            }
+            if (Zo2Framework::getParam('enable_rtl'))
+            {
+                $assets->addStyleSheet('Zo2://assets/css/rtl.css');
+            }
         }
 
         /**
