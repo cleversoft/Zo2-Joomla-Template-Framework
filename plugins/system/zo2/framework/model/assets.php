@@ -68,7 +68,7 @@ if (!class_exists('Zo2ModelAssets'))
                         {
                             if (Zo2Framework::isDevelopmentMode())
                             {
-                                Zo2Framework::message('Minifed file: ' . $jsMinFilePath);
+                                Zo2Framework::message('Minifed file: ' . $cssMinFilePath);
                             }
                             return true;
                         }
