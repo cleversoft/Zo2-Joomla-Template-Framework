@@ -47,6 +47,10 @@
                 <option value="1">JYES</option>
             </field>
             <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_OPTIMIZE" />
+            <field name="enable_optimize_html" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_OPTIMIZE_HTML" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
             <field name="enable_minify_css" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_MINIFY_CSS" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
