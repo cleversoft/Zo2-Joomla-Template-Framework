@@ -26,39 +26,26 @@ if (!class_exists('Zo2ModelJoomla'))
          */
         public function saveTemplateParams(&$zo2Data, $joomlaData)
         {
-            $joomlaFile = Zo2Path::getInstance()->getPath('Zo2://assets/joomla.json');
-            if ($joomlaFile)
+            $jinput = JFactory::getApplication()->input;
+            // Bind Zo2 data to params
+            $joomlaData['params'] = $zo2Data;
+            // Set back to post request
+            $jinput->post->set('jform', $joomlaData);
+            $jinput->post->set('zo2', $zo2Data);
+
+            JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
+            // Save Joomla template table
+            $table = JTable::getInstance('Style', 'TemplatesTable');
+            if ($table->load($jinput->get('id')))
             {
-                $data = json_decode(file_get_contents($joomlaFile));
-                $jinput = JFactory::getApplication()->input;
-                $params = array();
-                foreach ($zo2Data as $key => $value)
+                $table->params = new JRegistry($joomlaData['params']);
+                $table->params = $table->params->toString();
+                /* Save back into database */
+                if ($table->check())
                 {
-                    if (in_array($key, $data))
+                    if ($table->store())
                     {
-                        $params[$key] = $value;
-                        // This param already stored in template params as global than we no need to save in profile
-                        unset($zo2Data[$key]);
-                    }
-                }
-                $joomlaData['params'] = $params;
-                // Set back to post request
-                $jinput->post->set('jform', $joomlaData);
-                $jinput->post->set('zo2', $zo2Data);
-                JTable::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_templates/tables');
-                // Save Joomla template table
-                $table = JTable::getInstance('Style', 'TemplatesTable');
-                if ($table->load($jinput->get('id')))
-                {
-                    $table->params = new JRegistry($params);
-                    $table->params = $table->params->toString();
-                    /* Save back into database */
-                    if ($table->check())
-                    {
-                        if ($table->store())
-                        {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
