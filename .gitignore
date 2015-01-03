@@ -58,3 +58,6 @@ cli/
 plugins/system/sef/
 plugins/system/rokextender/
 plugins/system/highlight/
+templates/uber/
+templates/yoo_master2/
+plugins/system/jch_optimize/
