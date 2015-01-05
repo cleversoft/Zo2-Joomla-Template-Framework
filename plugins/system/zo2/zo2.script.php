@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 
-class plgSystemZo2InstallerScript
+class PlgSystemZo2InstallerScript
 {
     /**
      * Called after any type of action

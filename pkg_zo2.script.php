@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 
-class pkg_Zo2InstallerScript
+class PkgZo2InstallerScript
 {
     /**
      * Called before any type of action
