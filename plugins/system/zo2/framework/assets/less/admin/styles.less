@@ -1,0 +1,31 @@
+/* ===============================
+  // Global Include
+================================ */
+@import "variables";
+@import "mixins";
+
+/* ===============================
+  // Layout Builder
+================================ */
+#layoutbuilder-container{
+  .row-control{
+    .paddingVertical(10px, 10px)
+  }
+  .row-parent{
+    background-color: @grayLighter;
+    color: @black;
+    margin: 15px 0;
+  }
+  .row-child{
+    > .row-control{
+      background-color: @grayLight;
+      color: @white;
+      .paddingHorizontal(10px, 10px);
+    }
+  }
+  .row-controls{
+    i{
+      cursor: pointer;
+    }
+  }
+}

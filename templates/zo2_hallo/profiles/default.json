@@ -1,5 +1,5 @@
 {
-    "name": "default",   
+    "name": "default",
     "layout": [
         {
             "name": "message",
@@ -24,30 +24,30 @@
                 "lg": 12
             },
             "children": [
-                {                 
+                {
                     "name": "megamenu",
                     "jdoc": {
                         "type": "megamenu",
                         "name": "megamenu"
                     },
                     "grid": {
-                        "xs": 12,
-                        "sm": 12,
-                        "md": 12,
-                        "lg": 12
+                        "xs": 6,
+                        "sm": 6,
+                        "md": 6,
+                        "lg": 6
                     }
                 },
-                {                 
+                {
                     "name": "breadcrumb",
                     "jdoc": {
                         "type": "modules",
                         "name": "breadcrumb"
                     },
                     "grid": {
-                        "xs": 12,
-                        "sm": 12,
-                        "md": 12,
-                        "lg": 12
+                        "xs": 6,
+                        "sm": 6,
+                        "md": 6,
+                        "lg": 6
                     }
                 }
             ]
@@ -56,7 +56,7 @@
             "type": "row",
             "name": "content",
             "children": [
-                {                   
+                {
                     "name": "left",
                     "jdoc": {
                         "type": "modules",
@@ -70,7 +70,7 @@
                         "lg": 2
                     }
                 },
-                {                   
+                {
                     "name": "component",
                     "jdoc": {
                         "type": "component"
@@ -82,7 +82,7 @@
                         "lg": 8
                     }
                 },
-                {                   
+                {
                     "name": "right",
                     "jdoc": {
                         "type": "modules",

@@ -2,3 +2,53 @@
   display: block;
   visibility: visible;
 }
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+#layoutbuilder-container .row-control {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#layoutbuilder-container .row-parent {
+  background-color: #eee;
+  color: #000;
+  margin: 15px 0;
+}
+#layoutbuilder-container .row-child > .row-control {
+  background-color: #999;
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+#layoutbuilder-container .row-controls i {
+  cursor: pointer;
+}

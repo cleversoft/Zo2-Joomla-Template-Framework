@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
@@ -11,16 +10,13 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-
 if (!class_exists('Zo2LayoutbuilderRow'))
 {
-
     /**
      * Class object for each row
      */
     class Zo2LayoutbuilderRow extends Zo2LayoutbuilderAbstract
     {
-
         /**
          * Render layout of this row
          * @return string
@@ -38,9 +34,8 @@ if (!class_exists('Zo2LayoutbuilderRow'))
                 return implode(PHP_EOL, $ret);
             }
         }
-
         /**
-         * 
+         *
          * @return type
          */
         public function hasData()
@@ -50,7 +45,6 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $hasData = $this->_hasData($jDoc);
             return $hasData;
         }
-
         /**
          * Render children rows
          * @return string
@@ -60,7 +54,6 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $children = $this->get('children', array());
             return $this->_render($children);
         }
-
         /**
          * Check if this row has children to render
          * @return boolean
@@ -76,9 +69,8 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             }
             return false;
         }
-
         /**
-         * 
+         *
          * @param type $jDoc
          * @return boolean
          */
@@ -101,7 +93,6 @@ if (!class_exists('Zo2LayoutbuilderRow'))
                     return true;
             }
         }
-
         /**
          * @link https://docs.joomla.org/Jdoc_statements
          * @return \JObject
@@ -110,9 +101,8 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         {
             return new JObject($this->get('jdoc'));
         }
-
         /**
-         * 
+         *
          * @return type
          */
         public function getGridClass()
@@ -130,24 +120,22 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             }
             return trim(implode(' ', $class));
         }
-
         /**
-         * 
+         *
          * @param type $default
          * @return string
          */
         public function getClass($default = array())
         {
             $class = $default;
-            $class [] = 'row';
+            $class [] = '';
             if ($this->get('class') != '')
                 $class [] = $this->get('class');
             $class [] = $this->getGridClass();
             return implode(' ', $class);
         }
-
         /**
-         * 
+         *
          * @param array $controls
          * @return string
          */
@@ -166,7 +154,5 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             }
             return implode(PHP_EOL, $html);
         }
-
     }
-
 }
