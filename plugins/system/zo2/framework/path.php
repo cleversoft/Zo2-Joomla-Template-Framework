@@ -91,9 +91,9 @@ if (!class_exists('Zo2Path')) {
                 foreach ($this->_namespaces[$namespace] as $namespace) {
                     $physicalPath = $namespace . DIRECTORY_SEPARATOR . $path;
                     if (JFile::exists($physicalPath)) {
-                        return trim(str_replace('/', DIRECTORY_SEPARATOR, $physicalPath), DIRECTORY_SEPARATOR);
+                        return rtrim(str_replace('/', DIRECTORY_SEPARATOR, $physicalPath), DIRECTORY_SEPARATOR);
                     } elseif (JFolder::exists($physicalPath)) {
-                        return trim(str_replace('/', DIRECTORY_SEPARATOR, $physicalPath), DIRECTORY_SEPARATOR);
+                        return rtrim(str_replace('/', DIRECTORY_SEPARATOR, $physicalPath), DIRECTORY_SEPARATOR);
                     }
                 }
             }
