@@ -20,7 +20,7 @@ class PkgZo2InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function preflight($route, JAdapterInstance $adapter)
+    public function preFlight($route, JAdapterInstance $adapter)
     {
         return true;
     }
@@ -34,7 +34,7 @@ class PkgZo2InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function postflight($route, JAdapterInstance $adapter)
+    public function postFlight($route, JAdapterInstance $adapter)
     {
         return true;
     }
