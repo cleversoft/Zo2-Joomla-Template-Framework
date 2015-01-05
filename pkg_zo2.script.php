@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 
-class pkg_Zo2InstallerScript
+class PkgZo2InstallerScript
 {
     /**
      * Called before any type of action
@@ -20,7 +20,7 @@ class pkg_Zo2InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function preflight($route, JAdapterInstance $adapter)
+    public function preFlight($route, JAdapterInstance $adapter)
     {
         return true;
     }
@@ -34,7 +34,7 @@ class pkg_Zo2InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function postflight($route, JAdapterInstance $adapter)
+    public function postFlight($route, JAdapterInstance $adapter)
     {
         return true;
     }

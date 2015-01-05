@@ -5,7 +5,7 @@ if (file_exists($presetPath)) {
 }
 
 $backgroundsDir = Zo2Factory::getPath('templates://assets/zo2/images/background-patterns');
-$presetDir = Zo2Factory::getPath('templates://assets/zo2/css/presets/');
+$presetDir = Zo2Factory::getPath('templates://assets/zo2/css/');
 
 $profile = Zo2Factory::getProfile();
 $theme = new JObject($profile->get('theme'));

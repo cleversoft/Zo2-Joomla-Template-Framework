@@ -10,7 +10,7 @@
 defined('_JEXEC') or die();
 
 
-class plgSystemZo2InstallerScript
+class PlgSystemZo2InstallerScript
 {
     /**
      * Called after any type of action
@@ -20,7 +20,7 @@ class plgSystemZo2InstallerScript
      *
      * @return    boolean                         True on success
      */
-    public function postflight($route, JAdapterInstance $adapter)
+    public function postFlight($route, JAdapterInstance $adapter)
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);

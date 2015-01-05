@@ -16,7 +16,7 @@ $menuAnimation = trim(Zo2Factory::get('menu_animation'));
     ?>
 
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                               ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                                ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -85,7 +85,7 @@ $menuAnimation = trim(Zo2Factory::get('menu_animation'));
                     'megamenu', array(), array(
                 'id' => 'jform_params_menu_type',
                 'name' => 'jform[params][menu_type]',
-                'value' => Zo2Factory::get('menu_type'),
+                'value' => Zo2Factory::getProfile()->menuConfig->menu_type,
                 'modules' => $model->getModules()
             ));
             ?>
