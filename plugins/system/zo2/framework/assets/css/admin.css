@@ -34,21 +34,190 @@ img {
   height: auto;
   max-width: 100%;
 }
-#layoutbuilder-container .row-control {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.pt0 {
+  padding-top: 0 !important;
 }
-#layoutbuilder-container .row-parent {
-  background-color: #eee;
+.pr0 {
+  padding-right: 0 !important;
+}
+.pb0 {
+  padding-bottom: 0 !important;
+}
+.pl0 {
+  padding-left: 0 !important;
+}
+.mt0 {
+  margin-top: 0 !important;
+}
+.mr0 {
+  margin-right: 0 !important;
+}
+.mb0 {
+  margin-bottom: 0 !important;
+}
+.ml0 {
+  margin-left: 0 !important;
+}
+.al-left {
+  text-align: left;
+}
+.al-center {
+  text-align: center;
+}
+.al-right {
+  text-align: right;
+}
+#layoutbuilder-container i {
+  color: #333;
+  padding: 0 7px;
+}
+#layoutbuilder-container .row-name span {
+  text-transform: capitalize;
+}
+#layoutbuilder-container .row-control {
+  padding: 10px 15px;
+  line-height: 35px;
+}
+#layoutbuilder-container .row-controls i {
+  border-left: 1px solid #e3e3e3;
+  display: inline-block;
+  float: right;
+  line-height: 35px;
+}
+#layoutbuilder-container .row-parent > .row-control {
+  background-color: #f7f7f7;
   color: #000;
-  margin: 15px 0;
+  margin: 0 0 30px;
+  border: 1px solid #e3e3e3;
+  padding-top: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+#layoutbuilder-container .row-parent > .row-control > .parent-container {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+#layoutbuilder-container .row-parent > .row-control > .parent-container .row-size {
+  display: none;
+}
+#layoutbuilder-container .row-parent > .row-control > .parent-container .row-name {
+  padding-left: 15px;
 }
 #layoutbuilder-container .row-child > .row-control {
-  background-color: #999;
-  color: #fff;
-  padding-left: 10px;
-  padding-right: 10px;
+  background-color: #d4d4d4;
+  padding: 0 15px;
+  text-align: center;
+}
+#layoutbuilder-container .row-child > .row-control .row-size {
+  left: 15px;
+  position: absolute;
+  top: 0;
+}
+#layoutbuilder-container .row-child > .row-control .row-size,
+#layoutbuilder-container .row-child > .row-control .row-controls {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+#layoutbuilder-container .row-child:hover .row-size,
+#layoutbuilder-container .row-child:hover .row-controls {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+#layoutbuilder-container .row-controls {
+  position: absolute;
+  top: 0;
+  right: 15px;
 }
 #layoutbuilder-container .row-controls i {
   cursor: pointer;
+}
+#myTabContent {
+  margin-top: 30px;
+}
+#zo2-tab {
+  width: 220px;
+  margin-right: 0;
+  border-right: none;
+}
+#zo2-tab-content {
+  border: 1px solid #ddd;
+  padding: 20px;
+  min-height: 500px;
+}
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input,
+.input-append .add-on,
+.input-prepend .add-on {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+textarea {
+  width: 350px;
+  height: 100px;
+}
+.btn {
+  padding: 3px 12px;
+}
+fieldset.radio {
+  padding-left: 0;
+}
+fieldset.radio > input {
+  display: none;
+}
+fieldset.radio label {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid transparent;
+  -webkit-border-radius: 4px 0 0 4px;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+  font-size: 14px;
+  line-height: 20px;
+  padding: 3px 20px;
+}
+fieldset.radio label:last-child {
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  background-color: #51a351;
+  color: #fff;
+}
+.navbar {
+  min-height: 30px;
+}
+.navbar .admin-logo {
+  padding: 5px 12px 0 15px;
+}
+.navbar .nav .dropdown-toggle .caret {
+  margin-top: -1px;
+}
+.navbar .brand {
+  padding-bottom: 0;
+}
+.btn-subhead {
+  display: none;
+}
+.form-horizontal .control-label {
+  text-align: left;
+  width: 200px;
 }

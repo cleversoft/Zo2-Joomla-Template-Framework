@@ -66,8 +66,8 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
     <div class="media-preview add-on">
         <span class="hasTipPreview" title=""><i class="fa fa-eye"></i></span>
     </div>
-    <input type="text" name="<?php echo $form->name; ?>" id="<?php echo $form->id; ?>" value="<?php echo $form->value; ?>" readonly="readonly" class="input-small">
-    <a class="modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=<?php echo $form->id; ?>&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
+    <input type="text" name="<?php echo $form->name; ?>" id="<?php echo $form->id; ?>" value="<?php echo $form->value; ?>" readonly="readonly">
+    <a class="btn-modal btn" title="Select" href="index.php?option=com_media&view=images&tmpl=component&asset=com_templates&author=&fieldid=<?php echo $form->id; ?>&folder=" rel="{handler: 'iframe', size: {x: 800, y: 500}}">
         <?php echo JText::_('ZO2_SELECT'); ?>
     </a>
     <a class="btn hasTooltip" title="" href="#" onclick="jInsertFieldValue('', '<?php echo $form->id; ?>');

@@ -10,15 +10,19 @@ $children = $row->get('children', array());
      data-zo2="<?php echo htmlentities(Zo2HelperEncode::json($row->getProperties())); ?>"
     >
     <div class="row-control">
-        <div class="parent-container clearfix">
-            <div class="row-name pull-left">
-                <span class="label label-default"><?php echo $row->get('name'); ?></span>
+        <div class="parent-container clearfix row">
+            <div class="row-size">
+                <a title="Decrease width" href="#" class="row-decrease"><i data-original-title="Decrease width" class="hasTooltip fa fa-angle-double-left"></i></a>
+                <span class="column_size">1/1</span>
+                <a title="Increase width" href="#" class="row-increase"><i data-original-title="Increase width" class="hasTooltip fa fa-angle-double-right"></i></a>
             </div>
-            <div class="row-controls pull-right">
+            <div class="row-name">
+                <span><?php echo $row->get('name'); ?></span>
+            </div>
+            <div class="row-controls">
                 <?php echo $row->getControls(); ?>
             </div>
         </div>
-        <hr/>
         <?php if (count($children) > 0) : ?>
             <div class="children-container row sortable-row connectedSortable">
                 <?php
