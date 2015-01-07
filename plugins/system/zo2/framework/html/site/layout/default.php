@@ -32,15 +32,9 @@ $bodyClasses = trim(implode(' ', $bodyClasses));
         <?php endif; ?>
         <?php echo Zo2Framework::getProfileParam('custom_code_before_close_head'); ?>
     </head>
-    <body id="zo2-framework-wrapper" class="<?php echo $bodyClasses; ?>"
-          j-option="<?php echo JFactory::getApplication()->input->getCmd('option'); ?>"
-          j-view="<?php echo JFactory::getApplication()->input->getCmd('view'); ?>"       
-          j-itemid="<?php echo JFactory::getApplication()->input->getInt('Itemid'); ?>"
-          zo2-template="<?php echo $framework->template->get('template'); ?>"
-          zo2-profile="<?php echo $framework->profile->get('name'); ?>"
-          >       
-              <?php echo Zo2Framework::getProfileParam('custom_code_after_open_body'); ?>
-              <?php echo $layout->render(); ?>
-              <?php echo Zo2Framework::getProfileParam('custom_code_before_close_body'); ?>
+    <body id="zo2-framework-wrapper" class="<?php echo $bodyClasses; ?>">       
+        <?php echo Zo2Framework::getProfileParam('custom_code_after_open_body'); ?>
+        <?php echo $layout->render(); ?>
+        <?php echo Zo2Framework::getProfileParam('custom_code_before_close_body'); ?>
     </body>
 </html>
