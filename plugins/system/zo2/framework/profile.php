@@ -52,7 +52,15 @@ if (!class_exists('Zo2Profile'))
         public function save()
         {
             $buffer = $this->toString();
-            JFile::write($this->_filePath, $buffer);
+            if (JFile::write($this->_filePath, $buffer))
+            {
+                if (Zo2Framework::isDevelopmentMode())
+                {
+                    Zo2Framework::message('Save profile :' . $this->_filePath);
+                }
+                return true;
+            }
+            return false;
         }
 
     }
