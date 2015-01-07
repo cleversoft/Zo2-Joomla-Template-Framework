@@ -177,7 +177,13 @@ if (!class_exists('Zo2Layout'))
             {
                 return !$this->hideComponent();
             }
-            return true;
+            $children = $item->get('children', array());
+            if (count($children) > 0)
+                return true;
+            else
+            {
+                return false;
+            }
         }
 
         /**
