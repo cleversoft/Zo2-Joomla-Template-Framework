@@ -159,7 +159,7 @@ if (!class_exists('Zo2Assets'))
         private function _prepareRender()
         {
 
-            switch (Zo2Framework::getGlobalParam('enable_combine_css'))
+            switch (Zo2Framework::getGlobalParam('enable_combine_css') && (!Zo2Framework::isDevelopmentMode()))
             {
                 // Combine to one css file
                 case 'file':
@@ -185,7 +185,7 @@ if (!class_exists('Zo2Assets'))
                     }
                     break;
             }
-            switch (Zo2Framework::getGlobalParam('enable_combine_js'))
+            switch (Zo2Framework::getGlobalParam('enable_combine_js') && (!Zo2Framework::isDevelopmentMode()))
             {
                 case 'file':
 
