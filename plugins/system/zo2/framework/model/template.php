@@ -12,18 +12,22 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2ModelTemplate')) {
+if (!class_exists('Zo2ModelTemplate'))
+{
 
-    class Zo2ModelTemplate {
+    class Zo2ModelTemplate
+    {
 
-        public function getTemplate($id) {
+        public function getTemplate($id)
+        {
             $db = JFactory::getDbo();
             $query = ' SELECT * FROM ' . $db->quoteName('#__template_styles')
                     . ' WHERE '
                     . $db->quoteName('id') . '=' . (int) $id;
             $db->setQuery($query);
             $template = $db->loadObject();
-            if ($template) {
+            if ($template)
+            {
                 $template->params = new JRegistry($template->params);
             }
             return $template;

@@ -123,24 +123,6 @@ if (!class_exists('Zo2Framework'))
             }
         }
 
-        public static function execute()
-        {
-            $jinput = JFactory::getApplication()->input;
-            $task = $jinput->getCmd('zo2_task');
-            $task = explode('.', $task);
-            if (count($task) == 2)
-            {
-                $modelClass = 'Zo2Model' . ucfirst($task[0]);
-                $model = new $modelClass ();
-                $func = $task[1];
-                $respond = call_user_func_array(array($model, $func), array());
-            }
-            if (self::isAjax())
-            {
-                echo Zo2Ajax::getInstance()->response();
-            }
-        }
-
         public static function set($name, $value)
         {
             self::getInstance()->_vars[$name] = $value;
@@ -172,29 +154,47 @@ if (!class_exists('Zo2Framework'))
         }
 
         /**
-         * This func will hook into Joomla process before it's dispatched to component
+         * This func will hook into Joomla process after the framework has loaded and initialised and the router has routed the client request.
          */
         public static function joomlaHook()
         {
             $jinput = JFactory::getApplication()->input;
-            if ($jinput->get('option') == 'com_templates')
+            $zo2Task = $jinput->getCmd('zo2_task');
+            $zo2Scope = $jinput->getWord('zo2_scope');
+            if ($zo2Task)
             {
-                $task = $jinput->get('task');
-                $zo2Data = $jinput->get('zo2', array(), 'array');
-                $joomlaData = $jinput->get('jform', array(), 'array');
-                $joomlaModel = new Zo2ModelJoomla();
-                $joomlaModel->saveTemplateParams($zo2Data, $joomlaData);
-                // Get Zo2 data. It's already modified after bindTemplateParams above                
-                switch ($task)
+                // Admin request
+                if ($zo2Scope == 'admin')
                 {
-                    // Save data to current profile
-                    case 'style.apply':
-                        $admin = new Zo2Admin();
-                        $profile = Zo2Framework::getInstance()->profile;
-                        $profile->loadArray($zo2Data);
-                        $profile->save();
+                    Zo2Admin::init();
+                    if (!self::isAdministrator())
+                    {
+                        return false;
+                    }
+                } else
+                {
+                    Zo2Site::init();
+                }
+                $parts = explode('.', $zo2Task);
+                $task = array_shift($parts);
+                $func = array_shift($parts);
+                $className = 'Zo2Model' . ucfirst($zo2Scope) . ucfirst($task);
+                $modelClass = new $className();
+                if (method_exists($modelClass, $func))
+                {
+                    call_user_func_array(array($modelClass, $func), array());
+                }
+                if (self::isAjax())
+                {
+                    echo Zo2Ajax::getInstance()->response();
                 }
             }
+        }
+
+        public static function isAdministrator()
+        {
+            $user = JFactory::getUser();
+            return !$user->guest;
         }
 
     }

@@ -24,5 +24,3 @@ Zo2Path::getInstance()->registerNamespace('Zo2', ZO2PATH_ROOT);
 
 /* Register Zo2 autoloading by Psr2 */
 spl_autoload_register(array('Zo2Loader', 'autoloadZo2Psr2'));
-
-Zo2Framework::execute();

@@ -44,4 +44,6 @@
             <?php endforeach; ?>
         </div>
     </div>
+    <input type="hidden" name="zo2_task" value="template.save" />
+    <input type="hidden" name="zo2_scope" value="admin" />
 </div>

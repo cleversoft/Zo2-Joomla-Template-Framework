@@ -22,7 +22,33 @@ if (!class_exists('Zo2Admin'))
 
         const ZO2DEFAULT_PROFILE = 'default';
 
-        public function __construct()
+        /**
+         * 
+         * @staticvar Zo2Admin $instances
+         * @return \Zo2Admin
+         */
+        public static function &getInstance()
+        {
+            static $instance;
+            if (!isset($instance))
+            {
+                $instance = new Zo2Admin();
+            }
+            return $instance;
+        }
+
+        public static function init()
+        {
+            static $inited;
+            if (empty($inited))
+            {
+                $inited = self::getInstance();
+                $inited->_init();
+            }
+            return $inited;
+        }
+
+        protected function _init()
         {
             $jVersion = new JVersion();
             require_once __DIR__ . '/depends/' . $jVersion->RELEASE . '/admin.php';

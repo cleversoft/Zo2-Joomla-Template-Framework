@@ -41,7 +41,7 @@ if (!class_exists('JFormFieldZo2'))
          */
         public function getInput()
         {
-            $admin = new Zo2Admin();
+            $admin = Zo2Admin::init();
             echo $admin->render($this);
         }
 

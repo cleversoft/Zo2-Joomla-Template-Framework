@@ -23,9 +23,34 @@ if (!class_exists('Zo2Site'))
 
         const ZO2DEFAULT_PROFILE = 'default';
 
-        public function __construct($document)
+        /**
+         * 
+         * @staticvar Zo2Admin $instances
+         * @return \Zo2Admin
+         */
+        public static function &getInstance()
         {
+            static $instance;
+            if (!isset($instance))
+            {
+                $instance = new Zo2Site();
+            }
+            return $instance;
+        }
 
+        public static function init($document)
+        {
+            static $inited;
+            if (empty($inited))
+            {
+                $inited = self::getInstance();
+                $inited->_init($document);
+            }
+            return $inited;
+        }
+
+        protected function _init($document)
+        {
             // Load dependencies based on Joomla!
             $jVersion = new JVersion();
             require_once __DIR__ . '/depends/' . $jVersion->RELEASE . '/site.php';
