@@ -23,9 +23,8 @@ $children = $row->get('children', array());
                 <?php echo $row->getControls(); ?>
             </div>
         </div>
-        <?php if (count($children) > 0) : ?>
-            <div class="children-container row sortable-row connectedSortable">
-                <?php
+        <div class="children-container row sortable-row connectedSortable">
+        <?php if (count($children) > 0) : 
                 {
                     foreach ($children as $child) {
                         $this->set('child', true);
@@ -33,8 +32,7 @@ $children = $row->get('children', array());
                         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
                     }
                 }
-                ?>
-            </div>
-        <?php endif; ?>
+          endif; ?>
+        </div>
     </div>
 </div>

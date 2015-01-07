@@ -9,9 +9,25 @@
     
     /* Layout builder local */
     var _layoutbuilder = {
-        
+        _elements: {
+            childrenContainer: '.children-container',
+            sortableConnect: '.connectedSortable'
+        },
+        _init:function(){
+            var _self = this;
+            $(_self._elements.childrenContainer).sortable({
+                    connectWith: _self._elements.sortableConnect
+            }).disableSelection();
+        }
+
     };
     
-    zo2.layoutbuilder = _layoutbuilder;
+    /* Append to Zo2 JS framework */
+    z.layoutbuilder = _layoutbuilder;
+    
+    /* Init after document ready */
+    $(w.document).ready(function(){
+        z.layoutbuilder._init();
+    });
     
 })(window, zo2, jQuery);
