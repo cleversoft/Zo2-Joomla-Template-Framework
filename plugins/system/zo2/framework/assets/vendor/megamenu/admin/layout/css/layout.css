@@ -1,0 +1,514 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+/* -------------------------------------------------*/
+/* T3 ADMIN LAYOUT STYLE
+---------------------------------------------------*/
+
+/* Layout Config Panel
+---------------------------------------------------*/
+.t3-admin-layout-preview {
+  width: 720px;
+  float: left;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  clear: both;
+}
+
+.t3-admin-layout-container {
+  position: relative;
+}
+
+
+/* Reset
+--------*/
+.t3-admin-layout-preview .navbar-inner {
+  min-height: none;
+  padding-left: 0;
+  padding-right: 0;
+  background: transparent;
+  filter: -;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+
+/* Layout Edit Tabs
+--------------------*/
+.t3-admin-layout-row-device {
+  padding: 15px 20px;
+  background-color: #fff;
+  border-bottom: 1px dotted #ccc;
+}
+
+.t3-admin-layout-row-mode .t3-admin-layout-reset-all {
+  margin-top: -40px;
+  margin-right: 20px;
+}
+
+.t3-admin-layout-row-device .t3-admin-layout-reset-position,
+.t3-admin-layout-row-device .t3-admin-layout-reset-device {
+}
+
+.t3-admin-layout-devices {
+  display: inline-block;
+}
+
+
+/* Fullscreen Toggle */
+#layout_params .t3-admin-tog-fullscreen {
+  position: absolute;
+  right: 30px;
+  top: -50px;
+}
+
+
+
+/* Layout Panel Styling
+---------------------------------------------------*/
+.t3-admin-layout-section {
+  margin: 0 0 12px;
+  padding: 12px 12px 0;
+  border-radius: 0;
+  background: #f2f2f2;
+}
+
+.t3-admin-layout-section .t3-admin-layout-section {
+  padding: 0;
+  margin: 0;
+}
+
+.t3-admin-layout-section .container {
+  text-align: left;
+}
+
+.t3-admin-layout-pos {
+  background: #fff;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 0;
+  text-align: left;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+.t3-admin-layout-pos h3 {
+  margin: 0;
+  line-height: normal;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.t3-admin-layout-pos:hover {
+  border-color: #07b;
+}
+
+
+
+/* Spotlight Group 
+-------------------*/
+.t3-admin-layout-splgroup {
+  background: url(../images/grouper.gif) no-repeat left bottom, url(../images/grouper.gif) no-repeat right bottom;
+  margin-bottom: 12px;
+}
+
+.t3-admin-layout-mode-r .t3-admin-layout-splgroup {
+  padding-bottom: 26px !important;
+  position: relative;
+}
+
+.t3-admin-layout-mode-r .t3-admin-layout-splgroup::before {
+  content: "Spotlight";
+  text-transform: UPPERCASE;
+  font-size: 10px;
+  background: #ddd;
+  color: #666;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  text-align: center;
+  border-radius: 10px;
+  margin-left: -40px;
+}
+
+
+/* User Interation Elements
+--------------------------*/
+/* Edit Button ---*/
+.t3-admin-layout-edit {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-right: none;
+  color: #666;
+  background: #eee;
+  display: none;
+}
+
+.t3-admin-layout-mode-m .t3-admin-layout-pos:hover .t3-admin-layout-edit {
+  display: block;
+}
+
+
+/* Visibility Button ---*/
+.t3-admin-layout-vis {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-right: none;
+  color: #555;
+  background: #eee;
+  display: none;
+}
+
+.t3-admin-layout-mode-r .t3-admin-layout-pos .t3-admin-layout-vis {
+  display: block;
+}
+
+.t3-admin-layout-unit {
+  position: relative;
+}
+
+
+/* Resize 2 ---*/
+.t3-admin-layout-rzhandle {
+  display: block;
+  cursor: ew-resize;
+  width: 7px;
+  right: -11px;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  font-size: 0.1px;
+  z-index: 1000;
+  background: url(../images/resizer.gif) no-repeat center 20px;
+  opacity: .15;
+}
+
+.t3-admin-layout-rzhandle:hover {
+  opacity: .8;
+}
+
+.t3-admin-layout-mode-m .t3-admin-layout-rzhandle {
+  display: none;
+}
+
+/* Resizer position for different devices */
+.wide .t3-admin-layout-rzhandle {
+  right: -11px;
+}
+
+.normal .t3-admin-layout-rzhandle {
+  right: -9px;
+}
+
+.xtablet .t3-admin-layout-rzhandle,
+.tablet .t3-admin-layout-rzhandle,
+.mobile .t3-admin-layout-rzhandle {
+  right: -8px;
+}
+
+
+/* Column Chooser ---*/
+.t3-admin-layout-ncolumns {
+  display: none;
+  text-align: center;
+  position: relative;
+}
+
+.t3-admin-layout-mode-m .t3-admin-layout-ncolumns {
+  display: block;
+}
+
+.t3-admin-layout-ncolumns .btn {
+  font-size: 12px;
+  background: #eee;
+  border-color: #ccc;
+  border-radius: 0 !important;
+  min-width: 0 !important;
+}
+
+.t3-admin-layout-ncolumns .btn.active,
+.t3-admin-layout-ncolumns .btn:active {
+  background: #ccc;
+  border-color: #aaa;
+}
+
+
+/* Popover ---*/
+.popover .chzn-done {
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+
+/* Layout Clone ---*/
+#t3-admin-layout-clone-btns {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+#t3-admin-layout-clone-btns .btn {
+  margin-left: 5px;
+}
+
+
+/* Layout Clone Modal */
+#t3-admin-layout-clone-dlg {
+  font: 14px/20px sans-serif;
+  color: #666;
+  width: 450px;
+  margin: -200px 0 0 -225px;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+
+#t3-admin-layout-clone-dlg.fade.in {
+  top: 50%;
+}
+
+
+/* Special Pos Styles
+-------------------- */
+.block-component {
+  height: 100px;
+  background: #feffde;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+}
+
+.block-message {
+  background: #feffde;
+}
+
+.block-sidebar-1,
+.block-sidebar-2,
+.block-sidebar-3,
+.block-sidebar-4,
+.block-sidebar-5 {
+  height: 100px;
+  background: #fff;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+}
+
+.t3-admin-layout-preview #t3-content,
+.t3-admin-layout-preview #t3-mainbody .t3-sidebar {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -o-box;
+  display: box;
+
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  box-orient: vertical;
+}
+
+/* Logo ---*/
+.t3-admin-layout-preview .logo {
+  width: auto;
+  max-width: none;
+  margin-bottom: 12px;
+  padding: 10px;
+  font-size: 24px;
+}
+
+.t3-admin-layout-preview .logo a {
+  color: #333;
+}
+
+.t3-admin-layout-preview .logo-image span {
+  display: none;
+}
+
+/* Off-Canvas --*/
+.t3-off-canvas {
+  position: absolute;
+  right: -240px;
+  top: 0;
+  width: 220px;
+  background: #f2f2f2;
+  padding: 0 12px;
+}
+
+.t3-off-canvas-header-title {
+}
+
+.t3-off-canvas-header-title:before {
+  content: "Off-Canvas";
+  display: block;
+  font-size: 12px;
+}
+
+.navbar-toggle,
+.off-canvas-toggle,
+.t3-off-canvas-header button.close {
+  display: none;
+}
+
+
+/* Copyright --*/
+.t3-admin-layout-preview .t3-footer .copyright {
+  margin-bottom: 20px;
+}
+
+.t3-admin-layout-preview  .t3-footer .copyright small {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Powered by ---*/
+.poweredby {
+  text-align: right;
+  line-height: normal;
+}
+
+.poweredby a {
+  display: block;
+  color: #999;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.poweredby a strong {
+  display: block;
+}
+
+
+/* Position States
+-------------------*/
+/* Pos Off ---*/
+.pos-off {
+  border-color: #c00;
+  color: #c00;
+}
+
+.pos-off .t3-admin-layout-edit {
+  display: block;
+}
+
+.pos-off:hover {
+  border-color: #c00;
+}
+
+/* Pos Active ---*/
+.pos-active {
+  border: 1px solid #07b;
+}
+
+.t3-admin-layout-mode-m .pos-active .t3-admin-layout-edit {
+  display: block;
+}
+
+.pos-active:hover {
+  border-color: #07b;
+}
+
+/* Pos Hidden ---*/
+.t3-admin-layout-hiddenpos {
+  display: none;
+}
+
+.t3-admin-layout-hiddenpos.has-pos {
+  display: block;
+  padding: 0 12px 0 42px;
+  margin-bottom: 10px;
+  background: #ddd;
+  position: relative;
+}
+
+.t3-admin-layout-hiddenpos::before {
+  content: "\f070";
+  font-family: "FontAwesome";
+  font-size: 16px;
+  background: #c00;
+  color: #fff;
+  width: 34px;
+  height: 100%;
+  line-height: 35px;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  text-align: center;
+}
+
+.pos-hidden {
+  display: inline-block;
+  border: 1px solid #ccc;
+  background: #eee;
+  padding: 1px 10px;
+  font-size: 12px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.pos-hidden i {
+  margin-left: 5px;
+  display: none;
+}
+
+.pos-hidden:hover {
+  border: 1px solid #07b;
+}
+
+.t3-hide {
+  display: none !important;
+}
+
+.t3-admin-layout-preview .hidden {
+  opacity: 0.5;
+  display: block;
+  visibility: visible;
+}

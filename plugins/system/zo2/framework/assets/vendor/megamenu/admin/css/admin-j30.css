@@ -1,0 +1,77 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+/* -------------------------------------------------*/
+/* T3 ADMIN STYLE
+----------------------------------------------------*/
+.t3-admin {
+	margin-bottom: 70px;
+}
+
+/* Menu Assignment
+----------------------------------------------------*/
+.t3-admin-assignment .thumbnail {}
+
+
+/* Responsive
+----------------------------------------------------*/
+@media (max-width: 767px) {
+  .t3-admin-form {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+
+}
+
+
+/* -------------------------------------------------*/
+/* T3 TEMPLATE MANAGER
+----------------------------------------------------*/
+#template-manager {
+	padding: 20px;
+}
+
+#template-manager .pull-left {
+	padding-top: 30px;
+}
+
+#template-manager div[align=center],
+#template-manager h2 {
+	margin-left: 230px;
+	text-align: left;
+	padding: 10px;
+}
+
+#template-manager div.alert-success {
+	background-color:transparent !important;
+	border-color: transparent !important;
+	color: #468847;
+}
+
+
+/* Chosen
+----------------------------------------------------*/
+.chzn-drop:after {
+	content: "t3";
+	position: absolute;
+	bottom: -50px;
+	visibility: hidden;
+}
+
+/* Brand J3.2
+----------------------------------------------------*/
+.navbar .brand {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}

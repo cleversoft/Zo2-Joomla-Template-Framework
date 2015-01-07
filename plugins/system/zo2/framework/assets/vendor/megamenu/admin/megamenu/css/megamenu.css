@@ -1,0 +1,744 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       T3 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
+ *                & Google group to become co-author)
+ * @Google group: https://groups.google.com/forum/#!forum/t3fw
+ * @Link:         http://t3-framework.org 
+ *------------------------------------------------------------------------------
+ */
+
+
+/* -------------------------------------------------*/
+/* T3 MEGAMENU ADMIN UI
+---------------------------------------------------*/
+
+body.bd {
+  padding: 0;
+  margin: 0;
+  background: url(../images/grid-bg.jpg) top left;
+}
+
+.bd .header {
+  padding: 10px 20px;
+}
+
+.bd .header h1 {
+  margin: 0;
+  color: #fff;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: normal;
+}
+
+#t3-admin-megamenu {
+  min-height: 800px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.admin-inline-toolbox h3 {
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.bd .t3-admin-header {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #e6e6e6;
+  position: relative;
+}
+
+.t3-admin-header .btn-toolbar {
+  margin: 15px 0;
+}
+
+
+/* Intro
+---------------------*/
+#t3-admin-mm-intro {
+  float: left;
+  padding: 20px 200px 20px 20px;
+}
+
+#t3-admin-mm-intro h3 {
+  margin-top: 0;
+}
+
+#t3-admin-mm-intro p {
+  display: block;
+  color: #999999;
+  max-height: 50px;
+  overflow: hidden;
+}
+
+
+
+/* Toolbox
+---------------------*/
+#t3-admin-mm-tb {
+  float: left;
+}
+
+#t3-admin-megamenu .admin-inline-toolbox {
+  height: 128px;
+  border-bottom: 1px solid #e6e6e6;
+  margin: 0 -20px 20px;
+  background: #f2f2f2;
+}
+
+#t3-admin-mm-tb .admin-toolbox {
+  height: 128px;
+  padding: 20px;
+  display: none;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -o-box-sizing: border-box;
+}
+
+#t3-admin-mm-tb .admin-toolbox h3 {
+  margin-top: 0;
+}
+
+#t3-admin-mm-tb .admin-toolbox ul {
+  margin-right: 20px;
+  float: left;
+}
+
+#t3-admin-mm-tb .admin-toolbox li > label {
+  font-size: 11px;
+  color: #999999;
+  display: inline-block;
+
+}
+
+#t3-admin-mm-tb .btn [class^="icon-"],
+#t3-admin-mm-tb .btn [class*=" icon-"] {
+  margin-right: 0;
+}
+
+
+/* Toolbox Actions ---- */
+.t3-admin-mm-row .toolbox-actions-group {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.t3-admin-mm-row .toolbox-actions-group button {
+}
+
+
+/* Fullscreen Toggle */
+#t3-admin-megamenu .t3-admin-tog-fullscreen {
+  display: none !important;
+  /*position: absolute;
+  right: 0;
+  top: -50px;*/
+}
+
+#t3-admin-megamenu .toolbox-saveConfig {
+  display: none !important;
+}
+
+
+/* The Menu
+---------------------*/
+#t3-admin-mm-container {
+  float: left;
+  transition: opacity .2s ease-out;
+  -o-transition: opacity .2s ease-out;
+  -moz-transition: opacity .2s ease-out;
+  -webkit-transition: opacity .2s ease-out;
+}
+
+
+/* Global Menu Inner padding ---*/
+.t3-megamenu .mega-inner {
+  padding: 10px;
+}
+
+
+/* Menu Grid ---*/
+.t3-megamenu .row-fluid + .row-fluid {
+  margin-top: 0;
+  border-top: 0;
+}
+
+.t3-megamenu .row-fluid [class*="span"] {
+  border: 1px dotted #ccc;
+  border-radius: 0;
+  background: white;
+}
+
+
+/* The Nav ---*/
+.t3-megamenu .span12.mega-col-nav .mega-inner,
+.t3-megamenu .mega-group .span12.mega-col-nav .mega-inner {
+  padding: 10px;
+}
+
+.t3-megamenu .nav > li {
+  margin-right: 20px;
+}
+
+.t3-megamenu .nav > li > a,
+.t3-megamenu .nav > li > span {
+  border: 1px solid #ccc;
+  padding: 7px 10px;
+  background: #f2f2f2;
+  font-weight: bold;
+  border-radius: 0;
+  display: block;
+}
+
+/* The caret */
+.t3-megamenu .mega-nav .dropdown-submenu > a::after {
+  margin-right: -10px;
+}
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+  box-shadow: none;
+}
+
+
+/* Dropdown ---*/
+.t3-megamenu .dropdown-menu::before,
+.t3-megamenu .dropdown-menu::after {
+  display: none !important; /* Hide the Arrow */
+}
+
+.t3-megamenu .dropdown-menu {
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 0;
+  min-width: 200px;
+  background: #f2f2f2;
+  box-shadow: 3px 3px 0 #e6e6e6;
+  z-index: 99;
+  /* Fixed overlap with the Joomla Toolbar */
+}
+
+.t3-megamenu .dropdown-menu .dropdown-menu {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.t3-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
+  margin-left: 0;
+  margin-right: 11px;
+}
+
+.t3-megamenu .mega-nav li {
+  margin-bottom: 5px;
+}
+
+.t3-megamenu .mega-nav li:last-child {
+  margin-bottom: 0;
+}
+
+.t3-megamenu .mega-nav li > a,
+.t3-megamenu .mega-nav li > span {
+  padding: 5px 20px 5px 10px;
+  border: 1px dotted #ccc;
+  background: #fff;
+  border-radius: 0;
+  font-size: 12px;
+  color: #999;
+}
+
+
+/* The group ---*/
+.t3-megamenu .mega-nav .mega-group-title,
+.t3-megamenu .mega-nav .mega-group > .mega-group-title,
+.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px dotted #ccc;
+}
+
+.t3-megamenu .mega-group-ct {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  border-radius: 0;
+  background: #f2f2f2;
+}
+
+.t3-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+  padding: 10px;
+}
+
+
+/* Module in Menu ---*/
+.t3-megamenu .t3-module {
+  pointer-events: none;
+  cursor: default;
+  position: relative;
+  margin: 0;
+}
+
+.t3-megamenu .t3-module:after {
+  display: block;
+  position: absolute;
+  background: #eeeeee;
+  right: -10px;
+  bottom: -10px;
+  content: "Module";
+  width: 70px;
+  padding: 2px 0;
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #999;
+  border-radius: 0;
+  border: 1px solid #dddddd;
+  border-width: 1px 0 0 1px;
+}
+
+.t3-megamenu .t3-module .module-inner {
+  opacity: .3;
+  font-size: 12px;
+}
+
+.t3-megamenu .t3-module .module-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: normal;
+}
+
+.t3-megamenu .t3-module .module-ct {
+  overflow: hidden;
+  zoom: 1;
+}
+
+/* Reset List Style in Module */
+.t3-megamenu .t3-module ul,
+.t3-megamenu .t3-module .nav,
+.t3-megamenu .dropdown-menu .nav {
+  margin: 0 0 0 15px;
+}
+.t3-megamenu .t3-module ul li,
+.t3-megamenu .t3-module .nav li,
+.t3-megamenu .dropdown-menu .nav li {
+  list-style: disc;
+  display: list-item;
+  float: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.t3-megamenu .t3-module ul li a,
+.t3-megamenu .t3-module .nav li a,
+.t3-megamenu .dropdown-menu .t3-module li a {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+  background: none;
+  font: inherit;
+  white-space: normal;
+}
+.t3-megamenu .t3-module ul li a:hover,
+.t3-megamenu .t3-module .nav li a:hover,
+.t3-megamenu .dropdown-menu .t3-module li a:hover,
+.t3-megamenu .t3-module ul li a:active,
+.t3-megamenu .t3-module .nav li a:active,
+.t3-megamenu .dropdown-menu .t3-module li a:active,
+.t3-megamenu .t3-module ul li a:focus,
+.t3-megamenu .t3-module .nav li a:focus,
+.t3-megamenu .dropdown-menu .t3-module li a:focus,
+.t3-megamenu .t3-module ul li a:visited,
+.t3-megamenu .t3-module .nav li a:visited,
+.t3-megamenu .dropdown-menu .t3-module li a:visited {
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+
+
+.t3-megamenu [class*="span"].hover .t3-module:after,
+.t3-megamenu [class*="span"].selected .t3-module:after {
+  border-style: solid;
+  border-color: #07b;
+  background: #07b;
+  color: #fff;
+}
+
+/* Fix Form display problem in Modules */
+.t3-megamenu .t3-module .control-group {
+  margin-bottom: 5px;
+}
+
+.t3-megamenu .t3-module .controls {
+  margin-left: 3px;
+}
+
+
+/* Open Item ---*/
+.t3-megamenu .nav > li.open > a,
+.t3-megamenu .open > a,
+.t3-megamenu .open > .mega-group-title {
+  background: #07b !important;
+  border-color: #07b !important;
+  color: #fff !important;
+  text-shadow: none !important;
+}
+
+.t3-megamenu .open > .mega-group-title > a {
+  color: #fff !important;
+}
+
+.t3-megamenu .nav > li.open > a > .caret,
+.t3-megamenu .open > a > .caret {
+  border-top-color: #fff !important;
+}
+
+
+/* Hover Item ---*/
+.t3-megamenu .nav-child.hover,
+.t3-megamenu ul[class*="level"] > li > a.hover,
+.t3-megamenu ul[class*="level"] > li > span.hover,
+.t3-megamenu .row-fluid [class*="span"].hover {
+  border-style: solid !important;
+  border-color: #07b !important;
+}
+
+.t3-megamenu ul[class*="level"] > li > a:hover,
+.t3-megamenu ul[class*="level"] > li > a:focus,
+.t3-megamenu ul[class*="level"] > li > a:active {
+  background: #fff!important;
+  color: #333 !important;
+  text-shadow: none !important;
+}
+
+
+.t3-megamenu ul[class*="level"] > li > a:hover > .caret,
+.t3-megamenu ul[class*="level"] > li > a:focus > .caret,
+.t3-megamenu ul[class*="level"] > li > a:active > .caret {
+  border-top-color: #333 !important;
+}
+
+/* The caret */
+.t3-megamenu .mega-nav li a.hover:after,
+.t3-megamenu .mega-nav li a.selected:after {
+  border-left-color: #333333;
+}
+
+/* The seperator */
+.t3-megamenu .mega-nav .divider .separator {
+  display: none;
+}
+
+/* The Icons */
+.t3-megamenu .nav [class^="icon-"],
+.t3-megamenu .nav [class*=" icon-"],
+.t3-megamenu .nav .fa {
+  margin-right: 5px;
+}
+
+/* Selected Item ---*/
+.t3-megamenu .selected {
+  border-style: solid !important;
+  border-color: #07b !important;
+}
+
+/* The caption ---*/
+.mega-caption {
+  color: #999;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+
+/* Fix for Joomla! Default Admin Template
+--------------------------------------------------*/
+#t3-admin-megamenu .dropdown-menu a {
+  white-space: normal;
+}
+
+#t3-admin-megamenu .row-fluid [class*="span"] {
+  margin-left: 2.12766%;
+}
+
+#t3-admin-megamenu .row-fluid [class*="span"]:first-child {
+  margin-left: 0;
+}
+
+/* Fix right spacing for chzn chosen in Megamenu Admin UI */
+#t3-admin-megamenu ul.chzn-results {
+  margin-right: 4px;
+  float: none;
+}
+
+.chzn-container-multi .chzn-choices {
+  padding: 1px 0;
+}
+
+/* Fix submenu auto open on hover */
+#t3-admin-megamenu .dropdown-submenu:hover .dropdown-menu {
+  display: none;
+}
+
+#t3-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+
+/* Header Form Control ---*/ 
+.t3-admin-header .control-group {
+  width: auto !important;
+  display: block;
+  float: left;
+  margin: 15px 20px 15px 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  min-height: 30px;
+}
+
+.t3-admin-header .control-group.hide {
+  display: none;
+}
+
+.t3-admin-header .control-label {
+  width: auto !important;
+  display: block;
+  float: left;
+  padding: 8px 0 0 0;
+}
+
+.t3-admin-header .controls {
+  margin: 0 0 0 10px;
+  width: auto !important;
+  display: block;
+  float: left;
+  padding: 0;
+  background: none;
+}
+
+.t3-admin-header .inputbox,
+.t3-admin-header .input {
+  width: 250px;
+  font-weight: bold;
+}
+
+
+/* Ajax loader ---*/
+#t3-admin-megamenu .ajaxloader {
+  width: 300px;
+  height: 20px;
+  position: absolute;
+  top: 130px;
+  left: -999em;
+  border-radius: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -webkit-transition: opacity 0.5s ease-out;
+}
+
+
+#t3-admin-megamenu .progress {
+  border-radius: 0;
+}
+
+#t3-admin-megamenu .ajaxloader .bar {
+  width: 0%;
+}
+
+#t3-admin-megamenu.loading .ajaxloader {
+  left: 20px;
+  opacity: 1;
+}
+
+#t3-admin-megamenu.loading .ajaxloader .bar {
+  width: 100%;
+}
+
+#t3-admin-megamenu.loading #t3-admin-mm-container {
+  opacity: 0;
+}
+
+/* Hidden */
+#t3-admin-megamenu .hidden,
+#t3-admin-megamenu .hide {
+  display: block;
+  visibility: visible;
+  opacity: 0.3;
+}
+
+/* Modal ---*/
+.ajax-message {
+  position: fixed;
+  top: -100px;
+  opacity: 0;
+  left: 50%;
+  z-index: 1050;
+  overflow: auto;
+  width: 400px;
+  margin-left: -200px;
+  background-color: #fff;
+  border-radius: 0;
+  
+  transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -o-transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -moz-transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  -webkit-transition: all 2s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+}
+
+.ajax-message.in {
+  top: 50px;
+  opacity: 1;
+}
+
+#t3-admin-megamenu-dlg {
+  font: 14px/20px sans-serif;
+  color: #666;
+  width: 450px;
+  margin: -200px 0 0 -225px;
+  border: 1px solid #333;
+  border-radius: 0;
+}
+
+#t3-admin-megamenu-dlg.fade.in {
+  top: 50%;
+}
+
+.modal-open .modal .dropdown-menu {
+  z-index: 2050;
+}
+
+.modal-open .modal .dropdown.open {
+  *z-index: 2050;
+}
+
+.modal-open .modal .popover {
+  z-index: 2060;
+}
+
+.modal-open .modal .tooltip {
+  z-index: 2080;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+}
+
+.modal-backdrop.fade {
+  opacity: 0;
+}
+
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+/* Modal ---*/
+.modal {
+  font: 14px/20px sans-serif;
+  color: #666;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1060;
+  overflow: auto;
+  width: 350px;
+  margin: -200px 0 0 -150px;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 0;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+
+}
+
+.modal.fade {
+  -webkit-transition: opacity .3s linear, top .3s ease-out;
+  -moz-transition: opacity .3s linear, top .3s ease-out;
+  -o-transition: opacity .3s linear, top .3s ease-out;
+  transition: opacity .3s linear, top .3s ease-out;
+  top: -25%;
+}
+
+.modal-header {
+  padding: 9px 15px 0;
+}
+
+.modal-header .close {
+  margin-top: 2px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  line-height: 30px;
+}
+
+.modal-body {
+  overflow-y: auto;
+  max-height: 400px;
+  padding: 15px;
+}
+
+.modal-form {
+  margin-bottom: 0;
+}
+
+.modal-footer {
+  padding: 14px 15px 15px;
+  margin-bottom: 0;
+  text-align: right;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  border-radius: 0;
+  box-shadow: inset 0 1px 0 #ffffff;
+  *zoom: 1;
+}
+
+.modal-footer:before,
+.modal-footer:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.modal-footer:after {
+  clear: both;
+}
+
+.modal-footer .btn + .btn {
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+
+.modal-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+
+/* Fix not hide element in admin when adding hidden class */
+.t3-megamenu ul li,
+.t3-megamenu .mega-group-ct,
+.t3-megamenu .open  > .mega-dropdown-menu,
+.t3-megamenu .mega-col-nav {
+	display: block!important;
+}
