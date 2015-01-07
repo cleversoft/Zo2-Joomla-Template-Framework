@@ -15,9 +15,17 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('Zo2ModelSiteMegamenu'))
 {
     Zo2Framework::importVendor('t3');
+
     class Zo2ModelSiteMegamenu
     {
 
+        /**
+         * @todo Move addStylesheet & addScript into this function
+         * @param type $menuType
+         * @param type $configs
+         * @param type $params
+         * @return type
+         */
         public function render($menuType = 'mainmenu', $configs = array(), $params = array())
         {
             $megamenu = new T3MenuMegamenu($menuType, $configs, $params);

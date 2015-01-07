@@ -30,7 +30,7 @@
             <field name="layoutbuilder" type="layoutbuilder" />
         </fieldset>   
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_MEGAMENU">
-            <field name="menu" type="megamenu" />
+            <field type="megamenu" name="megamenu" label="ZO2_ADMIN_FIELD_LABEL_MEGAMENU" default="" />
         </fieldset>     
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_ADVANCED">            
             <field name="enable_rtl" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RTL" description="">
