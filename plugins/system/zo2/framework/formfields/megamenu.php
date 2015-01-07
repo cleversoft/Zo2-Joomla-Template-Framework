@@ -35,7 +35,7 @@ if (!class_exists('JFormFieldMegamenu'))
         public function getInput()
         {
             $model = new Zo2ModelAdminMegamenu();
-            return $model->megamenu();
+            //return $model->megamenu();
         }
 
     }
