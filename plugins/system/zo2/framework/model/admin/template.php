@@ -32,19 +32,19 @@ if (!class_exists('Zo2ModelAdminTemplate'))
             $jinput = JFactory::getApplication()->input;
             if ($jinput->get('option') == 'com_templates')
             {
-
                 $zo2Data = $jinput->get('zo2', array(), 'array');
                 $joomlaData = $jinput->get('jform', array(), 'array');
                 $templateId = $jinput->get('id');
                 $task = $jinput->get('task');
                 $this->_saveToDatabase($zo2Data, $joomlaData, $templateId);
-                // Get Zo2 data. It's already modified after bindTemplateParams above                
+
                 switch ($task)
                 {
-                    // Save data to current profile
+                    // Save data to current profile                    
                     case 'style.apply':
+                    case 'style.save':
+                    case 'style.save2copy':
                         $profile = Zo2Framework::getInstance()->profile;
-
                         $profile->loadArray($zo2Data);
                         $profile->save();
                 }

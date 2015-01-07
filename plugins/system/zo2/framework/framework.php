@@ -178,6 +178,10 @@ if (!class_exists('Zo2Framework'))
                 $parts = explode('.', $zo2Task);
                 $task = array_shift($parts);
                 $func = array_shift($parts);
+                if (self::isAjax())
+                {
+                    $func = 'ajax' . ucfirst($func);
+                }
                 $className = 'Zo2Model' . ucfirst($zo2Scope) . ucfirst($task);
                 $modelClass = new $className();
                 if (method_exists($modelClass, $func))
