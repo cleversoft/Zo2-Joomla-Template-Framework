@@ -9,10 +9,16 @@
     
     /* Layout builder local */
     var _layoutbuilder = {
+        /* Element selectors */
         _elements: {
+            layoutBuilderContainer: '#layoutbuilder-container',
             childrenContainer: '.children-container',
             sortableConnect: '.connectedSortable'
         },
+        /**
+         * Init function
+         * @returns {undefined}
+         */
         _init:function(){
             var _self = this;
             $(_self._elements.childrenContainer).sortable({
