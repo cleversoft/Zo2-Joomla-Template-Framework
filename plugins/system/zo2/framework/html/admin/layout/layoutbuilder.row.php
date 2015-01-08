@@ -3,12 +3,17 @@ $jDoc = $row->getJdoc();
 $blockName = $row->get('name');
 $jDocName = $jDoc->get('name');
 $children = $row->get('children', array());
+$properties = $row->getProperties();
+if (isset($properties['children']))
+{
+    unset($properties['childrent']);
+}
 ?>
 
 <div class="sortable-row <?php echo $row->getClass(); ?> <?php echo $child ? 'row-child' : 'row-parent'; ?>"
      id="zo2-<?php echo $blockName; ?>"
-     data-zo2="<?php echo htmlentities(Zo2HelperEncode::json($row->getProperties())); ?>"
-    >
+     data-zo2="<?php echo htmlentities(Zo2HelperEncode::json($properties)); ?>"
+     >
     <div class="row-control">
         <div class="parent-container clearfix row">
             <div class="row-size">
@@ -27,7 +32,8 @@ $children = $row->get('children', array());
             <div class="children-container row sortable-row connectedSortable">
                 <?php
                 {
-                    foreach ($children as $child) {
+                    foreach ($children as $child)
+                    {
                         $this->set('child', true);
                         $this->set('row', new Zo2LayoutbuilderRow($child));
                         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
