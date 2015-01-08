@@ -84,6 +84,9 @@ img {
   float: right;
   line-height: 35px;
 }
+#layoutbuilder-container .sortable-row.row-child{
+    cursor: move;
+}
 #layoutbuilder-container .row-parent > .row-control {
   background-color: #f7f7f7;
   color: #000;

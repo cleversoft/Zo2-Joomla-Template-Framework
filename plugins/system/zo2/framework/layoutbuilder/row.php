@@ -142,7 +142,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         public function getControls($controls = array())
         {
             $default = array(
-                'drag' => 'fa fa-arrows row-control-icon dragger hasTooltip',
+                'addRow' => 'fa fa-plus row-control-icon add-row hasTooltip',
                 'settings' => 'fa fa-cog row-control-icon settings hasTooltip',
                 'remove' => 'row-control-icon delete fa fa-remove hasTooltip'
             );
