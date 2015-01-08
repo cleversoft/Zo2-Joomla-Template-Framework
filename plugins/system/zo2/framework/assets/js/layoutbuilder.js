@@ -22,8 +22,10 @@
         _init:function(){
             var _self = this;
             $(_self._elements.childrenContainer).sortable({
-                    connectWith: _self._elements.sortableConnect
+                placeholder: "sortable-hightligth",
+                connectWith: _self._elements.sortableConnect
             }).disableSelection();
+            $('#layoutbuilder-container').sortable().disableSelection();
         }
 
     };
