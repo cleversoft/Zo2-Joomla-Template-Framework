@@ -28,9 +28,8 @@ if (isset($properties['children']))
                 <?php echo $row->getControls(); ?>
             </div>
         </div>
-        <?php if (count($children) > 0) : ?>
-            <div class="children-container row sortable-row connectedSortable">
-                <?php
+        <div class="children-container row sortable-row connectedSortable">
+        <?php if (count($children) > 0) : 
                 {
                     foreach ($children as $child)
                     {
@@ -39,8 +38,7 @@ if (isset($properties['children']))
                         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
                     }
                 }
-                ?>
-            </div>
-        <?php endif; ?>
+          endif; ?>
+        </div>
     </div>
 </div>
