@@ -179,11 +179,18 @@ if (!class_exists('Zo2Layout'))
             }
             $children = $item->get('children', array());
             if (count($children) > 0)
-                return true;
-            else
+                foreach ($children as $item)
+                {
+                    $item = new JObject($item);
+                    if ($this->_checkShowColumn($item))
+                    {
+                        return true;
+                    }
+                } else
             {
                 return false;
             }
+            return false;
         }
 
         /**
