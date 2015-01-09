@@ -108,7 +108,7 @@
             html += '<span>(none)</span>';
             html += '</div>';
             html += '<div class="row-controls">';
-            html += '<i title="" class="fa fa-plus row-control-icon add-row hasTooltip" data-original-title="addRow"></i>';
+            html += '<i title="" class="fa fa-plus row-control-icon add-row hasTooltip" onclick="zo2.layoutbuilder.addRow(this);" data-original-title="addRow"></i>';
             html += '<i title="" class="fa fa-cog row-control-icon settings hasTooltip" data-original-title="settings"></i>';
             html += '<i title="" class="row-control-icon delete fa fa-remove hasTooltip" data-original-title="remove"></i>';
             html += '</div>';
