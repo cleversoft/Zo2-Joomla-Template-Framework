@@ -53,9 +53,20 @@
             ]
         },
         {
-            "type": "row",
             "name": "content",
             "children": [
+                {
+                    "name": "offcanvas",
+                    "jdoc": {
+                        "type": "offcanvas"                        
+                    },
+                    "grid": {
+                        "xs": 0,
+                        "sm": 0,
+                        "md": 0,
+                        "lg": 0
+                    }
+                },
                 {
                     "name": "left",
                     "jdoc": {
@@ -64,10 +75,10 @@
                         "name": "left"
                     },
                     "grid": {
-                        "xs": 4,
-                        "sm": 4,
-                        "md": 4,
-                        "lg": 4
+                        "xs": 3,
+                        "sm": 3,
+                        "md": 3,
+                        "lg": 3
                     }
                 },
                 {

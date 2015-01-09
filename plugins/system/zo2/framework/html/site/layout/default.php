@@ -34,6 +34,11 @@ $bodyClasses = trim(implode(' ', $bodyClasses));
     </head>
     <body id="zo2-framework-wrapper" class="<?php echo $bodyClasses; ?>">       
         <?php echo Zo2Framework::getProfileParam('custom_code_after_open_body'); ?>
+        <!-- BEGIN Off canvas content -->
+        <?php if ($framework->document->countModules('zo2-offcanvas')) : ?>
+            <jdoc:include type="modules" name="zo2-offcanvas" style="offcanvas" />
+        <?php endif; ?>
+        <!-- END Off canvas content -->
         <?php echo $layout->render(); ?>
         <?php echo Zo2Framework::getProfileParam('custom_code_before_close_body'); ?>
     </body>

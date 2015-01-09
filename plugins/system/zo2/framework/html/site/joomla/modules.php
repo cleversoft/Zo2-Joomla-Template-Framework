@@ -48,3 +48,34 @@ function modChrome_zo2($module, &$params, &$attribs)
         <?php
     endif;
 }
+
+/**
+ * 
+ * @param type $module
+ * @param type $params
+ * @param type $attribs
+ */
+function modChrome_offcanvas($module, &$params, &$attribs)
+{
+    $classes = Zo2HelperClasses::extract($params->get('moduleclass_sfx'));
+    $modClass = (isset($classes['classes'])) ? implode(' ', $classes['classes']) : '';
+    $fa = '';
+    if (isset($classes['fa']))
+    {
+        $fa = '<i class="fa fa-' . $classes['fa'] . '"></i>';
+    }
+    if (isset($classes['label']))
+    {
+        $module->title = '<span class="label label-' . $classes['label'] . '">' . $module->title . '</span>';
+    }
+    if (!empty($module->content)) :
+        ?>
+        <div class="moduletable <?php echo htmlspecialchars($modClass); ?>">
+            <?php if ((bool) $module->showtitle) : ?>
+                <?php echo $fa; ?><h3><?php echo $module->title; ?></h3>
+            <?php endif; ?>
+        <?php echo $module->content; ?>
+        </div>
+        <?php
+    endif;
+}
