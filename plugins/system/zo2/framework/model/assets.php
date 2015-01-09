@@ -60,7 +60,7 @@ if (!class_exists('Zo2ModelAssets'))
                 {
                     if (JFile::exists($cssKey))
                     {
-                        $cssBuffer [] = file_get_contents($cssKey);
+                        $cssBuffer [] = Zo2HelperAssets::load($cssKey, $cssFile);
                     }
                 }
                 if (!empty($cssBuffer))
