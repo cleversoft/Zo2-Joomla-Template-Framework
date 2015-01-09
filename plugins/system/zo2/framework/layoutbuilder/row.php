@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
@@ -12,11 +13,34 @@
 defined('_JEXEC') or die('Restricted access');
 if (!class_exists('Zo2LayoutbuilderRow'))
 {
+
     /**
      * Class object for each row
      */
     class Zo2LayoutbuilderRow extends Zo2LayoutbuilderAbstract
     {
+
+        private $_controls;
+
+        public function __construct($properties = null)
+        {
+            parent::__construct($properties);
+
+            $this->addControl('addRow', 'plus', 'add-row', array('onClick' => 'zo2.layoutbuilder.addRow()'));
+            $this->addControl('settings', 'cog', 'settings');
+            $this->addControl('remove', 'remove', 'delete');
+        }
+
+        public function addControl($name, $icon, $class, $data = array())
+        {
+            $control = new Zo2LayoutbuilderControl();
+            $control->setName($name);
+            $control->setIcon($icon);
+            $control->addClass($class);
+            $control->set('data', $data);
+            $this->_controls[] = $control;
+        }
+
         /**
          * Render layout of this row
          * @return string
@@ -34,6 +58,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
                 return implode(PHP_EOL, $ret);
             }
         }
+
         /**
          *
          * @return type
@@ -45,6 +70,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $hasData = $this->_hasData($jDoc);
             return $hasData;
         }
+
         /**
          * Render children rows
          * @return string
@@ -54,6 +80,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $children = $this->get('children', array());
             return $this->_render($children);
         }
+
         /**
          * Check if this row has children to render
          * @return boolean
@@ -69,6 +96,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             }
             return false;
         }
+
         /**
          *
          * @param type $jDoc
@@ -93,6 +121,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
                     return true;
             }
         }
+
         /**
          * @link https://docs.joomla.org/Jdoc_statements
          * @return \JObject
@@ -101,6 +130,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         {
             return new JObject($this->get('jdoc'));
         }
+
         /**
          *
          * @return type
@@ -120,6 +150,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             }
             return trim(implode(' ', $class));
         }
+
         /**
          *
          * @param type $default
@@ -134,6 +165,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $class [] = $this->getGridClass();
             return implode(' ', $class);
         }
+
         /**
          *
          * @param array $controls
@@ -141,18 +173,15 @@ if (!class_exists('Zo2LayoutbuilderRow'))
          */
         public function getControls($controls = array())
         {
-            $default = array(
-                'addRow' => 'fa fa-plus row-control-icon add-row hasTooltip',
-                'settings' => 'fa fa-cog row-control-icon settings hasTooltip',
-                'remove' => 'row-control-icon delete fa fa-remove hasTooltip'
-            );
-            $controls = array_merge($default, $controls);
+
             $html = array();
-            foreach ($controls as $title => $class)
+            foreach ($this->_controls as $control)
             {
-                $html [] = '<i title="' . $title . '" class="' . $class . '"></i>';
+                $html [] = $control->getHtml();
             }
             return implode(PHP_EOL, $html);
         }
+
     }
+
 }
