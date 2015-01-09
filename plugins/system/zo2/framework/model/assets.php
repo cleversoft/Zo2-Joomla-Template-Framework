@@ -150,12 +150,10 @@ if (!class_exists('Zo2ModelAssets'))
                             {
                                 Zo2Framework::message('Minifed file: ' . $cssMinFilePath);
                             }
-                            return true;
                         }
                     }
                 }
             }
-            return false;
         }
 
         /**

@@ -147,6 +147,9 @@ if (!class_exists('Zo2Assets'))
             return $this;
         }
 
+        /**
+         * Build assets
+         */
         public function build()
         {
             $model = new Zo2ModelAssets();
