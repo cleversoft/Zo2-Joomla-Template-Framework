@@ -90,6 +90,41 @@
             $(this._elements.layoutBuilderContainer).find(this._elements.sortableRow + ':first').before(html);
         },
         /**
+         * Add child row
+         * @param {type} element
+         * @returns {undefined}
+         */
+        addRow: function(element) {
+            var html = '';
+            html += '<div class="sortable-row  col-xs-12 col-sm-12 col-md-12 col-lg-12 row-child" id="" data-zo2="{&quot;name&quot;:&quot;&quot;,&quot;grid&quot;:{&quot;xs&quot;:12,&quot;sm&quot;:12,&quot;md&quot;:12,&quot;lg&quot;:12}}">';
+            html += '<div class="row-control">';
+            html += '<div class="parent-container clearfix row">';
+            html += '<div class="row-size">';
+            html += '<a title="Decrease width" href="#" class="row-decrease"><i data-original-title="Decrease width" class="hasTooltip fa fa-angle-double-left"></i></a>';
+            html += '<span class="column_size">12/12</span>';
+            html += '<a title="Increase width" href="#" class="row-increase"><i data-original-title="Increase width" class="hasTooltip fa fa-angle-double-right"></i></a>';
+            html += '</div>';
+            html += '<div class="row-name">';
+            html += '<span>(none)</span>';
+            html += '</div>';
+            html += '<div class="row-controls">';
+            html += '<i title="" class="fa fa-plus row-control-icon add-row hasTooltip" data-original-title="addRow"></i>';
+            html += '<i title="" class="fa fa-cog row-control-icon settings hasTooltip" data-original-title="settings"></i>';
+            html += '<i title="" class="row-control-icon delete fa fa-remove hasTooltip" data-original-title="remove"></i>';
+            html += '</div>';
+            html += '</div>';
+            html += '<div class="children-container row sortable-row connectedSortable ui-sortable">';
+            html += '</div>';
+            html += '</div>';
+            html += '</div>';
+            var $childContainer = $(element).closest(this._elements.sortableRow).find(this._elements.childrenContainer + ':first');
+            if ($childContainer.find(this._elements.sortableRow).length > 0) {
+                $childContainer.find(this._elements.sortableRow + ':first').before(html);
+            } else {
+                $childContainer.html(html);
+            }
+        },
+        /**
          * Internal get JSON
          * @param {jQuery object} $node
          * @param {array} parent
