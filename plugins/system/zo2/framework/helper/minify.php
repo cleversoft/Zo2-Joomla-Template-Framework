@@ -50,6 +50,20 @@ if (!class_exists('Zo2HelperMinify'))
         }
 
         /**
+         * Remove empty html tags
+         * @param type $html
+         * @return type
+         */
+        public static function html($html)
+        {
+            $pattern = '/<(\w+)\b(?:\s+[\w\-.:]+(?:\s*=\s*(?:"[^"]*"|"[^"]*"|[\w\-.:]+))?)*\s*\/?>\s*<\/\1\s*>/';
+            // Recursive empty HTML tags
+            return preg_replace(
+                    $pattern, '', $html
+            );
+        }
+
+        /**
          * Minify a CSS string
          *
          * @param string $css
