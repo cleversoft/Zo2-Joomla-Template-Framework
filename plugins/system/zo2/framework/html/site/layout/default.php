@@ -36,7 +36,9 @@ $bodyClasses = trim(implode(' ', $bodyClasses));
         <?php echo Zo2Framework::getProfileParam('custom_code_after_open_body'); ?>
         <!-- BEGIN Off canvas content -->
         <?php if ($framework->document->countModules('zo2-offcanvas')) : ?>
-            <jdoc:include type="modules" name="zo2-offcanvas" style="offcanvas" />
+            <div id="zo2-offcanvas-content">
+                <jdoc:include type="modules" name="zo2-offcanvas" style="offcanvas" />
+            </div>
         <?php endif; ?>
         <!-- END Off canvas content -->
         <?php echo $layout->render(); ?>
