@@ -77,6 +77,18 @@ if (!class_exists('Zo2Site'))
             $framework = Zo2Framework::getInstance();
             // Get memory usage before process
             $framework->set('memory_start', memory_get_usage(true));
+            jimport('joomla.cache.cache');
+            jimport('joomla.cache.callback');
+            $cache = JFactory::getCache();
+            $buffer = $cache->call(array($this, 'getHtml'));
+            // Get memory useage after processed
+            $framework->set('memory_end', memory_get_usage(true));
+            return $buffer;
+        }
+
+        public function getHtml()
+        {
+            $framework = Zo2Framework::getInstance();
             // Init layout builder with current profile
             $layoutBuilder = new Zo2LayoutbuilderSite($framework->profile->get('layout'));
             // Prepare properties for html to render
@@ -91,8 +103,6 @@ if (!class_exists('Zo2Site'))
                 HTML_Formatter::minify_html($dom);
                 $buffer = $dom;
             }
-            // Get memory useage after processed
-            $framework->set('memory_end', memory_get_usage(true));
             return $buffer;
         }
 
