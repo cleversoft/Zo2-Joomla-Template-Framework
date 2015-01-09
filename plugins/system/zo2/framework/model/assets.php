@@ -52,7 +52,7 @@ if (!class_exists('Zo2ModelAssets'))
 
             $cssFile = ZO2PATH_CACHE . '/' . $cssFileName;
 
-            $flag = !JFile::exists($cssFile) || !Zo2Framework::isDevelopmentMode();
+            $flag = !JFile::exists($cssFile) || Zo2Framework::isDevelopmentMode();
             if ($flag)
             {
                 // Combine css
