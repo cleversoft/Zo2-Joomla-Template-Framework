@@ -14,13 +14,15 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Path')) {
+if (!class_exists('Zo2Path'))
+{
 
 
     /**
      * Used to managed files & folders path by namespaces with override supported
      */
-    class Zo2Path {
+    class Zo2Path
+    {
 
         /**
          * Array of registered namespaces
@@ -34,9 +36,11 @@ if (!class_exists('Zo2Path')) {
          * @param string $name
          * @return \Zo2Path
          */
-        public static function &getInstance($name = 'zo2') {
+        public static function &getInstance($name = 'zo2')
+        {
             static $instances;
-            if (!isset($instances[$name])) {
+            if (!isset($instances[$name]))
+            {
                 $instances[$name] = new Zo2Path();
             }
             return $instances[$name];
@@ -47,7 +51,8 @@ if (!class_exists('Zo2Path')) {
          * @param string $className
          * @return array
          */
-        public function splitClassname($className) {
+        public function splitClassname($className)
+        {
             return preg_split('/(?=[A-Z])/', $className, -1, PREG_SPLIT_NO_EMPTY);
         }
 
@@ -57,8 +62,10 @@ if (!class_exists('Zo2Path')) {
          * @param string $path
          * @return \Zo2Path
          */
-        public function registerNamespace($namespace, $path) {
-            if (!isset($this->_namespaces[$namespace])) {
+        public function registerNamespace($namespace, $path)
+        {
+            if (!isset($this->_namespaces[$namespace]))
+            {
                 $this->_namespaces[$namespace] = array();
             }
             array_unshift($this->_namespaces[$namespace], $path);
@@ -70,10 +77,13 @@ if (!class_exists('Zo2Path')) {
          * @param string $namespace
          * @return array
          */
-        public function getNamespace($namespace) {
-            if (isset($this->_namespaces[$namespace])) {
+        public function getNamespace($namespace)
+        {
+            if (isset($this->_namespaces[$namespace]))
+            {
                 return $this->_namespaces[$namespace];
-            } else {
+            } else
+            {
                 return array();
             }
         }
@@ -84,15 +94,20 @@ if (!class_exists('Zo2Path')) {
          * @param string $path
          * @return boolean|string
          */
-        protected function _getPath($namespace, $path) {
+        protected function _getPath($namespace, $path)
+        {
             /* Make sure this namespace is registered */
-            if (isset($this->_namespaces[$namespace])) {
+            if (isset($this->_namespaces[$namespace]))
+            {
                 /* Find first exists filePath */
-                foreach ($this->_namespaces[$namespace] as $namespace) {
+                foreach ($this->_namespaces[$namespace] as $namespace)
+                {
                     $physicalPath = $namespace . DIRECTORY_SEPARATOR . $path;
-                    if (JFile::exists($physicalPath)) {
+                    if (JFile::exists($physicalPath))
+                    {
                         return rtrim(str_replace('/', DIRECTORY_SEPARATOR, $physicalPath), DIRECTORY_SEPARATOR);
-                    } elseif (JFolder::exists($physicalPath)) {
+                    } elseif (JFolder::exists($physicalPath))
+                    {
                         return rtrim(str_replace('/', DIRECTORY_SEPARATOR, $physicalPath), DIRECTORY_SEPARATOR);
                     }
                 }
@@ -104,9 +119,11 @@ if (!class_exists('Zo2Path')) {
          * @param string $className
          * @return string|boolean
          */
-        public function getPathByClassname($className) {
+        public function getPathByClassname($className)
+        {
             $array = $this->splitClassname($className);
-            if (count($array) > 1) {
+            if (count($array) > 1)
+            {
                 $prefix = array_shift($array);
                 return $this->_getPath($prefix, strtolower(implode(DIRECTORY_SEPARATOR, $array) . '.php'));
             }
@@ -118,10 +135,12 @@ if (!class_exists('Zo2Path')) {
          * @param string $key
          * @return string|boolean
          */
-        public function getPath($key) {
+        public function getPath($key)
+        {
             /* Extract key to get namespace and path */
             $parts = explode('://', $key);
-            if (is_array($parts) && count($parts) == 2) {
+            if (is_array($parts) && count($parts) == 2)
+            {
                 $namespace = $parts[0];
                 $path = $parts[1];
                 return $this->_getPath($namespace, $path);
@@ -134,14 +153,17 @@ if (!class_exists('Zo2Path')) {
          * @param string $key
          * @return string|boolean
          */
-        public function getUrl($key) {
+        public function getUrl($key)
+        {
             /* Extract key to get namespace and path */
             $parts = explode('://', $key);
-            if (is_array($parts) && count($parts) == 2) {
+            if (is_array($parts) && count($parts) == 2)
+            {
                 $namespace = $parts[0];
                 $path = $parts[1];
                 $filePath = $this->_getPath($namespace, $path);
-                if ($filePath) {
+                if ($filePath)
+                {
                     return $this->toUrl($filePath);
                 }
             }
@@ -153,10 +175,17 @@ if (!class_exists('Zo2Path')) {
          * @param string $path
          * @return string
          */
-        public function toUrl($path) {
+        public function toUrl($path, $pathOnly = false)
+        {
             $relative = str_replace(JPATH_ROOT, '', $path);
             $relative = trim(JPath::clean($relative, '/'), '/');
-            return trim(JUri::root(), '/') . '/' . $relative;
+            if ($pathOnly)
+            {
+                return rtrim(JUri::root(true), '/') . '/' . $relative;
+            } else
+            {
+                return rtrim(JUri::root(), '/') . '/' . $relative;
+            }
         }
 
     }
