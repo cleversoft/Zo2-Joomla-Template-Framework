@@ -20,8 +20,8 @@ echo Zo2Assets::getInstance()->render();
             <?php $index = 0; ?>
             <?php foreach ($form->getFieldsets('zo2') as $fieldsets => $fieldset): ?>           
                 <li role="presentation" class="<?php echo $index == 0 ? 'active' : ''; ?>">
-                    <a href="#<?php echo $fieldset->name; ?>" 
-                       id="<?php echo $fieldset->name; ?>-tab" 
+                    <a href="#<?php echo Zo2HelperString::getAlias($fieldset->name); ?>" 
+                       id="<?php echo Zo2HelperString::getAlias($fieldset->name); ?>-tab" 
                        role="tab" 
                        data-toggle="tab" 
                        aria-controls="home" 
@@ -36,7 +36,7 @@ echo Zo2Assets::getInstance()->render();
         <div id="zo2-tab-content" class="tab-content">
             <?php $index = 0; ?>
             <?php foreach ($form->getFieldsets('zo2') as $fieldsets => $fieldset): ?>
-                <div role="tabpanel" class="tab-pane fade in <?php echo $index == 0 ? 'active' : ''; ?>" id="<?php echo $fieldset->name; ?>" aria-labelledby="home-tab">
+                <div role="tabpanel" class="tab-pane <?php echo $index == 0 ? 'active' : ''; ?>" id="<?php echo Zo2HelperString::getAlias($fieldset->name); ?>" aria-labelledby="home-tab">
                     <?php foreach ($form->getFieldset($fieldset->name) as $field): ?>
                         <?php
                         // If the field is hidden, only use the input.
@@ -55,6 +55,7 @@ echo Zo2Assets::getInstance()->render();
                         <?php
                         endif;
                         ?>
+                        <?php $index++; ?>
                     <?php endforeach; ?>         
                 </div>
             <?php endforeach; ?>
