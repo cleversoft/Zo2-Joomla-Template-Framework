@@ -29,11 +29,9 @@
                 start: function(event, ui) {
                     ui.placeholder.height(ui.helper.outerHeight());
                     ui.placeholder.addClass(ui.item.attr('class'));
-                    ui.placeholder.addClass('sortable-hightligth');
                 },
                 stop: function(event, ui) {
                     ui.placeholder.removeClass(ui.item.attr('class'));
-                    ui.placeholder.removeClass('sortable-hightligth');
                 },
                 connectWith: _self._elements.sortableConnect
             }).disableSelection();
@@ -43,13 +41,19 @@
                 start: function(event, ui) {
                     ui.placeholder.height(ui.helper.outerHeight());
                     ui.placeholder.addClass(ui.item.attr('class'));
-                    ui.placeholder.addClass('sortable-hightligth');
                 },
                 stop: function(event, ui) {
                     ui.placeholder.removeClass(ui.item.attr('class'));
-                    ui.placeholder.removeClass('sortable-hightligth');
                 }
             }).disableSelection();
+        },
+        /**
+         * Sortable flush
+         * @returns {undefined}
+         */
+        sortableFlush: function(){
+            $(this._elements.layoutBuilderContainer).sortable("destroy");
+            $(this._elements.childrenContainer).sortable("destroy");
         },
         /**
          * Get JSON from layout builder
@@ -66,6 +70,7 @@
          */
         addParentRow: function() {
             var html = '';
+            this.sortableFlush();
             html += '<div class="sortable-row  col-xs-12 col-sm-12 col-md-12 col-lg-12 row-parent" id="" data-zo2="{&quot;name&quot;:&quot;&quot;}">';
             html += '<div class="row-control">';
             html += '<div class="parent-container clearfix row">';
@@ -88,6 +93,7 @@
             html += '</div>';
             html += '</div>';
             $(this._elements.layoutBuilderContainer).find(this._elements.sortableRow + ':first').before(html);
+            this._init();
         },
         /**
          * Add child row
@@ -96,6 +102,7 @@
          */
         addRow: function(element) {
             var html = '';
+            this.sortableFlush();
             html += '<div class="sortable-row  col-xs-12 col-sm-12 col-md-12 col-lg-12 row-child" id="" data-zo2="{&quot;name&quot;:&quot;&quot;,&quot;grid&quot;:{&quot;xs&quot;:12,&quot;sm&quot;:12,&quot;md&quot;:12,&quot;lg&quot;:12}}">';
             html += '<div class="row-control">';
             html += '<div class="parent-container clearfix row">';
@@ -123,6 +130,7 @@
             } else {
                 $childContainer.html(html);
             }
+            this._init();
         },
         /**
          * Internal get JSON
