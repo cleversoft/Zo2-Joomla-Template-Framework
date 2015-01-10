@@ -231,7 +231,9 @@ if (!class_exists('Zo2Assets'))
                 {
                     $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
                 }
-
+                $fonts = Zo2Fonts::getInstance();
+                $fonts->addGoogle('families', array('Droid Sans', 'Droid Serif'));
+                $assets[] = $fonts->render();
                 return implode(PHP_EOL, $assets);
             }
         }

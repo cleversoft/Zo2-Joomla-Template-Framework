@@ -11,7 +11,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-
+define('ZO2BRAND', 'ZO2 FRAMEWORK');
 define('ZO2VERSION', '2.0.0');
 define('ZO2PATH_ROOT', __DIR__);
 define('ZO2URL_ROOT', rtrim(JUri::root(), '/') . '/plugins/system/zo2');
@@ -19,3 +19,6 @@ define('ZO2URL_MEGAMENU', ZO2URL_ROOT . '/framework/assets/vendor/megamenu');
 define('ZO2PATH_CACHE', JPATH_ROOT . '/cache/zo2');
 define('ZO2URL_CACHE', rtrim(JUri::root(), '/') . '/cache/zo2');
 define('ZO2DEVELOPMENT_MODE', true);
+
+define('ZO2URL_WEBFONT', 'ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js');
+define('ZO2URL_UPDATE', 'http://update.zo2framework.org/zo2/extension.xml');

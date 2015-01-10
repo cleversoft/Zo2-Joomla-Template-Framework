@@ -25,8 +25,8 @@ $bodyClasses = trim(implode(' ', $bodyClasses));
         <?php echo Zo2Framework::getProfileParam('custom_code_after_open_head'); ?>
         <jdoc:include type="head" />        
         <!-- built with zo2 framework: http://www.zootemplate.com/zo2 -->
-        <?php require_once Zo2Path::getInstance()->getPath('Zo2://assets/js/zo2.php'); ?>
-        <?php echo Zo2Assets::getInstance()->render(); ?>
+        <?php require_once Zo2Path::getInstance()->getPath('Zo2://assets/js/zo2.php'); ?>               
+        <?php echo Zo2Assets::getInstance()->render(); ?>        
         <?php if ($framework->profile->get('enable_responsive', true)) : ?>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <?php endif; ?>
