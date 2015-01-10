@@ -6,15 +6,7 @@
             <field name="slogan" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_SLOGAN" description="" size="10" />
             <field name="copyright" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_COPYRIGHT" description="" rows="10" cols="10" filter="raw" />
             <field name="standard_logo" type="selectimage" default="" label="ZO2_ADMIN_FIELD_LABEL_STANDARD_LOGO" description="" />
-            <field name="retina_logo" type="selectimage" default="" label="ZO2_ADMIN_FIELD_LABEL_RETINA_LOGO" description="" />
-            <field name="enable_gototop" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_GOTOTOP" description="">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
-            <field name="enable_brandname" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_ZO2_BRANDNAME" description="">
-                <option value="0">JNO</option>
-                <option value="1">JYES</option>
-            </field>
+            <field name="retina_logo" type="selectimage" default="" label="ZO2_ADMIN_FIELD_LABEL_RETINA_LOGO" description="" />          
         </fieldset>
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_THEME_CUSTOMIZER">
             <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_RESPONSIVE" />
@@ -31,7 +23,10 @@
         </fieldset>   
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_MEGAMENU">
             <field type="megamenu" name="megamenu" label="ZO2_ADMIN_FIELD_LABEL_MEGAMENU" default="" />
-        </fieldset>     
+        </fieldset>  
+        <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_EXTENDS">
+            <field name="extends" type="extends" default="0" label="" description="" />
+        </fieldset>
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_ADVANCED">            
             <field name="enable_rtl" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RTL" description="">
                 <option value="0">JNO</option>
@@ -42,6 +37,14 @@
                 <option value="1">JYES</option>
             </field>
             <field name="enable_stickymenu" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_STICKYMENU" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="enable_gototop" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_GOTOTOP" description="">
+                <option value="0">JNO</option>
+                <option value="1">JYES</option>
+            </field>
+            <field name="enable_brandname" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_ZO2_BRANDNAME" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>

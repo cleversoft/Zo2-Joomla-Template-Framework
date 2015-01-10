@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fields name="zo2" addfieldpath="/plugins/system/zo2/framework/formfields">
+        <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_GENERAL" active="true">
+            <field name="site_name" type="text" default="" label="ZO2_ADMIN_FIELD_LABEL_SITENAME" description="" size="10" />            
+        </fieldset>        
+    </fields>
+</form>

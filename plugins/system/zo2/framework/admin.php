@@ -65,10 +65,50 @@ if (!class_exists('Zo2Admin'))
             }
         }
 
+        /**
+         * Render main Zo2 backend form
+         * @return type
+         */
         public function render()
         {
+            $formFile = Zo2Path::getInstance()->getPath('Zo2://assets/admin.xml');
+            if ($formFile)
+            {
+                $form = $this->_prepareForm('zo2form', $formFile);
+                $html = new Zo2Html();
+                $html->set('admin', $this);
+                $html->set('form', $form);
+                return $html->fetch('Zo2://html/admin/layout/default.php');
+            }
+        }
+
+        /**
+         * Render extends form
+         * @return type
+         */
+        public function renderExtends()
+        {
+            $formFile = Zo2Path::getInstance()->getPath('Zo2://assets/extends.xml');
+            if ($formFile)
+            {
+                $form = $this->_prepareForm('extends', $formFile);
+                $html = new Zo2Html();
+                $html->set('admin', $this);
+                $html->set('form', $form);
+                return $html->fetch('Zo2://html/admin/layout/extends.php');
+            }
+        }
+
+        /**
+         * 
+         * @param type $formName
+         * @param type $formFile
+         * @return type
+         */
+        private function _prepareForm($formName, $formFile)
+        {
             // get the JForm object
-            $form = JForm::getInstance('zo2form', ZO2PATH_ROOT . '/assets/admin.xml');
+            $form = JForm::getInstance($formName, $formFile);
             $profileData = Zo2Framework::getInstance()->profile->toArray();
             $templateData = Zo2Framework::getInstance()->template->params->toArray();
             $data = array_merge($templateData, $profileData);
@@ -77,10 +117,7 @@ if (!class_exists('Zo2Admin'))
                 'zo2' => $data
             );
             $form->bind($data);
-            $html = new Zo2Html();
-            $html->set('admin', $this);
-            $html->set('form', $form);
-            return $html->fetch('Zo2://html/admin/layout/default.php');
+            return $form;
         }
 
         public function getRequestProfile()
