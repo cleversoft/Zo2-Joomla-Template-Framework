@@ -4,6 +4,7 @@
         "Zo2://assets/less/site.less"
     ],
     "js": [
-        "Zo2://assets/js/menu.js"
+        "Zo2://assets/js/menu.js",
+        "Zo2://assets/js/layoutbuilder.js"
     ]
 }
