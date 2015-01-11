@@ -73,10 +73,10 @@ if (!class_exists('Zo2Framework'))
             }
             if (in_array($name, $admin))
             {
-                self::getGlobalParam($name);
+                return self::getGlobalParam($name);
             } else
             {
-                self::getProfileParam($name);
+                return self::getProfileParam($name);
             }
         }
 
