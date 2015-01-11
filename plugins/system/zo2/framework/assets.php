@@ -58,17 +58,6 @@ if (!class_exists('Zo2Assets'))
             if (!isset($instance))
             {
                 $instance = new Zo2Assets();
-                if (JFactory::getApplication()->isSite())
-                {
-                    if (!Zo2Framework::getParam('enable_responsive'))
-                    {
-                        $this->addStyleSheet('Zo2://assets/css/non.responsive.css');
-                    }
-                    if (Zo2Framework::getParam('enable_rtl'))
-                    {
-                        $this->addStyleSheet('Zo2://assets/css/rtl.css');
-                    }
-                }
             }
             if (isset($instance))
             {

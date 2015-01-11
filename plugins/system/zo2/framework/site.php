@@ -62,6 +62,16 @@ if (!class_exists('Zo2Site'))
                 $framework->template = new Zo2Template(JFactory::getApplication()->getTemplate(true));
                 $framework->profile = new Zo2Profile();
                 $framework->profile->loadFile($inited->getRequestProfile());
+
+                $assets = Zo2Assets::getInstance();
+                if (!Zo2Framework::getParam('enable_responsive'))
+                {
+                    $assets->addStyleSheet('Zo2://assets/css/non.responsive.css');
+                }
+                if (Zo2Framework::getParam('enable_rtl'))
+                {
+                    $assets->addStyleSheet('Zo2://assets/css/rtl.css');
+                }
                 // Always build assets for development mode
                 if (Zo2Framework::isDevelopmentMode())
                 {
