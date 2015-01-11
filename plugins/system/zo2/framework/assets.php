@@ -19,18 +19,10 @@ if (!class_exists('Zo2Assets'))
 {
 
     /**
-     * @uses This class used for managed ALL asset stuffs
-     * @rule
-     * All asset stuffs must be save under <core>|<template>/assets directory
+     * Zo2 assets management class
      */
     class Zo2Assets
     {
-
-        /**
-         * Singleton instance
-         * @var Zo2Assets
-         */
-        public static $instance;
 
         /**
          * Array of added css files
@@ -62,13 +54,25 @@ if (!class_exists('Zo2Assets'))
          */
         public static function getInstance()
         {
-            if (!isset(self::$instance))
+            static $instance;
+            if (!isset($instance))
             {
-                self::$instance = new Zo2Assets();
+                $instance = new Zo2Assets();
+                if (JFactory::getApplication()->isSite())
+                {
+                    if (!Zo2Framework::getParam('enable_responsive'))
+                    {
+                        $this->addStyleSheet('Zo2://assets/css/non.responsive.css');
+                    }
+                    if (Zo2Framework::getParam('enable_rtl'))
+                    {
+                        $this->addStyleSheet('Zo2://assets/css/rtl.css');
+                    }
+                }
             }
-            if (isset(self::$instance))
+            if (isset($instance))
             {
-                return self::$instance;
+                return $instance;
             }
         }
 
@@ -78,6 +82,7 @@ if (!class_exists('Zo2Assets'))
          */
         public function load($assets)
         {
+            // Load css
             if (isset($assets->css))
             {
                 foreach ($assets->css as $css)
@@ -85,6 +90,7 @@ if (!class_exists('Zo2Assets'))
                     $this->addStyleSheet($css);
                 }
             }
+            // Load js
             if (isset($assets->js))
             {
                 foreach ($assets->js as $js)
@@ -95,8 +101,8 @@ if (!class_exists('Zo2Assets'))
         }
 
         /**
-         *
-         * @param type $file
+         * 
+         * @param string $key
          * @return \Zo2Assets
          */
         public function addStyleSheet($key)
@@ -110,9 +116,8 @@ if (!class_exists('Zo2Assets'))
         }
 
         /**
-         * @todo Should we allow add less ?
-         * @param type $style
-         * @param bool $less
+         * 
+         * @param string $style
          * @return \Zo2Assets
          */
         public function addStyleSheetDeclaration($style)
@@ -122,14 +127,14 @@ if (!class_exists('Zo2Assets'))
         }
 
         /**
-         * @param type $file
-         *
+         * 
+         * @param string $key
          * @return \Zo2Assets
          */
         public function addScript($key)
         {
             $assetFile = Zo2Path::getInstance()->getPath($key);
-            if ($assetFile != false)
+            if ($assetFile)
             {
                 $this->_javascripts[$assetFile] = Zo2Path::getInstance()->getUrl($key);
             }
@@ -138,7 +143,7 @@ if (!class_exists('Zo2Assets'))
 
         /**
          *
-         * @param type $script
+         * @param string $script
          * @return \Zo2Assets
          */
         public function addScriptDeclaration($script)
@@ -162,6 +167,7 @@ if (!class_exists('Zo2Assets'))
         private function _prepareRender()
         {
 
+            // CSS optimize
             switch (Zo2Framework::getGlobalParam('enable_combine_css') && (!Zo2Framework::isDevelopmentMode()))
             {
                 // Combine to one css file
@@ -188,6 +194,8 @@ if (!class_exists('Zo2Assets'))
                     }
                     break;
             }
+
+            // JS optimize
             switch (Zo2Framework::getGlobalParam('enable_combine_js') && (!Zo2Framework::isDevelopmentMode()))
             {
                 case 'file':
@@ -231,8 +239,8 @@ if (!class_exists('Zo2Assets'))
                 {
                     $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
                 }
+                // Fonts generate
                 $fonts = Zo2Fonts::getInstance();
-                $fonts->addGoogle('families', array('Droid Sans', 'Droid Serif'));
                 $assets[] = $fonts->render();
                 return implode(PHP_EOL, $assets);
             }
