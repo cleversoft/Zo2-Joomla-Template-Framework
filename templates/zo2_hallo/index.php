@@ -12,7 +12,5 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-require_once (JPATH_ROOT . '/plugins/system/zo2/framework/bootstrap.php');
-
 $site = Zo2Site::init($this);
 echo $site->render();

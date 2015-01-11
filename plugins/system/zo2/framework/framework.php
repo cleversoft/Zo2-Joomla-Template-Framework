@@ -31,16 +31,16 @@ if (!class_exists('Zo2Framework'))
         public $template;
 
         /**
-         * Global variables
-         * @var array
-         */
-        private $_vars = array();
-
-        /**
          *
          * @var Zo2Profile
          */
         public $profile;
+
+        /**
+         * Global variables
+         * @var array
+         */
+        private $_vars = array();
 
         /**
          * 
@@ -66,6 +66,7 @@ if (!class_exists('Zo2Framework'))
         public static function getParam($name, $default = null)
         {
             static $admin;
+            // Get admin parameters list
             if (empty($admin))
             {
                 $joomlaFile = Zo2Path::getInstance()->getPath('Zo2://assets/joomla.json');
@@ -88,7 +89,6 @@ if (!class_exists('Zo2Framework'))
          */
         public static function getGlobalParam($name, $default = null)
         {
-
             return self::getInstance()->template->params->get($name, $default);
         }
 
@@ -166,6 +166,7 @@ if (!class_exists('Zo2Framework'))
          */
         public static function joomlaHook()
         {
+
             $jinput = JFactory::getApplication()->input;
             $zo2Task = $jinput->getCmd('zo2_task');
             $zo2Scope = $jinput->getWord('zo2_scope');
@@ -175,33 +176,22 @@ if (!class_exists('Zo2Framework'))
                 // Admin request
                 if ($zo2Scope == 'admin')
                 {
-                    Zo2Admin::init();
                     if (!self::isAdministrator())
                     {
                         return false;
                     }
+                    Zo2Admin::init();
                 } else // Site request
                 {
                     Zo2Site::init();
                 }
-                $parts = explode('.', $zo2Task);
-                $task = array_shift($parts);
-                $func = array_shift($parts);
-                // Adding prefix ajax into func for ajax request
-                if (self::isAjax())
+
+                if (call_user_func(array('Zo2Execute', $zo2Task)))
                 {
-                    $func = 'ajax' . ucfirst($func);
-                }
-                $className = 'Zo2Model' . ucfirst($zo2Scope) . ucfirst($task);
-                $modelClass = new $className();
-                // Execute
-                if (method_exists($modelClass, $func))
-                {
-                    call_user_func_array(array($modelClass, $func), array());
-                }
-                if (self::isAjax())
-                {
-                    Zo2Ajax::getInstance()->response();
+                    if (self::isAjax())
+                    {
+                        Zo2Ajax::getInstance()->response();
+                    }
                 }
             }
         }

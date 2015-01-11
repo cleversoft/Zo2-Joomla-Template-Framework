@@ -43,26 +43,18 @@ if (!class_exists('Zo2Admin'))
             if (empty($inited))
             {
                 $inited = self::getInstance();
-                $inited->_init();
+                $jVersion = new JVersion();
+                require_once __DIR__ . '/depends/' . $jVersion->RELEASE . '/admin.php';
+
+                $framework = Zo2Framework::getInstance();
+                $framework->profile = new Zo2Profile();
+                $framework->profile->loadFile($inited->getRequestProfile());
+                if (Zo2Framework::isDevelopmentMode())
+                {
+                    Zo2Assets::getInstance()->build();
+                }
             }
             return $inited;
-        }
-
-        protected function _init()
-        {
-            $jVersion = new JVersion();
-            require_once __DIR__ . '/depends/' . $jVersion->RELEASE . '/admin.php';
-
-            $model = new Zo2ModelTemplate();
-
-            $framework = Zo2Framework::getInstance();
-            $framework->template = new Zo2Template($model->getTemplate(JFactory::getApplication()->input->getInt('id')));
-            $framework->profile = new Zo2Profile();
-            $framework->profile->loadFile($this->getRequestProfile());
-            if (Zo2Framework::isDevelopmentMode())
-            {
-                Zo2Assets::getInstance()->build();
-            }
         }
 
         /**

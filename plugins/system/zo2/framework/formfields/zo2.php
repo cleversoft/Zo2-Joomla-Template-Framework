@@ -19,7 +19,6 @@ defined('JPATH_BASE') or die;
 if (!class_exists('JFormFieldZo2'))
 {
     jimport('joomla.form.formfield');
-    require_once (JPATH_ROOT . '/plugins/system/zo2/framework/bootstrap.php');
 
     /**
      * Zo2 backend entrypoint field

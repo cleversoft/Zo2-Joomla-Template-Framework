@@ -4,8 +4,7 @@
         "Zo2://assets/vendor/font-awesome/css/font-awesome.css",
         "Zo2://assets/css/admin.css"
     ],
-    "js": [
-        "Zo2://assets/vendor/bootstrap/js/bootstrap.js",
+    "js": [        
         "Zo2://assets/js/layoutbuilder.js"
     ]
 }

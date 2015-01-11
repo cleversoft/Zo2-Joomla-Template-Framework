@@ -12,15 +12,27 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.filesystem.file');
-jimport('joomla.filesystem.folder');
+/**
+ * Class exists checking
+ */
+if (!class_exists('Zo2Execute'))
+{
 
-require_once __DIR__ . '/defines.php';
-require_once __DIR__ . '/path.php';
-require_once __DIR__ . '/loader.php';
+    /**
+     * 
+     */
+    class Zo2Execute
+    {
 
-/* Register Zo2 namespaces */
-Zo2Path::getInstance()->registerNamespace('Zo2', ZO2PATH_ROOT);
+        /**
+         * Save admin template
+         */
+        public static function saveTemplate()
+        {
+            $model = new Zo2ModelAdminTemplate();
+            $model->save();
+        }
 
-/* Register Zo2 autoloading by Psr2 */
-spl_autoload_register(array('Zo2Loader', 'autoloadZo2Psr2'));
+    }
+
+}

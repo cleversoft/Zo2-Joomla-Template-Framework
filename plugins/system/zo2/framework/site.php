@@ -59,7 +59,6 @@ if (!class_exists('Zo2Site'))
                 // Init Zo2 Framework core variables
                 $framework = Zo2Framework::getInstance();
                 $framework->document = $document;
-                $framework->template = new Zo2Template(JFactory::getApplication()->getTemplate(true));
                 $framework->profile = new Zo2Profile();
                 $framework->profile->loadFile($inited->getRequestProfile());
 
