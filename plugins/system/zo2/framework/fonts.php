@@ -12,19 +12,17 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2Fonts'))
 {
 
+    /**
+     * 
+     */
     class Zo2Fonts extends JObject
     {
-
-        public $config;
-
-        public function __construct($properties = null)
-        {
-            parent::__construct($properties);
-            $this->config = new stdClass();
-        }
 
         /**
          * 
@@ -45,19 +43,28 @@ if (!class_exists('Zo2Fonts'))
 
         public function addGoogle($name, $value)
         {
-            if (!isset($this->config->google))
-            {
-                $this->config->google = new stdClass();
-            }
-            $this->config->google->$name = $value;
+            $this->def('google', new JObject());
+            return $this->google->set($name, $value);
         }
 
+        /**
+         * 
+         * @return string
+         */
         public function render()
         {
-            $html [] = '<script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>';
-            $html [] = '<script>';
-            $html [] = ' WebFont.load(' . Zo2HelperEncode::json($this->config) . ');';
-            $html [] = " (function () {
+            $properties = $this->getProperties();
+            $config = new stdClass();
+            foreach ($properties as $key => $value)
+            {
+                $config->$key = $value;
+            }
+            if (!empty($properties))
+            {
+                $html [] = '<script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>';
+                $html [] = '<script>';
+                $html [] = ' WebFont.load(' . Zo2HelperEncode::json($config) . ');';
+                $html [] = " (function () {
                 var wf = document.createElement('script');
                 wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
                         '://" . ZO2URL_WEBFONT . "';
@@ -66,9 +73,11 @@ if (!class_exists('Zo2Fonts'))
                 var s = document.getElementsByTagName('script')[0];
                 s.parentNode.insertBefore(wf, s);
             })();";
-            $html [] = '</script>';
-            $html = implode(PHP_EOL, $html);
-            return $html;
+                $html [] = '</script>';
+                $html = implode(PHP_EOL, $html);
+                return $html;
+            }
+            return '';
         }
 
     }
