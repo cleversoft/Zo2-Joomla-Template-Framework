@@ -15,12 +15,14 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Ajax')) {
+if (!class_exists('Zo2Ajax'))
+{
 
     /**
      * Zo2 ajax class
      */
-    class Zo2Ajax {
+    class Zo2Ajax
+    {
 
         /**
          * Responses data
@@ -33,9 +35,11 @@ if (!class_exists('Zo2Ajax')) {
          * @staticvar Zo2Ajax $instance
          * @return \Zo2Ajax
          */
-        public static function getInstance() {
+        public static function getInstance()
+        {
             static $instance;
-            if (!isset($instance)) {
+            if (!isset($instance))
+            {
                 $instance = new Zo2Ajax();
             }
             return $instance;
@@ -47,7 +51,8 @@ if (!class_exists('Zo2Ajax')) {
          * @param string $key
          * @return \Zo2Ajax
          */
-        public function add($data, $key = 'global') {
+        public function add($data, $key = 'global')
+        {
             $this->_responses[$key][] = $data;
             return $this;
         }
@@ -58,7 +63,8 @@ if (!class_exists('Zo2Ajax')) {
          * @param type $target
          * @return \Zo2Ajax
          */
-        public function addHtml($html, $target = '') {
+        public function addHtml($html, $target = '')
+        {
             $data = new stdClass();
             $data->html = $html;
             $data->target = $target;
@@ -71,7 +77,8 @@ if (!class_exists('Zo2Ajax')) {
          * @param type $target
          * @return \Zo2Ajax
          */
-        public function appendHtml($html, $target = '') {
+        public function appendHtml($html, $target = '')
+        {
             $data = new stdClass();
             $data->html = $html;
             $data->target = $target;
@@ -84,8 +91,10 @@ if (!class_exists('Zo2Ajax')) {
          * @param type $type
          * @return \Zo2Ajax
          */
-        public function addMessage($message, $header = '', $type = 'info') {
-            switch ($type) {
+        public function addMessage($message, $header = '', $type = 'info')
+        {
+            switch ($type)
+            {
                 case 'error':
                 case 'danger':
                 case 'alert':
@@ -118,14 +127,16 @@ if (!class_exists('Zo2Ajax')) {
          * @param string $script
          * @return \Zo2Ajax
          */
-        public function addExecute($script) {
+        public function addExecute($script)
+        {
             return $this->add($script, 'execute');
         }
 
         /**
          * Do response json data
          */
-        public function response() {
+        public function response()
+        {
             header('Content-type: text/html; charset=utf-8');
             echo json_encode($this->_responses);
             exit();
@@ -134,7 +145,8 @@ if (!class_exists('Zo2Ajax')) {
         /**
          * Response empty object and exit
          */
-        public function breakResponse() {
+        public function breakResponse()
+        {
             echo CrexHelperEncode::jsonEncode(array());
             exit();
         }

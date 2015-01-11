@@ -57,6 +57,12 @@ if (!class_exists('Zo2Framework'))
             return $instance;
         }
 
+        /**
+         * Get global or profile params
+         * @staticvar type $admin
+         * @param type $name
+         * @param type $default
+         */
         public static function getParam($name, $default = null)
         {
             static $admin;
@@ -114,20 +120,37 @@ if (!class_exists('Zo2Framework'))
             }
         }
 
+        /**
+         * 
+         * @param type $name
+         * @return boolean
+         */
         public static function importVendor($name)
         {
             $path = Zo2Path::getInstance()->getPath('Zo2://vendor/' . $name . '/autoloader.php');
             if ($path)
             {
-                require_once $path;
+                return require_once $path;
             }
+            return false;
         }
 
+        /**
+         * Set gloval variables
+         * @param type $name
+         * @param type $value
+         */
         public static function set($name, $value)
         {
             self::getInstance()->_vars[$name] = $value;
         }
 
+        /**
+         * Get gloval variables
+         * @param type $name
+         * @param type $default
+         * @return type
+         */
         public static function get($name, $default = null)
         {
             $framework = self::getInstance();
@@ -139,21 +162,6 @@ if (!class_exists('Zo2Framework'))
         }
 
         /**
-         * 
-         * @return boolean
-         */
-        public static function isDevelopmentMode()
-        {
-            return self::getInstance()->template->params->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
-        }
-
-        public static function isAjax()
-        {
-            $jinput = JFactory::getApplication()->input;
-            return (bool) $jinput->getInt('zo2_ajax');
-        }
-
-        /**
          * This func will hook into Joomla process after the framework has loaded and initialised and the router has routed the client request.
          */
         public static function joomlaHook()
@@ -161,6 +169,7 @@ if (!class_exists('Zo2Framework'))
             $jinput = JFactory::getApplication()->input;
             $zo2Task = $jinput->getCmd('zo2_task');
             $zo2Scope = $jinput->getWord('zo2_scope');
+
             if ($zo2Task)
             {
                 // Admin request
@@ -171,34 +180,65 @@ if (!class_exists('Zo2Framework'))
                     {
                         return false;
                     }
-                } else
+                } else // Site request
                 {
                     Zo2Site::init();
                 }
                 $parts = explode('.', $zo2Task);
                 $task = array_shift($parts);
                 $func = array_shift($parts);
+                // Adding prefix ajax into func for ajax request
                 if (self::isAjax())
                 {
                     $func = 'ajax' . ucfirst($func);
                 }
                 $className = 'Zo2Model' . ucfirst($zo2Scope) . ucfirst($task);
                 $modelClass = new $className();
+                // Execute
                 if (method_exists($modelClass, $func))
                 {
                     call_user_func_array(array($modelClass, $func), array());
                 }
                 if (self::isAjax())
                 {
-                    echo Zo2Ajax::getInstance()->response();
+                    Zo2Ajax::getInstance()->response();
                 }
             }
         }
 
+        /**
+         * 
+         * @return boolean
+         */
+        public static function isDevelopmentMode()
+        {
+            return self::getInstance()->template->params->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
+        public static function isAjax()
+        {
+            $jinput = JFactory::getApplication()->input;
+            return (bool) $jinput->getInt('zo2_ajax');
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
         public static function isAdministrator()
         {
             $user = JFactory::getUser();
-            return !$user->guest;
+            if ($user->authorise('core.edit', 'com_content'))
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
     }

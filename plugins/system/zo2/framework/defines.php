@@ -11,6 +11,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
 define('ZO2BRAND', 'ZO2 FRAMEWORK');
 define('ZO2VERSION', '2.0.0');
 define('ZO2PATH_ROOT', __DIR__);

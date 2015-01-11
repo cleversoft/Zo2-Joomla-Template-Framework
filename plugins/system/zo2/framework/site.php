@@ -18,6 +18,9 @@ defined('_JEXEC') or die('Restricted access');
 if (!class_exists('Zo2Site'))
 {
 
+    /**
+     * Zo2 frontend main class
+     */
     class Zo2Site
     {
 
@@ -38,32 +41,34 @@ if (!class_exists('Zo2Site'))
             return $instance;
         }
 
+        /**
+         * Init process
+         * @staticvar type $inited
+         * @param type $document
+         * @return type
+         */
         public static function init($document)
         {
             static $inited;
             if (empty($inited))
             {
                 $inited = self::getInstance();
-                $inited->_init($document);
+                // Load dependencies based on Joomla!
+                $jVersion = new JVersion();
+                require_once __DIR__ . '/depends/' . $jVersion->RELEASE . '/site.php';
+                // Init Zo2 Framework core variables
+                $framework = Zo2Framework::getInstance();
+                $framework->document = $document;
+                $framework->template = new Zo2Template(JFactory::getApplication()->getTemplate(true));
+                $framework->profile = new Zo2Profile();
+                $framework->profile->loadFile($inited->getRequestProfile());
+                // Always build assets for development mode
+                if (Zo2Framework::isDevelopmentMode())
+                {
+                    Zo2Assets::getInstance()->build();
+                }
             }
             return $inited;
-        }
-
-        protected function _init($document)
-        {
-            // Load dependencies based on Joomla!
-            $jVersion = new JVersion();
-            require_once __DIR__ . '/depends/' . $jVersion->RELEASE . '/site.php';
-            // Init Zo2 Framework core variables
-            $framework = Zo2Framework::getInstance();
-            $framework->document = $document;
-            $framework->template = new Zo2Template(JFactory::getApplication()->getTemplate(true));
-            $framework->profile = new Zo2Profile();
-            $framework->profile->loadFile($this->getRequestProfile());
-            if (Zo2Framework::isDevelopmentMode())
-            {
-                Zo2Assets::getInstance()->build();
-            }
         }
 
         /**
@@ -77,6 +82,7 @@ if (!class_exists('Zo2Site'))
             $framework = Zo2Framework::getInstance();
             // Get memory usage before process
             $framework->set('memory_start', memory_get_usage(true));
+            // Caching
             jimport('joomla.cache.cache');
             jimport('joomla.cache.callback');
             $cache = JFactory::getCache();
@@ -86,6 +92,10 @@ if (!class_exists('Zo2Site'))
             return $buffer;
         }
 
+        /**
+         * 
+         * @return string
+         */
         public function getHtml()
         {
             $framework = Zo2Framework::getInstance();
@@ -104,7 +114,6 @@ if (!class_exists('Zo2Site'))
                 $buffer = $dom;
                 $buffer = Zo2HelperMinify::html($buffer);
             }
-
             return $buffer;
         }
 

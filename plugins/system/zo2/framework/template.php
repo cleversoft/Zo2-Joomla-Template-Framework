@@ -12,23 +12,37 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2Template')) {
+/**
+ * Class exists checking
+ */
+if (!class_exists('Zo2Template'))
+{
 
-    class Zo2Template extends JObject {
+    /**
+     * 
+     */
+    class Zo2Template extends JObject
+    {
 
-        public function __construct($properties = null) {
+        public function __construct($properties = null)
+        {
             parent::__construct($properties);
-            /* Register Zo2 namespaces */
+            // Register override for this template
             Zo2Path::getInstance()->registerNamespace('Zo2', $this->getPath() . '/zo2');
             Zo2Path::getInstance()->registerNamespace('Zo2', $this->getPath() . '/local/zo2');
             Zo2Path::getInstance()->registerNamespace('Template', $this->getPath());
             Zo2Path::getInstance()->registerNamespace('Template', $this->getPath() . '/local/template');
         }
 
-        public function getPath() {
+        /**
+         * 
+         * @return string
+         */
+        public function getPath()
+        {
             return JPATH_ROOT . '/templates/' . $this->get('template');
         }
-        
+
     }
 
 }

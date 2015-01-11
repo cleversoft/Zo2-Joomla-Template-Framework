@@ -12,9 +12,15 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2Loader'))
 {
 
+    /**
+     * Zo2 autoloader class
+     */
     class Zo2Loader
     {
 
@@ -30,9 +36,10 @@ if (!class_exists('Zo2Loader'))
                 $filePath = $path->getPathByClassname($className);
                 if ($filePath)
                 {
-                    require_once $filePath;
+                    return require_once $filePath;
                 }
             }
+            return false;
         }
 
     }

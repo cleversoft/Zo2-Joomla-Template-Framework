@@ -11,6 +11,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
 /**
  * Class exists checking
  */
