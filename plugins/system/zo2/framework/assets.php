@@ -222,10 +222,26 @@ if (!class_exists('Zo2Assets'))
 
                 foreach ($this->_stylesheets as $url)
                 {
+                    // Use min version
+                    if (Zo2Framework::getParam('enable_minify_css'))
+                    {
+                        if (strpos($url, '.min.css') === false)
+                        {
+                            $url = str_replace('.css', '.min.css', $url);
+                        }
+                    }
                     $assets[] = '<link rel="stylesheet" href="' . $url . '" type="text/css" />';
                 }
                 foreach ($this->_javascripts as $url)
                 {
+                    // Use min version                   
+                    if (Zo2Framework::getParam('enable_minify_js'))
+                    {
+                        if (strpos($url, '.min.js') === false)
+                        {
+                            $url = str_replace('.js', '.min.js', $url);
+                        }
+                    }
                     $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
                 }
                 // Fonts generate
