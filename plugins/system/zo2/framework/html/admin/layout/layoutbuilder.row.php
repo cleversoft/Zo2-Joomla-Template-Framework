@@ -28,6 +28,7 @@ if (isset($properties['children']))
                 <?php echo $row->getControls(); ?>
             </div>
         </div>
+        <div id="zo2-row-setting-container" style="display: none"></div>
         <div class="children-container row sortable-row connectedSortable">
         <?php if (count($children) > 0) : 
                 {

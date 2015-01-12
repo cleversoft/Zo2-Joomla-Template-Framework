@@ -16,8 +16,10 @@
             sortableConnect: '.connectedSortable',
             sortableRow: '.sortable-row',
             joomlaTooltip: '.tooltip',
-            emptyParentRow: '#zo2-empty-parent-row',
-            emptyChildRow: '#zo2-empty-child-row'
+            emptyParentRow: '#layoutbuilder-container > #zo2-empty-parent-row',
+            emptyChildRow: '#layoutbuilder-container > #zo2-empty-child-row',
+            defaultRowSetting: '#layoutbuilder-container > #zo2-row-setting',
+            rowSetting: '#zo2-row-setting-container'
         },
         layoutJson: null,
         /**
@@ -54,7 +56,7 @@
          * Sortable flush
          * @returns {undefined}
          */
-        sortableFlush: function(){
+        sortableFlush: function() {
             $(this._elements.layoutBuilderContainer).sortable("destroy");
             $(this._elements.childrenContainer).sortable("destroy");
         },
@@ -73,9 +75,10 @@
          */
         addParentRow: function() {
             this.sortableFlush();
+            var html = $(this._elements.emptyParentRow).html();
             $(this._elements.layoutBuilderContainer)
                     .find(this._elements.sortableRow + ':first')
-                    .before($(this._elements.emptyParentRow).html());
+                    .before(html);
             this._init();
         },
         /**
@@ -85,20 +88,38 @@
          */
         addRow: function(element) {
             this.sortableFlush();
+            var html = $(this._elements.emptyChildRow).html();
             var $childContainer = $(element)
                     .closest(this._elements.sortableRow)
                     .find(this._elements.childrenContainer + ':first');
             if ($childContainer.find(this._elements.sortableRow).length > 0) {
-                $childContainer.find(this._elements.sortableRow + ':first')
-                        .before($(this._elements.emptyChildRow).html());
+                $childContainer.find(this._elements.sortableRow + ':first').before(html);
             } else {
-                $childContainer.html($(this._elements.emptyChildRow).html());
+                $childContainer.html(html);
             }
             this._init();
         },
-        deleteRow: function(element){
+        /**
+         * Delete row
+         * @param {html node} element
+         * @returns {undefined}
+         */
+        deleteRow: function(element) {
             $(element).closest(this._elements.sortableRow).remove();
             $(this._elements.joomlaTooltip).find(':visible').hide();
+        },
+        /**
+         * Toogle settings
+         * @param {html node} element
+         * @returns {undefined}
+         */
+        toggleSetting: function(element) {
+            var html = $(this._elements.defaultRowSetting).html();
+            var $rowSetting = $(element)
+                    .closest(this._elements.sortableRow)
+                    .find(this._elements.rowSetting);
+            $rowSetting.html(html);
+            $rowSetting.toggle('slow');
         },
         /**
          * Internal get JSON

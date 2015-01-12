@@ -27,7 +27,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             parent::__construct($properties);
 
             $this->addControl('addRow', 'plus', 'add-row', array('onClick' => 'zo2.layoutbuilder.addRow(this)'));
-            $this->addControl('settings', 'cog', 'settings');
+            $this->addControl('settings', 'cog', 'settings', array('onClick' => 'zo2.layoutbuilder.toggleSetting(this)'));
             $this->addControl('remove', 'remove', 'delete', array('onClick' => 'zo2.layoutbuilder.deleteRow(this)'));
             // Default name
             $this->def('name', 'unknown');

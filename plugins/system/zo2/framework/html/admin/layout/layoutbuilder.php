@@ -16,7 +16,9 @@
         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
         ?>
     </div>
-    <?php $this->load('Zo2://html/admin/layout/layoutbuilder.settings.php'); ?>
+    <div id="zo2-row-setting" style="display: none">
+        <?php $this->load('Zo2://html/admin/layout/layoutbuilder.settings.php'); ?>
+    </div>
     <div id="zo2-layoutbuilder-controls">
         <button onclick="zo2.layoutbuilder.addParentRow();" type="button" class="btn btn-primary">New row</button>
     </div>

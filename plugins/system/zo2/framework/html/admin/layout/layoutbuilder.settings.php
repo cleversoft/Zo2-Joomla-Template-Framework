@@ -3,7 +3,7 @@
 <div id="colSettings" class="">
     <div class="setting-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_COLUMN_SETTINGS'); ?></h3>
+        <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_ROW_SETTINGS'); ?></h3>
     </div>
     <div class="setting-body">
         <div class="form-horizontal">
