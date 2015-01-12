@@ -14,6 +14,9 @@ echo Zo2Assets::getInstance()->render();
 ?>
 
 <div id="zo2-framework">
+
+    <?php $this->load('Zo2://html/admin/layout/navbar.php'); ?>
+
     <div class="tabbable tabs-left">
         <!-- Tab headers -->
         <ul id="zo2-tab" class="nav nav-tabs" role="tablist">
@@ -61,6 +64,6 @@ echo Zo2Assets::getInstance()->render();
             <?php endforeach; ?>
         </div>
     </div>
-    <input type="hidden" name="zo2_task" value="template.save" />
+    <input type="hidden" name="zo2_task" value="saveTemplate" />
     <input type="hidden" name="zo2_scope" value="admin" />
 </div>
