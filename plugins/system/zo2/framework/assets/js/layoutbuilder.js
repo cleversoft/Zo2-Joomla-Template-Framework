@@ -14,7 +14,8 @@
             layoutBuilderContainer: '#layoutbuilder-container > #zo2-layoutbuilder',
             childrenContainer: '.children-container',
             sortableConnect: '.connectedSortable',
-            sortableRow: '.sortable-row'
+            sortableRow: '.sortable-row',
+            joomlaTooltip: '.tooltip'
         },
         layoutJson: null,
         /**
@@ -131,6 +132,10 @@
                 $childContainer.html(html);
             }
             this._init();
+        },
+        deleteRow: function(element){
+            $(element).closest(this._elements.sortableRow).remove();
+            $(this._elements.joomlaTooltip).find(':visible').hide();
         },
         /**
          * Internal get JSON
