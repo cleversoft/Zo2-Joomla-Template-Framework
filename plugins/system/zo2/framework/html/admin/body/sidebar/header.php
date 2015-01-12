@@ -20,13 +20,13 @@ defined('_JEXEC') or die('Restricted access');
     <!-- General: Default active tab -->
     <li class="active">
         <a href="#zo2-general" role="tab" data-toggle="tab">
-            <i class="fa fa-cog fa-lg"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_GENERAL'); ?>
+            <i class="fa fa-cog fa-lg"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_GENERAL'); ?> <?php echo JText::_('ZO2_GLOBAL'); ?>
         </a>
     </li>
     <!-- Fonts -->
     <li class="">
         <a href="#zo2-fonts" role="tab" data-toggle="tab">
-            <i class="fa fa-font"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_FONTS'); ?>
+            <i class="fa fa-font"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_FONTS'); ?> <?php echo JText::_('ZO2_GLOBAL'); ?>
         </a>
     </li>
     <!-- Layout -->
@@ -56,7 +56,7 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Advanced -->
     <li class="">
         <a href="#zo2-advanced" role="tab" data-toggle="tab">
-            <i class="fa fa-wrench"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_ADVANCED'); ?>
+            <i class="fa fa-wrench"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_ADVANCED'); ?> <?php echo JText::_('ZO2_GLOBAL'); ?>
         </a>
     </li>  
     <!-- Advanced -->
