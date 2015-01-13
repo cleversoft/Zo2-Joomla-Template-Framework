@@ -19,9 +19,12 @@
             emptyParentRow: '#layoutbuilder-container > #zo2-empty-parent-row',
             emptyChildRow: '#layoutbuilder-container > #zo2-empty-child-row',
             defaultRowSetting: '#layoutbuilder-container > #zo2-row-setting',
-            rowSetting: '#zo2-row-setting-container'
+            rowSetting: '#zo2-row-setting'
         },
+        /* Layout JSON buffer */
         layoutJson: null,
+        /* Current editing element */
+        editingElement: null,
         /**
          * Init function
          * @returns {undefined}
@@ -109,17 +112,14 @@
             $(this._elements.joomlaTooltip).find(':visible').hide();
         },
         /**
-         * Toogle settings
+         * Show modal
          * @param {html node} element
          * @returns {undefined}
          */
-        toggleSetting: function(element) {
-            var html = $(this._elements.defaultRowSetting).html();
-            var $rowSetting = $(element)
-                    .closest(this._elements.sortableRow)
-                    .find(this._elements.rowSetting);
-            $rowSetting.html(html);
-            $rowSetting.toggle('slow');
+        showSettingModal: function(element) {
+            this.editingElement = $(element)
+                    .closest(this._elements.sortableRow);
+            $(this._elements.rowSetting).modal('show');
         },
         /**
          * Internal get JSON
