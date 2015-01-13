@@ -11,7 +11,7 @@
     var _layoutbuilder = {
         /* Element selectors */
         _elements: {
-            layoutBuilderContainer: '#layoutbuilder-container > #zo2-layoutbuilder',
+            layoutBuilderContainer: '#zo2-layoutbuilder-container > #zo2-layoutbuilder',
             childrenContainer: '.children-container',
             sortableConnect: '.connectedSortable',
             sortableRow: '.sortable-row',

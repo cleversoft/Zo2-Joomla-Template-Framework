@@ -1,5 +1,5 @@
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-<div id="layoutbuilder-container" class="row">
+<div id="zo2-layoutbuilder-container" class="row">
     <div id="zo2-empty-parent-row" style="display: none">
         <?php
         $blankRow = new Zo2LayoutbuilderRow();
@@ -16,9 +16,7 @@
         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
         ?>
     </div>
-    <div id="zo2-row-setting" style="display: none">
-        <?php $this->load('Zo2://html/admin/layout/layoutbuilder.settings.php'); ?>
-    </div>
+    <?php $this->load('Zo2://html/admin/layout/layoutbuilder.settings.php'); ?>
     <div id="zo2-layoutbuilder-controls">
         <button onclick="zo2.layoutbuilder.addParentRow();" type="button" class="btn btn-primary">New row</button>
     </div>
