@@ -205,6 +205,33 @@ img {
   border: #feecac 1px solid;
   background-color: #fdf7c2;
 }
+#zo2-framework #zo2-layoutbuilder-container .modal {
+  background-color: transparent;
+  bottom: 0;
+  display: none;
+  left: 0;
+  margin: 0;
+  outline: 0 none;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1060;
+}
+#zo2-framework #zo2-layoutbuilder-container .fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear 0s;
+  -moz-transition: opacity 0.15s linear 0s;
+  -o-transition: opacity 0.15s linear 0s;
+  transition: opacity 0.15s linear 0s;
+}
+#zo2-framework #zo2-layoutbuilder-container .fade.in {
+  opacity: 1;
+}
+#zo2-framework #zo2-layoutbuilder-container .tab-content > .active {
+  visibility: visible;
+}
 #zo2-framework textarea,
 #zo2-framework input[type="text"],
 #zo2-framework input[type="password"],

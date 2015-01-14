@@ -1,88 +1,116 @@
 /* ===============================
   // Layout Builder
 ================================ */
-#zo2-layoutbuilder-container{
-    i{
-        color: @grayDark;
-        padding: 0 7px;
+#zo2-layoutbuilder-container {
+  i {
+    color: @grayDark;
+    padding: 0 7px;
+  }
+  .row-name {
+    span {
+      text-transform: capitalize;
     }
-    .row-name{
-        span{
-            text-transform: capitalize;
+  }
+  .row-control {
+    padding: 10px 15px;
+    line-height: @baseLineHeight + 15;
+  }
+  .row-controls {
+    i {
+      border-left: 1px solid #e3e3e3;
+      display: inline-block;
+      float: right;
+      line-height: @baseLineHeight + 15;
+    }
+  }
+  .sortable-row {
+    &.row-child {
+      cursor: move;
+    }
+  }
+  .row-parent {
+    > .row-control {
+      background-color: #f7f7f7;
+      color: @black;
+      margin: 0 0 30px;
+      border: 1px solid #e3e3e3;
+      padding-top: 0;
+      .border-radius(4px);
+      > .parent-container {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        .row-size {
+          display: none;
         }
-    }
-    .row-control{
-        padding: 10px 15px;
-        line-height: @baseLineHeight + 15;
-    }
-    .row-controls{
-        i{
-            border-left: 1px solid #e3e3e3;
-            display: inline-block;
-            float: right;
-            line-height: @baseLineHeight + 15;
+        .row-name {
+          padding-left: 15px;
         }
-    }
-    .sortable-row{
-        &.row-child{
-            cursor: move;
-        }
-    }
-    .row-parent{
-        > .row-control{
-            background-color: #f7f7f7;
-            color: @black;
-            margin: 0 0 30px;
-            border: 1px solid #e3e3e3;
-            padding-top: 0;
-            .border-radius(4px);
-            > .parent-container{
-                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                margin-bottom: 20px;
-                .row-size{
-                    display: none;
-                }
-                .row-name{
-                    padding-left: 15px;
-                }
-            }
+      }
 
-        }
     }
-    .row-child{
-        > .row-control{
-            background-color: #d4d4d4;
-            padding: 0 15px;
-            text-align: center;
-            .row-size{
-                left: 15px;
-                position: absolute;
-                top: 0;
-            }
-            .row-size, .row-controls{
-                .opacity(0);
-                .transition(all 0.3s ease 0s);
-            }
-        }
-        &:hover{
-            .row-size, .row-controls{
-                .opacity(100);
-            }
-        }
-    }
-    .row-controls{
+  }
+  .row-child {
+    > .row-control {
+      background-color: #d4d4d4;
+      padding: 0 15px;
+      text-align: center;
+      .row-size {
+        left: 15px;
         position: absolute;
         top: 0;
-        right: 15px;
-        i{
-            cursor: pointer;
-        }
+      }
+      .row-size, .row-controls {
+        .opacity(0);
+        .transition(all 0.3s ease 0s);
+      }
     }
-    .children-container{
-        min-height: 25px;
+    &:hover {
+      .row-size, .row-controls {
+        .opacity(100);
+      }
     }
-    .sortable-hightligth {
-        border: #feecac 1px solid;
-        background-color: #fdf7c2;
+  }
+  .row-controls {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    i {
+      cursor: pointer;
     }
+  }
+  .children-container {
+    min-height: 25px;
+  }
+  .sortable-hightligth {
+    border: #feecac 1px solid;
+    background-color: #fdf7c2;
+  }
+
+  /* ===============================
+    // Modal Bootstrap conflic
+  ================================ */
+  .modal {
+    background-color: transparent;
+    bottom: 0;
+    display: none;
+    left: 0;
+    margin: 0;
+    outline: 0 none;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1060;
+  }
+  .fade {
+    opacity: 0;
+    .transition(opacity 0.15s linear 0s);
+  }
+  .fade.in {
+    opacity: 1;
+  }
+  .tab-content > .active {
+    visibility: visible;
+  }
 }
