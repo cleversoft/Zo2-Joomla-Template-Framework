@@ -47,12 +47,6 @@ defined('_JEXEC') or die('Restricted access');
             <i class="fa fa-indent"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_MENU'); ?>
         </a>
     </li>
-    <!-- Profile Assignment -->
-    <li class="">
-        <a href="#zo2-profile-assignment" role="tab" data-toggle="tab">
-            <i class="fa fa-link"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_PROFILE_ASSIGNMENT'); ?>
-        </a>
-    </li>
     <!-- Advanced -->
     <li class="">
         <a href="#zo2-advanced" role="tab" data-toggle="tab">
