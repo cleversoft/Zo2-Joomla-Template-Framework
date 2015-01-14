@@ -232,7 +232,7 @@ if (!class_exists('Zo2Factory'))
                     Zo2Framework::getInstance()->template->params->get('profile', 'default');
                 } else
                 {
-                    $requestProfile = JFactory::getApplication()->input->get('profile');
+                    $profileName = JFactory::getApplication()->input->get('profile');
                 }
             } else
             {
