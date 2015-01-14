@@ -89,7 +89,9 @@ if (!class_exists('Zo2ModelTemplate'))
             {
                 JFactory::getApplication()->enqueueMessage('Added new profile: ' . $profileName, 'notice');
             }
-
+            // Save Joomla! data            
+            $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
+            $model->save($formData);
 
             /**
              * Save profile
