@@ -87,7 +87,7 @@ if (!class_exists('Zo2Profile'))
          */
         public function load($name)
         {
-            $id = Zo2Framework::getInstance()->template->id;
+
             /* Load profile under profiles root dir */
 
             /* Load from profiles directory of assets namespace */
@@ -104,6 +104,13 @@ if (!class_exists('Zo2Profile'))
                 Zo2Factory::addLog('Loading profile', $profileFile);
                 /* Load profile data by use json file */
                 $this->loadFile($profileFile);
+                $layout = $this->get('layout');
+                $layout = json_decode($layout);
+                $this->set('layout', $layout);
+                $menu_config = $this->get('menu_config');
+                $menu_config = json_decode($menu_config);
+                $this->set('menu_config', $menu_config);
+                $this->set('theme', json_decode($this->theme));
                 $this->_profileFile = $profileFile;
                 return $this->isValid();
             }
@@ -121,27 +128,23 @@ if (!class_exists('Zo2Profile'))
          */
         private function _check()
         {
-            if ($this->get('template') == '')
+            if (empty($this->get('template')))
             {
                 Zo2Factory::addLog('Invalid profile', 'Template field is missed', 'error');
                 return false;
             }
-            if ($this->get('name') == '')
+            if (empty($this->get('name')))
             {
                 Zo2Factory::addLog('Invalid profile', 'Name field is missed', 'error');
                 return false;
             }
-            if ($this->get('layout') == '')
+
+            if (empty($this->get('layout')))
             {
                 Zo2Factory::addLog('Invalid profile', 'Layout field is missed', 'error');
                 return false;
             }
 
-            if ($this->get('menuConfig') == '')
-            {
-                Zo2Factory::addLog('Invalid profile', 'menuConfig field is missed', 'error');
-                return false;
-            }
             return true;
         }
 
@@ -151,9 +154,16 @@ if (!class_exists('Zo2Profile'))
          */
         public function getMenuConfig()
         {
-            $menuConfig = new JRegistry($this->get('menuConfig'));
-            $megaConfig = json_decode($menuConfig->get('mega_config'), true);
-            $menuConfig->set('mega_config', $megaConfig);
+
+            $menuConfig = new JRegistry();
+            $properties = $this->toArray();
+            foreach ($properties as $key => $value)
+            {
+                if (strpos($key, 'menu_') !== false)
+                {
+                    $menuConfig->set(substr($key, 5), $value);
+                }
+            }
             return $menuConfig;
         }
 
@@ -199,11 +209,9 @@ if (!class_exists('Zo2Profile'))
          */
         public function save()
         {
-            $framework = Zo2Factory::getFramework();
-            $id = $framework->template->id;
             /* Save to template assets/profiles */
             $templatePath = rtrim(JPATH_ROOT . '/templates/' . $this->template, DIRECTORY_SEPARATOR);
-            $filePath = $templatePath . '/assets/profiles/' . $id . '/' . $this->name . '.json';
+            $filePath = $templatePath . '/assets/profiles/' . $this->name . '.json';
             return $this->_save($filePath);
         }
 
@@ -315,6 +323,7 @@ if (!class_exists('Zo2Profile'))
         public function getThemeStylesheet()
         {
             $style = array();
+
             $themeData = get_object_vars($this->theme);
             /* Background */
             if (!empty($themeData['background']))

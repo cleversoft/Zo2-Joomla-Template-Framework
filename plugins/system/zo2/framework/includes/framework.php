@@ -89,11 +89,11 @@ if (!class_exists('Zo2Framework'))
         /**
          * Framework init
          */
-        public function init($template)
+        public function init()
         {
             if (!defined('ZO2_LOADED'))
             {
-                $this->template = $template;
+                $this->template = Zo2Factory::getTemplate();
                 /* Load language */
                 $language = JFactory::getLanguage();
                 $language->load('plg_system_zo2', ZO2PATH_ROOT);
@@ -162,7 +162,7 @@ if (!class_exists('Zo2Framework'))
          */
         public function get($name, $default = null)
         {
-            return $this->template->params->get($name, $default);
+            return $this->profile->get($name, $default);
         }
 
         /**
@@ -720,45 +720,6 @@ if (!class_exists('Zo2Framework'))
             if ($assetsFile)
             {
                 return file_get_contents($assetsFile);
-            }
-        }
-
-        public function joomlaHook()
-        {
-            $jinput = JFactory::getApplication()->input;
-            if ($jinput->get('option') == 'com_templates')
-            {
-                $task = $jinput->get('task');
-                $model = Zo2ModelTemplate::getInstance();
-                switch ($task)
-                {
-                    case 'style.save':
-                        $model->save();
-
-                        break;
-                    case 'style.apply':
-                        $model->save();
-
-                        break;
-                    case 'remove':
-                        $model->remove();
-                        break;
-                    case 'rename':
-                        $model->rename();
-                        break;
-                };
-                /*
-                  $zo2Task = $jinput->get('zo2_task');
-                  if ($zo2Task) {
-                  $zo2Task = explode('.', $zo2Task);
-                  $modelClass = 'Zo2Model' . ucfirst($zo2Task[0]);
-                  $model = new $modelClass;
-                  if (method_exists($model, $zo2Task[1])) {
-                  call_user_func(array($model, $zo2Task[1]));
-                  }
-                  }
-                 * 
-                 */
             }
         }
 

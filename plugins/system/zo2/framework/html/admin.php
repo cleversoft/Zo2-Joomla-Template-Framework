@@ -68,6 +68,7 @@ if (!class_exists('Zo2HtmlAdmin'))
 
             $params = Zo2Framework::getInstance()->template->params;
             $profile = Zo2Factory::getProfile();
+
             if (is_object($profile->layout))
             {
                 $layoutData = $profile->layout->layout;

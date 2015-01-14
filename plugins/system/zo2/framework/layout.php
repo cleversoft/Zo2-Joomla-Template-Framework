@@ -200,6 +200,7 @@ if (!class_exists('Zo2Layout'))
          */
         private function _generateRow($item)
         {
+
             /* Basic check to verify this row can render */
             if ($this->_checkShowRow($item))
             {
@@ -233,9 +234,12 @@ if (!class_exists('Zo2Layout'))
                 $offsetSpace = 0;
                 $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
                 $children = $item->get('children');
+
                 /* Process span value for children */
                 foreach ($children as $index => $child)
                 {
+                    $child = new JObject($child);
+
                     /* Count number of available modules in this position */
                     $modulesInPosition = count(JModuleHelper::getModules($child->position));
                     /**
@@ -442,7 +446,7 @@ if (!class_exists('Zo2Layout'))
                             case 'mega_menu':
                                 /* Display frontend megamenu */
                                 $framework = Zo2Framework::getInstance();
-                                $megamenu = $framework->displayMegaMenu(Zo2Factory::getProfile()->menuConfig->menu_type);
+                                $megamenu = $framework->displayMegaMenu(Zo2Framework::getInstance()->profile->menu_type);
                                 $html .= $megamenu;
                                 break;
                         }
@@ -450,7 +454,7 @@ if (!class_exists('Zo2Layout'))
                     case 'megamenu':
                         /* Display frontend megamenu */
                         $framework = Zo2Framework::getInstance();
-                        $megamenu = $framework->displayMegaMenu(Zo2Factory::getProfile()->menuConfig->menu_type);
+                        $megamenu = $framework->displayMegaMenu(Zo2Framework::getInstance()->profile->menu_type);
                         $html .= $megamenu;
                         break;
                     case 'canvasmenu':

@@ -20,6 +20,7 @@ if (!class_exists('Zo2Framework'))
     die('Zo2Framework not found');
 
 $framework = Zo2Framework::getInstance();
+$framework->init();
 
 $this->zo2 = new JRegistry;
 $this->zo2->framework = $framework;

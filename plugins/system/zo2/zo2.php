@@ -30,11 +30,12 @@ if (!class_exists('plgSystemZo2'))
          */
         public function onAfterRoute()
         {
-            $template = $this->_isZo2();
-            if ($template)
+
+            if ($this->_isZo2())
             {
                 include_once __DIR__ . '/framework/includes/bootstrap.php';
-                Zo2Framework::getInstance()->init($template);
+                Zo2Framework::getInstance()->init();
+                Zo2Factory::joomlaHook();
                 Zo2Factory::ajax();
             }
         }

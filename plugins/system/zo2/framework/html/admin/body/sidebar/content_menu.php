@@ -16,7 +16,7 @@ $menuAnimation = trim(Zo2Framework::getParam('menu_animation'));
     ?>
 
     <div class="profiles-pane">
-        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                                 ?><!--</h3>-->
+        <!--        <h3 class="title-profile">--><?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                                     ?><!--</h3>-->
         <div class="profiles-pane-inner">
 
             <!-- Hover type -->
@@ -29,10 +29,10 @@ $menuAnimation = trim(Zo2Framework::getParam('menu_animation'));
                     <select name="jform[params][menu_hover_type]" id="jform_params_menu_hover_type">
                         <option value="hover" 
                                 <?php echo ($menuHoverType == 'hover') ? 'selected="selected"' : ''; ?> >
-                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
+                                <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
                         <option value="click"
                                 <?php echo ($menuHoverType == 'click') ? 'selected="selected"' : ''; ?> >
-                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
+                                <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
                     </select>
                 </div>
             </div>           
@@ -46,20 +46,20 @@ $menuAnimation = trim(Zo2Framework::getParam('menu_animation'));
                     <select  name="jform[params][menu_animation]" id="jform_params_menu_animation">
                         <option value=""
                                 <?php echo ($menuAnimation == '') ? 'selected="selected"' : ''; ?> >
-                                    <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_NONE'); ?>
+                                <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_NONE'); ?>
                         </option>
                         <option value="fading"
                                 <?php echo ($menuAnimation == 'fading') ? 'selected="selected"' : ''; ?> >
-                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_FADING'); ?></option>
+                                <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_FADING'); ?></option>
                         <option value="slide"
                                 <?php echo ($menuAnimation == 'slide') ? 'selected="selected"' : ''; ?> >
-                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_SLIDE'); ?></option>
+                                <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_SLIDE'); ?></option>
                         <option value="zoom" 
                                 <?php echo ($menuAnimation == 'zoom') ? 'selected="selected"' : ''; ?> >
-                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ZOOM'); ?></option>                        
+                                <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ZOOM'); ?></option>                        
                         <option value="elastic"
                                 <?php echo ($menuAnimation == 'elastic') ? 'selected="selected"' : ''; ?> >
-                            <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ELASTIC'); ?></option>
+                                <?php echo JText::_('ZO2_ADMIN_MEGA_MENU_ANIMATION_ELASTIC'); ?></option>
                     </select>
                 </div>
             </div>
@@ -77,15 +77,14 @@ $menuAnimation = trim(Zo2Framework::getParam('menu_animation'));
             ));
             ?>
 
-            <!-- Menu type -->
-
+            <!-- Menu type -->           
             <?php
             $model = new Zo2ModelJoomla();
             echo Zo2Html::field(
                     'megamenu', array(), array(
                 'id' => 'jform_params_menu_type',
                 'name' => 'jform[params][menu_type]',
-                'value' => Zo2Factory::getProfile()->menuConfig->menu_type,
+                'value' => Zo2Framework::getInstance()->menu_type,
                 'modules' => $model->getModules()
             ));
             ?>

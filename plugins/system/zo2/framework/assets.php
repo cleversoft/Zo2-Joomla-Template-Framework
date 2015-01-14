@@ -359,7 +359,7 @@ if (!class_exists('Zo2Assets'))
             $cssDeclarationHtml [] = '<style>';
             foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration)
             {
-                if ((Zo2Factory::get('optimzie_css', 0) == 1 ) && ($developmentMode == 0))
+                if ((Zo2Framework::getParam('optimzie_css', 0) == 1 ) && ($developmentMode == 0))
                 {
                     $cssDeclarationHtml [] = CssMinifier::minify($stylesheetDeclaration) . PHP_EOL;
                 } else
