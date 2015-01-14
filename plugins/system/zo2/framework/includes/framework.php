@@ -144,9 +144,25 @@ if (!class_exists('Zo2Framework'))
             }
         }
 
+        /**
+         * Get template params
+         * @param type $name
+         * @param type $default
+         * @return type
+         */
         public static function getParam($name, $default = null)
         {
-            return self::getInstance()->template->params->get($name, $default);
+            return self::getInstance()->get($name, $default);
+        }
+
+        /**
+         * Get template param
+         * @use Just for back compatilibity with index.php in template
+         * @return type
+         */
+        public function get($name, $default = null)
+        {
+            return $this->template->params->get($name, $default);
         }
 
         /**
@@ -204,20 +220,6 @@ if (!class_exists('Zo2Framework'))
             {
                 JFactory::getApplication()->enqueueMessage(JText::_('ZO2_ASSETS_NOT_FOUND'), 'error');
             }
-        }
-
-        /**
-         * Get template params' property
-         * @param string $property
-         * @param mixed $default
-         *
-         * @return mixed
-         */
-        public function get($property, $default = null)
-        {
-            if ($this->template->params instanceof JRegistry)
-                return $this->template->params->get($property, $default);
-            return $default;
         }
 
         /**
@@ -558,7 +560,7 @@ if (!class_exists('Zo2Framework'))
         {
             if ($menutype === null)
             {
-                $menutype = self::get('menu_type', 'mainmenu');
+                $menutype = $this->get('menu_type', 'mainmenu');
             }
             $menu = new Zo2Megamenu($menutype);
             return $menu->rendermenu($isAdmin);
@@ -575,7 +577,7 @@ if (!class_exists('Zo2Framework'))
         {
             if (!isset($config['menu_type']))
             {
-                $config['menu_type'] = self::get('menu_type', 'mainmenu');
+                $config['menu_type'] = $this->get('menu_type', 'mainmenu');
             }
             if (!isset($config['isAdmin']))
             {
