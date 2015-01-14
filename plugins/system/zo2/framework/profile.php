@@ -15,12 +15,14 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Profile')) {
+if (!class_exists('Zo2Profile'))
+{
 
     /**
      * Zo2 profile object
      */
-    class Zo2Profile extends JRegistry {
+    class Zo2Profile extends JRegistry
+    {
 
         /**
          * Profile file path
@@ -49,9 +51,10 @@ if (!class_exists('Zo2Profile')) {
          * 
          * @param object|array $data
          */
-        public function __construct($data = null) {
+        public function __construct($data = null)
+        {
             parent::__construct($data);
-            $framework = Zo2Factory::getFramework();
+            $framework = Zo2Framework::getInstance();
             /* Init default profile root directory */
             $this->_profileDir = JPATH_ROOT . '/templates/' . $framework->template->template . '/assets/profiles';
         }
@@ -61,7 +64,8 @@ if (!class_exists('Zo2Profile')) {
          * @param string $name
          * @return mixed
          */
-        public function __get($name) {
+        public function __get($name)
+        {
             return $this->get($name);
         }
 
@@ -71,7 +75,8 @@ if (!class_exists('Zo2Profile')) {
          * @param mixed $value
          * @return mixed
          */
-        public function __set($name, $value) {
+        public function __set($name, $value)
+        {
             return $this->set($name, $value);
         }
 
@@ -80,22 +85,22 @@ if (!class_exists('Zo2Profile')) {
          * @param string $file
          * @return boolean
          */
-        public function load($name) {
-            $framework = Zo2Factory::getFramework();
-            $id = $framework->template->id;
-            /* Load profile under template id dir */
-            $profileFile = Zo2Factory::getPath('assets://profiles/' . $id . '/' . $name . '.json');
+        public function load($name)
+        {
+            $id = Zo2Framework::getInstance()->template->id;
             /* Load profile under profiles root dir */
-            if (!$profileFile) {
-                /* Load from profiles directory of assets namespace */
-                $profileFile = Zo2Factory::getPath('assets://profiles/' . $name . '.json');
-            }
+
+            /* Load from profiles directory of assets namespace */
+            $profileFile = Zo2Factory::getPath('assets://profiles/' . $name . '.json');
+
             /* If asked file is not exists than load default */
-            if ($profileFile == false) {
+            if ($profileFile == false)
+            {
                 $profileFile = Zo2Factory::getPath('assets://profiles/' . self::DEFAULT_PROFILE_NAME . '.json');
             }
             /* Profile file is existed */
-            if ($profileFile) {
+            if ($profileFile)
+            {
                 Zo2Factory::addLog('Loading profile', $profileFile);
                 /* Load profile data by use json file */
                 $this->loadFile($profileFile);
@@ -105,7 +110,8 @@ if (!class_exists('Zo2Profile')) {
             return false;
         }
 
-        public function isValid() {
+        public function isValid()
+        {
             return $this->_check();
         }
 
@@ -113,21 +119,26 @@ if (!class_exists('Zo2Profile')) {
          * Valid profile checking
          * @return boolean
          */
-        private function _check() {
-            if ($this->get('template') == '') {
+        private function _check()
+        {
+            if ($this->get('template') == '')
+            {
                 Zo2Factory::addLog('Invalid profile', 'Template field is missed', 'error');
                 return false;
             }
-            if ($this->get('name') == '') {
+            if ($this->get('name') == '')
+            {
                 Zo2Factory::addLog('Invalid profile', 'Name field is missed', 'error');
                 return false;
             }
-            if ($this->get('layout') == '') {
+            if ($this->get('layout') == '')
+            {
                 Zo2Factory::addLog('Invalid profile', 'Layout field is missed', 'error');
                 return false;
             }
 
-            if ($this->get('menuConfig') == '') {
+            if ($this->get('menuConfig') == '')
+            {
                 Zo2Factory::addLog('Invalid profile', 'menuConfig field is missed', 'error');
                 return false;
             }
@@ -138,7 +149,8 @@ if (!class_exists('Zo2Profile')) {
          * 
          * @return \JRegistry
          */
-        public function getMenuConfig() {
+        public function getMenuConfig()
+        {
             $menuConfig = new JRegistry($this->get('menuConfig'));
             $megaConfig = json_decode($menuConfig->get('mega_config'), true);
             $menuConfig->set('mega_config', $megaConfig);
@@ -150,9 +162,11 @@ if (!class_exists('Zo2Profile')) {
          * @param type $menuType
          * @return type
          */
-        public function getMegaMenuConfig($menuType = 'mainmenu') {
+        public function getMegaMenuConfig($menuType = 'mainmenu')
+        {
             $menuConfig = $this->getMenuConfig()->get('mega_config');
-            if (isset($menuConfig[$menuType])) {
+            if (isset($menuConfig[$menuType]))
+            {
                 return $menuConfig[$menuType];
             }
             return;
@@ -163,11 +177,15 @@ if (!class_exists('Zo2Profile')) {
          * @param type $profileFile
          * @return bool
          */
-        private function _save($profileFile) {
-            if ($this->isValid()) {
-                if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
+        private function _save($profileFile)
+        {
+            if ($this->isValid())
+            {
+                if (version_compare(PHP_VERSION, '5.4.0', '>='))
+                {
                     $buffer = json_encode($this->toArray(), JSON_PRETTY_PRINT);
-                } else {
+                } else
+                {
                     $buffer = json_encode($this->toArray());
                 }
                 return JFile::write($profileFile, $buffer);
@@ -179,7 +197,8 @@ if (!class_exists('Zo2Profile')) {
          * 
          * @return type
          */
-        public function save() {
+        public function save()
+        {
             $framework = Zo2Factory::getFramework();
             $id = $framework->template->id;
             /* Save to template assets/profiles */
@@ -192,51 +211,64 @@ if (!class_exists('Zo2Profile')) {
          * 
          * @return boolean
          */
-        public function delete() {
-            if (strpos($this->_profileFile, 'default.json') === false) {
+        public function delete()
+        {
+            if (strpos($this->_profileFile, 'default.json') === false)
+            {
                 /* Get table */ $table = JTable::getInstance('Style', 'TemplatesTable');
                 $framework = Zo2Factory::getFramework();
                 $id = $framework->template->id;
                 /* Do clean up in database */
-                if ($table->load($id)) {
+                if ($table->load($id))
+                {
                     $table->params = new JRegistry($table->params);
                     /* Update profile assign list */ $list = $table->params->get('profile', array());
 
-                    if (is_object($list)) {
-                        foreach ($list as $key => $value) {
+                    if (is_object($list))
+                    {
+                        foreach ($list as $key => $value)
+                        {
                             $tList[$key] = $value;
                         }
                         $list = $tList;
                     }
-                    foreach ($list as $index => $value) {
-                        if ($value == $this->_profileName) {
+                    foreach ($list as $index => $value)
+                    {
+                        if ($value == $this->_profileName)
+                        {
                             unset($list[$index]);
                         }
                     }
                     $table->params->set('profile', $list);
                     $table->params = (string) $table->params;
-                    if ($table->check()) {
+                    if ($table->check())
+                    {
                         $table->store();
                     }
                 }
                 /* Do file delete */
-                if (JFile::exists($this->_profileFile)) {
+                if (JFile::exists($this->_profileFile))
+                {
                     return JFile::delete($this->_profileFile);
                 }
-            } else {
+            } else
+            {
                 JFactory::getApplication()->enqueueMessage('You can not delete default profile'
                 );
             }
             return false;
         }
 
-        public function rename($newName) {
+        public function rename($newName)
+        {
             $originalInfo = pathinfo($this->_profileFile);
             $oldProfileName = $originalInfo ['basename'];
             $newFilePath = $originalInfo['dirname'] . '/' . $newName . '.json';
-            if (JFile::exists($newFilePath)) {
+            if (JFile::exists($newFilePath))
+            {
                 JFactory::getApplication()->enqueueMessage('Profile file existed', 'error');
-            } else {
+            } else
+            {
                 $this->name = $newName;
                 $this->save();
                 /* delete old file */
@@ -249,24 +281,30 @@ if (!class_exists('Zo2Profile')) {
                 /* Get table */ $table = JTable::getInstance('Style', 'TemplatesTable');
                 $framework = Zo2Factory::getFramework();
                 $id = $framework->template->id;
-                if ($table->load($id)) {
+                if ($table->load($id))
+                {
                     $table->params = new JRegistry($table->params);
                     /* Update profile assign list */ $list = $table->params->get('profile', array());
 
-                    if (is_object($list)) {
-                        foreach ($list as $key => $value) {
+                    if (is_object($list))
+                    {
+                        foreach ($list as $key => $value)
+                        {
                             $tList[$key] = $value;
                         }
                         $list = $tList;
                     }
-                    foreach ($list as $index => $value) {
-                        if ($value == $oldProfileName) {
+                    foreach ($list as $index => $value)
+                    {
+                        if ($value == $oldProfileName)
+                        {
                             $list[$index] = $newName;
                         }
                     }
                     $table->params->set('profile', $list);
                     $table->params = (string) $table->params;
-                    if ($table->check()) {
+                    if ($table->check())
+                    {
                         return $table->store();
                     }
                 }
@@ -274,7 +312,8 @@ if (!class_exists('Zo2Profile')) {
             return false;
         }
 
-        public function getThemeStylesheet() {
+        public function getThemeStylesheet()
+        {
             $style = array();
             $themeData = get_object_vars($this->theme);
             /* Background */
@@ -304,8 +343,10 @@ if (!class_exists('Zo2Profile')) {
             /* Footer */
             if (!empty($themeData['footer']))
                 $style [] = '#zo2-footer{background-color:' . $themeData['footer'] . ';}';
-            if (!empty($themeData['boxed']) && $themeData['boxed'] == 1) {
-                if (!empty($themeData['bg_image']) || !empty($themeData['bg_pattern'])) {
+            if (!empty($themeData['boxed']) && $themeData['boxed'] == 1)
+            {
+                if (!empty($themeData['bg_image']) || !empty($themeData['bg_pattern']))
+                {
                     $backgroundImage = !empty($themeData['bg_image']) ? $themeData['bg_image'] : $themeData['bg_pattern'];
                     $backgroundImage = JUri::root() . '/' . $backgroundImage;
                     $backgroundImage = str_replace('\\', '/', $backgroundImage);
@@ -314,11 +355,13 @@ if (!class_exists('Zo2Profile')) {
                     $style [] = 'body.boxed{background-image:url("' . $backgroundImage . '");}';
             }
 
-            return implode( PHP_EOL, $style);
+            return implode(PHP_EOL, $style);
         }
 
-        public function isDefault() {
-            if ($this->get('name') == 'default') {
+        public function isDefault()
+        {
+            if ($this->get('name') == 'default')
+            {
                 return true;
             }
         }
@@ -328,8 +371,10 @@ if (!class_exists('Zo2Profile')) {
          * @param type $action
          * @return boolean
          */
-        public function authorise($action) {
-            switch ($action) {
+        public function authorise($action)
+        {
+            switch ($action)
+            {
                 case 'saveAs':
                     return true;
                 case 'rename';

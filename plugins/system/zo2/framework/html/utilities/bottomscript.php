@@ -9,20 +9,19 @@
  * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
-
-/* Get Zo2Framework */
-$framework = Zo2Factory::getFramework();
 //Script for Sticky menu
-if($framework->get('enable_sticky_menu', 1) == 1) {
+if (Zo2Framework::getParam('enable_sticky_menu', 1) == 1)
+{
     ?>
-        jQuery(document).ready(function() {
-            jQuery(".zo2-sticky").sticky({topSpacing:0});
-        });
+    jQuery(document).ready(function() {
+    jQuery(".zo2-sticky").sticky({topSpacing:0});
+    });
     <?php
 }
 
 //Google analytics code
-$ga_code = $framework->get('tracking_code', null);
-if(!empty($ga_code)) {
+$ga_code = Zo2Framework::getParam('tracking_code', null);
+if (!empty($ga_code))
+{
     echo $ga_code;
 }

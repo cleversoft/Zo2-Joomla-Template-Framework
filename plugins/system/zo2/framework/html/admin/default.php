@@ -19,8 +19,8 @@ $profile = Zo2Factory::getProfile();
 <!-- It's using Twitter Bootstrap 2 default. Provided by Joomla! -->
 <!-- Begin Content -->
 <div id="zo2-profile" 
-     data-zo2-template="<?php echo Zo2Factory::getTemplateName(); ?>" 
-     data-zo2-templateid="<?php echo Zo2Factory::getFramework()->template->id; ?>"
+     data-zo2-template="<?php echo Zo2Framework::getInstance()->template->template; ?>" 
+     data-zo2-templateid="<?php echo Zo2Framework::getInstance()->template->id; ?>"
      data-zo2-profile="<?php echo $profile->get('name'); ?>">
     <div class="row-fluid">
         <div class="span12">

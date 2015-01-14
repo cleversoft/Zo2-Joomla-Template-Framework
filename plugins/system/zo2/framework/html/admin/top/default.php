@@ -48,7 +48,7 @@ $downloadProfileUrl = $url->toString();
                                 'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
                                     ), array(
                                 'profile' => $currentProfile,
-                                'profiles' => Zo2Factory::getFramework()->getProfiles()
+                                'profiles' => Zo2Framework::getInstance()->getProfiles()
                             ));
                             ?>
                             <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalSaveAs();

@@ -19,10 +19,7 @@ defined('_JEXEC') or die('Restricted Access');
 if (!class_exists('Zo2Framework'))
     die('Zo2Framework not found');
 
-$template = Zo2Factory::getTemplate();
-
-$framework = Zo2Factory::getFramework();
-$framework->init();
+$framework = Zo2Framework::getInstance();
 
 $this->zo2 = new JRegistry;
 $this->zo2->framework = $framework;

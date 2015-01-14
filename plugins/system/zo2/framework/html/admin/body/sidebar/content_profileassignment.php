@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 // Initiasile related data.
 require_once JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php';
 $menuTypes = MenusHelper::getMenuLinks();
-$framework = Zo2Factory::getFramework();
+$framework = Zo2Framework::getInstance();
 $profileAssign = $framework->get('profile');
 $currentProfile = JFactory::getApplication()->input->get('profile', 'default');
 ?>
@@ -18,9 +18,9 @@ $currentProfile = JFactory::getApplication()->input->get('profile', 'default');
                         <li class="span3">
                             <div class="thumbnail">
                                 <button class="btn" type="button" class="jform-rightbtn" onclick="
-                                        $$('#profile-menu-assignment .<?php echo $type->menutype; ?>').each(function (el) {
-                                            el.checked = !el.checked;
-                                        });">
+                                            $$('#profile-menu-assignment .<?php echo $type->menutype; ?>').each(function (el) {
+                                                el.checked = !el.checked;
+                                            });">
                                     <i class="icon-check"></i> <?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>
                                 </button>
                                 <h5><?php echo $type->title ? $type->title : $type->menutype; ?></h5>

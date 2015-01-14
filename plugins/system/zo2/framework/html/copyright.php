@@ -17,21 +17,24 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2HtmlCopyright')) {
+if (!class_exists('Zo2HtmlCopyright'))
+{
 
     /**
      * @since 1.4.3
      */
-    class Zo2HtmlCopyright {
+    class Zo2HtmlCopyright
+    {
 
-        public function render() {
+        public function render()
+        {
             $html = new Zo2Html();
-            $html->set('showLogo', Zo2Factory::get('footer_logo'));
+            $html->set('showLogo', Zo2Framework::getParam('footer_logo'));
             $html->set('logoUrl', JUri::root(true) . '/plugins/system/zo2/framework/assets/zo2/images/zo2_logo_32x32.png');
-            $html->set('copyright', Zo2Factory::get('footer_copyright'));
+            $html->set('copyright', Zo2Framework::getParam('footer_copyright'));
             $html->set('title', 'Zo2 Framework');
             $html->set('link', 'http://zo2framework.org');
-            $html->set('gototop', Zo2Factory::get('footer_gototop'));
+            $html->set('gototop', Zo2Framework::getParam('footer_gototop'));
             return $html->fetch('zo2/copyright.php');
         }
 

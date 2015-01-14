@@ -23,61 +23,7 @@ spl_autoload_register(array(
     $autoloader, 'autoloadByPsr2'
 ));
 
-if (Zo2Factory::isZo2Template())
-{
-
-    $framework = Zo2Factory::getFramework();
-    $framework->init();
-
-
-
-    /**
-     * @todo remove this core hacking
-     */
-    if (!class_exists('JViewLegacy', false))
-    //Zo2Factory::import('core.classes.legacy');
-        if (Zo2Factory::isSite())
-        {
-            
-        } else
-        {
-            $jinput = JFactory::getApplication()->input;
-            if ($jinput->get('option') == 'com_templates')
-            {
-                $task = $jinput->get('task');
-                $model = Zo2ModelTemplate::getInstance();
-                switch ($task)
-                {
-                    case 'style.save':
-                        $model->save();
-
-                        break;
-                    case 'style.apply':
-                        $model->save();
-
-                        break;
-                    case 'remove':
-                        $model->remove();
-                        break;
-                    case 'rename':
-                        $model->rename();
-                        break;
-                };
-                /*
-                  $zo2Task = $jinput->get('zo2_task');
-                  if ($zo2Task) {
-                  $zo2Task = explode('.', $zo2Task);
-                  $modelClass = 'Zo2Model' . ucfirst($zo2Task[0]);
-                  $model = new $modelClass;
-                  if (method_exists($model, $zo2Task[1])) {
-                  call_user_func(array($model, $zo2Task[1]));
-                  }
-                  }
-                 * 
-                 */
-            }
-        }
-    JFactory::getDocument()->addScriptDeclaration('/**
+JFactory::getDocument()->addScriptDeclaration('/**
  * Zo2 JS framework define
  * @param {object} w Window pointer
  * @param {object} $ jQuery pointer
@@ -105,7 +51,3 @@ if (Zo2Factory::isZo2Template())
     }
 
 })(window, jQuery.noConflict());');
-} else
-{
-    
-}

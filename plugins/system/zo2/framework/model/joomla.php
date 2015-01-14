@@ -107,7 +107,7 @@ if (!class_exists('Zo2ModelJoomla'))
 
         public function getAvaiablePositions()
         {
-            $templatePositions = Zo2Factory::getFramework()->getTemplatePositions();
+            $templatePositions = Zo2Framework::getInstance()->getTemplatePositions();
 
             $db = JFactory::getDbo();
             $query = $db->getQuery(true)

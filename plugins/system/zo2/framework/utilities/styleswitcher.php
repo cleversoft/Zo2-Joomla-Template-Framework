@@ -15,17 +15,21 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2UtilityStyleSwitcher')) {
+if (!class_exists('Zo2UtilityStyleSwitcher'))
+{
     require_once 'abstract.php';
 
-    class Zo2UtilityStyleSwitcher extends Zo2UtilityAbstract {
+    class Zo2UtilityStyleSwitcher extends Zo2UtilityAbstract
+    {
+
         /**
          * 
          * @return string
          */
-        public function render() {
-            $framework = Zo2Factory::getFramework();
-            if ($framework->get('enable_style_switcher', 1) == 1) {
+        public function render()
+        {
+            if (Zo2Framework::getParam('enable_style_switcher', 1) == 1)
+            {
                 $template = new Zo2Template();
                 return $template->fetch('html://utilities/styleswitcher.php');
             }

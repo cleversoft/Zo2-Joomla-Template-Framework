@@ -30,8 +30,13 @@ if (!class_exists('plgSystemZo2'))
          */
         public function onAfterRoute()
         {
-            include_once __DIR__ . '/framework/includes/bootstrap.php';
-            Zo2Factory::ajax();
+            $template = $this->_isZo2();
+            if ($template)
+            {
+                include_once __DIR__ . '/framework/includes/bootstrap.php';
+                Zo2Framework::getInstance()->init($template);
+                Zo2Factory::ajax();
+            }
         }
 
         /**
@@ -39,13 +44,13 @@ if (!class_exists('plgSystemZo2'))
          */
         public function onAfterRender()
         {
-            if (Zo2Factory::isZo2Template())
+            if ($this->_isZo2())
             {
                 $app = JFactory::getApplication();
                 $body = JResponse::getBody();
 
                 $jinput = JFactory::getApplication()->input;
-                $framework = Zo2Factory::getFramework();
+                $framework = Zo2Framework::getInstance();
 
                 $assets = Zo2Assets::getInstance();
                 $body = str_replace('</body>', $assets->generateAssets('js') . '</body>', $body);
@@ -54,6 +59,67 @@ if (!class_exists('plgSystemZo2'))
                 /* Apply back to body */
                 JResponse::setBody($body);
             }
+        }
+
+        /**
+         * 
+         * @staticvar type $template
+         * @return boolean
+         */
+        private function _getTemplate()
+        {
+            static $template;
+            if (empty($template))
+            {
+                $app = JFactory::getApplication();
+                $jinput = $app->input;
+                if ($app->isAdmin() && $jinput->get('option') == 'com_templates' && ( $jinput->get('view') == 'style' || $jinput->get('layout') == 'edit' ))
+                {
+                    $db = JFactory::getDbo();
+                    $query = $db->getQuery(true);
+                    $query
+                            ->select('*')
+                            ->from('#__template_styles')
+                            ->where('id=' . $app->input->get('id'));
+
+
+                    $db->setQuery($query);
+                    $template = $db->loadObject();
+
+                    if ($template)
+                    {
+                        $registry = new JRegistry;
+                        $registry->loadString($template->params);
+                        $template->params = $registry;
+                    }
+                } else if ($app->isSite())
+                {
+                    $template = JFactory::getApplication()->getTemplate(true);
+                } else
+                {
+                    return false;
+                }
+            }
+            return $template;
+        }
+
+        /**
+         * 
+         * @return boolean
+         */
+        private function _isZo2()
+        {
+            $template = $this->_getTemplate();
+            if ($template)
+            {
+                $templateConfig = JPATH_ROOT . '/templates/' . $template->template . '/assets/template.json';
+                if (is_file($templateConfig))
+                {
+                    return $template;
+                }
+            }
+
+            return false;
         }
 
     }

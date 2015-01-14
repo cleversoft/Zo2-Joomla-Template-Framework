@@ -18,7 +18,7 @@
         'description' => JText::_('ZO2_ADMIN_ENABLE_RTL_DESC')
             ), array(
         'name' => 'jform[params][enable_rtl]',
-        'value' => Zo2Factory::get('enable_rtl')
+        'value' => Zo2Framework::getParam('enable_rtl')
     ));
     ?>
     <!-- Responsive Layout -->
@@ -29,7 +29,7 @@
         'description' => JText::_('ZO2_ADMIN_DESC_DISABLE_RESPONSIVE_LAYOUT')
             ), array(
         'name' => 'jform[params][non_responsive_layout]',
-        'value' => Zo2Factory::get('non_responsive_layout', 0)
+        'value' => Zo2Framework::getParam('non_responsive_layout', 0)
     ));
     ?>
     <!-- Enable Style Switcher -->
@@ -40,7 +40,7 @@
         'description' => JText::_('ZO2_ADMIN_ENABLE_STYLE_SWITCHER_DESC')
             ), array(
         'name' => 'jform[params][enable_style_switcher]',
-        'value' => Zo2Factory::get('enable_style_switcher')
+        'value' => Zo2Framework::getParam('enable_style_switcher')
     ));
     ?>
     <!-- Enable Sticky Menu -->
@@ -51,7 +51,7 @@
         'description' => JText::_('ZO2_ADMIN_ENABLE_STICKY_MENU_DESC')
             ), array(
         'name' => 'jform[params][enable_sticky_menu]',
-        'value' => Zo2Factory::get('enable_sticky_menu')
+        'value' => Zo2Framework::getParam('enable_sticky_menu')
     ));
     ?>
     <div class="zo2-divider"></div>
@@ -59,8 +59,9 @@
     <div class="zo2-divider"></div>
     <div class="control-group no-margin no-label">
         <?php
-        $value = Zo2Factory::getFramework()->getAssetsFile('zo2/css/custom.css');
-        if (strpos($value, '/* Here you can include your additional CSS Styles */') === false) {
+        $value = Zo2Framework::getInstance()->getAssetsFile('zo2/css/custom.css');
+        if (strpos($value, '/* Here you can include your additional CSS Styles */') === false)
+        {
             $value = '/* Here you can include your additional CSS Styles */' . PHP_EOL . $value;
         }
         echo Zo2Html::field(
@@ -78,8 +79,9 @@
     </div>
     <div class="control-group no-margin no-label">
         <?php
-        $value = Zo2Factory::getFramework()->getAssetsFile('zo2/js/custom.js');
-        if (strpos($value, '/* Here you can include your additional Javascript code */') === false) {
+        $value = Zo2Framework::getInstance()->getAssetsFile('zo2/js/custom.js');
+        if (strpos($value, '/* Here you can include your additional Javascript code */') === false)
+        {
             $value = '/* Here you can include your additional Javascript code */' . PHP_EOL . $value;
         }
         echo Zo2Html::field(
@@ -109,7 +111,7 @@
             'name' => 'jform[params][tracking_code]',
             'rows' => 10,
             'cols' => 20,
-            'value' => Zo2Factory::get('tracking_code')
+            'value' => Zo2Framework::getParam('tracking_code')
         ));
         ?>
         <span>Paste your Google Analytics (or other) tracking code here.<br /> This will be added before the closing body tag in the template. <br/> This should be something like<br /> &#60;script&#62;<br />....<br />&#60;/script&#62;</span>
@@ -126,7 +128,7 @@
         'description' => JText::_('ZO2_ADMIN_COMBINE_CSS_DESC')
             ), array(
         'name' => 'jform[params][combine_css]',
-        'value' => Zo2Factory::get('combine_css'),
+        'value' => Zo2Framework::getParam('combine_css'),
         'options' => array(
             array(
                 'label' => JText::_('ZO2_YES')
@@ -144,7 +146,7 @@
         'label' => JText::_('ZO2_ADMIN_COMBINE_JS'),
         'description' => JText::_('ZO2_ADMIN_COMBINE_JS_DESC')
             ), array(
-        'value' => Zo2Factory::get('combine_js'),
+        'value' => Zo2Framework::getParam('combine_js'),
         'name' => 'jform[params][combine_js]',
         'options' => array(
             array(
@@ -164,7 +166,7 @@
         'description' => JText::_('ZO2_ADMIN_LOAD_JQUERY_DESC')
             ), array(
         'name' => 'jform[params][load_jquery]',
-        'value' => Zo2Factory::get('load_jquery'),
+        'value' => Zo2Framework::getParam('load_jquery'),
         'options' => array(
             array(
                 'label' => JText::_('ZO2_YES')
@@ -183,7 +185,7 @@
         'description' => JText::_('ZO2_ADMIN_ADVANCED_DESC_DEVELOPMENT_MODE')
             ), array(
         'name' => 'jform[params][development_mode]',
-        'value' => Zo2Factory::get('development_mode')
+        'value' => Zo2Framework::getParam('development_mode')
     ));
     ?>
 
@@ -194,7 +196,7 @@
         'description' => JText::_('ZO2_ADMIN_DISABLE_MOOTOOLS_DESC')
             ), array(
         'name' => 'jform[params][disable_mootools]',
-        'value' => Zo2Factory::get('disable_mootools')
+        'value' => Zo2Framework::getParam('disable_mootools')
     ));
     ?>
 </div>

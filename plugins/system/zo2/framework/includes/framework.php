@@ -66,34 +66,34 @@ if (!class_exists('Zo2Framework'))
          * Constructor
          * @param type $template
          */
-        protected function __construct($template)
+        protected function __construct()
         {
-            $this->template = $template;
+            
         }
 
         /**
-         * Get instance of Zo2 Framework with specific template
-         * @param object|null $template
-         * @return Zo2Framework
+         * 
+         * @staticvar Zo2Framework $instance
+         * @return \Zo2Framework
          */
-        public static function getInstance($template = null)
+        public static function getInstance()
         {
-            if ($template === null)
-                $template = Zo2Factory::getTemplate();
-            if (!self::$_instances[$template->template])
+            static $instance;
+            if (!isset($instance))
             {
-                self::$_instances[$template->template] = new Zo2Framework($template);
+                $instance = new Zo2Framework();
             }
-            return self::$_instances[$template->template];
+            return $instance;
         }
 
         /**
          * Framework init
          */
-        public function init()
+        public function init($template)
         {
             if (!defined('ZO2_LOADED'))
             {
+                $this->template = $template;
                 /* Load language */
                 $language = JFactory::getLanguage();
                 $language->load('plg_system_zo2', ZO2PATH_ROOT);
@@ -144,6 +144,11 @@ if (!class_exists('Zo2Framework'))
             }
         }
 
+        public static function getParam($name, $default = null)
+        {
+            return self::getInstance()->template->params->get($name, $default);
+        }
+
         /**
          * 
          */
@@ -191,11 +196,9 @@ if (!class_exists('Zo2Framework'))
                 } else
                 {
                     /* Backend loading */
-                    if (Zo2Factory::isZo2Template())
-                    {
-                        /* Load core assets */
-                        $this->assets->load($assets->backend);
-                    }
+
+                    /* Load core assets */
+                    $this->assets->load($assets->backend);
                 }
             } else
             {
@@ -461,13 +464,11 @@ if (!class_exists('Zo2Framework'))
 
         /**
          * Get list of layouts from this template
-         *
-         * @param int $templateId If pass null, or 0, templateId will get from $_GET['id']
          * @return array
          */
-        public function getTemplateLayouts($templateId = 0)
+        public function getTemplateLayouts()
         {
-            $templateName = Zo2Factory::getTemplateName($templateId);
+            $templateName = $this->template->template;
 
             if (!empty($templateName))
             {
@@ -717,6 +718,45 @@ if (!class_exists('Zo2Framework'))
             if ($assetsFile)
             {
                 return file_get_contents($assetsFile);
+            }
+        }
+
+        public function joomlaHook()
+        {
+            $jinput = JFactory::getApplication()->input;
+            if ($jinput->get('option') == 'com_templates')
+            {
+                $task = $jinput->get('task');
+                $model = Zo2ModelTemplate::getInstance();
+                switch ($task)
+                {
+                    case 'style.save':
+                        $model->save();
+
+                        break;
+                    case 'style.apply':
+                        $model->save();
+
+                        break;
+                    case 'remove':
+                        $model->remove();
+                        break;
+                    case 'rename':
+                        $model->rename();
+                        break;
+                };
+                /*
+                  $zo2Task = $jinput->get('zo2_task');
+                  if ($zo2Task) {
+                  $zo2Task = explode('.', $zo2Task);
+                  $modelClass = 'Zo2Model' . ucfirst($zo2Task[0]);
+                  $model = new $modelClass;
+                  if (method_exists($model, $zo2Task[1])) {
+                  call_user_func(array($model, $zo2Task[1]));
+                  }
+                  }
+                 * 
+                 */
             }
         }
 

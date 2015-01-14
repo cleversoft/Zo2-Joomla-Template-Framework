@@ -41,7 +41,7 @@ if (!class_exists('Zo2Layout'))
             $document = JFactory::getDocument();
             $document->addCustomTag('<!-- built with zo2 framework: http://www.zootemplate.com/zo2 -->');
 
-            $canCache = (bool) Zo2Factory::get('debug', 0) == 1;
+            $canCache = (bool) Zo2Framework::getParam('debug', 0) == 1;
             /* Must follow Joomla! global config */
             $canCache = $canCache && ( JFactory::getConfig()->get('caching') != 0 );
             $cacheLoaded = false;
@@ -58,7 +58,7 @@ if (!class_exists('Zo2Layout'))
                     if (JFile::exists($cacheFile))
                     {
                         /* Cache file exists and still not expired */
-                        if ((filemtime($cacheFile) + Zo2Factory::get('cache_interval', '3600')) < time())
+                        if ((filemtime($cacheFile) + Zo2Framework::getParam('cache_interval', '3600')) < time())
                         {
                             /* Load HTML from cache */
                             $html = file_get_contents($cacheFile);
@@ -88,12 +88,12 @@ if (!class_exists('Zo2Layout'))
                 if ($this->get('canvasMenu') instanceof Zo2LayoutItem)
                 {
                     $config['item'] = $this->get('canvasMenu');
-                    $this->_outBuffer[] = Zo2Factory::getFramework()->displayOffCanvasMenu($config);
+                    $this->_outBuffer[] = Zo2Framework::getInstance()->displayOffCanvasMenu($config);
                 }
                 $html = implode("", $this->_buffer);
             }
 
-            if (Zo2Factory::get('compress_html'))
+            if (Zo2Framework::getParam('compress_html'))
             {
                 $html = $this->_compressHtml($html);
             }
@@ -441,7 +441,7 @@ if (!class_exists('Zo2Layout'))
                                 break;
                             case 'mega_menu':
                                 /* Display frontend megamenu */
-                                $framework = Zo2Factory::getFramework();
+                                $framework = Zo2Framework::getInstance();
                                 $megamenu = $framework->displayMegaMenu(Zo2Factory::getProfile()->menuConfig->menu_type);
                                 $html .= $megamenu;
                                 break;
@@ -449,7 +449,7 @@ if (!class_exists('Zo2Layout'))
                         break;
                     case 'megamenu':
                         /* Display frontend megamenu */
-                        $framework = Zo2Factory::getFramework();
+                        $framework = Zo2Framework::getInstance();
                         $megamenu = $framework->displayMegaMenu(Zo2Factory::getProfile()->menuConfig->menu_type);
                         $html .= $megamenu;
                         break;
@@ -514,7 +514,7 @@ if (!class_exists('Zo2Layout'))
          */
         private static function hideComponent()
         {
-            $framework = Zo2Factory::getFramework();
+            $framework = Zo2Framework::getInstance();
             $params = Zo2Factory::getTemplate()->params;
             if ((int) $params->get('component_area', 0) && $framework->isFrontPage())
             {
