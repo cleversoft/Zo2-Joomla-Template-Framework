@@ -260,7 +260,7 @@ if (!class_exists('Zo2Factory'))
 
         public static function isRTL()
         {
-            return JFactory::getLanguage()->isRTL() && (Zo2Factory::get('enable_rtl') == 1);
+            return JFactory::getLanguage()->isRTL() && (Zo2Framework::getParam('enable_rtl') == 1);
         }
 
         /**
