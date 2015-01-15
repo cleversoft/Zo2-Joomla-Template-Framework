@@ -229,7 +229,7 @@ if (!class_exists('Zo2Factory'))
             {
                 if (JFactory::getApplication()->isSite())
                 {
-                    Zo2Framework::getInstance()->template->params->get('profile', 'default');
+                    $profileName = Zo2Framework::getInstance()->template->params->get('profile', 'default');
                 } else
                 {
                     $profileName = JFactory::getApplication()->input->get('profile');
@@ -249,7 +249,9 @@ if (!class_exists('Zo2Factory'))
                 $profile = new Zo2Profile();
                 $profile->load($profileName);
                 $profiles[$profileName] = $profile;
+                JFactory::getApplication()->enqueueMessage('Loaded profile: ' . $profileName);
             }
+
             return $profiles[$profileName];
         }
 
