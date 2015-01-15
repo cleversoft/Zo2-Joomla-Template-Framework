@@ -220,7 +220,7 @@ if (!class_exists('Zo2Profile'))
                     return true;
                 } else
                 {
-                    JFactory::getApplication()->enqueueMessage('File save error', 'error');
+                    JFactory::getApplication()->enqueueMessage('Permission denied! Please change the permission of the directory and enable others to create files inside /templates/zo2_template/assets/profile', 'error');
                     return false;
                 }
             }
