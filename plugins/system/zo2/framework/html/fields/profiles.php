@@ -13,7 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <!-- Select profile -->                
-<select id="zo2-profiles" class="form-control" onchange="zo2.admin.profile.load(this.value);
+<select id="zo2-profiles" class="form-control pull-left" onchange="zo2.admin.profile.load(this.value);
         return false;" name="zo2[profiles]" >
     <!-- Display list of profiles -->
     <?php foreach ($this->data['profiles'] as $profile): ?>
