@@ -106,18 +106,22 @@ if (!class_exists('Zo2Profile'))
                 $this->loadFile($profileFile);
                 // Layout               
                 $layout = $this->get('layout');
-                if (!is_array($layout) && !is_object($layout) && !empty($layout))
+                if (is_string($layout))
                 {
                     $layout = json_decode($layout);
                     $this->set('layout', $layout);
                 }
-                // Menu config
+                // Menu config                
                 $menu_config = $this->get('menu_config');
-                $menu_config = json_decode($menu_config);
-                $this->set('menu_config', $menu_config);
+                if (is_string($menu_config))
+                {
+                    $menu_config = json_decode($menu_config);
+                    $this->set('menu_config', $menu_config);
+                }
+
                 // Theme
                 $theme = $this->get('theme');
-                if (!is_array($theme) && !is_object($theme) && !empty($theme))
+                if (is_string($theme))
                 {
                     $theme = json_decode($theme);
                     $this->set('theme', $theme);
