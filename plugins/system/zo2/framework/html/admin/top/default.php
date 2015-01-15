@@ -37,12 +37,7 @@ $downloadProfileUrl = $url->toString();
                     <!-- Profiles -->
                     <div class="zo2-profiles">                                
                         <div class="navbar-form pull-left">
-                            <!-- temporary hidden 
-                            <button type="button" class="btn btn-info" onClick="window.open('<?php echo $downloadProfileUrl; ?>', '_blank');
-                                     return false;">
-                            <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILES_DOWNLOAD'); ?>
-                            </button>
-                            -->
+                            <label class="pull-left zo2-name-profile"><?php echo JText::_('ZO2_PROFILE'); ?></label>
                             <?php
                             echo Zo2Html::field('profiles', array(
                                 'label' => JText::_('ZO2_ADMIN_LABEL_SELECT_PROFILE')
@@ -51,25 +46,26 @@ $downloadProfileUrl = $url->toString();
                                 'profiles' => Zo2Framework::getInstance()->getProfiles()
                             ));
                             ?>
-                            <button type="button" class="btn btn-primary" onClick="zo2.admin.profile.modalSaveAs();
+                            <button type="button" class="btn btn-primary pull-left" onClick="zo2.admin.profile.modalSaveAs();
                                     return false;">
                                         <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_SAVE_AS'); ?>
                             </button>
                             <?php if ($currentProfile->authorise('rename')) : ?>
-                                <button type="button" class="btn btn-default" onClick="zo2.admin.profile.modalRename();
+                                <button type="button" class="btn btn-default pull-left" onClick="zo2.admin.profile.modalRename();
                                         return false;">
                                             <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_RENAME'); ?>
                                 </button>
                             <?php endif; ?>
                             <?php if ($currentProfile->authorise('delete')) : ?>
-                                <button type="button" class="btn btn-danger" onClick="zo2.admin.profile.delete();
+                                <button type="button" class="btn btn-danger pull-left" onClick="zo2.admin.profile.delete();
                                         return false;">
                                             <?php echo JText::_('ZO2_ADMIN_BUTTON_PROFILE_DELETE'); ?>
                                 </button>
                             <?php endif; ?>                           
 
-                            <!-- Select profile -->       
-                            <select id="zo2-profile" class="form-control" name="jform[params][profile]" >
+                            <!-- Select profile -->
+                            <label class="pull-left zo2-name-profile"><?php echo JText::_('ZO2_USE_PROFILE'); ?></label>
+                            <select id="zo2-profile" class="form-control pull-left" name="jform[params][profile]" >
                                 <!-- Display list of profiles -->
                                 <?php $profiles = Zo2Framework::getInstance()->getProfiles(); ?>
                                 <?php foreach ($profiles as $profile): ?>
