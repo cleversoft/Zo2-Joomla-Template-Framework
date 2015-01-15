@@ -146,19 +146,19 @@ if (!class_exists('Zo2Profile'))
             $template = $this->get('template');
             if (empty($template))
             {
-                Zo2Factory::addLog('Invalid profile', 'Template field is missed', 'error');
+                JFactory::getApplication()->enqueueMessage('Invalid profile: Template field is missed', 'error');
                 return false;
             }
             $name = $this->get('name');
             if (empty($name))
             {
-                Zo2Factory::addLog('Invalid profile', 'Name field is missed', 'error');
+                JFactory::getApplication()->enqueueMessage('Invalid profile: Name field is missed', 'error');
                 return false;
             }
             $layout = $this->get('layout');
             if (empty($layout))
             {
-                Zo2Factory::addLog('Invalid profile', 'Layout field is missed', 'error');
+                JFactory::getApplication()->enqueueMessage('Invalid profile: Layout field is missed', 'error');
                 return false;
             }
 
@@ -215,7 +215,14 @@ if (!class_exists('Zo2Profile'))
                 {
                     $buffer = json_encode($this->toArray());
                 }
-                return JFile::write($profileFile, $buffer);
+                if (JFile::write($profileFile, $buffer))
+                {
+                    return true;
+                } else
+                {
+                    JFactory::getApplication()->enqueueMessage('File save error', 'error');
+                    return false;
+                }
             }
             return false;
         }
