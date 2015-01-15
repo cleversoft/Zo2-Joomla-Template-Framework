@@ -21,9 +21,6 @@ Desktop.ini
 *.ipr
 *.iws
 
-# Ignore itself
-
-/.gitignore
 
 # Joomla Directory
 
