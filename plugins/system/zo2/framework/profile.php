@@ -236,37 +236,7 @@ if (!class_exists('Zo2Profile'))
         {
             if (strpos($this->_profileFile, 'default.json') === false)
             {
-                /* Get table */ $table = JTable::getInstance('Style', 'TemplatesTable');
-                $framework = Zo2Factory::getFramework();
-                $id = $framework->template->id;
-                /* Do clean up in database */
-                if ($table->load($id))
-                {
-                    $table->params = new JRegistry($table->params);
-                    /* Update profile assign list */ $list = $table->params->get('profile', array());
 
-                    if (is_object($list))
-                    {
-                        foreach ($list as $key => $value)
-                        {
-                            $tList[$key] = $value;
-                        }
-                        $list = $tList;
-                    }
-                    foreach ($list as $index => $value)
-                    {
-                        if ($value == $this->_profileName)
-                        {
-                            unset($list[$index]);
-                        }
-                    }
-                    $table->params->set('profile', $list);
-                    $table->params = (string) $table->params;
-                    if ($table->check())
-                    {
-                        $table->store();
-                    }
-                }
                 /* Do file delete */
                 if (JFile::exists($this->_profileFile))
                 {
@@ -274,8 +244,7 @@ if (!class_exists('Zo2Profile'))
                 }
             } else
             {
-                JFactory::getApplication()->enqueueMessage('You can not delete default profile'
-                );
+                JFactory::getApplication()->enqueueMessage('You can not delete default profile');
             }
             return false;
         }
