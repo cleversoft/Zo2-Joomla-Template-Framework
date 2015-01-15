@@ -104,6 +104,10 @@ if (!class_exists('Zo2Profile'))
                 Zo2Factory::addLog('Loading profile', $profileFile);
                 /* Load profile data by use json file */
                 $this->loadFile($profileFile);
+                echo $profileFile . '<br />';
+                echo '<pre>';
+                print_r($this);
+                echo '</pre>';
                 $layout = $this->get('layout');
                 $layout = json_decode($layout);
                 $this->set('layout', $layout);
