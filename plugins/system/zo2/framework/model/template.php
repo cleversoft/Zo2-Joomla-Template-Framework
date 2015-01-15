@@ -81,8 +81,9 @@ if (!class_exists('Zo2ModelTemplate'))
             $zo2 = $jinput->post->get('zo2', array(), 'array');
             // Joomla! form data
             $formData = $jinput->post->get('jform', array(), 'array');
-
-
+            $formData['params']['layout'] = json_decode($formData['params']['layout']);
+            $formData['params']['theme'] = json_decode($formData['params']['theme']);
+            $formData['params']['menu_config'] = json_decode($formData['params']['menu_config']);
             /* Request profileName */
             $profileName = (isset($zo2['newProfile']) ? $zo2['newProfile'] : $zo2['profiles'] );
             if ($profileName != $zo2['profiles'])
