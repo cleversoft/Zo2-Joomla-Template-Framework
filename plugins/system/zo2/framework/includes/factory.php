@@ -249,7 +249,6 @@ if (!class_exists('Zo2Factory'))
                 $profile = new Zo2Profile();
                 $profile->load($profileName);
                 $profiles[$profileName] = $profile;
-                JFactory::getApplication()->enqueueMessage('Loaded profile: ' . $profileName);
             }
 
             return $profiles[$profileName];
