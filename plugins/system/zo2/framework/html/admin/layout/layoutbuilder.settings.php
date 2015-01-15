@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <!-- begin -->
                 <div class="control-group">
-                    <label class="control-label" for="dlColJDoc"><?php echo JText::_('ZO2_ADMIN_COMMON_JDOC'); ?></label>
+                    <label class="control-label" for="zo2-setting-jdoc"><?php echo JText::_('ZO2_ADMIN_COMMON_JDOC'); ?></label>
                     <div class="controls">
                         <!-- http://docs.joomla.org/Jdoc_statements -->
                         <select id="dlColJDoc">
@@ -31,7 +31,7 @@
                 </div>
                 <!-- begin -->
                 <div class="control-group">
-                    <label class="control-label" for="dlColType"><?php echo JText::_('ZO2_ADMIN_COMMON_POSITION'); ?></label>
+                    <label class="control-label" for="zo2-setting-type"><?php echo JText::_('ZO2_ADMIN_COMMON_POSITION'); ?></label>
                     <div class="controls">
                         <select id="dlColPosition">
                             <option value="component"><?php echo JText::_('ZO2_ADMIN_COMMON_COMPONENT'); ?></option>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="ddlColOffset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
+                    <label class="control-label" for="zo2-setting-offset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                     <div class="controls">
                         <select id="ddlColOffset">
                             <option value="0"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_NO_OFFSET'); ?></option>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="ddlColStyle"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
+                    <label class="control-label" for="zo2-setting-style"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
                     <div class="controls">
                         <select id="ddlColStyle">
                             <!-- Foreach XHTML Style -->
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="txtColCss"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_CSS'); ?></label>
+                    <label class="control-label" for="zo2-setting-css"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_CSS'); ?></label>
                     <div class="controls">
                         <input type="text" id="txtColCss" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_COLCSS'); ?>">
                     </div>
@@ -81,7 +81,7 @@
                             <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_MOBILE'); ?></label>
                         </div>
                         <div class="controls">
-                            <fieldset class="radio" id="zo2_enable_responsive_mobile">
+                            <fieldset class="radio" id="zo2-enable-responsive-mobile">
                                 <input type="radio" value="0">
                                 <label>No</label>
                                 <input type="radio" checked="checked" value="1">
@@ -94,7 +94,7 @@
                             <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_TABLET'); ?></label>
                         </div>
                         <div class="controls">
-                            <fieldset class="radio" id="zo2_enable_responsive_tablet">
+                            <fieldset class="radio" id="zo2-enable-responsive-tablet">
                                 <input type="radio" value="0">
                                 <label>No</label>
                                 <input type="radio" checked="checked" value="1">
@@ -107,7 +107,7 @@
                             <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_DESTOP'); ?></label>
                         </div>
                         <div class="controls">
-                            <fieldset class="radio" id="zo2_enable_responsive_desktop">
+                            <fieldset class="radio" id="zo2-enable-responsive-desktop">
                                 <input type="radio" value="0">
                                 <label>No</label>
                                 <input type="radio" checked="checked" value="1">
@@ -120,7 +120,7 @@
                             <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_LARGEDESTOP'); ?></label>
                         </div>
                         <div class="controls">
-                            <fieldset class="radio" id="zo2_enable_responsive_largedesktop">
+                            <fieldset class="radio" id="zo2-enable-responsive-largedesktop">
                                 <input type="radio" value="0">
                                 <label>No</label>
                                 <input type="radio" checked="checked" value="1">
