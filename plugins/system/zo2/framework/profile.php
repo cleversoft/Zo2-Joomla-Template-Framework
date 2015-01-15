@@ -106,7 +106,7 @@ if (!class_exists('Zo2Profile'))
                 $this->loadFile($profileFile);
                 // Layout               
                 $layout = $this->get('layout');
-                if (!is_array($layout) && !empty($layout))
+                if (!is_array($layout) && !is_object($layout) && !empty($layout))
                 {
                     $layout = json_decode($layout);
                     $this->set('layout', $layout);
@@ -117,7 +117,7 @@ if (!class_exists('Zo2Profile'))
                 $this->set('menu_config', $menu_config);
                 // Theme
                 $theme = $this->get('theme');
-                if (!is_array($theme) && !empty($theme))
+                if (!is_array($theme) && !is_object($theme) && !empty($theme))
                 {
                     $theme = json_decode($theme);
                     $this->set('theme', $theme);
