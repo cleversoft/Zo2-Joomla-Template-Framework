@@ -128,18 +128,20 @@ if (!class_exists('Zo2Profile'))
          */
         private function _check()
         {
-            if (empty($this->get('template')))
+            $template = $this->get('template');
+            if (empty($template))
             {
                 Zo2Factory::addLog('Invalid profile', 'Template field is missed', 'error');
                 return false;
             }
-            if (empty($this->get('name')))
+            $name = $this->get('name');
+            if (empty($name))
             {
                 Zo2Factory::addLog('Invalid profile', 'Name field is missed', 'error');
                 return false;
             }
-
-            if (empty($this->get('layout')))
+            $layout = $this->get('layout');
+            if (empty($layout))
             {
                 Zo2Factory::addLog('Invalid profile', 'Layout field is missed', 'error');
                 return false;
