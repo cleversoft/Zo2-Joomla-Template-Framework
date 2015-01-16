@@ -255,8 +255,8 @@ if (!class_exists('Zo2Assets'))
             /* Complie */
             if (Zo2HelperCompiler::less($lessFile, $cssFilePath))
             {
-                $optimizeMode = Zo2Factory::get('optimize_css', 0);
-                $developmentMode = Zo2Factory ::get('development_mode', 0);
+                $optimizeMode = Zo2Framework::getParam('optimize_css', 0);
+                $developmentMode = Zo2Framework::getParam('development_mode', 0);
                 /**
                  * @todo Try to provide more minify options
                  */ if (($optimizeMode == 1) && ( $developmentMode == 0))
@@ -287,8 +287,8 @@ if (!class_exists('Zo2Assets'))
             /**
              * @todo Try to provide more minify options
              */
-            $optimizeMode = Zo2Factory::get('optimize_js', 0);
-            $developmentMode = Zo2Factory::get('development_mode', 0);
+            $optimizeMode = Zo2Framework::getParam('optimize_js', 0);
+            $developmentMode = Zo2Framework::getParam('development_mode', 0);
             if (($optimizeMode == 1) && ( $developmentMode == 0))
             {
                 $buffer = file_get_contents($sourceFile);
