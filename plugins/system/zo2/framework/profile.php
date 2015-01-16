@@ -178,7 +178,12 @@ if (!class_exists('Zo2Profile'))
             {
                 if (strpos($key, 'menu_') !== false)
                 {
-                    $menuConfig->set(substr($key, 5), $value);
+                    $key = substr($key, 5);
+                    if ($key == 'config')
+                    {
+                        $key = 'mega_config';
+                    }
+                    $menuConfig->set($key, $value);
                 }
             }
             return $menuConfig;
