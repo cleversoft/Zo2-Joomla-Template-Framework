@@ -15,13 +15,15 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Logs')) {
+if (!class_exists('Zo2Logs'))
+{
 
     /**
      * Zo2 logging system
      * @uses For debugging
      */
-    class Zo2Logs {
+    class Zo2Logs
+    {
 
         public static $instance;
 
@@ -40,11 +42,14 @@ if (!class_exists('Zo2Logs')) {
          * 
          * @return \Zo2Logs
          */
-        public static function getInstance() {
-            if (!isset(self::$instance)) {
+        public static function getInstance()
+        {
+            if (!isset(self::$instance))
+            {
                 self::$instance = new Zo2Logs();
             }
-            if (isset(self::$instance)) {
+            if (isset(self::$instance))
+            {
                 return self::$instance;
             }
         }
@@ -55,7 +60,8 @@ if (!class_exists('Zo2Logs')) {
          * @param mixed $data
          * @param string $type
          */
-        public function add($title, $data, $type = 'notice') {
+        public function add($title, $data, $type = 'notice')
+        {
             $html = '<strong>' . $title . '</strong>' . ' - ' . time();
             ob_start();
             print_r($data);
@@ -69,12 +75,16 @@ if (!class_exists('Zo2Logs')) {
          * 
          * @param type $debug
          */
-        public function flush($debug = null) {
+        public function flush($debug = null)
+        {
             if ($debug === null)
-                $debug = Zo2Factory::get('debug');
-            if ($debug) {
-                foreach ($this->_logs as $type => $messages) {
-                    foreach ($messages as $message) {
+                $debug = Zo2Framework::getParam('development_mode');
+            if ($debug)
+            {
+                foreach ($this->_logs as $type => $messages)
+                {
+                    foreach ($messages as $message)
+                    {
                         JFactory::getApplication()->enqueueMessage($message, $type);
                     }
                 }
