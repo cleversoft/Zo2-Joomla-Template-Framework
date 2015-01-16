@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="template" client="site" method="upgrade">
-    <name>ZO2_HALLO</name>   
+    <name>zo2_hallo</name>   
     <creationDate>Jan 16, 2015</creationDate>
     <version>1.4.4</version>    
     <author>ZooTemplate.com</author>    
@@ -15,12 +15,7 @@
                 <p class="alert "><strong>Note:</strong> Zo2 Hallo requires Zo2 plugin to be installed and enabled.</p>	            
      	]]>
     </description>
-
-    <languages>
-        <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_hallo.ini</language>
-        <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_hallo.sys.ini</language>		
-    </languages>
-
+  
     <positions>
         <position>bottom1</position>
         <position>bottom2</position>
