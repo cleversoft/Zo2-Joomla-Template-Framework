@@ -157,26 +157,7 @@
             )
         )
     ));
-    ?>
-    <!-- Load jQuery -->
-    <?php
-    echo Zo2Html::field(
-            'radio', array(
-        'label' => JText::_('ZO2_ADMIN_LOAD_JQUERY'),
-        'description' => JText::_('ZO2_ADMIN_LOAD_JQUERY_DESC')
-            ), array(
-        'name' => 'jform[params][load_jquery]',
-        'value' => Zo2Framework::getParam('load_jquery'),
-        'options' => array(
-            array(
-                'label' => JText::_('ZO2_YES')
-            ),
-            array(
-                'label' => JText::_('ZO2_NO')
-            )
-        )
-    ));
-    ?>
+    ?>   
     <!-- Development mode -->
     <?php
     echo Zo2Html::field(
@@ -186,17 +167,6 @@
             ), array(
         'name' => 'jform[params][development_mode]',
         'value' => Zo2Framework::getParam('development_mode')
-    ));
-    ?>
-
-    <?php
-    echo Zo2Html::field(
-            'radio', array(
-        'label' => JText::_('ZO2_ADMIN_DISABLE_MOOTOOLS'),
-        'description' => JText::_('ZO2_ADMIN_DISABLE_MOOTOOLS_DESC')
-            ), array(
-        'name' => 'jform[params][disable_mootools]',
-        'value' => Zo2Framework::getParam('disable_mootools')
     ));
     ?>
 </div>
