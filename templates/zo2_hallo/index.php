@@ -27,10 +27,10 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <!-- Enable responsive -->
-        <?php if(!$this->zo2->framework->get('non_responsive_layout')) :  ?>
+        <?php if (!$this->zo2->framework->get('non_responsive_layout')) : ?>
             <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php endif; ?>
-        
+
         <!--[if !IE 8]> -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
         <!-- <![endif]-->
@@ -39,15 +39,14 @@ require_once __DIR__ . '/includes/bootstrap.php';
 <body class="<?php echo $this->zo2->layout->getBodyClass(); ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
     <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>        
     <!-- Main wrapper -->
-    <section class="zo2-wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">
-        <?php //echo $this->zo2->utilities->socialshares->render('floatbar');  ?>
+    <section class="zo2-wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">        
         <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
         <?php echo $this->zo2->layout->render(); ?>               
     </section>
     <?php echo $this->zo2->layout->renderOut(); ?>               
     <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>
     <script type="text/javascript">
-        <?php echo $this->zo2->utilities->bottomscript->render(); ?>
+<?php echo $this->zo2->utilities->bottomscript->render(); ?>
     </script>
 </body>
 </html>

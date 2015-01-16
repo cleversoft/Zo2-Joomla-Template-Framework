@@ -27,6 +27,11 @@ if (!class_exists('Zo2Factory'))
     class Zo2Factory
     {
 
+        public static function getFramework()
+        {
+            return Zo2Framework::getInstance();
+        }
+
         /**
          * 
          * @param type $namespace
