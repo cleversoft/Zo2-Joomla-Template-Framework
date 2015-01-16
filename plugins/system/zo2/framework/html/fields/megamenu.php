@@ -1,5 +1,6 @@
 <?php
-if (!defined('ZO_MEGAMENU_ASSET')) {
+if (!defined('ZO_MEGAMENU_ASSET'))
+{
     define('ZO_MEGAMENU_ASSET', 1);
     $assets = Zo2Assets::getInstance();
     $assets->addStylesheet('zo2/css/megamenu.css');
@@ -22,7 +23,7 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
         <div class="label-desc"><?php echo JText::_('ZO2_ADMIN_MEGA_MENU_TYPE_DESC'); ?></div>
     </div>
     <div class="controls">
-        <?php echo implode("\n", $html); ?>
+<?php echo implode("\n", $html); ?>
     </div>
 </div>
 <div id="zo2-admin-megamenu" class="hidden zo2-admin-megamenu">
@@ -89,7 +90,7 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                     <ul>
                         <li>
                             <label class="hasTip" title="<?php echo JText::_('ZO2_NAVIGATION_MM_CAPTION'), '::', JText::_('ZO2_NAVIGATION_MM_CAPTION_DESC') ?>">
-                                <?php echo JText::_('ZO2_NAVIGATION_MM_CAPTION') ?>
+<?php echo JText::_('ZO2_NAVIGATION_MM_CAPTION') ?>
                             </label>
                             <fieldset class="">
                                 <input type="text" class="input-large toolitem-caption toolbox-input" name="toolitem-caption" data-name="caption" value="" />
@@ -199,11 +200,12 @@ $html[] = JHtml::_('select.genericlist', $options, $this->data['name'], trim($at
                             <fieldset class="">
                                 <select class="toolcol-module toolbox-input toolbox-select input-medium" name="toolcol-module" data-name="module_id" data-placeholder="<?php echo JText::_('ZO2_NAVIGATION_MM_SELECT_MODULE') ?>">
                                     <option value=""></option>
-                                    <?php
-                                    foreach ($this->data['modules'] as $module) {
-                                        echo "<option value=\"{$module->id}\">{$module->title}</option>\n";
-                                    }
-                                    ?>
+<?php
+foreach ($this->data['modules'] as $module)
+{
+    echo "<option value=\"{$module->id}\">{$module->title}</option>\n";
+}
+?>
                                 </select>
                             </fieldset>
                         </li>
