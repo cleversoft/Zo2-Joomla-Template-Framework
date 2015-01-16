@@ -116,10 +116,11 @@
         ?>
         <span>Paste your Google Analytics (or other) tracking code here.<br /> This will be added before the closing body tag in the template. <br/> This should be something like<br /> &#60;script&#62;<br />....<br />&#60;/script&#62;</span>
     </div>
-    <!-- Developer Option -->
+    <!-- Optmization Option -->
     <div class="zo2-divider"></div>
-    <h2><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></h2>
+    <h2><?php echo JText::_('ZO2_ADMIN_OPTIMIZATION_OPTION'); ?></h2>
     <div class="zo2-divider"></div>    
+    <p>Enable compress CSS/JS. These options only available when Development Mode is off</p>
     <!-- Combine css -->
     <?php
     echo Zo2Html::field(
@@ -159,6 +160,9 @@
     ));
     ?>   
     <!-- Development mode -->
+    <div class="zo2-divider"></div>  
+ 	<h2><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></h2>    
+ 	<div class="zo2-divider"></div>   
     <?php
     echo Zo2Html::field(
             'radio', array(
