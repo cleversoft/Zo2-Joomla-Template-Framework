@@ -37,78 +37,34 @@ if (!class_exists('Zo2Layout'))
          */
         public function render()
         {
+
+            jimport('joomla.cache.cache');
+            jimport('joomla.cache.callback');
+            $cache = JFactory::getCache();
+            $buffer = $cache->call(array($this, 'getHtml'));
+
+            return $buffer;
+        }
+
+        public function getHtml()
+        {
             $html = '';
             $document = JFactory::getDocument();
             $document->addCustomTag('<!-- built with zo2 framework: http://www.zootemplate.com/zo2 -->');
 
-            $canCache = (bool) Zo2Framework::getParam('debug', 0) == 1;
-            /* Must follow Joomla! global config */
-            $canCache = $canCache && ( JFactory::getConfig()->get('caching') != 0 );
-            $cacheLoaded = false;
-            $cacheFile = $this->_getCacheFile();
-
-            /**
-             * If canCache than we check cache file to process
-             */
-            if ($canCache)
+            /* Build layout from properties */
+            $properties = $this->getProperties();
+            foreach ($properties as $property)
             {
-                /* Cache file exists than we need check expired */
-                if ($cacheFile)
-                {
-                    if (JFile::exists($cacheFile))
-                    {
-                        /* Cache file exists and still not expired */
-                        if ((filemtime($cacheFile) + Zo2Framework::getParam('cache_interval', '3600')) < time())
-                        {
-                            /* Load HTML from cache */
-                            $html = file_get_contents($cacheFile);
-                            $cacheLoaded = true;
-                        } else
-                        {
-                            /* Cache file is expired than flag $cacheLoaded false to inform do cache in next process */
-                            $cacheLoaded = false;
-                        }
-                    } else
-                    {
-                        $cacheLoaded = false;
-                    }
-                }
+                $this->_buffer[] = $this->_buildItem($property);
             }
-
-
-            /* Process layout build when no cache loaded */
-            if ($cacheLoaded == false)
+            if ($this->get('canvasMenu') instanceof Zo2LayoutItem)
             {
-                /* Build layout from properties */
-                $properties = $this->getProperties();
-                foreach ($properties as $property)
-                {
-                    $this->_buffer[] = $this->_buildItem($property);
-                }
-                if ($this->get('canvasMenu') instanceof Zo2LayoutItem)
-                {
-                    $config['item'] = $this->get('canvasMenu');
-                    $this->_outBuffer[] = Zo2Framework::getInstance()->displayOffCanvasMenu($config);
-                }
-                $html = implode("", $this->_buffer);
+                $config['item'] = $this->get('canvasMenu');
+                $this->_outBuffer[] = Zo2Framework::getInstance()->displayOffCanvasMenu($config);
             }
-
-            if (Zo2Framework::getParam('compress_html'))
-            {
-                $html = $this->_compressHtml($html);
-            }
-            /**
-             * @todo We can put HTML compress & optimize here before return
-             * We can add extra html here to ( like: copyright )
-             */
-            /* Do cache if allowed */
-            if ($canCache === true && $cacheLoaded === false)
-            {
-                if ($cacheFile)
-                {
-                    JFile::write($cacheFile, $html);
-                }
-            }
+            $html = implode(PHP_EOL, $this->_buffer);
+            $html = $this->_compressHtml($html);
             return $html;
         }
 
@@ -500,8 +456,10 @@ if (!class_exists('Zo2Layout'))
          */
         protected function _compressHtml($buffer)
         {
-            $buffer = str_replace("\n\n", "\n", $buffer);
-            $buffer = str_replace("\r\r", "\r", $buffer);
+            Zo2Factory::import('vendor.ganon.ganon');
+            $dom = str_get_dom($buffer);
+            HTML_Formatter::minify_html($dom);
+            $buffer = $dom;
             return $buffer;
         }
 
