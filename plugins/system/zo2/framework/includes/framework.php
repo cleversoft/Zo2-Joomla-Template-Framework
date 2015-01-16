@@ -482,29 +482,6 @@ if (!class_exists('Zo2Framework'))
                 return array();
         }
 
-        public function getTemplateLayoutsName($templateName)
-        {
-            if (!empty($templateName))
-            {
-                $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.json';
-                $layoutFiles = glob($templatePath);
-
-                $result = array();
-
-                for ($i = 0, $total = count($layoutFiles); $i < $total; $i++)
-                {
-                    $layoutFiles[$i] = basename($layoutFiles[$i]);
-                    if ($layoutFiles[$i] !== 'core.json' && $layoutFiles[$i] !== 'megamenu.json')
-                    {
-                        $result[] = str_replace('.json', '', $layoutFiles[$i]);
-                    }
-                }
-
-                return json_encode($result);
-            } else
-                return json_encode(array());
-        }
-
         /**
          * Return current page.
          *

@@ -36,11 +36,6 @@ class Zo2Controller
         }
     }
 
-    public static function module()
-    {
-        
-    }
-
     public static function saveLayout()
     {
         if ($_POST && isset($_POST['name']) && isset($_POST['data']) && isset($_POST['template']))
@@ -70,15 +65,6 @@ class Zo2Controller
         {
             header('Content-Type: application/json');
             echo Zo2Factory::getFramework()->getComponents($_GET['template']);
-        }
-    }
-
-    public static function getLayouts()
-    {
-        if ($_GET['template'])
-        {
-            header('Content-Type: application/json');
-            echo Zo2Factory::getFramework()->getTemplateLayoutsName($_GET['template']);
         }
     }
 
