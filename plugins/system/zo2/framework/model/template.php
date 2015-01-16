@@ -138,15 +138,6 @@ if (!class_exists('Zo2ModelTemplate'))
             JFactory::getApplication()->redirect($url);
         }
 
-        /**
-         * Get template_styles table
-         * @return JTable
-         */
-        private function _getTable()
-        {
-            return JTable::getInstance('Style', 'TemplatesTable');
-        }
-
     }
 
 }
