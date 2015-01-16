@@ -15,16 +15,19 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2UtilityBottomscript')) {
+if (!class_exists('Zo2UtilityBottomscript'))
+{
     require_once 'abstract.php';
 
-    class Zo2UtilityBottomscript extends Zo2UtilityAbstract {
+    class Zo2UtilityBottomscript extends Zo2UtilityAbstract
+    {
 
         /**
          *
          * @return string
          */
-        public function render() {
+        public function render()
+        {
             $template = new Zo2Template();
             return $template->fetch('html://utilities/bottomscript.php');
         }
