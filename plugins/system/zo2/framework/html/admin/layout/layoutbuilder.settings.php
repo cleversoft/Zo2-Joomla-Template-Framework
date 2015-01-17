@@ -8,10 +8,16 @@
             <div class="modal-body">
                 <!-- begin -->
                 <div class="control-group">
+                    <label class="control-label" for="zo2-setting-name"><?php echo JText::_('ZO2_ADMIN_COMMON_NAME'); ?></label>
+                    <div class="controls">
+                        <input type="text" id="zo2-setting-name" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_NAME'); ?>">
+                    </div>
+                </div>
+                <div class="control-group">
                     <label class="control-label" for="zo2-setting-jdoc"><?php echo JText::_('ZO2_ADMIN_COMMON_JDOC'); ?></label>
                     <div class="controls">
                         <!-- http://docs.joomla.org/Jdoc_statements -->
-                        <select id="dlColJDoc">
+                        <select id="zo2-setting-jdoc">
                             <optgroup label="Joomla! Document">
                                 <option value="component"><?php echo JText::_('ZO2_ADMIN_COMMON_COMPONENT'); ?></option>
                                 <option value="modules"><?php echo JText::_('ZO2_ADMIN_COMMON_MODULES'); ?></option>
@@ -31,20 +37,17 @@
                 </div>
                 <!-- begin -->
                 <div class="control-group">
-                    <label class="control-label" for="zo2-setting-type"><?php echo JText::_('ZO2_ADMIN_COMMON_POSITION'); ?></label>
+                    <label class="control-label" for="zo2-setting-style"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
                     <div class="controls">
-                        <select id="dlColPosition">
-                            <option value="component"><?php echo JText::_('ZO2_ADMIN_COMMON_COMPONENT'); ?></option>
-                            <option value="message"><?php echo JText::_('ZO2_ADMIN_COMMON_MESSAGE'); ?></option>
-                            <option value="mega_menu"><?php echo JText::_('ZO2_ADMIN_COMMON_MEGA_MENU'); ?></option>
-                            <!-- Foreach Postion -->
+                        <select id="zo2-setting-style">
+                            <!-- Foreach XHTML Style -->
                         </select>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-offset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                     <div class="controls">
-                        <select id="ddlColOffset">
+                        <select id="zo2-setting-offset">
                             <option value="0"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_NO_OFFSET'); ?></option>
                             <option value="1"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>1</option>
                             <option value="2"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>2</option>
@@ -62,17 +65,9 @@
                     </div>
                 </div>
                 <div class="control-group">
-                    <label class="control-label" for="zo2-setting-style"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
-                    <div class="controls">
-                        <select id="ddlColStyle">
-                            <!-- Foreach XHTML Style -->
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group">
                     <label class="control-label" for="zo2-setting-css"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_CSS'); ?></label>
                     <div class="controls">
-                        <input type="text" id="txtColCss" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_COLCSS'); ?>">
+                        <input type="text" id="zo2-setting-css" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_ROWCSS'); ?>">
                     </div>
                 </div>
                 <div id="column-responsive">
@@ -133,8 +128,8 @@
                 <!-- end -->
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" onclick="zo2.layoutbuilder.saveSetting();" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
