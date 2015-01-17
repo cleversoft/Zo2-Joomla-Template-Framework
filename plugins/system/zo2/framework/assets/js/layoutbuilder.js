@@ -16,10 +16,9 @@
             sortableConnect: '.connectedSortable',
             sortableRow: '.sortable-row',
             joomlaTooltip: '.tooltip',
-            emptyParentRow: '#layoutbuilder-container > #zo2-empty-parent-row',
-            emptyChildRow: '#layoutbuilder-container > #zo2-empty-child-row',
-            defaultRowSetting: '#layoutbuilder-container > #zo2-row-setting',
-            rowSetting: '#zo2-row-setting',
+            emptyParentRow: '#zo2-layoutbuilder-container > #zo2-empty-parent-row',
+            emptyChildRow: '#zo2-layoutbuilder-container > #zo2-empty-child-row',
+            rowSetting: '#zo2-layoutbuilder-container > #zo2-row-setting',
             /* Settings */
             settingName: '#zo2-setting-name',
             settingJdoc: '#zo2-setting-jdoc',
@@ -152,6 +151,9 @@
             var _self = this;
             var $row = $(element).closest(this._elements.sortableRow);
             var data = $row.data('zo2');
+            if (!data.hasOwnProperty('grid')) {
+                data.grid = {xs: 12, sm: 12, md: 12, lg: 12};
+            }
             $row.removeClass('col-xs-' + data.grid.xs
                     + ' col-sm-' + data.grid.sm
                     + ' col-md-' + data.grid.md
@@ -161,14 +163,14 @@
                     xs: _self._increase(data.grid.xs),
                     sm: _self._increase(data.grid.sm),
                     md: _self._increase(data.grid.md),
-                    lg: _self._increase(data.grid.lg),
+                    lg: _self._increase(data.grid.lg)
                 };
             } else {
                 data.grid = {
                     xs: _self._decrease(data.grid.xs),
                     sm: _self._decrease(data.grid.sm),
                     md: _self._decrease(data.grid.md),
-                    lg: _self._decrease(data.grid.lg),
+                    lg: _self._decrease(data.grid.lg)
                 };
             }
             $row.addClass('col-xs-' + data.grid.xs
