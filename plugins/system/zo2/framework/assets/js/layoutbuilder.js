@@ -145,6 +145,56 @@
             $(this._elements.joomlaTooltip).find(':visible').hide();
         },
         /**
+         * Resize row
+         * @returns {undefined}
+         */
+        resize: function (element, action) {
+            var _self = this;
+            var $row = $(element).closest(this._elements.sortableRow);
+            var data = $row.data('zo2');
+            $row.removeClass('col-xs-' + data.grid.xs
+                    + ' col-sm-' + data.grid.sm
+                    + ' col-md-' + data.grid.md
+                    + ' col-lg-' + data.grid.lg);
+            if (action === 'increase') {
+                data.grid = {
+                    xs: _self._increase(data.grid.xs),
+                    sm: _self._increase(data.grid.sm),
+                    md: _self._increase(data.grid.md),
+                    lg: _self._increase(data.grid.lg),
+                };
+            } else {
+                data.grid = {
+                    xs: _self._decrease(data.grid.xs),
+                    sm: _self._decrease(data.grid.sm),
+                    md: _self._decrease(data.grid.md),
+                    lg: _self._decrease(data.grid.lg),
+                };
+            }
+            $row.addClass('col-xs-' + data.grid.xs
+                    + ' col-sm-' + data.grid.sm
+                    + ' col-md-' + data.grid.md
+                    + ' col-lg-' + data.grid.lg);
+            $row.data('zo2', data);
+            $row.find('.row-size').find('.row-width').html(data.grid.md + '/12');
+        },
+        /*
+         * Increase row width
+         * @param {integer} value
+         * @returns {Number}
+         */
+        _increase: function (value) {
+            return (value < 12) ? value += 1 : value;
+        },
+        /**
+         * Decrease row width
+         * @param {type} value
+         * @returns {Number}
+         */
+        _decrease: function (value) {
+            return (value > 1) ? value -= 1 : value;
+        },
+        /**
          * Show modal
          * @param {html node} element
          * @returns {undefined}
