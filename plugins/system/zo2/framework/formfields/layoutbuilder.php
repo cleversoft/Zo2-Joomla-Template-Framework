@@ -16,7 +16,8 @@ defined('JPATH_BASE') or die;
 /**
  * Class exists checking
  */
-if (!class_exists('JFormFieldLayoutbuilder')) {
+if (!class_exists('JFormFieldLayoutbuilder'))
+{
     jimport('joomla.form.formfield');
 
     /**
@@ -24,9 +25,11 @@ if (!class_exists('JFormFieldLayoutbuilder')) {
      * @since 2.0.0
      * @link http://docs.joomla.org/Creating_a_custom_form_field_type
      */
-    class JFormFieldLayoutbuilder extends JFormField {
+    class JFormFieldLayoutbuilder extends JFormField
+    {
 
-        public function getLabel() {
+        public function getLabel()
+        {
             return '';
         }
 
@@ -35,10 +38,11 @@ if (!class_exists('JFormFieldLayoutbuilder')) {
          *
          * @return string
          */
-        public function getInput() {
-            $framework = Zo2Framework::getInstance();
-            $profile = $framework->profile;
+        public function getInput()
+        {
+            $profile = Zo2Framework::getApp()->profile;
             $layoutBuilder = new Zo2LayoutbuilderAdmin($profile->get('layout'));
+            Zo2Framework::log('Render layoutbuilder: ' . $profile->get('name'));
             return $layoutBuilder->render();
         }
 

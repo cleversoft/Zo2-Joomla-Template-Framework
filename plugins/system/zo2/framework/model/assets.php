@@ -33,6 +33,7 @@ if (!class_exists('Zo2ModelAssets'))
         public function build($assetsFile = 'Zo2://assets/build.json')
         {
             $assetsFilePath = Zo2Path::getInstance()->getPath($assetsFile);
+            Zo2Framework::log('Builded assets', $assetsFilePath);
             $assets = Zo2HelperFile::loadJsonFile($assetsFilePath);
             $this->_buildLess($assets);
             $this->_minifyJs($assets);
@@ -141,15 +142,13 @@ if (!class_exists('Zo2ModelAssets'))
                     $less->addImportDir($pathinfo['dirname'] . '/admin');
                     if ($less->compileFile($lessFile, $cssFilePath))
                     {
+                        Zo2Framework::log('Build less', $lessFile);
                         /* Generate min file */
                         $cssMin = new CSSmin();
                         $buffer = $cssMin->run(file_get_contents($cssFilePath));
                         if (JFile::write($cssMinFilePath, $buffer))
                         {
-                            if (Zo2Framework::isDevelopmentMode())
-                            {
-                                Zo2Framework::message('Minifed file: ' . $cssMinFilePath);
-                            }
+                            Zo2Framework::log('Minify', $cssFilePath);
                         }
                     }
                 }
@@ -174,10 +173,7 @@ if (!class_exists('Zo2ModelAssets'))
                     $buffer = Zo2HelperMinify::jsFile($jsFile);
                     if (JFile::write($jsMinFilePath, $buffer))
                     {
-                        if (Zo2Framework::isDevelopmentMode())
-                        {
-                            Zo2Framework::message('Minifed file: ' . $jsMinFilePath);
-                        }
+                        Zo2Framework::log('Minify', $jsFile);
                     }
                 }
             }

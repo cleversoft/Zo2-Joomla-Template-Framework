@@ -61,6 +61,7 @@ if (!class_exists('Zo2Html'))
                 include($tplFile);
                 $content = ob_get_contents();
                 ob_end_clean();
+                Zo2Framework::log('Fetch layout file', $tplFile);
                 return $content;
             }
         }
@@ -77,6 +78,7 @@ if (!class_exists('Zo2Html'))
                 $properties = $this->getProperties();
                 extract($properties, EXTR_REFS);
                 include($tplFile);
+                Zo2Framework::log('Load layout file: ' . $tplFile);
             }
             return $this;
         }

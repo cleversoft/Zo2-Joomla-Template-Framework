@@ -28,6 +28,11 @@ if (!class_exists('Zo2HelperAssets'))
         protected static $_srcPath;
         protected static $_pattern = '/url\(\s*[\'"]?(?![a-z]+:|\/+)([^\'")]+)[\'"]?\s*\)/i';
 
+        /**
+         * 
+         * @param type $cssFile
+         * @return type
+         */
         public static function load($cssFile)
         {
             self::$_srcPath = dirname($cssFile);

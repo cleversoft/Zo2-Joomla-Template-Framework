@@ -31,10 +31,7 @@ if (!class_exists('Zo2Profile'))
             parent::loadFile($file, $format = 'JSON', $options = array());
             $this->_filePath = $file;
             // Display message to know which profile file was loaded
-            if (Zo2Framework::isDevelopmentMode())
-            {
-                Zo2Framework::message('Loaded profile :' . $file);
-            }
+            Zo2Framework::log('Load profile: ' . $this->_filePath);
         }
 
         /**
@@ -45,10 +42,7 @@ if (!class_exists('Zo2Profile'))
             $buffer = $this->toString();
             if (JFile::write($this->_filePath, $buffer))
             {
-                if (Zo2Framework::isDevelopmentMode())
-                {
-                    Zo2Framework::message('Save profile :' . $this->_filePath);
-                }
+                Zo2Framework::log('Save profile: ' . $this->_filePath);
                 return true;
             }
             return false;

@@ -10,6 +10,8 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+// Include Zo2 core script
+require_once Zo2Path::getInstance()->getPath('Zo2://assets/js/zo2.php');
 echo Zo2Assets::getInstance()->render();
 ?>
 

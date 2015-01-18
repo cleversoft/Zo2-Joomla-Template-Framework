@@ -46,8 +46,7 @@ if (!class_exists('plgSystemZo2'))
                 {
                     exit();
                 }
-                $framework = Zo2Framework::getInstance();
-                $framework->template = new Zo2Template($this->_getTemplate());
+                Zo2Framework::getInstance()->init($this->_getTemplate());
             }
         }
 

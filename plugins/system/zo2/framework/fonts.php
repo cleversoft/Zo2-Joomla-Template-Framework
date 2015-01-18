@@ -61,6 +61,7 @@ if (!class_exists('Zo2Fonts'))
             }
             if (!empty($properties))
             {
+                Zo2Framework::log('Render webfonts');
                 $html [] = '<script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>';
                 $html [] = '<script>';
                 $html [] = ' WebFont.load(' . Zo2HelperEncode::json($config) . ');';

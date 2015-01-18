@@ -58,6 +58,7 @@ if (!class_exists('Zo2Assets'))
             if (!isset($instance))
             {
                 $instance = new Zo2Assets();
+                Zo2Framework::log('Init assets');
             }
             if (isset($instance))
             {
@@ -157,7 +158,7 @@ if (!class_exists('Zo2Assets'))
         {
 
             // CSS optimize
-            switch (Zo2Framework::getGlobalParam('enable_combine_css') && (!Zo2Framework::isDevelopmentMode()))
+            switch (Zo2Framework::getParam('enable_combine_css'))
             {
                 // Combine to one css file
                 case 'file':
@@ -166,11 +167,9 @@ if (!class_exists('Zo2Assets'))
                     if ($cssFileName)
                     {
                         // Reset all old stylesheet and replace by combined file 
-
                         $this->_stylesheets = array();
                         $this->_stylesheets[] = ZO2URL_CACHE . '/' . $cssFileName;
                     }
-
                     break;
                 case 'gzip':
                     $model = new Zo2ModelAssets();
@@ -185,7 +184,7 @@ if (!class_exists('Zo2Assets'))
             }
 
             // JS optimize
-            switch (Zo2Framework::getGlobalParam('enable_combine_js') && (!Zo2Framework::isDevelopmentMode()))
+            switch (Zo2Framework::getParam('enable_combine_js'))
             {
                 case 'file':
 
@@ -219,7 +218,7 @@ if (!class_exists('Zo2Assets'))
         {
             $this->_prepareRender();
             {
-
+                Zo2Framework::log('Render assets');
                 foreach ($this->_stylesheets as $url)
                 {
                     // Use min version
@@ -230,6 +229,7 @@ if (!class_exists('Zo2Assets'))
                             $url = str_replace('.css', '.min.css', $url);
                         }
                     }
+                    Zo2Framework::log('Render asset', $url);
                     $assets[] = '<link rel="stylesheet" href="' . $url . '" type="text/css" />';
                 }
                 foreach ($this->_javascripts as $url)
@@ -242,6 +242,7 @@ if (!class_exists('Zo2Assets'))
                             $url = str_replace('.js', '.min.js', $url);
                         }
                     }
+                    Zo2Framework::log('Render asset', $url);
                     $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
                 }
                 // Fonts generate

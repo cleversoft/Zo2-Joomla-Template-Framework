@@ -40,7 +40,7 @@ if (!class_exists('JFormFieldExtends'))
          */
         public function getInput()
         {
-            $admin = Zo2Admin::init();
+            $admin = Zo2Framework::getApp();
             return $admin->renderExtends();
         }
 

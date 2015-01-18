@@ -11,7 +11,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-
+Zo2Framework::log('Load depends: ' . __FILE__);
 // Load jQuery Framework core
 JHtml::_('jquery.framework');
 

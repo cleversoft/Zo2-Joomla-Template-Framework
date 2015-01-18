@@ -31,16 +31,11 @@ if (!class_exists('Zo2Framework'))
         public $template;
 
         /**
-         *
-         * @var Zo2Profile
-         */
-        public $profile;
-
-        /**
          * Global variables
          * @var array
          */
         private $_vars = array();
+        private $_logs = array();
 
         /**
          * 
@@ -58,6 +53,50 @@ if (!class_exists('Zo2Framework'))
         }
 
         /**
+         * Framework init
+         * @staticvar boolean $inited
+         * @param type $template
+         */
+        public function init($template)
+        {
+            static $inited;
+            if (empty($inited))
+            {
+                $this->document = JFactory::getDocument();
+                $this->template = new Zo2Template($template);
+                $this->app = self::getApp();
+                // Always build assets for development mode
+                if (Zo2Framework::isDevelopmentMode())
+                {
+                    Zo2Assets::getInstance()->build();
+                }
+                $inited = true;
+            }
+        }
+
+        /**
+         * 
+         * @staticvar type $app
+         * @return \Zo2AppSite|Zo2AppAdmin
+         */
+        public static function getApp()
+        {
+            static $app;
+            if (empty($app))
+            {
+                if (JFactory::getApplication()->isAdmin())
+                {
+                    $app = new Zo2AppAdmin();
+                } else
+                {
+                    $app = new Zo2AppSite();
+                }
+                $app->init();
+            }
+            return $app;
+        }
+
+        /**
          * Get global or profile params
          * @staticvar type $admin
          * @param type $name
@@ -65,74 +104,7 @@ if (!class_exists('Zo2Framework'))
          */
         public static function getParam($name, $default = null)
         {
-            static $admin;
-            // Get admin parameters list
-            if (empty($admin))
-            {
-                $joomlaFile = Zo2Path::getInstance()->getPath('Zo2://assets/joomla.json');
-                $admin = Zo2HelperFile::loadJsonFile($joomlaFile);
-            }
-            if (in_array($name, $admin))
-            {
-                return self::getGlobalParam($name);
-            } else
-            {
-                return self::getProfileParam($name);
-            }
-        }
-
-        /**
-         * 
-         * @param type $name
-         * @param type $default
-         * @return type
-         */
-        public static function getGlobalParam($name, $default = null)
-        {
-            return self::getInstance()->template->params->get($name, $default);
-        }
-
-        /**
-         * 
-         * @param type $name
-         * @param type $default
-         * @return type
-         */
-        public static function getProfileParam($name, $default = null)
-        {
-            return self::getInstance()->profile->get($name, $default);
-        }
-
-        /**
-         * 
-         * @param type $message
-         * @param type $type
-         */
-        public static function message($message, $type = 'message')
-        {
-            if (self::isAjax())
-            {
-                $ajax = Zo2Ajax::getInstance();
-                $ajax->addMessage($message, '', $type);
-            } else
-            {
-                JFactory::getApplication()->enqueueMessage($message, $type);
-            }
-        }
-
-        /**
-         * 
-         * @param type $name
-         * @return boolean
-         */
-        public static function importVendor($name)
-        {
-            $path = Zo2Path::getInstance()->getPath('Zo2://vendor/' . $name . '/autoloader.php');
-            if ($path)
-            {
-                return require_once $path;
-            }
-            return false;
+            return self::getApp()->profile->get($name, $default);
         }
 
         /**
@@ -162,11 +134,63 @@ if (!class_exists('Zo2Framework'))
         }
 
         /**
+         * 
+         * @param type $message
+         * @param type $type
+         */
+        public static function message($message, $type = 'message')
+        {
+            if (self::isAjax())
+            {
+                $ajax = Zo2Ajax::getInstance();
+                $ajax->addMessage($message, '', $type);
+            } else
+            {
+                JFactory::getApplication()->enqueueMessage($message, $type);
+            }
+        }
+
+        public static function log($title, $data = null)
+        {
+            if (self::isDevelopmentMode())
+            {
+                $html[] = '<i class="fa fa-bug"></i>';
+                $html[] = '[' . JFactory::getDate()->toISO8601() . ']';
+                $html[] = '[' . 'DEBUG' . ']';
+                $html[] = '<strong>' . $title . '</strong>';
+                if (!empty($data))
+                {
+                    ob_start();
+                    print_r($data);
+                    $data = ob_get_contents();
+                    ob_end_clean();
+                    $html[] = '<div class="zo2-debug-data"><pre><small>' . $data . '</small></div></pre>';
+                }
+                JFactory::getApplication()->enqueueMessage(implode(' ', $html), 'warning');
+            }
+        }
+
+        /**
+         * 
+         * @param type $name
+         * @return boolean
+         */
+        public static function importVendor($name)
+        {
+            $path = Zo2Path::getInstance()->getPath('Zo2://vendor/' . $name . '/autoloader.php');
+            if ($path)
+            {
+                self::log('Import vendor', $name);
+                return require_once $path;
+            }
+            return false;
+        }
+
+        /**
          * This func will hook into Joomla process after the framework has loaded and initialised and the router has routed the client request.
          */
         public static function joomlaHook()
         {
-
             $jinput = JFactory::getApplication()->input;
             $zo2Task = $jinput->getCmd('zo2_task');
             $zo2Scope = $jinput->getWord('zo2_scope');
@@ -180,11 +204,8 @@ if (!class_exists('Zo2Framework'))
                     {
                         return false;
                     }
-                    Zo2Admin::init();
-                } else // Site request
-                {
-                    Zo2Site::init();
                 }
+
 
                 if (call_user_func(array('Zo2Execute', $zo2Task)))
                 {
@@ -202,7 +223,7 @@ if (!class_exists('Zo2Framework'))
          */
         public static function isDevelopmentMode()
         {
-            return self::getInstance()->template->params->get('enable_development_mode', ZO2DEVELOPMENT_MODE);
+            return self::getInstance()->template->params->get('enable_development_mode');
         }
 
         /**

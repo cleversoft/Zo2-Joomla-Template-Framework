@@ -17,9 +17,9 @@ if (isset($properties['children']))
     <div class="row-control">
         <div class="parent-container clearfix row">
             <div class="row-size">
-                <a title="Decrease width" onclick="zo2.layoutbuilder.resize(this,'decrease');" class="row-decrease"><i data-original-title="Decrease width" class="hasTooltip fa fa-angle-double-left"></i></a>
+                <a title="Decrease width" onclick="zo2.layoutbuilder.resize(this, 'decrease');" class="row-decrease"><i data-original-title="Decrease width" class="hasTooltip fa fa-angle-double-left"></i></a>
                 <span class="row-width">1/12</span>
-                <a title="Increase width" onclick="zo2.layoutbuilder.resize(this,'increase');" class="row-increase"><i data-original-title="Increase width" class="hasTooltip fa fa-angle-double-right"></i></a>
+                <a title="Increase width" onclick="zo2.layoutbuilder.resize(this, 'increase');" class="row-increase"><i data-original-title="Increase width" class="hasTooltip fa fa-angle-double-right"></i></a>
             </div>
             <div class="row-name">
                 <span><?php echo $row->get('name'); ?></span>
@@ -30,7 +30,8 @@ if (isset($properties['children']))
         </div>
         <div id="zo2-row-setting-container" style="display: none"></div>
         <div class="children-container row sortable-row connectedSortable">
-        <?php if (count($children) > 0) : 
+            <?php
+            if (count($children) > 0) :
                 {
                     foreach ($children as $child)
                     {
@@ -39,7 +40,8 @@ if (isset($properties['children']))
                         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
                     }
                 }
-          endif; ?>
+            endif;
+            ?>
         </div>
     </div>
 </div>

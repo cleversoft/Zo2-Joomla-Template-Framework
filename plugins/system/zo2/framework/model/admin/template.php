@@ -44,7 +44,7 @@ if (!class_exists('Zo2ModelAdminTemplate'))
                     case 'style.apply':
                     case 'style.save':
                     case 'style.save2copy':
-                        $profile = Zo2Framework::getInstance()->profile;
+                        $profile = Zo2Framework::getApp()->profile;
                         $profile->loadArray($zo2Data);
                         $profile->save();
                 }

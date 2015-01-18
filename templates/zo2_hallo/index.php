@@ -12,5 +12,4 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-$site = Zo2Site::init($this);
-echo $site->render();
+echo Zo2Framework::getApp()->render();
