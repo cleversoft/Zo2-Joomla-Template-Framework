@@ -1,46 +1,66 @@
+<?php
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ * 
+ * @since       2.0.0
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
+?>
 <div id="zo2-row-setting" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
+            <!-- Header -->
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_ROW_SETTINGS'); ?></h4>
             </div>
+            <!-- Body -->
             <div class="modal-body">
-                <!-- begin -->
+                <!-- Name -->
                 <div class="control-group">
-                    <label class="control-label" for="zo2-setting-name"><?php echo JText::_('ZO2_ADMIN_COMMON_NAME'); ?></label>
+                    <label class="control-label" for="zo2-setting-name"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_LABEL_NAME'); ?></label>
                     <div class="controls">
                         <input type="text" id="zo2-setting-name" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_NAME'); ?>">
                     </div>
-                </div>
+                </div>                
+                <!-- Jdoc statements -->
                 <div class="control-group">
-                    <label class="control-label" for="zo2-setting-jdoc"><?php echo JText::_('ZO2_ADMIN_COMMON_JDOC'); ?></label>
+                    <label class="control-label" for="zo2-setting-jdoc"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_LABEL_JDOC'); ?></label>
                     <div class="controls">
                         <!-- http://docs.joomla.org/Jdoc_statements -->
-                        <select id="zo2-setting-jdoc">
+                        <select id="zo2-setting-jdoc">             
+                            <option value="none"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_NONE'); ?></option>
                             <optgroup label="Joomla! Document">
-                                <option value="component"><?php echo JText::_('ZO2_ADMIN_COMMON_COMPONENT'); ?></option>
-                                <option value="modules"><?php echo JText::_('ZO2_ADMIN_COMMON_MODULES'); ?></option>
-                                <option value="messsge"><?php echo JText::_('ZO2_ADMIN_COMMON_MESSAGE'); ?></option>
+                                <option value="component"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_COMPONENT'); ?></option>
+                                <option value="messsge"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MESSAGE'); ?></option>
+                                <option value="modules"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MODULES'); ?></option>                                
+                                <option value="module"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MODULE'); ?></option>
                             </optgroup>
                             <!-- These are extended for 3rd parties -->
-                            <optgroup label="Menu">
-                                <option value="canvasmenu"><?php echo JText::_('ZO2_ADMIN_COMMON_CANVAS'); ?></option>
-                                <option value="megamenu"><?php echo JText::_('ZO2_ADMIN_COMMON_MEGA'); ?></option>
-                            </optgroup>
-                            <!-- These are extended for 3rd parties -->
-                            <optgroup label="3rd parties">
-                                <!-- Foreach 3rd -->
-                            </optgroup>
+                            <optgroup label="Zo2">
+                                <?php $zo2DocStatements = Zo2HelperLayoutbuilder::getZo2Statements(); ?>
+                                <?php foreach ($zo2DocStatements as $key => $value) : ?>
+                                    <option value="<?php echo $key; ?>"><?php echo JText::_($value); ?></option>
+                                <?php endforeach; ?>
+                            </optgroup>                            
                         </select>
                     </div>
                 </div>
-                <!-- begin -->
+                <!-- Styles -->
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-style"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
                     <div class="controls">
                         <select id="zo2-setting-style">
-                            <!-- Foreach XHTML Style -->
+                            <?php $styles = Zo2HelperLayoutbuilder::getModuleStyles(); ?>
+                            <?php foreach ($styles as $key => $value) : ?>
+                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
@@ -48,22 +68,13 @@
                     <label class="control-label" for="zo2-setting-offset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                     <div class="controls">
                         <select id="zo2-setting-offset">
-                            <option value="0"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_NO_OFFSET'); ?></option>
-                            <option value="1"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>1</option>
-                            <option value="2"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>2</option>
-                            <option value="3"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>3</option>
-                            <option value="4"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>4</option>
-                            <option value="5"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>5</option>
-                            <option value="6"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>6</option>
-                            <option value="7"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>7</option>
-                            <option value="8"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>8</option>
-                            <option value="9"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>9</option>
-                            <option value="10"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>10</option>
-                            <option value="11"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>11</option>
-                            <option value="12"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>12</option>
+                            <?php foreach (Zo2HelperLayoutbuilder::getOffsets() as $key => $value) : ?>
+                                <option value="<?php echo $key; ?>"><?php echo JText::_($value) . ' ' . $key ?></option>
+                            <?php endforeach; ?>                           
                         </select>
                     </div>
                 </div>
+                <!-- Custom css -->
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-css"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_CSS'); ?></label>
                     <div class="controls">

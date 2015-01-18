@@ -46,7 +46,7 @@ $rowName = $row->get('name');
         default:
             $html = new Zo2Html();
             $html->set('row', $row);
-            echo $html->fetch('Zo2://html/site/zo2/' . $jDoc->get('type') . '.php');
+            echo $html->fetch('Zo2://html/site/jdoc/' . $jDoc->get('type') . '.php');
             break;
     }
     ?>
