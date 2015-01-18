@@ -46,6 +46,7 @@ if (!class_exists('plgSystemZo2'))
                 {
                     exit();
                 }
+                // Framework init
                 Zo2Framework::getInstance()->init($this->_getTemplate());
             }
         }

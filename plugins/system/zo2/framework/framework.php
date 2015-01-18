@@ -65,11 +65,7 @@ if (!class_exists('Zo2Framework'))
                 $this->document = JFactory::getDocument();
                 $this->template = new Zo2Template($template);
                 $this->app = self::getApp();
-                // Always build assets for development mode
-                if (Zo2Framework::isDevelopmentMode())
-                {
-                    Zo2Assets::getInstance()->build();
-                }
+
                 $inited = true;
             }
         }
