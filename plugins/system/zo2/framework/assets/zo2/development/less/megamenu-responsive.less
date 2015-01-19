@@ -79,8 +79,8 @@
           }
           > .mega-dropdown-menu {
             > div {
-              margin-top: -100%;
-              .transition(all 400ms);
+              margin-top: 78px;
+              .transition(all 200ms);
               .backface-visibility(hidden);
             }
           }
@@ -99,6 +99,7 @@
         &.open, &.hovering.open{
           > .mega-dropdown-menu {
             opacity: 1;
+            visibility: visible;
           }
         }
         &.hovering{
@@ -110,6 +111,7 @@
           .opacity(0);
           .transition(all 400ms);
           .backface-visibility(hidden);
+          visibility: hidden;
         }
       }
     }
