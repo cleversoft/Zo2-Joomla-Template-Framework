@@ -18,10 +18,6 @@ $canEdit = $params->get('access-edit');
 $user = JFactory::getUser();
 $info = $params->get('info_block_position', 0);
 JHtml::_('behavior.caption');
-/* Zo2 */
-$utilities = Zo2Utilities::getInstance();
-/* Get Zo2Framework */
-$framework = Zo2Factory::getFramework();
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx ?>">
 
@@ -148,7 +144,7 @@ $framework = Zo2Factory::getFramework();
                         <?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
                             <div class="btn-group pull-right">
                                 <a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <span class="fa fa-cog"></span> <span class="caret"></span> </a>
-                                <?php // Note the actions class is deprecated. Use dropdown-menu instead.   ?>
+                                <?php // Note the actions class is deprecated. Use dropdown-menu instead.    ?>
                                 <ul class="dropdown-menu actions">
                                     <?php if ($params->get('show_print_icon')) : ?>
                                         <li class="print-icon"> <?php echo JHtml::_('icon.print_popup', $this->item, $params); ?> </li>

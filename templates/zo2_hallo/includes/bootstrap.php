@@ -4,13 +4,14 @@
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
+ * @version     1.4.4
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
- * @author      Duc Nguyen <ducntv@gmail.com>
- * @author      Viet Vu <me@jooservices.com>
- * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2015 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
+
 defined('_JEXEC') or die('Restricted Access');
 
 /**

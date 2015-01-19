@@ -1,15 +1,17 @@
 <?php
+
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
+ * @version     1.4.4
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
- * @author      Duc Nguyen <ducntv@gmail.com>
- * @author      Hiepvu <vqhiep2010@gmail.com>
- * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2015 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
+
 //no direct accees
 defined('_JEXEC') or die('resticted aceess');
 
