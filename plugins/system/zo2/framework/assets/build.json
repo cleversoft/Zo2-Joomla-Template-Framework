@@ -5,6 +5,7 @@
     ],
     "js": [
         "Zo2://assets/js/menu.js",
-        "Zo2://assets/js/layoutbuilder.js"
+        "Zo2://assets/js/layoutbuilder.js",
+        "Zo2://assets/js/hook.js"
     ]
 }

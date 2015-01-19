@@ -5,6 +5,7 @@
         "Zo2://assets/css/admin.css"
     ],
     "js": [        
-        "Zo2://assets/js/layoutbuilder.js"
+        "Zo2://assets/js/layoutbuilder.js",
+        "Zo2://assets/js/hook.js"
     ]
 }
