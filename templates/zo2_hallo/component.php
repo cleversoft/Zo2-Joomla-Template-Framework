@@ -6,9 +6,8 @@ defined('_JEXEC') or die;
 <head>
     <?php echo isset($header) ? $header : "" ?>
     <jdoc:include type="head" />
-    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/zo2_hallo/assets/vendor/bootstrap/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/plugins/system/zo2/framework/assets/vendor/bootstrap/css/bootstrap.min.css " type="text/css" />
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/zo2_hallo/assets/css/component.css" type="text/css" />
-
 </head>
 <body class="contentpane">
 	<jdoc:include type="message" />
