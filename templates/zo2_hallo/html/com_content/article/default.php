@@ -21,7 +21,7 @@ JHtml::_('behavior.caption');
 /* Zo2 */
 $utilities = Zo2Utilities::getInstance();
 /* Get Zo2Framework */
-$framework = Zo2Factory::getFramework();
+$framework = Zo2Framework::getInstance();
 ?>
 <div class="item-page<?php echo $this->pageclass_sfx ?>">
 
