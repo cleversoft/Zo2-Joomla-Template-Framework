@@ -19,6 +19,7 @@
             emptyParentRow: '#zo2-layoutbuilder-container > #zo2-empty-parent-row',
             emptyChildRow: '#zo2-layoutbuilder-container > #zo2-empty-child-row',
             rowSetting: '#zo2-layoutbuilder-container > #zo2-row-setting',
+            jsonField: '#zo2-layoutbuilder-container > #zo2-layoutbuilder-json',
             /* Settings */
             settingName: '#zo2-setting-name',
             settingJdoc: '#zo2-setting-jdoc',
@@ -94,15 +95,6 @@
         sortableFlush: function () {
             $(this._elements.layoutBuilderContainer).sortable("destroy");
             $(this._elements.childrenContainer).sortable("destroy");
-        },
-        /**
-         * Get JSON from layout builder
-         * @returns {Array}
-         */
-        getLayoutJson: function () {
-            this.layoutJson = [];
-            this._getLayoutJson();
-            return this.layoutJson;
         },
         /**
          * Add empty parent row
@@ -271,6 +263,24 @@
                     _self._getLayoutJson($(this), parent[parent.length - 1].children);
                 }
             });
+        },
+        /**
+         * Get layout JSON and convert
+         * @param {string} type object/string
+         * @returns {undefined}
+         */
+        getLayoutJson: function(type){
+           this.layoutJson = [];
+           type = (typeof(type) === 'undefined')?'object':type;
+           this._getLayoutJson();
+           return (type === 'string')? w.JSON.stringify(this.layoutJson):this.layoutJson;
+        },
+        /**
+         * Update JSON field
+         * @returns {undefined}
+         */
+        updateJson: function(){
+            $(this._elements.jsonField).val(this.getLayoutJson('string'));
         }
     };
 
