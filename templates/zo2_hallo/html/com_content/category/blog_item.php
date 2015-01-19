@@ -14,8 +14,6 @@ $params = $this->item->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 JHtml::_('behavior.framework');
-/* Get Zo2Framework */
-$framework = Zo2Factory::getFramework();
 ?>
 <?php if ($this->item->state == 0) : ?>
     <span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
