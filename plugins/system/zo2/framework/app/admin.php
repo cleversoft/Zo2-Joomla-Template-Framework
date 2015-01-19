@@ -53,7 +53,16 @@ if (!class_exists('Zo2AppAdmin'))
             $html = new Zo2Html();
             $html->set('admin', $this);
             $html->set('form', $form);
-            return $html->fetch('Zo2://html/admin/layout/default.php');
+            $buffer = $html->fetch('Zo2://html/admin/layout/default.php');
+            // Optimize buffer
+            if (Zo2Framework::getParam('enable_optimize_html'))
+            {
+                Zo2Framework::importVendor('ganon');
+                $dom = str_get_dom($buffer);
+                HTML_Formatter::minify_html($dom);
+                $buffer = Zo2HelperMinify::html($dom);
+            }
+            return $buffer;
         }
 
         /**
