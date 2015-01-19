@@ -222,7 +222,8 @@ if (!class_exists('Zo2Assets'))
                 foreach ($this->_stylesheets as $url)
                 {
                     // Use min version
-                    if (Zo2Framework::getParam('enable_minify_css'))
+                    // For enabled combine css we already minify it than no need to replace min.css here
+                    if (Zo2Framework::getParam('enable_minify_css') && (!Zo2Framework::getParam('enable_combine_css')))
                     {
                         if (strpos($url, '.min.css') === false)
                         {
@@ -235,7 +236,7 @@ if (!class_exists('Zo2Assets'))
                 foreach ($this->_javascripts as $url)
                 {
                     // Use min version                   
-                    if (Zo2Framework::getParam('enable_minify_js'))
+                    if (Zo2Framework::getParam('enable_minify_js') && (!Zo2Framework::getParam('enable_combine_js')))
                     {
                         if (strpos($url, '.min.js') === false)
                         {
@@ -245,6 +246,20 @@ if (!class_exists('Zo2Assets'))
                     Zo2Framework::log('Render asset', $url);
                     $assets[] = '<script src="' . $url . '" type="text/javascript"></script>';
                 }
+                // Style declaration
+                $styleSheetDeclaration = implode(PHP_EOL, $this->_stylesheetDeclarations);
+                if (Zo2Framework::getParam('enable_minify_css'))
+                {
+                    $styleSheetDeclaration = Zo2HelperMinify::css($styleSheetDeclaration);
+                }
+                $assets[] = '<style>' . $styleSheetDeclaration . '</style>';
+                // Script declaration
+                $javascriptDeclaration = implode(PHP_EOL, $this->_javascriptDeclarations);
+                if (Zo2Framework::getParam('enable_minify_js'))
+                {
+                    $styleSheetDeclaration = Zo2HelperMinify::js($javascriptDeclaration);
+                }
+                $assets[] = '<script>' . $styleSheetDeclaration . '</script>';
                 // Fonts generate
                 $fonts = Zo2Fonts::getInstance();
                 $assets[] = $fonts->render();
