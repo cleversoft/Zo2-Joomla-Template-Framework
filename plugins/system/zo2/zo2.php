@@ -59,6 +59,7 @@ if (!class_exists('plgSystemZo2'))
         {
             if ($this->_isZo2())
             {
+                // Hook before jooml application be processed
                 Zo2Framework::joomlaHook();
             }
         }
