@@ -20,6 +20,7 @@ if (!class_exists('Zo2Framework'))
 
     /**
      * Zo2 Framework class
+     * @uses This class can use as main entry point for Zo2. It also provide method to get / set Framework global variables
      */
     class Zo2Framework
     {
@@ -35,7 +36,6 @@ if (!class_exists('Zo2Framework'))
          * @var array
          */
         private $_vars = array();
-        private $_logs = array();
 
         /**
          * 
