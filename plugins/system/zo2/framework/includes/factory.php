@@ -238,6 +238,10 @@ if (!class_exists('Zo2Factory'))
                 } else
                 {
                     $profileName = JFactory::getApplication()->input->get('profile');
+                    if (empty($profileName))
+                    {
+                        $profileName = Zo2Framework::getInstance()->template->params->get('profile', 'default');
+                    }
                 }
             } else
             {
