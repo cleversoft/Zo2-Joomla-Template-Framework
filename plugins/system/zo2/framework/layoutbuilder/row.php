@@ -20,6 +20,14 @@ if (!class_exists('Zo2LayoutbuilderRow'))
     class Zo2LayoutbuilderRow extends Zo2LayoutbuilderAbstract
     {
 
+        private $_bsVars = array(
+            '3' => array(
+                'grid' => 'col'
+            ),
+            '2' => array(
+                'grid' => 'span'
+            )
+        );
         private $_controls;
 
         public function __construct($properties = null)
@@ -148,7 +156,14 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $class = array();
             foreach ($gridProperties as $key => $value)
             {
-                $class [] = 'col-' . $key . '-' . $value;
+                if (JFactory::getApplication()->isSite())
+                {
+                    $gridClass = $this->_getBootstrapVar('3', 'grid', 'col');
+                } else
+                {
+                    $gridClass = $this->_getBootstrapVar('2', 'grid', 'span');
+                }
+                $class [] = $gridClass . '-' . $key . '-' . $value;
             }
             return trim(implode(' ', $class));
         }
@@ -182,6 +197,18 @@ if (!class_exists('Zo2LayoutbuilderRow'))
                 $html [] = $control->getHtml();
             }
             return implode(PHP_EOL, $html);
+        }
+
+        private function _getBootstrapVar($version, $name, $default = null)
+        {
+            if (isset($this->_bsVars[$version]))
+            {
+                if (isset($this->_bsVars[$version][$name]))
+                {
+                    return $this->_bsVars[$version][$name];
+                }
+            }
+            return $default;
         }
 
     }
