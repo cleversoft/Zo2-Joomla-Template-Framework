@@ -17,33 +17,28 @@
     </description>
   
     <positions>
-        <position>bottom1</position>
-        <position>bottom2</position>
-        <position>bottom3</position>
-        <position>bottom4</position>   
         <position>breadcrumb</position>  
+        <position>canvas</position>        
         <position>feature</position>   
-        <position>footer1</position>
-        <position>footer2</position>
         <position>footer_copyright</position>   
-        <position>footer_logo</position>             
-        <position>header_logo</position>             
-        <position>left</position>
-        <position>menu</position>           
-        <position>right</position>  
-        <position>search</position>
+        <position>footer_logo</position>
+        <position>header_logo</position>    
+        <position>mega-menu</position>    
+		<position>news</position>                   
+		<position>position-0</position>
+		<position>position-1</position>
+		<position>position-2</position>
+		<position>position-3</position>
+		<position>position-4</position>              
+		<position>position-7</position>
+		<position>position-8</position>
+		<position>position-9</position>
+		<position>position-10</position>
+		<position>position-11</position>                               
         <position>slide</position>                     
-        <position>top</position>
-        <position>top-menu</position>        
-        <position>top-social</position>
-        <position>user1</position>
-        <position>user2</position>
-        <position>user3</position>
-        <position>user4</position>
     </positions>
 
     <files>
-        <filename>component.php</filename>
         <filename>error.php</filename>     
         <filename>index.html</filename>
         <filename>index.php</filename>    
