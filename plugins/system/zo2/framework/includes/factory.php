@@ -253,6 +253,10 @@ if (!class_exists('Zo2Factory'))
                     $profileName = $profile->name;
                 }
             }
+            if (!is_string($profileName) || empty($profileName))
+            {
+                $profileName = 'default';
+            }
             if (!isset($profiles[$profileName]))
             {
                 $profile = new Zo2Profile();
