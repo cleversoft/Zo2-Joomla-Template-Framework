@@ -36,17 +36,21 @@ if (!class_exists('Zo2ModelAdminTemplate'))
                 $joomlaData = $jinput->get('jform', array(), 'array');
                 $templateId = $jinput->get('id');
                 $task = $jinput->get('task');
-                $this->_saveToDatabase($zo2Data, $joomlaData, $templateId);
-
-                switch ($task)
+                $zo2Data = $this->_check($zo2Data);
+                if ($zo2Data !== false)
                 {
-                    // Save data to current profile                    
-                    case 'style.apply':
-                    case 'style.save':
-                    case 'style.save2copy':
-                        $profile = Zo2Framework::getApp()->profile;
-                        $profile->loadArray($zo2Data);
-                        $profile->save();
+                    $this->_saveToDatabase($zo2Data, $joomlaData, $templateId);
+
+                    switch ($task)
+                    {
+                        // Save data to current profile                    
+                        case 'style.apply':
+                        case 'style.save':
+                        case 'style.save2copy':
+                            $profile = Zo2Framework::getApp()->profile;
+                            $profile->loadArray($zo2Data);
+                            $profile->save();
+                    }
                 }
             }
         }
@@ -79,6 +83,27 @@ if (!class_exists('Zo2ModelAdminTemplate'))
                 }
             }
             return false;
+        }
+
+        /**
+         * 
+         * @param type $data
+         * @return boolean
+         */
+        private function _check($data)
+        {
+            if (isset($data['layout']))
+            {
+                if (is_string($data['layout']))
+                {
+                    $data['layout'] = json_decode($data['layout'], true);
+                }
+            } else
+            {
+                return false;
+            }
+
+            return $data;
         }
 
     }
