@@ -18,7 +18,9 @@
             joomlaTooltip: '.tooltip',
             emptyParentRow: '#zo2-layoutbuilder-container > #zo2-empty-parent-row',
             emptyChildRow: '#zo2-layoutbuilder-container > #zo2-empty-child-row',
+            /* Modals */
             rowSetting: '#zo2-layoutbuilder-container > #zo2-row-setting',
+            rowDelete: '#zo2-layoutbuilder-container > #zo2-delete-confirm',
             jsonField: '#zo2-layoutbuilder-container > #zo2-layoutbuilder-json',
             /* Settings */
             settingName: '#zo2-setting-name',
@@ -30,7 +32,7 @@
             visibleMobile: '#zo2-enable-responsive-mobile',
             visibleTable: '#zo2-enable-responsive-tablet',
             visibleDesktop: '#zo2-enable-responsive-desktop',
-            visibleLargeDesktop: '#zo2-enable-responsive-largedesktop',
+            visibleLargeDesktop: '#zo2-enable-responsive-largedesktop'            
         },
         /* Layout JSON buffer */
         layoutJson: null,
@@ -126,14 +128,19 @@
             }
             this._init();
         },
+        showDeleteModal: function(element){
+            this.editingElement = $(element).closest(this._elements.sortableRow);
+            $(this._elements.rowDelete).modal('show');
+        },
         /**
          * Delete row
          * @param {html node} element
          * @returns {undefined}
          */
         deleteRow: function (element) {
-            $(element).closest(this._elements.sortableRow).remove();
+            this.editingElement.remove();
             $(this._elements.joomlaTooltip).find(':visible').hide();
+            $(this._elements.rowDelete).modal('hide');
         },
         /**
          * Resize row
