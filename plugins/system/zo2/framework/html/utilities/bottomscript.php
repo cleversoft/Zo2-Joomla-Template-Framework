@@ -23,5 +23,8 @@ if (Zo2Framework::getParam('enable_sticky_menu', 1) == 1)
 $ga_code = Zo2Framework::getParam('tracking_code', null);
 if (!empty($ga_code))
 {
+    // Remove dummies code
+    $ga_code = str_replace('<script>', '', $ga_code);
+    $ga_code = str_replace('</script>', '', $ga_code);
     echo $ga_code;
 }
