@@ -14,10 +14,6 @@ defined('_JEXEC') or die('Restricted Access');
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-/**
- * @todo Opengraph support
- * @todo Facebook & Twitter ... data attributes support
- */
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +42,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
     <?php echo $this->zo2->layout->renderOut(); ?>               
     <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>
     <script type="text/javascript">
-<?php echo $this->zo2->utilities->bottomscript->render(); ?>
+		<?php echo $this->zo2->utilities->bottomscript->render(); ?>
     </script>
 </body>
 </html>
