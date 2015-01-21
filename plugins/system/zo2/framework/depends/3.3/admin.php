@@ -4,6 +4,7 @@ Zo2Framework::log('Load depends: ' . __FILE__);
 JHtml::_('jquery.framework');
 JHtml::_('jquery.ui', array('core', 'sortable'));
 JHtml::_('bootstrap.framework');
+JHtmlBootstrap::loadCss();
 
 $zo2Assets = Zo2Path::getInstance()->getPath('Zo2://assets/admin.json');
 
