@@ -33,7 +33,7 @@ if (!class_exists('Zo2HtmlCopyright'))
             $html->set('logoUrl', JUri::root(true) . '/plugins/system/zo2/framework/assets/zo2/images/zo2_logo_32x32.png');
             $html->set('copyright', Zo2Framework::getParam('footer_copyright'));
             $html->set('title', 'Zo2 Framework');
-            $html->set('link', 'http://zo2framework.org');
+            $html->set('link', 'http://www.zootemplate.com/zo2');
             $html->set('gototop', Zo2Framework::getParam('footer_gototop'));
             return $html->fetch('zo2/copyright.php');
         }
