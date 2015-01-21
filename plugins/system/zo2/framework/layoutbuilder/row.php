@@ -154,17 +154,21 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $grid->def('lg', 12);
             $gridProperties = $grid->getProperties();
             $class = array();
-            foreach ($gridProperties as $key => $value)
+            // For frontpage we generate grid by use BS3
+            if (JFactory::getApplication()->isSite())
             {
-                if (JFactory::getApplication()->isSite())
+                foreach ($gridProperties as $key => $value)
                 {
+
                     $gridClass = $this->_getBootstrapVar('3', 'grid', 'col');
-                } else
-                {
-                    $gridClass = $this->_getBootstrapVar('2', 'grid', 'span');
+                    $class [] = $gridClass . '-' . $key . '-' . $value;
                 }
-                $class [] = $gridClass . '-' . $key . '-' . $value;
+            } else // For backend we generate span md by use BS2
+            {
+                $gridClass = $this->_getBootstrapVar('2', 'grid', 'span');
+                $class [] = $gridClass . $grid->get('md');
             }
+
             return trim(implode(' ', $class));
         }
 
