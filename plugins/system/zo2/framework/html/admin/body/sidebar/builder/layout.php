@@ -62,7 +62,7 @@ $positions = $model->getAvaiablePositions();
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="txtRowCss"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_CSS'); ?></label>
+                            <label class="control-label" for="txtRowCss"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_CSS'); ?><small><br /><?php echo JText::_('ZO2_ADMIN_LAYOUT_BUILDER_NOTE_CUSTOM_CLASS'); ?></small></label>
                             <div class="controls">
                                 <input type="text" id="txtRowCss" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_ROWCSS'); ?>">
                             </div>
