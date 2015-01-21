@@ -2,7 +2,7 @@
     "profile": "default",
     "site_name": "",
     "site_slogan": "",
-    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                            ",
+    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                    ",
     "standard_logo": "images\/joomla_logo_black.jpg",
     "retina_logo": "",
     "footer_gototop": "0",
@@ -117,7 +117,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -135,7 +137,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -153,7 +157,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -173,8 +179,8 @@
                 {
                     "jdoc": "canvasmenu",
                     "type": "col",
-                    "name": "canvas",
-                    "position": "canvas",
+                    "name": "canvas-menu",
+                    "position": "canvas-menu",
                     "span": 1,
                     "offset": 0,
                     "customClass": "col-xs-1",
@@ -186,13 +192,15 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "header_logo",
-                    "position": "header_logo",
+                    "name": "header-logo",
+                    "position": "header-logo",
                     "span": 3,
                     "offset": 0,
                     "customClass": "col-sm-3 col-xs-10 mobile-logo",
@@ -204,7 +212,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "megamenu",
@@ -222,7 +232,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -255,7 +267,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -288,7 +302,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -321,7 +337,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -354,7 +372,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -372,7 +392,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -390,7 +412,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -423,7 +447,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -456,7 +482,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -489,7 +517,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -507,7 +537,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -525,7 +557,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -545,11 +579,12 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "footer_copyright",
-                    "position": "footer_copyright",
+                    "name": "footer-copyright",
+                    "position": "footer-copyright",
                     "span": 12,
                     "offset": 0,
                     "customClass": "",
+                    "style": "",
                     "id": "",
                     "visibility": {
                         "xs": true,
@@ -557,7 +592,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         }
@@ -587,7 +624,7 @@
     "non_responsive_layout": "0",
     "enable_style_switcher": "0",
     "enable_sticky_menu": "0",
-    "tracking_code": "                                                                                                                                                                                                                                                                                                                                    ",
+    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                            ",
     "combine_css": "0",
     "combine_js": "0",
     "development_mode": "0",

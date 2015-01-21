@@ -17,12 +17,10 @@
     </description>
   
     <positions>
-        <position>breadcrumb</position>  
-        <position>canvas</position>        
+        <position>canvas-menus</position>        
         <position>feature</position>   
-        <position>footer_copyright</position>   
-        <position>footer_logo</position>
-        <position>header_logo</position>    
+        <position>footer-copyright</position>   
+        <position>header-logo</position>    
         <position>mega-menu</position>
         <position>news</position>
         <position>position-0</position>
