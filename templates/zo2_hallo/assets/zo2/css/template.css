@@ -2215,7 +2215,7 @@ sub {
   margin: 0;
 }
 a {
-  color: #7fbe54;
+  color: #4e4d4d;
   text-decoration: none;
   outline: none !important;
   -webkit-transition: color 0.15s linear 0s;
@@ -2226,7 +2226,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  color: #000;
+  color: #7fbe54;
   text-decoration: none;
 }
 p {
