@@ -395,12 +395,15 @@ if (!class_exists('Zo2Layout'))
                         switch ($item->get('position'))
                         {
                             case 'footer_copyright':
+                            case 'footer-copyright':
                                 $html .= Zo2Html::_('copyright', 'render');
                                 break;
                             case 'header_logo':
+                            case 'header-logo':
                                 $html .= Zo2Html::_('headerlogo', 'render');
                                 break;
                             case 'mega_menu':
+                            case 'mega-menu':
                                 /* Display frontend megamenu */
                                 $framework = Zo2Framework::getInstance();
                                 $megamenu = $framework->displayMegaMenu(Zo2Framework::getInstance()->profile->menu_type);
