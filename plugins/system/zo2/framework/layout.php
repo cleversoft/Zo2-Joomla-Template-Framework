@@ -187,7 +187,7 @@ if (!class_exists('Zo2Layout'))
                 $maxSpace = 12;
                 $usedSpace = 0;
                 $offsetSpace = 0;
-                $exceptPos = array('footer-copyright', 'footer-logo', 'header-logo', 'canvas', 'canvas-menu', 'canvas_menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+                $exceptPos = array('footer-copyright', 'footer-logo', 'header-logo', 'canvas-menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
                 $children = $item->get('children');
 
                 /* Process span value for children */
