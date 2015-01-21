@@ -156,7 +156,6 @@ if (!class_exists('Zo2Layout'))
          */
         private function _generateRow($item)
         {
-
             /* Basic check to verify this row can render */
             if ($this->_checkShowRow($item))
             {
@@ -188,12 +187,13 @@ if (!class_exists('Zo2Layout'))
                 $maxSpace = 12;
                 $usedSpace = 0;
                 $offsetSpace = 0;
-                $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+                $exceptPos = array('canvas', 'canvas-menu', 'canvas_menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
                 $children = $item->get('children');
 
                 /* Process span value for children */
                 foreach ($children as $index => $child)
                 {
+
                     $child = new JObject($child);
 
                     /* Count number of available modules in this position */
@@ -364,6 +364,7 @@ if (!class_exists('Zo2Layout'))
 
                 /* BEGIN COL */
                 $id = JFilterOutput::stringURLSafe(strtolower(trim($item->get('name', $item->get('position')))));
+                $id = str_replace('_', '-', $id);
                 $html .= '<div id="zo2-' . $id . '" class="' . trim(implode(' ', $class)) . '">';
 
                 switch ($jdoc)
@@ -510,7 +511,6 @@ if (!class_exists('Zo2LayoutItem'))
         public $fullwidth = null;
         public $visibility = array();
         public $children = array();
-        private $_exceptions = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
 
         public function getVisibilityClass()
         {
@@ -548,17 +548,6 @@ if (!class_exists('Zo2LayoutItem'))
             } else
             {
                 return trim($this->get('customClass'));
-            }
-        }
-
-        public function isExcepted()
-        {
-            if (in_array($this->get('position'), $this->_exceptions))
-            {
-                return true;
-            } else
-            {
-                return false;
             }
         }
 
