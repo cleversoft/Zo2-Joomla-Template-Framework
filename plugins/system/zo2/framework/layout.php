@@ -282,7 +282,7 @@ if (!class_exists('Zo2Layout'))
                 case 'megamenu':
                     return true;
                 default:
-                    $exceptPos = array('header_logo', 'logo', 'menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+                     $exceptPos = array('footer-copyright', 'footer-logo', 'header-logo', 'canvas-menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
                     if (in_array($item->get('position'), $exceptPos))
                     {
                         return true;
