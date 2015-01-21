@@ -411,6 +411,27 @@ nav.zo2-menu {
 /* ================== Header ===================== */
 #zo2-top-wrap {
   border-bottom: 1px solid #ebebeb;
+  .nav-pills{
+    > li {
+      &.active a{
+        background-color: #eee;
+        color: #7fbe54;
+      }
+      a{
+        border-radius: 0;
+      }
+    }
+    li + li{
+      margin-left: 0;
+    }
+  }
+  .search{
+    input[type="text"]{
+      border-width: 0 1px;
+      height: 40px;
+      margin: 0;
+    }
+  }
 }
 
 #zo2-header-wrap {

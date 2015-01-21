@@ -469,7 +469,7 @@ ol ul {
 }
 
 ul {
-  list-style: none;
+  list-style: disc inside;
 }
 
 ol {
@@ -502,7 +502,7 @@ ol.inline > li {
 }
 
 ul.menu li {
-  display: inline-block;
+  display: block;
 }
 
 /* ===================== Pagination ======================= */
@@ -626,7 +626,6 @@ ul.menu li {
       overflow: hidden;
       margin-top: 12px;
       li {
-        float: left;
         font-size: 11px;
         padding-right: 15px;
       }
@@ -781,6 +780,7 @@ ul.menu li {
 }
 
 .search {
+  float: right;
   #searchForm {
     .inputbox {
       width: 210px;
@@ -1067,12 +1067,18 @@ body.contentpane form table tbody tr td.key {
         }
       }
     }
-    .introtext {
+    .introText {
       color: #525252;
       font-weight: 300;
       font-size: 133%;
       text-align: justify;
       line-height: 175%;
+      a{
+        border-bottom: 1px solid #4e4d4d;
+        &:hover{
+          border-bottom-color: #7fbe54;
+        }
+      }
     }
     .article_bottom {
       padding: 25px 0 0;
@@ -1135,6 +1141,14 @@ body.contentpane form table tbody tr td.key {
       margin: 20px 0;
       font-size: 200%;
       color: #7fbe54;
+    }
+    .introText {
+      a{
+        border-bottom: 1px solid #4e4d4d;
+        &:hover{
+          border-bottom-color: #7fbe54;
+        }
+      }
     }
     .article-info {
       .article-info-inner > div {
