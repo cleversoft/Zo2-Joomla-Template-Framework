@@ -89,24 +89,6 @@ img {
 #zo2-framework fieldset.radio > input {
   display: none;
 }
-#zo2-framework fieldset.radio label {
-  background-color: #f5f5f5;
-  color: #333;
-  border: 1px solid transparent;
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
-  font-size: 14px;
-  line-height: 20px;
-  padding: 3px 20px;
-}
-#zo2-framework fieldset.radio label:last-child {
-  -webkit-border-radius: 0 4px 4px 0;
-  -moz-border-radius: 0 4px 4px 0;
-  border-radius: 0 4px 4px 0;
-  background-color: #51a351;
-  color: #fff;
-}
 #zo2-framework .navbar {
   min-height: 30px;
 }
@@ -162,9 +144,6 @@ img {
 }
 #zo2-framework #zo2-layoutbuilder-container .row-parent > .row-control > .parent-container .row-size {
   display: none;
-}
-#zo2-framework #zo2-layoutbuilder-container .row-parent > .row-control > .parent-container .row-name {
-  padding-left: 15px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control {
   background-color: #d4d4d4;
@@ -231,6 +210,14 @@ img {
 }
 #zo2-framework #zo2-layoutbuilder-container .tab-content > .active {
   visibility: visible;
+}
+@media (min-width: 768px) {
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"]:first-child {
+    margin-left: 0;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] {
+    margin-left: 2.564102564102564%;
+  }
 }
 #zo2-framework textarea,
 #zo2-framework input[type="text"],

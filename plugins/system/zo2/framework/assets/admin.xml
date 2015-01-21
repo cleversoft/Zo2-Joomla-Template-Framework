@@ -10,7 +10,7 @@
         </fieldset>
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_THEME_CUSTOMIZER">
             <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_RESPONSIVE" />
-            <field name="enable_responsive" type="radio" default="1" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RESPONSIVE" description="ZO2_ADMIN_FIELD_DESC_ENABLE_RESPONSIVE">
+            <field name="enable_responsive" type="radio" class="btn-group" default="1" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RESPONSIVE" description="ZO2_ADMIN_FIELD_DESC_ENABLE_RESPONSIVE">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
@@ -28,36 +28,36 @@
             <field name="extends" type="extends" default="0" label="" description="" />
         </fieldset>
         <fieldset name="ZO2_ADMIN_FIELDSET_LABEL_ADVANCED">            
-            <field name="enable_rtl" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RTL" description="">
+            <field name="enable_rtl" type="radio" class="btn-group" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_RTL" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
-            <field name="enable_styleswitcher" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_STYLESWITCHER" description="">
+            <field name="enable_styleswitcher" type="radio" class="btn-group" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_STYLESWITCHER" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
-            <field name="enable_stickymenu" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_STICKYMENU" description="">
+            <field name="enable_stickymenu" type="radio" class="btn-group" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_STICKYMENU" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
-            <field name="enable_gototop" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_GOTOTOP" description="">
+            <field name="enable_gototop" type="radio" class="btn-group" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_GOTOTOP" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
-            <field name="enable_brandname" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_ZO2_BRANDNAME" description="">
+            <field name="enable_brandname" type="radio" class="btn-group" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_ZO2_BRANDNAME" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
             <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_OPTIMIZE" />
-            <field name="enable_optimize_html" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_OPTIMIZE_HTML" description="">
+            <field name="enable_optimize_html" type="radio" class="btn-group" default="1" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_OPTIMIZE_HTML" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
-            <field name="enable_minify_css" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_MINIFY_CSS" description="">
+            <field name="enable_minify_css" type="radio" class="btn-group" default="1" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_MINIFY_CSS" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
-            <field name="enable_minify_js" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_MINIFY_JS" description="">
+            <field name="enable_minify_js" type="radio" class="btn-group" default="1" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_MINIFY_JS" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
@@ -80,7 +80,7 @@
             <field name="custom_code_before_close_head" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_CUSTOM_CODE_BEFORE_HEAD" description="" rows="10" cols="10" filter="raw" />
             <field name="custom_code_after_open_body" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_CUSTOM_CODE_AFTER_BODY" description="" rows="10" cols="10" filter="raw" />
             <field name="custom_code_before_close_body" type="textarea" default="" label="ZO2_ADMIN_FIELD_LABEL_CUSTOM_CODE_BEFORE_BODY" description="" rows="10" cols="10" filter="raw" />
-            <field name="enable_development_mode" type="radio" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_DEVELOPMENT_MODE" description="">
+            <field name="enable_development_mode" type="radio" class="btn-group" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_DEVELOPMENT_MODE" description="">
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>

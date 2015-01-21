@@ -42,9 +42,6 @@
         .row-size {
           display: none;
         }
-        .row-name {
-          padding-left: 15px;
-        }
       }
 
     }
@@ -112,5 +109,17 @@
   }
   .tab-content > .active {
     visibility: visible;
+  }
+
+  /* ===============================
+    // Grid Bootstrap Overide
+  ================================ */
+  @media (min-width: 768px) {
+    .row-fluid [class*="span"]:first-child {
+      margin-left: 0;
+    }
+    .row-fluid [class*="span"] {
+      margin-left: 2.564102564102564%;
+    }
   }
 }
