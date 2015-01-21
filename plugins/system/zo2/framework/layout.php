@@ -169,8 +169,16 @@ if (!class_exists('Zo2Layout'))
                 $html .= '<section id="zo2-' . $id . '-wrap" class="' . $customClass . '">';
 
                 /* START CONTAINER */
+                $customs = explode(' ', $customClass);
 
-                $containerClass [] = $item->get('fullwidth') ? '' : 'container';
+                if (in_array('full-width', $customs))
+                {
+                    $containerClass [] = 'container-fluid';
+                } else
+                {
+                    $containerClass [] = 'container';
+                }
+
                 $containerClass = array_merge($containerClass, $item->getVisibilityClass());
                 $containerClass = trim(implode(' ', $containerClass));
                 if ($containerClass != '')
@@ -282,7 +290,7 @@ if (!class_exists('Zo2Layout'))
                 case 'megamenu':
                     return true;
                 default:
-                     $exceptPos = array('footer-copyright', 'footer-logo', 'header-logo', 'canvas-menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+                    $exceptPos = array('footer-copyright', 'footer-logo', 'header-logo', 'canvas-menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
                     if (in_array($item->get('position'), $exceptPos))
                     {
                         return true;
