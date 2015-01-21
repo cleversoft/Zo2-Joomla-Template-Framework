@@ -469,7 +469,7 @@ ol ul {
   margin-bottom: 0;
 }
 ul {
-  list-style: none;
+  list-style: disc inside;
 }
 ol {
   list-style: decimal;
@@ -496,7 +496,7 @@ ol.inline > li {
   padding-right: 5px;
 }
 ul.menu li {
-  display: inline-block;
+  display: block;
 }
 .zo2-pagination {
   text-align: center;
@@ -617,7 +617,6 @@ ul.menu li {
   margin-top: 12px;
 }
 #login-form ul.unstyled li {
-  float: left;
   font-size: 11px;
   padding-right: 15px;
 }
@@ -734,6 +733,9 @@ ul.menu li {
 #search-results ul.search-results li {
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 12px;
+}
+.search {
+  float: right;
 }
 .search #searchForm .inputbox {
   width: 210px;
@@ -1023,12 +1025,18 @@ body.contentpane form table tbody tr td.key {
 .blog .article_content h3 a:hover {
   text-decoration: underline;
 }
-.blog .article_content .introtext {
+.blog .article_content .introText {
   color: #525252;
   font-weight: 300;
   font-size: 133%;
   text-align: justify;
   line-height: 175%;
+}
+.blog .article_content .introText a {
+  border-bottom: 1px solid #4e4d4d;
+}
+.blog .article_content .introText a:hover {
+  border-bottom-color: #7fbe54;
 }
 .blog .article_content .article_bottom {
   padding: 25px 0 0;
@@ -1096,6 +1104,12 @@ body.contentpane form table tbody tr td.key {
   margin: 20px 0;
   font-size: 200%;
   color: #7fbe54;
+}
+.item-page .article_content .introText a {
+  border-bottom: 1px solid #4e4d4d;
+}
+.item-page .article_content .introText a:hover {
+  border-bottom-color: #7fbe54;
 }
 .item-page .article_content .article-info .article-info-inner > div {
   float: left;
@@ -1503,6 +1517,9 @@ body.overflow-hidden {
   position: absolute;
   top: 42px;
   width: 100%;
+}
+.offcanvas .sidebar-nav ul {
+  list-style: none;
 }
 .offcanvas .sidebar-nav ul li a {
   border-bottom: 1px solid rgba(0,0,0,0.15);
@@ -2475,6 +2492,21 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 #zo2-top-wrap {
   border-bottom: 1px solid #ebebeb;
+}
+#zo2-top-wrap .nav-pills > li.active a {
+  background-color: #eee;
+  color: #7fbe54;
+}
+#zo2-top-wrap .nav-pills > li a {
+  border-radius: 0;
+}
+#zo2-top-wrap .nav-pills li + li {
+  margin-left: 0;
+}
+#zo2-top-wrap .search input[type="text"] {
+  border-width: 0 1px;
+  height: 40px;
+  margin: 0;
 }
 #zo2-header-wrap {
   padding: 45px 0;

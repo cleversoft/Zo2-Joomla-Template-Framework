@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 
 JHtml::_('behavior.keepalive');
 ?>
-<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form" class="form-inline">
+<form action="<?php echo JRoute::_('index.php', true, $params->get('usesecure')); ?>" method="post" id="login-form" class="bs-example bs-example-form">
 	<?php if ($params->get('pretext')) : ?>
 		<div class="pretext">
 		<p><?php echo $params->get('pretext'); ?></p>
@@ -21,12 +21,10 @@ JHtml::_('behavior.keepalive');
 		<div id="form-login-username" class="control-group">
 			<div class="controls">
 				<?php if (!$params->get('usetext')) : ?>
-					<div class="input-prepend input-append">
-						<span class="add-on">
-							<span class="fa fa-user tip" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"></span>
+					<div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"><i class="fa fa-user tip"></i></span>
 							<label for="modlgn-username" class="element-invisible"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME'); ?></label>
-						</span>
-						<input id="modlgn-username" type="text" name="username" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
+						<input id="modlgn-username" type="text" name="username" class="input-small form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>" />
 					</div>
 				<?php else: ?>
 					<label for="modlgn-username"><?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?></label>
@@ -34,17 +32,15 @@ JHtml::_('behavior.keepalive');
 				<?php endif; ?>
 			</div>
 		</div>
+        <br />
 		<div id="form-login-password" class="control-group">
 			<div class="controls">
 				<?php if (!$params->get('usetext')) : ?>
-					<div class="input-prepend input-append">
-						<span class="add-on">
-							<span class="fa fa-lock tip" title="<?php echo JText::_('JGLOBAL_PASSWORD') ?>">
-							</span>
-								<label for="modlgn-passwd" class="element-invisible"><?php echo JText::_('JGLOBAL_PASSWORD'); ?>
-							</label>
-						</span>
-						<input id="modlgn-passwd" type="password" name="password" class="input-small" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" />
+                    <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1" title="<?php echo JText::_('MOD_LOGIN_VALUE_USERNAME') ?>"><i class="fa fa-lock tip"></i></span>
+                            <label for="modlgn-passwd" class="element-invisible"><?php echo JText::_('JGLOBAL_PASSWORD'); ?>
+                        </label>
+						<input id="modlgn-passwd" type="password" name="password" class="input-small form-control" tabindex="0" size="18" placeholder="<?php echo JText::_('JGLOBAL_PASSWORD') ?>" />
 				</div>
 				<?php else: ?>
 					<label for="modlgn-passwd"><?php echo JText::_('JGLOBAL_PASSWORD') ?></label>
@@ -55,7 +51,9 @@ JHtml::_('behavior.keepalive');
 		</div>
 		<?php if (JPluginHelper::isEnabled('system', 'remember')) : ?>
 		<div id="form-login-remember" class="control-group checkbox">
-			<label for="modlgn-remember" class="control-label"><?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?></label> <input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"/>
+			<label for="modlgn-remember" class="control-label">
+            <input id="modlgn-remember" type="checkbox" name="remember" class="inputbox" value="yes"/><?php echo JText::_('MOD_LOGIN_REMEMBER_ME') ?>
+            </label>
 		</div>
 		<?php endif; ?>
 		<div id="form-login-submit" class="control-group">
