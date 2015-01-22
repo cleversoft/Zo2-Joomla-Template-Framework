@@ -124,9 +124,8 @@ if (!class_exists('Zo2ModelAdmin'))
 
         public function modalRenameProfile()
         {
-            $modalId = Zo2Factory::getRandomId();
             $modal = new Zo2HtmlModal(
-                    $modalId, 'Rename', '<div class="input-prepend">
+                    'modal-profile-rename', 'Rename', '<div class="input-prepend">
   <span class="add-on">Profile name</span>
   <input id="zo2-new-profile" name="zo2[newProfile]" type="text" placeholder="Enter new profile name">
 </div>'
@@ -143,7 +142,7 @@ if (!class_exists('Zo2ModelAdmin'))
                 'onClick' => 'zo2.admin.profile.rename(); return false;'
             ));
             $this->_ajax->appendHtml($modal->render(), '#zo2-framework');
-            $this->_ajax->addExecute('jQuery(\'#' . $modalId . '\').modal({})');
+            $this->_ajax->addExecute('jQuery(\'#modal-profile-rename\').modal({});');
             $this->_ajax->response();
         }
 
@@ -163,12 +162,13 @@ if (!class_exists('Zo2ModelAdmin'))
 
                     if ($profile->rename($newProfileName))
                     {
-                        $this->_ajax->addExecute('zo2.admin.profile.load(\'' . $newProfileName . '\')');
+                        $this->_ajax->addExecute('zo2.admin.profile.load(\'' . $newProfileName . '\');');
                     } else
                     {
                         
                     }
                 }
+                $this->_ajax->addExecute('jQuery(\'#modal-profile-rename\').modal("hide");');
             }
             $this->_ajax->response();
         }
