@@ -9,6 +9,7 @@
   i {
     color: @grayDark;
     padding: 0 7px;
+    cursor: pointer;
   }
   .row-name {
     span {
@@ -37,6 +38,7 @@
     position: relative;
     &.row-child {
       cursor: move;
+      margin-bottom: 5px;
     }
   }
   .row-parent {
@@ -50,7 +52,9 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
         .row-size {
-          display: none;
+          position: absolute;
+          left: 50%;
+          .transform(translateX(-50%));
         }
       }
       &:hover{
@@ -76,7 +80,6 @@
       i{
         font-size: @baseFontSize;
         padding: 0 3px;
-        cursor: pointer;
       }
     }
     &:hover {
