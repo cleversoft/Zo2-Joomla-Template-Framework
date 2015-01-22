@@ -8,7 +8,7 @@
     <copyright>Copyright (c) 2008 - 2014 CleverSoft</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPLv2 or later</license>
     <version>2.0.0</version>
-    <zo2>2.0.0</zo2>
+    <zo2 version="2.0.0"></zo2>
     <description>
         <![CDATA[<html>
       <img src="http://www.zootemplate.com/wp-content/uploads/2013/12/zt_hallo_responsive-1024x437.png" style="max-width:323px;" />
@@ -21,60 +21,81 @@
 
     <languages>
         <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_hallo.ini</language>
-        <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_hallo.sys.ini</language>
-		
+        <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_hallo.sys.ini</language>		
     </languages>
 
     <positions>
+        <position>system</position>
         <position>top</position>
-        <position>header_logo</position>
-        <position>top-social</position>
-        <position>top-menu</position>
-        <position>search</position>
-        <position>logo</position>
-        <position>header_logo</position>
+        <position>socials</position>
         <position>menu</position>
+        <position>search</position>        
+        <position>logo</position>
+        <position>tools</position>
+        <position>top-1</position>
+        <position>top-2</position>
+        <position>top-3</position>
+        <position>top-4</position>
+        <position>top-5</position>
+        <position>top-6</position>
+        <position>header</position>
+        <position>header-1</position>
+        <position>header-2</position>
+        <position>header-3</position>
+        <position>header-4</position>
+        <position>header-5</position>
+        <position>header-6</position>
+        <position>header-logo</position>                      
         <position>breadcrumb</position>
-        <position>search</position>
-        <position>slide</position>
-        <position>user1</position>
-        <position>user2</position>
-        <position>user3</position>
-        <position>user4</position>
-        <position>left</position>
+        <position>showcase-1</position>
+        <position>showcase-2</position>
+        <position>showcase-3</position>
+        <position>showcase-4</position>
+        <position>showcase-5</position>
+        <position>showcase-6</position>
+        <position>showcase-7</position>
+        <position>slide</position>     
+        <position>left</position>        
         <position>right</position>
+        <position>content-top</position>
+        <position>content-left</position>
+        <position>content-right</position>
+        <position>content-bottom</position>
         <position>feature</position>
         <position>bottom1</position>
         <position>bottom2</position>
         <position>bottom3</position>
         <position>bottom4</position>
-        <position>footer_logo</position>
-        <position>footer1</position>
-        <position>footer2</position>
-        <position>footer_copyright</position>
+        <position>footer</position>
+        <position>footer-1</position>
+        <position>footer-2</position>
+        <position>footer-3</position>
+        <position>footer-4</position>
+        <position>footer-5</position>
+        <position>footer-6</position>
+        <position>footer-logo</position>        
+        <position>footer-copyright</position>
     </positions>
 
     <files>
-        <filename>index.php</filename>
-        <filename>layout.json</filename>
-        <filename>error.php</filename>
-        <filename>params.ini</filename>
+        <folder>css</folder>
+        <folder>html</folder>
+        <folder>js</folder>
+        <folder>images</folder>
+        <folder>profiles</folder>
+        <folder>zo2</folder>
+        <filename>index.php</filename>      
         <filename>template_preview.png</filename>
         <filename>template_thumbnail.png</filename>
         <folder>layouts</folder>
-        <folder>html</folder>
-        <folder>includes</folder>
-        <folder>assets</folder>
-        <folder>components</folder>
+        
     </files>
+    
     <config>
-
         <fields name="params" addfieldpath="/plugins/system/zo2/framework/formfields">            
             <fieldset name="zo2">
                 <field name="zo2" type="zo2" />               
             </fieldset>                                              
         </fields>
-    </config>
-    <zo2 version="2.0.0">        
-    </zo2>
+    </config>    
 </extension>
