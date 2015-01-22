@@ -109,6 +109,7 @@ img {
 #zo2-framework #zo2-layoutbuilder-container i {
   color: #333;
   padding: 0 7px;
+  cursor: pointer;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-name span {
   text-transform: capitalize;
@@ -134,6 +135,7 @@ img {
 }
 #zo2-framework #zo2-layoutbuilder-container .sortable-row.row-child {
   cursor: move;
+  margin-bottom: 5px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-parent > .row-control {
   background-color: #fbfbfb;
@@ -147,7 +149,12 @@ img {
   margin-bottom: 20px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-parent > .row-control > .parent-container .row-size {
-  display: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
 }
 #zo2-framework #zo2-layoutbuilder-container .row-parent > .row-control:hover {
   background-color: #f5f5f5;
@@ -175,7 +182,6 @@ img {
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control i {
   font-size: 14px;
   padding: 0 3px;
-  cursor: pointer;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child:hover .row-size,
 #zo2-framework #zo2-layoutbuilder-container .row-child:hover .row-controls {
