@@ -182,7 +182,7 @@ if (!class_exists('Zo2ModelAdmin'))
                 $template = Zo2Factory::getTemplate($templateId);
                 if ($template)
                 {
-                    $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $templateId . '/' . $profile . '.json';
+                    $profile = JPATH_ROOT . '/templates/' . $template->template . '/assets/profiles/' . $profile . '.json';
                     if (JFile::delete($profile))
                     {
                         $this->_ajax->addExecute('location.reload();');
