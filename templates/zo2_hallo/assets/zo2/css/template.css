@@ -1892,6 +1892,7 @@ pre,
   color: #2f2f2f;
 }
 .zt-unordered-lists li {
+  list-style: none;
   padding: 2px 0;
 }
 .zt-unordered-lists li i,
