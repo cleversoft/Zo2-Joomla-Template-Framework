@@ -39,7 +39,7 @@ JFactory::getDocument()->addScriptDeclaration('/**
             _settings: {
                 token: "' . JFactory::getSession()->getFormToken() . '",
                 url: "' . JUri::getInstance()->toString() . '",
-                frontEndUrl: "' . JUri::getInstance()->root(false) . '"
+                frontEndUrl: "' . rtrim(JUri::getInstance()->root(false),'/') . '/index.php"
             },
             /* Internal jQuery */
             jQuery: $
