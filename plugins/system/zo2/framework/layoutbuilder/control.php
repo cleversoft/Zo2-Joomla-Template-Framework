@@ -67,7 +67,8 @@ if (!class_exists('Zo2LayoutbuilderControl'))
                 $this->addClass($this->get('icon'));
             }
             // Set class
-            if (!empty($this->get('class')))
+            $class = $this->get('class');
+            if (!empty($class))
             {
                 $data[] = 'class="' . implode(' ', $this->get('class')) . '"';
             }
