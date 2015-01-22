@@ -17,7 +17,7 @@
     </description>
   
     <positions>
-        <position>canvas-menus</position>        
+        <position>canvas-menu</position>
         <position>feature</position>   
         <position>footer-copyright</position>   
         <position>header-logo</position>    
