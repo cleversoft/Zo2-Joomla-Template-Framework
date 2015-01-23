@@ -100,6 +100,7 @@ if (!class_exists('Zo2Framework'))
 
                 JHtml::_('jquery.framework');
 
+                $jinput = JFactory::getApplication()->input;
                 /**
                  * Init framework variables
                  */
@@ -202,7 +203,6 @@ if (!class_exists('Zo2Framework'))
                     /* Custom files */
                     $this->assets->addStyleSheet('zo2/css/custom.css');
                     $this->assets->addScript('zo2/js/custom.js');
-                    $this->assets->addStyleSheetDeclaration('.container{ width: ' . self::getParam('site_width', 1140) . 'px;}');
                     /* Load bootstrap-rtl if needed */
                     if (Zo2Factory::isRTL())
                     {
