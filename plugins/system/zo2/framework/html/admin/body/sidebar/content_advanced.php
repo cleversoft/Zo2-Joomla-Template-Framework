@@ -36,7 +36,7 @@
     <?php $siteWidth = Zo2Framework::getParam('site_width'); ?>
     <div class="control-group">
         <div class="control-label">
-            <label class="zo2-label"><?php echo JText::_('Site width'); ?></label>           
+            <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_LABEL_SITE_WIDTH'); ?></label>           
         </div>
         <div class="controls">                    
             <select  name="jform[params][site_width]" id="jform_params_site_width">
