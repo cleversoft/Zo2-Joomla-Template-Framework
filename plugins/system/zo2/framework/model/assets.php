@@ -34,9 +34,13 @@ if (!class_exists('Zo2ModelAssets'))
         {
             $assetsFilePath = Zo2Path::getInstance()->getPath($assetsFile);
             Zo2Framework::log('Builded assets', $assetsFilePath);
-            $assets = Zo2HelperFile::loadJsonFile($assetsFilePath);
-            $this->_buildLess($assets);
-            $this->_minifyJs($assets);
+            // Make sure assets file exists before process
+            if ($assetsFile)
+            {
+                $assets = Zo2HelperFile::loadJsonFile($assetsFilePath);
+                $this->_buildLess($assets);
+                $this->_minifyJs($assets);
+            }
         }
 
         /**
@@ -119,9 +123,8 @@ if (!class_exists('Zo2ModelAssets'))
         }
 
         /**
-         * 
-         * @param type $assets
-         * @return boolean
+         * Build less to css
+         * @param array $assets
          */
         private function _buildLess($assets)
         {
@@ -156,8 +159,8 @@ if (!class_exists('Zo2ModelAssets'))
         }
 
         /**
-         * 
-         * @param type $assets
+         * Minify js files
+         * @param array $assets
          */
         private function _minifyJs($assets)
         {

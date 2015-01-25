@@ -26,6 +26,21 @@ if (!class_exists('Zo2AppAdmin'))
 
         /**
          * 
+         * @staticvar Zo2AppAdmin $instance
+         * @return \Zo2AppAdmin
+         */
+        public static function getInstance()
+        {
+            static $instance;
+            if (empty($instance))
+            {
+                $instance = new Zo2AppAdmin();
+            }
+            return $instance;
+        }
+
+        /**
+         * 
          * @staticvar boolean $inited
          * @return boolean
          */

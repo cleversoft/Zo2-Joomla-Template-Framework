@@ -30,6 +30,7 @@ if (!class_exists('Zo2ModelAdminTemplate'))
         public function save()
         {
             $jinput = JFactory::getApplication()->input;
+            // Only process inside com_templates
             if ($jinput->get('option') == 'com_templates')
             {
                 $zo2Data = $jinput->get('zo2', array(), 'array');

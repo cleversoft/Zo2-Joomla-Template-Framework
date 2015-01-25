@@ -102,7 +102,7 @@ if (!class_exists('Zo2Framework'))
             static $app;
             if (empty($app))
             {
-                $app = new Zo2AppAdmin();
+                $app = Zo2AppAdmin::getInstance();
             }
             return $app;
         }
@@ -117,7 +117,7 @@ if (!class_exists('Zo2Framework'))
             static $app;
             if (empty($app))
             {
-                $app = new Zo2AppSite();
+                $app = Zo2AppSite::getInstance();
             }
             return $app;
         }

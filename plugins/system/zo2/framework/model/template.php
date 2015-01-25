@@ -12,9 +12,15 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2ModelTemplate'))
 {
 
+    /**
+     * 
+     */
     class Zo2ModelTemplate
     {
 

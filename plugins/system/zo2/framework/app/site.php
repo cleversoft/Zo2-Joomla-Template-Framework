@@ -25,6 +25,21 @@ if (!class_exists('Zo2AppSite'))
     {
 
         /**
+         * 
+         * @staticvar Zo2AppSite $instance
+         * @return \Zo2AppSite
+         */
+        public static function getInstance()
+        {
+            static $instance;
+            if (empty($instance))
+            {
+                $instance = new Zo2AppSite();
+            }
+            return $instance;
+        }
+
+        /**
          * Site init
          * @staticvar type $inited
          * @return \Zo2AppSite
