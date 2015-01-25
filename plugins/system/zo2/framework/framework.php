@@ -65,8 +65,8 @@ if (!class_exists('Zo2Framework'))
                 $this->document = JFactory::getDocument();
                 $this->template = new Zo2Template($template);
                 $this->app = self::getApp();
-
                 $inited = true;
+                define('ZO2LOADED', true);
             }
         }
 
@@ -82,12 +82,42 @@ if (!class_exists('Zo2Framework'))
             {
                 if (JFactory::getApplication()->isAdmin())
                 {
-                    $app = new Zo2AppAdmin();
+                    $app = self::getInstance()->getAdmin();
                 } else
                 {
-                    $app = new Zo2AppSite();
+                    $app = self::getInstance()->getSite();
                 }
                 $app->init();
+            }
+            return $app;
+        }
+
+        /**
+         * 
+         * @staticvar Zo2AppAdmin $app
+         * @return \Zo2AppAdmin
+         */
+        public function getAdmin()
+        {
+            static $app;
+            if (empty($app))
+            {
+                $app = new Zo2AppAdmin();
+            }
+            return $app;
+        }
+
+        /**
+         * 
+         * @staticvar Zo2AppSite $app
+         * @return \Zo2AppSite
+         */
+        public function getSite()
+        {
+            static $app;
+            if (empty($app))
+            {
+                $app = new Zo2AppSite();
             }
             return $app;
         }
@@ -146,6 +176,11 @@ if (!class_exists('Zo2Framework'))
             }
         }
 
+        /**
+         * 
+         * @param type $title
+         * @param type $data
+         */
         public static function log($title, $data = null)
         {
             if (self::isDevelopmentMode())
@@ -173,13 +208,18 @@ if (!class_exists('Zo2Framework'))
          */
         public static function importVendor($name)
         {
-            $path = Zo2Path::getInstance()->getPath('Zo2://vendor/' . $name . '/autoloader.php');
-            if ($path)
+            static $impoted;
+            if (!empty($impoted[$name]))
             {
-                self::log('Import vendor', $name);
-                return require_once $path;
+                $path = Zo2Path::getInstance()->getPath('Zo2://vendor/' . $name . '/autoloader.php');
+                if ($path)
+                {
+                    self::log('Import vendor', $name);
+                    $impoted[$name] = require_once $path;
+                }
+                $impoted[$name] = false;
             }
-            return false;
+            return $impoted[$name];
         }
 
         /**
@@ -201,8 +241,6 @@ if (!class_exists('Zo2Framework'))
                         return false;
                     }
                 }
-
-
                 if (call_user_func(array('Zo2Execute', $zo2Task)))
                 {
                     if (self::isAjax())
@@ -214,7 +252,7 @@ if (!class_exists('Zo2Framework'))
         }
 
         /**
-         * 
+         * For development mode we need to get from database params because app is not inited yet
          * @return boolean
          */
         public static function isDevelopmentMode()
