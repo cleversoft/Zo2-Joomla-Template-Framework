@@ -219,18 +219,19 @@ if (!class_exists('Zo2Assets'))
             $this->_prepareRender();
             {
                 Zo2Framework::log('Render assets');
-                foreach ($this->_stylesheets as $url)
+                foreach ($this->_stylesheets as $key => $url)
                 {
                     // Use min version
                     // For enabled combine css we already minify it than no need to replace min.css here
                     if (Zo2Framework::getParam('enable_minify_css') && (!Zo2Framework::getParam('enable_combine_css')))
                     {
-                        /**
-                         * @todo Need to check if min file exists
-                         */
                         if (strpos($url, '.min.css') === false)
                         {
-                            $url = str_replace('.css', '.min.css', $url);
+                            $key = str_replace('.css', '.min.css', $key);
+                            if (JFile::exists($key))
+                            {
+                                $url = str_replace('.css', '.min.css', $url);
+                            }
                         }
                     }
                     Zo2Framework::log('Render asset', $url);
@@ -241,12 +242,13 @@ if (!class_exists('Zo2Assets'))
                     // Use min version                   
                     if (Zo2Framework::getParam('enable_minify_js') && (!Zo2Framework::getParam('enable_combine_js')))
                     {
-                        /**
-                         * @todo Need to check if min file exists
-                         */
                         if (strpos($url, '.min.js') === false)
                         {
-                            $url = str_replace('.js', '.min.js', $url);
+                            $key = str_replace('.js', '.min.js', $key);
+                            if (JFile::exists($key))
+                            {
+                                $url = str_replace('.js', '.min.js', $url);
+                            }
                         }
                     }
                     Zo2Framework::log('Render asset', $url);
