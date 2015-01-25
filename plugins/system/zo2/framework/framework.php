@@ -209,7 +209,7 @@ if (!class_exists('Zo2Framework'))
         public static function importVendor($name)
         {
             static $impoted;
-            if (!empty($impoted[$name]))
+            if (empty($impoted[$name]))
             {
                 $path = Zo2Path::getInstance()->getPath('Zo2://vendor/' . $name . '/autoloader.php');
                 if ($path)
