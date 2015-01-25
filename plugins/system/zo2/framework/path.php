@@ -176,7 +176,7 @@ if (!class_exists('Zo2Path'))
          * @param string $path
          * @return string
          */
-        public function toUrl($path, $pathOnly = false)
+        public function toUrl($path, $pathOnly = true)
         {
             $relative = str_replace(JPATH_ROOT, '', $path);
             $relative = trim(JPath::clean($relative, '/'), '/');
