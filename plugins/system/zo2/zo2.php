@@ -40,6 +40,7 @@ if (!class_exists('plgSystemZo2'))
                 $language = JFactory::getLanguage();
                 $language->load('plg_system_zo2', __DIR__ . '/framework');
                 require_once (JPATH_ROOT . '/plugins/system/zo2/framework/bootstrap.php');
+                // System checking
                 $requiredVersion = (string) $zo2[0];
                 $zo2Version = ZO2VERSION;
                 if (version_compare($zo2Version, $requiredVersion) == -1)

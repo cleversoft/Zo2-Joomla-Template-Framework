@@ -19,17 +19,22 @@ if (!class_exists('Zo2App'))
 {
 
     /**
-     * 
+     * Application base class
      */
     abstract class Zo2App extends JObject
     {
 
         const ZO2DEFAULT_PROFILE = 'default';
 
+        /**
+         * 
+         * @return string
+         */
         public function render()
         {
             // Get memory usage before process
             Zo2Framework::set('memory_start', memory_get_usage(true));
+            // Use caching for frontend if needed
             if (JFactory::getApplication()->isSite())
             {
                 // Caching
@@ -38,7 +43,7 @@ if (!class_exists('Zo2App'))
                 $cache = JFactory::getCache();
                 $buffer = $cache->call(array($this, 'getHtml'));
             } else
-            {
+            {   // No caching for backend
                 $buffer = $this->getHtml();
             }
             // Get memory useage after processed
@@ -47,10 +52,13 @@ if (!class_exists('Zo2App'))
         }
 
         /**
-         * App init
+         * Aplication init
          */
         abstract public function init();
 
+        /**
+         * Generate app html and return
+         */
         abstract public function getHtml();
 
         /**
@@ -70,6 +78,9 @@ if (!class_exists('Zo2App'))
             return false;
         }
 
+        /**
+         * 
+         */
         protected function _init()
         {
             $this->profile = new Zo2Profile();

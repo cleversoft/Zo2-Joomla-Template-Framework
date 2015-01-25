@@ -25,7 +25,7 @@ if (!class_exists('Zo2AppSite'))
     {
 
         /**
-         * 
+         * Site init
          * @staticvar type $inited
          * @return \Zo2AppSite
          */
@@ -34,7 +34,6 @@ if (!class_exists('Zo2AppSite'))
             static $inited;
             if (empty($inited))
             {
-
                 // Load dependencies based on Joomla!
                 $jVersion = new JVersion();
                 require_once ZO2PATH_ROOT . '/depends/' . $jVersion->RELEASE . '/site.php';

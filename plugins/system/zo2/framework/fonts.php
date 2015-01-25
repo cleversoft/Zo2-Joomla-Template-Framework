@@ -19,7 +19,7 @@ if (!class_exists('Zo2Fonts'))
 {
 
     /**
-     * 
+     * 3rd fonts management
      */
     class Zo2Fonts extends JObject
     {
