@@ -63,6 +63,9 @@ if (!class_exists('Zo2Html'))
                 ob_end_clean();
                 Zo2Framework::log('Fetch layout file', $tplFile);
                 return $content;
+            } else
+            {
+                Zo2Framework::message('Layout file not found: ' . $key, 'notice');
             }
         }
 
