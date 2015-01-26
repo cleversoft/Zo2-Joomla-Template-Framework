@@ -141,6 +141,12 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             return new JObject($this->get('jdoc'));
         }
 
+        public function getWidth($name = 'md')
+        {
+            $grid = new JObject($this->get('grid'));
+            return $grid->get($name);
+        }
+
         /**
          *
          * @return type
