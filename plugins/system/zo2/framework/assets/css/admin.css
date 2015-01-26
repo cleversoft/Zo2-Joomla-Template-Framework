@@ -138,6 +138,7 @@ img {
   margin-bottom: 5px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-parent > .row-control {
+  position: relative;
   background-color: #fbfbfb;
   color: #000;
   margin: 0 0 30px;

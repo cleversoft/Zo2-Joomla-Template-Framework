@@ -29,7 +29,7 @@
                     <p><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_CONTENT')); ?></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" onclick="zo2.layoutbuilder.deleteRow();"><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_CONFIRM')); ?></button>
+                    <button type="button" class="btn btn-danger" onclick="zo2.layoutbuilder.deleteRow();"><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_CONFIRM')); ?></button>
                     <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_CANCEL')); ?></button>
                 </div>
             </div>
