@@ -20,7 +20,7 @@
   }
   .row-control {
     padding: 10px 15px;
-    line-height: @baseLineHeight + 30;
+    line-height: @baseLineHeight + 20;
   }
   .row-controls {
     i {
@@ -72,14 +72,14 @@
       .row-size {
         left: 4px;
         position: absolute;
-        top: 19px;
+        top: -3px;
       }
       .row-size, .row-controls {
         .opacity(0);
         .transition(all 0.3s ease 0s);
       }
       .row-controls{
-        top: 20px;
+        top: -8px;
       }
       i{
         font-size: @baseFontSize;
@@ -94,6 +94,8 @@
     .row-name{
       span{
         font-size: @baseFontSize;
+        padding-top: 10px;
+        display: block;
       }
     }
   }

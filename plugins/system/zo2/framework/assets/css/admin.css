@@ -118,7 +118,7 @@ img {
 }
 #zo2-framework #zo2-layoutbuilder-container .row-control {
   padding: 10px 15px;
-  line-height: 50px;
+  line-height: 40px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-controls i {
   display: inline-block;
@@ -169,7 +169,7 @@ img {
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-size {
   left: 4px;
   position: absolute;
-  top: 19px;
+  top: -3px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-size,
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-controls {
@@ -181,7 +181,7 @@ img {
   transition: all 0.3s ease 0s;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-controls {
-  top: 20px;
+  top: -8px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control i {
   font-size: 14px;
@@ -194,6 +194,8 @@ img {
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child .row-name span {
   font-size: 14px;
+  padding-top: 10px;
+  display: block;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-controls {
   position: absolute;
