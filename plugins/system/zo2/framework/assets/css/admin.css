@@ -201,11 +201,48 @@ img {
   background-color: #fdf7c2;
 }
 @media (min-width: 768px) {
-  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"]:first-child {
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] {
+    margin-right: 2.5641%;
     margin-left: 0;
   }
-  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] {
-    margin-left: 2.564102564102564%;
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"]:last-child {
+    margin-right: 0;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span1 {
+    width: 5.98291%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span2 {
+    width: 14.5299%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span3 {
+    width: 23.0769%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span4 {
+    width: 31.6239%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span5 {
+    width: 40.1709%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span6 {
+    width: 48.7179%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span7 {
+    width: 57.265%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span8 {
+    width: 65.812%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span9 {
+    width: 74.359%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span10 {
+    width: 82.906%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span11 {
+    width: 91.453%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid .span12 {
+    width: 100%;
   }
 }
 #zo2-framework textarea,

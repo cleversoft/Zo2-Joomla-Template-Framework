@@ -1,5 +1,5 @@
 <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-<div id="zo2-layoutbuilder-container" class="row">
+<div id="zo2-layoutbuilder-container">
     <input type="hidden" id="zo2-layoutbuilder-json" name="zo2[layout]">
     <div id="zo2-empty-parent-row" style="display: none">
         <?php
