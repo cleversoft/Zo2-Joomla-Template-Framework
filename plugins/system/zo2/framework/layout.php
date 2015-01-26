@@ -199,6 +199,7 @@ if (!class_exists('Zo2Layout'))
                 $children = $item->get('children');
 
                 /* Process span value for children */
+                $availableChildren = array();
                 foreach ($children as $index => $child)
                 {
 
@@ -228,13 +229,25 @@ if (!class_exists('Zo2Layout'))
                             /* If right element not exists than plus for left */
                             if (isset($children[$index - 1]))
                             {
-                                $children[$index - 1]->span += $child->span;
-                                $usedSpace += $child->span; /* Increase used space */
+                                // Make sure prev element available
+                                if ($this->_checkItemPosition($children[$index - 1]))
+                                {
+                                    $children[$index - 1]->span += $child->span;
+                                    $usedSpace += $child->span; /* Increase used space */
+                                } else
+                                {
+                                    // Prev element not exists than we find last available
+                                    echo $usedSpace;
+                                    end($availableChildren);         // move the internal pointer to the end of the array
+                                    $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
+                                    $children[$key]->span += $usedSpace;
+                                }
                             }
                         }
                     } else
                     {
                         $usedSpace += $child->span;
+                        $availableChildren[$index] = $child;
                     }
                     $offsetSpace += $child->offset;
                 }
@@ -261,6 +274,32 @@ if (!class_exists('Zo2Layout'))
                 /* END WRAPPER */
                 $html .= '</section>';
                 return $html;
+            }
+        }
+
+        private function _checkItemPosition($item)
+        {
+            if ($item instanceof JObject)
+            {
+                
+            } else
+            {
+                $item = new JObject($item);
+            }
+            $exceptPos = array('footer-copyright', 'footer-logo', 'header-logo', 'canvas-menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+            if (in_array($item->get('position'), $exceptPos))
+            {
+                return true;
+            } else
+            {
+                $modules = JModuleHelper::getModules($item->get('position'));
+                if (count($modules) > 0)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
             }
         }
 
