@@ -32,25 +32,6 @@
         'value' => Zo2Framework::getParam('non_responsive_layout', 0)
     ));
     ?>
-    <!-- Animation -->
-    <?php $siteWidth = Zo2Framework::getParam('site_width'); ?>
-    <div class="control-group">
-        <div class="control-label">
-            <label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_LABEL_SITE_WIDTH'); ?></label>           
-        </div>
-        <div class="controls">                    
-            <select  name="jform[params][site_width]" id="jform_params_site_width">
-                <option value="940"
-                        <?php echo ($siteWidth == '940') ? 'selected="selected"' : ''; ?> >
-                            <?php echo '940'; ?>
-                </option>
-                <option value="1140"
-                        <?php echo ($siteWidth == '1140') ? 'selected="selected"' : ''; ?> >
-                            <?php echo '1140'; ?>
-                </option>
-            </select>
-        </div>
-    </div>
     <!-- Enable Style Switcher -->
     <?php
     echo Zo2Html::field(
@@ -180,8 +161,8 @@
     ?>   
     <!-- Development mode -->
     <div class="zo2-divider"></div>  
-    <h2><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></h2>    
-    <div class="zo2-divider"></div>   
+ 	<h2><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></h2>    
+ 	<div class="zo2-divider"></div>   
     <?php
     echo Zo2Html::field(
             'radio', array(
