@@ -157,10 +157,7 @@
             if (!data.hasOwnProperty('grid')) {
                 data.grid = {xs: 12, sm: 12, md: 12, lg: 12};
             }
-            $row.removeClass('col-xs-' + data.grid.xs
-                    + ' col-sm-' + data.grid.sm
-                    + ' col-md-' + data.grid.md
-                    + ' col-lg-' + data.grid.lg);
+            $row.removeClass('span' + data.grid.md);
             if (action === 'increase') {
                 data.grid = {
                     xs: _self._increase(data.grid.xs),
@@ -176,10 +173,7 @@
                     lg: _self._decrease(data.grid.lg)
                 };
             }
-            $row.addClass('col-xs-' + data.grid.xs
-                    + ' col-sm-' + data.grid.sm
-                    + ' col-md-' + data.grid.md
-                    + ' col-lg-' + data.grid.lg);
+            $row.addClass('span' + data.grid.md);
             $row.data('zo2', data);
             $row.find(this._elements.rowSize + ':first').find(this._elements.rowWidth + ':first').html(data.grid.md + '/12');
         },
