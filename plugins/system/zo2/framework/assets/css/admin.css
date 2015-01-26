@@ -169,7 +169,7 @@ img {
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-size {
   left: 4px;
   position: absolute;
-  top: 1px;
+  top: 19px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-size,
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-controls {
@@ -179,6 +179,9 @@ img {
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+}
+#zo2-framework #zo2-layoutbuilder-container .row-child > .row-control .row-controls {
+  top: 20px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control i {
   font-size: 14px;
