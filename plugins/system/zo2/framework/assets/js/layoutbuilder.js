@@ -16,6 +16,8 @@
             sortableConnect: '.connectedSortable',
             sortableRow: '.sortable-row',
             joomlaTooltip: '.tooltip',
+            parentContainer: '.parent-container',
+            rowName: '.row-name',
             emptyParentRow: '#zo2-layoutbuilder-container > #zo2-empty-parent-row',
             emptyChildRow: '#zo2-layoutbuilder-container > #zo2-empty-child-row',
             /* Modals */
@@ -177,7 +179,7 @@
                     + ' col-md-' + data.grid.md
                     + ' col-lg-' + data.grid.lg);
             $row.data('zo2', data);
-            $row.find('.row-size').find('.row-width').html(data.grid.md + '/12');
+            $row.find('.row-size:first').find('.row-width:first').html(data.grid.md + '/12');
         },
         /*
          * Increase row width
@@ -239,14 +241,19 @@
                 jdoc: {
                     name: _self._getField(_self._elements.settingName).val(),
                     type: _self._getField(_self._elements.settingJdoc).val(),
-                    style: _self._getField(_self._elements.settingStyle)
+                    style: _self._getField(_self._elements.settingStyle).val(),
                 },
                 class: _self._getField(_self._elements.settingCss).val(),
                 offset: _self._getField(_self._elements.settingOffset).val(),
-                visibility: oldData.visibility,
-                gird: oldData.gird
             };
+            if(typeof(oldData.visibility) !== 'undefined'){
+                data.visibility = oldData.visibility;
+            }
+            if(typeof(oldData.gird) !== 'undefined'){
+                data.gird = oldData.gird;
+            }
             this.editingElement.data('zo2', data);
+            $(this.editingElement).find(this._elements.parentContainer + ':first').find(this._elements.rowName + ':first').html('<span>' + _self._getField(_self._elements.settingName).val() + '</span>');
             $(this._elements.rowSetting).modal('hide');
         },
         /**
