@@ -18,7 +18,7 @@ if (isset($properties['children']))
         <div class="parent-container clearfix">
             <div class="row-size">
                 <a title="Decrease width" onclick="zo2.layoutbuilder.resize(this, 'decrease');" class="row-decrease"><i data-original-title="Decrease width" class="hasTooltip fa fa-angle-double-left"></i></a>
-                <span class="row-width">1/12</span>
+                <span class="row-width">12/12</span>
                 <a title="Increase width" onclick="zo2.layoutbuilder.resize(this, 'increase');" class="row-increase"><i data-original-title="Increase width" class="hasTooltip fa fa-angle-double-right"></i></a>
             </div>
             <div class="row-name">

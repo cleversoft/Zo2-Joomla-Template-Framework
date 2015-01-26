@@ -18,6 +18,8 @@
             joomlaTooltip: '.tooltip',
             parentContainer: '.parent-container',
             rowName: '.row-name',
+            rowSize: '.row-size',
+            rowWidth: '.row-width',
             emptyParentRow: '#zo2-layoutbuilder-container > #zo2-empty-parent-row',
             emptyChildRow: '#zo2-layoutbuilder-container > #zo2-empty-child-row',
             /* Modals */
@@ -179,7 +181,7 @@
                     + ' col-md-' + data.grid.md
                     + ' col-lg-' + data.grid.lg);
             $row.data('zo2', data);
-            $row.find('.row-size:first').find('.row-width:first').html(data.grid.md + '/12');
+            $row.find(this._elements.rowSize + ':first').find(this._elements.rowWidth + ':first').html(data.grid.md + '/12');
         },
         /*
          * Increase row width
