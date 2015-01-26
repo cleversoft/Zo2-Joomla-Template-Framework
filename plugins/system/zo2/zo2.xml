@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="plugin" group="system" method="upgrade">
     <name>Zo2 Framework</name>
-    <creationDate>Jan 22, 2015</creationDate>
+    <creationDate>Jan 26, 2015</creationDate>
     <version>1.4.4</version>
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
