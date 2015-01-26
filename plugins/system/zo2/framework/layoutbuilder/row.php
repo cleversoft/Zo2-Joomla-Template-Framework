@@ -33,7 +33,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         public function __construct($properties = null)
         {
             parent::__construct($properties);
-
+            $this->addControl('move', 'arrows', 'move', array('id' => 'move-row'));
             $this->addControl('addRow', 'plus', 'add-row', array('onClick' => 'zo2.layoutbuilder.addRow(this);'));
             $this->addControl('settings', 'cog', 'settings', array('onClick' => 'zo2.layoutbuilder.showSettingModal(this);'));
             $this->addControl('remove', 'remove', 'delete', array('onClick' => 'zo2.layoutbuilder.showDeleteModal(this);'));

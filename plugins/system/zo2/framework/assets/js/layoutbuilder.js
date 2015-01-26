@@ -50,6 +50,7 @@
             var _self = this;
             /* Move child rows */
             $(_self._elements.childrenContainer).sortable({
+                handle: '#move-row',
                 placeholder: "sortable-hightligth",
                 start: function (event, ui) {
                     ui.placeholder.height(ui.helper.outerHeight());
@@ -62,6 +63,7 @@
             }).disableSelection();
             /* Sort able parent row */
             $(_self._elements.layoutBuilderContainer).sortable({
+                handle: '#move-row',
                 placeholder: "sortable-hightligth",
                 start: function (event, ui) {
                     ui.placeholder.height(ui.helper.outerHeight());
