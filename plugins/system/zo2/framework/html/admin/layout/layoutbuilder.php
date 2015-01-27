@@ -14,10 +14,11 @@ defined('_JEXEC') or die('Restricted access');
 <!-- Layout builder entry point -->
 <div id="zo2-layoutbuilder-container">
     <input type="hidden" id="zo2-layoutbuilder-json" name="zo2[layout]">
+    <!-- Init blank html -->
     <div id="zo2-empty-parent-row" style="display: none">
         <?php
         $blankRow = new Zo2LayoutbuilderRow();
-        $this->set('child', false);
+        $blankRow->isRoot(true);
         $this->set('row', $blankRow);
         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
         ?>
@@ -25,11 +26,12 @@ defined('_JEXEC') or die('Restricted access');
     <div id="zo2-empty-child-row" style="display: none">
         <?php
         $blankRow = new Zo2LayoutbuilderRow();
-        $this->set('child', true);
+        $blankRow->isRoot(false);
         $this->set('row', $blankRow);
         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
         ?>
     </div>
+    <!-- Modals -->
     <?php $this->load('Zo2://html/admin/layout/layoutbuilder/modals.php'); ?>   
     <div id="zo2-layoutbuilder-controls">
         <button onclick="zo2.layoutbuilder.addParentRow();" type="button" class="btn btn-primary">New row</button>
