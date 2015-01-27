@@ -58,47 +58,13 @@ defined('_JEXEC') or die('Restricted access');
                 @todo Fix this hard code
                 JDoc position
                 -->
+                <?php
+                ?>
+
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-position">Position</label>
                     <div class="controls">
-                        <select id="zo2-setting-position" aria-invalid="false">                                    
-                            <option value="component">Component</option>
-                            <option value="message">Message</option>
-                            <option value="mega_menu">Mega Menu</option>
-                            <option value="canvas-menu">canvas-menu</option>
-                            <option value="feature">feature</option>
-                            <option value="footer-copyright">footer-copyright</option>
-                            <option value="header-logo">header-logo</option>
-                            <option value="mega-menu">mega-menu</option>
-                            <option value="news">news</option>
-                            <option value="position-0">position-0</option>
-                            <option value="position-1">position-1</option>
-                            <option value="position-2">position-2</option>
-                            <option value="position-3">position-3</option>
-                            <option value="position-4">position-4</option>
-                            <option value="position-7">position-7</option>
-                            <option value="position-8">position-8</option>
-                            <option value="position-9">position-9</option>
-                            <option value="position-10">position-10</option>
-                            <option value="position-11">position-11</option>
-                            <option value="slide">slide</option>
-                            <option value="search">search</option>
-                            <option value="syndicateload">syndicateload</option>
-                            <option value="bottom1">bottom1</option>
-                            <option value="top-menu">top-menu</option>
-                            <option value="top-social">top-social</option>
-                            <option value="bottom2">bottom2</option>
-                            <option value="bottom3">bottom3</option>
-                            <option value="bottom4">bottom4</option>
-                            <option value="videomenu">videomenu</option>
-                            <option value="left">left</option>
-                            <option value="right">right</option>
-                            <option value="demo1">demo1</option>
-                            <option value="demo2">demo2</option>
-                            <option value="demo3">demo3</option>
-                            <option value="custom4">custom4</option>
-                            <option value="breadcrumb">breadcrumb</option>
-                        </select>
+                        <?php echo Zo2HelperLayoutbuilder::getHtmlPositions(); ?>
                     </div>
                 </div>
                 <!-- Styles -->
