@@ -38,7 +38,7 @@
     <div id="zo2-layoutbuilder-controls">
         <button onclick="zo2.layoutbuilder.addParentRow();" type="button" class="btn btn-primary">New row</button>
     </div>
-    <div id="zo2-layoutbuilder">
+    <div id="zo2-layoutbuilder" class="row-fluid">
         <?php foreach ($layout as $row) : ?>
             <?php $this->set('child', false); ?>
             <?php $this->set('row', new Zo2LayoutbuilderRow($row)); ?>
