@@ -65,6 +65,7 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
 
         public static function getHtmlPositions($selectedPosition = '')
         {
+            JHtml::_('formbehavior.chosen', 'select');
             require_once JPATH_ADMINISTRATOR . '/components/com_templates/helpers/templates.php';
             require_once JPATH_ADMINISTRATOR . '/components/com_modules/' . '/helpers/modules.php';
             JHtml::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_modules/' . '/helpers/html');
