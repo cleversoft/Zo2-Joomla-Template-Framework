@@ -19,7 +19,6 @@ if (isset($properties['children']))
      data-zo2="<?php echo htmlentities(Zo2HelperEncode::json($properties)); ?>"
      >
     <div class="row-control">
-
         <?php $this->load('Zo2://html/admin/layout/layoutbuilder/controls.php'); ?>
 
         <div id="zo2-row-setting-container" style="display: none"></div>
