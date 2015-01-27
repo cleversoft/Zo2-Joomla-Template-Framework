@@ -35,7 +35,7 @@ defined('_JEXEC') or die('Restricted access');
                     <label class="control-label" for="zo2-setting-jdoc"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_LABEL_JDOC'); ?></label>
                     <div class="controls">
                         <!-- http://docs.joomla.org/Jdoc_statements -->
-                        <select id="zo2-setting-jdoc">             
+                        <select id="zo2-setting-jdoc" onchange="zo2.layoutbuilder.onJdocChange(this);">             
                             <option value="none"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_NONE'); ?></option>
                             <optgroup label="Joomla! Document">
                                 <option value="component"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_COMPONENT'); ?></option>
