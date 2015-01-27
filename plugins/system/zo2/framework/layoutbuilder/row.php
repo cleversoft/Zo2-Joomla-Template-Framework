@@ -40,6 +40,13 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $this->addControl('remove', 'remove', 'delete', array('onClick' => 'zo2.layoutbuilder.showDeleteModal(this);'));
             // Default name
             $this->def('name', 'unknown');
+            if ($this->get('jdoc'))
+            {
+                $this->set('jdoc', new JObject($this->get('jdoc')));
+            } else
+            {
+                $this->set('jdoc', new JObject());
+            }
         }
 
         public function setRoot($isRoot)
@@ -156,7 +163,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         {
             $grid = new JObject($this->get('grid'));
             $width = $grid->get($name);
-            return empty($width)? 12 : $width;
+            return empty($width) ? 12 : $width;
         }
 
         /**

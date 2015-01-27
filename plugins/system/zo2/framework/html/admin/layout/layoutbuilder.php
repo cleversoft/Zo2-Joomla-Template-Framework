@@ -53,8 +53,9 @@ defined('_JEXEC') or die('Restricted access');
     </div>
     <div id="zo2-layoutbuilder" class="row-fluid">
         <?php foreach ($layout as $row) : ?>
-            <?php $this->set('child', false); ?>
-            <?php $this->set('row', new Zo2LayoutbuilderRow($row)); ?>
+            <?php $row = new Zo2LayoutbuilderRow($row); ?>
+            <?php $row->setRoot(true); ?>            
+            <?php $this->set('row', $row); ?>
             <?php $this->load('Zo2://html/admin/layout/layoutbuilder.row.php'); ?>
         <?php endforeach; ?>
     </div>
