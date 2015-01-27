@@ -18,7 +18,7 @@ defined('_JEXEC') or die('Restricted access');
     <div id="zo2-empty-parent-row" style="display: none">
         <?php
         $blankRow = new Zo2LayoutbuilderRow();
-        $blankRow->isRoot(true);
+        $blankRow->setRoot(true);
         $this->set('row', $blankRow);
         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
         ?>
@@ -26,7 +26,7 @@ defined('_JEXEC') or die('Restricted access');
     <div id="zo2-empty-child-row" style="display: none">
         <?php
         $blankRow = new Zo2LayoutbuilderRow();
-        $blankRow->isRoot(false);
+        $blankRow->setRoot(false);
         $this->set('row', $blankRow);
         $this->load('Zo2://html/admin/layout/layoutbuilder.row.php');
         ?>
