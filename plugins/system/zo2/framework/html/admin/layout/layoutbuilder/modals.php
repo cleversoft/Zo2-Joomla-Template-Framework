@@ -12,7 +12,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<!-- Settings -->
+<!-- Row modals -->
 <div id="zo2-row-setting" class="modal hide fade in">
     <div class="modal-dialog">
         <div class="modal-content">

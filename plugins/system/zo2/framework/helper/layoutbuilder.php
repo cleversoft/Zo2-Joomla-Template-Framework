@@ -22,6 +22,55 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
     class Zo2HelperLayoutbuilder
     {
 
+        /**
+         * 
+         * @param type $position
+         * @return type
+         */
+        public static function countModules($position)
+        {
+            return count(JModuleHelper::getModules($position));
+        }
+
+        public static function isAvailableModulePosition($position)
+        {
+            return (bool) self::countModules($position) > 0;
+        }
+
+        /**
+         * Check if module is avaiable to render
+         * @staticvar type $modules
+         * @param type $modName
+         * @return boolean
+         */
+        public static function isModuleAvaiable($modName)
+        {
+            static $modules;
+            if (!isset($modules[$modName]))
+            {
+                $modules[$modName] = JModuleHelper::getModule($modName);
+            }
+            if ($modules[$modName]->id != 0)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
+        public static function getTypes()
+        {
+            return array(
+                JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_JOOMLA') => array(
+                    'component' => JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_COMPONENT'),
+                    'messsge' => JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MESSAGE'),
+                    'modules' => JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MODULES'),
+                    'module' => JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MODULE')),
+                JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_ZO2') => self::getZo2Statements()
+            );
+        }
+
         public static function getZo2Statements()
         {
             $dir = Zo2Path::getInstance()->getPath('Zo2://html/site/jdoc');

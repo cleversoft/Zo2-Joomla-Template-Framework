@@ -41,9 +41,11 @@ if (!class_exists('JFormFieldLayoutbuilder'))
         public function getInput()
         {
             $profile = Zo2Framework::getApp()->profile;
-            $layoutBuilder = new Zo2LayoutbuilderAdmin($profile->get('layout'));
             Zo2Framework::log('Render layoutbuilder: ' . $profile->get('name'));
-            return $layoutBuilder->render();
+            $html = new Zo2Html();
+            $rows = $profile->get('layout');
+            $html->set('rows', $rows);
+            return $html->fetch('Zo2://html/admin/layout/layoutbuilder/default.php');
         }
 
     }
