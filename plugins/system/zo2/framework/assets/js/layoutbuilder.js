@@ -96,7 +96,7 @@
             var jdoc = $(element).val();
             jdoc = jdoc.toString().toLowerCase();
             var $positionField = this._getField(this._elements.settingPosition).closest(this._elements.controlGroup);
-            if(jdoc.indexOf('module') < 0){
+            if(jdoc !== 'modules'){
                 $positionField.hide('slow');
             }else{
                 $positionField.show('slow');
