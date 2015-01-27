@@ -90,7 +90,7 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
                 . 'aria-invalid="false"'
             );
 
-            return JHtml::_('select.groupedlist', $positions, 'jform[position]', $attr);
+            return JHtml::_('select.groupedlist', $positions, '', $attr);
         }
 
     }
