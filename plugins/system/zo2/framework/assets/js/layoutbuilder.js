@@ -29,6 +29,7 @@
             /* Settings */
             settingName: '#zo2-setting-name',
             settingJdoc: '#zo2-setting-jdoc',
+            settingPosition: '#zo2-setting-position',
             settingStyle: '#zo2-setting-style',
             settingOffset: '#zo2-setting-offset',
             settingCss: '#zo2-setting-css',
@@ -216,6 +217,9 @@
                 if (data.jdoc.hasOwnProperty('style')) {
                     this._updateSelectBox(this._getField(this._elements.settingStyle), data.jdoc.style);
                 }
+                if (data.jdoc.hasOwnProperty('name')) {
+                    this._updateSelectBox(this._getField(this._elements.settingPosition), data.jdoc.name);
+                }
             }
             /* Update offset */
             if (data.hasOwnProperty('offset')) {
@@ -237,7 +241,7 @@
             var data = {
                 name: _self._getField(_self._elements.settingName).val(),
                 jdoc: {
-                    name: _self._getField(_self._elements.settingName).val(),
+                    name: _self._getField(_self._elements.settingPosition).val(),
                     type: _self._getField(_self._elements.settingJdoc).val(),
                     style: _self._getField(_self._elements.settingStyle).val(),
                 },
