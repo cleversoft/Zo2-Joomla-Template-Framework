@@ -35,9 +35,9 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         {
             parent::__construct($properties);
             $this->addControl('move', 'arrows', 'move', array('id' => 'move-row'));
-            $this->addControl('Add New Col', 'columns', 'add-row', array('onClick' => 'zo2.layoutbuilder.addRow(this);'));
-            $this->addControl('Add New Row', 'align-justify', 'add-col', array('onClick' => 'zo2.layoutbuilder.addCol(this);'));
             $this->addControl('Settings', 'cog', 'settings', array('onClick' => 'zo2.layoutbuilder.showSettingModal(this);'));
+            $this->addControl('Add New Col', 'columns', 'add-row', array('onClick' => 'zo2.layoutbuilder.addRow(this);'));
+            $this->addControl('Duplicate Row', 'files-o', 'duplicate-col', array('onClick' => ''));
             $this->addControl('remove', 'remove', 'delete', array('onClick' => 'zo2.layoutbuilder.showDeleteModal(this);'));
             // Default name
             $this->def('name', 'unknown');
