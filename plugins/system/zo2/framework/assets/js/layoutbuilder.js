@@ -17,6 +17,7 @@
             sortableRow: '.sortable-row',
             joomlaTooltip: '.tooltip',
             parentContainer: '.parent-container',
+            controlGroup: '.control-group',
             rowName: '.row-name',
             rowSize: '.row-size',
             rowWidth: '.row-width',
@@ -89,6 +90,17 @@
                     $(this).removeAttr('selected');
                 }
             });
+            $element.trigger('change');
+        },
+        onJdocChange:function(element){
+            var jdoc = $(element).val();
+            jdoc = jdoc.toString().toLowerCase();
+            var $positionField = this._getField(this._elements.settingPosition).closest(this._elements.controlGroup);
+            if(jdoc !== 'modules'){
+                $positionField.hide('slow');
+            }else{
+                $positionField.show('slow');
+            }
         },
         /**
          * Get setting field
