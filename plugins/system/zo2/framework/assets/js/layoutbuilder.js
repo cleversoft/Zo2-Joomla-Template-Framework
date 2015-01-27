@@ -36,7 +36,7 @@
             visibleMobile: '#zo2-enable-responsive-mobile',
             visibleTable: '#zo2-enable-responsive-tablet',
             visibleDesktop: '#zo2-enable-responsive-desktop',
-            visibleLargeDesktop: '#zo2-enable-responsive-largedesktop'            
+            visibleLargeDesktop: '#zo2-enable-responsive-largedesktop'
         },
         /* Layout JSON buffer */
         layoutJson: null,
@@ -134,7 +134,7 @@
             }
             this._init();
         },
-        showDeleteModal: function(element){
+        showDeleteModal: function (element) {
             this.editingElement = $(element).closest(this._elements.sortableRow);
             $(this._elements.rowDelete).modal('show');
         },
@@ -244,10 +244,10 @@
                 class: _self._getField(_self._elements.settingCss).val(),
                 offset: _self._getField(_self._elements.settingOffset).val(),
             };
-            if(typeof(oldData.visibility) !== 'undefined'){
+            if (typeof (oldData.visibility) !== 'undefined') {
                 data.visibility = oldData.visibility;
             }
-            if(typeof(oldData.gird) !== 'undefined'){
+            if (typeof (oldData.gird) !== 'undefined') {
                 data.gird = oldData.gird;
             }
             this.editingElement.data('zo2', data);
@@ -281,17 +281,17 @@
          * @param {string} type object/string
          * @returns {undefined}
          */
-        getLayoutJson: function(type){
-           this.layoutJson = [];
-           type = (typeof(type) === 'undefined')?'object':type;
-           this._getLayoutJson();
-           return (type === 'string')? w.JSON.stringify(this.layoutJson):this.layoutJson;
+        getLayoutJson: function (type) {
+            this.layoutJson = [];
+            type = (typeof (type) === 'undefined') ? 'object' : type;
+            this._getLayoutJson();
+            return (type === 'string') ? w.JSON.stringify(this.layoutJson) : this.layoutJson;
         },
         /**
          * Update JSON field
          * @returns {undefined}
          */
-        updateJson: function(){
+        updateJson: function () {
             $(this._elements.jsonField).val(this.getLayoutJson('string'));
         }
     };

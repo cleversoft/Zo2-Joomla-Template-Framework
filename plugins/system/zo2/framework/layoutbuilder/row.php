@@ -155,7 +155,8 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         public function getWidth($name = 'md')
         {
             $grid = new JObject($this->get('grid'));
-            return $grid->get($name);
+            $width = $grid->get($name);
+            return empty($width)? 12 : $width;
         }
 
         /**

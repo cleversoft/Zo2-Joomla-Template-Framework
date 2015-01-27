@@ -10,11 +10,11 @@ if (isset($properties['children']))
 }
 ?>
 
-<div class="sortable-row <?php echo $child ? 'row-child' . $row->getClass() : 'row-parent row-fluid'; ?>"
+<div class="sortable-row <?php echo $child ? 'row-child ' : 'row-parent'; echo(' '. $row->getClass()); ?> "
      id="zo2-<?php echo $blockName; ?>"
      data-zo2="<?php echo htmlentities(Zo2HelperEncode::json($properties)); ?>"
      >
-    <div class="row-control <?php echo $child ? '' : $row->getClass(); ?>">
+    <div class="row-control">
         <div class="parent-container clearfix">
             <div class="row-size">
                 <a title="Decrease width" onclick="zo2.layoutbuilder.resize(this, 'decrease');" class="row-decrease"><i data-original-title="Decrease width" class="hasTooltip fa fa-angle-double-left"></i></a>
@@ -25,14 +25,13 @@ if (isset($properties['children']))
                 <span><?php echo $row->get('name'); ?></span>
             </div>
             <div class="row-controls">
-                <?php echo $row->getControls(); ?>
+<?php echo $row->getControls(); ?>
             </div>
         </div>
         <div id="zo2-row-setting-container" style="display: none"></div>
-        <div class="children-container row-fluid sortable-row connectedSortable">
+        <div class="children-container row-fluid connectedSortable">
             <?php
-            if (count($children) > 0) :
-                {
+            if (count($children) > 0) : {
                     foreach ($children as $child)
                     {
                         $this->set('child', true);
