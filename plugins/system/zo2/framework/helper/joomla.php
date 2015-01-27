@@ -3,7 +3,8 @@
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
- *
+ * 
+ * @since       2.0.0
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
@@ -15,37 +16,16 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2LayoutbuilderAbstract'))
+if (!class_exists('Zo2HelperJoomla'))
 {
 
-    /**
-     * Layout builder base class
-     */
-    abstract class Zo2LayoutbuilderAbstract extends JObject
+    class Zo2HelperJoomla
     {
-
-        abstract public function render();
-
-        /**
-         * Render layout of rows
-         * @param array $rows
-         * @return html
-         */
-        protected function _render($rows)
-        {
-            $html = array();
-            foreach ($rows as $row)
-            {
-                $row = new Zo2LayoutbuilderRow($row);
-                $html [] = $row->render();
-            }
-            return implode(PHP_EOL, $html);
-        }
 
         /**
          * 
-         * @param type $position
-         * @return type
+         * @param string $position
+         * @return int
          */
         public function countModules($position)
         {

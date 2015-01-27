@@ -12,15 +12,24 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2LayoutbuilderAdmin')) {
+/**
+ * Class exists checking
+ */
+if (!class_exists('Zo2LayoutbuilderAdmin'))
+{
 
-    class Zo2LayoutbuilderAdmin extends Zo2LayoutbuilderAbstract {
+    /**
+     * Layout builder for administrator
+     */
+    class Zo2LayoutbuilderAdmin extends Zo2LayoutbuilderAbstract
+    {
 
         /**
-         * Render whole layout from json
-         * @return type
+         * Render layout builder for backend from json
+         * @return string
          */
-        public function render() {
+        public function render()
+        {
             $html = new Zo2Html();
             $html->set('layout', $this->getProperties());
             return $html->fetch('Zo2://html/admin/layout/layoutbuilder.php');

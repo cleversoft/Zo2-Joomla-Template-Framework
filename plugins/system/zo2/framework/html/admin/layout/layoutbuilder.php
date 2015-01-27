@@ -1,4 +1,17 @@
-<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<?php
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zootemplate.com/zo2
+ * @link        https://github.com/cleversoft/zo2
+ * @author      ZooTemplate <http://zootemplate.com>
+ * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ */
+defined('_JEXEC') or die('Restricted access');
+?>
+<!-- Layout builder entry point -->
 <div id="zo2-layoutbuilder-container">
     <input type="hidden" id="zo2-layoutbuilder-json" name="zo2[layout]">
     <div id="zo2-empty-parent-row" style="display: none">

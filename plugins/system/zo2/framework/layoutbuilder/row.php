@@ -11,6 +11,7 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
 if (!class_exists('Zo2LayoutbuilderRow'))
 {
 
@@ -39,6 +40,16 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             $this->addControl('remove', 'remove', 'delete', array('onClick' => 'zo2.layoutbuilder.showDeleteModal(this);'));
             // Default name
             $this->def('name', 'unknown');
+        }
+
+        public function setRoot($isRoot)
+        {
+            $this->set('root', $isRoot);
+        }
+
+        public function isRoot()
+        {
+            return $this->get('root');
         }
 
         public function addControl($name, $icon, $class, $data = array())
