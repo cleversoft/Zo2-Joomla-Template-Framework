@@ -12,6 +12,7 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
+<!-- Settings -->
 <div id="zo2-row-setting" class="modal hide fade in">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -28,13 +29,13 @@ defined('_JEXEC') or die('Restricted access');
                     <div class="controls">
                         <input type="text" id="zo2-setting-name" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_NAME'); ?>">
                     </div>
-                </div>                
+                </div>                   
                 <!-- Jdoc statements -->
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-jdoc"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_LABEL_JDOC'); ?></label>
                     <div class="controls">
                         <!-- http://docs.joomla.org/Jdoc_statements -->
-                        <select id="zo2-setting-jdoc">             
+                        <select id="zo2-setting-jdoc" onchange="zo2.layoutbuilder.onJdocChange(this);">             
                             <option value="none"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_NONE'); ?></option>
                             <optgroup label="Joomla! Document">
                                 <option value="component"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_COMPONENT'); ?></option>
@@ -50,6 +51,20 @@ defined('_JEXEC') or die('Restricted access');
                                 <?php endforeach; ?>
                             </optgroup>                            
                         </select>
+                    </div>
+                </div>
+
+                <!--
+                @todo Fix this hard code
+                JDoc position
+                -->
+                <?php
+                ?>
+
+                <div class="control-group">
+                    <label class="control-label" for="zo2-setting-position">Position</label>
+                    <div class="controls">
+                        <?php echo Zo2HelperLayoutbuilder::getHtmlPositions(); ?>
                     </div>
                 </div>
                 <!-- Styles -->
@@ -141,6 +156,24 @@ defined('_JEXEC') or die('Restricted access');
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button type="button" onclick="zo2.layoutbuilder.saveSetting();" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete confirm -->
+<div class="modal fade" id="zo2-delete-confirm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_TITLE')); ?></h4>
+            </div>
+            <div class="modal-body">
+                <p><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_CONTENT')); ?></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="zo2.layoutbuilder.deleteRow();"><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_CONFIRM')); ?></button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo(JText::_('ZO2_ADMIN_LAYOUTBUILDER_MODAL_DELETE_CONFIRM_CANCEL')); ?></button>
             </div>
         </div>
     </div>

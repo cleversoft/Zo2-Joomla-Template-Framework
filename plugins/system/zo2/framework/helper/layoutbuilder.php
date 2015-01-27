@@ -63,6 +63,36 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
             );
         }
 
+        public static function getHtmlPositions($selectedPosition = '')
+        {
+            JHtml::_('formbehavior.chosen', 'select');
+            require_once JPATH_ADMINISTRATOR . '/components/com_templates/helpers/templates.php';
+            require_once JPATH_ADMINISTRATOR . '/components/com_modules/' . '/helpers/modules.php';
+            JHtml::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_modules/' . '/helpers/html');
+
+            $clientId = 0;
+            $state = 1;
+
+            $positions = JHtml::_('modules.positions', $clientId, $state, $selectedPosition);
+
+
+// Add custom position to options
+            $customGroupText = JText::_('COM_MODULES_CUSTOM_POSITION');
+
+// Build field
+            $attr = array(
+                'id' => 'zo2-setting-position',
+                'list.select' => $selectedPosition,
+                'list.attr' => 'class="chzn-custom-value" '
+                . 'data-custom_group_text="' . $customGroupText . '" '
+                . 'data-no_results_text="' . JText::_('COM_MODULES_ADD_CUSTOM_POSITION') . '" '
+                . 'data-placeholder="' . JText::_('COM_MODULES_TYPE_OR_SELECT_POSITION') . '" '
+                . 'aria-invalid="false"'
+            );
+
+            return JHtml::_('select.groupedlist', $positions, 'jform[position]', $attr);
+        }
+
     }
 
 }

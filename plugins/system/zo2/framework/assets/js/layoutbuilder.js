@@ -17,6 +17,7 @@
             sortableRow: '.sortable-row',
             joomlaTooltip: '.tooltip',
             parentContainer: '.parent-container',
+            controlGroup: '.control-group',
             rowName: '.row-name',
             rowSize: '.row-size',
             rowWidth: '.row-width',
@@ -29,6 +30,7 @@
             /* Settings */
             settingName: '#zo2-setting-name',
             settingJdoc: '#zo2-setting-jdoc',
+            settingPosition: '#zo2-setting-position',
             settingStyle: '#zo2-setting-style',
             settingOffset: '#zo2-setting-offset',
             settingCss: '#zo2-setting-css',
@@ -88,6 +90,17 @@
                     $(this).removeAttr('selected');
                 }
             });
+            $element.trigger('change');
+        },
+        onJdocChange:function(element){
+            var jdoc = $(element).val();
+            jdoc = jdoc.toString().toLowerCase();
+            var $positionField = this._getField(this._elements.settingPosition).closest(this._elements.controlGroup);
+            if(jdoc !== 'modules'){
+                $positionField.hide('slow');
+            }else{
+                $positionField.show('slow');
+            }
         },
         /**
          * Get setting field
@@ -216,6 +229,9 @@
                 if (data.jdoc.hasOwnProperty('style')) {
                     this._updateSelectBox(this._getField(this._elements.settingStyle), data.jdoc.style);
                 }
+                if (data.jdoc.hasOwnProperty('name')) {
+                    this._updateSelectBox(this._getField(this._elements.settingPosition), data.jdoc.name);
+                }
             }
             /* Update offset */
             if (data.hasOwnProperty('offset')) {
@@ -237,7 +253,7 @@
             var data = {
                 name: _self._getField(_self._elements.settingName).val(),
                 jdoc: {
-                    name: _self._getField(_self._elements.settingName).val(),
+                    name: _self._getField(_self._elements.settingPosition).val(),
                     type: _self._getField(_self._elements.settingJdoc).val(),
                     style: _self._getField(_self._elements.settingStyle).val(),
                 },
