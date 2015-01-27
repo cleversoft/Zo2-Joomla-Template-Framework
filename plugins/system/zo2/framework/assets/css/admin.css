@@ -137,6 +137,9 @@ img {
   cursor: move;
   margin-bottom: 5px;
 }
+#zo2-framework #zo2-layoutbuilder-container .children-container {
+  min-height: 10px;
+}
 #zo2-framework #zo2-layoutbuilder-container .row-parent > .row-control {
   position: relative;
   background-color: #fbfbfb;
