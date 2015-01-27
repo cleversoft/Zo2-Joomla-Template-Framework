@@ -107,6 +107,12 @@ if (!class_exists('Zo2Factory'))
                         {
                             $id = $templateId;
                             $template = self::getTemplate($templateId);
+                            // Can't get template provided itemId than we follow Joomla!
+                            if ($template == false)
+                            {
+                                $template = JFactory::getApplication()->getTemplate(true);
+                                $id = $template->id;
+                            }
                         } else
                         {
                             $template = JFactory::getApplication()->getTemplate(true);
