@@ -97,13 +97,20 @@ if (!class_exists('Zo2LayoutbuilderAbstract'))
             return $this->get('root');
         }
 
+        /**
+         * 
+         * @param type $name
+         * @param type $icon
+         * @param type $class
+         * @param type $data
+         */
         public function addControl($name, $icon, $class, $data = array())
         {
             $control = new Zo2LayoutbuilderControl();
-            $control->setName($name);
+            $control->setTitle($name);
             $control->setIcon($icon);
             $control->addClass($class);
-            $control->set('data', $data);
+            $control->addHtmlAttributes($data);
             $this->_controls[] = $control;
         }
 
