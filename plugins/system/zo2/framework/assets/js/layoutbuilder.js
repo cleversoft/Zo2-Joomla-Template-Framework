@@ -199,7 +199,9 @@
          * @returns {undefined}
          */
         deleteRow: function (element) {
-            this.editingElement.remove();
+            this.editingElement.hide('slow', function(){
+                $(this).remove();
+            });
             $(this._elements.joomlaTooltip).find(':visible').hide();
             $(this._elements.rowDelete).modal('hide');
         },
