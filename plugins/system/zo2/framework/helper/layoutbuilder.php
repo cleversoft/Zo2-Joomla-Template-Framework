@@ -96,7 +96,6 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
         {
             return array(
                 'none' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
-                'auto' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
                 '1' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
                 '2' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
                 '3' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
