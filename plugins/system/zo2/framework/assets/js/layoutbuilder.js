@@ -38,7 +38,9 @@
             visibleMobile: '#zo2-enable-responsive-mobile',
             visibleTable: '#zo2-enable-responsive-tablet',
             visibleDesktop: '#zo2-enable-responsive-desktop',
-            visibleLargeDesktop: '#zo2-enable-responsive-largedesktop'
+            visibleLargeDesktop: '#zo2-enable-responsive-largedesktop',
+            /* Joomla element */
+            joomlaSelectDone: '.chzn-done'
         },
         /* Layout JSON buffer */
         layoutJson: null,
@@ -93,6 +95,12 @@
             });
             $element.trigger('change');
         },
+        /**
+         * Update radio button value
+         * @param {type} selector
+         * @param {type} value
+         * @returns {undefined}
+         */
         _updateRadioButton: function(selector, value){
             var $element = this._getField(selector);
             var enable = '[for*="'+ selector.substr(1) + '0"]';
@@ -107,10 +115,20 @@
                 $element.find('#' + selector.substr(1) + '1').attr('checked', 'true');
             }
         },
+        /**
+         * Get radio button value
+         * @param {type} selector
+         * @returns {unresolved}
+         */
         _getRadioButtonValue: function(selector){
             var $element = this._getField(selector);
             return $element.find('#' + $element.find('.active').attr('for')).val();
         },
+        /**
+         * JDoc event handler
+         * @param {type} element
+         * @returns {undefined}
+         */
         onJdocChange:function(element){
             var jdoc = $(element).val();
             jdoc = jdoc.toString().toLowerCase();
@@ -166,6 +184,11 @@
             }
             this._init();
         },
+        /**
+         * Show delete comfirm modal
+         * @param {type} element
+         * @returns {undefined}
+         */
         showDeleteModal: function (element) {
             this.editingElement = $(element).closest(this._elements.sortableRow);
             $(this._elements.rowDelete).modal('show');
@@ -357,6 +380,12 @@
     /* Init after document ready */
     $(w.document).ready(function () {
         z.layoutbuilder._init();
+        $(z.layoutbuilder._elements.joomlaSelectDone).on('change', function(){
+            var $select = $(this);
+            var $joomlaSelectbox = $select.next();
+            var title = $select.find('option:selected').html();
+            $joomlaSelectbox.find('>a>span').html(title);
+        });
     });
 
 })(window, zo2, jQuery);
