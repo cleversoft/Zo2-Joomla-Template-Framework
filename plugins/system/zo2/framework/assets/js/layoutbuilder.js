@@ -203,9 +203,16 @@
             $(this._elements.joomlaTooltip).find(':visible').hide();
             $(this._elements.rowDelete).modal('hide');
         },
+        /**
+         * Duplicate a row
+         * @param {type} element
+         * @returns {undefined}
+         */
         duplicate: function(element){
+            this.sortableFlush();
             var $current = $(element).closest(this._elements.sortableRow);
             $current.clone().appendTo($current.parent());
+            this._init();
         },
         /**
          * Resize row
@@ -384,6 +391,7 @@
     /* Init after document ready */
     $(w.document).ready(function () {
         z.layoutbuilder._init();
+        /* Fix conflict with joomla selectbox */
         $(z.layoutbuilder._elements.joomlaSelectDone).on('change', function(){
             var $select = $(this);
             var $joomlaSelectbox = $select.next();
