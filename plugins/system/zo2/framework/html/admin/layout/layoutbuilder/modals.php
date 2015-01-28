@@ -45,9 +45,7 @@ defined('_JEXEC') or die('Restricted access');
                             </optgroup>
                             <!-- These are extended for 3rd parties -->
                             <optgroup label="Zo2">
-                                
                                 <?php $zo2DocStatements = Zo2HelperLayoutbuilder::getZo2Statements(); ?>
-                                <?php print_r ($zo2DocStatements);?>
                                 <?php foreach ($zo2DocStatements as $key => $value) : ?>
                                     <option value="<?php echo $key; ?>"><?php echo JText::_($value); ?></option>
                                 <?php endforeach; ?>
