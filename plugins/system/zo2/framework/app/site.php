@@ -74,11 +74,9 @@ if (!class_exists('Zo2AppSite'))
          */
         public function getHtml()
         {
-            // Init layout builder with current profile
-            $layoutBuilder = new Zo2LayoutbuilderSite($this->profile->get('layout'));
             // Prepare properties for html to render
             $html = new Zo2Html();
-            $html->set('layout', $layoutBuilder);
+            $html->set('rows', $this->profile->get('layout'));
             $buffer = $html->fetch('Zo2://html/site/layout/default.php');
             // Optimize buffer
             if (Zo2Framework::getParam('enable_optimize_html'))

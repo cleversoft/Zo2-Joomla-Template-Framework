@@ -138,11 +138,7 @@ if (!class_exists('Zo2LayoutbuilderAbstract'))
 
                 if ($child->hasData())
                 {
-                    $hasChild = true;
-                    continue;
-                } else
-                {
-                    return false;
+                    return true;
                 }
             }
             return $hasChild;

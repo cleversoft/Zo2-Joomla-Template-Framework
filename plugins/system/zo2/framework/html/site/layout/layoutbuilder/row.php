@@ -11,10 +11,11 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-$jDoc = $row->getJdoc();
+$jDoc = $row->get('jdoc');
 $jDocName = $jDoc->get('name');
 $jDocStyle = $jDoc->get('style', 'xhtml');
 $rowName = $row->get('name');
+$children = $row->get('children', array());
 ?>
 <section 
     class="<?php echo $row->getClass(); ?>" 
@@ -25,13 +26,8 @@ $rowName = $row->get('name');
     {
         /* Modules position */
         case 'modules':
-            echo '<div id="position-' . $jDocName . '" class="modules-' . $row->countModules($jDocName) . '">';
+            echo '<div id="position-' . $jDocName . '" class="modules-' . Zo2HelperLayoutbuilder::countModules($jDocName) . '">';
             echo '<jdoc:include type="modules" name="' . $jDocName . '" style="' . $jDocStyle . '" />';
-            echo '</div>';
-            break;
-        case 'module':
-            echo '<div id="mod-' . $jDocName . '" >';
-            echo '<jdoc:include type="module" name="' . $jDocName . '" style="' . $jDocStyle . '" />';
             echo '</div>';
             break;
         case 'component':
@@ -51,8 +47,18 @@ $rowName = $row->get('name');
     }
     ?>
     <?php if ($row->hasChildren()) : ?>      
-        <!-- BEGIN children: <?php echo $rowName; ?> -->
-        <?php echo $row->renderChildren(); ?>
+        <!-- BEGIN children: <?php echo $rowName; ?> -->        
+        <?php
+        if (count($children) > 0) :
+            {
+                foreach ($children as $child)
+                {
+                    $child = new Zo2LayoutbuilderRow($child);
+                    echo $child->render('Zo2://html/site/layout/layoutbuilder');
+                }
+            }
+        endif;
+        ?>
         <!-- END children: <?php echo $rowName; ?> -->
     <?php endif; ?>
 </section>
