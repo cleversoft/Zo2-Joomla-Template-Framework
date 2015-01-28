@@ -54,13 +54,7 @@ defined('_JEXEC') or die('Restricted access');
                     </div>
                 </div>
 
-                <!--
-                @todo Fix this hard code
-                JDoc position
-                -->
-                <?php
-                ?>
-
+                <!-- Position -->
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-position">Position</label>
                     <div class="controls">
@@ -71,22 +65,14 @@ defined('_JEXEC') or die('Restricted access');
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-style"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
                     <div class="controls">
-                        <select id="zo2-setting-style">
-                            <?php $styles = Zo2HelperLayoutbuilder::getModuleStyles(); ?>
-                            <?php foreach ($styles as $key => $value) : ?>
-                                <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <?php echo Zo2HelperLayoutbuilder::getHtmlStyles(); ?>
                     </div>
                 </div>
+                <!-- Offset-->
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-offset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                     <div class="controls">
-                        <select id="zo2-setting-offset">
-                            <?php foreach (Zo2HelperLayoutbuilder::getOffsets() as $key => $value) : ?>
-                                <option value="<?php echo $key; ?>"><?php echo JText::_($value) . ' ' . $key ?></option>
-                            <?php endforeach; ?>                           
-                        </select>
+                        <?php echo Zo2HelperLayoutbuilder::getHtmlOffsets(); ?>                     
                     </div>
                 </div>
                 <!-- Custom css -->
@@ -96,6 +82,7 @@ defined('_JEXEC') or die('Restricted access');
                         <input type="text" id="zo2-setting-css" placeholder="<?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_ROWCSS'); ?>">
                     </div>
                 </div>
+                <!-- Visibility -->
                 <div id="column-responsive">
                     <div class="control-group">
                         <div class="control-label">

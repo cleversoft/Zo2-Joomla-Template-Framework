@@ -87,7 +87,7 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
         public static function getModuleStyles()
         {
             $array = array(
-                'none', 'html5', 'table', 'horz', 'xhtml', 'rounded', 'outline', 'zo2', 'offcanvas'
+                'Inherited', 'none', 'html5', 'table', 'horz', 'xhtml', 'rounded', 'outline', 'zo2', 'offcanvas'
             );
             return $array;
         }
@@ -96,7 +96,6 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
         {
             return array(
                 'none' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
-                'auto' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
                 '1' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
                 '2' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
                 '3' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
@@ -110,6 +109,42 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
                 '11' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
                 '12' => 'ZO2_ADMIN_LAYOUTBUILDER_OFFSET_LABEL',
             );
+        }
+
+        /**
+         * 
+         * @param type $selectedOffset
+         * @return type
+         */
+        public static function getHtmlStyles($selectedStyle = 'Inherited')
+        {
+            $styles = self::getModuleStyles();
+            $options = array();
+            foreach ($styles as $key => $value)
+            {
+                ## Create $value ##
+                $options[] = JHTML::_('select.option', $value, $value);
+            }
+            $dropdown = JHTML::_('select.genericlist', $options, '', 'id="zo2-setting-style" class="inputbox"', 'value', 'text', $selectedStyle);
+            return $dropdown;
+        }
+
+        /**
+         * 
+         * @param type $selectedOffset
+         * @return type
+         */
+        public static function getHtmlOffsets($selectedOffset = 'none')
+        {
+            $offsets = self::getOffsets();
+            $options = array();
+            foreach ($offsets as $key => $value)
+            {
+                ## Create $value ##
+                $options[] = JHTML::_('select.option', $key, JText::_($value) . '-' . $key);
+            }
+            $dropdown = JHTML::_('select.genericlist', $options, '', 'id="zo2-setting-offset" class="inputbox"', 'value', 'text', $selectedOffset);
+            return $dropdown;
         }
 
         public static function getHtmlPositions($selectedPosition = '')

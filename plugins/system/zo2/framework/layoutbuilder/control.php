@@ -11,52 +11,104 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
+
+/**
+ * Class exists checking
+ */
 if (!class_exists('Zo2LayoutbuilderControl'))
 {
 
     /**
-     * Class object for each row
+     * Control object class
      */
     class Zo2LayoutbuilderControl extends JObject
     {
 
-        public $class = array(
+        /**
+         *
+         * @var string
+         */
+        private $_classes = array(
             'row-control-icon',
             'hasTooltip'
         );
-        public $data = array();
 
-        public function __construct($properties = null)
-        {
-            parent::__construct($properties);
-        }
+        /**
+         *
+         * @var array
+         */
+        private $_htmlAttributes = array();
 
+        /**
+         * 
+         * @param string $class
+         */
         public function addClass($class)
         {
-            if (!in_array($class, $this->class))
+            if (!in_array($class, $this->_classes))
             {
-                $this->class[] = $class;
+                $this->_classes[] = $class;
             }
         }
 
+        /**
+         * 
+         * @return array
+         */
+        public function getClasses()
+        {
+            return $this->_classes;
+        }
+
+        /**
+         * 
+         * @param string $icon
+         */
         public function setIcon($icon)
         {
             $this->set('icon', 'fa fa-' . $icon);
         }
 
-        public function setName($name)
+        /**
+         * 
+         * @param string $name
+         */
+        public function setTitle($name)
         {
-            $this->set('name', $name);
+            $this->set('title', $name);
         }
 
-        public function addAttribute($name, $value)
+        /**
+         * 
+         * @param string $name
+         * @param string $value
+         */
+        public function addHtmlAttribute($name, $value)
         {
-            if (!in_array($name, $this->data))
+            if (!in_array($name, $this->_htmlAttributes))
             {
-                $this->data[$name] = $value;
+                $this->_htmlAttributes[$name] = $value;
             }
         }
 
+        public function addHtmlAttributes($array)
+        {
+            $this->_htmlAttributes = array_merge_recursive($this->_htmlAttributes, $array);
+        }
+
+        /**
+         * 
+         * @return array
+         */
+        public function getHtmlAttributes()
+        {
+            return $this->_htmlAttributes;
+        }
+
+        /**
+         * 
+         * @return string
+         */
         public function getHtml()
         {
 
@@ -66,23 +118,30 @@ if (!class_exists('Zo2LayoutbuilderControl'))
             {
                 $this->addClass($this->get('icon'));
             }
-            // Set class
-            $class = $this->get('class');
-            if (!empty($class))
+            // Generate classes
+            $classes = $this->getClasses();
+            if (!empty($classes))
             {
-                $data[] = 'class="' . implode(' ', $this->get('class')) . '"';
+                // Add class to data list
+                $data[] = 'class="' . implode(' ', $classes) . '"';
             }
             // Set data attributes
-            if ($this->get('data'))
+            $attributes = $this->getHtmlAttributes();
+            if (!empty($attributes))
             {
-                $attributes = $this->get('data');
+                // Add each html attribute to data list
                 foreach ($attributes as $key => $value)
                 {
-                    $data [] = $key . '="' . htmlentities($value) . '"';
+                    // Prevent empty value than we do not need to generate data
+                    if (!empty($value))
+                    {
+                        $data [] = $key . '="' . htmlentities($value) . '"';
+                    }
                 }
             }
-
-            $html = '<i title="' . $this->get('name') . '"' . implode(' ', $data) . '></i>';
+            // Prevent duplicate data
+            $data = array_unique($data);
+            $html = '<i title="' . $this->get('title') . '"' . implode(' ', $data) . '></i>';
             return $html;
         }
 
