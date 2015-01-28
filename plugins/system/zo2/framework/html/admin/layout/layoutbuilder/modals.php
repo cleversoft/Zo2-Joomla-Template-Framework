@@ -82,11 +82,18 @@ defined('_JEXEC') or die('Restricted access');
                 <div class="control-group">
                     <label class="control-label" for="zo2-setting-offset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                     <div class="controls">
-                        <select id="zo2-setting-offset">
-                            <?php foreach (Zo2HelperLayoutbuilder::getOffsets() as $key => $value) : ?>
-                                <option value="<?php echo $key; ?>"><?php echo JText::_($value) . ' ' . $key ?></option>
-                            <?php endforeach; ?>                           
-                        </select>
+                        <?php
+                        $selectedOffset = '';
+                        $offsets = Zo2HelperLayoutbuilder::getOffsets();
+                        $options = array();
+                        foreach ($offsets as $key => $value)
+                        {
+                            ## Create $value ##
+                            $options[] = JHTML::_('select.option', $key, JText::_($value) . '-' . $key);
+                        }
+                        $dropdown = JHTML::_('select.genericlist', $options, '', 'id="zo2-setting-offset" class="inputbox"', 'value', 'text', $selectedOffset);
+                        echo $dropdown;
+                        ?>                       
                     </div>
                 </div>
                 <!-- Custom css -->
