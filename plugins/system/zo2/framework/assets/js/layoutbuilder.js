@@ -82,7 +82,8 @@
          * @param {type} value
          * @returns {undefined}
          */
-        _updateSelectBox: function ($element, value) {
+        _updateSelectBox: function (selector, value) {
+            var $element = this._getField(selector);
             $element.find('option').each(function () {
                 if ($(this).val() == value) {
                     $(this).prop('selected', true);
@@ -91,6 +92,24 @@
                 }
             });
             $element.trigger('change');
+        },
+        _updateRadioButton: function(selector, value){
+            var $element = this._getField(selector);
+            var enable = '[for*="'+ selector.substr(1) + '0"]';
+            var disable = '[for*="'+ selector.substr(1) + '1"]';
+            $element.find('label').removeClass('active btn-success btn-danger');
+            $element.find('input:checked').removeAttr('checked');
+            if(value.toInt() == 0){
+                $element.find(enable).addClass('active btn-danger');
+                $element.find('#' + selector.substr(1) + '0').attr('checked', 'true');
+            }else{
+                $element.find(disable).addClass('active btn-success');
+                $element.find('#' + selector.substr(1) + '1').attr('checked', 'true');
+            }
+        },
+        _getRadioButtonValue: function(selector){
+            var $element = this._getField(selector);
+            return $element.find('#' + $element.find('.active').attr('for')).val();
         },
         onJdocChange:function(element){
             var jdoc = $(element).val();
@@ -224,18 +243,35 @@
             /* Update jdoc */
             if (data.hasOwnProperty('jdoc')) {
                 if (data.jdoc.hasOwnProperty('type')) {
-                    this._updateSelectBox(this._getField(this._elements.settingJdoc), data.jdoc.type);
+                    this._updateSelectBox(this._elements.settingJdoc, data.jdoc.type);
                 }
                 if (data.jdoc.hasOwnProperty('style')) {
-                    this._updateSelectBox(this._getField(this._elements.settingStyle), data.jdoc.style);
+                    this._updateSelectBox(this._elements.settingStyle, data.jdoc.style);
                 }
                 if (data.jdoc.hasOwnProperty('name')) {
-                    this._updateSelectBox(this._getField(this._elements.settingPosition), data.jdoc.name);
+                    this._updateSelectBox(this._elements.settingPosition, data.jdoc.name);
+                }
+            }
+            if(!data.hasOwnProperty('visibility')){
+                data.visibility = {xs: 1, ms: 1, md: 1, lg: 1};
+            }
+            if(data.hasOwnProperty('visibility')){
+                if(data.visibility.hasOwnProperty('xs')){
+                    this._updateRadioButton(this._elements.visibleMobile, data.visibility.xs);
+                }
+                if(data.visibility.hasOwnProperty('ms')){
+                    this._updateRadioButton(this._elements.visibleTable, data.visibility.ms);
+                }
+                if(data.visibility.hasOwnProperty('md')){
+                    this._updateRadioButton(this._elements.visibleDesktop, data.visibility.md);
+                }
+                if(data.visibility.hasOwnProperty('lg')){
+                    this._updateRadioButton(this._elements.visibleLargeDesktop, data.visibility.lg);
                 }
             }
             /* Update offset */
             if (data.hasOwnProperty('offset')) {
-                this._updateSelectBox(this._getField(this._elements.settingOffset), data.offset);
+                this._updateSelectBox(this._elements.settingOffset, data.offset);
             }
             /* Update customize css clash */
             if (data.hasOwnProperty('class')) {
@@ -259,10 +295,13 @@
                 },
                 class: _self._getField(_self._elements.settingCss).val(),
                 offset: _self._getField(_self._elements.settingOffset).val(),
+                visibility: {
+                    xs: _self._getRadioButtonValue(_self._elements.visibleMobile),
+                    ms: _self._getRadioButtonValue(_self._elements.visibleTable),
+                    md: _self._getRadioButtonValue(_self._elements.visibleDesktop),
+                    lg: _self._getRadioButtonValue(_self._elements.visibleLargeDesktop)
+                }
             };
-            if (typeof (oldData.visibility) !== 'undefined') {
-                data.visibility = oldData.visibility;
-            }
             if (typeof (oldData.gird) !== 'undefined') {
                 data.gird = oldData.gird;
             }
