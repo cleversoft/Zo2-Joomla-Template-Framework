@@ -117,7 +117,7 @@ img {
   line-height: 40px;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-control {
-  padding: 10px 15px;
+  padding: 10px 0;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-controls i {
   float: left;
@@ -136,6 +136,9 @@ img {
 }
 #zo2-framework #zo2-layoutbuilder-container .sortable-row.row-child {
   margin-bottom: 5px;
+}
+#zo2-framework #zo2-layoutbuilder-container .parent-container {
+  padding: 0 10px;
 }
 #zo2-framework #zo2-layoutbuilder-container .children-container {
   min-height: 10px;
@@ -158,7 +161,7 @@ img {
 #zo2-framework #zo2-layoutbuilder-container .row-child > .row-control {
   background-color: #fff;
   border: 1px solid #e9e9e9;
-  padding: 0 8px 8px;
+  padding: 0 0 8px;
   margin-top: 10px;
   text-align: center;
 }
@@ -210,10 +213,10 @@ img {
   background-color: #eee;
   content: "";
   height: 1px;
-  left: -8px;
+  left: 0;
   position: absolute;
   top: 58px;
-  width: calc(100% + 16px);
+  width: 100%;
 }
 #zo2-framework #zo2-layoutbuilder-container .sortable-hightligth {
   border: #feecac 1px solid;
@@ -221,44 +224,45 @@ img {
 }
 @media (min-width: 768px) {
   #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] {
-    margin-right: 2.5641%;
+    margin-right: 0;
     margin-left: 0;
+    padding: 0 10px;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"]:last-child {
     margin-right: 0;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span1 {
-    width: 5.98291%;
+    width: 8.3333333%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span2 {
-    width: 14.5299%;
+    width: 16.666666%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span3 {
-    width: 23.0769%;
+    width: 24.999999%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span4 {
-    width: 31.6239%;
+    width: 33.333333%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span5 {
-    width: 40.1709%;
+    width: 41.666666%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span6 {
-    width: 48.7179%;
+    width: 49.999999%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span7 {
-    width: 57.265%;
+    width: 58.333333%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span8 {
-    width: 65.812%;
+    width: 66.666666%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span9 {
-    width: 74.359%;
+    width: 74.999999%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span10 {
-    width: 82.906%;
+    width: 83.333333%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span11 {
-    width: 91.453%;
+    width: 91.666666%;
   }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span12 {
     width: 100%;
