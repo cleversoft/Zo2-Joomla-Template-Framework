@@ -47,7 +47,7 @@ if (!class_exists('Zo2LayoutbuilderAbstract'))
             $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_MOVE'), 'arrows', 'move', array('id' => 'move-row'));
             $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_SETTINGS'), 'cog', 'settings', array('onClick' => 'zo2.layoutbuilder.showSettingModal(this);'));
             $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_ADD_CHILDREN'), 'columns', 'add-row', array('onClick' => 'zo2.layoutbuilder.addRow(this);'));
-            $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_DUPLICATE'), 'files-o', 'duplicate-col', array('onClick' => ''));
+            $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_DUPLICATE'), 'files-o', 'duplicate-col', array('onClick' => 'zo2.layoutbuilder.duplicate(this);'));
             $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_REMOVE'), 'remove', 'delete', array('onClick' => 'zo2.layoutbuilder.showDeleteModal(this);'));
             // Default name
             $this->def('name', 'unknown');

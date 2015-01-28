@@ -203,6 +203,10 @@
             $(this._elements.joomlaTooltip).find(':visible').hide();
             $(this._elements.rowDelete).modal('hide');
         },
+        duplicate: function(element){
+            var $current = $(element).closest(this._elements.sortableRow);
+            $current.clone().appendTo($current.parent());
+        },
         /**
          * Resize row
          * @returns {undefined}
