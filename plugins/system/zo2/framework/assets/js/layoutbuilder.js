@@ -211,7 +211,7 @@
         duplicate: function(element){
             this.sortableFlush();
             var $current = $(element).closest(this._elements.sortableRow);
-            $current.clone().appendTo($current.parent());
+            $current.clone().insertAfter($current);
             this._init();
         },
         /**
