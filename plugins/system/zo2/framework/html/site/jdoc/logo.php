@@ -10,9 +10,9 @@
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted access');
-$standardLogo = Zo2Framework::getGlobalParam('standard_logo');
-$retinaLogo = Zo2Framework::getGlobalParam('retina_logo');
-$slogan = Zo2Framework::getGlobalParam('slogan');
+$standardLogo = Zo2Framework::getParam('standard_logo');
+$retinaLogo = Zo2Framework::getParam('retina_logo');
+$slogan = Zo2Framework::getParam('slogan');
 ?>
 <!-- Standard logo -->
 <?php if (!empty($standardLogo)) : ?>
