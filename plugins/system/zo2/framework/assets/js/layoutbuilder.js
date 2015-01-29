@@ -149,15 +149,6 @@
         onJdocChange: function (element) {
             var jdoc = $(element).val();
             jdoc = jdoc.toString().toLowerCase();
-            var data = $(this.editingElement).data('zo2');
-            if (data.hasOwnProperty('jdoc')) {
-                if (data.jdoc.hasOwnProperty('name')) {
-                    data.jdoc.name = '';
-                }
-                if (data.jdoc.hasOwnProperty('style')) {
-                    data.jdoc.style = '';
-                }
-            }
             if (jdoc !== 'modules') {
                 this._hideField(this._elements.settingPosition);
                 this._hideField(this._elements.settingStyle);
@@ -404,6 +395,10 @@
             };
             if (oldData.hasOwnProperty('grid')) {
                 data.grid = oldData.grid;
+            }
+            if(data.jdoc.type !== 'modules'){
+                data.jdoc.name = '';
+                data.jdoc.style = '';
             }
             /* Update offset class */
             if (data.offset != 'none') {
