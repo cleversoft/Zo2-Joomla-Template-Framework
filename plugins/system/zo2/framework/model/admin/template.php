@@ -93,17 +93,21 @@ if (!class_exists('Zo2ModelAdminTemplate'))
          */
         private function _check($data)
         {
+            // Make sure layout field is valid
             if (isset($data['layout']))
             {
                 if (is_string($data['layout']))
                 {
                     $data['layout'] = json_decode($data['layout'], true);
                 }
+                /**
+                 * @todo Should we need to verify into each row properties
+                 */
             } else
             {
+                Zo2Framework::message('ZO2_ADMIN_MODEL_MESSAGE_MISSED_LAYOUT_FIELD', 'notice');
                 return false;
             }
-
             return $data;
         }
 
