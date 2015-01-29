@@ -133,6 +133,70 @@
   }
 
   /* ===============================
+    // Icon Responsive
+  ================================ */
+  #column-responsive{
+    .btn-group{
+      padding-top: 0;
+      > label {
+        background-color: transparent;
+        background-image: none;
+        border: medium none;
+        box-shadow: none;
+        height: 33px;
+        min-width: 18px;
+        padding: 0;
+        position: relative;
+        width: 25px;
+        font-size: 0;
+        &:before {
+          font-family: "FontAwesome";
+          font-size: 25px;
+          left: 0;
+          position: absolute;
+          top: 0;
+        }
+        &.active {
+          opacity: 0;
+          visibility: hidden;
+        }
+        &.label-yes{
+          opacity: 0.3;
+          left: -25px;
+        }
+      }
+      &#zo2-enable-responsive-mobile{
+        label{
+          &:before{
+            content: "";
+          }
+        }
+      }
+      &#zo2-enable-responsive-tablet{
+        label{
+          &:before{
+            content: "";
+          }
+        }
+      }
+      &#zo2-enable-responsive-desktop{
+        label{
+          &:before{
+            content: "";
+          }
+        }
+      }
+      &#zo2-enable-responsive-largedesktop{
+        label{
+          &:before{
+            content: "";
+          }
+        }
+      }
+    }
+  }
+
+  /* ===============================
     // Grid Bootstrap Overide
   ================================ */
   @media (min-width: 768px) {

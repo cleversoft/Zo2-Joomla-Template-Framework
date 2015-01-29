@@ -222,6 +222,48 @@ img {
   border: #feecac 1px solid;
   background-color: #fdf7c2;
 }
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group {
+  padding-top: 0;
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group > label {
+  background-color: transparent;
+  background-image: none;
+  border: medium none;
+  box-shadow: none;
+  height: 33px;
+  min-width: 18px;
+  padding: 0;
+  position: relative;
+  width: 25px;
+  font-size: 0;
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group > label:before {
+  font-family: "FontAwesome";
+  font-size: 25px;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group > label.active {
+  opacity: 0;
+  visibility: hidden;
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group > label.label-yes {
+  opacity: 0.3;
+  left: -25px;
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group#zo2-enable-responsive-mobile label:before {
+  content: "";
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group#zo2-enable-responsive-tablet label:before {
+  content: "";
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group#zo2-enable-responsive-desktop label:before {
+  content: "";
+}
+#zo2-framework #zo2-layoutbuilder-container #column-responsive .btn-group#zo2-enable-responsive-largedesktop label:before {
+  content: "";
+}
 @media (min-width: 768px) {
   #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] {
     margin-right: 0;

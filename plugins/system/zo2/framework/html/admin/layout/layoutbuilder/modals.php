@@ -85,58 +85,34 @@ defined('_JEXEC') or die('Restricted access');
                 <!-- Visibility -->
                 <div id="column-responsive">
                     <div class="control-group">
-                        <div class="control-label">
-                            <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_MOBILE'); ?></label>
-                        </div>
+                        <label class="control-label"><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE'); ?></label>
                         <div class="controls">
                             <fieldset class="radio btn-group" id="zo2-enable-responsive-mobile">
-                                <input type="radio" checked="checked" value="0" id="zo2-enable-responsive-mobile0">
-                                <label for="zo2-enable-responsive-mobile0" class="btn">No</label>
-                                <input type="radio" value="1" id="zo2-enable-responsive-mobile1">
-                                <label for="zo2-enable-responsive-mobile1" class="btn">Yes</label>
+                                <input type="radio" checked="checked" value="0" name="zo2[enable-responsive-mobile]" id="zo2-enable-responsive-mobile0">
+                                <label class="label-no" for="zo2-enable-responsive-mobile0" class="btn">No</label>
+                                <input type="radio" value="1" name="zo2[enable-responsive-mobile]" id="zo2-enable-responsive-mobile1">
+                                <label class="label-yes" for="zo2-enable-responsive-mobile1" class="btn">Yes</label>
                             </fieldset>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_TABLET'); ?></label>
-                        </div>
-                        <div class="controls">
                             <fieldset class="radio btn-group" id="zo2-enable-responsive-tablet">
-                                <input type="radio" checked="checked" value="0" id="zo2-enable-responsive-tablet0">
-                                <label for="zo2-enable-responsive-tablet0" class="btn">No</label>
-                                <input type="radio" value="1" id="zo2-enable-responsive-tablet1">
-                                <label for="zo2-enable-responsive-tablet1" class="btn">Yes</label>
+                                <input type="radio" checked="checked" value="0" name="zo2[enable-responsive-tablet]" id="zo2-enable-responsive-tablet0">
+                                <label class="label-no" for="zo2-enable-responsive-tablet0" class="btn">No</label>
+                                <input type="radio" value="1" name="zo2[enable-responsive-tablet]" id="zo2-enable-responsive-tablet1">
+                                <label class="label-yes" for="zo2-enable-responsive-tablet1" class="btn">Yes</label>
                             </fieldset>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_DESTOP'); ?></label>
-                        </div>
-                        <div class="controls">
                             <fieldset class="radio btn-group" id="zo2-enable-responsive-desktop">
-                                <input type="radio" checked="checked" value="0" id="zo2-enable-responsive-desktop0">
-                                <label for="zo2-enable-responsive-desktop0" class="btn">No</label>
-                                <input type="radio" value="1" id="zo2-enable-responsive-desktop1">
-                                <label for="zo2-enable-responsive-desktop1" class="btn">Yes</label>
+                                <input type="radio" checked="checked" value="0" name="zo2[enable-responsive-desktop]" id="zo2-enable-responsive-desktop0">
+                                <label class="label-no" for="zo2-enable-responsive-desktop0" class="btn">No</label>
+                                <input type="radio" value="1" name="zo2[enable-responsive-desktop]" id="zo2-enable-responsive-desktop1">
+                                <label class="label-yes" for="zo2-enable-responsive-desktop1" class="btn">Yes</label>
                             </fieldset>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="control-label">
-                            <label><?php echo JText::_('ZO2_ADMIN_ENABLE_RESPONSIVE_LARGEDESTOP'); ?></label>
-                        </div>
-                        <div class="controls">
                             <fieldset class="radio btn-group" id="zo2-enable-responsive-largedesktop">
-                                <input type="radio" checked="checked" value="0" id="zo2-enable-responsive-largedesktop0">
-                                <label for="zo2-enable-responsive-largedesktop0" class="btn">No</label>
-                                <input type="radio" value="1" id="zo2-enable-responsive-largedesktop1">
-                                <label for="zo2-enable-responsive-largedesktop1" class="btn">Yes</label>
+                                <input type="radio" checked="checked" value="0" name="zo2[enable-responsive-largedesktop]" id="zo2-enable-responsive-largedesktop0">
+                                <label class="label-no" for="zo2-enable-responsive-largedesktop0" class="btn">No</label>
+                                <input type="radio" value="1" name="zo2[enable-responsive-largedesktop]" id="zo2-enable-responsive-largedesktop1">
+                                <label class="label-yes" for="zo2-enable-responsive-largedesktop1" class="btn">Yes</label>
                             </fieldset>
                         </div>
                     </div>
-
                 </div>
                 <!-- end -->
             </div>
