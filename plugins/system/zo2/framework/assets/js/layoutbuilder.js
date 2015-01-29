@@ -80,6 +80,14 @@
             }).disableSelection();
         },
         /**
+         * Get name/id/class from selector
+         * @param {type} selector
+         * @returns {unresolved}
+         */
+        _getValue: function (selector) {
+            return selector.toString().substr(1);
+        },
+        /**
          * Update selected option
          * @param {type} $element
          * @param {type} value
@@ -87,14 +95,22 @@
          */
         _updateSelectBox: function (selector, value) {
             var $element = this._getField(selector);
+            var found = false;
+            $element.find('option').removeAttr('selected');
             $element.find('option').each(function () {
                 if ($(this).val() == value) {
                     $(this).prop('selected', true);
-                } else {
-                    $(this).removeAttr('selected');
+                    found = true;
                 }
             });
-            $element.trigger('change');
+            if(found === false && value === 'none'){
+                return;
+            }                
+            if(found === false){
+                this._updateSelectBox(selector, 'none');
+            }
+            $element.trigger("change");
+            $element.trigger("liszt:updated");
         },
         /**
          * Update radio button value
@@ -102,18 +118,18 @@
          * @param {type} value
          * @returns {undefined}
          */
-        _updateRadioButton: function(selector, value){
+        _updateRadioButton: function (selector, value) {
             var $element = this._getField(selector);
-            var enable = '[for*="'+ selector.substr(1) + '0"]';
-            var disable = '[for*="'+ selector.substr(1) + '1"]';
+            var enable = '[for*="' + this._getValue(selector) + '0"]';
+            var disable = '[for*="' + this._getValue(selector) + '1"]';
             $element.find('label').removeClass('active btn-success btn-danger');
             $element.find('input:checked').removeAttr('checked');
-            if(value.toInt() == 0){
+            if (value.toInt() == 0) {
                 $element.find(enable).addClass('active btn-danger');
-                $element.find('#' + selector.substr(1) + '0').attr('checked', 'true');
-            }else{
+                $element.find('#' + this._getValue(selector) + '0').attr('checked', 'true');
+            } else {
                 $element.find(disable).addClass('active btn-success');
-                $element.find('#' + selector.substr(1) + '1').attr('checked', 'true');
+                $element.find('#' + this._getValue(selector) + '1').attr('checked', 'true');
             }
         },
         /**
@@ -121,7 +137,7 @@
          * @param {type} selector
          * @returns {unresolved}
          */
-        _getRadioButtonValue: function(selector){
+        _getRadioButtonValue: function (selector) {
             var $element = this._getField(selector);
             return $element.find('#' + $element.find('.active').attr('for')).val();
         },
@@ -130,22 +146,22 @@
          * @param {type} element
          * @returns {undefined}
          */
-        onJdocChange:function(element){
+        onJdocChange: function (element) {
             var jdoc = $(element).val();
             jdoc = jdoc.toString().toLowerCase();
             var data = $(this.editingElement).data('zo2');
-            if(data.hasOwnProperty('jdoc')){
-                if(data.jdoc.hasOwnProperty('name')){
+            if (data.hasOwnProperty('jdoc')) {
+                if (data.jdoc.hasOwnProperty('name')) {
                     data.jdoc.name = '';
                 }
-                if(data.jdoc.hasOwnProperty('style')){
+                if (data.jdoc.hasOwnProperty('style')) {
                     data.jdoc.style = '';
                 }
             }
-            if(jdoc !== 'modules'){
+            if (jdoc !== 'modules') {
                 this._hideField(this._elements.settingPosition);
                 this._hideField(this._elements.settingStyle);
-            }else{
+            } else {
                 this._showField(this._elements.settingPosition);
                 this._showField(this._elements.settingStyle);
             }
@@ -162,7 +178,7 @@
          * @param {type} selector
          * @returns {undefined}
          */
-        _hideField: function(selector){
+        _hideField: function (selector) {
             this._getField(selector).closest(this._elements.controlGroup).hide('slow');
         },
         /**
@@ -170,7 +186,7 @@
          * @param {type} selector
          * @returns {undefined}
          */
-        _showField: function(selector){
+        _showField: function (selector) {
             this._getField(selector).closest(this._elements.controlGroup).show('slow');
         },
         /**
@@ -226,7 +242,7 @@
          * @returns {undefined}
          */
         deleteRow: function (element) {
-            this.editingElement.hide('slow', function(){
+            this.editingElement.hide('slow', function () {
                 $(this).remove();
             });
             $(this._elements.joomlaTooltip).find(':visible').hide();
@@ -237,7 +253,7 @@
          * @param {type} element
          * @returns {undefined}
          */
-        duplicate: function(element){
+        duplicate: function (element) {
             this.sortableFlush();
             var $current = $(element).closest(this._elements.sortableRow);
             $current.clone().css('display', 'none').insertAfter($current);
@@ -300,12 +316,12 @@
             this.editingElement = $(element)
                     .closest(this._elements.sortableRow);
             var data = this.editingElement.data('zo2');
-            if(this.editingElement.hasClass(this._elements.rowParent.substr(1))){
+            if (this.editingElement.hasClass(this._getValue(this._elements.rowParent))) {
                 this._hideField(this._elements.settingJdoc);
                 this._hideField(this._elements.settingOffset);
                 this._hideField(this._elements.settingPosition);
                 this._hideField(this._elements.settingStyle);
-            }else{
+            } else {
                 this._showField(this._elements.settingJdoc);
                 this._showField(this._elements.settingOffset);
             }
@@ -315,6 +331,7 @@
             }
             /* Update jdoc */
             if (data.hasOwnProperty('jdoc')) {
+
                 if (data.jdoc.hasOwnProperty('type')) {
                     this._updateSelectBox(this._elements.settingJdoc, data.jdoc.type);
                 }
@@ -324,32 +341,32 @@
                 if (data.jdoc.hasOwnProperty('name')) {
                     this._updateSelectBox(this._elements.settingPosition, data.jdoc.name);
                 }
-            }else{
+            } else {
                 this._updateSelectBox(this._elements.settingJdoc, '');
                 this._updateSelectBox(this._elements.settingStyle, '');
                 this._updateSelectBox(this._elements.settingPosition, '');
             }
-            if(!data.hasOwnProperty('visibility')){
+            if (!data.hasOwnProperty('visibility')) {
                 data.visibility = {xs: 1, ms: 1, md: 1, lg: 1};
             }
-            if(data.hasOwnProperty('visibility')){
-                if(data.visibility.hasOwnProperty('xs')){
+            if (data.hasOwnProperty('visibility')) {
+                if (data.visibility.hasOwnProperty('xs')) {
                     this._updateRadioButton(this._elements.visibleMobile, data.visibility.xs);
                 }
-                if(data.visibility.hasOwnProperty('ms')){
+                if (data.visibility.hasOwnProperty('ms')) {
                     this._updateRadioButton(this._elements.visibleTable, data.visibility.ms);
                 }
-                if(data.visibility.hasOwnProperty('md')){
+                if (data.visibility.hasOwnProperty('md')) {
                     this._updateRadioButton(this._elements.visibleDesktop, data.visibility.md);
                 }
-                if(data.visibility.hasOwnProperty('lg')){
+                if (data.visibility.hasOwnProperty('lg')) {
                     this._updateRadioButton(this._elements.visibleLargeDesktop, data.visibility.lg);
                 }
             }
             /* Update offset */
             if (data.hasOwnProperty('offset')) {
                 this._updateSelectBox(this._elements.settingOffset, data.offset);
-            }else{
+            } else {
                 this._updateSelectBox(this._elements.settingOffset, '');
             }
             /* Update customize css clash */
@@ -366,9 +383,9 @@
             var _self = this;
             var oldData = this.editingElement.data('zo2');
             this.editingElement.removeClass('component message modules module brandname logo megamenu offcanvas');
-            if(oldData.hasOwnProperty('offset')){
+            if (oldData.hasOwnProperty('offset')) {
                 this.editingElement.removeClass('offset' + oldData.offset);
-            }            
+            }
             var data = {
                 name: _self._getField(_self._elements.settingName).val(),
                 jdoc: {
@@ -389,9 +406,9 @@
                 data.grid = oldData.grid;
             }
             /* Update offset class */
-            if(data.offset != 'none'){
+            if (data.offset != 'none') {
                 this.editingElement.addClass('offset' + data.offset);
-            }            
+            }
             this.editingElement.addClass(data.jdoc.type);
             this.editingElement.data('zo2', data);
             $(this.editingElement).find(this._elements.parentContainer + ':first').find(this._elements.rowName + ':first').html('<span>' + _self._getField(_self._elements.settingName).val() + '</span>');
@@ -445,13 +462,6 @@
     /* Init after document ready */
     $(w.document).ready(function () {
         z.layoutbuilder._init();
-        /* Fix conflict with joomla selectbox */
-        $(z.layoutbuilder._elements.joomlaSelectDone).on('change', function(){
-            var $select = $(this);
-            var $joomlaSelectbox = $select.next();
-            var title = $select.find('option:selected').html();
-            $joomlaSelectbox.find('>a>span').html(title);
-        });
     });
 
 })(window, zo2, jQuery);
