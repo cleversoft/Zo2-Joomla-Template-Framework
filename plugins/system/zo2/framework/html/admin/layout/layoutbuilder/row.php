@@ -19,6 +19,7 @@ $children = $row->get('children', array());
 $properties = $row->getProperties();
 $className[] = (!$row->isRoot()) ? 'row-child' : 'row-parent';
 $className[] = $row->getClass();
+$className[] = $jDoc->get('type');
 $className = implode(' ', $className);
 // we wil not generate children property into data attribute
 if (isset($properties['children']))
@@ -28,7 +29,7 @@ if (isset($properties['children']))
 ?>
 <!-- Row layout -->
 <div class="sortable-row <?php echo $className; ?>"
-     id="zo2-<?php echo $blockName; ?>"
+     id="zo2-<?php echo Zo2HelperString::getAlias($blockName); ?>"
      data-zo2="<?php echo htmlentities(Zo2HelperEncode::json($properties)); ?>"
      data-zo2-row-settings="<?php echo htmlentities(Zo2HelperEncode::json($row->getSettings())); ?>"
      >
