@@ -113,10 +113,10 @@ if (!class_exists('Zo2HelperLayoutbuilder'))
 
         /**
          * 
-         * @param type $selectedOffset
-         * @return type
+         * @param string $selectedStyle
+         * @return string
          */
-        public static function getHtmlStyles($selectedStyle = 'Inherited')
+        public static function getHtmlStyles($selectedStyle = 'xhtml')
         {
             $styles = self::getModuleStyles();
             $options = array();
