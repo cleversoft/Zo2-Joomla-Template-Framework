@@ -27,16 +27,33 @@ $children = $row->get('children', array());
         /* Modules position */
         case 'modules':
             echo '<div id="position-' . $jDocName . '" class="modules-' . Zo2HelperLayoutbuilder::countModules($jDocName) . '">';
-            echo '<jdoc:include type="modules" name="' . $jDocName . '" style="' . $jDocStyle . '" />';
+            if ($jDocStyle == 'none' || $jDocStyle == 'Inherited')
+            {
+                
+            } else
+            {
+                echo '<jdoc:include type="modules" name="' . $jDocName . '" style="' . $jDocStyle . '" />';
+            }
             echo '</div>';
             break;
         case 'component':
-            echo '<main id="' . JFactory::getApplication()->input->getWord('option') . '">';
-            echo '<jdoc:include type="component" />';
-            echo '</main>';
+            // Render component only one time
+            if (!defined('ZO2_LAYOUTBUILDER_COMPONENT_RENDERED'))
+            {
+                echo '<main id="' . JFactory::getApplication()->input->getWord('option') . '">';
+                echo '<jdoc:include type="component" />';
+                echo '</main>';
+                define('ZO2_LAYOUTBUILDER_COMPONENT_RENDERED', true);
+            }
             break;
         case 'message':
-            echo '<jdoc:include type="message" />';
+            // Render message only one time
+            if (!defined('ZO2_LAYOUTBUILDER_MESSAGE_RENDERED'))
+            {
+                echo '<jdoc:include type="message" />';
+                define('ZO2_LAYOUTBUILDER_MESSAGE_RENDERED', true);
+            }
+
             break;
         /* Custom Zo2 layout */
         default:
