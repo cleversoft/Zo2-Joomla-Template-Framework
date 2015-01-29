@@ -133,10 +133,22 @@
             var jdoc = $(element).val();
             jdoc = jdoc.toString().toLowerCase();
             var $positionField = this._getField(this._elements.settingPosition).closest(this._elements.controlGroup);
+            var $styleField = this._getField(this._elements.settingStyle).closest(this._elements.controlGroup);
+            var data = $(this.editingElement).data('zo2');
+            if(data.hasOwnProperty('jdoc')){
+                if(data.jdoc.hasOwnProperty('name')){
+                    data.jdoc.name = '';
+                }
+                if(data.jdoc.hasOwnProperty('style')){
+                    data.jdoc.style = '';
+                }
+            }
             if(jdoc !== 'modules'){
                 $positionField.hide('slow');
+                $styleField.hide('slow');
             }else{
                 $positionField.show('slow');
+                $styleField.show('slow');
             }
         },
         /**
