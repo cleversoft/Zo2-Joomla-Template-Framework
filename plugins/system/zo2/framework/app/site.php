@@ -85,7 +85,7 @@ if (!class_exists('Zo2AppSite'))
                 $dom = str_get_dom($buffer);
                 HTML_Formatter::minify_html($dom);
                 $buffer = $dom;
-                $buffer = Zo2HelperMinify::html($buffer);
+                //$buffer = Zo2HelperMinify::html($buffer);
             }
             return $buffer;
         }
