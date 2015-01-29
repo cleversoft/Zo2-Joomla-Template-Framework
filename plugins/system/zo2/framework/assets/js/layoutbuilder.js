@@ -339,8 +339,8 @@
                     lg: _self._getRadioButtonValue(_self._elements.visibleLargeDesktop)
                 }
             };
-            if (typeof (oldData.gird) !== 'undefined') {
-                data.gird = oldData.gird;
+            if (oldData.hasOwnProperty('grid')) {
+                data.grid = oldData.grid;
             }
             this.editingElement.data('zo2', data);
             $(this.editingElement).find(this._elements.parentContainer + ':first').find(this._elements.rowName + ':first').html('<span>' + _self._getField(_self._elements.settingName).val() + '</span>');
