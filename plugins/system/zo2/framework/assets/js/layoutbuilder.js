@@ -18,6 +18,7 @@
             joomlaTooltip: '.tooltip',
             parentContainer: '.parent-container',
             controlGroup: '.control-group',
+            rowParent: '.row-parent',
             rowName: '.row-name',
             rowSize: '.row-size',
             rowWidth: '.row-width',
@@ -132,8 +133,6 @@
         onJdocChange:function(element){
             var jdoc = $(element).val();
             jdoc = jdoc.toString().toLowerCase();
-            var $positionField = this._getField(this._elements.settingPosition).closest(this._elements.controlGroup);
-            var $styleField = this._getField(this._elements.settingStyle).closest(this._elements.controlGroup);
             var data = $(this.editingElement).data('zo2');
             if(data.hasOwnProperty('jdoc')){
                 if(data.jdoc.hasOwnProperty('name')){
@@ -144,11 +143,11 @@
                 }
             }
             if(jdoc !== 'modules'){
-                $positionField.hide('slow');
-                $styleField.hide('slow');
+                this._hideField(this._elements.settingPosition);
+                this._hideField(this._elements.settingStyle);
             }else{
-                $positionField.show('slow');
-                $styleField.show('slow');
+                this._showField(this._elements.settingPosition);
+                this._showField(this._elements.settingStyle);
             }
         },
         /**
@@ -157,6 +156,22 @@
          */
         _getField: function (selector) {
             return $(this._elements.rowSetting).find(selector);
+        },
+        /**
+         * Hide settings field
+         * @param {type} selector
+         * @returns {undefined}
+         */
+        _hideField: function(selector){
+            this._getField(selector).closest(this._elements.controlGroup).hide('slow');
+        },
+        /**
+         * Show setting field
+         * @param {type} selector
+         * @returns {undefined}
+         */
+        _showField: function(selector){
+            this._getField(selector).closest(this._elements.controlGroup).show('slow');
         },
         /**
          * Sortable flush
@@ -285,6 +300,15 @@
             this.editingElement = $(element)
                     .closest(this._elements.sortableRow);
             var data = this.editingElement.data('zo2');
+            if(this.editingElement.hasClass(this._elements.rowParent.substr(1))){
+                this._hideField(this._elements.settingJdoc);
+                this._hideField(this._elements.settingOffset);
+                this._hideField(this._elements.settingPosition);
+                this._hideField(this._elements.settingStyle);
+            }else{
+                this._showField(this._elements.settingJdoc);
+                this._showField(this._elements.settingOffset);
+            }
             /* Update name */
             if (data.hasOwnProperty('name')) {
                 this._getField(this._elements.settingName).val(data.name);
@@ -300,6 +324,10 @@
                 if (data.jdoc.hasOwnProperty('name')) {
                     this._updateSelectBox(this._elements.settingPosition, data.jdoc.name);
                 }
+            }else{
+                this._updateSelectBox(this._elements.settingJdoc, '');
+                this._updateSelectBox(this._elements.settingStyle, '');
+                this._updateSelectBox(this._elements.settingPosition, '');
             }
             if(!data.hasOwnProperty('visibility')){
                 data.visibility = {xs: 1, ms: 1, md: 1, lg: 1};
@@ -321,6 +349,8 @@
             /* Update offset */
             if (data.hasOwnProperty('offset')) {
                 this._updateSelectBox(this._elements.settingOffset, data.offset);
+            }else{
+                this._updateSelectBox(this._elements.settingOffset, '');
             }
             /* Update customize css clash */
             if (data.hasOwnProperty('class')) {
