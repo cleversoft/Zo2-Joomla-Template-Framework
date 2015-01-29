@@ -39,7 +39,7 @@ defined('_JEXEC') or die('Restricted access');
                             <option value="none"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_NONE'); ?></option>
                             <optgroup label="Joomla! Document">
                                 <option value="component"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_COMPONENT'); ?></option>
-                                <option value="messsge"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MESSAGE'); ?></option>
+                                <option value="messsage"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MESSAGE'); ?></option>
                                 <option value="modules"><?php echo JText::_('ZO2_ADMIN_LAYOUTBUILDER_SETTINGS_JDOC_MODULES'); ?></option>                                                                
                             </optgroup>
                             <!-- These are extended for 3rd parties -->

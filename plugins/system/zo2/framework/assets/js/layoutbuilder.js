@@ -365,6 +365,7 @@
         saveSetting: function () {
             var _self = this;
             var oldData = this.editingElement.data('zo2');
+            this.editingElement.removeClass('component message modules module brandname logo megamenu offcanvas');
             var data = {
                 name: _self._getField(_self._elements.settingName).val(),
                 jdoc: {
@@ -384,6 +385,7 @@
             if (oldData.hasOwnProperty('grid')) {
                 data.grid = oldData.grid;
             }
+            this.editingElement.addClass(data.jdoc.type);
             this.editingElement.data('zo2', data);
             $(this.editingElement).find(this._elements.parentContainer + ':first').find(this._elements.rowName + ':first').html('<span>' + _self._getField(_self._elements.settingName).val() + '</span>');
             $(this._elements.rowSetting).modal('hide');
