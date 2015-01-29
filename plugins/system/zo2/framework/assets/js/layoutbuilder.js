@@ -366,6 +366,9 @@
             var _self = this;
             var oldData = this.editingElement.data('zo2');
             this.editingElement.removeClass('component message modules module brandname logo megamenu offcanvas');
+            if(oldData.hasOwnProperty('offset')){
+                this.editingElement.removeClass('offset' + oldData.offset);
+            }            
             var data = {
                 name: _self._getField(_self._elements.settingName).val(),
                 jdoc: {
@@ -385,6 +388,10 @@
             if (oldData.hasOwnProperty('grid')) {
                 data.grid = oldData.grid;
             }
+            /* Update offset class */
+            if(data.offset != 'none'){
+                this.editingElement.addClass('offset' + data.offset);
+            }            
             this.editingElement.addClass(data.jdoc.type);
             this.editingElement.data('zo2', data);
             $(this.editingElement).find(this._elements.parentContainer + ':first').find(this._elements.rowName + ':first').html('<span>' + _self._getField(_self._elements.settingName).val() + '</span>');
