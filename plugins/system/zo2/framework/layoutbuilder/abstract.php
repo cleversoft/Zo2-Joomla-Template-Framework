@@ -92,9 +92,13 @@ if (!class_exists('Zo2LayoutbuilderAbstract'))
             }
         }
 
+        /**
+         * 
+         * @return boolean
+         */
         public function isRoot()
         {
-            return $this->get('root');
+            return $this->get('root', false);
         }
 
         /**

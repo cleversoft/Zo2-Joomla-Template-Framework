@@ -19,7 +19,7 @@ $children = $row->get('children', array());
 ?>
 <section 
     class="<?php echo $row->getClass(); ?>" 
-    id="zo2-<?php echo $rowName; ?>">
+    id="zo2-<?php echo Zo2HelperString::getAlias($rowName); ?>"
 
     <?php
     switch ($jDoc->get('type'))
@@ -70,7 +70,7 @@ $children = $row->get('children', array());
             {
                 foreach ($children as $child)
                 {
-                    $child = new Zo2LayoutbuilderRow($child);
+                    $child = new Zo2LayoutbuilderSiterow($child);
                     echo $child->render('Zo2://html/site/layout/layoutbuilder');
                 }
             }
