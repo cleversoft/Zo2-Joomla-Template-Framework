@@ -19,7 +19,8 @@ $children = $row->get('children', array());
 ?>
 <section 
     class="<?php echo $row->getClass(); ?>" 
-    id="zo2-<?php echo Zo2HelperString::getAlias($rowName); ?>"    
+    id="zo2-<?php echo Zo2HelperString::getAlias($rowName); ?>" 
+    >
     <?php if (!$row->isRoot()) : ?>      
         <?php
         switch ($jDoc->get('type'))
