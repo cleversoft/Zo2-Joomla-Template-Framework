@@ -48,6 +48,11 @@
                 <option value="0">JNO</option>
                 <option value="1">JYES</option>
             </field>
+            <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_OFFCANVAS" />
+            <field name="offcanvas_effect" type="list" class="" default="0" label="ZO2_ADMIN_FIELD_LABEL_OFFCANVAS_EFFECT" description="">
+                <option value="effect1">JNO</option>
+                <option value="effect1">JYES</option>                
+            </field>
             <field type="spacer" name="" class="label label-default" label="ZO2_ADMIN_FIELD_LABEL_OPTIMIZE" />
             <field name="enable_optimize_html" type="radio" class="btn-group" default="0" label="ZO2_ADMIN_FIELD_LABEL_ENABLE_OPTIMIZE_HTML" description="">
                 <option value="0">JNO</option>
