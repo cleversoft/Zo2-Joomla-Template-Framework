@@ -1,10 +1,1 @@
-<a href="#" onclick="gototop();
-        return false;">
-    <i class="fa fa-bed"></i> Go to top
-</a>
-<script>
-    function gototop() {
-        jQuery('html, body').animate({scrollTop: 0}, 'fast');
-    }
-
-</script>
+<div id="zo2-jdoc-go-to-top" style="z-index: 99;position: fixed; left: 5px; bottom: 5px; width: 100px; height: 100px;">Go to top</div>
