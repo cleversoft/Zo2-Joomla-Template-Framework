@@ -35,10 +35,14 @@ defined('_JEXEC') or die('Restricted access');
         <button onclick="zo2.layoutbuilder.addParentRow();" type="button" class="btn btn-primary">New row</button>
     </div>
     <div id="zo2-layoutbuilder" class="row-fluid">
-        <?php foreach ($rows as $row) : ?>
-            <?php $row = new Zo2LayoutbuilderRow($row); ?>
-            <?php $row->setRoot(true); ?>            
-            <?php echo $row->render('Zo2://html/admin/layout/layoutbuilder'); ?>
-        <?php endforeach; ?>
+        <?php if (is_array($rows)): ?>
+            <?php foreach ($rows as $row) : ?>
+                <?php $row = new Zo2LayoutbuilderRow($row); ?>
+                <?php $row->setRoot(true); ?>            
+                <?php echo $row->render('Zo2://html/admin/layout/layoutbuilder'); ?>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <!-- No layouts yet -->
+        <?php endif; ?>
     </div>
 </div>
