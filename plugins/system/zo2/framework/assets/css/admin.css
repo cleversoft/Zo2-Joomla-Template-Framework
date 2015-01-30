@@ -199,11 +199,18 @@ img {
   opacity: 1;
   filter: alpha(opacity=100);
 }
-#zo2-framework #zo2-layoutbuilder-container .row-child#zo2-component  > .row-control {
+#zo2-framework #zo2-layoutbuilder-container .row-child.component  > .row-control {
   background-color: #f8fde9;
   border-color: #809c36;
 }
-#zo2-framework #zo2-layoutbuilder-container .row-child#zo2-component  > .row-control .row-name span {
+#zo2-framework #zo2-layoutbuilder-container .row-child.component  > .row-control .row-name span {
+  color: #9d261d;
+}
+#zo2-framework #zo2-layoutbuilder-container .row-child.messsage  > .row-control {
+  background-color: #eab8bf;
+  border-color: #809c36;
+}
+#zo2-framework #zo2-layoutbuilder-container .row-child.messsage  > .row-control .row-name span {
   color: #9d261d;
 }
 #zo2-framework #zo2-layoutbuilder-container .row-child .parent-container {
