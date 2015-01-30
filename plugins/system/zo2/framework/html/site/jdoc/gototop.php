@@ -1,0 +1,1 @@
+<div id="zo2-jdoc-gototop" style="z-index: 99;position: fixed; bottom: 5px; width: 100px; height: 100px;">Go to top</div>
