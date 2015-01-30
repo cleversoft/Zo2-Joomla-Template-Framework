@@ -11,6 +11,6 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<?php if ($framework->document->countModules('zo2-offcanvas')) : ?>
+<?php if (Zo2Framework::getInstance()->document->countModules('zo2-offcanvas')) : ?>
     <a href="#" onClick="zo2.offcanvas.show(); ? >"><i class="fa fa-bars fa-3"></i></a>
 <?php endif; ?>
