@@ -10,6 +10,7 @@
     "js": [
         "Zo2://assets/vendor/bootstrap/3.3.1/js/bootstrap.min.js",
         "Zo2://assets/js/menu.js",
+        "Zo2://assets/js/site.js",
         "Template://js/custom.js"
     ]
 }
