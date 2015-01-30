@@ -273,6 +273,42 @@ img {
   #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"]:last-child {
     margin-right: 0;
   }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset1 {
+    margin-left: 8.3333333%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset2 {
+    margin-left: 16.666666%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset3 {
+    margin-left: 24.999999%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset4 {
+    margin-left: 33.333333%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset5 {
+    margin-left: 41.666666%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset6 {
+    margin-left: 49.999999%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset7 {
+    margin-left: 58.333333%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset8 {
+    margin-left: 66.666666%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset9 {
+    margin-left: 74.999999%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset10 {
+    margin-left: 83.333333%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset11 {
+    margin-left: 83.333333%;
+  }
+  #zo2-framework #zo2-layoutbuilder-container .row-fluid [class*="span"] .offset12 {
+    margin-left: 91.666666%;
+  }
   #zo2-framework #zo2-layoutbuilder-container .row-fluid .span1 {
     width: 8.3333333%;
   }
