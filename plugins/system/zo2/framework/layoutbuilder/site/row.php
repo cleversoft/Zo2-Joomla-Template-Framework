@@ -12,13 +12,16 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2LayoutbuilderSiterow'))
+/**
+ * Class exists checking
+ */
+if (!class_exists('Zo2LayoutbuilderSiteRow'))
 {
 
     /**
      * Class object for each row
      */
-    class Zo2LayoutbuilderSiterow extends Zo2LayoutbuilderAbstract
+    class Zo2LayoutbuilderSiteRow extends Zo2LayoutbuilderRow
     {
 
         /**
@@ -42,6 +45,15 @@ if (!class_exists('Zo2LayoutbuilderSiterow'))
             }
 
             return implode(' ', $class);
+        }
+
+        /**
+         * 
+         * @return string
+         */
+        public function render($rootDir = 'Zo2://html/site/layout/layoutbuilder')
+        {
+            return parent::render($rootDir);
         }
 
     }

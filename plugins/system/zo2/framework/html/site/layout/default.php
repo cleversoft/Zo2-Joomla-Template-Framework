@@ -42,9 +42,9 @@ $bodyClasses = trim(implode(' ', $bodyClasses));
         <?php endif; ?>
         <!-- END Off canvas content -->
         <?php foreach ($rows as $row) : ?>
-            <?php $row = new Zo2LayoutbuilderSiterow($row); ?> 
+            <?php $row = new Zo2LayoutbuilderSiteRow($row); ?> 
             <?php $row->setRoot(true); ?>
-            <?php echo $row->render('Zo2://html/site/layout/layoutbuilder'); ?>
+            <?php echo $row->render(); ?>
         <?php endforeach; ?>
         <?php echo Zo2Framework::getParam('custom_code_before_close_body'); ?>
     </body>
