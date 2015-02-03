@@ -241,6 +241,7 @@ if (!class_exists('Zo2Factory'))
                 if (JFactory::getApplication()->isSite())
                 {
                     $profileName = Zo2Framework::getInstance()->template->params->get('profile', 'default');
+                    $profileName = JFactory::getApplication()->input->get('profile', $profileName);
                 } else
                 {
                     $profileName = JFactory::getApplication()->input->get('profile');
