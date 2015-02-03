@@ -787,7 +787,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                     data: {
                         zo2_task: 'admin.renderMegamenu',
                         menutype: $(this).val(),
-                        profile: $("#zo2-profile").val()
+                        profile: $("#zo2-profiles").val()
                     }
                 })
                         .done(function() {
