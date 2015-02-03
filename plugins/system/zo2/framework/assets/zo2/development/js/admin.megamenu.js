@@ -786,7 +786,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
                     url: z._settings.frontEndUrl,
                     data: {
                         zo2_task: 'admin.renderMegamenu',
-                        menutype: $(this).val()
+                        menutype: $(this).val(),
+                        profile: $("#zo2-profile").val()
                     }
                 })
                         .done(function() {
