@@ -1346,11 +1346,6 @@ div.tags:before {
 }
 .zo2-megamenu .mega-align-center > .dropdown-menu {
   left: 50%;
-  -webkit-transform: translate(-50%,-50%);
-  -moz-transform: translate(-50%,-50%);
-  -ms-transform: translate(-50%,-50%);
-  -o-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
 }
 .zo2-megamenu .dropdown-submenu.mega-align-left > .dropdown-menu {
   left: 100%;
@@ -2321,6 +2316,10 @@ body.boxed .zo2-wrapper .is-sticky #zo2-header-wrap {
   outline: none;
   padding: 0 0 0 10px;
 }
+#zo2-mega-menu,
+#zo2-mega-menu .navbar {
+  position: static;
+}
 nav.zo2-menu {
   background: none;
   border: none;
@@ -2512,6 +2511,9 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 }
 #zo2-header-wrap {
   padding: 45px 0;
+}
+#zo2-header-wrap .container {
+  position: relative;
 }
 .is-sticky {
   position: relative;

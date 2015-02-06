@@ -54,6 +54,26 @@
   }
 }
 @media (max-width: 767px) {
+  #zo2-top-wrap {
+    text-align: center;
+  }
+  #zo2-top-wrap .mod-languages,
+  #zo2-top-wrap .search .form-inline {
+    display: inline-block;
+    float: none;
+    border: none;
+    max-height: 40px;
+  }
+  #zo2-header-wrap {
+    text-align: center;
+  }
+  #zo2-header-wrap .row {
+    display: inline-block;
+  }
+  #zo2-header-wrap #zo2-canvas-menu,
+  #zo2-header-wrap #zo2-header-logo {
+    float: left;
+  }
   .zo2-error #errorboxheader {
     font-size: 35px;
   }
