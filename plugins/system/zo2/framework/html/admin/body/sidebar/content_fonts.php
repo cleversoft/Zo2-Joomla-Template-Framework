@@ -32,7 +32,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'body_font',
         'id' => 'body_font',
-        'value' => Zo2Factory::get('body_font')
+        'value' => Zo2Framework::getParam('body_font')
     ));
     ?>
     <!-- Menu font-->
@@ -43,7 +43,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'menu_font',
         'id' => 'menu_font',
-        'value' => Zo2Factory::get('menu_font')
+        'value' => Zo2Framework::getParam('menu_font')
     ));
     ?>
 
@@ -55,7 +55,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'h1_font',
         'id' => 'h1_font',
-        'value' => Zo2Factory::get('h1_font')
+        'value' => Zo2Framework::getParam('h1_font')
     ));
     ?>
 
@@ -67,7 +67,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'h2_font',
         'id' => 'h2_font',
-        'value' => Zo2Factory::get('h2_font')
+        'value' => Zo2Framework::getParam('h2_font')
     ));
     ?>
 
@@ -79,7 +79,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'h3_font',
         'id' => 'h3_font',
-        'value' => Zo2Factory::get('h3_font')
+        'value' => Zo2Framework::getParam('h3_font')
     ));
     ?>
 
@@ -91,7 +91,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'h4_font',
         'id' => 'h4_font',
-        'value' => Zo2Factory::get('h4_font')
+        'value' => Zo2Framework::getParam('h4_font')
     ));
     ?>
 
@@ -103,7 +103,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'h5_font',
         'id' => 'h5_font',
-        'value' => Zo2Factory::get('h5_font')
+        'value' => Zo2Framework::getParam('h5_font')
     ));
     ?>
 
@@ -115,7 +115,7 @@ defined('_JEXEC') or die('Restricted access');
             ), array(
         'name' => 'h6_font',
         'id' => 'h6_font',
-        'value' => Zo2Factory::get('h6_font')
+        'value' => Zo2Framework::getParam('h6_font')
     ));
     ?>
 </div>

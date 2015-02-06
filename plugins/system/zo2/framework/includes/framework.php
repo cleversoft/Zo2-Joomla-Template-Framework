@@ -66,25 +66,24 @@ if (!class_exists('Zo2Framework'))
          * Constructor
          * @param type $template
          */
-        protected function __construct($template)
+        protected function __construct()
         {
-            $this->template = $template;
+            
         }
 
         /**
-         * Get instance of Zo2 Framework with specific template
-         * @param object|null $template
-         * @return Zo2Framework
+         * 
+         * @staticvar Zo2Framework $instance
+         * @return \Zo2Framework
          */
-        public static function getInstance($template = null)
+        public static function getInstance()
         {
-            if ($template === null)
-                $template = Zo2Factory::getTemplate();
-            if (!self::$_instances[$template->template])
+            static $instance;
+            if (!isset($instance))
             {
-                self::$_instances[$template->template] = new Zo2Framework($template);
+                $instance = new Zo2Framework();
             }
-            return self::$_instances[$template->template];
+            return $instance;
         }
 
         /**
@@ -94,6 +93,7 @@ if (!class_exists('Zo2Framework'))
         {
             if (!defined('ZO2_LOADED'))
             {
+                $this->template = Zo2Factory::getTemplate();
                 /* Load language */
                 $language = JFactory::getLanguage();
                 $language->load('plg_system_zo2', ZO2PATH_ROOT);
@@ -130,7 +130,7 @@ if (!class_exists('Zo2Framework'))
                 if (JFactory::getApplication()->isAdmin())
                 {
                     JHtml::_('jquery.ui', array('core', 'sortable'));
-                    $this->profile = Zo2Factory::getProfile($jinput->getWord('profile', 'default'));
+                    $this->profile = Zo2Factory::getProfile();
                 } else
                 {
                     $this->profile = Zo2Factory::getProfile();
@@ -142,6 +142,27 @@ if (!class_exists('Zo2Framework'))
                 $this->_loadAssets();
                 define('ZO2_LOADED', 1);
             }
+        }
+
+        /**
+         * Get template params
+         * @param type $name
+         * @param type $default
+         * @return type
+         */
+        public static function getParam($name, $default = null)
+        {
+            return self::getInstance()->get($name, $default);
+        }
+
+        /**
+         * Get template param
+         * @use Just for back compatilibity with index.php in template
+         * @return type
+         */
+        public function get($name, $default = null)
+        {
+            return $this->profile->get($name, $default);
         }
 
         /**
@@ -191,30 +212,14 @@ if (!class_exists('Zo2Framework'))
                 } else
                 {
                     /* Backend loading */
-                    if (Zo2Factory::isZo2Template())
-                    {
-                        /* Load core assets */
-                        $this->assets->load($assets->backend);
-                    }
+
+                    /* Load core assets */
+                    $this->assets->load($assets->backend);
                 }
             } else
             {
                 JFactory::getApplication()->enqueueMessage(JText::_('ZO2_ASSETS_NOT_FOUND'), 'error');
             }
-        }
-
-        /**
-         * Get template params' property
-         * @param string $property
-         * @param mixed $default
-         *
-         * @return mixed
-         */
-        public function get($property, $default = null)
-        {
-            if ($this->template->params instanceof JRegistry)
-                return $this->template->params->get($property, $default);
-            return $default;
         }
 
         /**
@@ -461,13 +466,11 @@ if (!class_exists('Zo2Framework'))
 
         /**
          * Get list of layouts from this template
-         *
-         * @param int $templateId If pass null, or 0, templateId will get from $_GET['id']
          * @return array
          */
-        public function getTemplateLayouts($templateId = 0)
+        public function getTemplateLayouts()
         {
-            $templateName = Zo2Factory::getTemplateName($templateId);
+            $templateName = $this->template->template;
 
             if (!empty($templateName))
             {
@@ -477,29 +480,6 @@ if (!class_exists('Zo2Framework'))
                     return array_map('basename', $layoutFiles, array('.php'));
             } else
                 return array();
-        }
-
-        public function getTemplateLayoutsName($templateName)
-        {
-            if (!empty($templateName))
-            {
-                $templatePath = JPATH_SITE . '/templates/' . $templateName . '/layouts/*.json';
-                $layoutFiles = glob($templatePath);
-
-                $result = array();
-
-                for ($i = 0, $total = count($layoutFiles); $i < $total; $i++)
-                {
-                    $layoutFiles[$i] = basename($layoutFiles[$i]);
-                    if ($layoutFiles[$i] !== 'core.json' && $layoutFiles[$i] !== 'megamenu.json')
-                    {
-                        $result[] = str_replace('.json', '', $layoutFiles[$i]);
-                    }
-                }
-
-                return json_encode($result);
-            } else
-                return json_encode(array());
         }
 
         /**
@@ -557,7 +537,7 @@ if (!class_exists('Zo2Framework'))
         {
             if ($menutype === null)
             {
-                $menutype = self::get('menu_type', 'mainmenu');
+                $menutype = $this->get('menu_type', 'mainmenu');
             }
             $menu = new Zo2Megamenu($menutype);
             return $menu->rendermenu($isAdmin);
@@ -574,7 +554,7 @@ if (!class_exists('Zo2Framework'))
         {
             if (!isset($config['menu_type']))
             {
-                $config['menu_type'] = self::get('menu_type', 'mainmenu');
+                $config['menu_type'] = $this->get('menu_type', 'mainmenu');
             }
             if (!isset($config['isAdmin']))
             {

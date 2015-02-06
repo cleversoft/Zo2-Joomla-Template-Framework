@@ -13,11 +13,11 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <!-- Select profile -->                
-<select id="zo2-profiles" class="form-control" onchange="zo2.admin.profile.load(this.value);
-                return false;" name="zo2[profiles]" >
+<select id="zo2-profiles" class="form-control pull-left" onchange="zo2.admin.profile.load(this.value);
+        return false;" name="zo2[profiles]" >
     <!-- Display list of profiles -->
     <?php foreach ($this->data['profiles'] as $profile): ?>
         <option value="<?php echo trim($profile->name); ?>" <?php echo ($profile->name == $this->data['profile']->name) ? 'selected="selected"' : ''; ?> ><?php echo trim($profile->name); ?></option>
     <?php endforeach; ?>
 </select>
-<input type="hidden" name="profile-id" value="<?php echo Zo2Factory::getFramework()->get('id'); ?>">
+<input type="hidden" name="profile-id" value="<?php echo Zo2Framework::getParam('id'); ?>">

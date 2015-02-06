@@ -12,9 +12,11 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('Zo2UtilityAbstract')) {
+if (!class_exists('Zo2UtilityAbstract'))
+{
 
-    abstract class Zo2UtilityAbstract extends JObject {
+    abstract class Zo2UtilityAbstract extends JObject
+    {
 
         /**
          * Render HTML

@@ -14,8 +14,6 @@ $params = $this->item->params;
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 $canEdit = $this->item->params->get('access-edit');
 JHtml::_('behavior.framework');
-/* Get Zo2Framework */
-$framework = Zo2Factory::getFramework();
 ?>
 <?php if ($this->item->state == 0) : ?>
     <span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
@@ -25,20 +23,13 @@ $framework = Zo2Factory::getFramework();
     <span class="article_icon"><i class="fa fa-picture-o"></i>
     </span>
     <?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
-    <?php
-    if (in_array($this->item->catid, $framework->get('socialshare_filter_categories', array()))) {
-        if ($framework->get('socialshare_article_position') == 'top') {
-            $socialShares = new Zo2Socialshares();
-            echo $socialShares->getHorizontalBar();
-        }
-    }
-    ?>
+
     <div class="introtext">
         <?php if (!$params->get('show_intro')) : ?>
             <?php echo $this->item->event->afterDisplayTitle; ?>
         <?php endif; ?>
-        <?php echo $this->item->event->beforeDisplayContent; ?> <?php echo substr($this->item->introtext, 0, 320).'...' ; ?>
-        <?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') );?>
+        <?php echo $this->item->event->beforeDisplayContent; ?> <?php echo substr($this->item->introtext, 0, 320) . '...'; ?>
+        <?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date') || $params->get('show_hits') || $params->get('show_category') || $params->get('show_parent_category') || $params->get('show_author') ); ?>
         <?php if ($useDefList) : ?>
             <?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'below')); ?>
         <?php endif; ?>

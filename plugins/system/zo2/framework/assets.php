@@ -255,8 +255,8 @@ if (!class_exists('Zo2Assets'))
             /* Complie */
             if (Zo2HelperCompiler::less($lessFile, $cssFilePath))
             {
-                $optimizeMode = Zo2Factory::get('optimize_css', 0);
-                $developmentMode = Zo2Factory ::get('development_mode', 0);
+                $optimizeMode = Zo2Framework::getParam('optimize_css', 0);
+                $developmentMode = Zo2Framework::getParam('development_mode', 0);
                 /**
                  * @todo Try to provide more minify options
                  */ if (($optimizeMode == 1) && ( $developmentMode == 0))
@@ -287,8 +287,8 @@ if (!class_exists('Zo2Assets'))
             /**
              * @todo Try to provide more minify options
              */
-            $optimizeMode = Zo2Factory::get('optimize_js', 0);
-            $developmentMode = Zo2Factory::get('development_mode', 0);
+            $optimizeMode = Zo2Framework::getParam('optimize_js', 0);
+            $developmentMode = Zo2Framework::getParam('development_mode', 0);
             if (($optimizeMode == 1) && ( $developmentMode == 0))
             {
                 $buffer = file_get_contents($sourceFile);
@@ -311,8 +311,8 @@ if (!class_exists('Zo2Assets'))
          */
         private function _generateStylesheets()
         {
-            $combineCss = Zo2Factory::get('combine_css', 0);
-            $developmentMode = Zo2Factory::get('development_mode', 0);
+            $combineCss = Zo2Framework::getParam('combine_css', 0);
+            $developmentMode = Zo2Framework::getParam('development_mode', 0);
             $cssHtml = array();
             /**
              * Only do combine when asked and not in development mode
@@ -332,7 +332,7 @@ if (!class_exists('Zo2Assets'))
                     } else
                     { /* Combine Zo2 stylesheets */
                         /* Optimize ouput css content */
-                        if (Zo2Factory::get('optimzie_css', 0) == 1)
+                        if (Zo2Framework::getParam('optimzie_css', 0) == 1)
                         {
                             $currentCssContent = CssMinifier::minify(file_get_contents($path));
                         } else
@@ -359,7 +359,7 @@ if (!class_exists('Zo2Assets'))
             $cssDeclarationHtml [] = '<style>';
             foreach ($this->_stylesheetDeclarations as $stylesheetDeclaration)
             {
-                if ((Zo2Factory::get('optimzie_css', 0) == 1 ) && ($developmentMode == 0))
+                if ((Zo2Framework::getParam('optimzie_css', 0) == 1 ) && ($developmentMode == 0))
                 {
                     $cssDeclarationHtml [] = CssMinifier::minify($stylesheetDeclaration) . PHP_EOL;
                 } else
@@ -377,8 +377,8 @@ if (!class_exists('Zo2Assets'))
          */
         private function _generateJavascripts()
         {
-            $combineJs = Zo2Factory::get('combine_js', 0);
-            $developmentMode = Zo2Factory::get('development_mode', 0);
+            $combineJs = Zo2Framework::getParam('combine_js', 0);
+            $developmentMode = Zo2Framework::getParam('development_mode', 0);
             $jsHtml = array();
             /**
              * Only do combine when asked and not in development mode
@@ -394,7 +394,7 @@ if (!class_exists('Zo2Assets'))
                 foreach ($this->_javascripts as $javascript => $path)
                 {
                     /* Optimize output javascripts content */
-                    if ((Zo2Factory::get('optimzie_js', 0) == 1))
+                    if ((Zo2Framework::getParam('optimzie_js', 0) == 1))
                     {
                         $jsContent [] = Zo2HelperCompiler::javascript(file_get_contents($path));
                     } else
@@ -419,7 +419,7 @@ if (!class_exists('Zo2Assets'))
             foreach ($this->_javascriptDeclarations as $javascriptDeclaration)
             {
                 /* Optimize output javascripts content */
-                if ((Zo2Factory::get('optimzie_js', 0) == 1))
+                if ((Zo2Framework::getParam('optimzie_js', 0) == 1))
                 {
                     $jsDeclarationHtml[] = Zo2HelperCompiler::javascript($javascriptDeclaration);
                 } else

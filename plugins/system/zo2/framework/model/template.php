@@ -49,6 +49,14 @@ if (!class_exists('Zo2ModelTemplate'))
         }
 
         /**
+         * Save template
+         */
+        public function save()
+        {
+            $this->_save();
+        }
+
+        /**
          * Profile remove
          */
         public function remove()
@@ -63,136 +71,60 @@ if (!class_exists('Zo2ModelTemplate'))
         }
 
         /**
-         * Save template
-         */
-        public function save()
-        {
-            $this->_save();
-        }
-
-        /**
          * 
          */
         private function _save()
         {
             $application = JFactory::getApplication();
             $jinput = JFactory::getApplication()->input;
-            /* Get table */
-            $table = JTable::getInstance('Style', 'TemplatesTable');
             /* Zo2 data */
             $zo2 = $jinput->post->get('zo2', array(), 'array');
-
-            /* Load table record */
-            if ($table->load($jinput->get('id')))
+            // Joomla! form data
+            $formData = $jinput->post->get('jform', array(), 'array');
+            $formData['params']['layout'] = json_decode($formData['params']['layout']);
+            $formData['params']['theme'] = json_decode($formData['params']['theme']);
+            $formData['params']['menu_config'] = json_decode($formData['params']['menu_config']);
+            /* Request profileName */
+            $profileName = (isset($zo2['newProfile']) ? $zo2['newProfile'] : $zo2['profiles'] );
+            if ($profileName != $zo2['profiles'])
             {
-                /* Save to database */
-                $table->params = new JRegistry($table->params);
-                $formData = $jinput->post->get('jform', array(), 'array');
-                /* Save template with data */
-                $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
-                $model->save($formData);
+                JFactory::getApplication()->enqueueMessage('Added new profile: ' . $profileName, 'notice');
+            }
+            // Save Joomla! data            
+            $model = JModelLegacy::getInstance('Style', 'TemplatesModel');
+            $model->save($formData);
 
-                /* Request profileName */
-                $profileName = (isset($zo2['newProfile']) ? $zo2['newProfile'] : $zo2['profiles'] );
-                if ($profileName != $zo2['profiles'])
+            /**
+             * Save profile
+             */
+            $profile = new Zo2Profile();
+            $profile->loadArray($formData['params']);
+            $profile->template = Zo2Framework::getInstance()->template->template;
+            $profile->name = $profileName;
+
+            if ($profile->save())
+            {
+                /* Save Zo2 data */
+                $zo2Data = $jinput->post->get('zo2', array(), 'array');
+                $templateDir = JPATH_ROOT . '/templates/' . Zo2Framework::getInstance()->template->template;
+                $customCssFile = $templateDir . '/assets/zo2/css/custom.css';
+                $customCss = trim($zo2Data['custom_css']);
+                JFile::write($customCssFile, $customCss);
+                $customJsFile = $templateDir . '/assets/zo2/js/custom.js';
+                $customJs = trim($zo2Data['custom_js']);
+                JFile::write($customJsFile, $customJs);
+
+                $application->enqueueMessage('Style successfully saved');
+
+                if ($jinput->get('task') == 'style.apply')
                 {
-                    JFactory::getApplication()->enqueueMessage('Added new profile: ' . $profileName, 'notice');
-                }
-                /* Update profile assign list */
-                $list = $table->params->get('profile', array());
-                if (count($list) == 0)
+                    $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $jinput->get('id') . '&profile=' . $profileName, false));
+                } else
                 {
-                    $list = array();
-                }
-                if (is_object($list))
-                {
-                    foreach ($list as $key => $value)
-                    {
-                        $tList[$key] = $value;
-                    }
-                    $list = $tList;
-                }
-                /* Remove old checked menu */
-                /**
-                 * @todo Code is not optimized need improve
-                 */
-                if (is_array($list))
-                {
-                    foreach ($list as $index => $value)
-                    {
-                        if ($value == $profileName)
-                        {
-                            if (!isset($formData['profile-menu'][$value]))
-                            {
-                                unset($list[$index]);
-                            }
-                        }
-                    }
-                }
-
-                if (isset($formData['profile-menu']))
-                {
-                    foreach ($formData['profile-menu'] as $menuId)
-                    {
-                        $list[$menuId] = $profileName;
-                    }
-                }
-
-                /* Store assigned menu and profile name for each one */
-                $formData['params']['profile'] = $list;
-                $params = new JRegistry($formData['params']);
-                $table->bind($formData);
-                $table->params = $params->toString();
-
-                /* Save back into database */
-                if ($table->check())
-                {
-                    if ($table->store())
-                    {
-                        /**
-                         * Save profile
-                         */
-                        $profile = new Zo2Profile();
-                        $profile->template = $formData['template'];
-                        $profile->name = $profileName;
-                        $profile->layout = json_decode($params->get('layout'));
-                        $profile->theme = json_decode($params->get('theme'));
-
-                        $menu['hover_type'] = $params->get('menu_hover_type');
-                        $menu['nav_type'] = $params->get('menu_nav_type');
-                        $menu['animation'] = $params->get('menu_animation');
-                        $menu['duration'] = $params->get('menu_duration');
-                        $menu['show_submenu'] = $params->get('menu_show_submenu');
-                        $menu['menu_type'] = $params->get('menu_type');
-                        $menu['mega_config'] = $params->get('menu_config');
-
-                        $profile->menuConfig = $menu;
-
-                        if ($profile->save())
-                        {
-                            /* Save Zo2 data */
-                            $zo2Data = $jinput->post->get('zo2', array(), 'array');
-                            $templateDir = JPATH_ROOT . '/templates/' . $table->template;
-                            $customCssFile = $templateDir . '/assets/zo2/css/custom.css';
-                            $customCss = trim($zo2Data['custom_css']);
-                            JFile::write($customCssFile, $customCss);
-                            $customJsFile = $templateDir . '/assets/zo2/js/custom.js';
-                            $customJs = trim($zo2Data['custom_js']);
-                            JFile::write($customJsFile, $customJs);
-
-                            $application->enqueueMessage('Style successfully saved');
-
-                            if ($jinput->get('task') == 'style.apply')
-                            {
-                                $application->redirect(JRoute::_('index.php?option=com_templates&view=style&layout=edit&id=' . $table->id . '&profile=' . $profileName, false));
-                            } else
-                            {
-                                $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
-                            }
-                        }
-                    }
+                    $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
                 }
             }
+
             JFactory::getApplication()->enqueueMessage('Style save error', 'error');
             $application->redirect(JRoute::_('index.php?option=com_templates&view=styles', false));
         }
@@ -204,15 +136,6 @@ if (!class_exists('Zo2ModelTemplate'))
                 JFactory::getApplication()->enqueueMessage($message);
             }
             JFactory::getApplication()->redirect($url);
-        }
-
-        /**
-         * Get template_styles table
-         * @return JTable
-         */
-        private function _getTable()
-        {
-            return JTable::getInstance('Style', 'TemplatesTable');
         }
 
     }

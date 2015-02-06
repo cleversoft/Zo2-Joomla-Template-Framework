@@ -15,12 +15,14 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2Template')) {
+if (!class_exists('Zo2Template'))
+{
 
     /**
      *
      */
-    class Zo2Template extends JObject {
+    class Zo2Template extends JObject
+    {
 
         /**
          *
@@ -38,10 +40,9 @@ if (!class_exists('Zo2Template')) {
          * Construction
          * @param type $properties
          */
-        public function __construct($properties = null) {
+        public function __construct($properties = null)
+        {
             parent::__construct($properties);
-            $this->set('zo2', Zo2Factory::getFramework());
-            $this->set('jinput', JFactory::getApplication()->input);
             $this->path = Zo2Path::getInstance();
         }
 
@@ -49,10 +50,12 @@ if (!class_exists('Zo2Template')) {
          *
          * @return string
          */
-        public function toDataAttributes() {
+        public function toDataAttributes()
+        {
             $properties = $this->getProperties();
             $html = '';
-            foreach ($properties as $key => $value) {
+            foreach ($properties as $key => $value)
+            {
 
                 $html .= 'data-' . $key . '="' . $value . '" ';
             }
@@ -64,9 +67,11 @@ if (!class_exists('Zo2Template')) {
          * @param type $tpl
          * @return type
          */
-        public function fetch($key) {
+        public function fetch($key)
+        {
             $tplFile = $this->path->getPath($key);
-            if ($tplFile) {                
+            if ($tplFile)
+            {
                 $properties = $this->getProperties();
                 ob_start();
                 extract($properties, EXTR_REFS);
@@ -82,9 +87,11 @@ if (!class_exists('Zo2Template')) {
          * @param type $tpl
          * @return \CsTemplate
          */
-        public function load($key) {
+        public function load($key)
+        {
             $tplFile = $this->path->getPath($key);
-            if (JFile::exists($tplFile)) {
+            if (JFile::exists($tplFile))
+            {
                 $properties = $this->getProperties();
                 extract($properties, EXTR_REFS);
                 include($tplFile);
@@ -97,9 +104,11 @@ if (!class_exists('Zo2Template')) {
          * @param type $key
          * @return \Zo2Template
          */
-        public function addScript($key) {
+        public function addScript($key)
+        {
             $url = $this->path->getUrl($key);
-            if ($url) {
+            if ($url)
+            {
                 $document = JFactory::getDocument();
                 $document->addScript($url);
             }
@@ -111,9 +120,11 @@ if (!class_exists('Zo2Template')) {
          * @param type $scriptFile
          * @return \Zo2Template
          */
-        public function addStyleSheet($scriptFile) {
+        public function addStyleSheet($scriptFile)
+        {
             $url = $this->path->getUrl($key);
-            if ($url) {
+            if ($url)
+            {
                 $document = JFactory::getDocument();
                 $document->addStyleSheet($url);
             }
@@ -124,7 +135,8 @@ if (!class_exists('Zo2Template')) {
          * 
          * @return JRegistry
          */
-        public function getTemplateParameters() {
+        public function getTemplateParameters()
+        {
             return $this->_config->params;
         }
 
@@ -134,10 +146,12 @@ if (!class_exists('Zo2Template')) {
          * @param type $data
          * @return \Zo2Template
          */
-        public function saveCache($cacheFile, $data) {
+        public function saveCache($cacheFile, $data)
+        {
             $cacheFilename = md5($cacheFile);
             $cacheDir = $this->path->getDir('cache://');
-            if (JFolder::exists($cacheDir)) {
+            if (JFolder::exists($cacheDir))
+            {
                 JFile::write($cacheDir . '/' . $cacheFilename, $data);
             }
             return $this;
@@ -148,12 +162,14 @@ if (!class_exists('Zo2Template')) {
          * @param type $cacheFile
          * @return boolean
          */
-        public function loadCache($cacheFile) {
+        public function loadCache($cacheFile)
+        {
             /**
              * @todo Check modified time with current time to force reload cache
              */
             $cacheFile = $this->path->getFile('cache://' . md5($cacheFile));
-            if ($cacheFile) {
+            if ($cacheFile)
+            {
                 $buffer = JFile::read($cacheFile);
                 return $buffer;
             }
@@ -163,19 +179,23 @@ if (!class_exists('Zo2Template')) {
         /**
          * Save template
          */
-        public function save() {
+        public function save()
+        {
             
         }
 
-        public function getLanguage() {
+        public function getLanguage()
+        {
             return JFactory::getDocument()->getLanguage();
         }
 
-        public function getDirection() {
+        public function getDirection()
+        {
             return JFactory::getDocument()->getDirection();
         }
 
-        public function getUtilities() {
+        public function getUtilities()
+        {
             
         }
 

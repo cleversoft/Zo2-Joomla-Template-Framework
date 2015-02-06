@@ -27,6 +27,21 @@ if (!class_exists('Zo2Factory'))
     class Zo2Factory
     {
 
+        public static function getFramework()
+        {
+            return Zo2Framework::getInstance();
+        }
+
+        /**
+         * 
+         * @param type $namespace
+         * @param type $path
+         */
+        public static function registerNamespace($namespace, $path)
+        {
+            return Zo2Path::getInstance()->registerNamespace($namespace, $path);
+        }
+
         /**
          *
          * @staticvar array $instances
@@ -92,6 +107,12 @@ if (!class_exists('Zo2Factory'))
                         {
                             $id = $templateId;
                             $template = self::getTemplate($templateId);
+                            // Can't get template provided itemId than we follow Joomla!
+                            if ($template == false)
+                            {
+                                $template = JFactory::getApplication()->getTemplate(true);
+                                $id = $template->id;
+                            }
                         } else
                         {
                             $template = JFactory::getApplication()->getTemplate(true);
@@ -117,71 +138,6 @@ if (!class_exists('Zo2Factory'))
                     }
                 }
             }
-        }
-
-        /**
-         * Get singleton instance of Zo2 Framework
-         * @return Zo2Framework
-         */
-        public static function getFramework($template = null)
-        {
-            static $instances = array();
-            if ($template === null)
-            {
-                $template = self::getTemplate();
-            }
-            if ($template)
-            {
-                if (!isset($instances[$template->id]))
-                {
-                    $instances[$template->id] = Zo2Framework::getInstance($template);
-                }
-                return $instances[$template->id];
-            }
-            return false;
-        }
-
-        /**
-         * Get template name
-         * @return string
-         */
-        public static function getTemplateName()
-        {
-            $template = self::getTemplate();
-            if ($template)
-                return $template->template;
-        }
-
-        /**
-         * Get current template params
-         * @param type $name
-         * @param type $default
-         * @return type
-         */
-        public static function get($name, $default = null)
-        {
-            return self::getFramework()->get($name, $default);
-        }
-
-        /**
-         * Get current template params
-         * @param type $name
-         * @param type $default
-         * @return type
-         */
-        public static function set($name, $value)
-        {
-            return self::getTemplate()->params->$value($name, $value);
-        }
-
-        /**
-         * 
-         * @param type $namespace
-         * @param type $path
-         */
-        public static function registerNamespace($namespace, $path)
-        {
-            return Zo2Path::getInstance()->registerNamespace($namespace, $path);
         }
 
         /**
@@ -211,21 +167,6 @@ if (!class_exists('Zo2Factory'))
         public static function isSite()
         {
             return JFactory::getApplication()->isSite();
-        }
-
-        /**
-         * 
-         * @return boolean
-         */
-        public static function isZo2Template()
-        {
-            $template = self::getTemplate();
-            if ($template)
-            {
-                $templateConfig = JPATH_ROOT . '/templates/' . $template->template . '/assets/template.json';
-                return JFile::exists($templateConfig);
-            }
-            return false;
         }
 
         public static function ajax()
@@ -297,28 +238,16 @@ if (!class_exists('Zo2Factory'))
 
             if ($profile === null)
             {
-                $requestProfile = JFactory::getApplication()->input->get('profile');
-                /* Get requested profile via url parameter */
-                if ($requestProfile)
+                if (JFactory::getApplication()->isSite())
                 {
-                    $profileName = $requestProfile;
+                    $profileName = Zo2Framework::getInstance()->template->params->get('profile', 'default');
+                    $profileName = JFactory::getApplication()->input->get('profile', $profileName);
                 } else
                 {
-                    /* Get request profile base on assigned menu */
-                    $itemId = JFactory::getApplication()->input->get('Itemid');
-
-                    /* Get profiles list */
-                    $list = self::getFramework()->get('profile', 'default');
-                    if (is_object($list))
+                    $profileName = JFactory::getApplication()->input->get('profile');
+                    if (empty($profileName))
                     {
-                        $list = new JObject($list);
-                        $profileName = $list->get($itemId, 'default');
-                    } else
-                    {
-                        if (is_array($profiles))
-                        {
-                            $profileName = 'default';
-                        }
+                        $profileName = Zo2Framework::getInstance()->template->params->get('profile', 'default');
                     }
                 }
             } else
@@ -331,12 +260,17 @@ if (!class_exists('Zo2Factory'))
                     $profileName = $profile->name;
                 }
             }
+            if (!is_string($profileName) || empty($profileName))
+            {
+                $profileName = 'default';
+            }
             if (!isset($profiles[$profileName]))
             {
                 $profile = new Zo2Profile();
                 $profile->load($profileName);
                 $profiles[$profileName] = $profile;
             }
+
             return $profiles[$profileName];
         }
 
@@ -347,7 +281,7 @@ if (!class_exists('Zo2Factory'))
 
         public static function isRTL()
         {
-            return JFactory::getLanguage()->isRTL() && (Zo2Factory::get('enable_rtl') == 1);
+            return JFactory::getLanguage()->isRTL() && (Zo2Framework::getParam('enable_rtl') == 1);
         }
 
         /**
@@ -372,6 +306,29 @@ if (!class_exists('Zo2Factory'))
         public static function getRandomId()
         {
             return 'zo2' . md5(time() . microtime());
+        }
+
+        public static function joomlaHook()
+        {
+            $jinput = JFactory::getApplication()->input;
+            if ($jinput->get('option') == 'com_templates')
+            {
+                $task = $jinput->get('task');
+                $model = Zo2ModelTemplate::getInstance();
+                switch ($task)
+                {
+                    case 'style.save':
+                    case 'style.apply':
+                        $model->save();
+                        break;
+                    case 'remove':
+                        $model->remove();
+                        break;
+                    case 'rename':
+                        $model->rename();
+                        break;
+                };
+            }
         }
 
     }

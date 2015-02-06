@@ -76,7 +76,7 @@ sub {
 }
 
 a {
-  color: #7fbe54;
+  color: #4e4d4d;
   text-decoration: none;
   outline: none !important;
   .transition(color 0.15s linear 0s);
@@ -85,7 +85,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  color: @black;
+  color: #7fbe54;
   text-decoration: none;
 }
 
@@ -118,6 +118,13 @@ body.form.body-overlayed {
   }
 }
 
+.full-width{
+  > .container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 /* ================ Wrapper ================== */
 .zo2-row-wrapper {
   .custom {
@@ -146,7 +153,7 @@ body {
 }
 
 /* ============= Top Menu ================= */
-#zo2-top-menu {
+#zo2-position-4 {
   margin: 23px 0 0;
   .mod-wrapper-menu {
     ul {
@@ -170,18 +177,19 @@ body {
       }
     }
   }
-  .mod-languages {
-    li {
-      float: left;
-      a {
-        border: none !important;
-      }
+}
+
+.mod-languages {
+  li {
+    float: left;
+    a {
+      border: none !important;
     }
   }
 }
 
 /* ============== Top Search ================= */
-#zo2-search {
+#zo2-position-1 {
   form {
     position: relative;
     border-left: 1px solid #eeeeee;
@@ -212,6 +220,9 @@ body {
 }
 
 /* =============== Zo2 Menu ================== */
+#zo2-mega-menu, #zo2-mega-menu .navbar{
+  position: static;
+}
 nav.zo2-menu {
   background: none;
   border: none;
@@ -411,10 +422,34 @@ nav.zo2-menu {
 /* ================== Header ===================== */
 #zo2-top-wrap {
   border-bottom: 1px solid #ebebeb;
+  .nav-pills{
+    > li {
+      &.active a{
+        background-color: #eee;
+        color: #7fbe54;
+      }
+      a{
+        border-radius: 0;
+      }
+    }
+    li + li{
+      margin-left: 0;
+    }
+  }
+  .search{
+    input[type="text"]{
+      border-width: 0 1px;
+      height: 40px;
+      margin: 0;
+    }
+  }
 }
 
 #zo2-header-wrap {
   padding: 45px 0;
+  .container{
+    position: relative;
+  }
 }
 .is-sticky {
   position: relative;

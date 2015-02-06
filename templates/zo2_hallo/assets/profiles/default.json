@@ -1,6 +1,92 @@
 {
-    "template": "zo2_hallo",
-    "name": "default",
+    "profile": "default",
+    "site_name": "",
+    "site_slogan": "",
+    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                ",
+    "standard_logo": "images\/joomla_logo_black.jpg",
+    "retina_logo": "",
+    "footer_gototop": "1",
+    "footer_logo": "1",
+    "body_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
+    "menu_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
+    "h1_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
+    "h2_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
+    "h3_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
+    "h4_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
+    "h5_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
+    "h6_font": {
+        "type": "none",
+        "family": {
+            "standard": "Arial",
+            "googlefonts": "",
+            "fontdeck": ""
+        },
+        "size": "14",
+        "font_line_height": "30"
+    },
     "layout": [
         {
             "type": "row",
@@ -18,32 +104,12 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "top-menu",
-                    "position": "top-menu",
+                    "name": "position-4",
+                    "position": "position-4",
                     "span": 4,
                     "offset": 0,
                     "customClass": "col-sm-4",
-                    "style": "zo2_menu",
-                    "id": "top-menu",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "search",
-                    "position": "search",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "zo2_xhtml",
+                    "style": "none",
                     "id": "top-search",
                     "visibility": {
                         "xs": true,
@@ -58,13 +124,33 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "top-social",
-                    "position": "top-social",
-                    "span": 4,
+                    "name": "position-1",
+                    "position": "position-1",
+                    "span": 5,
                     "offset": 0,
                     "customClass": "col-sm-4",
-                    "style": "zo2_xhtml",
+                    "style": "none",
                     "id": "",
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+
+                    ]
+                },
+                {
+                    "jdoc": "modules",
+                    "type": "col",
+                    "name": "position-0",
+                    "position": "position-0",
+                    "span": 3,
+                    "offset": 0,
+                    "customClass": "col-sm-4",
+                    "style": "zo2_menu",
+                    "id": "top-menu",
                     "visibility": {
                         "xs": true,
                         "sm": true,
@@ -93,8 +179,8 @@
                 {
                     "jdoc": "canvasmenu",
                     "type": "col",
-                    "name": "mega_menu",
-                    "position": "mega_menu",
+                    "name": "canvas-menu",
+                    "position": "canvas-menu",
                     "span": 1,
                     "offset": 0,
                     "customClass": "col-xs-1",
@@ -113,12 +199,12 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "header_logo",
-                    "position": "header_logo",
+                    "name": "header-logo",
+                    "position": "header-logo",
                     "span": 3,
                     "offset": 0,
                     "customClass": "col-sm-3 col-xs-10 mobile-logo",
-                    "style": "",
+                    "style": "none",
                     "id": "",
                     "visibility": {
                         "xs": true,
@@ -133,8 +219,8 @@
                 {
                     "jdoc": "megamenu",
                     "type": "col",
-                    "name": "mega_menu",
-                    "position": "mega_menu",
+                    "name": "mega-menu",
+                    "position": "mega-menu",
                     "span": 8,
                     "offset": 0,
                     "customClass": "col-sm-9 col-xs-2 mobile-menu",
@@ -154,10 +240,10 @@
         },
         {
             "type": "row",
-            "name": "Slide",
+            "name": "Banner",
             "customClass": "full-width",
             "id": "",
-            "fullwidth": true,
+            "fullwidth": false,
             "visibility": {
                 "xs": true,
                 "sm": true,
@@ -224,41 +310,6 @@
         },
         {
             "type": "row",
-            "name": "Breadcrumb",
-            "customClass": "",
-            "id": "",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "breadcrumb",
-                    "position": "breadcrumb",
-                    "span": 12,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                }
-            ]
-        },
-        {
-            "type": "row",
             "name": "zo2-message",
             "customClass": "",
             "id": "zo2-message",
@@ -308,8 +359,8 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "left",
-                    "position": "left",
+                    "name": "position-7",
+                    "position": "position-7",
                     "span": 3,
                     "offset": 0,
                     "customClass": "",
@@ -330,7 +381,7 @@
                     "type": "col",
                     "name": "component",
                     "position": "component",
-                    "span": 6,
+                    "span": 7,
                     "offset": 0,
                     "customClass": "",
                     "style": "none",
@@ -348,9 +399,9 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "right",
-                    "position": "right",
-                    "span": 3,
+                    "name": "position-8",
+                    "position": "position-8",
+                    "span": 2,
                     "offset": 0,
                     "customClass": "",
                     "style": "zo2_xhtml",
@@ -418,12 +469,12 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "bottom1",
-                    "position": "bottom1",
+                    "name": "position-2",
+                    "position": "position-2",
                     "span": 12,
                     "offset": 0,
                     "customClass": "",
-                    "style": "zo2_xhtml",
+                    "style": "none",
                     "id": "",
                     "visibility": {
                         "xs": true,
@@ -453,8 +504,8 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "bottom2",
-                    "position": "bottom2",
+                    "name": "position-9",
+                    "position": "position-9",
                     "span": 4,
                     "offset": 0,
                     "customClass": "col-sm-4",
@@ -473,8 +524,8 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "bottom3",
-                    "position": "bottom3",
+                    "name": "position-10",
+                    "position": "position-10",
                     "span": 4,
                     "offset": 0,
                     "customClass": "col-sm-4",
@@ -493,8 +544,8 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "bottom4",
-                    "position": "bottom4",
+                    "name": "position-11",
+                    "position": "position-11",
                     "span": 4,
                     "offset": 0,
                     "customClass": "col-sm-4",
@@ -528,12 +579,12 @@
                 {
                     "jdoc": "modules",
                     "type": "col",
-                    "name": "footer_copyright",
-                    "position": "footer_copyright",
+                    "name": "footer-copyright",
+                    "position": "footer-copyright",
                     "span": 12,
                     "offset": 0,
                     "customClass": "",
-                    "style": "xhtml",
+                    "style": "",
                     "id": "",
                     "visibility": {
                         "xs": true,
@@ -549,13 +600,34 @@
         }
     ],
     "theme": null,
-    "menuConfig": {
-        "hover_type": null,
-        "nav_type": null,
-        "animation": null,
-        "duration": null,
-        "show_submenu": null,
-        "menu_type": "mainmenu",
-        "mega_config": "{\"mainmenu\":{\"item-435\":{\"submenu\":{\"rows\":[[{\"item\":547,\"width\":12}]]}},\"item-550\":{\"submenu\":{\"rows\":[[{\"item\":504,\"width\":12}]]}},\"item-468\":{\"submenu\":{\"width\":400,\"rows\":[[{\"item\":500,\"width\":6},{\"item\":509,\"width\":6}]]}},\"item-491\":{\"submenu\":{\"rows\":[[{\"item\":492,\"width\":12}]]}}}}"
-    }
+    "menu_hover_type": "hover",
+    "menu_animation": "slide",
+    "menu_duration": "300",
+    "menu_type": "mainmenu",
+    "menu_config": {
+        "mainmenu": {
+            "item-238": {
+                "submenu": {
+                    "rows": [
+                        [
+                            {
+                                "item": 445,
+                                "width": 12
+                            }
+                        ]
+                    ]
+                }
+            }
+        }
+    },
+    "enable_rtl": "0",
+    "non_responsive_layout": "0",
+    "enable_style_switcher": "0",
+    "enable_sticky_menu": "0",
+    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                        ",
+    "combine_css": "0",
+    "combine_js": "0",
+    "development_mode": "0",
+    "template": "zo2_hallo",
+    "name": "default"
 }

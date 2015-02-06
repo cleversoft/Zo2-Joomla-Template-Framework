@@ -1,13 +1,13 @@
 {
     "frontend": {
         "css": [
-            "vendor\/bootstrap\/3.3.1\/css\/bootstrap.min.css",
+            "vendor\/bootstrap\/css\/bootstrap.min.css",
             "vendor\/font-awesome\/css\/font-awesome.min.css",
             "zo2\/css\/site.styles.css",
             "zo2\/css\/template.css"
         ],
         "js": [
-            "vendor\/bootstrap\/3.3.1\/js\/bootstrap.min.js",
+            "vendor\/bootstrap\/js\/bootstrap.min.js",
             "vendor\/ekko-lightbox.js",
             "vendor\/jquery.sticky.js",
             "zo2\/js\/zo2.js",
@@ -22,13 +22,11 @@
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/css\/bootstrap-colorpicker.css",
             "vendor\/fontselect\/fontselect.css",
             "vendor\/fontello\/css\/fontello.css",
-            "vendor\/jqueryalert\/jquery.alerts.css",
             "vendor\/jRange\/jquery.range.css",
             "zo2\/css\/admin.styles.css",
             "zo2\/css\/admin.megamenu.css"
         ],
         "js": [
-            "vendor\/jqueryalert\/jquery.alerts.js",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
             "vendor\/fontselect\/jquery.fontselect.js",
             "vendor\/jRange\/jquery.range-min.js",

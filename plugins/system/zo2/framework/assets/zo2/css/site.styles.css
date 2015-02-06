@@ -223,11 +223,11 @@ img {
     margin-left: 0;
   }
   .zo2-megamenu.animate.slide .mega > .mega-dropdown-menu > div {
-    margin-top: -100%;
-    -webkit-transition: all 400ms;
-    -moz-transition: all 400ms;
-    -o-transition: all 400ms;
-    transition: all 400ms;
+    margin-top: 78px;
+    -webkit-transition: all 200ms;
+    -moz-transition: all 200ms;
+    -o-transition: all 200ms;
+    transition: all 200ms;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -238,6 +238,7 @@ img {
   .zo2-megamenu.animate .mega.open > .mega-dropdown-menu,
   .zo2-megamenu.animate .mega.hovering.open > .mega-dropdown-menu {
     opacity: 1;
+    visibility: visible;
   }
   .zo2-megamenu.animate .mega.hovering > .mega-dropdown-menu {
     display: block !important;
@@ -252,6 +253,7 @@ img {
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
+    visibility: hidden;
   }
 }
 @media (max-width: 767px) {

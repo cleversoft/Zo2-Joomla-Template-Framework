@@ -17,21 +17,24 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2HtmlHeaderlogo')) {
+if (!class_exists('Zo2HtmlHeaderlogo'))
+{
 
     /**
      * @since 1.4.3
      */
-    class Zo2HtmlHeaderlogo {
+    class Zo2HtmlHeaderlogo
+    {
 
-        public function render() {
+        public function render()
+        {
             $html = new Zo2Html();
 
-            $logo['standard'] = Zo2Factory::get('standard_logo');
-            $logo['retina'] = Zo2Factory::get('retina_logo');
+            $logo['standard'] = Zo2Framework::getParam('standard_logo');
+            $logo['retina'] = Zo2Framework::getParam('retina_logo');
 
             $html->set('logo', $logo);
-            $html->set('slogan', Zo2Factory::get('site_slogan'));
+            $html->set('slogan', Zo2Framework::getParam('site_slogan'));
 
             return $html->fetch('zo2/headerlogo.php');
         }

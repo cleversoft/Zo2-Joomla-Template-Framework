@@ -21,7 +21,7 @@
             'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_SITENAME')
                 ), array(
             'name' => 'jform[params][site_name]',
-            'value' => Zo2Factory::get('site_name'),
+            'value' => Zo2Framework::getParam('site_name'),
             'placeholder' => JFactory::getConfig()->get('sitename')
         ));
         ?>
@@ -33,7 +33,7 @@
             'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_SLOGAN')
                 ), array(
             'name' => 'jform[params][site_slogan]',
-            'value' => Zo2Factory::get('site_slogan'),
+            'value' => Zo2Framework::getParam('site_slogan'),
             'placeholder' => 'Zo2 Framework'
         ));
         ?>
@@ -46,11 +46,11 @@
                 'textarea', array(
             'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_COPYRIGHT'),
             'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_COPYRIGHT')
-                ), array(            
+                ), array(
             'name' => 'jform[params][footer_copyright]',
             'rows' => 10,
             'cols' => 20,
-            'value' => Zo2Factory::get('footer_copyright')
+            'value' => Zo2Framework::getParam('footer_copyright')
         ));
         ?>                        
         <!-- Standard logo -->        
@@ -64,7 +64,7 @@
                 ), array(
             'id' => 'jform_params_standard_logo',
             'name' => 'jform[params][standard_logo]',
-            'value' => Zo2Factory::get('standard_logo')
+            'value' => Zo2Framework::getParam('standard_logo')
         ));
         ?>  
         <!-- Retina logo -->       
@@ -78,7 +78,7 @@
                 ), array(
             'id' => 'jform_params_retina_logo',
             'name' => 'jform[params][retina_logo]',
-            'value' => Zo2Factory::get('retina_logo')
+            'value' => Zo2Framework::getParam('retina_logo')
         ));
         ?>               
         <div class="zo2-divider"></div>     
@@ -90,7 +90,7 @@
             'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_ENABLE_GOTOTOP')
                 ), array(
             'name' => 'jform[params][footer_gototop]',
-            'value' => Zo2Factory::get('footer_gototop')
+            'value' => Zo2Framework::getParam('footer_gototop')
         ));
         ?>
         <!-- Show footer logo -->
@@ -101,7 +101,7 @@
             'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_ENABLE_FOOTER_LOGO')
                 ), array(
             'name' => 'jform[params][footer_logo]',
-            'value' => Zo2Factory::get('footer_logo')
+            'value' => Zo2Framework::getParam('footer_logo')
         ));
         ?>
     </div>

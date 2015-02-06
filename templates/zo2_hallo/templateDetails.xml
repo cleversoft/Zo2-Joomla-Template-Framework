@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="template" client="site" method="upgrade">
-    <name>zo2_hallo</name>
-    <creationDate>Dec 30, 2014</creationDate>
-    <version>1.4.3</version>    
+    <name>zo2_hallo</name>   
+    <creationDate>Feb 06, 2015</creationDate>
+    <version>1.4.4</version>    
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>
@@ -15,49 +15,38 @@
                 <p class="alert "><strong>Note:</strong> Zo2 Hallo requires Zo2 plugin to be installed and enabled.</p>	            
      	]]>
     </description>
-
-    <languages>
-        <language tag="en-GB">language/en-GB/en-GB.tpl_zo2_blank_template.ini</language>
-    </languages>
-
+  
     <positions>
-        <position>bottom1</position>
-        <position>bottom2</position>
-        <position>bottom3</position>
-        <position>bottom4</position>   
-        <position>breadcrumb</position>  
+        <position>canvas-menu</position>
         <position>feature</position>   
-        <position>footer1</position>
-        <position>footer2</position>
-        <position>footer_copyright</position>   
-        <position>footer_logo</position>             
-        <position>header_logo</position>             
-        <position>left</position>
-        <position>menu</position>           
-        <position>right</position>  
-        <position>search</position>
+        <position>footer-copyright</position>   
+        <position>header-logo</position>    
+        <position>mega-menu</position>
+        <position>news</position>
+        <position>position-0</position>
+        <position>position-1</position>
+        <position>position-2</position>
+        <position>position-3</position>
+        <position>position-4</position>
+        <position>position-7</position>
+        <position>position-8</position>
+        <position>position-9</position>
+        <position>position-10</position>
+        <position>position-11</position>                               
         <position>slide</position>                     
-        <position>top</position>
-        <position>top-menu</position>        
-        <position>top-social</position>
-        <position>user1</position>
-        <position>user2</position>
-        <position>user3</position>
-        <position>user4</position>
     </positions>
 
     <files>
-        <filename>index.php</filename>
-        <filename>layout.json</filename>
-        <filename>error.php</filename>
-        <filename>params.ini</filename>
-        <filename>template_preview.png</filename>
+        <filename>error.php</filename>     
+        <filename>index.html</filename>
+        <filename>index.php</filename>    
+        <filename>favicon.ico</filename>  
+        <filename>templateDetails.xml</filename> 
+        <filename>template_preview.png</filename>                         
         <filename>template_thumbnail.png</filename>
-        <folder>layouts</folder>
         <folder>html</folder>
         <folder>includes</folder>
         <folder>assets</folder>
-        <folder>components</folder>
     </files>
     <config>
         <fields name="params" addfieldpath="/plugins/system/zo2/formfields">            

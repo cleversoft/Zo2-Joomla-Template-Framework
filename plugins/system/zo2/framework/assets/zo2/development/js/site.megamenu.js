@@ -80,7 +80,7 @@
             clearTimeout($this.data('hoverTime'));
             $this.data('hoverTime',
                 setTimeout(function () {
-                    $this.removeClass('open')
+                    $this.removeClass('open hovering')
                 }, 100));
 
         }

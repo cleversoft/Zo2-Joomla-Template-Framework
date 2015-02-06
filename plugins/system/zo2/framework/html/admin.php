@@ -17,20 +17,23 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * Class exists checking
  */
-if (!class_exists('Zo2HtmlAdmin')) {
+if (!class_exists('Zo2HtmlAdmin'))
+{
 
     /**
      * @uses    Render HTML for backend template administration
      * @since 1.4.3
      */
-    class Zo2HtmlAdmin {
+    class Zo2HtmlAdmin
+    {
 
         /**
          * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
          */
-        public function config() {
+        public function config()
+        {
             $html = new Zo2Html();
-            $params = Zo2Factory::getFramework()->template->params;
+            $params = Zo2Framework::getInstance()->template->params;
             $html->set('params', $params);
             return $html->fetch('admin/default.php');
         }
@@ -38,9 +41,10 @@ if (!class_exists('Zo2HtmlAdmin')) {
         /**
          * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
          */
-        public function about() {
+        public function about()
+        {
             $html = new Zo2Html();
-            $params = Zo2Factory::getFramework()->template->params;
+            $params = Zo2Framework::getInstance()->template->params;
             $html->set('params', $params);
             return $html->fetch('admin/about.php');
         }
@@ -49,7 +53,8 @@ if (!class_exists('Zo2HtmlAdmin')) {
          * Admin layout builder
          * @return type
          */
-        public function builder() {
+        public function builder()
+        {
             $assets = Zo2Assets::getInstance();
 
             $assets->addScript('vendor/bootbox-3.3.0.min.js');
@@ -61,11 +66,14 @@ if (!class_exists('Zo2HtmlAdmin')) {
              */
             $html = new Zo2Html();
 
-            $params = Zo2Factory::getFramework()->template->params;
+            $params = Zo2Framework::getInstance()->template->params;
             $profile = Zo2Factory::getProfile();
-            if (is_object($profile->layout)) {
+
+            if (is_object($profile->layout))
+            {
                 $layoutData = $profile->layout->layout;
-            } else {
+            } else
+            {
                 $layoutData = $profile->layout;
             }
 
