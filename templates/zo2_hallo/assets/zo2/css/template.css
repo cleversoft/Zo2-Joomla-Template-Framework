@@ -734,9 +734,6 @@ ul.menu li {
   border-bottom: 1px solid #f2f2f2;
   padding-bottom: 12px;
 }
-.search {
-  float: right;
-}
 .search #searchForm .inputbox {
   width: 210px;
   margin: 0 10px 0 0;
