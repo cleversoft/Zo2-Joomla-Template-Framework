@@ -641,7 +641,7 @@ if (!class_exists('Zo2Megamenu'))
                     $class .= " span12";
                 } else
                 {
-                    $class .= " col-md-12";
+                    $class .= " col-md-12 col-sm-12";
                 }
             } else
             {
@@ -699,7 +699,11 @@ if (!class_exists('Zo2Megamenu'))
                 {
                     $width = isset($column['width']) ? $column['width'] : '12';
                     $data = "data-width=\"$width\"";
-                    $class = "$colClass$width";
+                    $class = $colClass . $width;
+                    if (!$this->isAdmin)
+                    {
+                        $class = $colClass . $width . ' ' . 'col-sm-' . $width;
+                    }
                     if (isset($column['module_id']))
                     {
                         $class .= " mega-col-module";
