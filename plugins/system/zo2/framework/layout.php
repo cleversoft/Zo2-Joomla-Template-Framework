@@ -236,8 +236,7 @@ if (!class_exists('Zo2Layout'))
                                     $usedSpace += $child->span; /* Increase used space */
                                 } else
                                 {
-                                    // Prev element not exists than we find last available
-                                    echo $usedSpace;
+                                    // Prev element not exists than we find last available                                    
                                     end($availableChildren);         // move the internal pointer to the end of the array
                                     $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
                                     $children[$key]->span += $usedSpace;
