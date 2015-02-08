@@ -24,6 +24,12 @@ if (!class_exists('Zo2LayoutbuilderRow'))
     class Zo2LayoutbuilderRow extends JObject
     {
 
+        const DEFAULT_NAME = "unknown";
+
+        /**
+         *
+         * @var type 
+         */
         protected $_bsVars = array(
             '3' => array(
                 'grid' => 'col'
@@ -32,25 +38,17 @@ if (!class_exists('Zo2LayoutbuilderRow'))
                 'grid' => 'span'
             )
         );
-        protected $_settings = array(
-            'name',
-            'class',
-            'visibility'
-        );
-        protected $_controls;
 
+        /**
+         * 
+         * @param type $properties
+         */
         public function __construct($properties = null)
         {
             parent::__construct($properties);
 
-            // Default controls
-            $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_MOVE'), 'arrows', 'move', array('id' => 'move-row'));
-            $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_SETTINGS'), 'cog', 'settings', array('onClick' => 'zo2.layoutbuilder.showSettingModal(this);'));
-            $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_ADD_CHILDREN'), 'columns', 'add-row', array('onClick' => 'zo2.layoutbuilder.addRow(this);'));
-            $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_DUPLICATE'), 'files-o', 'duplicate-col', array('onClick' => 'zo2.layoutbuilder.duplicate(this);'));
-            $this->addControl(JText::_('ZO2_ADMIN_LAYOUTBULDER_ROW_CONTROL_REMOVE'), 'remove', 'delete', array('onClick' => 'zo2.layoutbuilder.showDeleteModal(this);'));
             // Default name
-            $this->def('name', 'unknown');
+            $this->def('name', self::DEFAULT_NAME);
             // Convert jdoc to JObject
             if ($this->get('jdoc'))
             {
@@ -75,6 +73,11 @@ if (!class_exists('Zo2LayoutbuilderRow'))
             }
         }
 
+        /**
+         * 
+         * @param type $isRoot
+         * @return \Zo2LayoutbuilderRow
+         */
         public function setRoot($isRoot)
         {
             $this->set('root', $isRoot);
@@ -90,6 +93,7 @@ if (!class_exists('Zo2LayoutbuilderRow'))
                 $this->_settings = array_merge($this->_settings, $childSettings);
                 $this->_settings = array_unique($this->_settings);
             }
+            return $this;
         }
 
         /**
@@ -102,22 +106,10 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         }
 
         /**
-         *
-         * @param type $name
-         * @param type $icon
-         * @param type $class
-         * @param type $data
+         * 
+         * @param type $rootDir
+         * @return type
          */
-        public function addControl($name, $icon, $class, $data = array())
-        {
-            $control = new Zo2LayoutbuilderControl();
-            $control->setTitle($name);
-            $control->setIcon($icon);
-            $control->addClass($class);
-            $control->addHtmlAttributes($data);
-            $this->_controls[] = $control;
-        }
-
         public function render($rootDir)
         {
             $html = new Zo2Html();
@@ -185,32 +177,10 @@ if (!class_exists('Zo2LayoutbuilderRow'))
         public function getClass($default = array())
         {
             $class = $default;
-            $class [] = '';
             if ($this->get('class') != '')
                 $class [] = $this->get('class');
             $class [] = $this->_getGridClass();
             return implode(' ', $class);
-        }
-
-        public function getSettings()
-        {
-            return $this->_settings;
-        }
-
-        /**
-         *
-         * @param array $controls
-         * @return string
-         */
-        public function getControls($controls = array())
-        {
-
-            $html = array();
-            foreach ($this->_controls as $control)
-            {
-                $html [] = $control->getHtml();
-            }
-            return implode(PHP_EOL, $html);
         }
 
         /**
@@ -219,28 +189,50 @@ if (!class_exists('Zo2LayoutbuilderRow'))
          */
         protected function _getGridClass()
         {
-            $grid = $this->get('grid');
-            $gridProperties = $grid->getProperties();
-            $class = array();
+            $class = '';
             // For frontpage we generate grid by use BS3
             if (JFactory::getApplication()->isSite())
             {
-                foreach ($gridProperties as $key => $value)
-                {
-
-                    $gridClass = $this->_getBootstrapVar('3', 'grid', 'col');
-                    $class [] = $gridClass . '-' . $key . '-' . $value;
-                }
+                $class = $this->_getBs3GridClass();
             } else // For backend we generate span md by use BS2
             {
-                $gridClass = $this->_getBootstrapVar('2', 'grid', 'span');
-                $class [] = $gridClass . $grid->get('md');
+                $class = $this->_getBs2GridClass();
             }
 
+            return $class;
+        }
+
+        protected function _getBs2GridClass()
+        {
+            $class = array();
+            $grid = $this->get('grid');
+            $gridClass = $this->_getBootstrapVar('2', 'grid', 'span');
+            $class [] = $gridClass . $grid->get('md');
             return trim(implode(' ', $class));
         }
 
-        private function _getBootstrapVar($version, $name, $default = null)
+        protected function _getBs3GridClass()
+        {
+            $grid = $this->get('grid');
+            $gridProperties = $grid->getProperties();
+            $class = array();
+            foreach ($gridProperties as $key => $value)
+            {
+
+                $gridClass = $this->_getBootstrapVar('3', 'grid', 'col');
+                $class [] = $gridClass . '-' . $key . '-' . $value;
+            }
+            return $class;
+        }
+
+        /**
+         * 
+         * @param type $version
+         * @param type $name
+         * @param type $default
+         * @return type
+         */
+        protected function _getBootstrapVar($version, $name, $default = null)
         {
             if (isset($this->_bsVars[$version]))
             {

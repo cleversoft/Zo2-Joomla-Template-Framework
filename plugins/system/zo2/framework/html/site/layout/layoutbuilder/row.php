@@ -16,9 +16,24 @@ $jDocName = $jDoc->get('name');
 $jDocStyle = $jDoc->get('style', 'xhtml');
 $rowName = $row->get('name');
 $children = $row->get('children', array());
+if ($row->getClass() != '')
+{
+    $className[] = trim($row->getClass());
+}
+if ($row->isRoot())
+{
+    if ($row->get('full-width'))
+    {
+        $className [] = 'container-fluid';
+    } else
+    {
+        $className [] = 'container';
+    }
+}
+$className = implode(' ', $className);
 ?>
 <section 
-    class="<?php echo $row->getClass(); ?>" 
+    class="<?php echo $className; ?>" 
     id="zo2-<?php echo Zo2HelperString::getAlias($rowName); ?>" 
     >
         <?php if (!$row->isRoot()) : ?>      
@@ -68,7 +83,7 @@ $children = $row->get('children', array());
             }
             ?>
         <?php endif; ?>
-        <?php if ($row->hasChildren()) : ?>      
+    <?php if ($row->hasChildren()) : ?>      
         <!-- BEGIN children: <?php echo $rowName; ?> -->        
         <?php
         if (count($children) > 0) :
@@ -82,5 +97,5 @@ $children = $row->get('children', array());
         endif;
         ?>
         <!-- END children: <?php echo $rowName; ?> -->
-    <?php endif; ?>
+<?php endif; ?>
 </section>

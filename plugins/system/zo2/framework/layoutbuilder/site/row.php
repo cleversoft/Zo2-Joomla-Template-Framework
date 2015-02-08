@@ -56,6 +56,25 @@ if (!class_exists('Zo2LayoutbuilderSiteRow'))
             return parent::render($rootDir);
         }
 
+        /**
+         *
+         * @return type
+         */
+        protected function _getGridClass()
+        {
+            $grid = $this->get('grid');
+            $gridProperties = $grid->getProperties();
+            $class = array();
+            // For frontpage we generate grid by use BS3
+            foreach ($gridProperties as $key => $value)
+            {
+
+                $gridClass = $this->_getBootstrapVar('3', 'grid', 'col');
+                $class [] = $gridClass . '-' . $key . '-' . $value;
+            }
+            return trim(implode(' ', $class));
+        }
+
     }
 
 }

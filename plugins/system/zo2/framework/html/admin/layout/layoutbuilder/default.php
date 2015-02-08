@@ -17,14 +17,14 @@ defined('_JEXEC') or die('Restricted access');
     <!-- Init blank html -->
     <div id="zo2-empty-parent-row" style="display: none">
         <?php
-        $blankRow = new Zo2LayoutbuilderRow();
+        $blankRow = new Zo2LayoutbuilderAdminRow();
         $blankRow->setRoot(true);
         echo $blankRow->render('Zo2://html/admin/layout/layoutbuilder');
         ?>
     </div>
     <div id="zo2-empty-child-row" style="display: none">
         <?php
-        $blankRow = new Zo2LayoutbuilderRow();
+        $blankRow = new Zo2LayoutbuilderAdminRow();
         $blankRow->setRoot(false);
         echo $blankRow->render('Zo2://html/admin/layout/layoutbuilder');
         ?>
@@ -37,9 +37,9 @@ defined('_JEXEC') or die('Restricted access');
     <div id="zo2-layoutbuilder" class="row-fluid">
         <?php if (is_array($rows)): ?>
             <?php foreach ($rows as $row) : ?>
-                <?php $row = new Zo2LayoutbuilderRow($row); ?>
+                <?php $row = new Zo2LayoutbuilderAdminRow($row); ?>
                 <?php $row->setRoot(true); ?>            
-                <?php echo $row->render('Zo2://html/admin/layout/layoutbuilder'); ?>
+                <?php echo $row->render(); ?>
             <?php endforeach; ?>
         <?php else: ?>
             <!-- No layouts yet -->
