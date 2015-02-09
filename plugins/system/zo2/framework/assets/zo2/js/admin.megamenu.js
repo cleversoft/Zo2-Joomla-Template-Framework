@@ -161,26 +161,27 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         update_toolbox();
     };
 
+    /* Fallback to old concept */
     actions.moveItemsLeft = function() {
         if (!currentSelected)
             return;
         var $item = currentSelected.closest('li'),
-                $liparent = $item.parent().closest('li'),
-                level = $liparent.data('level'),
-                $col = $item.closest('[class*="span"]'),
-                $items = $col.find('ul:first > li'),
-                itemidx = $items.index($item),
-                $moveitem = $items.slice(0, itemidx + 1).last(),
-                itemleft = $items.length - $moveitem.length,
-                $rows = $col.parent().parent().children('[class*="row"]'),
-                $cols = $rows.children('[class*="span"]').filter(function() {
-            return !$(this).data('module_id');
-        }),
-                colidx = $cols.index($col);
+            $liparent = $item.parent().closest('li'),
+            level = $liparent.data('level'),
+            $col = $item.closest('[class*="span"]'),
+            $items = $col.find('ul:first > li'),
+            itemidx = $items.index($item),
+            $moveitems = $items.slice(0, itemidx + 1),
+            itemleft = $items.length - $moveitems.length,
+            $rows = $col.parent().parent().children('[class*="row"]'),
+            $cols = $rows.children('[class*="span"]').filter(function() {
+                return !$(this).data('module_id')
+            }),
+            colidx = $cols.index($col);
         if (!$liparent.length)
             return; // need make this is mega first
 
-        if (colidx === 0) {
+        if (colidx == 0) {
             // add new col
             var oldSelected = currentSelected;
             currentSelected = $col;
@@ -188,7 +189,7 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
             actions.datas.addfirst = true;
             actions.addColumn();
             $cols = $rows.children('[class*="span"]').filter(function() {
-                return !$(this).data('module_id');
+                return !$(this).data('module_id')
             });
             currentSelected = oldSelected;
             colidx++;
@@ -199,41 +200,41 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!$ul.length) {
             $ul = $('<ul class="mega-nav level' + level + '">').appendTo($tocol.children('.mega-inner'));
         }
-        $moveitem.appendTo($ul);
-        if (itemleft === 0) {
+        $moveitems.appendTo($ul);
+        if (itemleft == 0) {
             $col.find('ul:first').remove();
         }
         // update toolbox status
         update_toolbox();
-    };
+    }
 
     actions.moveItemsRight = function() {
         if (!currentSelected)
             return;
         var $item = currentSelected.closest('li'),
-                $liparent = $item.parent().closest('li'),
-                level = $liparent.data('level'),
-                $col = $item.closest('[class*="span"]'),
-                $items = $col.find('ul:first > li'),
-                itemidx = $items.index($item),
-                $moveitem = $items.slice(itemidx).first(),
-                itemleft = $items.length - $moveitem.length,
-                $rows = $col.parent().parent().children('[class*="row"]'),
-                $cols = $rows.children('[class*="span"]').filter(function() {
-            return !$(this).data('module_id');
-        }),
-                colidx = $cols.index($col);
+            $liparent = $item.parent().closest('li'),
+            level = $liparent.data('level'),
+            $col = $item.closest('[class*="span"]'),
+            $items = $col.find('ul:first > li'),
+            itemidx = $items.index($item),
+            $moveitems = $items.slice(itemidx),
+            itemleft = $items.length - $moveitems.length,
+            $rows = $col.parent().parent().children('[class*="row"]'),
+            $cols = $rows.children('[class*="span"]').filter(function() {
+                return !$(this).data('module_id')
+            }),
+            colidx = $cols.index($col);
         if (!$liparent.length)
             return; // need make this is mega first
 
-        if (colidx === $cols.length - 1) {
+        if (colidx == $cols.length - 1) {
             // add new col
             var oldSelected = currentSelected;
             currentSelected = $col;
             actions.datas.addfirst = false;
             actions.addColumn();
             $cols = $rows.children('[class*="span"]').filter(function() {
-                return !$(this).data('module_id');
+                return !$(this).data('module_id')
             });
             currentSelected = oldSelected;
         }
@@ -243,8 +244,8 @@ var ZO2AdminMegamenu = window.ZO2AdminMegamenu || {};
         if (!$ul.length) {
             $ul = $('<ul class="mega-nav level' + level + '">').appendTo($tocol.children('.mega-inner'));
         }
-        $moveitem.prependTo($ul);
-        if (itemleft === 0) {
+        $moveitems.prependTo($ul);
+        if (itemleft == 0) {
             $col.find('ul:first').remove();
         }
         // update toolbox status
