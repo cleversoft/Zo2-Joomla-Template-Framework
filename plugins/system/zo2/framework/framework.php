@@ -252,6 +252,16 @@ if (!class_exists('Zo2Framework'))
         }
 
         /**
+         * 
+         * @return type
+         */
+        public static function isRtl()
+        {
+            $document = JFactory::getDocument();
+            return (Zo2Framework::getParam('enable_rtl')) && ( $document->getDirection() == 'rtl');
+        }
+
+        /**
          * For development mode we need to get from database params because app is not inited yet
          * @return boolean
          */

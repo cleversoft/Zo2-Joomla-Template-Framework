@@ -58,7 +58,8 @@ if (!class_exists('Zo2AppSite'))
                 {
                     $assets->addStyleSheet('Zo2://assets/css/non.responsive.css');
                 }
-                if (Zo2Framework::getParam('enable_rtl'))
+                // Load RTL css if needed
+                if (Zo2Framework::isRtl())
                 {
                     $assets->addStyleSheet('Zo2://assets/css/rtl.css');
                 }
