@@ -40,9 +40,14 @@ if (!class_exists('Zo2Layout'))
 
             jimport('joomla.cache.cache');
             jimport('joomla.cache.callback');
-            $cache = JFactory::getCache();
-            $buffer = $cache->call(array($this, 'getHtml'));
-
+            $id = md5(serialize($this));
+            $cache = JFactory::getCache('zo2','');
+            $buffer = $cache->get($id);
+            if ($buffer === false)
+            {
+                $buffer = $this->getHtml();
+                $cache->store($buffer, $id);
+            }
             return $buffer;
         }
 
@@ -75,29 +80,6 @@ if (!class_exists('Zo2Layout'))
         public function renderOut()
         {
             return implode("", $this->_outBuffer);
-        }
-
-        /**
-         * Get physical path for cache file
-         * @return boolean
-         */
-        protected function _getCacheFile()
-        {
-            $user = JFactory::getUser();
-            $app = JFactory::getApplication();
-            $menu = $app->getMenu();
-            $menuItem = $menu->getActive();
-
-            if ($menuItem)
-            {
-                /**
-                 * @uses Cache id must match with each menu + user groups and guest status
-                 */
-                $id = md5(serialize($menuItem) . '_' . serialize($user->groups) . '_' . (int) $user->guest);
-                $cacheFile = 'zo2_cache_' . $id . '.php';
-                return ZO2PATH_CACHE . '/' . $cacheFile;
-            }
-            return false;
         }
 
         /**
