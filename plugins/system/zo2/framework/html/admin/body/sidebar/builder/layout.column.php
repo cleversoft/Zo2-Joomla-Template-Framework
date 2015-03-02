@@ -23,6 +23,7 @@
         <div class="col-control-buttons">
             <i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>
             <i title="Column's settings" class="fa fa-cog col-control-icon settings hasTooltip" data-toggle="modal"></i>
+            <i title="Add new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>
             <i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>
         </div>
 

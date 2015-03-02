@@ -168,7 +168,11 @@
                         '<div class="col-container"></div></div>');
                 $meta.appendTo($row);
                 _self._addChildColumn($row);
-
+            });
+            
+            var _self = this;
+            $('#droppable-container').on('click', '.col-control-buttons > .add-row', function() {
+                _self._addChildRow($(this));
             });
         },
         /**
@@ -216,6 +220,34 @@
              $spanContainer.appendTo($meta);
              */
             $span.appendTo($colContainer);
+        },
+        /**
+         * Add child column to container
+         * @param {type} $rowContainer
+         * @returns {undefined}
+         */
+        _addChildRow: function($rowContainer) {
+                var _self = this;
+                var $parent = $rowContainer.closest('[data-zo2-type="span"]').find('div.row-container');
+                var $row = $('<div />').addClass('zo2-row sortable-row').appendTo($parent);
+                $row.attr('data-zo2-type', 'row');
+                $row.attr('data-zo2-customClass', '');
+                $row.attr('data-zo2-fullwidth', '0');
+                for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
+                    $row.attr(_self._settings.visibilityAttributes[i], '1');
+                }
+                var $meta = $('<div class="col-md-12 row-control">' +
+                        '<div class="row-control-container">' +
+                        '<div class="row-name">(unnamed row)</div>' +
+                        '<div class="row-control-buttons">' +
+                        '<i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
+                        '<i title="Row\'s settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
+                        '<i title="Add new row" class="row-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
+                        '<i title="Add new column" class="row-control-icon add-column fa fa-columns hasTooltip"></i>' +
+                        '<i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
+                        '</div></div>' +
+                        '<div class="col-container"></div></div>');
+                $meta.appendTo($row);
         },
         /**
          * Delet child element
