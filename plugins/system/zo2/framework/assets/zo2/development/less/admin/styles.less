@@ -2,18 +2,19 @@
     /* Top navbar */
     .navbar {
         .zo2-profiles {
-            select#zo2-profiles {
+            #zo2_profiles_chzn, #zo2_profile_chzn {
                 margin-top: 10px;
                 margin-bottom: 5px;
                 margin-right: 5px;
                 min-width: 150px;
-            }
-            select#zo2-profile{
-              margin-top: 10px;
+                float: left;
+              .chzn-single{
+                height: 26px;
+              }
             }
             .zo2-name-profile{
               line-height: 38px;
-              padding: 3px 10px 0 0;
+              padding: 5px 10px 0 0;
             }
             .btn{
               margin-top: 10px;
@@ -21,4 +22,10 @@
             }
         }
     }
+}
+@media screen and (min-width: 768px) {
+  #zo2-framework #layoutbuilder-container div.modal{
+    max-width: 700px;
+    margin-left: -350px;
+  }
 }
