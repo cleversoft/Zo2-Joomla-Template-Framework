@@ -20,8 +20,10 @@
                             break;
                         case '0':
                             echo '<span class="label label-success">Your Zo2 version is latest.</span><br />';
+                            break;
                         case '1':
                             echo '<span class="label label-info">Your Zo2 version newer than us.</span><br />';
+                            break;
                     }
                     ?>
                     <p><strong>Latest version: <?php echo $version['latestVersion']; ?></strong></p>
