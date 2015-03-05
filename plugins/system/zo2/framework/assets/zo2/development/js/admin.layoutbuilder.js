@@ -145,16 +145,76 @@
         addNewRow: function() {
             var _self = this;
             $('#droppable-container').on('click', '.row-control-buttons > .add-row', function() {
-                var $this = $(this);
-                var $parent = $this.closest('.zo2-row');
-                var $row = $('<div />').addClass('zo2-row sortable-row').insertAfter($parent);
+                var $row = $(this).closest('[data-zo2-type="row"]');
+                if($row.parent().hasClass('zo2-container')){
+                    _self._addChildRow($row, true);
+                }                
+            });
+            $('#droppable-container').on('click', '.col-control-buttons > .add-row', function() {
+                var $col = $(this).closest('[data-zo2-type="span"]');
+                _self._addChildRow($col.find('> .col-wrap > .row-container'));
+            });
+        },
+        /**
+         * Add column
+         * @returns {undefined}
+         */
+        addColumn: function() {
+            var _self = this;
+            $('#droppable-container').on('click', '.row-control-buttons > .add-column', function() {
+                var $row = $(this).closest('[data-zo2-type="row"]');
+                _self._addChildColumn($row.find('> .col-md-12 > .col-container'));
+            });
+        },
+        /**
+         * Add child column to container
+         * @param {type} $rowContainer
+         * @returns {undefined}
+         */
+        _addChildColumn: function($target) {
+            var _self = this;
+            var $col = $('<div />').addClass('sortable-col');
+            $col.attr('data-zo2-type', 'span');
+            $col.attr('data-zo2-span', 12);
+            $col.removeClass(_self._settings.allColClass);
+            $col.addClass('col-md-12');
+            $col.attr('data-zo2-position', '');
+            $col.attr('data-zo2-offset', 0);
+            $col.attr('data-zo2-customClass', '');
+            var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
+                    '<div class="col-grid-button">' +
+                    '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
+                    '<span class="col-size">12/12</span>' +
+                    '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
+                    '</div>' +
+                    '<div class="col-control-buttons">' +
+                    '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                    '<i title="Add new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>'+
+                    '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div></div></div>';
+            var $meta = $(metaHtml);
+            $meta.appendTo($col);
+            $col.appendTo($target);
+        },
+        /**
+         * Add child column to container
+         * @param {type} $rowContainer
+         * @returns {undefined}
+         */
+        _addChildRow: function($target, after) {
+                var _self = this;
+                if(typeof(after) === 'undefined'){
+                    var $row = $('<div />').addClass('zo2-row sortable-row').appendTo($target);
+                }else{
+                    var $row = $('<div />').addClass('zo2-row sortable-row').insertAfter($target);
+                }                
                 $row.attr('data-zo2-type', 'row');
                 $row.attr('data-zo2-customClass', '');
                 $row.attr('data-zo2-fullwidth', '0');
                 for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
                     $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
-                //$row.attr('data-zo2-layout', 'fixed');
                 var $meta = $('<div class="col-md-12 row-control">' +
                         '<div class="row-control-container">' +
                         '<div class="row-name">(unnamed row)</div>' +
@@ -167,55 +227,7 @@
                         '</div></div>' +
                         '<div class="col-container"></div></div>');
                 $meta.appendTo($row);
-                _self._addChildColumn($row);
-
-            });
-        },
-        /**
-         * Add column
-         * @returns {undefined}
-         */
-        addColumn: function() {
-            var _self = this;
-            $('#droppable-container').on('click', '.row-control-buttons > .add-column', function() {
-                _self._addChildColumn($(this));
-            });
-        },
-        /**
-         * Add child column to container
-         * @param {type} $rowContainer
-         * @returns {undefined}
-         */
-        _addChildColumn: function($rowContainer) {
-            var _self = this;
-            var $container = $rowContainer.closest('[data-zo2-type="row"]');
-            var $colContainer = $container.find('>.col-md-12>.col-container');
-            var $span = $('<div />').addClass('sortable-col');
-            $span.attr('data-zo2-type', 'span');
-            $span.attr('data-zo2-span', 12);
-            $span.removeClass(_self._settings.allColClass);
-            $span.addClass('col-md-12');
-            $span.attr('data-zo2-position', '');
-            $span.attr('data-zo2-offset', 0);
-            $span.attr('data-zo2-customClass', '');
-            var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                    '<div class="col-grid-button">' +
-                    '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
-                    '<span class="col-size">12/12</span>' +
-                    '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
-                    '</div>' +
-                    '<div class="col-control-buttons">' +
-                    '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                    '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                    '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
-                    '</div><div class="row-container"></div></div></div>';
-            var $meta = $(metaHtml);
-            $meta.appendTo($span);
-            /*
-             var $spanContainer = $('<div />').addClass('row-container zo2-row sortable-row');
-             $spanContainer.appendTo($meta);
-             */
-            $span.appendTo($colContainer);
+                _self._addChildColumn($row.find('>.col-md-12>.col-container'))
         },
         /**
          * Delet child element
