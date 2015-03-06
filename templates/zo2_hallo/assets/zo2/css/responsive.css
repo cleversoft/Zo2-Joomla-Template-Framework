@@ -64,6 +64,9 @@
     border: none;
     max-height: 40px;
   }
+  #zo2-top-wrap .search {
+    float: none;
+  }
   #zo2-header-wrap {
     text-align: center;
   }
