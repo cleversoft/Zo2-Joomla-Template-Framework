@@ -397,22 +397,32 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
 #zo2-admin-mm-tb .btn [class*=" icon-"] {
   margin-right: 0;
 }
-#zo2-framework .navbar .zo2-profiles select#zo2-profiles {
+#zo2-framework .navbar .zo2-profiles #zo2_profiles_chzn,
+#zo2-framework .navbar .zo2-profiles #zo2_profile_chzn {
   margin-top: 10px;
   margin-bottom: 5px;
   margin-right: 5px;
   min-width: 150px;
+  float: left;
 }
-#zo2-framework .navbar .zo2-profiles select#zo2-profile {
-  margin-top: 10px;
+#zo2-framework .navbar .zo2-profiles #zo2_profiles_chzn .chzn-single,
+#zo2-framework .navbar .zo2-profiles #zo2_profile_chzn .chzn-single {
+  height: 26px;
 }
 #zo2-framework .navbar .zo2-profiles .zo2-name-profile {
   line-height: 38px;
-  padding: 3px 10px 0 0;
+  padding: 5px 10px 0 0;
 }
 #zo2-framework .navbar .zo2-profiles .btn {
   margin-top: 10px;
   margin-right: 10px;
+}
+@media screen and (min-width: 768px) {
+  #zo2-framework #layoutbuilder-container div.modal,
+  div.modal.bootbox {
+    max-width: 700px;
+    margin-left: -350px;
+  }
 }
 .floatdiv > div {
   float: left;

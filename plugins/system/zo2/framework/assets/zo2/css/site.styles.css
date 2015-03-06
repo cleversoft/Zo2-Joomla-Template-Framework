@@ -223,7 +223,7 @@ img {
     margin-left: 0;
   }
   .zo2-megamenu.animate.slide .mega > .mega-dropdown-menu > div {
-    margin-top: 78px;
+    margin-top: 92px;
     -webkit-transition: all 200ms;
     -moz-transition: all 200ms;
     -o-transition: all 200ms;
@@ -233,7 +233,7 @@ img {
     backface-visibility: hidden;
   }
   .zo2-megamenu.animate.slide .mega.open > .mega-dropdown-menu > div {
-    margin-top: 58px;
+    margin-top: 76px;
   }
   .zo2-megamenu.animate .mega.open > .mega-dropdown-menu,
   .zo2-megamenu.animate .mega.hovering.open > .mega-dropdown-menu {
