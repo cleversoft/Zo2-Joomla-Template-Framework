@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<extension type="package" version="3.0" method="install">
+	<extension type="package" version="3.0" method="upgrade">
 	<name>Package - Zo2 Framework</name>
 	<packagename>zo2</packagename>
     <packager>Zo2 Framework</packager>   	
