@@ -21,6 +21,17 @@
         'value' => Zo2Framework::getParam('enable_rtl')
     ));
     ?>
+    <!-- Hide frontpage component -->
+    <?php
+    echo Zo2Html::field(
+            'radio', array(
+        'label' => JText::_('ZO2_ADMIN_HIDE_FRONTPAGE_COMPONENT'),
+        'description' => JText::_('ZO2_ADMIN_HIDE_FRONTPAGE_COMPONENT_DESC')
+            ), array(
+        'name' => 'jform[params][component_area]',
+        'value' => Zo2Framework::getParam('component_area')
+    ));
+    ?>
     <!-- Responsive Layout -->
     <?php
     echo Zo2Html::field(
@@ -161,8 +172,8 @@
     ?>   
     <!-- Development mode -->
     <div class="zo2-divider"></div>  
- 	<h2><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></h2>    
- 	<div class="zo2-divider"></div>   
+    <h2><?php echo JText::_('ZO2_ADMIN_DEVELOPMENT_OPTION'); ?></h2>    
+    <div class="zo2-divider"></div>   
     <?php
     echo Zo2Html::field(
             'radio', array(
