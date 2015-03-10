@@ -2,7 +2,7 @@
     "profile": "default",
     "site_name": "",
     "site_slogan": "",
-    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                ",
+    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
     "standard_logo": "images\/zo2_logo_64x64.png",
     "retina_logo": "images\/zo2_logo_64x64.png",
     "footer_gototop": "1",
@@ -306,7 +306,7 @@
             },
             "children": [
                 {
-                    "jdoc": "modules",
+                    "jdoc": "messsge",
                     "type": "col",
                     "name": "message",
                     "position": "message",
@@ -357,7 +357,7 @@
                     "children": []
                 },
                 {
-                    "jdoc": "modules",
+                    "jdoc": "component",
                     "type": "col",
                     "name": "component",
                     "position": "component",
@@ -650,10 +650,11 @@
         }
     },
     "enable_rtl": "0",
+    "component_area": "0",
     "non_responsive_layout": "0",
     "enable_style_switcher": "0",
     "enable_sticky_menu": "0",
-    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
+    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
     "combine_css": "0",
     "combine_js": "0",
     "development_mode": "1",

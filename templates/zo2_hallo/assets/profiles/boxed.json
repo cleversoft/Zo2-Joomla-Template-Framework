@@ -306,7 +306,7 @@
             },
             "children": [
                 {
-                    "jdoc": "modules",
+                    "jdoc": "messsge",
                     "type": "col",
                     "name": "message",
                     "position": "message",
@@ -357,7 +357,7 @@
                     "children": []
                 },
                 {
-                    "jdoc": "modules",
+                    "jdoc": "component",
                     "type": "col",
                     "name": "component",
                     "position": "component",
