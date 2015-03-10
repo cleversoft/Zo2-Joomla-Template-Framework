@@ -552,7 +552,16 @@ if (!class_exists('Zo2Framework'))
          */
         public function displayOffCanvasMenu($config = null, $isAdmin = false)
         {
-            
+            if (!isset($config['menu_type']))
+            {
+                $config['menu_type'] = $this->get('menu_type', 'mainmenu');
+            }
+            if (!isset($config['isAdmin']))
+            {
+                $config['isAdmin'] = false;
+            }
+            $menu = new Zo2Megamenu($config['menu_type'], $config);
+            return $menu->renderOffCanvasMenu($config);
         }
 
         public function getAsset($name, $data = array())
