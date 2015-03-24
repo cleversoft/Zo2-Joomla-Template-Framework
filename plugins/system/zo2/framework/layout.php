@@ -75,7 +75,10 @@ if (!class_exists('Zo2Layout'))
                 $this->_outBuffer[] = Zo2Framework::getInstance()->displayOffCanvasMenu($config);
             }
             $html = implode(PHP_EOL, $this->_buffer);
-            $html = $this->_compressHtml($html);
+			/**
+			* caused invalid character. Will need check later
+			**/
+            //$html = $this->_compressHtml($html);
             return $html;
         }
 
@@ -497,7 +500,7 @@ if (!class_exists('Zo2Layout'))
             Zo2Factory::import('vendor.ganon.ganon');
             $dom = str_get_dom($buffer);
             HTML_Formatter::minify_html($dom);
-            $buffer = (string)$dom;
+            $buffer = (string) $dom;
             return $buffer;
         }
 
