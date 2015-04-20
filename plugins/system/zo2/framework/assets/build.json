@@ -8,7 +8,7 @@
             "zo2.js",
             "admin.scripts.js",
             "admin.megamenu.js",
-            "admin.assets.js",            
+            "admin.assets.js",
             "admin.ajax.js",
             "admin.profile.js",
             "admin.layoutbuilder.js",
@@ -23,6 +23,7 @@
     "template": {
         "less": [
             "template.less",
+            "rtl.less",
             "responsive.less",
             "non-responsive.less",
             "error.less",

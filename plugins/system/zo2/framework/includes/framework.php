@@ -207,6 +207,7 @@ if (!class_exists('Zo2Framework'))
                     if (Zo2Factory::isRTL())
                     {
                         $this->assets->addStyleSheet('vendor/bootstrap/addons/bootstrap-rtl/css/bootstrap-rtl.min.css');
+                        $this->assets->addStyleSheet('zo2/css/rtl.css');
                     }
                     $this->_loadTheme();
                 } else
@@ -699,19 +700,24 @@ if (!class_exists('Zo2Framework'))
                 return file_get_contents($assetsFile);
             }
         }
-/**
+
+        /**
          * @return bool
          */
-        public static function isFrontPage() {
+        public static function isFrontPage()
+        {
             $app = JFactory::getApplication();
             $menu = $app->getMenu();
             $tag = JFactory::getLanguage()->getTag();
-            if ($menu->getActive() == $menu->getDefault($tag)) {
+            if ($menu->getActive() == $menu->getDefault($tag))
+            {
                 return true;
-            } else {
+            } else
+            {
                 return false;
             }
         }
+
     }
 
 }
