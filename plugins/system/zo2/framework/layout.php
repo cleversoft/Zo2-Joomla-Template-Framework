@@ -38,17 +38,8 @@ if (!class_exists('Zo2Layout'))
         public function render()
         {
 
-            jimport('joomla.cache.cache');
-            jimport('joomla.cache.callback');
-            $id = $this->_getId();
-            $cache = JFactory::getCache('zo2', '');
-            $buffer = $cache->get($id);
-            if ($buffer === false)
-            {
-                $buffer = $this->getHtml();
-                $cache->store($buffer, $id);
-            }
-            return $buffer;
+            $cache = Zo2Cache::getInstance();
+            return $cache->get($this->_getId(), array($this, 'getHtml'));
         }
 
         private function _getId()
@@ -75,9 +66,9 @@ if (!class_exists('Zo2Layout'))
                 $this->_outBuffer[] = Zo2Framework::getInstance()->displayOffCanvasMenu($config);
             }
             $html = implode(PHP_EOL, $this->_buffer);
-			/**
-			* caused invalid character. Will need check later
-			**/
+            /**
+             * caused invalid character. Will need check later
+             * */
             //$html = $this->_compressHtml($html);
             return $html;
         }
