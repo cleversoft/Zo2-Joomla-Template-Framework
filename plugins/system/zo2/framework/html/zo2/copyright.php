@@ -24,7 +24,7 @@ defined('_JEXEC') or die('Restricted access');
         </a>
     <?php endif; ?>
     <?php if ($gototop): ?>
-        <a href="#" id="gototop" title="Go to top"><i class="fa fa-chevron-up"></i></a>
+    <a href="#" id="gototop" title="<?php echo JText::_('GO_TO_TOP');?>"><i class="fa fa-chevron-up"></i></a>
         <script>
             jQuery("#gototop").click(function () {
                 jQuery("body, html").animate({scrollTop: 0});
