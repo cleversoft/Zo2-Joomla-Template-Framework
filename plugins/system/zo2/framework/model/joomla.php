@@ -57,6 +57,7 @@ if (!class_exists('Zo2ModelJoomla'))
         public function getMenuItemsByType($type)
         {
             $db = JFactory::getDbo();
+            $user = JFactory::getUser();
             $query = $db->getQuery(true)
                     ->select('m.id, m.menutype, m.title, m.alias, m.note, m.path AS route, m.link, m.type, m.level, m.language')
                     ->select($db->quoteName('m.browserNav') . ', m.access, m.params, m.home, m.img, m.template_style_id, m.component_id, m.parent_id')
@@ -66,6 +67,7 @@ if (!class_exists('Zo2ModelJoomla'))
                     ->where('m.published = 1')
                     ->where('m.parent_id > 0')
                     ->where('m.client_id = 0')
+                    ->where('m.access IN ( ' . implode(',', $user->getAuthorisedViewLevels()) . ' )' ) 
                     ->where('m.menutype = ' . $db->quote($type))
                     ->order('m.lft');
 
