@@ -47,6 +47,12 @@
                 data: {
                     zo2_task: 'admin.modalCreateProfile'
                 }
+            }).done(function(){
+                $('#prependedInput').keypress(function(e){
+                    if(!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >=97 && e.keyCode <= 122))){
+                         return false;
+                    }
+                });
             });
         },
         /**
