@@ -28,11 +28,11 @@ defined('_JEXEC') or die('Restricted access');
         <script>
             jQuery("#gototop").hide();
             jQuery("#gototop").click(function () {
-                jQuery("body, html").animate({scrollTop: 0}, 1000);
+                jQuery("body, html").animate({scrollTop: 0}, 500);
                 return false;
             });
             jQuery(window).scroll(function(e){
-                if(jQuery(window).scrollTop() > jQuery(window).height()){
+                if(jQuery(window).scrollTop() > 0){
                     jQuery("#gototop").fadeIn('slow');
                 }else{
                     if(jQuery("#gototop").is(':visible')){
