@@ -2923,90 +2923,6 @@ code {
 .tag {
   color: inherit;
 }
-.rtl #zo2-search form:before {
-  left: 25px;
-  right: auto;
-}
-.rtl #zo2-top-menu .mod-languages li {
-  float: right;
-}
-.rtl .zo2-megamenu .dropdown-menu .mega-nav > li a:before {
-  right: 0;
-  left: auto;
-}
-.rtl .latest-news .thumb {
-  float: right;
-}
-.rtl .latest-news .desc {
-  margin-left: 0;
-  margin-right: 100px;
-}
-.rtl .zo2-socialshares-floatbar {
-  margin-left: 0;
-  margin-right: -100px;
-}
-.rtl .form-horizontal .control-label {
-  text-align: right !important;
-}
-.rtl .pull-left {
-  float: right !important;
-}
-.rtl .pull-right {
-  float: left !important;
-}
-.rtl .media > .pull-left {
-  margin: 0 0 0 10px;
-}
-.rtl [class^="zt-icon-"] li:before,
-.rtl [class*=" zt-icon-"] li:before {
-  margin: 0 0 0 5px;
-}
-.rtl .zt-box-info:before,
-.rtl .zt-box-warning:before,
-.rtl .zt-box-stickynote:before,
-.rtl .zt-box-upload:before,
-.rtl .zt-box-download:before {
-  margin: 0 0 0 10px;
-}
-.rtl .box-color ul.weblinks li:hover a,
-.rtl .box-color ul.weblinks li.active a,
-.rtl .box-color ul.menu li:hover a,
-.rtl .box-color ul.menu li.active a,
-.rtl .box-color ul.weblinks li:hover a,
-.rtl .box-color ul.weblinks li.active a,
-.rtl .box-color ul.menu li:hover a,
-.rtl .box-color ul.menu li.active a {
-  margin: 0 10px 0 0;
-}
-.rtl .nav-parent > .nav-oc-toggle {
-  right: auto;
-  left: 0;
-  transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-}
-.rtl .offcanvas .sidebar-close {
-  right: auto;
-  left: 0;
-  float: left;
-}
-.rtl .offcanvas .sidebar-nav {
-  padding: 0 20px 0 0;
-}
-.rtl #zo2-bottom-2-wrap address i {
-  padding: 0 0 0 15px;
-}
-.rtl h3.moduletitle:after {
-  left: inherit;
-  right: 0;
-}
-.rtl footer section {
-  float: right;
-}
-.rtl footer .zo2-copyright-logo img {
-  float: left;
-}
 .border-image {
   border: 15px solid rgba(0,0,0,0.1);
 }
@@ -3018,4 +2934,7 @@ code {
   font-size: 30px;
   font-weight: 300;
   margin-top: 0;
+}
+.zt-progress.progress-bar {
+  width: 100%;
 }

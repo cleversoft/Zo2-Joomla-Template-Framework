@@ -1,1 +1,116 @@
-a{color:red;}
+body{
+   #zo2-search {
+    form {
+      &:before {
+        left: 25px;
+        right: auto;
+      }
+    }
+  }
+  #zo2-top-menu .mod-languages li {
+    float: right;
+  }
+  .zo2-megamenu .dropdown-menu .mega-nav > li a:before {
+    right: 0;
+    left: auto;
+  }
+  .latest-news {
+    .thumb {
+      float: right;
+    }
+    .desc {
+      margin-left: 0;
+      margin-right: 100px;
+    }
+  }
+  .zo2-socialshares-floatbar {
+    margin-left: 0;
+    margin-right: -100px;
+  }
+  .form-horizontal .control-label {
+    text-align: right !important;
+  }
+  .pull-left {
+    float: right !important;
+  }
+  .pull-right {
+    float: left !important;
+  }
+  .media > .pull-left {
+    margin: 0 0 0 10px;
+  }
+  [class^="zt-icon-"] li, [class*=" zt-icon-"] li {
+    &:before{
+      margin: 0 0 0 5px;
+    }
+  }
+  .zt-box-info,
+  .zt-box-warning,
+  .zt-box-stickynote,
+  .zt-box-upload,
+  .zt-box-download{
+    &:before{
+      margin: 0 0 0 10px;
+    }
+  }
+  .box-color ul.weblinks,
+  .box-color ul.menu,
+  .box-color ul.weblinks,
+  .box-color ul.menu{
+    li{
+      &:hover, &.active{
+        a{
+          margin: 0 10px 0 0;
+        }
+      }
+    }
+  }
+
+  .nav-parent > .nav-oc-toggle {
+    right: auto;
+    left: 0;
+    .transform(rotate(90deg));
+  }
+  .offcanvas{
+    .sidebar-close {
+      right: auto;
+      left: 0;
+      float: left;
+    }
+    .sidebar-nav{
+      padding: 0 20px 0 0;
+    }
+  }
+  #zo2-bottom-2-wrap address i {
+    padding: 0 0 0 15px;
+  }
+  h3.moduletitle:after {
+    left: inherit;
+    right: 0;
+  }
+
+  /* Footer */
+  footer section {
+    float: right;
+  }
+  footer .zo2-copyright-logo img {
+    float: left;
+  }
+
+}
+#zo2-position-1 {
+  form {
+
+    &:before {
+      color: #555555;
+      content: "\f002";
+      display: block;
+      font-family: "FontAwesome";
+
+      left: 25px;right: auto;
+      position: absolute;
+    }
+  }
+
+}
+.zo2-megamenu .mega-nav > li, .zo2-megamenu .dropdown-menu .mega-nav > li{text-align: right;}
