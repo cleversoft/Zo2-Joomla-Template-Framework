@@ -26,9 +26,19 @@ defined('_JEXEC') or die('Restricted access');
     <?php if ($gototop): ?>
     <a href="#" id="gototop" title="<?php echo JText::_('ZO2_GO_TO_TOP');?>"><i class="fa fa-chevron-up"></i></a>
         <script>
+            jQuery("#gototop").hide();
             jQuery("#gototop").click(function () {
-                jQuery("body, html").animate({scrollTop: 0});
+                jQuery("body, html").animate({scrollTop: 0}, 1000);
                 return false;
+            });
+            jQuery(window).scroll(function(e){
+                if(jQuery(window).scrollTop() > jQuery(window).height()){
+                    jQuery("#gototop").fadeIn('slow');
+                }else{
+                    if(jQuery("#gototop").is(':visible')){
+                        jQuery("#gototop").fadeOut('slow');
+                    }
+                }
             });
         </script>
     <?php endif; ?>
