@@ -361,6 +361,7 @@ if (!class_exists('Zo2Layout'))
 
                 $class[] = 'col-md-' . $item->get('span');
                 $class[] = 'col-sm-' . $item->get('span');
+
                 if ($item->get('offset') != 0)
                 {
                     $class [] = ' col-md-offset-' . $item->get('offset');
@@ -369,6 +370,7 @@ if (!class_exists('Zo2Layout'))
                 $customClass = explode(' ', $item->get('customClass'));
                 $class = array_merge($class, $customClass);
                 $class = array_unique($class);
+
                 $gridClass = array();
                 /* Find grid core class */
                 foreach ($class as $key => $value)
@@ -377,11 +379,17 @@ if (!class_exists('Zo2Layout'))
                             strpos($value, 'col-xs-') !== false || strpos($value, 'col-sm-') !== false || strpos($value, 'col-md-') !== false || strpos($value, 'col-lg-') !== false)
                     {
                         $subs = explode('-', $value);
-                        if (count($subs) == 3)
+                        if (in_array('offset', $subs))
                         {
-                            $gridClass[$subs[0] . '-' . $subs[1]] = $subs[2];
+                            
+                        } else
+                        {
+                            if (count($subs) == 3)
+                            {
+                                $gridClass[$subs[0] . '-' . $subs[1]] = $subs[2];
+                            }
+                            unset($class[$key]);
                         }
-                        unset($class[$key]);
                     }
                 }
                 foreach ($gridClass as $key => $value)
@@ -435,7 +443,7 @@ if (!class_exists('Zo2Layout'))
                                 /* Display frontend megamenu */
                                 $framework = Zo2Framework::getInstance();
                                 $megamenu = $framework->displayMegaMenu(Zo2Framework::getInstance()->profile->menu_type);
-                                $html .= $megamenu;
+                                //$html .= $megamenu;
                                 break;
                         }
                         break;
