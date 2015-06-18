@@ -39,23 +39,14 @@ $templateName = $this->template;
 </head>
 <body class="zo2-error">
 <div>
-    <div class="img">
-        <img src="<?php echo $this->baseurl . '/templates/zo2_hallo/assets/zo2/images/404_page.png'?>"/>
-    </div>
+
     <div id="outline">
         <div id="errorboxoutline">
-            <h1 id="errorboxheader"><?php echo $this->error->getCode(); ?> - <?php echo $this->error->getMessage(); ?></h1>
+            <h1 id="errorboxheader"><?php echo $this->error->getCode(); ?></h1>
             <div id="errorboxbody">
-                <h3><?php echo JText::_('JERROR_LAYOUT_NOT_ABLE_TO_VISIT'); ?></h3>
-                <ol>
-                    <li><?php echo JText::_('JERROR_LAYOUT_AN_OUT_OF_DATE_BOOKMARK_FAVOURITE'); ?></li>
-                    <li><?php echo JText::_('JERROR_LAYOUT_SEARCH_ENGINE_OUT_OF_DATE_LISTING'); ?></li>
-                    <li><?php echo JText::_('JERROR_LAYOUT_MIS_TYPED_ADDRESS'); ?></li>
-                    <li><?php echo JText::_('JERROR_LAYOUT_YOU_HAVE_NO_ACCESS_TO_THIS_PAGE'); ?></li>
-                    <li><?php echo JText::_('JERROR_LAYOUT_REQUESTED_RESOURCE_WAS_NOT_FOUND'); ?></li>
-                    <li><?php echo JText::_('JERROR_LAYOUT_ERROR_HAS_OCCURRED_WHILE_PROCESSING_YOUR_REQUEST'); ?></li>
-                </ol>
-                <a class="btn btn-success" href="<?php echo $this->baseurl; ?>/index.php" title="<?php echo JText::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'); ?>">Go To Home</a>
+                <h3>Oops, This Page Could Not Be Found!</h3>
+      
+                <a class="btn btn-success" href="<?php echo $this->baseurl; ?>/index.php" title="<?php echo JText::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE'); ?>">back to homepage</a>
 
                 
             </div>
