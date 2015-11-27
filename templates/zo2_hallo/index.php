@@ -36,7 +36,6 @@ require_once __DIR__ . '/includes/bootstrap.php';
     <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>        
     <!-- Main wrapper -->
     <section class="zo2-wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">        
-        <?php echo $this->zo2->utilities->styleswitcher->render(); ?>
         <?php echo $this->zo2->layout->render(); ?>               
     </section>
     <?php echo $this->zo2->layout->renderOut(); ?>               
