@@ -43,17 +43,6 @@
         'value' => Zo2Framework::getParam('non_responsive_layout', 0)
     ));
     ?>
-    <!-- Enable Style Switcher -->
-    <?php
-    echo Zo2Html::field(
-            'radio', array(
-        'label' => JText::_('ZO2_ADMIN_ENABLE_STYLE_SWITCHER'),
-        'description' => JText::_('ZO2_ADMIN_ENABLE_STYLE_SWITCHER_DESC')
-            ), array(
-        'name' => 'jform[params][enable_style_switcher]',
-        'value' => Zo2Framework::getParam('enable_style_switcher')
-    ));
-    ?>
     <!-- Enable Sticky Menu -->
     <?php
     echo Zo2Html::field(
