@@ -21,14 +21,12 @@
             "vendor\/bootstrap\/addons\/gridsystem\/bootstrap.gridsystem.css",
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/css\/bootstrap-colorpicker.css",
             "vendor\/fontselect\/fontselect.css",
-            "vendor\/fontello\/css\/fontello.css",
             "vendor\/jRange\/jquery.range.css",
             "zo2\/css\/admin.styles.css",
             "zo2\/css\/admin.megamenu.css"
         ],
         "js": [
             "vendor\/bootstrap\/addons\/bootstrap-colorpicker\/js\/bootstrap-colorpicker.js",
-            "vendor\/fontselect\/jquery.fontselect.js",
             "vendor\/jRange\/jquery.range-min.js",
             "zo2\/js\/zo2.js",
             "zo2\/js\/admin.scripts.js",
