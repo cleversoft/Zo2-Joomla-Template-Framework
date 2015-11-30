@@ -11,24 +11,6 @@
                     <div class="zo2-divider"></div>
                     <h3>Version</h3>
                     <p>Current version: <?php echo Zo2Framework::getInstance()->getManifest()->version; ?></p>
-                    <?php
-                    $version = Zo2Framework::getInstance()->checkVersion();
-                    switch ($version['compare'])
-                    {
-                        case '-1':
-                            echo '<span class="label label-important">Your Zo2 version is out of date.</span><br />';
-                            break;
-                        case '0':
-                            echo '<span class="label label-success">Your Zo2 version is up to date.</span><br />';
-                            break;
-                        case '1':
-                            echo '<span class="label label-info">Your Zo2 version newer than us.</span><br />';
-                            break;
-                    }
-                    ?>
-                    <p><strong>Latest version: <?php echo $version['latestVersion']; ?></strong></p>
-                    <p><strong>Attention:</strong> Before you start updating, please refer to <a href="http://www.zootemplate.com/blog" target="_blank">important changes</a> to check if there are any additional instructions for the version which you want to install.</p>
-                    <p>Do not omit this step: in case you have made any changes directly in the theme files, backup all your changes. You can restore those changes after upgrade.</p>
                     <div class="zo2-divider"></div>
                     <h3>Features</h3>
                     <ol class="task-list">
