@@ -78,14 +78,14 @@
                         <li>Suggesting new features</li>
                         <li>Writing or refactoring code</li>
                         <li>Fixing <a href="https://github.com/cleversoft/zo2/issues" target="_blank">issues</a></li>
-                        <li>Replying to questions on <a href="http://www.zootemplate.com/zo2-support" target="_blank">the forum</a></li>
+                        <li>Replying to questions on <a href="http://member.zootemplate.com/helpdesk" target="_blank">the forum</a></li>
                     </ul>
 
                     <h3>Documentation</h3>
-                    <p><a class="btn btn-primary btn-large" href="http://docs.zootemplate.com/category/zo2" target="_blank">Online Documents</a></p>
+                    <p><a class="btn btn-primary btn-large" href="http://guide.zootemplate.com/zo2-framework/zo2-documentation-overview" target="_blank">Online Documents</a></p>
                     <div class="zo2-divider"></div>
                     <h3>Supports</h3>
-                    <p>Use the <a href="http://www.zootemplate.com/zo2-support" target="_blank">Zo2 Support</a> to ask questions and get support.</p>
+                    <p>Use the <a href="http://member.zootemplate.com/helpdesk" target="_blank">Zo2 Support</a> to ask questions and get support.</p>
                     <div class="zo2-divider"></div>
                     <h2>Copyright, License &amp; Usage</h2>
                     <p>Copyright (c) 2008 - 2015 <a href="http://cleversoft.co" target="_blank">CleverSoft Solutions</a></p>
