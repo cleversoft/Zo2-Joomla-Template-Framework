@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>zo2_hallo</name>   
-    <creationDate>Jun 09, 2015</creationDate>
-    <version>1.4.8</version>    
+    <creationDate>Dec 01, 2015</creationDate>
+    <version>1.4.9</version>    
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>

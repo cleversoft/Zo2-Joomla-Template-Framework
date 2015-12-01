@@ -2,91 +2,11 @@
     "profile": "boxed",
     "site_name": "",
     "site_slogan": "",
-    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                            ",
-    "standard_logo": "images\/zo2_logo_64x64.png",
-    "retina_logo": "images\/zo2_logo_64x64.png",
+    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
+    "standard_logo": "images\/logo.png",
+    "retina_logo": "images\/logo-retina.png",
     "footer_gototop": "1",
     "footer_logo": "1",
-    "body_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "menu_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h1_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h2_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h3_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h4_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h5_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h6_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
     "layout": [
         {
             "type": "row",
@@ -117,7 +37,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -135,7 +57,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -153,7 +77,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -186,7 +112,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -204,7 +132,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "megamenu",
@@ -222,7 +152,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -255,7 +187,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -288,7 +222,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -321,7 +257,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -354,7 +292,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "component",
@@ -372,7 +312,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -390,7 +332,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -423,7 +367,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -456,7 +402,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -489,7 +437,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -507,7 +457,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 },
                 {
                     "jdoc": "modules",
@@ -525,7 +477,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         },
@@ -558,7 +512,9 @@
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+
+                    ]
                 }
             ]
         }
@@ -640,7 +596,7 @@
                                 "width": 3
                             },
                             {
-                                "item": 585,
+                                "item": 586,
                                 "width": 3
                             }
                         ]
@@ -651,13 +607,13 @@
         }
     },
     "enable_rtl": "0",
+    "component_area": "0",
     "non_responsive_layout": "0",
-    "enable_style_switcher": "0",
     "enable_sticky_menu": "0",
-    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ",
+    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
     "combine_css": "0",
     "combine_js": "0",
-    "development_mode": "1",
+    "development_mode": "0",
     "template": "zo2_hallo",
     "name": "boxed"
 }

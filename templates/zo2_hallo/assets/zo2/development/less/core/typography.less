@@ -2,13 +2,16 @@
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @version     1.4.5
+ * @version     1.4.9
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
- * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2015 CleverSoft (http://cleversoft.co/)
+ * @author      ZooTemplate <http://www.zootemplate.com>
+ * @copyright   Copyright (c) 2015 CleverSoft (http://cleversoft.co)
  * @license     GPL v2
  */
+
+/* ================== Import Google Fonts Here ================== */
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
 
 /* ================== Global variables ================== */
 @import "mixins";
@@ -20,14 +23,18 @@
 .zt-typo-boxes{ border-bottom:1px solid #e2e3e5; margin: 0; padding:20px 0; width: 100%; }
 .zt-typo-boxes-inside{ padding: 0 10px; }
 
+/* ================== Font family ======================== */
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+  font-family: 'Open Sans', sans-serif; 
+}
+
 /* ================== Paragraphs ======================== */
 p {
   margin: 1em 0;
 }
 
 /* ================== HEADINGS ========================== */
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
-  font-family: 'Open Sans', sans-serif;
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{ 
   font-weight: 300;
   line-height: 1.1;
 }

@@ -1,3 +1,4 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
 .clearfix {
   *zoom: 1;
 }
@@ -737,6 +738,11 @@ ul.menu li {
 .search {
   float: right;
 }
+.search .icon-search {
+  height: 29px;
+  line-height: 29px;
+  font-size: 16px;
+}
 .search #searchForm .inputbox {
   width: 210px;
   margin: 0 10px 0 0;
@@ -1204,6 +1210,7 @@ div.tags:before {
   -moz-box-shadow: 0 0 7px rgba(0,0,0,0.07);
   box-shadow: 0 0 7px rgba(0,0,0,0.07);
   margin-top: 58px;
+  padding: 30px;
 }
 .zo2-megamenu .mega > .mega-dropdown-menu .mega-dropdown-inner .mega-dropdown-inner {
   margin-top: 0;
@@ -1374,7 +1381,7 @@ div.tags:before {
   left: 100%;
 }
 .offcanvas {
-  background-color: #333333;
+  background-color: #222533;
   position: absolute;
   -webkit-transition: all 0.5s ease 0s;
   -moz-transition: all 0.5s ease 0s;
@@ -1390,7 +1397,6 @@ div.tags:before {
   color: #ccc;
   display: block;
   float: right;
-  font-family: 'FontAwesome';
   font-size: 18px;
   line-height: 42px;
   padding: 0;
@@ -1405,6 +1411,9 @@ div.tags:before {
 }
 .offcanvas .sidebar-close::before {
   content: "\f00d";
+  font: normal normal normal 14px/1 FontAwesome;
+  color: #fff;
+  font-size: 18px;
 }
 .offcanvas .sidebar-close:hover {
   color: #fff;
@@ -1496,7 +1505,6 @@ body.overflow-hidden {
 .offcanvas .sidebar-nav {
   left: 0;
   margin: 0;
-  padding-left: 20px;
   position: absolute;
   top: 42px;
   width: 100%;
@@ -1505,12 +1513,16 @@ body.overflow-hidden {
   list-style: none;
 }
 .offcanvas .sidebar-nav ul li a {
-  border-bottom: 1px solid rgba(0,0,0,0.15);
-  color: #939393;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
   display: block;
   text-decoration: none;
-  padding: 11px 0;
+  padding: 5px 0;
   font-size: 13px;
+  border-bottom: 1px dotted rgba(255,255,255,0.2);
+  line-height: 40px;
+  margin: 0 10px;
   -webkit-transition: color 0.3s ease-in-out 0s;
   -moz-transition: color 0.3s ease-in-out 0s;
   -o-transition: color 0.3s ease-in-out 0s;
@@ -1558,7 +1570,7 @@ body.overflow-hidden > * {
   position: relative;
 }
 .nav-parent > .nav-oc-toggle {
-  border-top: 1px solid rgba(0,0,0,0.15);
+  border-bottom: none !important;
   font-size: 15px;
   line-height: 42px;
   padding: 0 !important;
@@ -1566,12 +1578,24 @@ body.overflow-hidden > * {
   right: 0;
   text-align: center;
   top: 0;
-  transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  width: 42px;
-  height: 42px;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -webkit-transition: color 0.3s ease-in-out 0s;
+  -moz-transition: color 0.3s ease-in-out 0s;
+  -o-transition: color 0.3s ease-in-out 0s;
+  transition: color 0.3s ease-in-out 0s;
+  width: 30px;
+  height: 50px;
+  line-height: 50px !important;
+}
+.nav-parent > .nav-oc-toggle.icon-caret-up {
+  transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+  width: 35px;
 }
 .dropdown-menu {
   z-index: 2000;
@@ -1585,7 +1609,7 @@ body.overflow-hidden > * {
 .button-canvas {
   cursor: pointer;
   display: block;
-  padding-top: 17px;
+  padding-top: 10px;
 }
 .rtl .offcanvas {
   right: 0;
@@ -1749,6 +1773,21 @@ ul.mostread li a:hover {
 .zt-typo-boxes-inside {
   padding: 0 10px;
 }
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: 'Open Sans', sans-serif;
+}
 p {
   margin: 1em 0;
 }
@@ -1764,7 +1803,6 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   line-height: 1.1;
 }
@@ -2149,7 +2187,6 @@ table {
 body {
   line-height: 20px;
   font-size: 12px;
-  font-family: 'Open Sans', sans-serif;
   color: #4e4d4d;
   background-color: #fff;
 }
@@ -2282,12 +2319,10 @@ body.boxed .zo2-wrapper .is-sticky #zo2-header-wrap {
 }
 #zo2-position-1 form {
   position: relative;
-  border-left: 1px solid #eeeeee;
-  border-right: 1px solid #eeeeee;
   float: right;
-  height: 60px;
+  height: 40px;
   padding: 0 25px;
-  line-height: 60px;
+  line-height: 40px;
 }
 #zo2-position-1 form:before {
   color: #555555;
@@ -2295,7 +2330,7 @@ body.boxed .zo2-wrapper .is-sticky #zo2-header-wrap {
   display: block;
   font-family: "FontAwesome";
   font-size: 18px;
-  right: 25px;
+  right: 36px;
   position: absolute;
 }
 #zo2-position-1 #mod-search-searchword {
@@ -2305,7 +2340,9 @@ body.boxed .zo2-wrapper .is-sticky #zo2-header-wrap {
   height: 30px;
   line-height: 30px;
   outline: none;
-  padding: 0 0 0 10px;
+  padding: 3px 10px;
+  border: 2px solid #E8E8E8;
+  width: 238px;
 }
 #zo2-mega-menu,
 #zo2-mega-menu .navbar {
@@ -2593,6 +2630,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   background-color: #2b2b2b;
 }
 .social {
+  text-align: right;
   margin-top: 10px;
 }
 .social a {
@@ -2937,4 +2975,10 @@ code {
 }
 .zt-progress.progress-bar {
   width: 100%;
+}
+header#standard-logo {
+  padding-top: 5px;
+}
+header#standard-logo img {
+  display: inline-block;
 }

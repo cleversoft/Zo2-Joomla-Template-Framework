@@ -50,6 +50,7 @@
       background-color: @white;
       .box-shadow(0 0 7px rgba(0,0,0,.07));
       margin-top: 58px;
+      padding: 30px;
       .mega-dropdown-inner{
         margin-top: 0;
       }
@@ -232,7 +233,7 @@
 * --------------------------------------------------
 */
 .offcanvas {
-  background-color: #333333;
+  background-color: #222533;
   position: absolute;
   .transition(all 0.5s ease 0s);
   top:0;
@@ -242,8 +243,7 @@
   .sidebar-close{
     color: #ccc;
     display: block;
-    float: right;
-    font-family: @awesomeFontFamily;
+    float: right; 
     font-size: @baseFontSize + 4;
     line-height: @baseLineHeight + 22;
     padding: 0;
@@ -255,7 +255,10 @@
     .size(42px, 42px);
     z-index: 999;
     &::before {
-      content: "\f00d";
+        content: "\f00d"; 
+        font: normal normal normal 14px/1 FontAwesome;
+        color: #fff;
+        font-size: 18px;
     }
     &:hover{
       color: @white;
@@ -320,8 +323,7 @@ body.overflow-hidden{
   .transform(translateX(-350px));
   .sidebar-nav{
     left: 0;
-    margin: 0;
-    padding-left: 20px;
+    margin: 0; 
     position: absolute;
     top: 42px;
     width: 100%;
@@ -329,12 +331,16 @@ body.overflow-hidden{
       list-style: none;
       li{
         a{
-          border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-          color: #939393;
-          display: block;
-          text-decoration: none;
-          padding: 11px 0;
-          font-size: @baseFontSize - 1;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            display: block;
+            text-decoration: none;
+            padding: 5px 0;
+            font-size: 13px; 
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+            line-height: 40px;
+            margin: 0 10px;
           .transition(color 0.3s ease-in-out 0s);
           &:hover{
             color: @white;
@@ -376,7 +382,7 @@ body.overflow-hidden > * {
 }
 
 .nav-parent > .nav-oc-toggle {
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
+      border-bottom: none!important;
   font-size: @baseFontSize + 1;
   line-height: @baseLineHeight + 22;
   padding: 0 !important;
@@ -384,8 +390,14 @@ body.overflow-hidden > * {
   right: 0;
   text-align: center;
   top: 0;
-  .transform(rotate(-90deg));
-  .size(42px, 42px);
+  .transform(rotate(0deg));
+  .transition(color 0.3s ease-in-out 0s);
+  .size(30px, 50px);
+    line-height: 50px!important;
+  &.icon-caret-up{
+    .transform(rotate(-180deg)); 
+    width: 35px;
+  }
 }
 .dropdown-menu{
   z-index: 2000;
@@ -398,8 +410,8 @@ body.overflow-hidden > * {
 }
 .button-canvas {
   cursor: pointer;
-  display: block;
-  padding-top: 17px;
+  display: block; 
+    padding-top: 10px;
 }
 .rtl .offcanvas {
   right: 0;
