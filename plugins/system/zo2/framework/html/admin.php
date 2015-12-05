@@ -38,6 +38,14 @@ if (!class_exists('Zo2HtmlAdmin'))
             return $html->fetch('admin/default.php');
         }
 
+        public function tab () {
+            $jinput = JFactory::getApplication()->input;
+            $html = new Zo2Html();
+            $params = Zo2Framework::getInstance()->template->params;
+            $html->set('params', $params);
+            return $html->fetch('admin/body/sidebar/content_'. $jinput->getWord('tabId') . '.php');
+        }
+
         /**
          * @uses    Anything need prepred for display will put here. Do not put process code insite layout template file
          */

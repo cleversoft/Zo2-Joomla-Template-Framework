@@ -35,10 +35,10 @@
          * @returns {undefined}
          */
         reInit: function() {
+
             z.admin.utilities._init();
             z.admin.themecolor._init();
             z.admin.layoutbuilder._init();
-            z.admin.font._init();
             ZO2AdminMegamenu.prepare();
             ZO2AdminMegamenu.initPanel();
             ZO2AdminMegamenu.initPreSubmit();
@@ -46,6 +46,15 @@
             SqueezeBox.initialize({});
             SqueezeBox.assign($('a.modal').get(), {
                     parse: 'rel'
+            });
+        },
+        loadTab: function (el) {
+            z.ajax.request({
+                url: z._settings.url,
+                data: {
+                    zo2_task: 'admin.loadTab',
+                    tabId: el
+                }
             });
         },
         /**

@@ -38,6 +38,18 @@ if (!class_exists('Zo2ModelAdmin'))
             $this->_ajax = Zo2Ajax::getInstance();
         }
 
+        public function loadTab () {
+            if ($this->_isAuthorized())
+            {
+                $jinput = JFactory::getApplication()->input;
+                $tab = $jinput->getWord('tabId');
+                // Get html of each tab
+                $html = Zo2Html::_('admin','tab');
+                $this->_ajax->addHtml($html,'#zo2-'.$tab);
+                $this->_ajax->addExecute('zo2.admin.reInit();');
+                $this->_ajax->response();
+            }
+        }
         /**
          * Clear Zo2 cached files
          */

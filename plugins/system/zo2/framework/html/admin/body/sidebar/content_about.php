@@ -1,4 +1,4 @@
-<div class="tab-pane" id="zo2-about">
+
     <div class="row-fluid">
         <div class="span12">
             <div class="row-fluid">
@@ -11,6 +11,8 @@
                     <div class="zo2-divider"></div>
                     <h3>Version</h3>
                     <p>Current version: <?php echo Zo2Framework::getInstance()->getManifest()->version; ?></p>
+                    <p><strong>Attention:</strong> Before you start updating, please refer to <a href="http://www.zootemplate.com/blog" target="_blank">important changes</a> to check if there are any additional instructions for the version which you want to install.</p>
+                    <p>Do not omit this step: in case you have made any changes directly in the theme files, backup all your changes. You can restore those changes after upgrade.</p>
                     <div class="zo2-divider"></div>
                     <h3>Features</h3>
                     <ol class="task-list">
@@ -78,14 +80,14 @@
                         <li>Suggesting new features</li>
                         <li>Writing or refactoring code</li>
                         <li>Fixing <a href="https://github.com/cleversoft/zo2/issues" target="_blank">issues</a></li>
-                        <li>Replying to questions on <a href="http://member.zootemplate.com/helpdesk" target="_blank">the forum</a></li>
+                        <li>Replying to questions on <a href="http://www.zootemplate.com/zo2-support" target="_blank">the forum</a></li>
                     </ul>
 
                     <h3>Documentation</h3>
-                    <p><a class="btn btn-primary btn-large" href="http://guide.zootemplate.com/zo2-framework/zo2-documentation-overview" target="_blank">Online Documents</a></p>
+                    <p><a class="btn btn-primary btn-large" href="http://docs.zootemplate.com/category/zo2" target="_blank">Online Documents</a></p>
                     <div class="zo2-divider"></div>
                     <h3>Supports</h3>
-                    <p>Use the <a href="http://member.zootemplate.com/helpdesk" target="_blank">Zo2 Support</a> to ask questions and get support.</p>
+                    <p>Use the <a href="http://www.zootemplate.com/zo2-support" target="_blank">Zo2 Support</a> to ask questions and get support.</p>
                     <div class="zo2-divider"></div>
                     <h2>Copyright, License &amp; Usage</h2>
                     <p>Copyright (c) 2008 - 2015 <a href="http://cleversoft.co" target="_blank">CleverSoft Solutions</a></p>
@@ -104,4 +106,3 @@
             </div>
         </div>
     </div>
-</div>

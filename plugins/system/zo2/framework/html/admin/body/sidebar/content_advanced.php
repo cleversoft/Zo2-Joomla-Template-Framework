@@ -1,5 +1,4 @@
-<!-- Advanced Tab Pane -->
-<div class="tab-pane" id="zo2-advanced">
+
     <!-- Header -->
     <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_ADVANCED'); ?></h2>
     <div class="zo2-divider"></div>
@@ -41,6 +40,17 @@
             ), array(
         'name' => 'jform[params][non_responsive_layout]',
         'value' => Zo2Framework::getParam('non_responsive_layout', 0)
+    ));
+    ?>
+    <!-- Enable Style Switcher -->
+    <?php
+    echo Zo2Html::field(
+            'radio', array(
+        'label' => JText::_('ZO2_ADMIN_ENABLE_STYLE_SWITCHER'),
+        'description' => JText::_('ZO2_ADMIN_ENABLE_STYLE_SWITCHER_DESC')
+            ), array(
+        'name' => 'jform[params][enable_style_switcher]',
+        'value' => Zo2Framework::getParam('enable_style_switcher')
     ));
     ?>
     <!-- Enable Sticky Menu -->
@@ -173,4 +183,3 @@
         'value' => Zo2Framework::getParam('development_mode')
     ));
     ?>
-</div>

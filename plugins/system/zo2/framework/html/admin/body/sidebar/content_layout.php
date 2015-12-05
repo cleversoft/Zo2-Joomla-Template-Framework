@@ -14,8 +14,8 @@
  */
 defined('_JEXEC') or die('Restricted access');
 ?>
-<!------------ Layout Builder -------------->
-<div class="tab-pane" id="zo2-layout">
+
+
     <h2><?php echo JText::_('ZO2_ADMIN_LAYOUT_BUILDER'); ?></h2>
     <div class="zo2-divider"></div>
 
@@ -28,4 +28,3 @@ defined('_JEXEC') or die('Restricted access');
     ?>
 
     <?php echo Zo2Html::_('admin', 'builder'); ?>   
-</div>

@@ -1,5 +1,4 @@
-<!-- Tab Panel General -->
-<div class="tab-pane active" id="zo2-general">
+
     <div class="tab-content">
         <!-- Global -->        
         <h2><?php echo JText::_('ZO2_ADMIN_HEADER_GENERAL'); ?></h2>     
@@ -105,4 +104,3 @@
         ));
         ?>
     </div>
-</div>
