@@ -28,13 +28,20 @@
          * @returns {undefined}
          */
         _init: function() {
-
+            zo2.admin.loadTab('general');
+            zo2.admin.loadTab('layout');
+            zo2.admin.loadTab('themecolor');
+            zo2.admin.loadTab('menu');
+            zo2.admin.loadTab('advanced');
+            zo2.admin.loadTab('about');
         },
          /**
          * @todo Remove reinit
          * @returns {undefined}
          */
         reInit: function() {
+
+
 
             z.admin.utilities._init();
             z.admin.themecolor._init();

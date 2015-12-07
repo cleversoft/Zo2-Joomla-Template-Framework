@@ -47,6 +47,7 @@ if (!class_exists('Zo2ModelAdmin'))
                 $html = Zo2Html::_('admin','tab');
                 $this->_ajax->addHtml($html,'#zo2-'.$tab);
                 $this->_ajax->addExecute('zo2.admin.reInit();');
+                $this->_ajax->addExecute('jQuery("#zo2-'.$tab.'-title").removeClass("disabled")');
                 $this->_ajax->response();
             }
         }
