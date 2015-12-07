@@ -41,7 +41,12 @@
          */
         reInit: function() {
 
-
+             zo2.admin.loadTab('general');
+             zo2.admin.loadTab('layout');
+             zo2.admin.loadTab('themecolor');
+             zo2.admin.loadTab('menu');
+             zo2.admin.loadTab('advanced');
+             zo2.admin.loadTab('about');
 
             z.admin.utilities._init();
             z.admin.themecolor._init();
@@ -56,13 +61,16 @@
             });
         },
         loadTab: function (el) {
-            z.ajax.request({
-                url: z._settings.url,
-                data: {
-                    zo2_task: 'admin.loadTab',
-                    tabId: el
-                }
-            });
+            if (jQuery('#zo2-' + el + '-title').hasClass('disabled')) {
+                z.ajax.request({
+                    url: z._settings.url,
+                    data: {
+                        zo2_task: 'admin.loadTab',
+                        tabId: el
+                    }
+                });
+            }
+
         },
         /**
          * Clear Zo2 cache
