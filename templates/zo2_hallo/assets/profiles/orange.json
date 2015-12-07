@@ -2,91 +2,11 @@
     "profile": "orange",
     "site_name": "",
     "site_slogan": "",
-    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
+    "footer_copyright": "Copyright \u00a9 2008 - 2015 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ",
     "standard_logo": "images\/logo.png",
     "retina_logo": "images\/logo-retina.png",
     "footer_gototop": "1",
     "footer_logo": "1",
-    "body_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "menu_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h1_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h2_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h3_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h4_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h5_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
-    "h6_font": {
-        "type": "none",
-        "family": {
-            "standard": "Arial",
-            "googlefonts": "",
-            "fontdeck": ""
-        },
-        "size": "14",
-        "font_line_height": "30"
-    },
     "layout": [
         {
             "type": "row",
@@ -112,27 +32,7 @@
                     "style": "none",
                     "id": "top-search",
                     "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": [
-
-                    ]
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-1",
-                    "position": "position-1",
-                    "span": 5,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "none",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
+                        "xs": false,
                         "sm": true,
                         "md": true,
                         "lg": true
@@ -146,13 +46,13 @@
                     "type": "col",
                     "name": "position-0",
                     "position": "position-0",
-                    "span": 3,
+                    "span": 8,
                     "offset": 0,
                     "customClass": "col-sm-4",
                     "style": "zo2_menu",
                     "id": "top-menu",
                     "visibility": {
-                        "xs": true,
+                        "xs": false,
                         "sm": true,
                         "md": true,
                         "lg": true
@@ -201,9 +101,9 @@
                     "type": "col",
                     "name": "header-logo",
                     "position": "header-logo",
-                    "span": 3,
+                    "span": 2,
                     "offset": 0,
-                    "customClass": "col-sm-3 col-xs-10 mobile-logo",
+                    "customClass": "col-xs-10 mobile-logo",
                     "style": "none",
                     "id": "",
                     "visibility": {
@@ -221,10 +121,30 @@
                     "type": "col",
                     "name": "mega-menu",
                     "position": "mega-menu",
-                    "span": 8,
+                    "span": 6,
                     "offset": 0,
-                    "customClass": "col-sm-9 col-xs-2 mobile-menu",
+                    "customClass": "col-sm-6 mobile-menu",
                     "style": "none",
+                    "id": "",
+                    "visibility": {
+                        "xs": false,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+
+                    ]
+                },
+                {
+                    "jdoc": "modules",
+                    "type": "col",
+                    "name": "position-1",
+                    "position": "position-1",
+                    "span": 3,
+                    "offset": 0,
+                    "customClass": "col-xs-1",
+                    "style": "zo2_xhtml",
                     "id": "",
                     "visibility": {
                         "xs": true,
@@ -604,15 +524,6 @@
         "css": "orange",
         "less": "orange",
         "boxed": "0",
-        "background": "#ffffff",
-        "header": "",
-        "header_top": "",
-        "text": "#4d4d62",
-        "link": "#d35400",
-        "link_hover": "#e67e22",
-        "bottom1": "#2c3e50",
-        "bottom2": "#2c3e50",
-        "footer": "#edeff1",
         "bg_image": ""
     },
     "menu_hover_type": "hover",
@@ -685,14 +596,14 @@
             }
         }
     },
-    "enable_rtl": "0",
+    "enable_rtl": "1",
     "component_area": "0",
     "non_responsive_layout": "0",
     "enable_sticky_menu": "0",
-    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
-    "combine_css": "0",
-    "combine_js": "0",
-    "development_mode": "0",
+    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
+    "combine_css": "1",
+    "combine_js": "1",
+    "development_mode": "1",
     "template": "zo2_hallo",
     "name": "orange"
 }

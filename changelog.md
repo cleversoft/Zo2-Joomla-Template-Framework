@@ -1,3 +1,43 @@
+## 1.4.10 release Dec 08, 2015
+* Update Font Awesome 4.5.0 
+* Update  Bootstrap v3.3.6
+
+## 1.4.9 release Dec 01, 2015
+
+* Remove Font option
+* Remove Preset Setting
+* Speed up back-end loading
+* Remove Style Switcher
+* Clean up source code
+* Improve template style ( canvas menu,  typography ) 
+* Upgrade quickstart package to Joomla 3.4.5
+
+## 1.4.8 release Jun 09, 2015
+
+* Fix trim wrong grid & offset class
+* Fix get menu items missed authorised level
+* Improve limit profileName when rename a profile
+* Improve style for 404 page 
+* Update language for "Back to Top" button
+* Update with self caching classes
+* Improve load RTL style file
+
+## 1.4.7 release Mar 20, 2015
+
+* Fixes issue caused invalid character with Hebrew language
+* Improve load RTL style file
+
+## 1.4.7 release Mar 20, 2015
+
+* Fixe issue caused invalid character with Hebrew language
+* Improve load RTL style file
+
+## 1.4.6 release Mar 09, 2015
+
+* Revers "Hide component area" option 
+* Update ZT Shortcode 1.0.3 
+
+
 ## 1.4.5 release Mar 03, 2015
 
 * Add "Add new row" feature for a column 
