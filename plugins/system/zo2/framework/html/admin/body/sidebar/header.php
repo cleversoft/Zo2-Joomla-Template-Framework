@@ -19,38 +19,42 @@ defined('_JEXEC') or die('Restricted access');
 
     <!-- General: Default active tab -->
     <li class="active">
-        <a href="#zo2-general" id="zo2-general-title" role="tab" data-toggle="tab" onClick="zo2.admin.loadTab('general');">
+        <a href="#zo2-general" role="tab" data-toggle="tab" >
             <i class="fa fa-cog fa-lg"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_GENERAL'); ?> <!--<label class="label label-info"> <?php echo JText::_('ZO2_GLOBAL'); ?></label>-->
         </a>
     </li>
 
     <!-- Layout -->
     <li class="">
-        <a href="#zo2-layout" id="zo2-layout-title" role="tab" data-toggle="tab" onClick="zo2.admin.loadTab('layout');" class="disabled" >
+        <a href="#zo2-layout" role="tab" data-toggle="tab" >
             <i class="fa fa-align-justify"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_LAYOUT'); ?>
         </a>
     </li>
+
     <!-- Themecolor -->
     <li class="">
-        <a href="#zo2-themecolor" id="zo2-themecolor-title" role="tab" data-toggle="tab" onClick="zo2.admin.loadTab('themecolor');" class="disabled">
+        <a href="#zo2-themecolor" role="tab" data-toggle="tab" >
             <i class="fa fa-sitemap"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_THEMECOLOR'); ?>
         </a>
     </li>
+
     <!-- Menu -->
     <li class="">
-        <a href="#zo2-menu" id="zo2-menu-title" role="tab" data-toggle="tab" onClick="zo2.admin.loadTab('menu');" class="disabled">
+        <a href="#zo2-menu" role="tab" data-toggle="tab" >
             <i class="fa fa-indent"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_MENU'); ?>
         </a>
     </li>
+
     <!-- Advanced -->
     <li class="">
-        <a href="#zo2-advanced" id="zo2-advanced-title" role="tab" data-toggle="tab" onClick="zo2.admin.loadTab('advanced');" class="disabled">
+        <a href="#zo2-advanced" role="tab" data-toggle="tab" >
             <i class="fa fa-wrench"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_ADVANCED'); ?> <!--<label class="label label-info"> <?php echo JText::_('ZO2_GLOBAL'); ?></label>-->
         </a>
-    </li>  
+    </li>
+
     <!-- About -->
     <li class="zo2-about">
-        <a href="#zo2-about" id="zo2-about-title" role="tab" data-toggle="tab" onClick="zo2.admin.loadTab('about');" class="disabled">
+        <a href="#zo2-about" role="tab" data-toggle="tab" >
             <i class="fa fa-info-circle"></i> <?php echo JText::_('ZO2_ADMIN_SIDEBAR_LABEL_ABOUT'); ?>
         </a>
     </li>

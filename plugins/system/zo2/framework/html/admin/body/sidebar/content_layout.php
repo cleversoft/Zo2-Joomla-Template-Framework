@@ -16,15 +16,15 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 
-    <h2><?php echo JText::_('ZO2_ADMIN_LAYOUT_BUILDER'); ?></h2>
-    <div class="zo2-divider"></div>
+<h2><?php echo JText::_('ZO2_ADMIN_LAYOUT_BUILDER'); ?></h2>
+<div class="zo2-divider"></div>
 
-    <?php
-    echo Zo2Html::field(
-        'description', null, array(
-            'text' => JText::_('ZO2_ADMIN_DESCRIPTION_LAYOUTS'),
-            'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/layoutbuilder">Document</a>'
-        ));
-    ?>
+<?php
+echo Zo2Html::field(
+	'description', null, array(
+	'text' => JText::_('ZO2_ADMIN_DESCRIPTION_LAYOUTS'),
+	'subtext' => '<a href="http://docs.zootemplate.com/category/zo2/layoutbuilder">Document</a>'
+));
+?>
 
-    <?php echo Zo2Html::_('admin', 'builder'); ?>   
+<?php echo Zo2Html::_('admin', 'builder'); ?>
