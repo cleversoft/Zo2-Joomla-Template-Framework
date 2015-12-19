@@ -1,3 +1,7 @@
+## 1.4.11 release Dec 19, 2015
+
+* Fix css combine issue that can't get the right path of images
+
 ## 1.4.10 release Dec 08, 2015
 * Update Font Awesome 4.5.0 
 * Update  Bootstrap v3.3.6
