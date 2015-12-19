@@ -83,7 +83,7 @@ class Zo2HelperAssets {
     {
         self::$_currentCssPath = $currentPath;
         self::$_oldCssPath = $oldPath;
-        $pattern = '#url\([\'"]?([^\'"]+)[\'"]?\)#';
+        $pattern = "/url\\(\\s*[\\'\"]?\\/?(.+?)[\\'\"]?\\s*\\)/i";
         $style = preg_replace_callback($pattern, array('self', 'replaceCssUrl'), $style);
 
         // fix import url
@@ -103,6 +103,7 @@ class Zo2HelperAssets {
             if (strpos($matches[1], '://')) return $matches[0];
 
             $relUri = dirname(self::getRelativePath(self::$_currentCssPath, self::$_oldCssPath));
+
             $relUriParts = explode('/', $relUri);
             $fileUriParts = explode('/', $matches[1]);
 
