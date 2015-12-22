@@ -2,7 +2,7 @@
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>zo2_hallo</name>   
     <creationDate>Dec 058, 2015</creationDate>
-    <version>1.4.10</version>    
+    <version>1.4.11</version>    
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>

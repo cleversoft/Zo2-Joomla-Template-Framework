@@ -459,10 +459,6 @@ p.img_caption {
 .blog .icon-eye-open:before {
   content: "\f06e";
 }
-ul,
-ol {
-  padding: 0;
-}
 ul ul,
 ul ol,
 ol ol,
