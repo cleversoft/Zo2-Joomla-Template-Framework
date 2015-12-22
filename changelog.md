@@ -1,6 +1,7 @@
-## 1.4.11 release Dec 19, 2015
+## 1.4.11 release Dec 22, 2015
 
 * Fix css combine issue that can't get the right path of images
+* Improve Unordered Lists style
 
 ## 1.4.10 release Dec 08, 2015
 * Update Font Awesome 4.5.0 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>zo2_hallo</name>   
-    <creationDate>Dec 058, 2015</creationDate>
+    <creationDate>Dec 22, 2015</creationDate>
     <version>1.4.11</version>    
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
