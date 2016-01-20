@@ -30,7 +30,7 @@ defined('_JEXEC') or die('Restricted access');
     <a class="retina-logo-link" 
        href="<?php echo JUri::root(); ?>" 
        title="<?php echo $slogan; ?>">
-        <img alt="<?php echo $slogan; ?>" src="<?php echo $logo['standard']; ?>"/>
+        <img alt="<?php echo $slogan; ?>" src="<?php echo $logo['retina']; ?>"/>
     </a>
 </header>
 <!-- Without logo -->
