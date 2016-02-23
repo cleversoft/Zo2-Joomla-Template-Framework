@@ -339,7 +339,7 @@ if (!class_exists('Zo2Assets'))
                         {
                             $currentCssContent = file_get_contents($path);
                         }
-                        $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri,  str_replace( JURI::base(), JURI::base(true),Zo2Path::getInstance()->toUrl($styleSheets) )  );
+                        $currentCssContent = Zo2HelperAssets::fixCssUrl($currentCssContent, $cssUri,  str_replace( JURI::base(), JURI::base(true) . '/', Zo2Path::getInstance()->toUrl($styleSheets) )  );
                         $cssContent[] = $currentCssContent;
                     }
                 }
