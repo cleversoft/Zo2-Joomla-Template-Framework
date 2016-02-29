@@ -33,8 +33,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
     <!-- Main wrapper -->
     <section class="zo2-wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">        
         <?php echo $this->zo2->layout->render(); ?>               
-    </section>
-    <?php echo $this->zo2->layout->renderOut(); ?>               
+    </section>    
     <?php echo $this->zo2->template->fetch('html://layouts/joomla.debug.php'); ?>
     <script type="text/javascript">
 		<?php echo $this->zo2->utilities->bottomscript->render(); ?>

@@ -63,7 +63,7 @@ if (!class_exists('Zo2Layout'))
             if ($this->get('canvasMenu') instanceof Zo2LayoutItem)
             {
                 $config['item'] = $this->get('canvasMenu');
-                $this->_outBuffer[] = Zo2Framework::getInstance()->displayOffCanvasMenu($config);
+                $this->_buffer[] = Zo2Framework::getInstance()->displayOffCanvasMenu($config);
             }
             $html = implode(PHP_EOL, $this->_buffer);
             /**
@@ -72,16 +72,7 @@ if (!class_exists('Zo2Layout'))
             //$html = $this->_compressHtml($html);
             return $html;
         }
-
-        /**
-         * 
-         * @return type
-         */
-        public function renderOut()
-        {
-            return implode("", $this->_outBuffer);
-        }
-
+       
         /**
          * Generate html for an item such as a row or a column.
          * @param type $item
