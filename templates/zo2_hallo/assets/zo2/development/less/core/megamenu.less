@@ -268,6 +268,7 @@
 .offcanvas.active{
   left:0;
   opacity: 1;
+      position: fixed;
 }
 .zo2-wrapper{
   .transition(transform 0.5s ease 0s);
@@ -289,8 +290,7 @@
   top:0;
   bottom:0;
   right:0;
-  .transition(transform 0.5s ease 0s);
-  .transform(translate3d(350px, 0, 0));
+  .transition(transform 0.5s ease 0s); 
   overflow: hidden;
   &:after{
     opacity: 1;
@@ -372,10 +372,7 @@ body.overflow-hidden{
       .transition(transform 0.5s);;
     }
   }
-}
-body.overflow-hidden > * {
-  .transform(translateX(350px));
-}
+} 
 /** New: submenu **/
 .nav-parent {
   position: relative;
