@@ -3,19 +3,19 @@
 	<name>Package - Zo2 Framework</name>
 	<packagename>zo2</packagename>
     <packager>Zo2 Framework</packager>   	
-	<creationDate>Dec 19, 2015</creationDate>
-    <version>1.4.11</version>	
+	<creationDate>Feb 29, 2016</creationDate>
+    <version>1.4.13</version>	
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>
-    <copyright>Copyright (c) 2008 - 2015 ZooTemplate.Com</copyright>
+    <copyright>Copyright (c) 2008 - 2016 ZooTemplate.Com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPL v2 or later</license>
     <description>
     <![CDATA[
     	<a href="http://www.zootemplate.com/zo2"><img src="http://www.zootemplate.com/wp-content/uploads/zo2_framework.png" style="max-width:323px;"></a>
     	<div class="alert alert-success">
     		<p>Zo2 package includes Zo2 Hallo template and Zo2 Framework plugin (all in one) so when you install Zo2 package, Zo2 plugin and Zo2 Hallo template are installed</p>
-    		<p>Copyright 2004 - 2015 <a href='http://www.zootemplate.com/' title='Visit ZooTemplate.com'>ZooTemplate.com</a>.</p>
+    		<p>Copyright 2004 - 2016 <a href='http://www.zootemplate.com/' title='Visit ZooTemplate.com'>ZooTemplate.com</a>.</p>
     	</div>
     	]]>		
 	</description>    	
