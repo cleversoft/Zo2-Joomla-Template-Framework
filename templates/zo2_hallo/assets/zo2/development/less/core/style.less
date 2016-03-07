@@ -14,8 +14,8 @@
 @import "variables"; 
 /* ================= Reset Properties ================ */
 body {
-  line-height: @baseLineHeight;
-  font-size: @baseFontSize - 2; 
+  line-height: @baseLineHeight + 2;
+  font-size: @baseFontSize ; 
   color: #4e4d4d;
   background-color: @white;
 }
@@ -89,7 +89,8 @@ a:active {
 }
 
 p {
-  margin: 12px 0;
+ margin: 20px 0;
+    line-height: 26px;
 }
 
 .modal-body {
@@ -153,7 +154,7 @@ body {
 
 /* ============= Top Menu ================= */
 #zo2-position-4 {
-  margin: 23px 0 0;
+  margin: 15px 0 0;
   .mod-wrapper-menu {
     ul {
       li {
@@ -192,8 +193,7 @@ body {
   form {
     position: relative;
     float: right;
-    height: 40px;
-    padding: 0 25px;
+    height: 40px; 
     line-height: 40px;
     &:before {
       color: #555555;
@@ -214,7 +214,7 @@ body {
     outline: none;
     padding: 3px 10px;
     border: 2px solid #E8E8E8;
-    width: 238px;
+    width: 200px;
   }
 }
 
@@ -341,6 +341,113 @@ nav.zo2-menu {
   }
 }
 
+.blog{ 
+    .title-block { 
+        color: #2980b9;
+        border-color: #2980b9;
+    }
+    div[class^="leading-"]{
+            padding-bottom: 20px;
+    margin-bottom: 35px;
+        border-bottom: 1px solid #e1e1e1;
+    } 
+    h1.title-post { 
+        margin: 0; 
+        line-height: 25px;
+        margin-bottom: 10px;
+    }
+    .block-image{margin-bottom: 10px;}
+    .post-info{
+        font-size: 14px;
+        color: #c1c1c1;
+        .published{    margin-right: 10px;}
+    }
+    .items-intro{
+        .intro-image{
+            img{min-height: 130px;}
+        }
+        h1.title-post { 
+            line-height: 18px; 
+            a {
+                font-size: 14px; 
+                font-weight: 500;
+            }
+        }
+    }
+}
+.news-info{ 
+    h3.title{
+        margin: 5px 0; 
+        font-size: 22px;
+            font-weight: 700;
+            color: #353535;
+        a {
+            font-size: 22px;
+            font-weight: 700;
+            color: #353535;
+            &:hover{color: @linkColorHover;} 
+        }
+    }
+}
+.pagination {
+  display: block;
+  text-align: center;
+  .pagination-list {
+    clear: both;
+  }
+  li {
+    display: inline-block;
+    margin: 0 3px;
+    span, a {
+     padding: 8px 15px;
+    display: inline-block;
+    transition: 300ms;
+        border: 1px solid #dfe5e9;
+    color: #212121;
+    border-radius: 3px!important;
+    }
+    &:hover {
+      a {
+      color: #fff;
+    background-color: #212121!important;
+    border-color: #212121!important;
+      }
+    }
+    &.active {
+      span {
+        color: #fff;
+    background-color: #212121!important;
+    border-color: #212121!important;
+      }
+    }
+  }
+}
+#zo2-position-8{
+    h3.moduletitle {
+        color: #333;
+        padding: 0 0 20px;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 700;
+        position: relative;
+        &:before, &:after {
+            position: absolute;
+            content: "";
+            bottom: 14px;
+            left: 0;
+            height: 1px;
+            background-color: #cccccc;
+            width: 60px;
+        }
+        &:after {
+            bottom: 8px;
+            width: 30px;
+        }
+    }
+    .module {
+        margin-bottom: 30px;
+    }
+} 
 /* ============== Features ================== */
 #zo2-body-wrap {
   .top-feature {
@@ -391,9 +498,8 @@ nav.zo2-menu {
         padding: 90px 10% 30px;
         text-align: center;
         .zo2-feature-text-title {
-          font-size: @baseFontSize + 6;
-          font-weight: bold;
-          text-transform: uppercase;
+          font-size: @baseFontSize + 6; 
+              font-weight: 400;
         }
         .zo2-feature-description {
           font-size: @baseFontSize;
@@ -614,10 +720,15 @@ nav.zo2-menu {
       padding-right: 30px;
       max-width: 100%;
     }
+    h3 { 
+        text-align: center;
+    }
     &.custom {
       h3 {
+            font-weight: 400;
         color: #2c2c2c;
-        font-size: @baseFontSize + 4;
+        font-size: @baseFontSize + 6;
+        text-align: center;
       }
     }
   }
@@ -921,6 +1032,7 @@ code {
 }
 .zt-progress.progress-bar{width: 100%;}
 header#standard-logo{
+    text-align: center;
         padding-top: 5px;
     img{display: inline-block;}
 }

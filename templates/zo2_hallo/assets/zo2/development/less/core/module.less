@@ -4,22 +4,12 @@
 
 /* ================== Module ==================== */
 h3.moduletitle{
-  font-size: @baseFontSize + 6;
-  font-weight: 300;
+  font-size: @baseFontSize + 16;
+  font-weight: 700;
   line-height: normal;
   margin: 0 0 20px;
   padding-bottom: 25px;
-  color: #2d3d51;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-  position: relative;
-  &:after{
-    position: absolute;
-    content: "";
-    .size(50px, 1px);
-    bottom: -1px;
-    left: 0;
-    background-color: rgba(0,0,0,0.9);
-  }
+  color: #525252;  
 }
 #zo2-bottom-2-wrap{
   h3{
@@ -48,14 +38,12 @@ h3.moduletitle{
   .border-radius(0px);
 }
 
-/* ==================== Category ====================== */
-ul.categories-module{
+/* ==================== Category, Archive module ====================== */
+ul.categories-module, ul.archive-module{
   li  {
-    border-bottom: 1px solid #eaeaea;
-    color: #333;
-    padding: 10px 5px;
-    display: block;
-    line-height: @baseLineHeight * 2;
+    line-height: 57px;
+    display: inline-block;
+    width: 100%;
     i{
       float: left;
       padding-right: 10px;
@@ -64,40 +52,33 @@ ul.categories-module{
       margin: 0;
       text-transform: none;
     }
-    a{
-      color: #4f4f4f;
-      display: block;
-      font-size: @baseFontSize - 1;
+    a {
+        color: @textColor;
+        position: relative;
+        display: block;
+        border-bottom: 1px solid #eaeaea;
+        line-height: 1.7;
+        padding: 16px 0 16px 15px;
+        &:before {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #333333;
+            content: "";
+            left: 0;
+            top: 25px;
+        }
     }
     &:hover,
     &.active{
-      color: #7fbe54;
+      color: @linkColorHover;
       a{
-        color: #7fbe54;
+        color: @linkColorHover;
       }
     }
   }
 }
-
-/* ==================== Archive module ================= */
-ul.archive-module{
-  li  {
-    padding: 10px 5px;
-    display: block;
-    .box-shadow(0px 1px 0px 0px rgba(0,0,0,0.07));
-    a {
-      display: block;
-    }
-    &:hover, &.active{
-      color: #333;
-      background: #f8f8f8;
-      a {
-        color: #333;
-        background: #f8f8f8;
-      }
-    }
-  }
-}
+ 
 
 /* ================= Popular tags ===================== */
 .tagspopular{
@@ -108,13 +89,13 @@ ul.archive-module{
       padding-right: 6px;
       margin: 3px 0;
       a {
-        display: block;
+            color: #464646;
+        display: inline-block;
+        font-size: 12px !important;
+        margin: 0 4px 12px 0;
         padding: 4px 15px;
-        background-color: #f2f2f2;
-        background-repeat: no-repeat;
-        background-position: 0 50%;
-        color: #666;
-        font-size: @baseFontSize - 3;
+        background-color: #f7f7f7;
+        border-radius: 50px;
         &:hover{
           background-color: #333333;
           color: @white;

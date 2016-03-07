@@ -71,6 +71,60 @@
   }
 }
 
+/* ----------- Style for only max width 992px ------------- */
+
+@media (max-width: 992px) {
+    
+  /* Search and social */
+  
+    .search-form{
+        display: none;
+        position: relative; 
+        overflow: hidden; 
+        .search-close{
+            display: none;
+            position: absolute;
+            right: 40px;
+            z-index: 99;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+    }
+  .mobie-search-active{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    height: 50px;
+    z-index: 999; 
+    .search-form {
+        padding: 5px 0px;
+        .search-close{
+            display: block;
+        }
+        form{
+            width: 100%;
+            input[type="search"]{width: 95%!important;}
+        }
+    }
+    .icon-search{display: none!important;}
+  }
+  
+  #zo2-position-1 .mobie-search-active form:before{
+        content: inherit;
+        display: none;
+  }
+  #zo2-header-wrap{
+        padding: 10px 0;
+    text-align: center; 
+    #zo2-canvas-menu, #zo2-header-logo{
+      float: left;
+    }
+  }
+}
+
 /* ----------- Style for only min width 768px ------------- */
 @media (min-width: 768px){
     .zo2-megamenu.animate.slide .mega.open > .mega-dropdown-menu > div{
@@ -92,13 +146,6 @@
       max-height: 40px;
     }
     .search{ float: none }
-  }
-  #zo2-header-wrap{
-        padding: 10px 0;
-    text-align: center; 
-    #zo2-canvas-menu, #zo2-header-logo{
-      float: left;
-    }
   }
     header#standard-logo {
         padding-top: 0px;
@@ -249,46 +296,6 @@
     float: none;
   }
 
-  /* Search and social */
-  
-    .search-form{
-        display: none;
-        position: relative; 
-        overflow: hidden; 
-        .search-close{
-            display: none;
-            position: absolute;
-            right: 40px;
-            z-index: 99;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-        }
-    }
-  .mobie-search-active{
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background: #fff;
-    height: 50px;
-    z-index: 999; 
-    .search-form {
-        padding: 5px 0px;
-        .search-close{
-            display: block;
-        }
-        form{
-            width: 100%;
-            input[type="search"]{width: 95%!important;}
-        }
-    }
-    .icon-search{display: none!important;}
-  }
-  #zo2-position-1 .mobie-search-active form:before{
-        content: inherit;
-        display: none;
-  }
   #top-search form {
     padding: 0 15px;
     text-align: center;

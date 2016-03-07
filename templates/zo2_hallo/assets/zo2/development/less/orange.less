@@ -1,4 +1,5 @@
 @mainColor: #D25400;
+@linkmainColor:        darken(@mainColor, 15%);
 @white: #fff;
 
 a {
@@ -86,6 +87,9 @@ nav.zo2-menu{
 .btn-success{
   background-color: @mainColor;
   color: @white!important;
+}
+.btn-success:hover{
+  background-color: @linkmainColor; 
 }
 .zo2-pagination ul >li.active >span,.pagination li:hover a{
   background: @mainColor;

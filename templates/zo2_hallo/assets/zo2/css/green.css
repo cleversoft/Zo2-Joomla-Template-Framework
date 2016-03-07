@@ -45,6 +45,9 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   background-color: #7fbe54;
   color: #fff !important;
 }
+.btn-success:hover {
+  background-color: #5a8f36;
+}
 .zo2-pagination ul >li.active >span,
 .pagination li:hover a {
   background: #7fbe54;

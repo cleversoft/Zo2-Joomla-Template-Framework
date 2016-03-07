@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
         });
         x = 0;
     jQuery(window).resize(function(){
-        if (jQuery(window).width() > 768) {
+        if (jQuery(window).width() > 991) {
             jQuery('.search .search-form ').show();
         }
         else{jQuery('.search .search-form ').hide();} 
