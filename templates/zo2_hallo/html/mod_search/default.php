@@ -14,7 +14,7 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', false, true);
 ?>
 <div class="search<?php echo $moduleclass_sfx ?>">
-	<div class="icon-search visible-xs-block">
+	<div class="icon-search visible-xs-block visible-sm-block">
 		<i class="fa fa-search"></i>
 	</div>
 	<div class="search-form " >
