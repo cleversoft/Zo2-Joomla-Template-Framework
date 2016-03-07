@@ -1606,7 +1606,7 @@ body.overflow-hidden {
 .button-canvas {
   cursor: pointer;
   display: block;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 .rtl .offcanvas {
   right: 0;
@@ -1705,13 +1705,13 @@ ul.categories-module li:hover,
 ul.categories-module li.active,
 ul.archive-module li:hover,
 ul.archive-module li.active {
-  color: #2d682d;
+  color: #005580;
 }
 ul.categories-module li:hover a,
 ul.categories-module li.active a,
 ul.archive-module li:hover a,
 ul.archive-module li.active a {
-  color: #2d682d;
+  color: #005580;
 }
 .tagspopular ul li {
   float: left;
@@ -1792,6 +1792,7 @@ h6,
 .h4,
 .h5,
 .h6 {
+  font-weight: 300;
   line-height: 1.1;
 }
 h1 {
@@ -2478,7 +2479,7 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
   color: #353535;
 }
 .news-info h3.title a:hover {
-  color: #2d682d;
+  color: #005580;
 }
 .pagination {
   display: block;
@@ -3042,7 +3043,7 @@ code {
   color: #3f3f3f;
   display: inline-block;
   vertical-align: top;
-  padding: 0;
+  padding: 0 10px;
   border: 0 !important;
 }
 .pagination li:hover a {
@@ -3072,7 +3073,6 @@ code {
   width: 100%;
 }
 header#standard-logo {
-  text-align: center;
   padding-top: 5px;
 }
 header#standard-logo img {
