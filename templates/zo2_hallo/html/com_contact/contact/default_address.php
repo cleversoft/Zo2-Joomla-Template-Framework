@@ -1,14 +1,16 @@
 <?php
-
 /**
- * @package		Joomla.Site
- * @subpackage	com_contact
- * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
- * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ * @package     Joomla.Site
+ * @subpackage  com_contact
+ *
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
+
 defined('_JEXEC') or die;
 
-/* marker_class: Class based on the selection of text, none, or icons
+/**
+ * Marker_class: Class based on the selection of text, none, or icons
  * jicon-text, jicon-none, jicon-icon
  */
 ?>
@@ -24,7 +26,9 @@ defined('_JEXEC') or die;
 	|| $this->params->get('show_mobile')
 	|| $this->params->get('show_webpage')
 	|| ($this->contact->con_position && $this->params->get('show_position'))):?>
-
+	<div class="contact-title">
+        <h3><span><?php  echo '<h3>' . JText::_('COM_CONTACT_DETAILS') . '</h3>';  ?></span></h3>
+        </div>
 	<div class="contact-address-block">
 	<?php if ($this->contact->con_position && $this->params->get('show_position')) : ?>
 		<h4><?php echo $this->contact->con_position; ?></h4>
@@ -43,6 +47,7 @@ defined('_JEXEC') or die;
 				<div class="media-body">
 					<?php if ($this->contact->address && $this->params->get('show_street_address')) : ?>
 						<span class="contact-street">
+							<span class="s-name">Address</span>
 							<?php echo nl2br($this->contact->address); ?>
 						</span>
 					<?php endif; ?>
@@ -78,16 +83,7 @@ defined('_JEXEC') or die;
 	<?php if($this->params->get('show_email') || $this->params->get('show_telephone')||$this->params->get('show_fax')||$this->params->get('show_mobile')|| $this->params->get('show_webpage') ) : ?>
 		<div class="contact-contactinfo">
 	<?php endif; ?>
-	<?php if ($this->contact->email_to && $this->params->get('show_email')) : ?>
-		<div class="media">
-			<div class="pull-left">
-				<i class="fa fa-envelope"></i>
-			</div>
-			<div class="media-body contact-emailto">
-				<?php echo $this->contact->email_to; ?>
-			</div>
-		</div>
-	<?php endif; ?>
+	
 
 	<?php if ($this->contact->telephone && $this->params->get('show_telephone')) : ?>
 		<div class="media">
@@ -95,10 +91,12 @@ defined('_JEXEC') or die;
 				<i class="fa fa-phone"></i>
 			</div>
 			<div class="media-body contact-telephone">
-				<?php echo nl2br($this->contact->telephone); ?>
+				<span class="s-name">Phone</span>
+				<p class="s-phone"><?php echo nl2br($this->contact->telephone); ?></p>
 			</div>
 		</div>
 	<?php endif; ?>
+	
 	<?php if ($this->contact->fax && $this->params->get('show_fax')) : ?>
 		<div class="media">
 			<div class="pull-left">
@@ -115,7 +113,18 @@ defined('_JEXEC') or die;
 				<i class="fa fa-mobile-phone"></i>
 			</div>
 			<div class="media-body contact-mobile">
-				<?php echo nl2br($this->contact->mobile); ?>
+				<p class="s-phone"><?php echo nl2br($this->contact->mobile); ?></p>
+			</div>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->contact->email_to && $this->params->get('show_email')) : ?>
+		<div class="media">
+			<div class="pull-left">
+				<i class="fa fa-envelope"></i>
+			</div>
+			<div class="media-body contact-emailto">
+				<span class="s-name">Email</span>
+				<?php echo $this->contact->email_to; ?>
 			</div>
 		</div>
 	<?php endif; ?>
@@ -140,4 +149,4 @@ defined('_JEXEC') or die;
 				<?php echo JText::_('COM_CONTACT_VCARD');?></a>
 	<?php endif; ?>	
 	</div>
-<?php endif; ?>
+<?php endif; ?> 
