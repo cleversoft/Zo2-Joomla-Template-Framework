@@ -2,7 +2,7 @@
     "profile": "blue",
     "site_name": "",
     "site_slogan": "",
-    "footer_copyright": "Copyright \u00a9 2008 - 2016 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
+    "footer_copyright": "Copyright \u00a9 2008 - 2016 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
     "standard_logo": "images\/logo.png",
     "retina_logo": "images\/logo-retina.png",
     "footer_gototop": "1",
@@ -505,67 +505,42 @@
     "menu_type": "mainmenu",
     "menu_config": {
         "mainmenu": {
-            "item-435": {
+            "item-105": {
                 "submenu": {
                     "rows": [
                         [
                             {
-                                "item": 547,
+                                "item": 106,
+                                "width": 3
+                            },
+                            {
+                                "item": 111,
+                                "width": 3
+                            },
+                            {
+                                "item": 116,
+                                "width": 3
+                            },
+                            {
+                                "item": 121,
+                                "width": 3
+                            }
+                        ]
+                    ]
+                },
+                "alignsub": "justify"
+            },
+            "item-126": {
+                "submenu": {
+                    "rows": [
+                        [
+                            {
+                                "item": 127,
                                 "width": 12
                             }
                         ]
                     ]
                 }
-            },
-            "item-491": {
-                "submenu": {
-                    "rows": [
-                        [
-                            {
-                                "item": 492,
-                                "width": 3
-                            },
-                            {
-                                "item": 496,
-                                "width": 3
-                            },
-                            {
-                                "item": 563,
-                                "width": 3
-                            },
-                            {
-                                "item": 567,
-                                "width": 3
-                            }
-                        ]
-                    ]
-                },
-                "alignsub": "justify"
-            },
-            "item-571": {
-                "submenu": {
-                    "rows": [
-                        [
-                            {
-                                "item": 572,
-                                "width": 3
-                            },
-                            {
-                                "item": 577,
-                                "width": 3
-                            },
-                            {
-                                "item": 582,
-                                "width": 3
-                            },
-                            {
-                                "item": 586,
-                                "width": 3
-                            }
-                        ]
-                    ]
-                },
-                "alignsub": "justify"
             }
         }
     },
@@ -573,7 +548,7 @@
     "component_area": "0",
     "non_responsive_layout": "0",
     "enable_sticky_menu": "0",
-    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
+    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ",
     "combine_css": "1",
     "combine_js": "1",
     "development_mode": "1",
