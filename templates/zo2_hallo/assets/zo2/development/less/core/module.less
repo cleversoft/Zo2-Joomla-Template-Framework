@@ -2,15 +2,18 @@
 @import "mixins";
 @import "variables";
 
-/* ================== Module ==================== */
-h3.moduletitle{
-  font-size: @baseFontSize + 16;
-  font-weight: 700;
-  line-height: normal;
-  margin: 0 0 20px;
-  padding-bottom: 25px;
-  color: #525252;  
-}
+/* ================== Module ==================== */ 
+ 
+h3.moduletitle {
+	color: #333;
+	padding: 0 0 20px;
+	text-transform: uppercase;
+	font-size: 18px;
+	font-weight: 700;
+	position: relative;
+	line-height: normal;
+	margin: 0 0 20px; 
+} 
 #zo2-bottom-2-wrap{
   h3{
     &.moduletitle{
@@ -24,8 +27,8 @@ h3.moduletitle{
 #zo2-bottom-2-wrap{
   h3{
     &.moduletitle{
-      color: @white;
-      font-size: @baseFontSize + 8;
+      color: @white; 
+	  text-transform: capitalize;
     }
   }
 }
@@ -71,9 +74,9 @@ ul.categories-module, ul.archive-module{
     }
     &:hover,
     &.active{
-      color: @linkColorHover;
+      color: @green;
       a{
-        color: @linkColorHover;
+        color: @green;
       }
     }
   }
@@ -83,22 +86,25 @@ ul.categories-module, ul.archive-module{
 /* ================= Popular tags ===================== */
 .tagspopular{
   ul{
-    li {
-      float: left;
-      display: inline-block;
+    li { 
+      display: inline!important;
       padding-right: 6px;
       margin: 3px 0;
-      a {
-            color: #464646;
+      a { 
         display: inline-block;
         font-size: 12px !important;
-        margin: 0 4px 12px 0;
-        padding: 4px 15px;
+        margin: 0 ;
+        padding: 4px 15px!important;
         background-color: #f7f7f7;
         border-radius: 50px;
+		color: #333;
         &:hover{
           background-color: #333333;
-          color: @white;
+          color: @white!important;
+        }
+		&:before {
+                content: initial;
+				display: none;
         }
       }
     }
