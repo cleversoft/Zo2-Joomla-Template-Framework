@@ -42,24 +42,7 @@ input[type="color"],
     .box-shadow(none);
     outline: none;
   }
-}
-
-/* ====================== Button Style ====================== */
-.registration .form-actions .btn, .login .well .btn {
-  background-color: #f3f3f3;
-  color: #3f3f3f;
-  .border-radius(4px);
-  border: none;
-  text-transform: capitalize;
-  padding: 0 15px;
-  height: 32px;
-  line-height: @baseLineHeight + 12;
-  .transition(all 0.4s ease 0s);
-  &:hover {
-    background: none repeat scroll 0 0 #0099FF;
-    color: @white;
-  }
-}
+} 
 
 /* ====================== Article ========================= */
 dt,
@@ -269,12 +252,13 @@ p.img_caption {
 }
 
 .homepage, .featured{
-  h2{
-    &.item-title {
-      text-align: center;
-      color: #525252;
+  h1{
+    &.item-title { 
+	  a{ 
+		color: #333;
           font-size: 36px;
-    font-weight: 700;
+		font-weight: 700;
+	  }
     }
   }
 }
@@ -339,6 +323,7 @@ p.img_caption {
 .page-header {
   border-bottom: none; 
   margin: 0;
+  padding: 0;
   a {
     color: #858585;
     &:hover,
@@ -466,15 +451,27 @@ p.img_caption {
 
 /* ===================== Ul Ol ======================= */ 
 
+
+
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+ol {
+    margin: 2em 0 2em 0px;
+    padding-left: 50px; 
+    li{
+        padding: 5px 0;
+    }
+}  
+
 ul ul,
 ul ol,
 ol ol,
 ol ul {
   margin-bottom: 0;
-}
-ul, ol {
-  padding: 0; 
-}
+} 
 
 ul {
   list-style: disc inside;
@@ -513,6 +510,7 @@ ul.menu li {
   display: block;
   width: 100%;
 }
+
 
 /* ===================== Pagination ======================= */
 
@@ -655,101 +653,162 @@ ul.menu li {
 }
 
 /* ========================== Contact ============================= */
-.contact-form {
-  textarea,
-  input[type="text"] {
-    width: 100%;
-  }
-  .uneditable-input {
-    width: 100%;
-  }
-  #jform_contact_email_copy-lbl {
-    margin-right: 10px;
-  }
-  legend {
-    font-size: 11px;
-    color: #666;
-    border: 0;
-    margin-bottom: 0;
-  }
-  span {
-    &.icon-ok-circle {
-      position: relative;
-      margin-top: -1px;
-      padding-right: 5px;
-      opacity: 0.8;
+ 
+#zo2-body-wrap{
+  .contact{
+    margin-top: 40px;
+    .control-group{
+      small {margin: -7px 10px 0;}
     }
-  }
-  .message-form {
-    display: block;
-    margin-top: 10px;
-  }
-  .contact-fields,
-  .message-input {
-    display: block;
-    width: 98%;
-  }
-  .message-input {
+    .alert-error{display: none}
+    .form-control{
+      border: 0 solid;box-shadow:none;height: auto;
+    }
+    h3{
+      font-size: 30px; 
+      margin: 30px 0; 
+    }
+    .block-imfomation {
+          margin-bottom: 20px;
+      .pull-left {
+          height: 48px;
+          width: 40px;
+          text-align: left;
+          line-height: 48px;
+          font-size: 18px;
+      }
+      .block-imfomation-body {
+          display: table-cell;
+          vertical-align: middle;
+          border-left: 1px solid #ccc;
+          margin-left: 20px;
+          padding-left: 15px;
+          font-size: 16px;
+          span{
+            /*color: #ccc;*/
+          }
+          p{
+                  margin: 5px 0 0;
+               font-weight: 500;
+          }
+      }
+    }
+    input{
+      padding: 10px 0;
+      padding-left: 15px;
+      width: 100%;
+      height: 40px;
+      line-height: 25px;
+      border: none;
+      border-bottom: 1px solid #e1e1e1;
+      outline: 0;
+      /*&:focus {
+          border-color: #F33A22;
+      }*/
+    } 
     textarea {
-      .size(100%, 250px);
+      transition: all 500ms;
+      -webkit-transition: all 500ms;
+      -moz-transition: all 500ms;
+      -o-transition: all 500ms;
+      -ms-transition: all 500ms;
+      width: 100%;
+      height: 150px;
+      padding: 10px 0;
+      margin-bottom: 35px;
+      border: none;
+      border-bottom: 1px solid #e1e1e1;
+      outline: 0;
+      padding-left: 15px;
+      /*&:focus {
+          border-color: #F33A22;
+      }*/
+  }
+    .text_column{
+        p{
+          margin-bottom: 35px ;
+          /*font-size: 16px;*/
+        } 
+        h2{
+          font-size: 30px;
+          margin-top: 0; 
+        }
+    } 
+    fieldset{border: 0;}
+    .page-header h1{ 
+                    /*color: #0c80d1;*/
+                    font-size: 40px;
+                    font-weight: 600;
+                    margin-top: 0;
+                    text-align: center;
+                    text-transform: uppercase;
+                    width: 100%;
+                  }
+    .form-actions{margin-top: 20px;margin-bottom: 80px;
+      .btn-primary{width: 100%;background: #0c80d1;transition-duration: 0.5s;text-transform: uppercase;height: 50px;
+        &:hover{box-shadow: 0 0 0 26px rgba(0, 0, 0, 0.1) inset;}
+      }
     }
-  }
-  .send-btn,
-  .email-copy {
-    padding: 10px 0 0 0;
-  }
-  .email-copy-label {
-    float: left;
-    label {
-      margin: 8px 8px 8px 0;
-      padding-left: 12px;
-      font-size: 11px;
-      color: #999;
+    .address_block{text-align: center;margin-bottom: 30px;}
+    .contact .custom{margin: 0 -15px;}
+
+    iframe {
+      box-shadow: -1px 0px 8px 1px #ccc; 
+          filter: grayscale(1);
+      -webkit-filter: grayscale(1);
+      -o-filter: grayscale(1);
+      -o-filter: grayscale(1);
     }
-  }
-  .email-copy-input {
-    float: left;
-    input[type="checkbox"] {
-      .size(15px, 15px);
-      padding: 0;
-      vertical-align: middle;
-      margin: 12px 0px 8px 0px;
-      border: 1px solid #A5A5A5;
+    .contact-contactinfo, .contact-address{
+      .media{display: inline-block;margin-top: 5px;
+      }
+      .fa, .s-name,{
+        display: none;
+      }
+      img{
+        display: none!important;
+      }
+      span{
+        clear: left;
+        width: 100%;
+      }
+      .media{
+        clear: left;
+        display: block;
+        .s-phone{
+          text-align: left;
+          margin: 0;
+          padding: 0; 
+        }
+      }
+      .contact-emailto{
+        padding-top: 30px;
+        a{ 
+          font-size: 15px; 
+        }
+      }
     }
+    .contact-form{
+       .control-label label{display: none;}
+       input{width: 100%;margin-bottom: 0;}
+      }
+      .contact-address-block{
+        h3{text-align: center;text-transform: uppercase;margin-bottom: 10px;}
+        p{text-align: center;margin-bottom: 35px;
+          /*color: #666666;*/
+        }
+      }
+      .media-left, .media-right, .media-body{display: block;width: auto;}      
   }
 }
-
-.name-label {
-  label {
-    font-weight: bold;
-  }
+.contact #contact-form{
+     input[type="text"]:hover, input[type="text"]:focus, input[type="text"]:hover, input[type="text"]:focus, input[type="email"]:hover, textarea:hover, textarea:focus{
+      border: 0;
+        background: #f9f9f9;
+        border-bottom: 1px solid @green;
+    }  
 }
 
-.email-label {
-  label {
-    font-weight: bold;
-  }
-}
-
-.subject-label {
-  margin-top: 10px;
-  label {
-    font-weight: bold;
-  }
-}
-
-.message-label {
-  label {
-    font-weight: bold;
-  }
-}
-
-.name-input,
-.email-input,
-.subject-input,
-.message-form {
-  margin-right: 15px;
-}
 
 /* ======================== Search ========================== */
 .filter-search.alert.alert-info {
