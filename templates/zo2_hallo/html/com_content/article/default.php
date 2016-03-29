@@ -73,11 +73,11 @@ JHtml::_('behavior.caption');
 
 	<?php if ($params->get('show_title') || $params->get('show_author')) : ?>
 	<div class="page-header">
-		<h3 itemprop="name" class="title">
+		<h1 itemprop="name" class="title">
 			<?php if ($params->get('show_title')) : ?>
 				<?php echo $this->escape($this->item->title); ?>
 			<?php endif; ?>
-		</h3>
+		</h1>
 		<?php if ($this->item->state == 0) : ?>
 			<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
 		<?php endif; ?>
@@ -153,6 +153,13 @@ JHtml::_('behavior.caption');
 	</p>
 	<?php endif; ?>
 	<?php endif; ?>
+    <div class="tagspopular">
+	<?php if ($info == 0 && $params->get('show_tags', 1) && !empty($this->item->tags->itemTags)) : ?>
+		<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
+
+		<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
+	<?php endif; ?>
+    </div>
 	<?php
 	if (!empty($this->item->pagination) && $this->item->pagination && $this->item->paginationposition && $this->item->paginationrelative) :
 		echo $this->item->pagination;
@@ -165,12 +172,5 @@ JHtml::_('behavior.caption');
 	?>
 	<?php endif; ?>
 
-    <div class="tagspopular">
-	<?php if ($info == 0 && $params->get('show_tags', 1) && !empty($this->item->tags->itemTags)) : ?>
-		<?php $this->item->tagLayout = new JLayoutFile('joomla.content.tags'); ?>
-
-		<?php echo $this->item->tagLayout->render($this->item->tags->itemTags); ?>
-	<?php endif; ?>
-    </div>
 	<?php echo $this->item->event->afterDisplayContent; ?>
 </div>
