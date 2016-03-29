@@ -22,8 +22,7 @@ JHtml::_('behavior.formvalidation');
 	<form id="member-registration" action="<?php echo JRoute::_('index.php?option=com_users&task=registration.register'); ?>" method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
 <?php foreach ($this->form->getFieldsets() as $fieldset): // Iterate through the form fieldsets and display each one.?>
 	<?php $fields = $this->form->getFieldset($fieldset->name);?>
-	<?php if (count($fields)):?>
-		<fieldset>
+	<?php if (count($fields)):?> 
 		<?php if (isset($fieldset->label)):// If the fieldset has a label set, display it as the legend.
 		?>
 			<legend><?php echo JText::_($fieldset->label);?></legend>
@@ -44,12 +43,11 @@ JHtml::_('behavior.formvalidation');
 					</div>
 				</div>
 			<?php endif;?>
-		<?php endforeach;?>
-		</fieldset>
+		<?php endforeach;?> 
 	<?php endif;?>
 <?php endforeach;?>
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JREGISTER');?></button>
+			<button type="submit" class="btn btn-success validate"><?php echo JText::_('JREGISTER');?></button>
 			<a class="btn" href="<?php echo JRoute::_('');?>" title="<?php echo JText::_('JCANCEL');?>"><?php echo JText::_('JCANCEL');?></a>
 			<input type="hidden" name="option" value="com_users" />
 			<input type="hidden" name="task" value="registration.register" />
