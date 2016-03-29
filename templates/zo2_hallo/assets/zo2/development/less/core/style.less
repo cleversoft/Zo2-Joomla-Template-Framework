@@ -201,7 +201,7 @@ body {
     display: block;
     font-family: "FontAwesome";
     font-size: 18px;
-    right: 36px;
+    right: 15px;
     position: absolute;
     }
   }
@@ -315,8 +315,9 @@ nav.zo2-menu {
   font-size: @baseFontSize + 4;
   font-weight: 300;
   h2 {
-    font-size: @baseFontSize + 26;
+    font-size: @baseFontSize + 46; 
     padding-top: 30px;
+    text-transform: uppercase;
   }
   .slider-image img {
     display: inline-block;
@@ -340,7 +341,65 @@ nav.zo2-menu {
     margin-top: 5px;
   }
 }
+blockquote {
+    padding-left: 35px;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    border: 0;
+    &:before {
+      content: "\f10d";
+      float: left;
+      margin-left: -35px;
+      font-family: "FontAwesome";
+      font-style: normal;
+      font-size: 22px;
+      line-height: 1.33;
+      color: @green;
+      opacity: 0.88;
+    }
+    p{margin-top: 0;}
+}
 
+  .alignleft, a img.alignleft {
+      float: left;
+      margin: 0.5em 2em 0.5em 0;
+  }
+  .alignright, a img.alignright {
+    float: right;
+    margin: 7px 0 14px 22px;
+  } 
+ul.type-square{
+    margin: 2em 0 2em 0px;
+    padding-left: 50px;
+    li{ 
+        margin-bottom: 0.9em;
+        list-style:none;
+        &:before {
+            background: @green none repeat scroll 0 0;
+            content: "";
+            display: block;
+            float: left;
+            height: 5px;
+            margin-left: -20px;
+            margin-top: 8px;
+            vertical-align: middle;
+            width: 5px;
+        }
+    }
+}
+.tagspopular{
+	ul, ol { 
+	padding: 0px;
+	li{
+		&:before{
+			display: none;
+			
+		}
+	}
+  }
+} 
+			
 .blog{ 
     .title-block { 
         color: #2980b9;
@@ -351,10 +410,10 @@ nav.zo2-menu {
     margin-bottom: 35px;
         border-bottom: 1px solid #e1e1e1;
     } 
-    h1.title-post { 
-        margin: 0; 
-        line-height: 25px;
-        margin-bottom: 10px;
+    h1{ 
+        margin: 0;
+        font-weight: 600;
+        margin-bottom: 20px;
     }
     .block-image{margin-bottom: 10px;}
     .post-info{
@@ -376,16 +435,16 @@ nav.zo2-menu {
     }
 }
 .news-info{ 
-    h3.title{
-        margin: 5px 0; 
-        font-size: 22px;
-            font-weight: 700;
-            color: #353535;
+    h1.title, h3.title{
+        font-weight: 700;
+        margin: 0 ;
+        color: #333; 
+		line-height: 1.4;
         a {
             font-size: 22px;
             font-weight: 700;
             color: #353535;
-            &:hover{color: @linkColorHover;} 
+            &:hover{color: @green;} 
         }
     }
 }
@@ -422,40 +481,84 @@ nav.zo2-menu {
     }
   }
 }
-#zo2-position-8{
-    h3.moduletitle {
-        color: #333;
-        padding: 0 0 20px;
-        text-transform: uppercase;
-        font-size: 18px;
-        font-weight: 700;
-        position: relative;
-        &:before, &:after {
-            position: absolute;
-            content: "";
-            bottom: 14px;
-            left: 0;
-            height: 1px;
-            background-color: #cccccc;
-            width: 60px;
-        }
-        &:after {
-            bottom: 8px;
-            width: 30px;
-        }
-    }
+#zo2-position-8, #zo2-position-7{ 
+	h3.moduletitle { 
+		&:before, &:after {
+			position: absolute;
+			content: "";
+			bottom: 14px;
+			left: 0;
+			height: 1px;
+			background-color: #cccccc;
+			width: 60px;
+		}
+		&:after {
+			bottom: 8px;
+			width: 30px;
+		}
+	} 
     .module {
         margin-bottom: 30px;
     }
+	ul{
+	  li  {
+		line-height: 57px;
+		display: inline-block;
+		width: 100%;
+		i{
+		  float: left;
+		  padding-right: 10px;
+		}
+		h2, h3, h4, h5, h6{
+		  margin: 0;
+		  text-transform: none;
+		}
+		a {
+			position: relative;
+			color: @textColor; 
+			border-bottom: 1px solid #eaeaea;
+			line-height: 1.7;
+			padding: 16px 0 16px 15px;
+			&:before {
+				position: absolute;
+				width: 5px;
+				height: 5px;
+				background-color: #333333;
+				content: "";
+				left: 0;
+				top: 25px;
+			}
+		}
+		&:hover,
+		&.active{
+		  color: @green;
+		  a{
+			color: @green;
+		  }
+		}
+	  }
+	}
 } 
+.nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
 /* ============== Features ================== */
+.homedefault {
+	.article-info{
+		display: none;
+	}
+}
 #zo2-body-wrap {
   .top-feature {
     padding-top: 50px;
     .zo2-feature {
       margin-top: 35px;
-      background-color: @white;
-      color: #313131;
+      background-color: @white; 
       position: relative;
       .zo2-circle {
         background-color: @white;
@@ -500,6 +603,7 @@ nav.zo2-menu {
         .zo2-feature-text-title {
           font-size: @baseFontSize + 6; 
               font-weight: 400;
+			      color: #333;
         }
         .zo2-feature-description {
           font-size: @baseFontSize;
@@ -708,21 +812,24 @@ nav.zo2-menu {
 
 /* ================== Main Frame ===================== */
 #zo2-body-wrap {
-  margin-top: 30px;
+  margin: 50px 0;
 }
 
 /* ================== Key Feature ==================== */
 #zo2-news-wrap {
   margin: 50px 0 120px;
-  .mod-news {
-    img {
-      float: left;
-      padding-right: 30px;
-      max-width: 100%;
+  .mod-news { 
+    h3.moduletitle {  
+		text-align: center;
+		font-size: 30px;
+            text-transform: capitalize;
+		&:before, &:after{
+			    content: initial;
+		}
     }
-    h3 { 
-        text-align: center;
-    }
+	.zo2-recent-info{
+		h3{font-size: 20px;    font-weight: 400; color: #333;}
+	}
     &.custom {
       h3 {
             font-weight: 400;
@@ -1012,11 +1119,7 @@ code {
 .tag {
   color: inherit;
 }
-
-/* ======================= Right to left language style ====================== */
-.rtl {
  
-}
 
 .border-image {
   border: 15px solid rgba(0, 0, 0, 0.1);
@@ -1034,4 +1137,11 @@ code {
 header#standard-logo{ 
         padding-top: 5px;
     img{display: inline-block;}
+}
+
+h2.zt-heading-center {
+    font-size: 36px;
+    font-weight: 700;
+    text-align: center;
+    color: #333;
 }
