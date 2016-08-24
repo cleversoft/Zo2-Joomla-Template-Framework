@@ -15,15 +15,10 @@
     >
     <div class="col-wrap">
         <div class="col-name"><?php echo $column->get('name'); ?></div>
-        <div class="col-grid-button">
-            <i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>
-            <span class="col-size"><?php echo $column->get('span'); ?>/12</span>
-            <i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>
-        </div>
         <div class="col-control-buttons">
             <i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>
             <i title="Column's settings" class="fa fa-cog col-control-icon settings hasTooltip" data-toggle="modal"></i>
-            <i title="Add new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>
+            <i title="Clone this position" class="col-control-icon add-row fa fa-clone hasTooltip"></i>
             <i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>
         </div>
 

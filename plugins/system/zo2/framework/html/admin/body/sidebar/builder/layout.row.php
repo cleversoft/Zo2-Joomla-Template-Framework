@@ -13,7 +13,7 @@
         <div class="row-control-container">
             <div class="row-name">
         	    <i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>
-    	    	<i title="Add new col" class="row-control-icon add-column fa fa-plus hasTooltip"></i>
+    	    	<i title="Add new column" class="row-control-icon add-column fa fa-plus hasTooltip"></i>
 	            <?php echo $row->get('name'); ?>
             </div>
             <div class="row-control-buttons">

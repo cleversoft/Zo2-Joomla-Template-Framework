@@ -711,6 +711,7 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
   font-weight: 400;
   height: 50px;
   line-height: 48px;
+  padding-left: 10px;
 }
 #zo2-framework #layoutbuilder-container {
   min-height: 500px;
