@@ -63,8 +63,48 @@
             this.addColumn();
             this.delete();
             this.setting();
+            this.blocksetting();
             this.save();
+            this.addNewBlock();
         },
+
+        /*
+        prepend column
+         */
+
+        addNewBlock: function() {
+            $('#droppable-container').on('click', '.col-control-header > .prepend-column.before', function() {
+                var $col = $(this).closest('.sortable-col');
+                var metaHtml = '<div class="col-wrap sortable-col-child"><div class="col-name">(none)</div>' +
+                    '<div class="col-control-buttons">' +
+                    '<i title="Drag block" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="Block\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                    '<i title="Clone this block" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
+                    '<i title="Remove block" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div>' +
+                    '</div>';
+                var $meta = $(metaHtml);
+                $meta.insertAfter($(this).closest('.col-control-header'));
+            });
+
+            $('#droppable-container').on('click', '.col-prepend-after > .prepend-column.after', function() {
+                var $col = $(this).closest('.sortable-col');
+                var metaHtml = '<div class="col-wrap sortable-col-child"><div class="col-name">(none)</div>' +
+                    '<div class="col-control-buttons">' +
+                    '<i title="Drag block" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="Block\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                    '<i title="Clone this block" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
+                    '<i title="Remove block" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div>' +
+                    '</div>';
+                var $meta = $(metaHtml);
+                $meta.insertBefore($(this).closest('.col-prepend-after'));
+            });
+        },
+
+        /*
+        setting new column
+         */
         /**
          * Init sortable for layout builder
          * @returns {undefined}
@@ -79,15 +119,24 @@
                 axis: 'y'
             });
 
-            $(this._elements.sortableRow).sortable({
-                items: '>.row-control>.col-container>.sortable-col',
-                connectWith: '>.sortable-row',
-                handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
-                containment: 'parent',
-                tolerance: "pointer",
-                helper: 'clone',
-                axis: 'x'
-            });
+
+            // $(this._elements.sortableRow).sortable({
+            //     items: '>.row-control>.col-container>.sortable-col',
+            //     connectWith: '>.sortable-row',
+            //     handle: '>.col-wrap>.col-control-buttons>.col-control-icon.dragger',
+            //     containment: 'parent',
+            //     tolerance: "pointer",
+            //     helper: 'clone',
+            //     axis: 'x'
+            // });
+
+            // $(this._elements.container).sortable({
+            //     items: '>.sortable-col-child',
+            //     containment: 'parent'
+            // });
+            $(this._elements.container).sortable();
+            if($(this._elements.container + ' > .sortable-col').length > 0) $(this._elements.container ).find(' .sortable-col').sortable();
+            if($(this._elements.container ).find('.col-container.zo2-row').length > 0) $(this._elements.container).find('.col-container.zo2-row').sortable();
         },
         /**
          * Rearrange spans
@@ -148,11 +197,14 @@
                 var $row = $(this).closest('[data-zo2-type="row"]');
                 if($row.parent().hasClass('zo2-container')){
                     _self._addChildRow($row, true);
-                }                
+                }
             });
             $('#droppable-container').on('click', '.col-control-buttons > .add-row', function() {
-                var $col = $(this).closest('[data-zo2-type="span"]');
-                _self._addChildRow($col.find('> .col-wrap > .row-container'));
+                var $col = $(this).closest('.sortable-col');
+                var $cur = $(this).closest('.col-wrap').clone().wrap('<div>').parent().html();
+                $col.find('> .col-prepend-after').before($cur);
+                $(_self._elements.container).find('.col-container.zo2-row').sortable();
+                $(_self._elements.container ).find(' .sortable-col').sortable({items:'>.sortable-col-child'});
             });
         },
         /**
@@ -175,27 +227,31 @@
             var _self = this;
             var $col = $('<div />').addClass('sortable-col');
             $col.attr('data-zo2-type', 'span');
+            $col.attr('data-new-layout', '1');
             $col.attr('data-zo2-span', 12);
             $col.removeClass(_self._settings.allColClass);
             $col.addClass('col-md-12');
             $col.attr('data-zo2-position', '');
             $col.attr('data-zo2-offset', 0);
             $col.attr('data-zo2-customClass', '');
-            var metaHtml = '<div class="col-wrap"><div class="col-name">(none)</div>' +
-                    '<div class="col-grid-button">' +
-                    '<i title="Column decrease" class="col-grid-icon col-decrease fa fa-minus-square-o"></i>' +
-                    '<span class="col-size">12/12</span>' +
-                    '<i title="Column increase" class="col-grid-icon col-increase fa fa-plus-square-o"></i>' +
-                    '</div>' +
+            var metaHtml = '<div class="col-control-header">'+
+                    '<i title="Prepend to this column" class="row-control-icon prepend-column before fa fa-plus hasTooltip"></i>'+
+                    '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip" data-toggle="modal"></i>'+
+                    '<i title="Remove row" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>'+
+                    '</div><div class="col-wrap sortable-col-child col-md-12" data-zo2-type="span" data-zo2-position ="" data-zo2-offset="" data-zo2-customClass =""> <div class="col-name">(none)</div>' +
                     '<div class="col-control-buttons">' +
-                    '<i title="Drag column" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                    '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                    '<i title="Add new row" class="col-control-icon add-row fa fa-align-justify hasTooltip"></i>'+
-                    '<i title="Remove column" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
-                    '</div><div class="row-container"></div></div></div>';
+                    '<i title="Drag block" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="Clone this block" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
+                    '<i title="Block\'s settings" class="fa fa-cog col-control-icon block-settings hasTooltip" data-toggle="modal"></i>'+
+                    '<i title="Remove block" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '</div><div class="row-container"></div>' +
+                    '</div>'+
+                    '<div class="col-prepend-after"><i title="Prepend to this column" class="row-control-icon prepend-column after fa fa-plus hasTooltip"></i></div></div>';
             var $meta = $(metaHtml);
             $meta.appendTo($col);
             $col.appendTo($target);
+            $(_self._elements.container).find('.col-container.zo2-row').sortable();
+            $(_self._elements.container ).find(' .sortable-col').sortable({items:'>.sortable-col-child'});
         },
         /**
          * Add child column to container
@@ -208,7 +264,7 @@
                     var $row = $('<div />').addClass('zo2-row sortable-row').appendTo($target);
                 }else{
                     var $row = $('<div />').addClass('zo2-row sortable-row').insertAfter($target);
-                }                
+                }
                 $row.attr('data-zo2-type', 'row');
                 $row.attr('data-zo2-customClass', '');
                 $row.attr('data-zo2-fullwidth', '0');
@@ -237,9 +293,16 @@
             $('#droppable-container').on('click', '.col-control-buttons > .delete', function() {
                 var $this = $(this);
                 w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
-                    var $container = $this.closest('.col-container');
-                    if (result)
-                        $this.closest('.sortable-col').remove();
+                    var $container = $this.closest('.sortable-col');
+                    var noc = $container.find('.col-wrap');
+                    if (result){
+                        if (noc.length == 1 ) {
+                            $this.closest('.sortable-col').remove();
+                        }else {
+                            $this.closest('.col-wrap').remove();
+                        }
+                    }
+
                     z.admin.layoutbuilder.rearrangeSpan($container);
                 });
             });
@@ -252,6 +315,77 @@
                     z.admin.layoutbuilder.rearrangeSpan($container);
                 });
             });
+
+            $('#droppable-container').on('click', '.col-control-header > .delete', function() {
+                var $this = $(this);
+                w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
+                    var $container = $this.closest('.row-container');
+                    if (result)
+                        $this.closest('.sortable-col').remove();
+                    z.admin.layoutbuilder.rearrangeSpan($container);
+                });
+            });
+        },
+
+        /*
+        * block setting
+         */
+        blocksetting: function() {
+            var _self = this;
+            //bind event to generate row id
+            $('#txtRowName').on('keyup', function(e) {
+                var $this = $(this);
+                $('#txtRowId').val(z.admin.generateSlug($this.val()));
+            });
+            $('#droppable-container').on('click', '.col-control-buttons > .block-settings', function() {
+                var $col = $(this).closest('.sortable-col .col-wrap');
+                _self.editingElement = $col;
+
+                var jdoc = $col.attr('data-zo2-jdoc');
+                var spanPosition = $col.attr('data-zo2-position');
+                var spanStyle = $col.attr('data-zo2-style');
+                var spanOffset = $col.attr('data-zo2-offset');
+                var customCss = $col.attr('data-zo2-customClass');
+                var spanId = $col.attr('data-zo2-id');
+
+                //$('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
+                $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-xs') == '1')
+                    $('#btgColPhone').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
+                //$('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
+                $('#btgColTablet').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-sm') == '1')
+                    $('#btgColTablet').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
+                //$('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
+                $('#btgColDesktop').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-md') == '1')
+                    $('#btgColDesktop').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
+                //$('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
+                $('#btgColLargeDesktop').find('button').removeClass('active btn-danger btn-success');
+                if ($col.attr('data-zo2-visibility-lg') == '1')
+                    $('#btgColLargeDesktop').find('.btn-on').addClass('btn-success active');
+                else
+                    $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
+
+                $('#dlColJDoc').val(jdoc).trigger("liszt:updated");
+                $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
+                $('#ddlColStyle').val(spanStyle).trigger("liszt:updated")
+                $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
+                $('#txtColCss').val(customCss);
+                $('#txtColId').val(spanId);
+                var $modal = $('#blockSettingsModal');
+                $modal.find('.zo2-tabs').find('li a').removeClass('active');
+                $modal.find('.zo2-tabs-content').find('> div').removeClass('active');
+                $modal.find('.zo2-tabs').find('li a:first').addClass('active');
+                $modal.find('.zo2-tabs-content').find('> div:first').addClass('active');
+                $modal.modal('show');
+            });
         },
         /**
          * Show setting
@@ -263,24 +397,6 @@
             $('#txtRowName').on('keyup', function(e) {
                 var $this = $(this);
                 $('#txtRowId').val(z.admin.generateSlug($this.val()));
-            });
-            $('#droppable-container').on('click', '.col-grid-button > .col-decrease', function() {
-                var $col = $(this).closest('.sortable-col');
-                $col.removeClass(_self._settings.allColClass);
-                var width = parseInt($col.attr('data-zo2-span'));
-                width -= (width > 1) ? 1 : 0;
-                $col.addClass('col-md-' + width);
-                $col.attr('data-zo2-span', width);
-                $col.find('.col-grid-button > .col-size').html(width + '/12');
-            });
-            $('#droppable-container').on('click', '.col-grid-button > .col-increase', function() {
-                var $col = $(this).closest('.sortable-col');
-                $col.removeClass(_self._settings.allColClass);
-                var width = parseInt($col.attr('data-zo2-span'));
-                width += (width < 12) ? 1 : 0;
-                $col.addClass('col-md-' + width);
-                $col.attr('data-zo2-span', width);
-                $col.find('.col-grid-button > .col-size').html(width + '/12');
             });
             $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
                 var $this = $(this);
@@ -339,48 +455,13 @@
                 $modal.modal('show');
             });
 
-            $('#droppable-container').on('click', '.col-control-buttons > .settings', function() {
+            $('#droppable-container').on('click', '.col-control-header > .settings', function() {
                 var $col = $(this).closest('.sortable-col');
                 _self.editingElement = $col;
 
-                var jdoc = $col.attr('data-zo2-jdoc');
-                var spanPosition = $col.attr('data-zo2-position');
-                var spanOffset = $col.attr('data-zo2-offset');
-                var spanStyle = $col.attr('data-zo2-style');
-                var customCss = $col.attr('data-zo2-customClass');
-                var spanId = $col.attr('data-zo2-id');
-                
-                //$('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
-                $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
-                if ($col.attr('data-zo2-visibility-xs') == '1')
-                    $('#btgColPhone').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
-                //$('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
-                $('#btgColTablet').find('button').removeClass('active btn-danger btn-success');
-                if ($col.attr('data-zo2-visibility-sm') == '1')
-                    $('#btgColTablet').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
-                //$('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
-                $('#btgColDesktop').find('button').removeClass('active btn-danger btn-success');
-                if ($col.attr('data-zo2-visibility-md') == '1')
-                    $('#btgColDesktop').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
-                //$('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
-                $('#btgColLargeDesktop').find('button').removeClass('active btn-danger btn-success');
-                if ($col.attr('data-zo2-visibility-lg') == '1')
-                    $('#btgColLargeDesktop').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
+                var spanOffset = $col.attr('data-zo2-span');
 
-                $('#dlColJDoc').val(jdoc).trigger("liszt:updated");
-                $('#dlColPosition').val(spanPosition).trigger("liszt:updated");
-                $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
-                $('#ddlColStyle').val(spanStyle).trigger("liszt:updated");
-                $('#txtColCss').val(customCss);
-                $('#txtColId').val(spanId);
+                $('#ddlColWidth').val(spanOffset).trigger("liszt:updated");
                 var $modal = $('#colSettingsModal');
                 $modal.find('.zo2-tabs').find('li a').removeClass('active');
                 $modal.find('.zo2-tabs-content').find('> div').removeClass('active');
@@ -389,13 +470,13 @@
                 $modal.modal('show');
             });
         },
-        /**
+        /** 
          * Save layout
          * @returns {undefined}
          */
         save: function() {
             var _self = this;
-            $('#btnSaveColSettings').on('click', function() {
+            $('#btnSaveBlockSettings').on('click', function() {
                 var $col = _self.editingElement;
                 $col.attr('data-zo2-jdoc', $('#dlColJDoc').val());
                 $col.attr('data-zo2-offset', $('#ddlColOffset').val());
@@ -413,10 +494,19 @@
                     position = '';
                 }
                 var colName = position.length > 0 ? position : '(none)';
-                $col.removeClass(_self._settings.allColClass).addClass('col-md-' + $col.attr('data-zo2-span'));
-                $col.removeClass(_self._settings.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
+                //$col.removeClass(_self._settings.allColClass).addClass('col-md-' + $col.attr('data-zo2-span'));
+                //$col.removeClass(_self._settings.allColOffset).addClass('col-md-offset-' + $('#ddlColOffset').val());
                 $col.attr('data-zo2-position', position);
-                $col.find('>.col-wrap>.col-name').text(colName);
+                $col.find('>.col-name').text(colName);
+                $('#blockSettingsModal').modal('hide');
+                return false;
+            });
+
+            $('#btnSaveColSettings').on('click', function() {
+                var $col = _self.editingElement;
+                $col.attr('data-zo2-span', $('#ddlColWidth').val());
+                $col.removeClass(_self._settings.allColClass);
+                $col.addClass('col-md-'+$('#ddlColWidth').val());
                 $('#colSettingsModal').modal('hide');
                 return false;
             });

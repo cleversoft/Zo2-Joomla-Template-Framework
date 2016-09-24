@@ -103,11 +103,11 @@ $positions = $model->getAvaiablePositions();
         </div>
     </div>
 
-    <!-- Model: Column settings -->
-    <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="colSettingsModal" aria-hidden="true">
+    <!-- Model: Block settings -->
+    <div id="blockSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="blockSettingsModal" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_COLUMN_SETTINGS'); ?></h3>
+            <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_BLOCK_SETTINGS'); ?></h3>
         </div>
         <div class="modal-body">
             <div class="form-horizontal">
@@ -121,7 +121,7 @@ $positions = $model->getAvaiablePositions();
                                 <select id="dlColJDoc">
                                     <optgroup label="Joomla! Document">
                                         <option value="component"><?php echo JText::_('ZO2_ADMIN_COMMON_COMPONENT'); ?></option>
-                                        <option value="modules"><?php echo JText::_('ZO2_ADMIN_COMMON_MODULES'); ?></option>                                    
+                                        <option value="modules"><?php echo JText::_('ZO2_ADMIN_COMMON_MODULES'); ?></option>
                                         <option value="messsge"><?php echo JText::_('ZO2_ADMIN_COMMON_MESSAGE'); ?></option>
                                     </optgroup>
                                     <!-- These are extended for 3rd parties -->
@@ -142,7 +142,7 @@ $positions = $model->getAvaiablePositions();
                         <div class="control-group">
                             <label class="control-label" for="dlColType"><?php echo JText::_('ZO2_ADMIN_COMMON_POSITION'); ?></label>
                             <div class="controls">
-                                <select id="dlColPosition">                                    
+                                <select id="dlColPosition">
                                     <option value="component"><?php echo JText::_('ZO2_ADMIN_COMMON_COMPONENT'); ?></option>
                                     <option value="message"><?php echo JText::_('ZO2_ADMIN_COMMON_MESSAGE'); ?></option>
                                     <option value="mega_menu"><?php echo JText::_('ZO2_ADMIN_COMMON_MEGA_MENU'); ?></option>
@@ -153,7 +153,8 @@ $positions = $model->getAvaiablePositions();
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                        </div>                      
+                        </div>
+
                         <div class="control-group">
                             <label class="control-label" for="ddlColOffset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                             <div class="controls">
@@ -174,17 +175,18 @@ $positions = $model->getAvaiablePositions();
                                 </select>
                             </div>
                         </div>
+
                         <div class="control-group">
                             <label class="control-label" for="ddlColStyle"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
                             <div class="controls">
                                 <select id="ddlColStyle">
-                                    <?php require_once JPATH_ROOT . '/templates/' . Zo2Framework::getInstance()->template->template . '/html/modules.php'; ?>                                    
+                                    <?php require_once JPATH_ROOT . '/templates/' . Zo2Framework::getInstance()->template->template . '/html/modules.php'; ?>
                                     <?php foreach ($modChromes as $chrome) : ?>
                                         <option value="<?php echo $chrome ?>"><?php echo $chrome ?></option>
-                                    <?php endforeach; ?>                                   
+                                    <?php endforeach; ?>
                                 </select>
                             </div>
-                        </div>                        
+                        </div>
                         <div class="control-group">
                             <label class="control-label" for="txtColCss"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_CUSTOM_CSS'); ?></label>
                             <div class="controls">
@@ -212,6 +214,47 @@ $positions = $model->getAvaiablePositions();
                                         <button class="btn btn-off" data-toggle="tooltip" data-placement="left" title="Disable On Large Destop"><?php //echo JText::_('ZO2_ADMIN_COMMON_OFF');          ?></button>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <!-- end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo JText::_('ZO2_ADMIN_COMMON_CLOSE'); ?></button>
+            <button id="btnSaveBlockSettings" class="btn btn-primary"><?php echo JText::_('ZO2_ADMIN_COMMON_SAVE_CHANGES'); ?></button>
+        </div>
+    </div>
+
+    <!-- Modal : Column setting -->
+    <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="colSettingsModal" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_COLUMN_SETTINGS'); ?></h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="zo2-tabs-content">
+                    <div class="active" id="column-basic">
+                        <!-- begin -->
+                        <div class="control-group">
+                            <label class="control-label" for="ddlColWidth"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
+                            <div class="controls">
+                                <select id="ddlColWidth">
+                                    <option value="1">1/12</option>
+                                    <option value="2">2/12</option>
+                                    <option value="3">3/12</option>
+                                    <option value="4">4/12</option>
+                                    <option value="5">5/12</option>
+                                    <option value="6">6/12</option>
+                                    <option value="7">7/12</option>
+                                    <option value="8">8/12</option>
+                                    <option value="9">9/12</option>
+                                    <option value="10">10/12</option>
+                                    <option value="11">11/12</option>
+                                    <option value="12">12/12</option>
+                                </select>
                             </div>
                         </div>
                         <!-- end -->

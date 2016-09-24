@@ -819,6 +819,23 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
   margin: 0 2px;
   cursor: pointer;
 }
+#zo2-framework #layoutbuilder-container .col-prepend-after {
+  width: 100%;
+  text-align: center;
+  min-height: 1px;
+}
+#zo2-framework #layoutbuilder-container .col-prepend-after i {
+  float: none;
+  display: inline;
+}
+#zo2-framework #layoutbuilder-container .col-control-header {
+  min-height: 30px;
+  text-align: center;
+}
+#zo2-framework #layoutbuilder-container .col-control-header i {
+  display: inline-block;
+  float: none;
+}
 #zo2-framework #layoutbuilder-container .row-fluid {
   width: auto;
 }
@@ -886,6 +903,7 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
   -moz-border-radius: 3px;
   border-radius: 3px;
   background: #fff;
+  position: relative;
 }
 #zo2-framework #layoutbuilder-container .sortable-row,
 #zo2-framework #layoutbuilder-container .sortable-col {

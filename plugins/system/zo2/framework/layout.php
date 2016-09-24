@@ -110,11 +110,24 @@ if (!class_exists('Zo2Layout'))
             if (count($children) > 0)
                 foreach ($children as $item)
                 {
-                    $item = new JObject($item);
-                    if ($this->_checkShowColumn($item))
-                    {
-                        return true;
+                    if(isset($item->new_layout) and $item->new_layout == 1) {
+                        if (count($item->children) >  0) {
+                            foreach ($item->children as $ch) {
+                                $ch = new JObject($ch);
+                                if ($this->_checkShowColumn($ch))
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    } else {
+                        $item = new JObject($item);
+                        if ($this->_checkShowColumn($item))
+                        {
+                            return true;
+                        }
                     }
+
                 } else
             {
                 return false;
@@ -175,8 +188,59 @@ if (!class_exists('Zo2Layout'))
                 $availableChildren = array();
                 foreach ($children as $index => $child)
                 {
+                    if (isset($child->new_layout) and $child->new_layout == 1) {
+                        if (count($child->children) > 0) {
+                            foreach ($child->children as $chld) {
+                                $chld = new JObject($chld);
 
-                    $child = new JObject($child);
+                                /* Count number of available modules in this position */
+                                $modulesInPosition = count(JModuleHelper::getModules($chld->position));
+                                /**
+                                 * This child position is excepted
+                                 * @todo We should not allow these kind of exceptions !
+                                 */
+                                if (in_array($chld->position, $exceptPos))
+                                {
+                                    /* Because this exception than at least 1 module will be there */
+                                    $modulesInPosition = max($modulesInPosition, 1);
+                                }
+                                /* If there is no modules in this position */
+                                if ($modulesInPosition == 0)
+                                {
+                                    if (isset($children[$index + 1]))
+                                    {
+                                        /* If right element exists than plus for right */
+                                        $children[$index + 1]->span += $chld->span;
+                                        $usedSpace += $chld->span; /* Increase used space */
+                                    } else
+                                    {
+                                        /* If right element not exists than plus for left */
+                                        if (isset($children[$index - 1]))
+                                        {
+                                            // Make sure prev element available
+                                            if ($this->_checkItemPosition($children[$index - 1]))
+                                            {
+                                                $children[$index - 1]->span += $chld->span;
+                                                $usedSpace += $chld->span; /* Increase used space */
+                                            } else
+                                            {
+                                                // Prev element not exists than we find last available
+                                                end($availableChildren);         // move the internal pointer to the end of the array
+                                                $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
+                                                $children[$key]->span += $usedSpace;
+                                            }
+                                        }
+                                    }
+                                } else
+                                {
+                                    $usedSpace += $chld->span;
+                                    $availableChildren[$index] = $chld;
+                                }
+                                $offsetSpace += $chld->offset;
+                            }
+                        }
+                    } else {
+                        $child = new JObject($child);
 
                     /* Count number of available modules in this position */
                     $modulesInPosition = count(JModuleHelper::getModules($child->position));
@@ -209,7 +273,7 @@ if (!class_exists('Zo2Layout'))
                                     $usedSpace += $child->span; /* Increase used space */
                                 } else
                                 {
-                                    // Prev element not exists than we find last available                                    
+                                    // Prev element not exists than we find last available
                                     end($availableChildren);         // move the internal pointer to the end of the array
                                     $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
                                     $children[$key]->span += $usedSpace;
@@ -222,6 +286,9 @@ if (!class_exists('Zo2Layout'))
                         $availableChildren[$index] = $child;
                     }
                     $offsetSpace += $child->offset;
+                    }
+
+
                 }
 
                 if ($usedSpace <= 0)
@@ -237,7 +304,34 @@ if (!class_exists('Zo2Layout'))
 
                 foreach ($children as $child)
                 {
-                    $html .= $this->_buildItem($child);
+                    if (isset($child->new_layout) and $child->new_layout == 1) {
+                        if (count($child->children) > 0) {
+                            $unique_id = uniqid(rand());
+                            $html .='<div id="id-'.$unique_id.'" class="col-md-'.$child->span.' col-sd-'.$child->span.'">';
+                            foreach ($child->children as $cld) {
+                                 $html .= $this->_buildItem($cld);
+                            }
+                            $html .= '</div>';
+                            $html .='<script>
+(function($){
+    var selector = $("#id-'.$unique_id.' > div");
+if(selector.length > 0) {
+    var count_d = 0;
+    selector.each(function(){
+        if ($(this).css("display") !=  "none") {
+            count_d++;
+        }
+    });
+
+    if(count_d == 0) {$("#id-'.$unique_id.'").hide()}
+
+}
+}(jQuery));
+
+</script>';
+                        }
+                    } else  $html .= $this->_buildItem($child);
+
                 }
                 /* END ROW */
                 $html .= '</div>';
@@ -350,8 +444,8 @@ if (!class_exists('Zo2Layout'))
                 $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
                 $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
 
-                $class[] = 'col-md-' . $item->get('span');
-                $class[] = 'col-sm-' . $item->get('span');
+                $class[] = 'col-md-12';
+                $class[] = 'col-sm-12';
 
                 if ($item->get('offset') != 0)
                 {

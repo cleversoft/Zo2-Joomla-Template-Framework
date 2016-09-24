@@ -124,13 +124,27 @@
                 });
             }
             /* Column */
-            else if ($item.attr('data-zo2-type') == 'span') {
+            else if ($item.attr('data-zo2-type') == 'span' && $item.attr('data-new-layout') == '1') {
+                result = {
+                    type: "col",
+                    span: parseInt($item.attr('data-zo2-span')),
+                    new_layout: parseInt($item.attr('data-new-layout')),
+                    children: []
+                };
+
+                //$childrenContainer = $item.find('> .col-wrap > .row-container');
+
+                //$childrenContainer.find('> [data-zo2-type]').each(function() {
+                $item.find('> .col-wrap').each(function() {
+                    var childItem = z.admin.generateLayoutJson(jQuery(this));
+                    result.children.push(childItem);
+                });
+            } else {
                 result = {
                     jdoc: $item.attr('data-zo2-jdoc'),
                     type: "col",
-                    name: $item.find('> .col-wrap > .col-name').text(),
+                    name: $item.find('> .col-name').text(),
                     position: $item.attr('data-zo2-position'),
-                    span: parseInt($item.attr('data-zo2-span')),
                     offset: parseInt($item.attr('data-zo2-offset')),
                     customClass: $item.attr('data-zo2-customClass') ? $item.attr('data-zo2-customClass') : '',
                     style: $item.attr('data-zo2-style'),
@@ -143,13 +157,6 @@
                     },
                     children: []
                 };
-
-                $childrenContainer = $item.find('> .col-wrap > .row-container');
-
-                $childrenContainer.find('> [data-zo2-type]').each(function() {
-                    var childItem = z.admin.generateLayoutJson(jQuery(this));
-                    result.children.push(childItem);
-                });
             }
 
             return result;
