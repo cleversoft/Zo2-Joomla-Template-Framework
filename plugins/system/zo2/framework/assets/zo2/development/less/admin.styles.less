@@ -335,7 +335,7 @@
     width: 300px;
   }
   .col-name {
-  	background: #FBFBFB;
+  	background: @white;
     color: #272727;
     font-size: @baseFontSize;
     font-weight: 400;
@@ -401,11 +401,11 @@
     }
     .ui-sortable {
       & > .sortable-row {
-        background-color: #F5F5F5;
+        border: 1px solid @grey;
         margin: 15px;
       }
       & > .sortable-row:hover {
-        background: #f5f5f5;
+        border: 1px solid @grey;
       }
     }
 
@@ -468,7 +468,7 @@
   }
 
   .col-prepend-after i {float: none;display: inline;}
-  .col-control-header {min-height: 30px;text-align: center}
+  .col-control-header {min-height: 30px;text-align: center; background: @grey;}
   .col-control-header i {display: inline-block;float: none}
 
     /* Row Fluid Control */
@@ -535,15 +535,15 @@
       float: left;
       .size(100%, 57px);
       line-height: (@baseLineHeight * 2) + 11;
-      border-bottom: 1px solid #dddddd;
+      border-bottom: 1px solid @grey;
       margin-bottom: 15px;
       .box-sizing(border-box);
     }
     .col-wrap {
-      margin: 5px 0;
+      margin: 0;
       padding: 10px;
       .border-radius(3px);
-      background: @white;
+      background: @grey;
       position: relative;
     }
     .sortable-row, .sortable-col {
@@ -1198,7 +1198,7 @@ body {
   .profiles-pane-inner {
     .controls {
       .input-group-btn .btn-default {
-        background: #f5f5f5;
+        background: @grey;
         border: 1px solid #e6e6e6;
       }
       .add-new-profiles {
