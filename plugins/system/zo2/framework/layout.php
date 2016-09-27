@@ -48,6 +48,101 @@ if (!class_exists('Zo2Layout'))
             return md5(serialize($user->groups) . serialize($this));
         }
 
+        public function reSortRow($items) {
+            /* Count number of available modules in this position */
+            $max = 12;
+            $exceptPos = array('footer-copyright', 'footer-logo', 'header-logo', 'canvas-menu', 'header_logo', 'logo', 'menu', 'mega-menu', 'mega_menu', 'footer_logo', 'footer_copyright', 'component', 'debug', 'message');
+            foreach ($items as $index=>&$item) {
+                if(count($item->children) > 0) {
+                    $availableChildren = array();
+                    $useSpace = 0;
+                    foreach ($item->children as $key=>&$children) {
+                        $available = false;
+                        if (count($children->children) == 0 || !isset($children->new_layout)) continue;
+                        foreach ($children->children as &$child) {
+
+                            $number = count(JModuleHelper::getModules($child->position));
+                            if($number > 0 || in_array($child->position,$exceptPos)) {
+                                $available = true;
+                                break;
+                            }
+                        }
+                        if(!$available) {
+                            if (isset($item->children[$key+1])) {
+                                $span_plus = $item->children[$key+1]->span + $children->span + $useSpace;
+                                if ($span_plus <= $max) $item->children[$key+1]->span += $children->span;
+                                else $useSpace = 0;
+                            } else {
+                                $span_plus = $children->span + $useSpace;
+                                if (isset($item->children[$key-1])) {
+                                    if ($span_plus <= $max) $item->children[$key-1]->span += $children->span;
+                                    else $useSpace = 0;
+                                } else {
+                                    end($availableChildren);
+                                    $key = key($availableChildren);
+                                    if ($span_plus <= $max) $item->children[$key]->span += $children->span;
+                                    else $useSpace = 0;
+                                }
+                            }
+                            $children->span = 0;
+                        } else {
+                            $availableChildren[$key] = $children;
+                            $useSpace += $children->span;
+                            if ($useSpace >= $max) $useSpace = 0;
+                        }
+                    }
+                }
+
+//                if (is_null($item->get('new_layout'))) return $items;
+//                $children = $item->get('children');
+//                $available = 0;
+//                if (count($children) > 0) {
+//                    foreach ($children as $child) {
+//
+//                    }
+//                }
+            }
+            return $items;
+//            $modulesInPosition = count(JModuleHelper::getModules($chld->position));
+//            /**
+//             * This child position is excepted
+//             * @todo We should not allow these kind of exceptions !
+//             */
+//            if (in_array($chld->position, $exceptPos))
+//            {
+//                /* Because this exception than at least 1 module will be there */
+//                $modulesInPosition = max($modulesInPosition, 1);
+//            }
+//            /* If there is no modules in this position */
+//            if ($modulesInPosition == 0)
+//            {
+//                if (isset($children[$index + 1]))
+//                {
+//                    /* If right element exists than plus for right */
+//                    $children[$index + 1]->span += $chld->span;
+//                    $usedSpace += $chld->span; /* Increase used space */
+//                } else
+//                {
+//                    /* If right element not exists than plus for left */
+//                    if (isset($children[$index - 1]))
+//                    {
+//                        // Make sure prev element available
+//                        if ($this->_checkItemPosition($children[$index - 1]))
+//                        {
+//                            $children[$index - 1]->span += $chld->span;
+//                            $usedSpace += $chld->span; /* Increase used space */
+//                        } else
+//                        {
+//                            // Prev element not exists than we find last available
+//                            end($availableChildren);         // move the internal pointer to the end of the array
+//                            $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
+//                            $children[$key]->span += $usedSpace;
+//                        }
+//                    }
+//                }
+//            }
+        }
+
         public function getHtml()
         {
             $html = '';
@@ -56,6 +151,12 @@ if (!class_exists('Zo2Layout'))
 
             /* Build layout from properties */
             $properties = $this->getProperties();
+
+            /*
+             * resort layout
+             */
+            $properties = $this->reSortRow($properties);
+
             foreach ($properties as $property)
             {
                 $this->_buffer[] = $this->_buildItem($property);
@@ -193,114 +294,64 @@ if (!class_exists('Zo2Layout'))
                             foreach ($child->children as $chld) {
                                 $chld = new JObject($chld);
 
-                                /* Count number of available modules in this position */
-                                $modulesInPosition = count(JModuleHelper::getModules($chld->position));
-                                /**
-                                 * This child position is excepted
-                                 * @todo We should not allow these kind of exceptions !
-                                 */
-                                if (in_array($chld->position, $exceptPos))
-                                {
-                                    /* Because this exception than at least 1 module will be there */
-                                    $modulesInPosition = max($modulesInPosition, 1);
-                                }
-                                /* If there is no modules in this position */
-                                if ($modulesInPosition == 0)
-                                {
-                                    if (isset($children[$index + 1]))
-                                    {
-                                        /* If right element exists than plus for right */
-                                        $children[$index + 1]->span += $chld->span;
-                                        $usedSpace += $chld->span; /* Increase used space */
-                                    } else
-                                    {
-                                        /* If right element not exists than plus for left */
-                                        if (isset($children[$index - 1]))
-                                        {
-                                            // Make sure prev element available
-                                            if ($this->_checkItemPosition($children[$index - 1]))
-                                            {
-                                                $children[$index - 1]->span += $chld->span;
-                                                $usedSpace += $chld->span; /* Increase used space */
-                                            } else
-                                            {
-                                                // Prev element not exists than we find last available
-                                                end($availableChildren);         // move the internal pointer to the end of the array
-                                                $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
-                                                $children[$key]->span += $usedSpace;
-                                            }
-                                        }
-                                    }
-                                } else
-                                {
-                                    $usedSpace += $chld->span;
-                                    $availableChildren[$index] = $chld;
-                                }
+                                $availableChildren[$index] = $chld;
                                 $offsetSpace += $chld->offset;
                             }
                         }
                     } else {
                         $child = new JObject($child);
 
-                    /* Count number of available modules in this position */
-                    $modulesInPosition = count(JModuleHelper::getModules($child->position));
-                    /**
-                     * This child position is excepted
-                     * @todo We should not allow these kind of exceptions !
-                     */
-                    if (in_array($child->position, $exceptPos))
-                    {
-                        /* Because this exception than at least 1 module will be there */
-                        $modulesInPosition = max($modulesInPosition, 1);
-                    }
-                    /* If there is no modules in this position */
-                    if ($modulesInPosition == 0)
-                    {
-                        if (isset($children[$index + 1]))
+                        /* Count number of available modules in this position */
+                        $modulesInPosition = count(JModuleHelper::getModules($child->position));
+                        /**
+                         * This child position is excepted
+                         * @todo We should not allow these kind of exceptions !
+                         */
+                        if (in_array($child->position, $exceptPos))
                         {
-                            /* If right element exists than plus for right */
-                            $children[$index + 1]->span += $child->span;
-                            $usedSpace += $child->span; /* Increase used space */
-                        } else
+                            /* Because this exception than at least 1 module will be there */
+                            $modulesInPosition = max($modulesInPosition, 1);
+                        }
+                        /* If there is no modules in this position */
+                        if ($modulesInPosition == 0)
                         {
-                            /* If right element not exists than plus for left */
-                            if (isset($children[$index - 1]))
+                            if (isset($children[$index + 1]))
                             {
-                                // Make sure prev element available
-                                if ($this->_checkItemPosition($children[$index - 1]))
+                                /* If right element exists than plus for right */
+                                $children[$index + 1]->span += $child->span;
+                                $usedSpace += $child->span; /* Increase used space */
+                            } else
+                            {
+                                /* If right element not exists than plus for left */
+                                if (isset($children[$index - 1]))
                                 {
-                                    $children[$index - 1]->span += $child->span;
-                                    $usedSpace += $child->span; /* Increase used space */
-                                } else
-                                {
-                                    // Prev element not exists than we find last available
-                                    end($availableChildren);         // move the internal pointer to the end of the array
-                                    $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
-                                    $children[$key]->span += $usedSpace;
+                                    // Make sure prev element available
+                                    if ($this->_checkItemPosition($children[$index - 1]))
+                                    {
+                                        $children[$index - 1]->span += $child->span;
+                                        $usedSpace += $child->span; /* Increase used space */
+                                    } else
+                                    {
+                                        // Prev element not exists than we find last available
+                                        end($availableChildren);         // move the internal pointer to the end of the array
+                                        $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
+                                        $children[$key]->span += $usedSpace;
+                                    }
                                 }
                             }
+                        } else
+                        {
+                            $usedSpace += $child->span;
+                            $availableChildren[$index] = $child;
                         }
-                    } else
-                    {
-                        $usedSpace += $child->span;
-                        $availableChildren[$index] = $child;
-                    }
-                    $offsetSpace += $child->offset;
-                    }
-
-
+                        $offsetSpace += $child->offset;
+                        }
                 }
 
-                if ($usedSpace <= 0)
+                if (!is_null($item->get('new_layout'))) {
+                 if ($usedSpace <= 0)
                     return '<!--empty row: ' . trim($item->get('name', 'unknown')) . ' -->';
-//                /* Increase span for last element */
-//                if ($usedSpace <= $maxSpace) {
-//                    $remainingSpace = $maxSpace - $usedSpace - $offsetSpace;
-//                    /* Point to last element */
-//                    end($children);
-//                    $key = key($children);
-//                    $children[$key]->span += $remainingSpace; /* Plus with remaining space */
-//                }
+                }
 
                 foreach ($children as $child)
                 {
@@ -443,9 +494,8 @@ if(selector.length > 0) {
                 $html = '';
                 $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
                 $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
-
-                $class[] = 'col-md-12';
-                $class[] = 'col-sm-12';
+                $class[] = 'col-md-'.$item->get('span','12');
+                $class[] = 'col-sm-'.$item->get('span','12');
 
                 if ($item->get('offset') != 0)
                 {

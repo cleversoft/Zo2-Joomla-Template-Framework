@@ -77,10 +77,10 @@
                 var $col = $(this).closest('.sortable-col');
                 var metaHtml = '<div class="col-wrap sortable-col-child"><div class="col-name">(none)</div>' +
                     '<div class="col-control-buttons">' +
-                    '<i title="Drag block" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                    '<i title="Block\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                    '<i title="Clone this block" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
-                    '<i title="Remove block" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '<i title="'+drag_block+'" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="'+block_setting+'" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                    '<i title="'+clone_block+'" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
+                    '<i title="'+remove_block+'" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
                     '</div><div class="row-container"></div>' +
                     '</div>';
                 var $meta = $(metaHtml);
@@ -91,10 +91,10 @@
                 var $col = $(this).closest('.sortable-col');
                 var metaHtml = '<div class="col-wrap sortable-col-child"><div class="col-name">(none)</div>' +
                     '<div class="col-control-buttons">' +
-                    '<i title="Drag block" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                    '<i title="Block\'s settings" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
-                    '<i title="Clone this block" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
-                    '<i title="Remove block" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '<i title="'+drag_block+'" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="'+block_setting+'" class="fa fa-cog col-control-icon settings hasTooltip"></i>' +
+                    '<i title="'+clone_block+'" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
+                    '<i title="'+remove_block+'" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
                     '</div><div class="row-container"></div>' +
                     '</div>';
                 var $meta = $(metaHtml);
@@ -235,18 +235,18 @@
             $col.attr('data-zo2-offset', 0);
             $col.attr('data-zo2-customClass', '');
             var metaHtml = '<div class="col-control-header">'+
-                    '<i title="Prepend to this column" class="row-control-icon prepend-column before fa fa-plus hasTooltip"></i>'+
-                    '<i title="Column\'s settings" class="fa fa-cog col-control-icon settings hasTooltip" data-toggle="modal"></i>'+
-                    '<i title="Remove row" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>'+
+                    '<i title="'+prepend_this_column+'" class="row-control-icon prepend-column before fa fa-plus hasTooltip"></i>'+
+                    '<i title="'+col_setting+'" class="fa fa-cog col-control-icon settings hasTooltip" data-toggle="modal"></i>'+
+                    '<i title="'+remove_col+'" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>'+
                     '</div><div class="col-wrap sortable-col-child col-md-12" data-zo2-type="span" data-zo2-position ="" data-zo2-offset="" data-zo2-customClass =""> <div class="col-name">(none)</div>' +
                     '<div class="col-control-buttons">' +
-                    '<i title="Drag block" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
-                    '<i title="Clone this block" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
-                    '<i title="Block\'s settings" class="fa fa-cog col-control-icon block-settings hasTooltip" data-toggle="modal"></i>'+
-                    '<i title="Remove block" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '<i title="'+drag_block+'" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
+                    '<i title="'+clone_block+'" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
+                    '<i title="'+block_setting+'" class="fa fa-cog col-control-icon block-settings hasTooltip" data-toggle="modal"></i>'+
+                    '<i title="'+remove_block+'" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
                     '</div><div class="row-container"></div>' +
                     '</div>'+
-                    '<div class="col-prepend-after"><i title="Prepend to this column" class="row-control-icon prepend-column after fa fa-plus hasTooltip"></i></div></div>';
+                    '<div class="col-prepend-after"><i title="'+prepend_this_column+'" class="row-control-icon prepend-column after fa fa-plus hasTooltip"></i></div></div>';
             var $meta = $(metaHtml);
             $meta.appendTo($col);
             $col.appendTo($target);
@@ -273,13 +273,14 @@
                 }
                 var $meta = $('<div class="col-md-12 row-control">' +
                         '<div class="row-control-container">' +
-                        '<div class="row-name">(unnamed row)</div>' +
+                        '<div class="row-control-buttons row-name">' +
+                        '<i title="'+drag_row+'" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
+                        '<i title="'+add_nc+'" class="row-control-icon add-column fa fa-plus hasTooltip"></i>' +
+                    '(unnamed row)</div>' +
                         '<div class="row-control-buttons">' +
-                        '<i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
-                        '<i title="Row\'s settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
-                        '<i title="Add new row" class="row-control-icon add-row fa fa-align-justify hasTooltip"></i>' +
-                        '<i title="Add new column" class="row-control-icon add-column fa fa-columns hasTooltip"></i>' +
-                        '<i title="Remove row" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
+                        '<i title="'+row_setting+'" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
+                        '<i title="'+clone_this_row+'" class="row-control-icon add-row fa fa-clone hasTooltip"></i>' +
+                        '<i title="'+remove_row+'" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
                         '</div></div>' +
                         '<div class="col-container"></div></div>');
                 $meta.appendTo($row);
@@ -292,7 +293,7 @@
         delete: function() {
             $('#droppable-container').on('click', '.col-control-buttons > .delete', function() {
                 var $this = $(this);
-                w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
+                w.bootbox.confirm(confirmc, function(result) {
                     var $container = $this.closest('.sortable-col');
                     var noc = $container.find('.col-wrap');
                     if (result){
@@ -308,7 +309,7 @@
             });
             $('#droppable-container').on('click', '.row-control-buttons > .delete', function() {
                 var $this = $(this);
-                w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
+                w.bootbox.confirm(confirmc, function(result) {
                     var $container = $this.closest('.row-container');
                     if (result)
                         $this.closest('.sortable-row').remove();
@@ -318,7 +319,7 @@
 
             $('#droppable-container').on('click', '.col-control-header > .delete', function() {
                 var $this = $(this);
-                w.bootbox.confirm('Are you sure want to delete this column?', function(result) {
+                w.bootbox.confirm(confirmc, function(result) {
                     var $container = $this.closest('.row-container');
                     if (result)
                         $this.closest('.sortable-col').remove();

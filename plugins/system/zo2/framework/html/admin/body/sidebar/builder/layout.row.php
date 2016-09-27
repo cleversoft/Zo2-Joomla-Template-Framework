@@ -12,14 +12,14 @@
     <div class="col-md-12 row-control">
         <div class="row-control-container">
             <div class="row-control-buttons row-name">
-        	    <i title="Drag row" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>
-    	    	<i title="Add new column" class="row-control-icon add-column fa fa-plus hasTooltip"></i>
+        	    <i title="<?php echo JText::_('ZO2_DRAG_ROW') ?>" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>
+    	    	<i title="<?php echo JText::_('ZO2_ADD_NEW_COLUMN') ?>" class="row-control-icon add-column fa fa-plus hasTooltip"></i>
 	            <?php echo $row->get('name'); ?>
             </div>
             <div class="row-control-buttons">
-                <i title="Row's settings" class="fa fa-cog row-control-icon settings hasTooltip"></i>
-                <i title="Clone this row" class="row-control-icon add-row fa fa-clone hasTooltip"></i>
-                <i title="Remove row" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>
+                <i title="<?php echo JText::_('ZO2_ROW_SETTING') ?>" class="fa fa-cog row-control-icon settings hasTooltip"></i>
+                <i title="<?php echo JText::_('ZO2_CLONE_THIS_ROW') ?>" class="row-control-icon add-row fa fa-clone hasTooltip"></i>
+                <i title="<?php echo JText::_('ZO2_REMOVE_ROW') ?>Remove row" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>
             </div>
         </div>
 
@@ -37,3 +37,10 @@
         </div>
     </div>
 </div>
+<script>
+    var drag_row = "<?php echo JText::_('ZO2_DRAG_ROW') ?>";
+    var add_nc = "<?php echo JText::_('ZO2_ADD_NEW_COLUMN') ?>";
+    var row_setting = "<?php echo JText::_('ZO2_ROW_SETTING') ?>";
+    var clone_this_row = "<?php echo JText::_('ZO2_CLONE_THIS_ROW') ?>";
+    var remove_row = "<?php echo JText::_('ZO2_REMOVE_ROW') ?>";
+</script>

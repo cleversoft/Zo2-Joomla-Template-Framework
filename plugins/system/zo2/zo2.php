@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
