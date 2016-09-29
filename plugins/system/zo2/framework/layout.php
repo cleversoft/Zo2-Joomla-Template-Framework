@@ -78,6 +78,7 @@ if (!class_exists('Zo2Layout'))
                                     if ($span_plus <= $max) $item->children[$key-1]->span += $children->span;
                                     else $useSpace = 0;
                                 } else {
+                                    if (count($availableChildren) == 0) continue;
                                     end($availableChildren);
                                     $key = key($availableChildren);
                                     if ($span_plus <= $max) $item->children[$key]->span += $children->span;
@@ -93,54 +94,8 @@ if (!class_exists('Zo2Layout'))
                     }
                 }
 
-//                if (is_null($item->get('new_layout'))) return $items;
-//                $children = $item->get('children');
-//                $available = 0;
-//                if (count($children) > 0) {
-//                    foreach ($children as $child) {
-//
-//                    }
-//                }
             }
             return $items;
-//            $modulesInPosition = count(JModuleHelper::getModules($chld->position));
-//            /**
-//             * This child position is excepted
-//             * @todo We should not allow these kind of exceptions !
-//             */
-//            if (in_array($chld->position, $exceptPos))
-//            {
-//                /* Because this exception than at least 1 module will be there */
-//                $modulesInPosition = max($modulesInPosition, 1);
-//            }
-//            /* If there is no modules in this position */
-//            if ($modulesInPosition == 0)
-//            {
-//                if (isset($children[$index + 1]))
-//                {
-//                    /* If right element exists than plus for right */
-//                    $children[$index + 1]->span += $chld->span;
-//                    $usedSpace += $chld->span; /* Increase used space */
-//                } else
-//                {
-//                    /* If right element not exists than plus for left */
-//                    if (isset($children[$index - 1]))
-//                    {
-//                        // Make sure prev element available
-//                        if ($this->_checkItemPosition($children[$index - 1]))
-//                        {
-//                            $children[$index - 1]->span += $chld->span;
-//                            $usedSpace += $chld->span; /* Increase used space */
-//                        } else
-//                        {
-//                            // Prev element not exists than we find last available
-//                            end($availableChildren);         // move the internal pointer to the end of the array
-//                            $key = key($availableChildren);  // fetches the key of the element pointed to by the internal pointer
-//                            $children[$key]->span += $usedSpace;
-//                        }
-//                    }
-//                }
-//            }
         }
 
         public function getHtml()
@@ -179,7 +134,7 @@ if (!class_exists('Zo2Layout'))
          * @param type $item
          * @return type
          */
-        private function _buildItem($item)
+        private function _buildItem($item,$new_layout = false)
         {
             $item = new Zo2LayoutItem($item);
             switch ($item->get('type'))
@@ -187,7 +142,7 @@ if (!class_exists('Zo2Layout'))
                 case 'row':
                     return $this->_generateRow($item);
                 case 'col':
-                    return $this->_generateColumn($item);
+                    return $this->_generateColumn($item,$new_layout);
                 default:
                     break;
             }
@@ -295,7 +250,6 @@ if (!class_exists('Zo2Layout'))
                                 $chld = new JObject($chld);
 
                                 $availableChildren[$index] = $chld;
-                                $offsetSpace += $chld->offset;
                             }
                         }
                     } else {
@@ -358,28 +312,57 @@ if (!class_exists('Zo2Layout'))
                     if (isset($child->new_layout) and $child->new_layout == 1) {
                         if (count($child->children) > 0) {
                             $unique_id = uniqid(rand());
-                            $html .='<div id="id-'.$unique_id.'" class="col-md-'.$child->span.' col-sd-'.$child->span.'">';
+
+                            /**/
+                            $class = array();
+                            $childC = new Zo2LayoutItem($child);
+                            $class[] = 'col-md-'.$childC->get('span','12');
+                            $class[] = 'col-sm-'.$childC->get('span','12');
+
+                            if ($childC->get('offset') != 0)
+                            {
+                                $class [] = ' col-md-offset-' . $childC->get('offset');
+                            }
+
+                            $class = array_merge($class, $childC->getVisibilityClass());
+                            $customClass = explode(' ', $childC->get('customClass'));
+                            $class = array_merge($class, $customClass);
+                            $class = array_unique($class);
+
+                            $gridClass = array();
+                            /* Find grid core class */
+                            foreach ($class as $key => $value)
+                            {
+                                if (
+                                    strpos($value, 'col-xs-') !== false || strpos($value, 'col-sm-') !== false || strpos($value, 'col-md-') !== false || strpos($value, 'col-lg-') !== false)
+                                {
+                                    $subs = explode('-', $value);
+                                    if (in_array('offset', $subs))
+                                    {
+
+                                    } else
+                                    {
+                                        if (count($subs) == 3)
+                                        {
+                                            $gridClass[$subs[0] . '-' . $subs[1]] = $subs[2];
+                                        }
+                                        unset($class[$key]);
+                                    }
+                                }
+                            }
+                            foreach ($gridClass as $key => $value)
+                            {
+                                $class [] = $key . '-' . $value;
+                            }
+                            $class = array_unique($class);
+                            /**/
+
+                            $html .='<div id="id-'.$unique_id.'" class="' . trim(implode(' ', $class)) . '">';
                             foreach ($child->children as $cld) {
-                                 $html .= $this->_buildItem($cld);
+                                 $html .= $this->_buildItem($cld,true);
                             }
                             $html .= '</div>';
-                            $html .='<script>
-(function($){
-    var selector = $("#id-'.$unique_id.' > div");
-if(selector.length > 0) {
-    var count_d = 0;
-    selector.each(function(){
-        if ($(this).css("display") !=  "none") {
-            count_d++;
-        }
-    });
 
-    if(count_d == 0) {$("#id-'.$unique_id.'").hide()}
-
-}
-}(jQuery));
-
-</script>';
                         }
                     } else  $html .= $this->_buildItem($child);
 
@@ -482,7 +465,7 @@ if(selector.length > 0) {
          * @param $item
          * @return string
          */
-        private function _generateColumn($item)
+        private function _generateColumn($item,$new_layout = false)
         {
 
             /* Check is allowed to show this jdoc */
@@ -497,39 +480,42 @@ if(selector.length > 0) {
                 $class[] = 'col-md-'.$item->get('span','12');
                 $class[] = 'col-sm-'.$item->get('span','12');
 
-                if ($item->get('offset') != 0)
-                {
-                    $class [] = ' col-md-offset-' . $item->get('offset');
-                }
-                $class = array_merge($class, $item->getVisibilityClass());
-                $customClass = explode(' ', $item->get('customClass'));
-                $class = array_merge($class, $customClass);
-                $class = array_unique($class);
-
-                $gridClass = array();
-                /* Find grid core class */
-                foreach ($class as $key => $value)
-                {
-                    if (
-                            strpos($value, 'col-xs-') !== false || strpos($value, 'col-sm-') !== false || strpos($value, 'col-md-') !== false || strpos($value, 'col-lg-') !== false)
+                if (!$new_layout) {
+                    if ($item->get('offset') != 0)
                     {
-                        $subs = explode('-', $value);
-                        if (in_array('offset', $subs))
+                        $class [] = ' col-md-offset-' . $item->get('offset');
+                    }
+                    $class = array_merge($class, $item->getVisibilityClass());
+                    $customClass = explode(' ', $item->get('customClass'));
+                    $class = array_merge($class, $customClass);
+                    $class = array_unique($class);
+
+                    $gridClass = array();
+                    /* Find grid core class */
+                    foreach ($class as $key => $value)
+                    {
+                        if (
+                                strpos($value, 'col-xs-') !== false || strpos($value, 'col-sm-') !== false || strpos($value, 'col-md-') !== false || strpos($value, 'col-lg-') !== false)
                         {
-                            
-                        } else
-                        {
-                            if (count($subs) == 3)
+                            $subs = explode('-', $value);
+                            if (in_array('offset', $subs))
                             {
-                                $gridClass[$subs[0] . '-' . $subs[1]] = $subs[2];
+
+                            } else
+                            {
+                                if (count($subs) == 3)
+                                {
+                                    $gridClass[$subs[0] . '-' . $subs[1]] = $subs[2];
+                                }
+                                unset($class[$key]);
                             }
-                            unset($class[$key]);
                         }
                     }
-                }
-                foreach ($gridClass as $key => $value)
-                {
-                    $class [] = $key . '-' . $value;
+                    foreach ($gridClass as $key => $value)
+                    {
+                        $class [] = $key . '-' . $value;
+                    }
+
                 }
                 $class = array_unique($class);
 

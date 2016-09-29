@@ -823,7 +823,6 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
   width: 100%;
   text-align: center;
   min-height: 1px;
-  background: #F5F5F5;
 }
 #zo2-framework #layoutbuilder-container .col-prepend-after i {
   float: none;
@@ -986,7 +985,7 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
 #zo2-framework #layoutbuilder-container .row-control {
   font-size: 30px;
   font-weight: bold;
-  line-height: 30px;
+  line-height: 60px;
 }
 #zo2-framework #layoutbuilder-container .row-control-icon,
 #zo2-framework #layoutbuilder-container .col-control-icon {
@@ -1660,4 +1659,13 @@ textarea {
   top: 50%;
   width: 44px;
   height: 44px;
+}
+.no-content-helper {
+  text-align: center;
+  padding: 20px;
+  border: 1px dashed rgba(125,125,125,0.4);
+  margin: 20px;
+}
+.no-content-helper i {
+  cursor: pointer;
 }

@@ -37,7 +37,10 @@ $positions = $model->getAvaiablePositions();
             <?php foreach ($layoutData as $row) : ?>
                 <?php $this->set('row', $row); ?>
                 <?php $this->load('admin/body/sidebar/builder/layout.row.php'); ?>
-            <?php endforeach; ?>        
+            <?php endforeach; ?>
+            <div class="no-content-helper">
+                <i title="<?php echo JText::_('ZO2_ADD_ROW') ?>" class="prepend-row after fa fa-plus hasTooltip" data-original-title="<?php echo JText::_('ZO2_ADD_ROW') ?>"></i>
+            </div>
         </div>
     </div>
 
@@ -155,6 +158,60 @@ $positions = $model->getAvaiablePositions();
                             </div>
                         </div>
 
+
+                        <div class="control-group">
+                            <label class="control-label" for="ddlColStyle"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
+                            <div class="controls">
+                                <select id="ddlColStyle">
+                                    <?php require_once JPATH_ROOT . '/templates/' . Zo2Framework::getInstance()->template->template . '/html/modules.php'; ?>
+                                    <?php foreach ($modChromes as $chrome) : ?>
+                                        <option value="<?php echo $chrome ?>"><?php echo $chrome ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo JText::_('ZO2_ADMIN_COMMON_CLOSE'); ?></button>
+            <button id="btnSaveBlockSettings" class="btn btn-primary"><?php echo JText::_('ZO2_ADMIN_COMMON_SAVE_CHANGES'); ?></button>
+        </div>
+    </div>
+
+    <!-- Modal : Column setting -->
+    <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="colSettingsModal" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_COLUMN_SETTINGS'); ?></h3>
+        </div>
+        <div class="modal-body">
+            <div class="form-horizontal">
+                <div class="zo2-tabs-content">
+                    <div class="active" id="column-basic">
+                        <!-- begin -->
+                        <div class="control-group">
+                            <label class="control-label" for="ddlColWidth"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_WIDTH'); ?></label>
+                            <div class="controls">
+                                <select id="ddlColWidth">
+                                    <option value="1">1/12</option>
+                                    <option value="2">2/12</option>
+                                    <option value="3">3/12</option>
+                                    <option value="4">4/12</option>
+                                    <option value="5">5/12</option>
+                                    <option value="6">6/12</option>
+                                    <option value="7">7/12</option>
+                                    <option value="8">8/12</option>
+                                    <option value="9">9/12</option>
+                                    <option value="10">10/12</option>
+                                    <option value="11">11/12</option>
+                                    <option value="12">12/12</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- end -->
                         <div class="control-group">
                             <label class="control-label" for="ddlColOffset"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
                             <div class="controls">
@@ -172,18 +229,6 @@ $positions = $model->getAvaiablePositions();
                                     <option value="10"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>10</option>
                                     <option value="11"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>11</option>
                                     <option value="12"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET_LB'); ?>12</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="control-group">
-                            <label class="control-label" for="ddlColStyle"><?php echo JText::_('ZO2_ADMIN_STYLEEDIT_STYLE'); ?></label>
-                            <div class="controls">
-                                <select id="ddlColStyle">
-                                    <?php require_once JPATH_ROOT . '/templates/' . Zo2Framework::getInstance()->template->template . '/html/modules.php'; ?>
-                                    <?php foreach ($modChromes as $chrome) : ?>
-                                        <option value="<?php echo $chrome ?>"><?php echo $chrome ?></option>
-                                    <?php endforeach; ?>
                                 </select>
                             </div>
                         </div>
@@ -216,48 +261,6 @@ $positions = $model->getAvaiablePositions();
                                 </div>
                             </div>
                         </div>
-                        <!-- end -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true"><?php echo JText::_('ZO2_ADMIN_COMMON_CLOSE'); ?></button>
-            <button id="btnSaveBlockSettings" class="btn btn-primary"><?php echo JText::_('ZO2_ADMIN_COMMON_SAVE_CHANGES'); ?></button>
-        </div>
-    </div>
-
-    <!-- Modal : Column setting -->
-    <div id="colSettingsModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="colSettingsModal" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_COLUMN_SETTINGS'); ?></h3>
-        </div>
-        <div class="modal-body">
-            <div class="form-horizontal">
-                <div class="zo2-tabs-content">
-                    <div class="active" id="column-basic">
-                        <!-- begin -->
-                        <div class="control-group">
-                            <label class="control-label" for="ddlColWidth"><?php echo JText::_('ZO2_ADMIN_FORMFIELD_LAYOUT_OFFSET'); ?></label>
-                            <div class="controls">
-                                <select id="ddlColWidth">
-                                    <option value="1">1/12</option>
-                                    <option value="2">2/12</option>
-                                    <option value="3">3/12</option>
-                                    <option value="4">4/12</option>
-                                    <option value="5">5/12</option>
-                                    <option value="6">6/12</option>
-                                    <option value="7">7/12</option>
-                                    <option value="8">8/12</option>
-                                    <option value="9">9/12</option>
-                                    <option value="10">10/12</option>
-                                    <option value="11">11/12</option>
-                                    <option value="12">12/12</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- end -->
                     </div>
                 </div>
             </div>

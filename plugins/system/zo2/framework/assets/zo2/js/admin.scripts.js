@@ -128,7 +128,15 @@
                 result = {
                     type: "col",
                     span: parseInt($item.attr('data-zo2-span')),
+                    offset: parseInt($item.attr('data-zo2-offset')),
+                    customClass: $item.attr('data-zo2-customClass') ? $item.attr('data-zo2-customClass') : '',
                     new_layout: parseInt($item.attr('data-new-layout')),
+                    visibility: {
+                        xs: $item.attr('data-zo2-visibility-xs') == '1',
+                        sm: $item.attr('data-zo2-visibility-sm') == '1',
+                        md: $item.attr('data-zo2-visibility-md') == '1',
+                        lg: $item.attr('data-zo2-visibility-lg') == '1'
+                    },
                     children: []
                 };
 
@@ -145,16 +153,8 @@
                     type: "col",
                     name: $item.find('> .col-name').text(),
                     position: $item.attr('data-zo2-position'),
-                    offset: parseInt($item.attr('data-zo2-offset')),
-                    customClass: $item.attr('data-zo2-customClass') ? $item.attr('data-zo2-customClass') : '',
                     style: $item.attr('data-zo2-style'),
                     id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
-                    visibility: {
-                        xs: $item.attr('data-zo2-visibility-xs') == '1',
-                        sm: $item.attr('data-zo2-visibility-sm') == '1',
-                        md: $item.attr('data-zo2-visibility-md') == '1',
-                        lg: $item.attr('data-zo2-visibility-lg') == '1'
-                    },
                     children: []
                 };
             }
