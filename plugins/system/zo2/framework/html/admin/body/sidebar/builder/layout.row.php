@@ -7,7 +7,7 @@
      data-zo2-visibility-sm="<?php echo $row->get('visibility')->sm ? 1 : 0 ?>"
      data-zo2-visibility-md="<?php echo $row->get('visibility')->md ? 1 : 0 ?>"
      data-zo2-visibility-lg="<?php echo $row->get('visibility')->lg ? 1 : 0 ?>"
-     data-zo2-fullwidth="<?php echo $row->get('fullwidth') ? 1 : 0 ?>"
+     data-zo2-fluidwidth="<?php echo $row->get('fluidwidth') ? 1 : 0 ?>"
      >
     <div class="col-md-12 row-control">
         <div class="row-control-container">

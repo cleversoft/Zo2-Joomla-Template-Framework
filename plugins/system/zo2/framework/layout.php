@@ -213,7 +213,7 @@ if (!class_exists('Zo2Layout'))
                 /* START CONTAINER */
                 $customs = explode(' ', $customClass);
 
-                if (in_array('full-width', $customs))
+                if ($item->get('fluidwidth'))
                 {
                     $containerClass [] = 'container-fluid';
                 } else
@@ -668,7 +668,7 @@ if (!class_exists('Zo2LayoutItem'))
         public $name = null;
         public $classClass = null;
         public $id = null;
-        public $fullwidth = null;
+        public $fluidwidth = null;
         public $visibility = array();
         public $children = array();
 

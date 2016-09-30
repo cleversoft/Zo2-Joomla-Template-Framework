@@ -86,58 +86,6 @@
 					</ul>
 				</div>
 			</div>
-			<div class="zo2_themes_row clearfix">
-
-				<div class="zo2_themes_row clearfix" id="background_image_wrapper">
-
-					
-					<div id="background_image_selector"
-						 class="zo2_background_and_pattern" <?php if ($preset_data['boxed'] == 0) echo 'style="display:none"'; ?>>
-						<?php
-						echo Zo2Html::field(
-							'image', array(
-							'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_BACKGROUND_IMAGE'),
-							'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_BACKGROUND_IMAGE'),
-							'class_wrap' => 'zo2-background-image',
-							'class' => 'zo2-background-image'
-						), array(
-							'id' => 'zo2_background_image',
-							'name' => 'zo2_background_image',
-							'value' => $preset_data['bg_image']
-						));
-						?>
-						<hr/>
-						<div class="zo2_themes_label">
-							<?php echo JText::_('ZO2_TEMPLATE_THEME_PATTERN_BACKGROUND'); ?>
-						</div>
-						<div class="zo2_themes_for">
-							<ul class="options background-select">
-								<?php
-								$zPath = Zo2Path::getInstance();
-								$backgroundsDir = Zo2Factory::getPath("templates://assets/zo2/images/background-patterns");
-								$bgPatterns = glob($backgroundsDir . '/*.*');
-								if (count($bgPatterns) > 0)
-								{
-									foreach ($bgPatterns as $pattern)
-									{
-										if (is_array(getimagesize($pattern)))
-										{
-											$selected = '';
-											$pattern_src = $zPath->toUrl($pattern);
-											$pattern_path = str_replace(JPATH_ROOT . DIRECTORY_SEPARATOR, '', $pattern);
-											if (isset($preset_data['bg_pattern']) && ($pattern_path == $preset_data['bg_pattern']))
-												$selected = 'selected';
-											echo '<li class="' . $selected . '"><img rel="' . $pattern_path . '" src="' . $pattern_src . '" /></li>';
-										}
-									}
-								}
-								?>
-
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>

@@ -106,7 +106,7 @@
                     name: $item.find('> .row-control > .row-control-container > .row-name').text(),
                     customClass: $item.attr('data-zo2-customClass'),
                     id: $item.attr('data-zo2-id') ? $item.attr('data-zo2-id') : '',
-                    fullwidth: $item.attr('data-zo2-fullwidth') == '1',
+                    fluidwidth: $item.attr('data-zo2-fluidwidth') == '1',
                     visibility: {
                         xs: $item.attr('data-zo2-visibility-xs') == '1',
                         sm: $item.attr('data-zo2-visibility-sm') == '1',

@@ -1670,3 +1670,10 @@ textarea {
 .no-content-helper i {
   cursor: pointer;
 }
+.container-checkbox {
+  padding: 20px 10px;
+  border-bottom: 1px solid #ddd;
+}
+.modal-body {
+  max-height: 700px !important;
+}

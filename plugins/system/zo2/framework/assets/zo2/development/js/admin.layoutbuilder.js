@@ -285,7 +285,7 @@
                 }
                 $row.attr('data-zo2-type', 'row');
                 $row.attr('data-zo2-customClass', '');
-                $row.attr('data-zo2-fullwidth', '0');
+                $row.attr('data-zo2-fluidwidth', '0');
                 for (var i = 0; i < _self._settings.visibilityAttributes.length; i++) {
                     $row.attr(_self._settings.visibilityAttributes[i], '1');
                 }
@@ -401,36 +401,36 @@
                     rowCustomClass = '';
 
                 //$('#cbRowPhoneVisibility').attr('checked', $row.attr('data-zo2-visibility-xs') == '1');
-                $('#btgRowPhone').find('button').removeClass('active btn-success btn-danger');
+                // $('#btgRowPhone').find('button').removeClass('active btn-success btn-danger');
                 if ($row.attr('data-zo2-visibility-xs') == '1')
-                    $('#btgRowPhone').find('.btn-on').addClass('active btn-success');
-                else
-                    $('#btgRowPhone').find('.btn-off').addClass('active btn-danger');
+                    $('#btgRowPhone').prop( "checked", true );
+                // else
+                //     $('#btgRowPhone').find('.btn-off').addClass('active btn-danger');
                 //$('#cbRowTabletVisibility').attr('checked', $row.attr('data-zo2-visibility-sm') == '1');
-                $('#btgRowTablet').find('button').removeClass('active btn-success btn-danger');
+                // $('#btgRowTablet').find('button').removeClass('active btn-success btn-danger');
                 if ($row.attr('data-zo2-visibility-sm') == '1')
-                    $('#btgRowTablet').find('.btn-on').addClass('active btn-success');
-                else
-                    $('#btgRowTablet').find('.btn-off').addClass('active btn-danger');
-                //$('#cbRowDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-md') == '1');
-                $('#btgRowDesktop').find('button').removeClass('active btn-success btn-danger');
+                    $('#btgRowTablet').prop( "checked", true );
+                // else
+                //     $('#btgRowTablet').find('.btn-off').addClass('active btn-danger');
+                // //$('#cbRowDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-md') == '1');
+                // $('#btgRowDesktop').find('button').removeClass('active btn-success btn-danger');
                 if ($row.attr('data-zo2-visibility-md') == '1')
-                    $('#btgRowDesktop').find('.btn-on').addClass('active btn-success');
-                else
-                    $('#btgRowDesktop').find('.btn-off').addClass('active btn-danger');
-                //$('#cbRowLargeDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-lg') == '1');
-                $('#btgRowLargeDesktop').find('button').removeClass('active btn-success btn-danger');
+                    $('#btgRowDesktop').prop( "checked", true );
+                // else
+                //     $('#btgRowDesktop').find('.btn-off').addClass('active btn-danger');
+                // //$('#cbRowLargeDesktopVisibility').attr('checked', $row.attr('data-zo2-visibility-lg') == '1');
+                // $('#btgRowLargeDesktop').find('button').removeClass('active btn-success btn-danger');
                 if ($row.attr('data-zo2-visibility-lg') == '1')
-                    $('#btgRowLargeDesktop').find('.btn-on').addClass('active btn-success');
-                else
-                    $('#btgRowLargeDesktop').find('.btn-off').addClass('active btn-danger');
+                    $('#btgRowLargeDesktop').prop( "checked", true );
+                // else
+                //     $('#btgRowLargeDesktop').find('.btn-off').addClass('active btn-danger');
 
                 //$('#cbRowFullWidth').attr('checked', $row.attr('data-zo2-fullwidth') == '1');
-                $('#btgFullWidth').find('button').removeClass('active btn-danger btn-success');
-                if ($row.attr('data-zo2-fullwidth') == '1')
-                    $('#btgFullWidth').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgFullWidth').find('.btn-off').addClass('btn-danger active');
+                // $('#btgFullWidth').find('button').removeClass('active btn-danger btn-success');
+                if ($row.attr('data-zo2-fluidwidth') == '1')
+                    $('#btgRowFluidWidth').prop( "checked", true );
+                // else
+                //     $('#btgFullWidth').find('.btn-off').addClass('btn-danger active');
 
                 $.data(w.document.body, 'editingEl', $row);
                 $('#txtRowName').val('').val(rowName);
@@ -454,29 +454,29 @@
                 var customCss = $col.attr('data-zo2-customClass');
 
                 //$('#cbColumnPhoneVisibility').attr('checked', $col.attr('data-zo2-visibility-xs') == '1');
-                $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
+                // $('#btgColPhone').find('button').removeClass('active btn-danger btn-success');
                 if ($col.attr('data-zo2-visibility-xs') == '1')
-                    $('#btgColPhone').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
-                //$('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
-                $('#btgColTablet').find('button').removeClass('active btn-danger btn-success');
+                    $('#btgColPhone').prop( "checked", true );
+                // else
+                //     $('#btgColPhone').find('.btn-off').addClass('btn-danger active');
+                // //$('#cbColumnTabletVisibility').attr('checked', $col.attr('data-zo2-visibility-sm') == '1');
+                // $('#btgColTablet').find('button').removeClass('active btn-danger btn-success');
                 if ($col.attr('data-zo2-visibility-sm') == '1')
-                    $('#btgColTablet').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
-                //$('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
-                $('#btgColDesktop').find('button').removeClass('active btn-danger btn-success');
+                    $('#btgColTablet').prop( "checked", true );
+                // else
+                //     $('#btgColTablet').find('.btn-off').addClass('btn-danger active');
+                // //$('#cbColumnDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-md') == '1');
+                // $('#btgColDesktop').find('button').removeClass('active btn-danger btn-success');
                 if ($col.attr('data-zo2-visibility-md') == '1')
-                    $('#btgColDesktop').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
-                //$('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
-                $('#btgColLargeDesktop').find('button').removeClass('active btn-danger btn-success');
+                    $('#btgColDesktop').prop( "checked", true );
+                // else
+                //     $('#btgColDesktop').find('.btn-off').addClass('btn-danger active');
+                // //$('#cbColumnLargeDesktopVisibility').attr('checked', $col.attr('data-zo2-visibility-lg') == '1');
+                // $('#btgColLargeDesktop').find('button').removeClass('active btn-danger btn-success');
                 if ($col.attr('data-zo2-visibility-lg') == '1')
-                    $('#btgColLargeDesktop').find('.btn-on').addClass('btn-success active');
-                else
-                    $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
+                    $('#btgColLargeDesktop').prop( "checked", true );
+                // else
+                //     $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
 
                 $('#ddlColWidth').val(span).trigger("liszt:updated");
                 $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
@@ -519,10 +519,10 @@
                 var $col = _self.editingElement;
                 $col.attr('data-zo2-offset', $('#ddlColOffset').val());
                 $col.attr('data-zo2-customClass', $('#txtColCss').val());
-                $col.attr('data-zo2-visibility-xs', $('#btgColPhone').find('.btn-on').hasClass('active') ? '1' : '0');
-                $col.attr('data-zo2-visibility-sm', $('#btgColTablet').find('.btn-on').hasClass('active') ? '1' : '0');
-                $col.attr('data-zo2-visibility-md', $('#btgColDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
-                $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
+                $col.attr('data-zo2-visibility-xs', $('#btgColPhone').is(":checked") ? '1' : '0');
+                $col.attr('data-zo2-visibility-sm', $('#btgColTablet').is(":checked") ? '1' : '0');
+                $col.attr('data-zo2-visibility-md', $('#btgColDesktop').is(":checked") ? '1' : '0');
+                $col.attr('data-zo2-visibility-lg', $('#btgColLargeDesktop').is(":checked") ? '1' : '0');
 
                 $col.attr('data-zo2-span', $('#ddlColWidth').val());
                 $col.removeClass(_self._settings.allColClass);
@@ -535,11 +535,11 @@
                 $row.find('>.row-control>.row-control-container>.row-name').html('<i title="'+drag_row+'" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
                     '<i title="'+add_nc+'" class="row-control-icon add-column fa fa-plus hasTooltip"></i>' + $('#txtRowName').val());
                 $row.attr('data-zo2-customClass', $('#txtRowCss').val());
-                $row.attr('data-zo2-visibility-xs', $('#btgRowPhone').find('.btn-on').hasClass('active') ? '1' : '0');
-                $row.attr('data-zo2-visibility-sm', $('#btgRowTablet').find('.btn-on').hasClass('active') ? '1' : '0');
-                $row.attr('data-zo2-visibility-md', $('#btgRowDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
-                $row.attr('data-zo2-visibility-lg', $('#btgRowLargeDesktop').find('.btn-on').hasClass('active') ? '1' : '0');
-                $row.attr('data-zo2-fullwidth', $('#btgFullWidth').find('.btn-on').hasClass('active') ? '1' : '0');
+                $row.attr('data-zo2-visibility-xs', $('#btgRowPhone').is(":checked") ? '1' : '0');
+                $row.attr('data-zo2-visibility-sm', $('#btgRowTablet').is(":checked") ? '1' : '0');
+                $row.attr('data-zo2-visibility-md', $('#btgRowDesktop').is(":checked") ? '1' : '0');
+                $row.attr('data-zo2-visibility-lg', $('#btgRowLargeDesktop').is(":checked") ? '1' : '0');
+                $row.attr('data-zo2-fluidwidth', $('#btgRowFluidWidth').is(":checked") ? '1' : '0');
                 //$row.attr('data-zo2-layout', $('#ddlRowLayout').val());
                 $row.attr('data-zo2-id', $('#txtRowId').val());
                 $('#rowSettingsModal').modal('hide');
