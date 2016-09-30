@@ -823,6 +823,7 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
   width: 100%;
   text-align: center;
   min-height: 1px;
+  background: #F5F5F5;
 }
 #zo2-framework #layoutbuilder-container .col-prepend-after i {
   float: none;
@@ -985,7 +986,7 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
 #zo2-framework #layoutbuilder-container .row-control {
   font-size: 30px;
   font-weight: bold;
-  line-height: 60px;
+  line-height: 30px;
 }
 #zo2-framework #layoutbuilder-container .row-control-icon,
 #zo2-framework #layoutbuilder-container .col-control-icon {

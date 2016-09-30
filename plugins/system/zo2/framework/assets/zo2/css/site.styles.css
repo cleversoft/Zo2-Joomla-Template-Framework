@@ -294,6 +294,9 @@ header#standard-logo {
 header#retina-logo {
   display: none;
 }
+header#sticky-logo {
+  display: none;
+}
 @media (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
   #standard-logo {
     display: none;

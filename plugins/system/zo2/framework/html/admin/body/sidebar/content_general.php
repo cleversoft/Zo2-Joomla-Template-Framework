@@ -1,3 +1,34 @@
+<?php
+$presetPath = Zo2Factory::getPath('templates://assets/presets.json');
+$presets = array();
+if ($presetPath)
+{
+	$presets = json_decode(file_get_contents($presetPath), true);
+}
+$templatePath = Zo2Factory::getUrl('templates://');
+$profile = Zo2Factory::getProfile();
+$presetTheme = new JObject($profile->get('theme'));
+/**
+ * @todo Must use JRegistry
+ */
+$preset_data = array(
+	'name' => $presetTheme->get('name'),
+	'css' => $presetTheme->get('css'),
+	'less' => $presetTheme->get('less'),
+	'boxed' => $presetTheme->get('boxed', 0),
+	'background' => $presetTheme->get('background'),
+	'header' => $presetTheme->get('header'),
+	'header_top' => $presetTheme->get('header_top'),
+	'text' => $presetTheme->get('text'),
+	'link' => $presetTheme->get('link'),
+	'link_hover' => $presetTheme->get('link_hover'),
+	'bottom1' => $presetTheme->get('bottom1'),
+	'bottom2' => $presetTheme->get('bottom2'),
+	'footer' => $presetTheme->get('footer'),
+	'bg_image' => $presetTheme->get('bg_image'),
+	'bg_pattern' => $presetTheme->get('bg_pattern'),
+	'background' => $presetTheme->get('background'),
+); ?>
 <div class="tab-content">
 	<!-- Global -->
 	<h2><?php echo JText::_('ZO2_ADMIN_HEADER_GENERAL'); ?></h2>
@@ -80,6 +111,20 @@
 		'value' => Zo2Framework::getParam('retina_logo')
 	));
 	?>
+	<!-- Stickey logo -->
+	<?php
+	echo Zo2Html::field(
+		'image', array(
+		'label' => JText::_('ZO2_ADMIN_STICKY_LOGO_MENU'),
+		'description' => JText::_('ZO2_ADMIN_STICKY_LOGO_DESC'),
+		'class_wrap' => 'logo-sticky-image',
+		'class' => 'logo-sticky-path'
+	), array(
+		'id' => 'jform_params_sticky_logo',
+		'name' => 'jform[params][sticky_logo]',
+		'value' => Zo2Framework::getParam('sticky_logo')
+	));
+	?>
 	<div class="zo2-divider"></div>
 	<!-- Show "Go to top" -->
 	<?php
@@ -92,15 +137,19 @@
 		'value' => Zo2Framework::getParam('footer_gototop')
 	));
 	?>
-	<!-- Show footer logo -->
+	<!-- box layout option -->
+	<div class="zo2_themes_label">
+		<?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_BACKGROUND'); ?>
+	</div>
 	<?php
 	echo Zo2Html::field(
 		'radio', array(
-		'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_ENABLE_FOOTER_LOGO'),
-		'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_ENABLE_FOOTER_LOGO')
+		'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_CHOOSE_LAYOUT'),
+		'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_CHOOSE_LAYOUT'),
 	), array(
-		'name' => 'jform[params][footer_logo]',
-		'value' => Zo2Framework::getParam('footer_logo')
+		'id' => 'zo2_boxed_style',
+		'name' => 'zo2_boxed_style',
+		'value' => $preset_data['boxed']
 	));
 	?>
 </div>

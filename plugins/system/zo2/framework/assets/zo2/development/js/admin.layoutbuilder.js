@@ -294,7 +294,7 @@
                         '<div class="row-control-buttons row-name">' +
                         '<i title="'+drag_row+'" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>' +
                         '<i title="'+add_nc+'" class="row-control-icon add-column fa fa-plus hasTooltip"></i>' +
-                    '(unnamed row)</div>' +
+                    'Section Title</div>' +
                         '<div class="row-control-buttons">' +
                         '<i title="'+row_setting+'" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
                         '<i title="'+clone_this_row+'" class="row-control-icon add-row fa fa-clone hasTooltip"></i>' +
@@ -449,7 +449,7 @@
                 var $col = $(this).closest('.sortable-col');
                 _self.editingElement = $col;
 
-                var spanOffset = $col.attr('data-zo2-span');
+                var span = $col.attr('data-zo2-span');
                 var spanOffset = $col.attr('data-zo2-offset');
                 var customCss = $col.attr('data-zo2-customClass');
 
@@ -478,7 +478,7 @@
                 else
                     $('#btgColLargeDesktop').find('.btn-off').addClass('btn-danger active');
 
-                $('#ddlColWidth').val(spanOffset).trigger("liszt:updated");
+                $('#ddlColWidth').val(span).trigger("liszt:updated");
                 $('#ddlColOffset').val(spanOffset).trigger("liszt:updated");
                 $('#txtColCss').val(customCss);
                 var $modal = $('#colSettingsModal');

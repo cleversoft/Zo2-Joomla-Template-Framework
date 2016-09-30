@@ -357,7 +357,7 @@ if (!class_exists('Zo2Layout'))
                             $class = array_unique($class);
                             /**/
 
-                            $html .='<div id="id-'.$unique_id.'" class="' . trim(implode(' ', $class)) . '">';
+                            $html .='<div class="zo2–column-'.$unique_id.' ' . trim(implode(' ', $class)) . '">';
                             foreach ($child->children as $cld) {
                                  $html .= $this->_buildItem($cld,true);
                             }

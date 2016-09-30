@@ -15,6 +15,9 @@
       topSpacing: 0,
       bottomSpacing: 0,
       className: 'is-sticky',
+      sticky:'#sticky-logo',
+      hideClass:'.zo2-logo',
+      standard:'#standard-logo',
       wrapperClassName: 'sticky-wrapper',
       center: false,
       getWidthFrom: ''
@@ -40,6 +43,8 @@
               .css('position', '')
               .css('top', '');
             s.stickyElement.parent().removeClass(s.className);
+            $(defaults.hideClass).hide();
+            $(defaults.standard).show();
             s.currentTop = null;
           }
         }
@@ -61,6 +66,9 @@
             }
 
             s.stickyElement.parent().addClass(s.className);
+            $(defaults.hideClass).hide();
+            $(defaults.sticky).show();
+
             s.currentTop = newTop;
           }
         }

@@ -90,20 +90,7 @@
 
 				<div class="zo2_themes_row clearfix" id="background_image_wrapper">
 
-					<div class="zo2_themes_label">
-						<?php echo JText::_('ZO2_TEMPLATE_THEME_STYLE_BACKGROUND'); ?>
-					</div>
-					<?php
-					echo Zo2Html::field(
-						'radio', array(
-						'label' => JText::_('ZO2_ADMIN_GENERAL_LABEL_CHOOSE_LAYOUT'),
-						'description' => JText::_('ZO2_ADMIN_GENERAL_DESC_CHOOSE_LAYOUT'),
-					), array(
-						'id' => 'zo2_boxed_style',
-						'name' => 'zo2_boxed_style',
-						'value' => $preset_data['boxed']
-					));
-					?>
+					
 					<div id="background_image_selector"
 						 class="zo2_background_and_pattern" <?php if ($preset_data['boxed'] == 0) echo 'style="display:none"'; ?>>
 						<?php

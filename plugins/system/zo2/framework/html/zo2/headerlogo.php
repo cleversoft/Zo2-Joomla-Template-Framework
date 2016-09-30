@@ -25,16 +25,27 @@ defined('_JEXEC') or die('Restricted access');
 <?php endif; ?>
 <!-- Retina logo -->
 <?php if ($logo['retina'] != '') : ?>
-<?php endif; ?>
 <header id="retina-logo" class="zo2-logo">
-    <a class="retina-logo-link" 
-       href="<?php echo JUri::root(); ?>" 
+    <a class="retina-logo-link"
+       href="<?php echo JUri::root(); ?>"
        title="<?php echo $slogan; ?>">
         <img alt="<?php echo $slogan; ?>" src="<?php echo $logo['retina']; ?>"/>
     </a>
 </header>
+<?php endif; ?>
+    <!-- stickey logo -->
+<?php if ($logo['sticky'] != '') : ?>
+    <header id="sticky-logo" class="zo2-logo">
+            <a class="sticky-logo-link"
+               href="<?php echo JUri::root(); ?>"
+               title="<?php echo $slogan; ?>">
+                <img alt="<?php echo $slogan; ?>" src="<?php echo $logo['sticky']; ?>"/>
+            </a>
+        </header>
+<?php endif; ?>
+
 <!-- Without logo -->
-<?php if ($logo['standard'] == '' && $logo['retina'] == '') : ?>
+<?php if ($logo['standard'] == '' && $logo['retina'] == '' && $logo['sticky'] == '') : ?>
     <?php if ($slogan != '') : ?>
         <header id="logo-text">
             <a class="standard-logo-link" 

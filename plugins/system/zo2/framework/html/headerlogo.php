@@ -32,6 +32,7 @@ if (!class_exists('Zo2HtmlHeaderlogo'))
 
             $logo['standard'] = Zo2Framework::getParam('standard_logo');
             $logo['retina'] = Zo2Framework::getParam('retina_logo');
+            $logo['sticky'] = Zo2Framework::getParam('sticky_logo');
 
             $html->set('logo', $logo);
             $html->set('slogan', Zo2Framework::getParam('site_slogan'));
