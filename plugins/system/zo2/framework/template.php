@@ -186,12 +186,12 @@ if (!class_exists('Zo2Template'))
 
         public function getLanguage()
         {
-            return JFactory::getDocument()->getLanguage();
+            return JFactory::getLanguage()->getTag();
         }
 
         public function getDirection()
         {
-            return JFactory::getDocument()->getDirection();
+            return Zo2Factory::isRTL() ? 'rtl' : 'ltr';
         }
 
         public function getUtilities()
