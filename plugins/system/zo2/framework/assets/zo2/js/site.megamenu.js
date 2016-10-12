@@ -152,5 +152,6 @@
             else $this.removeClass('icon-caret-down').addClass('icon-caret-up');
         });
         /** END: off canvas menu **/
+        
     });
 }(jQuery);
