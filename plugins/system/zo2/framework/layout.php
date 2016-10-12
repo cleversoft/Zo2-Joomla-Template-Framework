@@ -359,6 +359,7 @@ if (!class_exists('Zo2Layout'))
 
                             $html .='<div class="zo2–column-'.$unique_id.' ' . trim(implode(' ', $class)) . '">';
                             foreach ($child->children as $cld) {
+                                //change here
                                 $cld->visibility = $child->visibility;
                                 $html .= $this->_buildItem($cld,true);
                             }
