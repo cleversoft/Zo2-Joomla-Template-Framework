@@ -309,15 +309,15 @@ if (!class_exists('Zo2Megamenu'))
             $this->isAdmin = $isAdmin;
 
             // add canvas menu
-            $canvas .= '<div class="nm-menu-offscreen ">';
-            $canvas .= '<a href="#" id="nm-mobile-menu-button" class="clicked">';
-            $canvas .= '<div class="nm-menu-icon">';
-            $canvas .= '<span class="line-1"></span>';
-            $canvas .= '<span class="line-2"></span>';
-            $canvas .= '<span class="line-3"></span>';
-            $canvas .= '</div>';
-            $canvas .= '</a>';
-            $canvas .= '</div>';
+//            $canvas .= '<div class="nm-menu-offscreen ">';
+//            $canvas .= '<a href="#" id="nm-mobile-menu-button" class="clicked">';
+//            $canvas .= '<div class="nm-menu-icon">';
+//            $canvas .= '<span class="line-1"></span>';
+//            $canvas .= '<span class="line-2"></span>';
+//            $canvas .= '<span class="line-3"></span>';
+//            $canvas .= '</div>';
+//            $canvas .= '</a>';
+//            $canvas .= '</div>';
 
             $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">
                     <div class="navbar-collapse collapse">';
@@ -345,7 +345,8 @@ if (!class_exists('Zo2Megamenu'))
                         return $html;
                     } elseif ($isAdmin == false)
                     {
-                        return $canvas . $prefix . $html . $suffix;
+                        //return $canvas . $prefix . $html . $suffix;
+                        return $prefix . $html . $suffix;
                     }
                 }
             }
