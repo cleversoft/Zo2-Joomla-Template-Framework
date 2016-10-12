@@ -479,10 +479,10 @@ if (!class_exists('Zo2Layout'))
                 $html = '';
                 $html .= '<!-- build column: ' . trim($item->get('name', 'unknown')) . ' -->' . "\n\r";
                 $html .= '<!-- jdoc: ' . $jdoc . ' - position: ' . $item->get('position') . ' -->';
-                $class[] = 'col-md-'.$item->get('span','12');
-                $class[] = 'col-sm-'.$item->get('span','12');
-
+                $class = array();
                 if (!$new_layout) {
+                    $class[] = 'col-md-'.$item->get('span','12');
+                    $class[] = 'col-sm-'.$item->get('span','12');
                     if ($item->get('offset') != 0)
                     {
                         $class [] = ' col-md-offset-' . $item->get('offset');
