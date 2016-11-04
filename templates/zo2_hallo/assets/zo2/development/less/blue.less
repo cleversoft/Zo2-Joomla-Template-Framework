@@ -1,7 +1,14 @@
 @mainColor: #0099FF;
-@linkmainColor:        darken(@mainColor, 15%);
+@linkmainColor:darken(@mainColor, 15%);
 @white: #fff;
-
+.readmore a{
+  color: @mainColor;
+  &:hover,
+  &:active,
+  &:focus {
+    color: @mainColor;
+  }
+}
 a {
   color: @mainColor;
 }
@@ -63,7 +70,6 @@ nav.zo2-menu{
     }
   }
 }
-
 //Class suffix
 .box-color{
   background: @mainColor;
@@ -90,7 +96,7 @@ nav.zo2-menu{
   color: @white!important;
 }
 .btn-success:hover{
-  background-color: @linkmainColor; 
+  background-color: @linkmainColor;
 }
 .zo2-pagination ul >li.active >span,.pagination li:hover a{
   background: @mainColor;
@@ -109,4 +115,50 @@ nav.zo2-menu{
 }
 .pager li a:hover, .pager li a:active, .pager li a:focus{
   background: @mainColor;
+}
+#zo2-header-wrap-sticky-wrapper{
+  #zo2-header-wrap{
+        #zo2-mega-menu{
+      nav.zo2-menu{
+        &.navbar-default{
+          ul.navbar-nav{
+            .active,.open{
+              >a{
+                color:@mainColor;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.menufooter-menu{
+  li{
+    &.active{
+      a{
+        color: @mainColor;
+      }
+    }
+    a{
+      &:hover{
+        color: @mainColor;
+      }
+    }
+  }
+}
+
+.mod-inner ul li a:hover,blockquote:before{
+    color: @mainColor;
+}
+.button-download{
+  background-color:@mainColor;
+  border: 2px solid @mainColor;
+}
+.button-viewdemo{
+  &:hover{
+    background-color:@mainColor;
+    border: 2px solid @mainColor;
+
+  }
 }

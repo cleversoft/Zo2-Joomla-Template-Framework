@@ -1,6 +1,14 @@
 a {
   color: #7fbe54;
 }
+.readmore a {
+  color: #7fbe54;
+}
+.readmore a:hover,
+.readmore a:active,
+.readmore a:focus {
+  color: #7fbe54;
+}
 nav.zo2-menu .navbar-nav > .open a {
   color: #7fbe54;
 }
@@ -70,4 +78,29 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 .pager li a:active,
 .pager li a:focus {
   background: #7fbe54;
+}
+.nav .open>a,
+.nav .open>a:focus,
+.nav .open>a:hover,
+.nav>li>a:focus,
+.nav>li>a:hover {
+  color: #7fbe54;
+}
+.menufooter-menu li.active a:hover {
+  color: #7fbe54;
+}
+.menufooter-menu li a:hover {
+  color: #7fbe54;
+}
+.mod-inner ul li a:hover,
+blockquote:before {
+  color: #7fbe54;
+}
+.button-download {
+  background-color: #7fbe54;
+  border: 2px solid #7fbe54;
+}
+.button-viewdemo:hover {
+  background-color: #7fbe54;
+  border: 2px solid #7fbe54;
 }

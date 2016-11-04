@@ -42,7 +42,7 @@ input[type="color"],
     .box-shadow(none);
     outline: none;
   }
-} 
+}
 
 /* ====================== Article ========================= */
 dt,
@@ -253,8 +253,8 @@ p.img_caption {
 
 .homepage, .featured{
   h1{
-    &.item-title { 
-	  a{ 
+    &.item-title {
+	  a{
 		color: #333;
           font-size: 36px;
 		font-weight: 700;
@@ -264,7 +264,7 @@ p.img_caption {
 }
 
 .readmore  a{
-        text-transform: uppercase;
+    text-transform: uppercase;
     position: relative;
     padding-bottom: 2px;
     font-size: 12px;
@@ -272,8 +272,8 @@ p.img_caption {
     padding: 0;
     margin-right: 10px;
     background: none;
-     color: #4e4d4d;
-     i { 
+    color: #4e4d4d;
+     i {
         position: absolute;
         right: -20px;
         top: 2px;
@@ -283,13 +283,11 @@ p.img_caption {
     }
   &:hover,
   &:active,
-  &:focus { 
-    
-    color: #7fbe54;
+  &:focus {
     i {
         right: -25px;
     }
-   
+
   }
   .transition(all 0.4s ease 0s);
 }
@@ -310,7 +308,7 @@ p.img_caption {
 
 /* ===================== Blogs ======================= */
 .items-leading {
-  > div { 
+  > div {
     margin-bottom: 20px;
   }
 }
@@ -321,7 +319,7 @@ p.img_caption {
 
 /* ===================== Page header ================== */
 .page-header {
-  border-bottom: none; 
+  border-bottom: none;
   margin: 0;
   padding: 0;
   a {
@@ -381,7 +379,6 @@ p.img_caption {
 
 .article-info {
   display: inline-block;
-  margin: 20px 0 0;
   width: 100%;
   .article-info-inner {
     float: left;
@@ -395,11 +392,11 @@ p.img_caption {
     margin-left: 0;
     margin-right: 10px;
     white-space: nowrap;
-  } 
+  }
   > *{margin: 0 5px;}
 }
 
-.blog { 
+.blog {
   .icons {
     .btn {
       padding: 0;
@@ -449,7 +446,7 @@ p.img_caption {
   }
 }
 
-/* ===================== Ul Ol ======================= */ 
+/* ===================== Ul Ol ======================= */
 
 
 
@@ -460,18 +457,18 @@ ul {
 }
 ol {
     margin: 2em 0 2em 0px;
-    padding-left: 50px; 
+    padding-left: 50px;
     li{
         padding: 5px 0;
     }
-}  
+}
 
 ul ul,
 ul ol,
 ol ol,
 ol ul {
   margin-bottom: 0;
-} 
+}
 
 ul {
   list-style: disc inside;
@@ -653,7 +650,7 @@ ul.menu li {
 }
 
 /* ========================== Contact ============================= */
- 
+
 #zo2-body-wrap{
   .contact{
     margin-top: 40px;
@@ -665,8 +662,8 @@ ul.menu li {
       border: 0 solid;box-shadow:none;height: auto;
     }
     h3{
-      font-size: 30px; 
-      margin: 30px 0; 
+      font-size: 30px;
+      margin: 30px 0;
     }
     .block-imfomation {
           margin-bottom: 20px;
@@ -705,7 +702,7 @@ ul.menu li {
       /*&:focus {
           border-color: #F33A22;
       }*/
-    } 
+    }
     textarea {
       transition: all 500ms;
       -webkit-transition: all 500ms;
@@ -728,14 +725,14 @@ ul.menu li {
         p{
           margin-bottom: 35px ;
           /*font-size: 16px;*/
-        } 
+        }
         h2{
           font-size: 30px;
-          margin-top: 0; 
+          margin-top: 0;
         }
-    } 
+    }
     fieldset{border: 0;}
-    .page-header h1{ 
+    .page-header h1{
                     /*color: #0c80d1;*/
                     font-size: 40px;
                     font-weight: 600;
@@ -753,7 +750,7 @@ ul.menu li {
     .contact .custom{margin: 0 -15px;}
 
     iframe {
-      box-shadow: -1px 0px 8px 1px #ccc; 
+      box-shadow: -1px 0px 8px 1px #ccc;
           filter: grayscale(1);
       -webkit-filter: grayscale(1);
       -o-filter: grayscale(1);
@@ -778,13 +775,13 @@ ul.menu li {
         .s-phone{
           text-align: left;
           margin: 0;
-          padding: 0; 
+          padding: 0;
         }
       }
       .contact-emailto{
         padding-top: 30px;
-        a{ 
-          font-size: 15px; 
+        a{
+          font-size: 15px;
         }
       }
     }
@@ -798,7 +795,7 @@ ul.menu li {
           /*color: #666666;*/
         }
       }
-      .media-left, .media-right, .media-body{display: block;width: auto;}      
+      .media-left, .media-right, .media-body{display: block;width: auto;}
   }
 }
 .contact #contact-form{
@@ -806,7 +803,7 @@ ul.menu li {
       border: 0;
         background: #f9f9f9;
         border-bottom: 1px solid @green;
-    }  
+    }
 }
 
 
@@ -1232,7 +1229,7 @@ div.tags {
       color: #525252;
       font-size: 100%;
     }
-  } 
+  }
 }
 
 .rtl {
@@ -1296,6 +1293,15 @@ div.tags {
   .tab-pane {
     label, .input-append input[type="text"] {
       display: inline-block !important;
+    }
+  }
+}
+.zo2-wrapper.boxed.container{
+  position: static;
+  #zo2-header-wrap-sticky-wrapper{
+    position: inherit;
+    #zo2-header-wrap{
+      left: 0;
     }
   }
 }

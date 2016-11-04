@@ -1,18 +1,23 @@
-jQuery(document).ready(function(){  
-       jQuery('.search .icon-search').click(function(){
-            jQuery('.search').addClass('mobie-search-active');
-            jQuery('.search .search-form').fadeIn('300');
-            jQuery('.search .search-form .inputbox').focus().css("color","#000");
-        });
-            jQuery('.search .search-close').click(function(){
-            jQuery('.search').removeClass('mobie-search-active');
-            jQuery('.search .search-form').fadeOut();
-        });
-        x = 0;
-    jQuery(window).resize(function(){
-        if (jQuery(window).width() > 991) {
-            jQuery('.search .search-form ').show();
+/* Here you can include your additional Javascript code */
+!function ($) {
+    var $body = $('body');
+    $body.append('<div id="nm-page-overlay" class="nm-page-overlay"></div>');
+    $('#nm-mobile-menu-button').click(function(){
+        if($body.hasClass('mobile-menu-open')){
+            $body.removeClass('mobile-menu-open');
+            $('#nm-page-overlay').removeClass('show');
+            $('.navbar-collapse').addClass('collapse');
+        }else{
+            $body.addClass('mobile-menu-open');
+            $('#nm-page-overlay').addClass('show');
+            $('#zo2-mega-menu nav.zo2-menu').attr('id','mn-menu-canvas');
+            $('#nm-page-overlay').addClass('show');
+            $('.navbar-collapse').removeClass('collapse').addClass('nm-mobile-menu-content');
         }
-        else{jQuery('.search .search-form ').hide();} 
+        $('.mobile-menu-open #nm-page-overlay').click(function(){
+            $body.removeClass('mobile-menu-open');
+            $(this).removeClass('show');
+            $('.navbar-collapse').addClass('collapse');
+        });
     });
-})
+}(jQuery);

@@ -1,3 +1,11 @@
+.readmore a {
+  color: #0099FF;
+}
+.readmore a:hover,
+.readmore a:active,
+.readmore a:focus {
+  color: #0099FF;
+}
 a {
   color: #0099FF;
 }
@@ -70,4 +78,26 @@ nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
 .pager li a:active,
 .pager li a:focus {
   background: #0099FF;
+}
+#zo2-header-wrap-sticky-wrapper #zo2-header-wrap #zo2-mega-menu nav.zo2-menu.navbar-default ul.navbar-nav .active >a,
+#zo2-header-wrap-sticky-wrapper #zo2-header-wrap #zo2-mega-menu nav.zo2-menu.navbar-default ul.navbar-nav .open >a {
+  color: #0099FF;
+}
+.menufooter-menu li.active a {
+  color: #0099FF;
+}
+.menufooter-menu li a:hover {
+  color: #0099FF;
+}
+.mod-inner ul li a:hover,
+blockquote:before {
+  color: #0099FF;
+}
+.button-download {
+  background-color: #0099FF;
+  border: 2px solid #0099FF;
+}
+.button-viewdemo:hover {
+  background-color: #0099FF;
+  border: 2px solid #0099FF;
 }

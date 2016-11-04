@@ -2,69 +2,18 @@
     "profile": "boxed",
     "site_name": "",
     "site_slogan": "",
-    "footer_copyright": "Copyright \u00a9 2008 - 2016 <a href=\"http:\/\/www.zootemplate.com\/\" title=\"joomla templates\">Joomla Templates<\/a> by ZooTemplate.Com. All rights reserved.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
+    "footer_copyright": "Copyright \u00a9 ZooTemplate.com                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ",
     "standard_logo": "images\/logo.png",
     "retina_logo": "images\/logo-retina.png",
+    "sticky_logo": "images\/logo.png",
     "footer_gototop": "1",
-    "footer_logo": "1",
     "layout": [
         {
             "type": "row",
-            "name": "Top",
-            "customClass": "",
-            "id": "zo2-header-top",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-4",
-                    "position": "position-4",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "none",
-                    "id": "top-search",
-                    "visibility": {
-                        "xs": false,
-                        "sm": false,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-0",
-                    "position": "position-0",
-                    "span": 8,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "zo2_menu",
-                    "id": "top-menu",
-                    "visibility": {
-                        "xs": false,
-                        "sm": false,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "type": "row",
-            "name": "Header",
+            "name": "\n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t            Header                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
             "customClass": "zo2-sticky",
             "id": "zo2-header",
-            "fullwidth": false,
+            "fluidwidth": false,
             "visibility": {
                 "xs": true,
                 "sm": true,
@@ -73,85 +22,61 @@
             },
             "children": [
                 {
-                    "jdoc": "canvasmenu",
                     "type": "col",
-                    "name": "canvas-menu",
-                    "position": "canvas-menu",
-                    "span": 1,
-                    "offset": 0,
-                    "customClass": "col-xs-1",
-                    "style": "",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": false,
-                        "lg": false
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "header-logo",
-                    "position": "header-logo",
-                    "span": 2,
-                    "offset": 0,
-                    "customClass": "col-xs-10 col-sm-8 mobile-logo",
-                    "style": "none",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "megamenu",
-                    "type": "col",
-                    "name": "mega-menu",
-                    "position": "mega-menu",
-                    "span": 7,
-                    "offset": 0,
-                    "customClass": " mobile-menu",
-                    "style": "none",
-                    "id": "",
-                    "visibility": {
-                        "xs": false,
-                        "sm": false,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-1",
-                    "position": "position-1",
                     "span": 3,
                     "offset": 0,
-                    "customClass": "col-xs-1",
-                    "style": "zo2_xhtml",
-                    "id": "",
+                    "customClass": "col-xs-12 col-sm-3 mobile-logo",
+                    "new_layout": 1,
                     "visibility": {
                         "xs": true,
                         "sm": true,
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "header-logo",
+                            "position": "header-logo",
+                            "style": "none",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "col",
+                    "span": 9,
+                    "offset": 0,
+                    "customClass": "mn-menu",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "megamenu",
+                            "type": "col",
+                            "name": "mega-menu",
+                            "position": "mega-menu",
+                            "style": "none",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         },
         {
             "type": "row",
-            "name": "Banner",
-            "customClass": "full-width",
+            "name": "\n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t               \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t            Banner                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
+            "customClass": "",
             "id": "",
-            "fullwidth": false,
+            "fluidwidth": false,
             "visibility": {
                 "xs": true,
                 "sm": true,
@@ -160,301 +85,202 @@
             },
             "children": [
                 {
-                    "jdoc": "modules",
                     "type": "col",
-                    "name": "slide",
-                    "position": "slide",
+                    "span": 12,
+                    "offset": 0,
+                    "customClass": "",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "slide",
+                            "position": "slide",
+                            "style": "none",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "row",
+            "name": "\n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            Feature                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
+            "customClass": "",
+            "id": "",
+            "fluidwidth": false,
+            "visibility": {
+                "xs": false,
+                "sm": false,
+                "md": true,
+                "lg": true
+            },
+            "children": [
+                {
+                    "type": "col",
+                    "span": 12,
+                    "offset": 0,
+                    "customClass": "",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": false,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "feature",
+                            "position": "feature",
+                            "style": "zo2_xhtml",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "row",
+            "name": "\n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t                    \t        \t    \t\t            Body                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
+            "customClass": "component",
+            "id": "zo2-mainframe",
+            "fluidwidth": false,
+            "visibility": {
+                "xs": true,
+                "sm": true,
+                "md": true,
+                "lg": true
+            },
+            "children": [
+                {
+                    "type": "col",
+                    "span": 3,
+                    "offset": 0,
+                    "customClass": "mod-left",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "position-7",
+                            "position": "position-7",
+                            "style": "zo2_xhtml",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "col",
+                    "span": 6,
+                    "offset": 0,
+                    "customClass": "component",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "component",
+                            "type": "col",
+                            "name": "component",
+                            "position": "component",
+                            "style": "none",
+                            "id": "zo2-component",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "col",
+                    "span": 3,
+                    "offset": 0,
+                    "customClass": "mod-right",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "position-8",
+                            "position": "position-8",
+                            "style": "zo2_xhtml",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "row",
+            "name": "\n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            Download                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ",
+            "customClass": "",
+            "id": "",
+            "fluidwidth": true,
+            "visibility": {
+                "xs": true,
+                "sm": true,
+                "md": true,
+                "lg": true
+            },
+            "children": [
+                {
+                    "type": "col",
                     "span": 12,
                     "offset": 0,
                     "customClass": "full-width",
-                    "style": "none",
-                    "id": "",
+                    "new_layout": 1,
                     "visibility": {
                         "xs": true,
                         "sm": true,
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "position-9",
+                            "position": "position-9",
+                            "style": "zo2_xhtml",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         },
         {
             "type": "row",
-            "name": " Feature ",
-            "customClass": "",
-            "id": "zo2-hello",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "feature",
-                    "position": "feature",
-                    "span": 12,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "type": "row",
-            "name": "zo2-message",
-            "customClass": "",
-            "id": "zo2-message",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "messsge",
-                    "type": "col",
-                    "name": "message",
-                    "position": "message",
-                    "span": 12,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "none",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "type": "row",
-            "name": "Body",
-            "customClass": "",
-            "id": "zo2-mainframe",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-7",
-                    "position": "position-7",
-                    "span": 3,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "component",
-                    "type": "col",
-                    "name": "component",
-                    "position": "component",
-                    "span": 7,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "none",
-                    "id": "zo2-component",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-8",
-                    "position": "position-8",
-                    "span": 2,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "type": "row",
-            "name": "News",
-            "customClass": "",
-            "id": "news",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "news",
-                    "position": "news",
-                    "span": 12,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "type": "row",
-            "name": "Bottom 1",
-            "customClass": "",
-            "id": "zo2-bottom1",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-2",
-                    "position": "position-2",
-                    "span": 12,
-                    "offset": 0,
-                    "customClass": "",
-                    "style": "none",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "type": "row",
-            "name": "Bottom 2",
-            "customClass": "",
-            "id": "zo2-bottom2",
-            "fullwidth": false,
-            "visibility": {
-                "xs": true,
-                "sm": true,
-                "md": true,
-                "lg": true
-            },
-            "children": [
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-9",
-                    "position": "position-9",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-10",
-                    "position": "position-10",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                },
-                {
-                    "jdoc": "modules",
-                    "type": "col",
-                    "name": "position-11",
-                    "position": "position-11",
-                    "span": 4,
-                    "offset": 0,
-                    "customClass": "col-sm-4",
-                    "style": "zo2_xhtml",
-                    "id": "",
-                    "visibility": {
-                        "xs": true,
-                        "sm": true,
-                        "md": true,
-                        "lg": true
-                    },
-                    "children": []
-                }
-            ]
-        },
-        {
-            "type": "row",
-            "name": "Footer",
+            "name": "\n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            \n        \t    \n    \t    \t\n\t            Footer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ",
             "customClass": "",
             "id": "zo2-footer",
-            "fullwidth": false,
+            "fluidwidth": false,
             "visibility": {
                 "xs": true,
                 "sm": true,
@@ -463,42 +289,87 @@
             },
             "children": [
                 {
-                    "jdoc": "modules",
                     "type": "col",
-                    "name": "footer-copyright",
-                    "position": "footer-copyright",
-                    "span": 12,
+                    "span": 5,
                     "offset": 0,
-                    "customClass": "",
-                    "style": "",
-                    "id": "",
+                    "customClass": "copyright",
+                    "new_layout": 1,
                     "visibility": {
                         "xs": true,
                         "sm": true,
                         "md": true,
                         "lg": true
                     },
-                    "children": []
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "footer-copyright",
+                            "position": "footer-copyright",
+                            "style": "zo2_xhtml",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "col",
+                    "span": 2,
+                    "offset": 0,
+                    "customClass": "footerlogo",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": false,
+                        "sm": false,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "footer-logo",
+                            "position": "footer-logo",
+                            "style": "none",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "type": "col",
+                    "span": 5,
+                    "offset": 0,
+                    "customClass": "footermenu col-sm-7",
+                    "new_layout": 1,
+                    "visibility": {
+                        "xs": true,
+                        "sm": true,
+                        "md": true,
+                        "lg": true
+                    },
+                    "children": [
+                        {
+                            "jdoc": "modules",
+                            "type": "col",
+                            "name": "footer-menu",
+                            "position": "footer-menu",
+                            "style": "zo2_menu",
+                            "id": "",
+                            "children": []
+                        }
+                    ]
                 }
             ]
         }
     ],
     "theme": {
-        "name": "green",
-        "css": "green",
-        "less": "green",
+        "name": "orange",
+        "css": "orange",
+        "less": "orange",
         "boxed": "1",
-        "background": "#ffffff",
-        "header": "",
-        "header_top": "",
-        "text": "",
-        "link": "#7FBE54",
-        "link_hover": "#449d44",
-        "bottom1": "",
-        "bottom2": "",
-        "footer": "",
         "bg_image": "",
-        "bg_pattern": "templates\/zo2_hallo\/assets\/zo2\/images\/background-patterns\/tweed_@2X.png"
+        "bg_pattern": "templates\\zo2_hallo\\assets\\zo2\\images\\background-patterns\/pattern3_black.png"
     },
     "menu_hover_type": "hover",
     "menu_animation": "slide",
@@ -506,24 +377,36 @@
     "menu_type": "mainmenu",
     "menu_config": {
         "mainmenu": {
+            "item-135": {
+                "submenu": {
+                    "rows": [
+                        [
+                            {
+                                "item": 132,
+                                "width": 12
+                            }
+                        ]
+                    ]
+                }
+            },
             "item-105": {
                 "submenu": {
                     "rows": [
                         [
                             {
-                                "item": 106,
+                                "item": 140,
                                 "width": 3
                             },
                             {
-                                "item": 111,
+                                "item": 141,
                                 "width": 3
                             },
                             {
-                                "item": 116,
+                                "item": 142,
                                 "width": 3
                             },
                             {
-                                "item": 121,
+                                "item": 143,
                                 "width": 3
                             }
                         ]
@@ -531,27 +414,27 @@
                 },
                 "alignsub": "justify"
             },
-            "item-126": {
-                "submenu": {
-                    "rows": [
-                        [
-                            {
-                                "item": 127,
-                                "width": 12
-                            }
-                        ]
-                    ]
-                }
+            "item-140": {
+                "class": "heading-submenu"
+            },
+            "item-141": {
+                "class": "heading-submenu"
+            },
+            "item-142": {
+                "class": "heading-submenu"
+            },
+            "item-143": {
+                "class": "heading-submenu"
             }
         }
     },
     "enable_rtl": "1",
     "component_area": "0",
     "non_responsive_layout": "0",
-    "enable_sticky_menu": "0",
-    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ",
-    "combine_css": "1",
-    "combine_js": "1",
+    "enable_sticky_menu": "1",
+    "tracking_code": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ",
+    "combine_css": "0",
+    "combine_js": "0",
     "development_mode": "1",
     "template": "zo2_hallo",
     "name": "boxed"

@@ -4,23 +4,23 @@
  *
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
- * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
+ * @copyright   Copyright (c) 2016 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       Zo2 Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2008-2016 zootemplate.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       CleverSoft
+ * @Link:         http://zo2.zoodemo.com/
  *------------------------------------------------------------------------------
  */
+
 @import 'mixins';
 @import "variables";
 
 .zo2-megamenu{
+  position: inherit;
   .mega-inner{
     padding: 10px;
     *zoom: 1;
@@ -49,7 +49,6 @@
       border-top: 3px solid @black;
       background-color: @white;
       .box-shadow(0 0 7px rgba(0,0,0,.07));
-      margin-top: 58px;
       padding: 30px;
       .mega-dropdown-inner{
         margin-top: 0;
@@ -78,6 +77,9 @@
     }
   }
   &.slide .mega > .mega-dropdown-menu{
+    .mega-dropdown-inner{
+      border-top: none;
+    }
     overflow: hidden;
   }
   .mega.open > .mega-dropdown-menu,
@@ -208,14 +210,7 @@
     display: block;
     white-space: nowrap;
   }
-  .nav .caret,
-  .dropdown-submenu .caret,
-  .mega-menu .caret {
-    display: none;
-  }
-  .nav > .dropdown > .dropdown-toggle .caret {
-    display: inline-block;
-  }
+
   .nav [class^="icon-"],
   .nav [class*=" icon-"] {
     margin-right: 5px;
@@ -243,7 +238,7 @@
   .sidebar-close{
     color: #ccc;
     display: block;
-    float: right; 
+    float: right;
     font-size: @baseFontSize + 4;
     line-height: @baseLineHeight + 22;
     padding: 0;
@@ -255,7 +250,7 @@
     .size(42px, 42px);
     z-index: 999;
     &::before {
-        content: "\f00d"; 
+        content: "\f00d";
         font: normal normal normal 14px/1 FontAwesome;
         color: #fff;
         font-size: 18px;
@@ -290,7 +285,7 @@
   top:0;
   bottom:0;
   right:0;
-  .transition(transform 0.5s ease 0s); 
+  .transition(transform 0.5s ease 0s);
   overflow: hidden;
   &:after{
     opacity: 1;
@@ -323,7 +318,7 @@ body.overflow-hidden{
   .transform(translateX(-350px));
   .sidebar-nav{
     left: 0;
-    margin: 0; 
+    margin: 0;
     position: absolute;
     top: 42px;
     width: 100%;
@@ -337,7 +332,7 @@ body.overflow-hidden{
             display: block;
             text-decoration: none;
             padding: 5px 0;
-            font-size: 13px; 
+            font-size: 13px;
             border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
             line-height: 40px;
             margin: 0 10px;
@@ -372,7 +367,7 @@ body.overflow-hidden{
       .transition(transform 0.5s);;
     }
   }
-} 
+}
 /** New: submenu **/
 .nav-parent {
   position: relative;
@@ -392,7 +387,7 @@ body.overflow-hidden{
   .size(30px, 50px);
     line-height: 50px!important;
   &.icon-caret-up{
-    .transform(rotate(-180deg)); 
+    .transform(rotate(-180deg));
     width: 35px;
   }
 }
@@ -407,7 +402,7 @@ body.overflow-hidden{
 }
 .button-canvas {
   cursor: pointer;
-  display: block; 
+  display: block;
     padding-top: 10px;
 }
 .rtl .offcanvas {
@@ -423,3 +418,317 @@ body.overflow-hidden{
   .transition(transform 0.5s ease 0s)
 }
 
+
+#zo2-header-wrap-sticky-wrapper{
+  #zo2-header-wrap{
+    .container{
+      position: relative;
+      .row{
+        .mobile-logo{
+          @media only screen and (max-width: 768px) {
+            text-align: center;
+          }
+        }
+        .mn-menu{
+          position: static;
+        }
+      }
+    }
+    #zo2-header-logo{
+      #standard-logo,#retina-logo,#sticky-logo{
+        .standard-logo-link,.retina-logo-link,.sticky-logo-link{
+          line-height: 80px;
+          img{
+            display: inline-block;
+          }
+        }
+      }
+    }
+    #zo2-mega-menu{
+      position: inherit;
+      nav.zo2-menu{
+        border-radius: 0;
+        position: inherit;
+        border: 0;
+        &.navbar{
+          margin-bottom: 0px;
+          background: #fff;
+        }
+        &.zo2-menu{
+          .zo2-megamenu{
+            &.animate{
+              .mega{
+                &.open{
+                  >.mega-dropdown-menu{
+                  }
+                }
+              }
+              &.slide{
+                .mega{
+                  &.open{
+                    .mega-dropdown-menu{
+                      >div{
+                        margin-top: 0;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.navbar-default{
+          .transition(all 0.3s ease 0s);
+          ul.navbar-nav{
+            float: right;
+            padding: 15px 0;
+            li{
+              a{
+                color:#000;
+                .transition(color 0.3s ease 0s);
+              }
+            }
+            .active,.open{
+              >a{
+                background:none;
+                //color:#e6502e;
+                outline-style: none;
+                &:hover,&:focus{
+                  background:none;
+                  outline-style: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.is-sticky{
+    #zo2-header-wrap{
+      box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.1);
+      width: 100%;
+      background: #fff;
+      z-index: 9;
+      #zo2-header-logo{
+        #standard-logo,#retina-logo,#sticky-logo{
+          .standard-logo-link,.retina-logo-link,.sticky-logo-link{
+            line-height: 60px;
+          }
+        }
+      }
+      #zo2-mega-menu nav.navbar-default{
+        padding: 0px;
+
+        ul.navbar-nav{
+          padding: 5px 0;
+          li{
+            a{
+              color:#000;
+              .transition(color 0.3s ease 0s);
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+.mega-dropdown-inner{
+  padding: 40px;
+  border-top:0;
+  .mega-col-nav{
+    .mega-inner{
+      ul.nav.mega-nav{
+        li{
+          a{
+            &:before{
+              display: none;
+            }
+            font-size: 14px;
+          }
+          &.heading-submenu{
+            a{
+              text-transform: uppercase;
+              font-weight: 600;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/* ================== Canvas Menu style ============ */
+#zo2-header-wrap-sticky-wrapper{
+  position: relative;
+  z-index: 10002;
+}
+li.nm-menu-offscreen {
+  display: block;
+  a{
+    display: inline-block;
+    font-size: 0;
+    line-height: 16px;
+  }
+}
+.nm-menu li a {
+  color: #707070;
+}
+
+.nm-menu-icon {
+  position: relative;
+  width: 21px;
+  height: 16px;
+  span{
+      background: #707070;
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      -webkit-transform: rotate(0);
+      -moz-transform: rotate(0);
+      -o-transform: rotate(0);
+      -ms-transform: rotate(0);
+      transform: rotate(0);
+      -webkit-transition: -webkit-transform 0.1s ease;
+      -moz-transition: -moz-transform 0.1s ease;
+      -o-transition: -o-transform 0.1s ease;
+      transition: transform 0.1s ease;
+      background: #282828;
+      &.line-2{
+        top:7px;
+      }
+      &.line-3{
+        bottom: 1px;
+      }
+  }
+}
+
+
+@media (max-width: 768px){
+  .nm-mobile-menu-content{
+    padding: 0;
+  }
+  #zo2-header-wrap>.container>.row{
+    position: relative;
+  }
+  .nm-menu-offscreen{
+    display: block;
+    position: absolute;
+    top: 40%;
+  }
+
+  .mobile-menu-open{
+    .is-sticky{
+      #zo2-mega-menu{
+        #mn-menu-canvas{
+          top:60px;
+        }
+      }
+    }
+    #zo2-header-wrap-sticky-wrapper #zo2-header-wrap .container .row .mn-menu{
+      position: fixed;
+      padding: 0;
+      .nm-menu-offscreen{
+        top: 30px;
+        position: fixed;
+        margin-left: 15px;
+      }
+    }
+    #zo2-mega-menu{
+      #mn-menu-canvas{
+        top: 80px;
+        width: 100%;
+        text-align: left;
+        background-color: white;
+        .zo2-megamenu{
+          >ul.nav{
+            width: 100%;
+            padding: 0 !important;
+            margin: 0;
+            li{
+              &.open{
+                a{
+                  .caret{
+                    &:before{
+                        visibility: hidden;
+                    }
+                  }
+                }
+              }
+              border-bottom: 1px solid #eee;
+              >a{
+                padding: 10px 20px;
+              }
+              >.menu-child{
+                .mega-dropdown-inner{
+                  margin: 0;
+                  padding: 20px 5px;;
+                  border-top:none;
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
+}
+@media (min-width: 768px){
+  .nm-menu-offscreen{
+    display: none;
+  }
+}
+.megamenu{
+  float: left;
+  position: static;
+}
+.mobile-menu-open{
+  .zo2-menu{
+    .transition( transform 0.5s );
+  }
+  .nm-menu-icon{
+    span{
+      &.line-1{
+        top: 7px;
+        .transform(rotate(45deg));
+      }
+      &.line-2{
+        background: none;
+      }
+      &.line-3{
+        top: 7px;
+        .transform(rotate(-45deg));
+      }
+    }
+  }
+}
+.nm-page-overlay {
+  background: rgba(241,241,241,0.73);
+  visibility: hidden;
+  position: fixed;
+  top: -1px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  content: " ";
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  -webkit-transition: opacity 0.20s ease;
+  -o-transition: opacity 0.20s ease;
+  transition: opacity 0.20s ease;
+  &.show{
+    visibility: visible;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+  }
+}

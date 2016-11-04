@@ -58,5 +58,25 @@
             "footer": "#edeff1",
             "extra": ""
         }
-    }
+    },
+    {
+            "name": "violet",
+            "default": false,
+            "css": "violet",
+            "less": "violet",
+            "color": "#c3325f",
+            "thumbnail": "/assets/zo2/images/presets/violet.jpg",
+            "variables": {
+                "background": "#ffffff",
+                "header": "",
+                "header_top": "",
+                "link": "#d35400",
+                "link_hover": "#e67e22",
+                "text": "#4d4d62",
+                "bottom1": "#2c3e50",
+                "bottom2": "#2c3e50",
+                "footer": "#edeff1",
+                "extra": ""
+            }
+        }
 ]

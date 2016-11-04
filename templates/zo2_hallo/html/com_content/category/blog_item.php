@@ -19,17 +19,7 @@ $info    = $params->get('info_block_position', 0);
 	|| ((strtotime($this->item->publish_down) < strtotime(JFactory::getDate())) && $this->item->publish_down != JFactory::getDbo()->getNullDate())) : ?>
 	<div class="system-unpublished">
 <?php endif; ?>
-
-<div class="post-image">
-<?php echo JLayoutHelper::render('joomla.content.intro_image', $this->item); ?>
-</div>
-
-<div class="news-info">
-
-<?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
-	<?php echo JLayoutHelper::render('joomla.content.icons', array('params' => $params, 'item' => $this->item, 'print' => false)); ?>
-<?php endif; ?>
- 
+<?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
 
 <?php // Todo Not that elegant would be nice to group the params ?>
 <?php $useDefList = ($params->get('show_modify_date') || $params->get('show_publish_date') || $params->get('show_create_date')
@@ -38,8 +28,15 @@ $info    = $params->get('info_block_position', 0);
 <?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
 	<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
 <?php endif; ?>
- 
-<?php echo JLayoutHelper::render('joomla.content.blog_style_default_item_title', $this->item); ?>
+
+<div class="post-image">
+<?php echo JLayoutHelper::render('joomla.content.intro_image', $this->item); ?>
+</div>
+
+<div class="news-info">
+<?php if ($canEdit || $params->get('show_print_icon') || $params->get('show_email_icon')) : ?>
+	<?php echo JLayoutHelper::render('joomla.content.icons', array('params' => $params, 'item' => $this->item, 'print' => false)); ?>
+<?php endif; ?>
 
 <?php if (!$params->get('show_intro')) : ?>
 	<?php echo $this->item->event->afterDisplayTitle; ?>

@@ -72,12 +72,6 @@ body h3.moduletitle:after {
   left: inherit;
   right: 0;
 }
-body footer section {
-  float: right;
-}
-body footer .zo2-copyright-logo img {
-  float: left;
-}
 #zo2-position-1 form:before {
   color: #555555;
   content: "\f002";

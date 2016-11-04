@@ -3,19 +3,30 @@
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @version     1.4.4
+ * @version     1.5.1
  * @link        http://www.zootemplate.com/zo2
  * @link        https://github.com/cleversoft/zo2
  * @author      ZooTemplate <http://zootemplate.com>
- * @copyright   Copyright (c) 2015 CleverSoft (http://cleversoft.co/)
+ * @copyright   Copyright (c) 2016 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 defined('_JEXEC') or die('Restricted Access');
 
 require_once __DIR__ . '/includes/bootstrap.php';
-
+$frontpage = '';
+$menu = & JSite::getMenu();
+if ($menu->getActive() == $menu->getDefault()) {
+$frontpage="homedefault";
+}
 ?>
-
+<?php
+$frontpage = '';
+$app = JFactory::getApplication();
+$menu = $app->getMenu();
+if ($menu->getActive()->home) {
+   $frontpage="homedefault";
+}
+?>
 <!DOCTYPE html>
 <html lang="<?php echo $this->zo2->template->getLanguage(); ?>" dir="<?php echo $this->zo2->template->getDirection(); ?>">
     <head>
@@ -28,7 +39,7 @@ require_once __DIR__ . '/includes/bootstrap.php';
         <?php endif; ?> 
     <jdoc:include type="head" />
 </head>
-<body class="<?php echo $this->zo2->layout->getBodyClass(); ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
+<body class="<?php echo $frontpage.' '.$this->zo2->layout->getBodyClass(); ?> <?php echo $this->zo2->template->getDirection(); ?> <?php echo $this->zo2->framework->isBoxed() ? 'boxed' : ''; ?>">
     <?php echo $this->zo2->template->fetch('html://layouts/css.condition.php'); ?>        
     <!-- Main wrapper -->
     <section class="zo2-wrapper<?php echo $this->zo2->framework->isBoxed() ? ' boxed container' : ''; ?>">        

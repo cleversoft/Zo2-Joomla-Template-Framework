@@ -55,6 +55,15 @@ JHtml::_('behavior.caption');
 		<?php endif; ?>
 	<?php endif; ?>
 
+	<h1 itemprop="name" class="title">
+		<?php if ($params->get('show_title')) : ?>
+			<?php echo $this->escape($this->item->title); ?>
+		<?php endif; ?>
+	</h1>
+	<?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
+		<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
+	<?php endif; ?>
+
     <div class="post-image">
     	<?php if (isset($images->image_fulltext) && !empty($images->image_fulltext)) : ?>
     	<?php $imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext; ?>
@@ -66,18 +75,12 @@ JHtml::_('behavior.caption');
     	<?php endif; ?>
     </div>
     <div class="news-info">
-    
-	<?php if ($useDefList && ($info == 0 || $info == 2)) : ?>
-		<?php echo JLayoutHelper::render('joomla.content.info_block.block', array('item' => $this->item, 'params' => $params, 'position' => 'above')); ?>
-	<?php endif; ?>
+
+
 
 	<?php if ($params->get('show_title') || $params->get('show_author')) : ?>
 	<div class="page-header">
-		<h1 itemprop="name" class="title">
-			<?php if ($params->get('show_title')) : ?>
-				<?php echo $this->escape($this->item->title); ?>
-			<?php endif; ?>
-		</h1>
+
 		<?php if ($this->item->state == 0) : ?>
 			<span class="label label-warning"><?php echo JText::_('JUNPUBLISHED'); ?></span>
 		<?php endif; ?>

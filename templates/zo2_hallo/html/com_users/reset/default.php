@@ -25,8 +25,7 @@ JHtml::_('behavior.formvalidation');
 
 		<?php foreach ($this->form->getFieldsets() as $fieldset) : ?>
 		<p><?php echo JText::_($fieldset->label); ?></p>
-
-		<fieldset>
+ 
 			<?php foreach ($this->form->getFieldset($fieldset->name) as $name => $field) : ?>
 				<div class="control-group">
 					<div class="control-label">
@@ -36,12 +35,11 @@ JHtml::_('behavior.formvalidation');
 						<?php echo $field->input; ?>
 					</div>
 				</div>
-			<?php endforeach; ?>
-		</fieldset>
+			<?php endforeach; ?> 
 		<?php endforeach; ?>
 
 		<div class="form-actions">
-			<button type="submit" class="btn btn-primary validate"><?php echo JText::_('JSUBMIT'); ?></button>
+			<button type="submit" class="btn btn-success validate"><?php echo JText::_('JSUBMIT'); ?></button>
 			<?php echo JHtml::_('form.token'); ?>
 		</div>
 	</form>
