@@ -1,0 +1,103 @@
+.readmore a {
+  color: #8A2AE3;
+}
+.readmore a:hover,
+.readmore a:active,
+.readmore a:focus {
+  color: #8A2AE3;
+}
+a {
+  color: #8A2AE3;
+}
+nav.zo2-menu .navbar-nav > .open a {
+  color: #8A2AE3;
+}
+nav.zo2-menu .navbar-nav > .open a:hover,
+nav.zo2-menu .navbar-nav > .open a:focus {
+  color: #8A2AE3;
+}
+nav.zo2-menu .navbar-nav .active a {
+  color: #8A2AE3;
+}
+nav.zo2-menu .navbar-nav .active a:hover,
+nav.zo2-menu .navbar-nav .active a:focus {
+  color: #8A2AE3;
+}
+nav.zo2-menu .navbar-nav ul.mega-nav li a:hover,
+nav.zo2-menu .navbar-nav ul.mega-nav li a:active,
+nav.zo2-menu .navbar-nav ul.mega-nav li a:focus {
+  color: #8A2AE3;
+}
+nav.zo2-menu .navbar-nav ul.mega-nav li.active a {
+  color: #8A2AE3;
+}
+#zo2-body-wrap .top-feature .zo2-feature .zo2-circle {
+  color: #8A2AE3;
+}
+#zo2-body-wrap .top-feature .zo2-feature .zo2-circle:before {
+  box-shadow: 0 0 0 3px #8A2AE3;
+}
+#zo2-body-wrap .top-feature .zo2-feature:hover .zo2-circle {
+  background-color: #8A2AE3;
+  color: #fff;
+}
+.box-color {
+  background: #8A2AE3;
+}
+@media (max-width: 767px) {
+  body nav.zo2-menu .navbar-toggle:hover .icon-bar {
+    background-color: #8A2AE3;
+  }
+}
+.btn-success {
+  background-color: #8A2AE3;
+  color: #fff !important;
+}
+.btn-success:hover {
+  background-color: #6316aa;
+}
+.zo2-pagination ul >li.active >span,
+.pagination li:hover a {
+  background: #8A2AE3;
+}
+.item-page .article_content {
+  border-top: 3px solid #8A2AE3;
+}
+.item-page .article_content .article_icon {
+  background: #8A2AE3;
+}
+.dropdown-toggle:hover,
+.dropdown-toggle:active,
+.dropdown-toggle:focus {
+  color: #8A2AE3;
+}
+.item-page .article_content h1.singleItemTitle {
+  color: #8A2AE3;
+}
+.pager li a:hover,
+.pager li a:active,
+.pager li a:focus {
+  background: #8A2AE3;
+}
+#zo2-header-wrap-sticky-wrapper #zo2-header-wrap #zo2-mega-menu nav.zo2-menu.navbar-default ul.navbar-nav .active >a,
+#zo2-header-wrap-sticky-wrapper #zo2-header-wrap #zo2-mega-menu nav.zo2-menu.navbar-default ul.navbar-nav .open >a {
+  color: #8A2AE3;
+}
+.menufooter-menu li.active a {
+  color: #8A2AE3;
+}
+.menufooter-menu li a:hover {
+  color: #8A2AE3;
+}
+.mod-inner ul li a:hover,
+blockquote:before {
+  color: #8A2AE3;
+}
+.button-download {
+  background-color: #8A2AE3;
+  border: 2px solid #8A2AE3;
+}
+.button-viewdemo:hover {
+  background-color: #8A2AE3;
+  border: 2px solid #8A2AE3;
+}
