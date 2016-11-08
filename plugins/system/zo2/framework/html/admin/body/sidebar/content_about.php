@@ -96,20 +96,19 @@
 					</li>
 					<li>Suggesting new features</li>
 					<li>Writing or refactoring code</li>
-					<li>Fixing <a href="http://www.zootemplate.com/zo2/issues" target="_blank">issues</a></li>
-					<li>Replying to questions on <a href="http://www.zootemplate.com/zo2-support" target="_blank">the
-							forum</a></li>
+					<li>Fixing <a href="https://github.com/cleversoft/Zo2-Joomla-Template-Framework/issues" target="_blank">issues</a></li>
+					<li>Replying to questions on <a href="http://member.zootemplate.com/helpdesk/" target="_blank">Help Desk</a></li>
 				</ul>
 
 				<h3>Documentation</h3>
 
-				<p><a class="btn btn-primary btn-large" href="http://docs.zootemplate.com/category/zo2" target="_blank">Online
+				<p><a class="btn btn-primary btn-large" href="http://guide.zootemplate.com/category/zo2-framework" target="_blank">Online
 						Documents</a></p>
 
 				<div class="zo2-divider"></div>
 				<h3>Supports</h3>
 
-				<p>Use the <a href="http://www.zootemplate.com/zo2-support" target="_blank">Zo2 Support</a> to ask
+				<p>Use the <a href="http://member.zootemplate.com/helpdesk/" target="_blank">Help Desk</a> to ask
 					questions and get support.</p>
 
 				<div class="zo2-divider"></div>
