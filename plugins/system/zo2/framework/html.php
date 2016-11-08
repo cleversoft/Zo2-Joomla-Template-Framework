@@ -4,11 +4,11 @@
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @version     1.4.3
- * @since       1.4.3
+ * @version     1.5.1
+ * @since       1.5.1
  * @link        http://www.zootemplate.com/zo2
- * @link        https://github.com/cleversoft/zo2
- * @author      ZooTemplate <http://zootemplate.com>
+ * @link        http://www.zootemplate.com/zo2
+ * @author      ZooTemplate <http://www.zootemplate.com>
  * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
@@ -21,7 +21,7 @@ if (!class_exists('Zo2Html'))
 {
 
     /**
-     * @since 1.4.3
+     * @since 1.5.1
      * Used to fetch template file
      */
     class Zo2Html extends JObject

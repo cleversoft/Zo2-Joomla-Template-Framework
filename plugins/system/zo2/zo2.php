@@ -6,9 +6,9 @@
  *
  * @version     1.5.1
  * @link        http://www.zootemplate.com/zo2
- * @link        https://github.com/cleversoft/zo2
+ * @link        http://www.zootemplate.com/zo2
  * @author      ZooTemplate <http://www.zootemplate.com>
- * @copyright   Copyright (c) 2015 CleverSoft (http://cleversoft.co/)
+ * @copyright   Copyright (c) 2016 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 

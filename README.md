@@ -53,7 +53,7 @@ Everyone is welcome to help contribute and improve this project. There are sever
 * Reporting issues (please read [issue guidelines](https://github.com/necolas/issue-guidelines))
 * Suggesting new features
 * Writing or refactoring code
-* Fixing [issues](https://github.com/cleversoft/zo2/issues)
+* Fixing [issues](http://www.zootemplate.com/zo2/issues)
 * Replying to questions on [the forum](http://www.zootemplate.com/zo2-support)
 
 ##Support
@@ -81,6 +81,10 @@ You are free to use Zo2 Framework for your personal and commercial projects. You
 ##Change logs
 
 ### 1.5.1 release Nov 8, 2016
+
+* New design for Zo2 Hallo template
+
+### 1.5.0 release release Oct 26, 2016
 
 * New layout builder interface
 * Add sticky logo option in general tab

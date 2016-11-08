@@ -96,7 +96,7 @@
 					</li>
 					<li>Suggesting new features</li>
 					<li>Writing or refactoring code</li>
-					<li>Fixing <a href="https://github.com/cleversoft/zo2/issues" target="_blank">issues</a></li>
+					<li>Fixing <a href="http://www.zootemplate.com/zo2/issues" target="_blank">issues</a></li>
 					<li>Replying to questions on <a href="http://www.zootemplate.com/zo2-support" target="_blank">the
 							forum</a></li>
 				</ul>
@@ -115,7 +115,7 @@
 				<div class="zo2-divider"></div>
 				<h2>Copyright, License &amp; Usage</h2>
 
-				<p>Copyright (c) 2008 - 2015 <a href="http://cleversoft.co" target="_blank">CleverSoft Solutions</a></p>
+				<p>Copyright (c) 2008 - 2016 <a href="http://cleversoft.co" target="_blank">CleverSoft Solutions</a></p>
 
 				<h3>License</h3>
 
