@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:400,500,700,800,800i,900,900i|Dosis:600,700,800|Noto+Sans:400,700,700i|Poppins:400,500,600,700);
 img {
   max-width: 100%;
 }
@@ -30,16 +31,32 @@ body.zo2-error #errorboxheader {
 body.zo2-error ol li {
   margin: 3px 0;
 }
-body.zo2-error .btn-success {
-  background: #23A843;
+body.zo2-error a.btn-success {
+  background: #e6502e;
+  -webkit-transition: color 0.3s ease 0s;
+  -moz-transition: color 0.3s ease 0s;
+  -o-transition: color 0.3s ease 0s;
+  transition: color 0.3s ease 0s;
   padding: 10px 15px;
-  color: ;
+  color: #fff;
+  font-family: 'Noto Sans';
   text-decoration: none;
   margin: 20px 0 0 0;
   display: inline-block;
 }
-body.zo2-error .btn-success:hover {
-  background: #40C761;
+a,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Noto Sans';
+  font-size: 13px;
+}
+body.zo2-error a.btn-success:hover {
+  background: #da4c2c;
 }
 @media (max-width: 767px) {
   body.zo2-error #errorboxheader {
