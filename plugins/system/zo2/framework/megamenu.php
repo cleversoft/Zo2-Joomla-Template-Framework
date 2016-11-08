@@ -308,7 +308,7 @@ if (!class_exists('Zo2Megamenu'))
         {
             $this->isAdmin = $isAdmin;
             // add canvas menu
-            $canvas .= '<div class="nm-menu-offscreen ">';
+            $canvas = '<div class="nm-menu-offscreen ">';
             $canvas .= '<a href="javascript:void(0)" id="nm-mobile-menu-button" class="clicked">';
             $canvas .= '<div class="nm-menu-icon">';
             $canvas .= '<span class="line-1"></span>';
