@@ -1,7 +1,7 @@
 <?php $column = new JRegistry($column); ?>
 <?php
 if(count($column->get('children')) > 0 and $column->get('new_layout') ==  1) {
-if (empty($column->get('visibility',''))) $column->set('visibility',$column->get('children')[0]->visibility) ;
+if ($column->get('visibility','') == '') $column->set('visibility',$column->get('children')[0]->visibility) ;
 ?>
 <div class="sortable-col col-md-<?php echo $column->get('span'); ?>" data-new-layout="1"
      data-zo2-type="span"
@@ -44,7 +44,7 @@ if (empty($column->get('visibility',''))) $column->set('visibility',$column->get
 </div>
 <?php
 } else {
-if (empty($column->get('visibility',''))) $column->set('visibility',$column->get('children')[0]->visibility) ;
+if ($column->get('visibility','') == '') $column->set('visibility',$column->get('children')[0]->visibility) ;
     ?>
 <div class="sortable-col col-md-<?php echo $column->get('span'); ?>" data-new-layout="1"
      data-zo2-type="span"
