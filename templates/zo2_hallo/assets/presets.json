@@ -1,7 +1,7 @@
 [
     {
         "name": "green",
-        "default": true,
+        "default": false,
         "css": "green",
         "less": "green",
         "color": "#7FBE54",
