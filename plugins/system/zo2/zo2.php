@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 /**
  * Zo2 (http://www.zootemplate.com/zo2)
@@ -42,7 +42,7 @@ if (!class_exists('plgSystemZo2'))
         }
 
         /**
-         * 
+         *
          */
         public function onAfterRender()
         {
@@ -64,7 +64,7 @@ if (!class_exists('plgSystemZo2'))
         }
 
         /**
-         * 
+         *
          * @staticvar type $template
          * @return boolean
          */
@@ -106,7 +106,7 @@ if (!class_exists('plgSystemZo2'))
         }
 
         /**
-         * 
+         *
          * @return boolean
          */
         private function _isZo2()
@@ -127,4 +127,3 @@ if (!class_exists('plgSystemZo2'))
     }
 
 }
-
