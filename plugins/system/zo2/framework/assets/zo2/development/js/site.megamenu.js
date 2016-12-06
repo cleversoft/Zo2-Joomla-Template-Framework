@@ -48,6 +48,7 @@
         function redirect() {
             $('.dropdown-toggle').on('click',function(e){
                 if($(this).parent().hasClass('open') && this.href && this.href != '#'){
+                    if(e.target !== e.currentTarget) return;
                     window.location.href = this.href;
                     e.preventDefault();
                 }
