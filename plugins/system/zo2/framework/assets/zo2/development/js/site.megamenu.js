@@ -14,6 +14,7 @@
         redirect();
         var duration = 0;
         var $parent = $('.zo2-megamenu');
+        window.clicked = false;
         var hover_type = $parent.data('hover');
         if ($parent.data('duration')) {
             duration = $parent.data('duration');
@@ -71,10 +72,12 @@
         //add caret to menu heading
         function addCaretToHeadingMenu($parent,hover_type) {
             var $menuheading = $parent.find('li.heading-submenu');
+            if (window.clicked) return;
             if ($menuheading.length > 0) {
                 $menuheading.each(function(el){
                     $(this).addClass('dropdown-submenu');
-                    $(this).find('a').append('<b class="caret"></b>');
+                    $(this).children('a').append('<b class="caret"></b>');
+                    //children('a').find('.caret')
                     var $ulelement = $(this).siblings();
                     if ($ulelement.length > 0) {
                         var $ul = $('<ul class="dropdown-menu"></ul>').append($ulelement);
@@ -99,6 +102,7 @@
                     });
                 })
             }
+            window.clicked = true;
         }
 
         ///
