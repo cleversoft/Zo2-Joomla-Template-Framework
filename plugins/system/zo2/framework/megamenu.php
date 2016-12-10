@@ -531,7 +531,7 @@ if (!class_exists('Zo2Megamenu'))
                     }
                     break;
                 case 'url':
-                    $flink = $menu->flink;
+                    $flink = $menu->flink == '#' ? 'javascript:void(0)' : $menu->flink;
                     $flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
                     switch ($menu->browserNav)
                     {
@@ -553,7 +553,7 @@ if (!class_exists('Zo2Megamenu'))
 
                     break;
                 default:
-                    $flink = $menu->flink;
+                    $flink = $menu->flink == '#' ? 'javascript:void(0)' : $menu->flink;
                     $flink = JFilterOutput::ampReplace(htmlspecialchars($flink));
                     $html = "<a class=\"$class\" href=\"$flink\" $title $dropdown>$icon$linktype$caret$caption</a>";
             }
