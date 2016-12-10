@@ -368,3 +368,15 @@ li.nm-menu-offscreen {
     }
   }
 }
+
+.caret {
+  &:before{
+    content: "\f107";
+    font-family: 'fontawesome';
+  }
+    @media only screen and (min-width: 300px) {
+        visibility: visible;
+        float: right;
+        border:none;
+    }
+}
