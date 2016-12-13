@@ -71,31 +71,38 @@
 
         //add caret to menu heading
         function addCaretToHeadingMenu($parent,hover_type) {
+            hover_type = 'click';
             var $menuheading = $parent.find('li.heading-submenu');
             if (window.clicked) return;
             if ($menuheading.length > 0) {
                 $menuheading.each(function(el){
                     $(this).addClass('dropdown-submenu');
                     $(this).children('a').append('<b class="caret"></b>');
-                    //children('a').find('.caret')
                     var $ulelement = $(this).siblings();
                     if ($ulelement.length > 0) {
                         var $ul = $('<ul class="dropdown-menu"></ul>').append($ulelement);
                         $(this).append($ul);
                     }
-                    $(this).find('a').unbind(hover_type).on(hover_type,function(e){
+                    $(this).children('a').on(hover_type,function(e){
                         e.stopPropagation();
+                        if(e.target !== e.currentTarget) return;
                         var seft = $(this);
                         $('.heading-submenu.open').not(seft.closest('.heading-submenu')).each(function(){
-                            $(this).closest('.heading-submenu').toggleClass('open',1);
+                            var $thisone = $(this);
+                            $thisone.children('ul.dropdown-menu').toggle('slow');
+                            $thisone.toggleClass('open');
                         });
-                         seft.closest('.heading-submenu').toggleClass('open',1);
-                        //if ($(this).closest('.heading-submenu').hasClass('open')){
-                        //    submenuOut($(this).closest('.heading-submenu'),'slow');
-                        //} else {
-                        //    submenuIn($(this).closest('.heading-submenu'),'slow');
-                        //}
+                        seft.next('ul.dropdown-menu').toggle('slow');
+                        seft.closest('.heading-submenu').toggleClass('open');
+
                     });
+                    if(hover_type == 'hover_type') {
+                        $(this).find('a').on('mouseleave',function(event){
+                            //do nothing
+                            event.stopPropagation();
+                        });
+                    }
+
                 })
             }
             window.clicked = true;
@@ -115,8 +122,11 @@
             $('.dropdown-toggle').on('click',function(e){
                 if($(this).parent().hasClass('open') && this.href && this.href != '#'){
                     if(e.target !== e.currentTarget) return;
+                    $(this).next().toggle('fast');
                     window.location.href = this.href;
                     e.preventDefault();
+                } else {
+                    $(this).next().toggle('slow');
                 }
             });
         }
