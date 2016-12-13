@@ -99,6 +99,7 @@
           > .mega-dropdown-menu {
             opacity: 1;
             visibility: visible;
+            position: absolute;
           }
         }
         &.hovering{
@@ -111,14 +112,86 @@
           .transition(all 400ms);
           .backface-visibility(hidden);
           visibility: hidden;
+          position: absolute;
+          top:65px;
         }
       }
     }
   }
+
+  .nm-menu-offscreen{
+    display: none;
+  }
 }
 
-/* ================== Mega Menu Only Screen < 767px ============ */
-@media (max-width: 767px) {
+/* ================== Mega Menu Only Screen < 768px ============ */
+@media (max-width: 768px) {
+
+  .nm-mobile-menu-content{
+    padding: 0;
+  }
+  #zo2-header-wrap>.container>.row{
+    position: relative;
+  }
+  .nm-menu-offscreen{
+    display: block;
+    position: absolute;
+    top: 40%;
+  }
+
+  .mobile-menu-open{
+    .is-sticky{
+      #zo2-mega-menu{
+        #mn-menu-canvas{
+          top:60px;
+        }
+      }
+    }
+    #zo2-header-wrap-sticky-wrapper #zo2-header-wrap .container .row .mn-menu{
+      position: fixed;
+      padding: 0;
+      .nm-menu-offscreen{
+        top: 30px;
+        position: fixed;
+        margin-left: 15px;
+      }
+    }
+    #zo2-mega-menu{
+      #mn-menu-canvas{
+        top: 80px;
+        width: 100%;
+        text-align: left;
+        background-color: white;
+        .zo2-megamenu{
+          >ul.nav{
+            width: 100%;
+            padding: 0 !important;
+            margin: 0;
+            li{
+              &.open{
+              }
+              border-bottom: 1px solid #eee;
+              &:last-child{
+                border-bottom: none;
+              }
+              >a{
+                padding: 10px 0px;
+              }
+              >.menu-child{
+                .mega-dropdown-inner{
+                  margin: 0;
+                  padding: 0;
+                  border-top:none;
+
+                }
+              }
+            }
+          }
+        }
+      }
+
+    }
+  }
 
   .zo2-megamenu{
     .row-fluid, .mega-dropdown-menu, .row-fluid [class*="span"]{
@@ -152,4 +225,3 @@
     }
   }
 }
-
