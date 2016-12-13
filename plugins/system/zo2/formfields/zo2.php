@@ -5,7 +5,6 @@
  * A powerful Joomla template framework
  *
  * @link        http://www.zootemplate.com/zo2
- * @link        http://www.zootemplate.com/zo2
  * @author      ZooTemplate <http://www.zootemplate.com>
  * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
@@ -22,7 +21,6 @@ if (!class_exists('JFormFieldZo2'))
 
     /**
      * Zo2 backend entrypoint field
-     * @since 1.5.1
      * @link http://docs.joomla.org/Creating_a_custom_form_field_type
      */
     class JFormFieldZo2 extends JFormField

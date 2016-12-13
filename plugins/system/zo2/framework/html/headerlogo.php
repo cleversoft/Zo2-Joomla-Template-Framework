@@ -4,9 +4,7 @@
  * Zo2 (http://www.zootemplate.com/zo2)
  * A powerful Joomla template framework
  *
- * @version     1.5.1
- * @since       1.5.1
- * @link        http://www.zootemplate.com/zo2
+ * @version     1.5.2
  * @link        http://www.zootemplate.com/zo2
  * @author      ZooTemplate <http://www.zootemplate.com>
  * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
@@ -21,7 +19,7 @@ if (!class_exists('Zo2HtmlHeaderlogo'))
 {
 
     /**
-     * @since 1.5.1
+     * @since 1.5.2
      */
     class Zo2HtmlHeaderlogo
     {

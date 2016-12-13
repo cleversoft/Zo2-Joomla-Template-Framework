@@ -20,6 +20,16 @@
             duration = $parent.data('duration');
         }
 
+        $('.dropdown-toggle').closest('li').on('click',function(e){
+            if($(this).hasClass('open') && $(this).children('a.dropdown-toggle').eq(0).attr('href') && $(this).children('a.dropdown-toggle').eq(0).attr('href') != '#'){
+                if(e.target !== e.currentTarget) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+            }
+        });
+
         if (duration && (hover_type == 'hover')) {
             var timeout = duration ? duration + 50 : 500;
             $('.nav > li, li.mega').hover(
@@ -61,6 +71,9 @@
                 $('#nm-page-overlay').addClass('show');
                 $('.navbar-collapse').removeClass('collapse').addClass('nm-mobile-menu-content');
                 addCaretToHeadingMenu($('.zo2-megamenu'),hover_type);
+                $parent.find('ul > li > div.menu-child').each(function(){
+                    $(this).removeAttr('style');
+                });
             }
             $('.mobile-menu-open #nm-page-overlay').on('click',function(){
                 $body.removeClass('mobile-menu-open');
@@ -96,12 +109,6 @@
                         seft.closest('.heading-submenu').toggleClass('open');
 
                     });
-                    if(hover_type == 'hover_type') {
-                        $(this).find('a').on('mouseleave',function(event){
-                            //do nothing
-                            event.stopPropagation();
-                        });
-                    }
 
                 })
             }
@@ -126,7 +133,16 @@
                     window.location.href = this.href;
                     e.preventDefault();
                 } else {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    if(e.target !== e.currentTarget) return;
+                    $('.dropdown.mega.open').not($(this).closest('li')).each(function(){
+                        var $thisone = $(this);
+                        $thisone.children('div.dropdown-menu').toggle('slow');
+                        $thisone.toggleClass('open');
+                    });
                     $(this).next().toggle('slow');
+                    $(this).closest('li').toggleClass('open');
                 }
             });
         }

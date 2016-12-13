@@ -5,7 +5,6 @@
  * A powerful Joomla template framework
  *
  * @link        http://www.zootemplate.com/zo2
- * @link        http://www.zootemplate.com/zo2
  * @author      ZooTemplate <http://www.zootemplate.com>
  * @copyright   Copyright (c) 2014 CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
@@ -13,7 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 define('ZO2', 'zo2');
-define('ZO2_VERSION', '1.5.1');
+define('ZO2_VERSION', '1.5.2');
 
 define('JURL_ROOT', rtrim(JUri::root(), '/'));
 /**
