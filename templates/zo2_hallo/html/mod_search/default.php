@@ -14,47 +14,44 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', false, true);
 ?>
 <div class="search<?php echo $moduleclass_sfx ?>">
-	<div class="icon-search visible-xs-block visible-sm-block">
-		<i class="fa fa-search"></i>
+	<div class="icon-search">
+		<i class="cs-font clever-icon-search-4"></i>
 	</div>
 	<div class="search-form " >
-	<div class="search-close">
-		<i class="fa fa-times"></i>
-	</div>
     	<form action="<?php echo JRoute::_('index.php');?>" method="post" class="form-inline">
     		<?php
     			$output = '<label for="mod-search-searchword" class="element-invisible">' . $label . '</label> ';
     			$output .= '<input name="searchword" id="mod-search-searchword" maxlength="' . $maxlength . '"  class="inputbox search-query" type="search" size="' . $width . '"';
-    			$output .= ' placeholder="' . $text . '" />';
-    
+    			$output .= ' placeholder="Type & hit enter ..." />';
+
     			if ($button) :
     				if ($imagebutton) :
     					$btn_output = ' <input type="image" alt="' . $button_text . '" class="button" src="' . $img . '" onclick="this.form.searchword.focus();"/>';
     				else :
     					$btn_output = ' <button class="button btn btn-primary" onclick="this.form.searchword.focus();">' . $button_text . '</button>';
     				endif;
-    
+
     				switch ($button_pos) :
     					case 'top' :
     						$output = $btn_output . '<br />' . $output;
     						break;
-    
+
     					case 'bottom' :
     						$output .= '<br />' . $btn_output;
     						break;
-    
+
     					case 'right' :
     						$output .= $btn_output;
     						break;
-    
+
     					case 'left' :
     					default :
     						$output = $btn_output . $output;
     						break;
     				endswitch;
-    
+
     			endif;
-    
+
     			echo $output;
     		?>
     		<input type="hidden" name="task" value="search" />

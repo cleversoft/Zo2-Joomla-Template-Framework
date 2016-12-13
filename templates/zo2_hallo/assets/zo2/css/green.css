@@ -104,3 +104,6 @@ blockquote:before {
   background-color: #7fbe54;
   border: 2px solid #7fbe54;
 }
+.search .icon-search i:hover {
+  color: #7fbe54;
+}
