@@ -22,10 +22,14 @@
 
         $('.dropdown-toggle').closest('li').on('click',function(e){
             if($(this).hasClass('open') && $(this).children('a.dropdown-toggle').eq(0).attr('href') && $(this).children('a.dropdown-toggle').eq(0).attr('href') != '#'){
-                if(e.target !== e.currentTarget) {
+                if(e.target !== e.currentTarget && e.target.className != 'caret') {
                     e.preventDefault();
                     e.stopPropagation();
                     return;
+                } else {
+                    $(this).children('div').toggle('fast');
+                    window.location.href = $(this).children('a.dropdown-toggle').eq(0).attr('href');
+                    e.preventDefault();
                 }
             }
         });
@@ -98,7 +102,7 @@
                     }
                     $(this).children('a').on(hover_type,function(e){
                         e.stopPropagation();
-                        if(e.target !== e.currentTarget) return;
+                        //if(e.target !== e.currentTarget) return;
                         var seft = $(this);
                         $('.heading-submenu.open').not(seft.closest('.heading-submenu')).each(function(){
                             var $thisone = $(this);
@@ -128,14 +132,14 @@
         function redirect() {
             $('.dropdown-toggle').on('click',function(e){
                 if($(this).parent().hasClass('open') && this.href && this.href != '#'){
-                    if(e.target !== e.currentTarget) return;
+                    if(e.target !== e.currentTarget ) return;
                     $(this).next().toggle('fast');
                     window.location.href = this.href;
                     e.preventDefault();
                 } else {
                     e.stopPropagation();
                     e.preventDefault();
-                    if(e.target !== e.currentTarget) return;
+                    if(e.target !== e.currentTarget && e.target.className != 'caret') return;
                     $('.dropdown.mega.open').not($(this).closest('li')).each(function(){
                         var $thisone = $(this);
                         $thisone.children('div.dropdown-menu').toggle('slow');
