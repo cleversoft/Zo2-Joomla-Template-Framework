@@ -20,20 +20,6 @@
             duration = $parent.data('duration');
         }
 
-        $('.dropdown-toggle').closest('li').on('click',function(e){
-            if($(this).hasClass('open') && $(this).children('a.dropdown-toggle').eq(0).attr('href') && $(this).children('a.dropdown-toggle').eq(0).attr('href') != '#'){
-                if(e.target !== e.currentTarget && e.target.className != 'caret') {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return;
-                } else {
-                    $(this).children('div').toggle('fast');
-                    window.location.href = $(this).children('a.dropdown-toggle').eq(0).attr('href');
-                    e.preventDefault();
-                }
-            }
-        });
-
         if (duration && (hover_type == 'hover')) {
             var timeout = duration ? duration + 50 : 500;
             $('.nav > li, li.mega').hover(
@@ -70,14 +56,32 @@
                 $('.navbar-collapse').addClass('collapse');
             }else{
                 $body.addClass('mobile-menu-open');
+                $('.dropdown-toggle').closest('li').on('click',function(e){
+                    if($(this).hasClass('open') && $(this).children('a.dropdown-toggle').eq(0).attr('href') && $(this).children('a.dropdown-toggle').eq(0).attr('href') != '#'){
+                        if(e.target !== e.currentTarget && e.target.className != 'caret') {
+                            if (e.target.nodeName != 'A') {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                return;
+                            }
+                        } else {
+                            $(this).children('div').toggle('fast');
+                            window.location.href = $(this).children('a.dropdown-toggle').eq(0).attr('href');
+                            e.preventDefault();
+                        }
+                    }
+                });
                 $('#nm-page-overlay').addClass('show');
                 $('#zo2-mega-menu nav.zo2-menu').attr('id','mn-menu-canvas');
                 $('#nm-page-overlay').addClass('show');
                 $('.navbar-collapse').removeClass('collapse').addClass('nm-mobile-menu-content');
+                $parent.find('ul li').unbind('hover');
                 addCaretToHeadingMenu($('.zo2-megamenu'),hover_type);
+                redirectMobile();
                 $parent.find('ul > li > div.menu-child').each(function(){
                     $(this).removeAttr('style');
                 });
+
             }
             $('.mobile-menu-open #nm-page-overlay').on('click',function(){
                 $body.removeClass('mobile-menu-open');
@@ -100,6 +104,7 @@
                         var $ul = $('<ul class="dropdown-menu"></ul>').append($ulelement);
                         $(this).append($ul);
                     }
+                    $(this).children('a').unbind('hover');
                     $(this).children('a').on(hover_type,function(e){
                         e.stopPropagation();
                         //if(e.target !== e.currentTarget) return;
@@ -119,20 +124,25 @@
             window.clicked = true;
         }
 
-        ///
-        //function submenuOut(el,timeout,hover_type){
-        //    $(el).find('ul.dropdown-menu').fadeOut(timeout);
-        //}
-        //
-        /////
-        //function submenuIn(el,timeout,hover_type){
-        //    $(el).find('ul.dropdown-menu').fadeIn(timeout);
-        //}
-        // for first li tag
-        function redirect() {
+        function redirect(){
             $('.dropdown-toggle').on('click',function(e){
                 if($(this).parent().hasClass('open') && this.href && this.href != '#'){
-                    if(e.target !== e.currentTarget ) return;
+                    if(e.target !== e.currentTarget) return;
+                    window.location.href = this.href;
+                    e.preventDefault();
+                }
+            });
+        }
+        function redirectMobile() {
+            $('.dropdown-toggle').on('click',function(e){
+                if($(this).parent().hasClass('open') && this.href && this.href != '#'){
+                    if(e.target !== e.currentTarget && e.target.className == 'caret') {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        $(this).next().toggle('slow');
+                        $(this).closest('li').toggleClass('open');
+                        return;
+                    }
                     $(this).next().toggle('fast');
                     window.location.href = this.href;
                     e.preventDefault();
