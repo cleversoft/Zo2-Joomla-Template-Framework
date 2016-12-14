@@ -78,7 +78,6 @@
           }
           > .mega-dropdown-menu {
             > div {
-              margin-top: 92px;
               .transition(all 200ms);
               .backface-visibility(hidden);
             }
@@ -86,7 +85,7 @@
           &.open {
             & > .mega-dropdown-menu {
               & > div {
-                margin-top: 76px;
+
               }
             }
           }
@@ -113,7 +112,6 @@
           .backface-visibility(hidden);
           visibility: hidden;
           position: absolute;
-          top:65px;
         }
       }
     }
@@ -126,7 +124,11 @@
 
 /* ================== Mega Menu Only Screen < 768px ============ */
 @media (max-width: 768px) {
-
+  .mobile-menu-open{
+    .mobile-logo{
+      margin-left: 8.3%;
+    }
+  }
   .nm-mobile-menu-content{
     padding: 0;
   }
