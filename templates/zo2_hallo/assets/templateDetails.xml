@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="template" client="site" method="upgrade">
+    <name>zo2_hallo</name>
+    <creationDate>Dec 13, 2016</creationDate>
+    <version>1.5.2</version>
+    <author>ZooTemplate.com</author>
+    <authorEmail>support@zootemplate.com</authorEmail>
+    <authorUrl>https://www.zootemplate.com/zo2</authorUrl>
+    <copyright>Copyright (c) 2008 - 2016 ZooTemplate.Com</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GPL v2 or later</license>
+    <description>
+        <![CDATA[
+      			<img src="http://www.zootemplate.com/wp-content/uploads/zo2_framework.png" />
+                <p>The Zo2 Hallo is a clean modern responsive design that is a great place to start when building your custom Zo2 powered template.</p>
+                <p class="alert "><strong>Note:</strong> Zo2 Hallo requires Zo2 plugin to be installed and enabled.</p>
+     	]]>
+    </description>
+    <positions>
+        <position>canvas-menu</position>
+        <position>feature</position>
+        <position>footer-copyright</position>
+        <position>header-logo</position>
+        <position>footer-logo</position>
+        <position>mega-menu</position>
+        <position>footer-menu</position>
+        <position>news</position>
+        <position>position-0</position>
+        <position>position-1</position>
+        <position>position-2</position>
+        <position>position-3</position>
+        <position>position-4</position>
+        <position>position-7</position>
+        <position>position-8</position>
+        <position>position-9</position>
+        <position>position-10</position>
+        <position>position-11</position>
+        <position>slide</position>
+    </positions>
+    <files>
+        <filename>error.php</filename>
+        <filename>index.html</filename>
+        <filename>index.php</filename>
+        <filename>favicon.ico</filename>
+        <filename>templateDetails.xml</filename>
+        <filename>template_preview.png</filename>
+        <filename>template_thumbnail.png</filename>
+        <folder>html</folder>
+        <folder>includes</folder>
+        <folder>assets</folder>
+    </files>
+    <config>
+        <fields name="params" addfieldpath="/plugins/system/zo2/formfields">
+            <fieldset name="zo2">
+                <field name="zo2" type="zo2" layout="config" />
+            </fieldset>
+        </fields>
+    </config>
+</extension>

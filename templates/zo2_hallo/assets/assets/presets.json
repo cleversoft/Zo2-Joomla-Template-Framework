@@ -1,0 +1,82 @@
+[
+    {
+        "name": "green",
+        "default": false,
+        "css": "green",
+        "less": "green",
+        "color": "#7FBE54",
+        "thumbnail": "/assets/zo2/images/presets/green.jpg",
+        "variables": {
+            "background": "#ffffff",
+            "header": "",
+            "header_top": "",
+            "link": "#7FBE54",
+            "link_hover": "#449d44",
+            "text": "",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": "",
+            "extra": ""
+        }
+    },
+    {
+        "name": "blue",
+        "default": false,
+        "css": "blue",
+        "less": "blue",
+        "color": "#0099FF",
+        "thumbnail": "/assets/zo2/images/presets/blue.jpg",
+        "variables": {
+            "background": "",
+            "header": "",
+            "header_top": "",
+            "link": "#184587",
+            "link_hover": "#5eaf28",
+            "text": "#222",
+            "bottom1": "",
+            "bottom2": "",
+            "footer": "",
+            "extra": ""
+        }
+    },
+    {
+        "name": "orange",
+        "default": false,
+        "css": "orange",
+        "less": "orange",
+        "color": "#D25400",
+        "thumbnail": "/assets/zo2/images/presets/orange.jpg",
+        "variables": {
+            "background": "#ffffff",
+            "header": "",
+            "header_top": "",
+            "link": "#d35400",
+            "link_hover": "#e67e22",
+            "text": "#4d4d62",
+            "bottom1": "#2c3e50",
+            "bottom2": "#2c3e50",
+            "footer": "#edeff1",
+            "extra": ""
+        }
+    },
+    {
+            "name": "violet",
+            "default": false,
+            "css": "violet",
+            "less": "violet",
+            "color": "#c3325f",
+            "thumbnail": "/assets/zo2/images/presets/violet.jpg",
+            "variables": {
+                "background": "#ffffff",
+                "header": "",
+                "header_top": "",
+                "link": "#d35400",
+                "link_hover": "#e67e22",
+                "text": "#4d4d62",
+                "bottom1": "#2c3e50",
+                "bottom2": "#2c3e50",
+                "footer": "#edeff1",
+                "extra": ""
+            }
+        }
+]

@@ -1,0 +1,83 @@
+/**
+ * Zo2 (http://www.zootemplate.com/zo2)
+ * A powerful Joomla template framework
+ *
+ * @link        http://www.zootemplate.com/zo2
+ * @copyright   Copyright (c) 2016 CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
+ *------------------------------------------------------------------------------
+ * @package       Zo2 Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2008-2016 zootemplate.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       CleverSoft
+ * @Link:         http://zo2.zoodemo.com/
+ *------------------------------------------------------------------------------
+ */
+
+@import 'mixins';
+@import "variables";
+
+#zo2-header-wrap{
+  > .container{
+    position: relative;
+  }
+  .zo2-menu {
+    border-radius: 0;
+    border: 0;
+    margin-bottom: 0px;
+    background: @white;
+    .transition(all 0.5s ease 0s);
+    .navbar-nav {
+      padding: 15px 0;
+      li{
+        a{
+          color: @black;
+          .transition(color 0.3s ease 0s);
+        }
+      }
+      .active,
+      .open {
+        > a {
+          background:none;
+          outline-style: none;
+          &:hover,
+          &:focus{
+            background:none;
+            outline-style: none;
+          }
+        }
+      }
+    }
+  }
+}
+#zo2-header-logo{
+  .zo2-logo {
+    a {
+      line-height: 80px;
+      img{
+        display: inline-block;
+      }
+    }
+  }
+}
+.is-sticky{
+  #zo2-header-wrap{
+    .box-shadow(1px 1px 5px 0px rgba(0,0,0,0.1));
+    width: 100%;
+    background: @white;
+    z-index: 4;
+    #zo2-header-logo {
+      .zo2-logo {
+        a {
+          line-height: 60px;
+        }
+      }
+    }
+    .zo2-megamenu {
+      > .navbar-nav {
+        padding: 5px 0;
+      }
+    }
+  }
+}
