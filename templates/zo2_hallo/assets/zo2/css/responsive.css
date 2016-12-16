@@ -12,7 +12,7 @@
     flex-direction: row;
   }
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   #zo2-header-wrap>.container>.row {
     display: flex;
   }

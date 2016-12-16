@@ -1283,6 +1283,25 @@ div.tags span a.label-info {
 .zo2-wrapper.boxed.container #zo2-header-wrap-sticky-wrapper #zo2-header-wrap {
   left: 0;
 }
+#zo2-header-wrap-sticky-wrapper #zo2-header-wrap .container {
+  position: relative;
+}
+#zo2-header-wrap-sticky-wrapper #zo2-header-wrap #zo2-mega-menu {
+  position: inherit;
+}
+#zo2-header-wrap-sticky-wrapper #zo2-header-wrap #zo2-mega-menu nav.zo2-menu.navbar-default ul.navbar-nav {
+  float: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+@media only screen and (max-width: 767px) {
+  #zo2-header-wrap-sticky-wrapper #zo2-header-wrap #zo2-mega-menu nav.zo2-menu.navbar-default ul.navbar-nav {
+    float: right;
+    display: flex;
+    flex-direction: column;
+  }
+}
 .download {
   padding: 150px 15px;
   text-align: center;
@@ -2003,6 +2022,7 @@ body.boxed >section {
   z-index: 0;
 }
 .search .search-form form #mod-search-searchword {
+  padding-left: 15px;
   width: 100%;
   position: absolute;
   left: 0;
