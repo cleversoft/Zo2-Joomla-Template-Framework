@@ -1,13 +1,11 @@
 <?php
 
 /**
- * Zo2 (http://www.zootemplate.com/zo2)
- * A powerful Joomla template framework
- *
- * @version     1.5.2
+ * Zo2 - A powerful Joomla template framework
+ * @version     1.5.3
  * @link        http://www.zootemplate.com/zo2
- * @author      ZooTemplate <http://www.zootemplate.com>
- * @copyright   Copyright (c) 2016 CleverSoft (http://cleversoft.co/)
+ * @author      ZooTemplate
+ * @copyright   CleverSoft (http://cleversoft.co/)
  * @license     GPL v2
  */
 

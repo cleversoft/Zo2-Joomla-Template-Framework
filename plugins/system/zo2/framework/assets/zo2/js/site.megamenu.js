@@ -1,11 +1,9 @@
 /**
- * Zo2 Framework (http://zo2framework.org)
- *
- * @link     http://www.zootemplate.com/zo2
- * @package  Zo2
- * @author   Hiepvu
- * @copyright  Copyright ( c ) 2008 - 2013 APL Solutions
- * @license  http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or Later
+ * Zo2 - A powerful Joomla template framework
+ * @link        http://www.zootemplate.com/zo2
+ * @author      ZooTemplate (http://www.zootemplate.com)
+ * @copyright   CleverSoft (http://cleversoft.co/)
+ * @license     GPL v2
  */
 
 !function ($) {

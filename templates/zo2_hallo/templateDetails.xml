@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.0" type="template" client="site" method="upgrade">
     <name>zo2_hallo</name>
-    <creationDate>Dec 13, 2016</creationDate>
-    <version>1.5.2</version>
+    <creationDate>Dec 19, 2016</creationDate>
+    <version>1.5.3</version>
     <author>ZooTemplate.com</author>
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>
-    <copyright>Copyright (c) 2008 - 2016 ZooTemplate.Com</copyright>
+    <copyright>ZooTemplate.Com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPL v2 or later</license>
     <description>
         <![CDATA[
