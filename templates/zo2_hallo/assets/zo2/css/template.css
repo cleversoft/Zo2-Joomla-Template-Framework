@@ -1288,17 +1288,7 @@ div.tags span a.label-info {
   position: relative;
 }
 #zo2-header-wrap .zo2-menu {
-  border-radius: 0;
-  border: 0;
-  margin-bottom: 0px;
   background: #fff;
-  -webkit-transition: all 0.5s ease 0s;
-  -moz-transition: all 0.5s ease 0s;
-  -o-transition: all 0.5s ease 0s;
-  transition: all 0.5s ease 0s;
-}
-#zo2-header-wrap .zo2-menu .navbar-nav {
-  padding: 15px 0;
 }
 #zo2-header-wrap .zo2-menu .navbar-nav li a {
   color: #000;
@@ -1335,9 +1325,6 @@ div.tags span a.label-info {
 }
 .is-sticky #zo2-header-wrap #zo2-header-logo .zo2-logo a {
   line-height: 60px;
-}
-.is-sticky #zo2-header-wrap .zo2-megamenu > .navbar-nav {
-  padding: 5px 0;
 }
 .download {
   padding: 150px 15px;
@@ -1540,9 +1527,6 @@ h3.moduletitle::after {
 }
 dd.category-name a {
   color: #b4b4b4;
-}
-.menu-child .mega-dropdown-inner ul li a {
-  padding: 15px 0;
 }
 .zo2-slide {
   position: relative;

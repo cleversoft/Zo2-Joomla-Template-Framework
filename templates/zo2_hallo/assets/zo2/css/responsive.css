@@ -1,9 +1,60 @@
-@media only screen and (min-width: 300px) {
-  #zo2-footer-wrap .container .row,
-  #zo2-footer-menu ul.nav {
-    display: flex;
-    flex-direction: column;
-  }
+.full-width {
+  padding: 0;
+}
+.btn-hallo {
+  padding: 15px 20px;
+  margin: 0 15px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.btn-hallo:hover {
+  text-decoration: none;
+}
+.button-download {
+  color: #fff;
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+}
+.button-download:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+}
+.button-viewdemo {
+  background-color: transparent;
+  border: 2px solid #fff;
+  -webkit-transition: all 0.2s ease 0s;
+  -moz-transition: all 0.2s ease 0s;
+  -o-transition: all 0.2s ease 0s;
+  transition: all 0.2s ease 0s;
+  color: #fff;
+}
+.button-viewdemo:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
+  background-color: #e6502e;
+  border: 2px solid #e6502e;
+  color: #fff;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+img {
+  display: block;
+  height: auto;
+  max-width: 100%;
 }
 @media only screen and (min-width: 768px) {
   #zo2-footer-wrap .container .row,
@@ -13,6 +64,13 @@
   }
   .zo2-menu {
     position: static;
+    padding: 15px 0;
+  }
+  .is-sticky {
+    padding: 0;
+  }
+  .is-sticky .zo2-menu {
+    padding: 5px 0;
   }
   .zo2-megamenu .navbar-nav {
     float: none;
@@ -31,6 +89,9 @@
   #zo2-header-logo .zo2-logo a {
     line-height: 60px;
   }
+  .zo2-menu {
+    background-color: #fff;
+  }
   #zo2-header-wrap .mn-menu {
     order: 0;
   }
@@ -44,19 +105,11 @@
   .search .icon-search i {
     top: 25px;
   }
-  .zo2-menu {
-    position: fixed;
-    top: 60px;
-    width: 100%;
-    text-align: left;
-    background-color: white;
-    min-height: 0;
-  }
   .mobile-menu-open .is-sticky #zo2-mega-menu #mn-menu-canvas {
     top: 60px;
   }
   .mobile-menu-open .zo2-menu {
-    height: calc(100% - 80px);
+    height: calc(100% - 60px);
   }
   .mobile-menu-open .zo2-menu::-webkit-scrollbar {
     display: none;
@@ -70,5 +123,10 @@
     top: 20px;
     position: fixed;
     margin-left: 15px;
+  }
+  #zo2-footer-wrap .container .row,
+  #zo2-footer-menu ul.nav {
+    display: flex;
+    flex-direction: column;
   }
 }

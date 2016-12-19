@@ -1,0 +1,171 @@
+@mainColor: #8A2AE3;
+@linkmainColor:darken(@mainColor, 15%);
+@white: #fff;
+.readmore a{
+  color: @mainColor;
+  &:hover,
+  &:active,
+  &:focus {
+    color: @mainColor;
+  }
+}
+a {
+  color: @mainColor;
+}
+/*Zo2 Menu*/
+nav.zo2-menu{
+  .navbar-nav{
+    > .open{
+      a{
+        color: @mainColor;
+        &:hover,
+        &:focus{
+          color: @mainColor;
+        }
+      }
+    }
+    .active{
+      a{
+        color: @mainColor;
+        &:hover,
+        &:focus{
+          color: @mainColor;
+        }
+      }
+    }
+    ul.mega-nav{
+      li{
+        a{
+          &:hover,
+          &:active,
+          &:focus{
+            color: @mainColor;
+          }
+        }
+        &.active{
+          a{
+            color: @mainColor;
+          }
+        }
+      }
+    }
+  }
+}
+/*Features*/
+#zo2-body-wrap {
+  .top-feature {
+    .zo2-feature {
+      .zo2-circle{
+        color:@mainColor;
+        &:before{
+          box-shadow:0 0 0 3px @mainColor;
+        }
+      }
+      &:hover{
+        .zo2-circle{
+          background-color:@mainColor;
+          color: @white;
+        }
+      }
+    }
+  }
+}
+//Class suffix
+.box-color{
+  background: @mainColor;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  body{
+    nav.zo2-menu{
+      .navbar-toggle{
+        &:hover{
+          .icon-bar{
+            background-color:@mainColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*Override Bootstrap*/
+.btn-success{
+  background-color: @mainColor;
+  color: @white!important;
+}
+.btn-success:hover{
+  background-color: @linkmainColor;
+}
+.zo2-pagination ul >li.active >span,.pagination li:hover a{
+  background: @mainColor;
+}
+.item-page .article_content{
+  border-top: 3px solid @mainColor;
+}
+.item-page .article_content .article_icon{
+  background: @mainColor;
+}
+.dropdown-toggle:hover, .dropdown-toggle:active, .dropdown-toggle:focus{
+  color: @mainColor;
+}
+.item-page .article_content h1.singleItemTitle{
+  color: @mainColor;
+}
+.pager li a:hover, .pager li a:active, .pager li a:focus{
+  background: @mainColor;
+}
+#zo2-header-wrap-sticky-wrapper{
+  #zo2-header-wrap{
+        #zo2-mega-menu{
+      nav.zo2-menu{
+        &.navbar-default{
+          ul.navbar-nav{
+            .active,.open{
+              >a{
+                color:@mainColor;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.menufooter-menu{
+  li{
+    &.active{
+      a{
+        color: @mainColor;
+      }
+    }
+    a{
+      &:hover{
+        color: @mainColor;
+      }
+    }
+  }
+}
+.mod-inner ul li a:hover,blockquote:before{
+    color: @mainColor;
+}
+
+.button-download{
+  background-color:@mainColor;
+  border: 2px solid @mainColor;
+}
+.button-viewdemo{
+  &:hover{
+    background-color:@mainColor;
+    border: 2px solid @mainColor;
+
+  }
+}
+.search{
+  .icon-search{
+    i:hover{
+      color:@mainColor;
+    }
+  }
+}

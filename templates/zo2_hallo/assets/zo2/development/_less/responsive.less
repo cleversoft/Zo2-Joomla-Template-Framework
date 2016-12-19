@@ -1,6 +1,10 @@
-@import 'core/mixins';
-@import "core/variables";
-
+/* SMARTPHONES PORTRAIT */
+@media only screen and (min-width: 300px) {
+  #zo2-footer-wrap .container .row, #zo2-footer-menu ul.nav{
+        display: flex;
+        flex-direction:column;
+  }
+}
 
 /* TABLETS PORTRAIT */
 @media only screen and (min-width: 768px) {
@@ -10,13 +14,6 @@
   }
   .zo2-menu {
     position: static;
-    padding: 15px 0;
-  }
-  .is-sticky {
-    padding: 0;
-    .zo2-menu {
-      padding: 5px 0;
-    }
   }
   .zo2-megamenu {
     .navbar-nav {
@@ -40,12 +37,6 @@
       }
     }
   }
-  /* Canvas Menu */
-  .zo2-menu {
-    background-color: @white;
-  }
-
-
   #zo2-header-wrap {
     .mn-menu{
       order: 0;
@@ -66,6 +57,14 @@
       }
     }
   }
+  .zo2-menu {
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    text-align: left;
+    background-color: white;
+    min-height: 0;
+  }
   .mobile-menu-open {
     .is-sticky{
       #zo2-mega-menu{
@@ -75,7 +74,7 @@
       }
     }
     .zo2-menu {
-      height: calc(~"100% - 60px");
+      height: calc(~"100% - 80px");
       &::-webkit-scrollbar {
         display: none;
       }
@@ -90,9 +89,5 @@
       position: fixed;
       margin-left: 15px;
     }
-  }
-  #zo2-footer-wrap .container .row, #zo2-footer-menu ul.nav {
-    display: flex;
-    flex-direction:column;
   }
 }
