@@ -49,6 +49,12 @@
                 }
             }
          }
+        $('.dropdown').on('show.bs.dropdown', function(e) {
+            $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+        });
+        $('.dropdown').on('hide.bs.dropdown', function() {
+            $(this).find('.dropdown-menu, .menu-child').stop(true, true).slideUp();
+        });
 
         //add mobile menu class to body
         var $body = $('body');
@@ -62,18 +68,6 @@
                 $('.navbar-collapse').addClass('collapse');
             }else{
                 $body.addClass('mobile-menu-open');
-                $parent.find('li>a').on('click',function(e){
-                    if(e.target !== e.currentTarget) {
-                        if(e.target.className == 'caret') {
-                            $(this).next('.menu-child').toggle(300);
-                            $(this).closest('li').toggleClass('open');
-                            return false;
-                        }
-                    }
-                    window.location.href = this.href;
-                    e.preventDefault();
-                    e.stopPropagation();
-                });
                 $('#nm-page-overlay').addClass('show');
                 $('#zo2-mega-menu nav.zo2-menu').attr('id','mn-menu-canvas');
                 $('#nm-page-overlay').addClass('show');
@@ -85,6 +79,25 @@
                 $(this).removeClass('show');
                 $('.navbar-collapse').addClass('collapse');
             });
+        });
+        $('.mega-dropdown-menu').on('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var target = $(e.target);
+            if(e.target.className == 'caret') {
+                var dropdownMenu = target.parent().next();
+                var siblings = target.closest('.menu-child').find('.dropdown-menu, .menu-child');
+
+                if(dropdownMenu.is(':visible')) {
+                    dropdownMenu.slideUp();
+                } else {
+                    siblings.slideUp();
+                    dropdownMenu.slideDown();
+                }
+            } else if(target.is('a')) {
+                if(target.attr('href') != '#')
+                    window.location.href = href;
+            }
         });
 
         //add caret to menu heading
