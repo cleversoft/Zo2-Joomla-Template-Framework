@@ -95,8 +95,9 @@
                     dropdownMenu.slideDown();
                 }
             } else if(target.is('a')) {
-                if(target.attr('href') != '#')
-                    window.location.href = href;
+                var href = target.attr('href');
+                if(href != '#')
+                	window.location.href = href;
             }
         });
 
