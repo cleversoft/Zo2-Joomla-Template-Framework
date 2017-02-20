@@ -81,7 +81,7 @@
             });
         });
         $('.mega-dropdown-menu').on('click', function(e) {
-            e.preventDefault();
+            e.preventDefault(); 
             e.stopPropagation();
             var target = $(e.target);
             if(e.target.className == 'caret') {
@@ -97,7 +97,7 @@
             } else if(target.is('a')) {
                 var href = target.attr('href');
                 if(href != '#')
-                	window.location.href = href;
+                    window.location.href = href;
             }
         });
 

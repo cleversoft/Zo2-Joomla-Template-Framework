@@ -25,7 +25,6 @@
             "template.less",
             "rtl.less",
             "responsive.less",
-            "non-responsive.less",
             "error.less",
             "green.less",
             "blue.less",

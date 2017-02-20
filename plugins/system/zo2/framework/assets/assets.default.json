@@ -3,12 +3,14 @@
         "css": [
             "vendor\/bootstrap\/css\/bootstrap.min.css",
             "vendor\/font-awesome\/css\/font-awesome.min.css",
+            "vendor\/font-cleversoft\/font-cleversoft.min.css",
+            "vendor\/ekko-lightbox\/ekko-lightbox.min.css",
             "zo2\/css\/site.styles.css",
             "zo2\/css\/template.css"
         ],
         "js": [
             "vendor\/bootstrap\/js\/bootstrap.min.js",
-            "vendor\/ekko-lightbox.js",
+            "vendor\/ekko-lightbox\/ekko-lightbox.min.js",
             "vendor\/jquery.sticky.js",
             "zo2\/js\/zo2.js",
             "zo2\/js\/site.megamenu.js",
