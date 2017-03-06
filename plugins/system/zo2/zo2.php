@@ -28,6 +28,16 @@ if (!class_exists('plgSystemZo2'))
          */
         public function onAfterRoute()
         {
+            if(JFactory::getApplication()->isAdmin()) {
+                $db = JFactory::getDbo();
+                $cols = $db->getTableColumns('#__template_styles');
+                if($cols['params'] != 'longtext') {
+                    $db->setQuery('ALTER TABLE #__template_styles MODIFY params LONGTEXT COLLATE utf8mb4_unicode_ci NOT NULL');
+                    if(!$db->execute()) {
+                        throw new Exception(JText::_('Something went wrong with data type. Please contact plugin\'s provider.'));
+                    }
+                }
+            }
 
             if ($this->_isZo2())
             {
