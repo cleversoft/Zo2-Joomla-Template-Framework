@@ -82,6 +82,7 @@
             $rootParent.find('>[data-zo2-type="row"]').each(function() {
                 var itemJson = z.admin.generateLayoutJson(jQuery(this));
                 if (itemJson != null)
+                    if(itemJson.name.length > 0 ) itemJson.name = itemJson.name.replace(/[\s\n\r]/g,'');
                     json.push(itemJson);
             });
 
