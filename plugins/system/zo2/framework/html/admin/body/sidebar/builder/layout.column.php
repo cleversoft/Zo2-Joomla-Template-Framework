@@ -15,7 +15,7 @@ if ($column->get('visibility','') == '') $column->set('visibility',$column->get(
      >
 
      <div class="col-control-header">
-        <i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column before fa fa-plus hasTooltip"></i>
+        <i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column before fa fa-plus-square hasTooltip"></i>
         <i title="<?php echo JText::_('ZO2_COLUMN_SETTING') ?>" class="fa fa-cog col-control-icon settings hasTooltip" data-toggle="modal"></i>
         <i title="<?php echo JText::_('ZO2_REMOVE_COLUMN') ?>" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>
     </div>
@@ -32,7 +32,7 @@ if ($column->get('visibility','') == '') $column->set('visibility',$column->get(
             <i title="<?php echo JText::_('ZO2_DRAG_BLOCK') ?>" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>
             <i title="<?php echo JText::_('ZO2_CLONE_THIS_BLOCK') ?>" class="col-control-icon add-row fa fa-clone hasTooltip"></i>
             <i title="<?php echo JText::_('ZO2_BLOCK_SETTING') ?>" class="fa fa-cog col-control-icon block-settings hasTooltip" data-toggle="modal"></i>
-            <i title="<?php echo JText::_('ZO2_REMOVE_BLOCK') ?>" class="fa fa-remove col-control-icon delete hasTooltip"></i>
+            <i title="<?php echo JText::_('ZO2_REMOVE_BLOCK') ?>" class="fa fa-trash-o col-control-icon delete hasTooltip"></i>
         </div>
         <div class="row-container">
            
@@ -40,7 +40,7 @@ if ($column->get('visibility','') == '') $column->set('visibility',$column->get(
     </div>
     <?php endforeach; ?>
 
-    <div class="col-prepend-after"><i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column after fa fa-plus hasTooltip"></i></div>
+    <div class="col-prepend-after"><i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column after fa fa-plus-square hasTooltip"></i></div>
 </div>
 <?php
 } else {
@@ -57,7 +57,7 @@ if ($column->get('visibility','') == '') $column->set('visibility',$column->get(
      data-zo2-visibility-lg="<?php echo $column->get('visibility')->lg ? 1 : 0 ?>">
 
      <div class="col-control-header">
-        <i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column before fa fa-plus hasTooltip"></i>
+        <i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column before fa fa-plus-square hasTooltip"></i>
         <i title="<?php echo JText::_('ZO2_COLUMN_SETTING') ?>" class="fa fa-cog col-control-icon settings hasTooltip" data-toggle="modal"></i>
         <i title="<?php echo JText::_('ZO2_REMOVE_COLUMN') ?>" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>
     </div>
@@ -73,14 +73,14 @@ if ($column->get('visibility','') == '') $column->set('visibility',$column->get(
         <i title="<?php echo JText::_('ZO2_DRAG_BLOCK') ?>" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>
         <i title="<?php echo JText::_('ZO2_CLONE_THIS_BLOCK') ?>" class="col-control-icon add-row fa fa-clone hasTooltip"></i>
         <i title="<?php echo JText::_('ZO2_BLOCK_SETTING') ?>" class="fa fa-cog col-control-icon block-settings hasTooltip" data-toggle="modal"></i>
-        <i title="<?php echo JText::_('ZO2_REMOVE_BLOCK') ?>" class="fa fa-remove col-control-icon delete hasTooltip"></i>
+        <i title="<?php echo JText::_('ZO2_REMOVE_BLOCK') ?>" class="fa fa-trash-o col-control-icon delete hasTooltip"></i>
     </div>
     <div class="row-container">
 
     </div>
     </div>
 
-    <div class="col-prepend-after"><i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column after fa fa-plus hasTooltip"></i></div>
+    <div class="col-prepend-after"><i title="<?php echo JText::_('ZO2_PREPEND_TO_THIS_COLUMN') ?>" class="row-control-icon prepend-column after fa fa-plus-square hasTooltip"></i></div>
 </div>
 <?php } ?>
 <script>

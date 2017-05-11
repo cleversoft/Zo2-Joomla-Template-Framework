@@ -77,7 +77,7 @@
                     '<i title="'+drag_block+'" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
                     '<i title="'+clone_block+'" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
                     '<i title="'+block_setting+'" class="fa fa-cog col-control-icon block-settings hasTooltip"></i>' +
-                    '<i title="'+remove_block+'" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '<i title="'+remove_block+'" class="fa fa-trash-o col-control-icon delete hasTooltip"></i>' +
                     '</div><div class="row-container"></div>' +
                     '</div>';
                 var $meta = $(metaHtml);
@@ -91,7 +91,7 @@
                     '<i title="'+drag_block+'" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
                     '<i title="'+clone_block+'" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
                     '<i title="'+block_setting+'" class="fa fa-cog col-control-icon block-settings hasTooltip"></i>' +
-                    '<i title="'+remove_block+'" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                    '<i title="'+remove_block+'" class="fa fa-trash-o col-control-icon delete hasTooltip"></i>' +
                     '</div><div class="row-container"></div>' +
                     '</div>';
                 var $meta = $(metaHtml);
@@ -257,7 +257,7 @@
                 '<i title="'+drag_block+'" class="col-control-icon dragger fa fa-arrows hasTooltip"></i>' +
                 '<i title="'+clone_block+'" class="col-control-icon add-row fa fa-clone hasTooltip"></i>'+
                 '<i title="'+block_setting+'" class="fa fa-cog col-control-icon block-settings hasTooltip" data-toggle="modal"></i>'+
-                '<i title="'+remove_block+'" class="fa fa-remove col-control-icon delete hasTooltip"></i>' +
+                '<i title="'+remove_block+'" class="fa fa-trash-o col-control-icon delete hasTooltip"></i>' +
                 '</div><div class="row-container"></div>' +
                 '</div>'+
                 '<div class="col-prepend-after"><i title="'+prepend_this_column+'" class="row-control-icon prepend-column after fa fa-plus hasTooltip"></i></div></div>';
@@ -295,7 +295,7 @@
             '<div class="row-control-buttons">' +
             '<i title="'+row_setting+'" class="fa fa-cog row-control-icon settings hasTooltip"></i>' +
             '<i title="'+clone_this_row+'" class="row-control-icon add-row fa fa-clone hasTooltip"></i>' +
-            '<i title="'+remove_row+'" class="row-control-icon delete fa fa-remove hasTooltip"></i>' +
+            '<i title="'+remove_row+'" class="row-control-icon delete fa fa-trash-o hasTooltip"></i>' +
             '</div></div>' +
             '<div class="col-container"></div></div>');
             $meta.appendTo($row);

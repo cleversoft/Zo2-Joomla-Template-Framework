@@ -13,8 +13,8 @@
         <div class="row-control-container">
             <div class="row-control-buttons row-name">
         	    <i title="<?php echo JText::_('ZO2_DRAG_ROW') ?>" class="fa fa-arrows row-control-icon dragger hasTooltip"></i>
-    	    	<i title="<?php echo JText::_('ZO2_ADD_NEW_COLUMN') ?>" class="row-control-icon add-column fa fa-plus hasTooltip"></i>
-	            <?php echo $row->get('name'); ?>
+    	    	<i title="<?php echo JText::_('ZO2_ADD_NEW_COLUMN') ?>" class="row-control-icon add-column fa fa-plus-square hasTooltip"></i>
+	            <span><?php echo $row->get('name'); ?></span>
             </div>
             <div class="row-control-buttons">
                 <i title="<?php echo JText::_('ZO2_ROW_SETTING') ?>" class="fa fa-cog row-control-icon settings hasTooltip"></i>

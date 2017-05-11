@@ -332,7 +332,7 @@
     width: 300px;
   }
   .col-name {
-  	background: @white;
+    background: @white;
     color: #272727;
     font-size: @baseFontSize;
     font-weight: 400;
@@ -460,10 +460,10 @@
       }
     }
 
-	.col-prepend-after {width:100%;text-align: center;min-height: 1px; background: @grey;}
-	.col-prepend-after i {float: none;display: inline;}
-	.col-control-header {min-height: 30px;text-align: center; background: @grey;}
-	.col-control-header i {display: inline-block;float: none}
+  .col-prepend-after {width:100%;text-align: center;min-height: 1px; background: @grey;}
+  .col-prepend-after i {float: none;display: inline;}
+  .col-control-header {min-height: 30px;text-align: center; background: @grey;}
+  .col-control-header i {display: inline-block;float: none}
 
     /* Row Fluid Control */
     .row-fluid {
@@ -1370,6 +1370,29 @@ textarea {
 
 .no-content-helper i {cursor: pointer}
 
-.container-checkbox {padding: 20px 10px; border-bottom: 1px solid #ddd;}
-
-.modal-body {max-height: 700px!important;}
+.container-checkbox {
+  padding-top: 20px; 
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  &:last-child {
+    border-bottom: none
+  }
+}
+.zo2-body {
+  .modal-header {
+    padding-right: 10px;
+    padding-left: 10px;
+    .close {
+      padding: 0 5px 0 15px;
+      margin: 0;
+      width: auto;
+    }
+  }
+}
+.modal-body {
+  max-height: 700px!important;
+  padding: 10px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}

@@ -351,7 +351,7 @@
             //bind event to generate row id
             $('#txtRowName').on('keyup', function(e) {
                 var $this = $(this);
-                $('#txtRowId').val(z.admin.generateSlug($this.val()));
+                $('#txtRowId').val(z.admin.layoutbuilder.generateSlug($this.val()));
             });
             $('#droppable-container').on('click', '.col-control-buttons > .block-settings', function() {
                 var $col = $(this).closest('.sortable-col .col-wrap');
@@ -383,14 +383,14 @@
             //bind event to generate row id
             $('#txtRowName').on('keyup', function(e) {
                 var $this = $(this);
-                $('#txtRowId').val(z.admin.generateSlug($this.val()));
+                $('#txtRowId').val(z.admin.layoutbuilder.generateSlug($this.val()));
             });
             $('#droppable-container').on('click', '.row-control-buttons > .settings', function() {
                 var $this = $(this);
                 var $row = $this.closest('.sortable-row');
                 _self.editingElement = $row;
 
-                var rowName = $row.find('>.row-control>.row-control-container>.row-name').text();
+                var rowName = $row.find('>.row-control>.row-control-container>.row-name span').text();
                 var rowCustomClass = $row.attr('data-zo2-customClass');
                 //var rowLayout = $row.attr('data-zo2-layout');
                 var rowId = $row.attr('data-zo2-id');
