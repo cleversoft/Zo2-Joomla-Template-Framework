@@ -76,6 +76,12 @@ You are free to use Zo2 Framework for your personal and commercial projects. You
 
 ##Change logs
 
+### 1.5.4 release May 16, 2017
+
+* Style admin layout builder and fix error display row name
+* Fixed cant save template settings in joomla admin
+
+
 ### 1.5.3 release Dec 19, 2016
 
 * Improve Zo2 Hallo template

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.0" type="plugin" group="system" method="upgrade">
+<extension version="3.7" type="plugin" group="system" method="upgrade">
     <name>System - Zo2 Framework</name>
-    <creationDate>Dec 19, 2016</creationDate>
-    <version>1.5.3</version>
+    <creationDate>May 16, 2017</creationDate>
+    <version>1.5.4</version>
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>
-    <copyright>Copyright (c) 2008 - 2016 ZooTemplate.Com</copyright>
+    <copyright>Copyright (c) 2008 - 2017 ZooTemplate.Com</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GPL v2 or later</license>
     <description>Zo2 Framework - Template Framework for Joomla!CMS</description>
     <scriptfile>zo2.script.php</scriptfile>
