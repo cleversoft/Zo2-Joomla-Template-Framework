@@ -1,6 +1,10 @@
+/*!
+ *  Font Cleversoft 1.5 by cleversoft.co
+ */
 @font-face {
   font-family: 'cleversoft';
-  src: url('fonts/cleversoft.svg?v=1.3') format('svg'), url('fonts/cleversoft.ttf?v=1.3') format('truetype'), url('fonts/cleversoft.woff?v=1.3') format('woff'), url('fonts/cleversoft.woff2?v=1.3') format('woff2');
+  src:  url('fonts/cleversoft.eot?2yp7w4');
+  src:  url('fonts/cleversoft.eot?2yp7w4#iefix') format('embedded-opentype'), url('fonts/cleversoft.woff2?2yp7w4') format('woff2'), url('fonts/cleversoft.ttf?2yp7w4') format('truetype'), url('fonts/cleversoft.woff?2yp7w4') format('woff'), url('fonts/cleversoft.svg?2yp7w4#cleversoft') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,22 +18,18 @@
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  
-  /* Enable Ligatures ================ */
-  letter-spacing: 0;
-  -webkit-font-feature-settings: "liga";
-  -moz-font-feature-settings: "liga=1";
-  -moz-font-feature-settings: "liga";
-  -ms-font-feature-settings: "liga" 1;
-  font-feature-settings: "liga";
-  -webkit-font-variant-ligatures: discretionary-ligatures;
-  font-variant-ligatures: discretionary-ligatures;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+.clever-icon-show-more-button-with-three-dots:before {
+  content: "\e900";
+}
+.clever-icon-share-2:before {
+  content: "\c224";
+}
 .clever-icon-building:before {
   content: "\c223";
 }

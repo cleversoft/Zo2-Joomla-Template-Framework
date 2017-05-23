@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.7" type="plugin" group="system" method="upgrade">
+<extension version="3.7.1" type="plugin" group="system" method="upgrade">
     <name>System - Zo2 Framework</name>
-    <creationDate>May 16, 2017</creationDate>
-    <version>1.5.4</version>
+    <creationDate>May 23, 2017</creationDate>
+    <version>1.5.5</version>
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>
     <authorUrl>https://www.zootemplate.com/zo2</authorUrl>

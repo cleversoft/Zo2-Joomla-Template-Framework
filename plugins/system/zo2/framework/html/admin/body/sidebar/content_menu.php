@@ -1,6 +1,6 @@
 <?php
-$menuHoverType = trim(Zo2Framework::getParam('menu_hover_type'));
 $menuAnimation = trim(Zo2Framework::getParam('menu_animation'));
+$searchbox = Zo2Framework::getParam('menu_searchbox');
 ?>
 
 <h2><?php echo JText::_('ZO2_ADMIN_SIDEBAR_HEADER_MENU'); ?></h2>
@@ -19,21 +19,18 @@ echo Zo2Html::field(
 	<?php //echo JText::_('ZO2_ADMIN_MEGA_MENU');                                       ?><!--</h3>-->
 	<div class="profiles-pane-inner">
 
-		<!-- Hover type -->
+		<!-- Show Search box -->
 		<div class="control-group">
 			<div class="control-label">
-				<label class="zo2-label"><?php echo JText::_('ZO2_ADMIN_LABEL_MEGA_MENU_HOVER_TYPE'); ?></label>
-
-				<div class="label-desc"><?php echo JText::_('ZO2_ADMIN_DESC_MEGA_MENU_HOVER_TYPE_DESC'); ?></div>
+				<label class="zo2-label">
+					<?php echo JText::_('ZO2_ADMIN_CANVAS_MENU_SHOW_SEARCHBOX'); ?>
+				</label>
+				<div class="label-desc"><?php echo JText::_('ZO2_ADMIN_CANVAS_MENU_SHOW_SEARCHBOX_DESC'); ?></div>
 			</div>
 			<div class="controls">
-				<select name="jform[params][menu_hover_type]" id="jform_params_menu_hover_type">
-					<option value="hover"
-						<?php echo ($menuHoverType == 'hover') ? 'selected="selected"' : ''; ?> >
-						<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_HOVER'); ?></option>
-					<option value="click"
-						<?php echo ($menuHoverType == 'click') ? 'selected="selected"' : ''; ?> >
-						<?php echo JText::_('ZO2_ADMIN_MEGA_MENU_MOUSE_CLICK'); ?></option>
+				<select name="jform[params][menu_searchbox]" id="jform_params_menu_searchbox">
+					<option value="1" <?php if($searchbox==1) echo "selected" ?>><?php echo JText::_('JYES') ?></option>
+					<option value="0" <?php if($searchbox==0) echo "selected" ?>><?php echo JText::_('JNO') ?></option>
 				</select>
 			</div>
 		</div>

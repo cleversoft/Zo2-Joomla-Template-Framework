@@ -95,52 +95,17 @@
             position: absolute;
           }
         }
-        &.hovering{
+        &.hovering {
           > .mega-dropdown-menu {
             display: block!important;
           }
         }
         > .mega-dropdown-menu {
           .opacity(0);
-          .transition(all 400ms);
+          .transition(all 300ms);
           .backface-visibility(hidden);
           visibility: hidden;
           position: absolute;
-        }
-      }
-    }
-  }
-  .mn-menu{
-    position: static;
-  }
-  .nm-menu-offscreen{
-    display: none;
-  }
-  .zo2-megamenu {
-    .navbar-nav {
-      li {
-        a,
-        span {
-
-        }
-        &.mega-group {
-          > a, > span {
-            font-size: 120%;
-            font-weight: bold;
-          }
-          .caret {
-            display: none;
-          }
-        }
-        .dropdown-menu {
-          padding: 15px 30px;
-        }
-      }
-      > li {
-        border-bottom: none;
-        > a, 
-        > span {
-          padding: 15px;
         }
       }
     }
@@ -151,103 +116,86 @@
 @media (max-width: 767px) {
   .zo2-menu {
     position: fixed;
-    top: 60px;
-    width: 100%;
-    overflow: auto;
-    min-height: 0;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    .size(400px, 100%);
+    padding: 30px;
+    overflow-y: auto;
+    .opacity(0);
+    visibility: hidden;
+    .transition(all 300ms);
+    .transform(translateX(-100%));
   }
-  #mn-menu-canvas{
-    .menu-child {
-      display: none;
-      width: 100%!important;
-    }
-    .open {
-      > .menu-child {
-        display: block;
-      }
-    }
-  }
-  .nm-mobile-menu-content{
-    padding: 0;
-  }
-  #zo2-header-wrap>.container>.row{
-    position: relative;
-  }
-  .nm-menu-offscreen{
-    display: block;
-    position: absolute;
-    top: 40%;
-  }
-
   .zo2-megamenu {
-    .navbar-nav {
-      width: 100%;
-      padding: 0 15px;
-      margin: 0;
+    ul {
       li {
-        overflow: hidden;
+        display: block;
+        position: relative;
+        .caret {
+          float: right;
+          margin-top: 5px;
+          cursor: pointer;
+          &:before {
+            content: "\c025"
+          }
+        }
         &.open {
-          .mega-col-nav:nth-child(1) .mega-nav,
-          > ul {
-            border-top: 1px solid #eee;
-          }
-        }
-        >.menu-child {
-          ul {
-            padding: 0 0 0 15px;
-            li {
-              a {
-                padding: 15px 0;
-              }
-            }
-          }
-          .mega-dropdown-inner{
-            margin: 0;
-            padding: 0;
-            border-top:none;
-          }
-          .mega-inner {
-            padding: 0;
-          }
-        }
-        .menu-child {
-          ul {
-            padding-left: 25px!important;
-            li {
-              a, 
-              span {
-                padding-left: 0;
-              }
-            }
-          }
-        }
-      }
-      .mega-col-nav {
-        ul {
-          > .mega-group {
-            border-bottom: 1px solid #eee;
-          }
-        }
-        &.col-sm-3:nth-child(4),
-        &.col-sm-4:nth-child(3),
-        &.col-sm-6:nth-child(2) {
-          ul {
-            > .mega-group {
-              border-bottom: none;
-            }
+          .caret:before {
+            content: "\c035";
           }
         }
       }
     }
-    .dropdown-menu {
+    > ul {
+      > li {
+        border-bottom: 1px solid #eee;
+        line-height: normal;
+        &.open {
+          border-bottom: none
+        }
+        > a, > span {
+          padding-right: 0;
+          padding-left: 0
+        }
+      }
+    }
+    .mega-dropdown-menu {
+      display: none;
+      width: 100% !important;
       position: relative;
-      box-shadow: none;
+      .mega-dropdown-inner {
+        background: none !important;
+        .box-shadow(none) !important;
+        padding: 0 0 0 20px
+      }
     }
+  }
+  .canvas-toggle {
+    display: block;
   }
 
   .rlt {
     .zo2-menu {
       text-align: right;
     }
+  }
+
+  .offcanvas {
+    overflow: hidden;
+    #canvas-overlay {
+      display: block;
+    }
+    .zo2-menu {
+      .opacity(100);
+      visibility: visible;
+      .transform(translateX(0));
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .zo2-menu {
+    width: 320px;
   }
 }

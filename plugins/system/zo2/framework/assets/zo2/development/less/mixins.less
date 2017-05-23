@@ -580,3 +580,17 @@ img{
   height: -moz-calc(@height);
   height: -o-calc(@height);
 }
+.absolute (@top, @right, @bot, @left) {
+  position: absolute;
+  top: @top;
+  right: @right;
+  bottom: @bot;
+  left: @left
+}
+.fixed (@top, @right, @bot, @left) {
+  position: fixed;
+  top: @top;
+  right: @right;
+  bottom: @bot;
+  left: @left
+}

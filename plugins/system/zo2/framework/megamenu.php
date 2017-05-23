@@ -303,23 +303,32 @@ if (!class_exists('Zo2Megamenu'))
         function renderMenu($isAdmin = false)
         {
             $this->isAdmin = $isAdmin;
-            // add canvas menu
-            $canvas = '<div class="nm-menu-offscreen ">';
-            $canvas .= '<a href="javascript:void(0)" id="nm-mobile-menu-button" class="clicked">';
-            $canvas .= '<div class="nm-menu-icon">';
-            $canvas .= '<span class="line-1"></span>';
-            $canvas .= '<span class="line-2"></span>';
-            $canvas .= '<span class="line-3"></span>';
-            $canvas .= '</div>';
-            $canvas .= '</a>';
-            $canvas .= '</div>';
 
-            $prefix = '<nav data-zo2selectable="navbar" class="wrap zo2-menu navbar navbar-default" role="navigation">
-                    <div class="navbar-collapse collapse">';
-            $suffix = '</div></nav>';
+            // add canvas menu
+            $canvas_open = '<div class="canvas-toggle"><a href="javascript:void(0)" id="open-canvas"><span class="cs-font clever-icon-menu-5"></span></a></div>';
+
+            $prefix = '<nav class="zo2-menu">';
+            $suffix = '</nav>';
+
+            $canvas_close = '<div class="canvas-toggle"><a href="javascript:void(0)" id="close-canvas"><span class="cs-font clever-icon-close"></span></a></div>';
+
             $html = '';
             $menuConfig = Zo2Factory::getProfile()->getMenuConfig();
-            $hover = ' data-hover="' . $menuConfig->get('hover_type') . '"';
+
+            if ($isAdmin == false) {
+                $searchbox = $menuConfig->get('searchbox');
+                if($searchbox==1) {
+                    $html .= '<div class="zo2-search visible-xs">';
+                    $html .= '<form action="'. JRoute::_('index.php') .'" method="post" class="form-inline">';
+                    $html .= '<input name="searchword" class="inputbox" type="search" placeholder="'. JText::_('ZO2_CANVAS_MENU_SEARCH_PLACEHOLDER') .'" />';
+                    $html .= '<button class="btn-submit" onclick="this.form.searchword.focus();"><span class="cs-font clever-icon-search-4"></span></button>';
+                    $html .= '<input type="hidden" name="task" value="search" />';
+                    $html .= '<input type="hidden" name="option" value="com_search" />';
+                    $html .= '</form>';
+                    $html .= '</div>';
+                }
+            }
+
             $animation = $menuConfig->get('animation');
             $duration = $menuConfig->get('duration', 300);
             if ((int) $duration <= 0)
@@ -332,7 +341,7 @@ if (!class_exists('Zo2Megamenu'))
                 if (count($this->_items))
                 {
                     $keys = array_keys($this->_items);
-                    $html .= "<div $class$data$hover>";
+                    $html .= "<div $class$data>";
                     $html .= $this->getMenu(null, $keys[0]);
                     $html .= "</div>";
                     if ($isAdmin == true)
@@ -340,7 +349,7 @@ if (!class_exists('Zo2Megamenu'))
                         return $html;
                     } elseif ($isAdmin == false)
                     {
-                        return $canvas . $prefix . $html . $suffix;
+                        return $canvas_open . $prefix . $canvas_close . $html . $suffix;
                     }
                 }
             }
@@ -400,11 +409,9 @@ if (!class_exists('Zo2Megamenu'))
             $class = '';
             if (!$parent)
             {
-                $class .= 'nav navbar-nav level-top';
+                $class .= 'level-top';
             } else
             {
-                if (!$this->isAdmin)
-                    $class .= 'nav';
                 $class .= ' mega-nav';
                 $class .= ' level' . $parent->level;
             }
@@ -462,11 +469,11 @@ if (!class_exists('Zo2Megamenu'))
             {
                 $caret = '<b class="caret"></b>';
             }
-            if ($menu->isdropdown && $menu->level < 2)
-            {
-                $class .= 'dropdown-toggle';
-                $dropdown = ' data-toggle="dropdown" ';
-            }
+            // if ($menu->isdropdown && $menu->level < 2)
+            // {
+            //     $class .= 'dropdown-toggle';
+            //     $dropdown = ' data-toggle="dropdown" ';
+            // }
 
             if ($menu->show_group)
             {
@@ -567,10 +574,10 @@ if (!class_exists('Zo2Megamenu'))
             $config = $menu->config;
             $class = $menu->class;
 
-            if ($menu->isdropdown)
-            {
-                $class .= $menu->level == 1 ? ' dropdown' : ' dropdown-submenu';
-            }
+            // if ($menu->isdropdown)
+            // {
+            //     $class .= $menu->level == 1 ? ' dropdown' : ' dropdown-submenu';
+            // }
 
             if ($menu->megamenu)
                 $class .= ' mega';
@@ -635,7 +642,7 @@ if (!class_exists('Zo2Megamenu'))
             //default first item
             $fitem = count($menus) ? $menus[0]->id : 0;
 
-            $class = 'menu-child  ' . ($parent->isdropdown ? 'dropdown-menu mega-dropdown-menu' : 'mega-group-content');
+            $class = 'menu-child  ' . ($parent->isdropdown ? 'mega-dropdown-menu' : 'mega-group-content');
             $data = '';
             $style = '';
 
