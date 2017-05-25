@@ -45,30 +45,29 @@
         $('#close-canvas, #canvas-overlay').on('click',function(){
             $body.removeClass('offcanvas');
         });
-        $('.zo2-megamenu').find('li').each(function(){
-            var $this = $(this);
-            $this.find('a, span').on('click', function(e) {
-                e.preventDefault(); 
-                e.stopPropagation();
-                var target = $(e.target);
-                if(e.target.className == 'caret') {
-                    var dropdownMenu = target.parent().next();
-                    var siblings = $('.menu-child');
-                    $('.zo2-megamenu').find('li').removeClass('open');
-                    if(dropdownMenu.is(':visible')) {
-                        dropdownMenu.slideUp();
-                    } else {
-                        siblings.slideUp();
-                        dropdownMenu.slideDown();
-                        $this.addClass('open');
-
-                    }
-                } else if(target.is('a')) {
-                    var href = target.attr('href');
-                    if(href != '#')
-                        window.location.href = href;
+        $('.zo2-megamenu li').find('a, span').on('click', function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            var $this = $(this),
+            target = $(e.target);
+            if(target.is('b')) 
+            {
+                var dropdownMenu = $this.next('.menu-child');
+                var siblings = $this.closest('li').siblings().find('.menu-child');
+                $('.zo2-megamenu').find('li').removeClass('open');
+                if(dropdownMenu.is(':visible')) {
+                    dropdownMenu.slideUp();
+                } else {
+                    siblings.slideUp();
+                    dropdownMenu.slideDown();
+                    $this.addClass('open');
                 }
-            });
+            } else if (target.is('a')) 
+            {
+                var href = target.attr('href');
+                if(href != '#')
+                    window.location.href = href;
+            }
         })
         
         function onMouseIn (e, timeout) {
