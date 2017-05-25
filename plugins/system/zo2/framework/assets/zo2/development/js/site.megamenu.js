@@ -60,7 +60,7 @@
                 } else {
                     siblings.slideUp();
                     dropdownMenu.slideDown();
-                    $this.addClass('open');
+                    $this.parent('li').addClass('open');
                 }
             } else if (target.is('a')) 
             {
