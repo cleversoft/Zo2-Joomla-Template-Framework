@@ -31,12 +31,41 @@ img {
   height: auto;
   max-width: 100%;
 }
-.zo2-megamenu ul[class*="level"] > li > a:hover,
-.zo2-megamenu ul[class*="level"] > li > a:focus,
-.zo2-megamenu ul[class*="level"] > li > a:active {
+.zo2-megamenu ul {
+  list-style: none;
+  margin: 0;
+}
+.zo2-megamenu ul > li {
+  position: relative;
+}
+.zo2-megamenu ul > li > a:hover,
+.zo2-megamenu ul > li > a:focus,
+.zo2-megamenu ul > li > a:active {
   background: #fffbf0 !important;
   color: #333333 !important;
   text-shadow: 0 1px 1px #fff !important;
+}
+.zo2-megamenu ul > li.mega-align-right > .mega-dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.zo2-megamenu ul > li.mega-align-center > .mega-dropdown-menu {
+  left: 50%;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+}
+.zo2-megamenu ul > li.mega-align-justify {
+  position: static;
+}
+.zo2-megamenu ul > li.mega-align-justify > .mega-dropdown-menu {
+  left: 0;
+  margin-left: 0;
+  top: auto;
+}
+.zo2-megamenu ul > li.mega-align-justify > .mega-dropdown-menu.span12 {
+  width: 1170px;
 }
 .nav .zo2-megamenu > li.open .zo2-megamenu > a,
 .open .zo2-megamenu > a {
@@ -49,6 +78,7 @@ img {
 }
 .zo2-megamenu .mega-nav li > a,
 .zo2-megamenu .mega-nav li > span {
+  display: block;
   padding: 5px 20px 5px 10px;
   border: 1px dotted #dddddd;
   font-size: 12px;
@@ -68,14 +98,14 @@ img {
 .zo2-megamenu .mega-nav a.selected:after {
   border-left-color: #333333;
 }
-.zo2-megamenu .mega-nav .dropdown-submenu > a::after {
-  margin-right: -10px;
-}
-.zo2-megamenu .nav > li {
+.zo2-megamenu > ul > li {
+  float: left;
   margin-right: 20px;
 }
-.zo2-megamenu .nav > li > a,
-.zo2-megamenu .nav > li > span {
+.zo2-megamenu > ul > li > a,
+.zo2-megamenu > ul > li > span {
+  display: block;
+  color: #333;
   border: 1px solid #dddddd;
   padding: 8px 20px;
   background: #f2f2f2;
@@ -88,9 +118,56 @@ img {
   -o-transition: all 0.1s ease 0s;
   transition: all 0.1s ease 0s;
 }
+.zo2-megamenu .mega-dropdown-menu {
+  position: absolute;
+  border: 1px solid #dddddd;
+  padding: 10px;
+  margin-top: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  min-width: 500px;
+  width: auto;
+  background: #f2f2f2;
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 99;
+}
+.zo2-megamenu .mega-dropdown-menu .mega-dropdown-menu {
+  margin-top: 0;
+  margin-left: 11px;
+}
+.zo2-megamenu .mega-dropdown-menu:before,
+.zo2-megamenu .mega-dropdown-menu:after {
+  display: none !important;
+}
+.zo2-megamenu .open > .mega-dropdown-menu {
+  display: block;
+}
+.zo2-megamenu .span12.mega-col-nav .mega-inner {
+  padding: 10px;
+}
+.zo2-megamenu .selected {
+  background: #fffbf0 !important;
+  color: #333333 !important;
+  border: 1px solid #666666 !important;
+  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  text-shadow: 0 1px 1px white !important;
+}
+.zo2-megamenu .caret {
+  margin-top: 8px;
+  margin-left: 3px;
+}
 .zo2-megamenu .zo2-module ul li a,
 .zo2-megamenu .zo2-module .nav li a,
-.zo2-megamenu .dropdown-menu .zo2-module li a {
+.zo2-megamenu .mega-dropdown-menu .zo2-module li a {
   display: inline;
   padding: 0;
   margin: 0;
@@ -102,16 +179,16 @@ img {
 }
 .zo2-megamenu .zo2-module ul li a:hover,
 .zo2-megamenu .zo2-module .nav li a:hover,
-.zo2-megamenu .dropdown-menu .zo2-module li a:hover,
+.zo2-megamenu .mega-dropdown-menu .zo2-module li a:hover,
 .zo2-megamenu .zo2-module ul li a:active,
 .zo2-megamenu .zo2-module .nav li a:active,
-.zo2-megamenu .dropdown-menu .zo2-module li a:active,
+.zo2-megamenu .mega-dropdown-menu .zo2-module li a:active,
 .zo2-megamenu .zo2-module ul li a:focus,
 .zo2-megamenu .zo2-module .nav li a:focus,
-.zo2-megamenu .dropdown-menu .zo2-module li a:focus,
+.zo2-megamenu .mega-dropdown-menu .zo2-module li a:focus,
 .zo2-megamenu .zo2-module ul li a:visited,
 .zo2-megamenu .zo2-module .nav li a:visited,
-.zo2-megamenu .dropdown-menu .zo2-module li a:visited {
+.zo2-megamenu .mega-dropdown-menu .zo2-module li a:visited {
   background: none;
   color: inherit;
   font: inherit;
@@ -192,52 +269,6 @@ img {
 .zo2-megamenu .mega-inner {
   padding: 10px;
 }
-.zo2-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
-  margin-left: 0;
-  margin-right: 11px;
-}
-.zo2-megamenu .dropdown-menu {
-  border: 1px solid #dddddd;
-  padding: 10px;
-  margin-top: 10px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  min-width: 500px;
-  width: auto;
-  background: #f2f2f2;
-  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
-  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
-  box-shadow: 1px 2px 5px rgba(0,0,0,0.2);
-  display: none;
-  z-index: 99;
-}
-.zo2-megamenu .dropdown-menu .dropdown-menu {
-  margin-top: 0;
-  margin-left: 11px;
-}
-.zo2-megamenu .dropdown-menu:before,
-.zo2-megamenu .dropdown-menu:after {
-  display: none !important;
-}
-.zo2-megamenu .open > .dropdown-menu {
-  display: block;
-}
-.zo2-megamenu .span12.mega-col-nav .mega-inner {
-  padding: 10px;
-}
-.zo2-megamenu .selected {
-  background: #fffbf0 !important;
-  color: #333333 !important;
-  border: 1px solid #666666 !important;
-  -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
-  -moz-box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
-  box-shadow: 1px 2px 5px rgba(0,0,0,0.5);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  text-shadow: 0 1px 1px white !important;
-}
 .zo2-megamenu .mega-group-content {
   border: 1px solid #dddddd;
   padding: 10px;
@@ -269,18 +300,18 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
   border-radius: 3px;
 }
 .mega-nav .mega-group .zo2-megamenu > .mega-group-title,
-.dropdown-menu .mega-nav .mega-group .zo2-megamenu > .mega-group-title {
+.mega-dropdown-menu .mega-nav .mega-group .zo2-megamenu > .mega-group-title {
   padding: 5px 20px 5px 10px;
   cursor: pointer;
 }
 .zo2-megamenu .zo2-module ul,
 .zo2-megamenu .zo2-module .nav,
-.zo2-megamenu .dropdown-menu .nav {
+.zo2-megamenu .mega-dropdown-menu .nav {
   margin: 0 0 0 15px;
 }
 .zo2-megamenu .zo2-module ul li,
 .zo2-megamenu .zo2-module .nav li,
-.zo2-megamenu .dropdown-menu .nav li {
+.zo2-megamenu .mega-dropdown-menu .nav li {
   list-style: disc;
   display: list-item;
   float: none;
@@ -302,40 +333,18 @@ ul[class*="level"] .zo2-megamenu > li .zo2-megamenu > span.hover,
 #zo2-admin-megamenu .row-fluid [class*="span"]:first-child {
   margin-left: 0;
 }
-#zo2-admin-megamenu .dropdown-menu a {
+#zo2-admin-megamenu .mega-dropdown-menu a {
   white-space: normal;
 }
 #zo2-admin-megamenu ul.chzn-results {
   margin-right: 4px;
   float: none;
 }
-#zo2-admin-megamenu .dropdown-submenu:hover .dropdown-menu {
+#zo2-admin-megamenu .dropdown-submenu:hover .mega-dropdown-menu {
   display: none;
 }
-#zo2-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
+#zo2-admin-megamenu .dropdown-submenu:hover > .mega-dropdown-menu {
   display: block;
-}
-#zo2-admin-megamenu .dropdown.mega-align-right > .dropdown-menu {
-  left: auto;
-  right: 0;
-}
-#zo2-admin-megamenu .dropdown.mega-align-center > .dropdown-menu {
-  left: 50%;
-  transform: translate(-50%);
-  -webkit-transform: translate(-50%);
-  -ms-transform: translate(-50%);
-  -o-transform: translate(-50%);
-}
-#zo2-admin-megamenu .dropdown.mega-align-justify {
-  position: static;
-}
-#zo2-admin-megamenu .dropdown.mega-align-justify > .dropdown-menu {
-  left: 0;
-  margin-left: 0;
-  top: auto;
-}
-#zo2-admin-megamenu .dropdown.mega-align-justify > .dropdown-menu.span12 {
-  width: 1170px;
 }
 .zo2-admin-mm-row .toolbox-actions-group {
   height: 100px;
@@ -1671,9 +1680,26 @@ textarea {
   cursor: pointer;
 }
 .container-checkbox {
-  padding: 20px 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
+}
+.container-checkbox:last-child {
+  border-bottom: none;
+}
+.zo2-body .modal-header {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+.zo2-body .modal-header .close {
+  padding: 0 5px 0 15px;
+  margin: 0;
+  width: auto;
 }
 .modal-body {
   max-height: 700px !important;
+  padding: 10px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
 }

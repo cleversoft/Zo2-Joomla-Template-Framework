@@ -89,9 +89,6 @@ img {
   #zo2-header-logo .zo2-logo a {
     line-height: 60px;
   }
-  .zo2-menu {
-    background-color: #fff;
-  }
   #zo2-header-wrap .mn-menu {
     order: 0;
   }
@@ -104,25 +101,6 @@ img {
   }
   .search .icon-search i {
     top: 25px;
-  }
-  .mobile-menu-open .is-sticky #zo2-mega-menu #mn-menu-canvas {
-    top: 60px;
-  }
-  .mobile-menu-open .zo2-menu {
-    height: calc(100% - 60px);
-  }
-  .mobile-menu-open .zo2-menu::-webkit-scrollbar {
-    display: none;
-  }
-  .mn-menu {
-    position: fixed;
-    padding: 0;
-    z-index: 2;
-  }
-  .mn-menu .nm-menu-offscreen {
-    top: 20px;
-    position: fixed;
-    margin-left: 15px;
   }
   #zo2-footer-wrap .container .row,
   #zo2-footer-menu ul.nav {
