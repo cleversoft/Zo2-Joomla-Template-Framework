@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<extension type="package" version="3.7.1" method="upgrade">
+	<extension type="package" version="3.7.2" method="upgrade">
 	<name>Package - Zo2 Framework</name>
 	<packagename>zo2</packagename>
     <packager>Zo2 Framework</packager>   	
-	<creationDate>May 23, 2017</creationDate>
+	<creationDate>May 26, 2017</creationDate>
     <version>1.5.5</version>
     <author>ZooTemplate.com</author>    
     <authorEmail>support@zootemplate.com</authorEmail>

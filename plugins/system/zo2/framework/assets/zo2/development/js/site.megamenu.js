@@ -37,8 +37,8 @@
             }
         }
 
-        //add mobile menu class to body
-        $body.append('<div id="canvas-overlay"></div>');
+        //add mobile menu class to menu
+        $('#zo2-mega-menu').append('<div id="canvas-overlay"></div>');
         $('#open-canvas').on('click',function(){
             $body.addClass('offcanvas');
         });

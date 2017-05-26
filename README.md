@@ -76,6 +76,12 @@ You are free to use Zo2 Framework for your personal and commercial projects. You
 
 ##Change logs
 
+### 1.5.5 release May 26, 2017
+
+* Improve Zo2 Canvas Menu on Mobile Devices
+* Add Serach box to Canvas Menu on Mobile Device
+* Update Celversoft Fonts version
+
 ### 1.5.4 release May 16, 2017
 
 * Style admin layout builder and fix error display row name
